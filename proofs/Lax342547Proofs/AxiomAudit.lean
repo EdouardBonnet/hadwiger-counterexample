@@ -14,6 +14,7 @@ import Lax342547Proofs.MomentRecovery
 import Lax342547Proofs.FlatRank
 import Lax342547Proofs.JointProjectors
 import Lax342547Proofs.LabelDecomposition
+import Lax342547Proofs.SparsePins
 
 -- Completed preliminary results: background axioms only.
 #print axioms Lax342547Proofs.HadwigerMatching.hadwiger_matching_bound
@@ -42,6 +43,8 @@ import Lax342547Proofs.LabelDecomposition
 #print axioms Lax342547Proofs.FlatRank.exists_commuting_idempotents
 #print axioms Lax342547Proofs.JointProjectors.exists_joint_decomposition
 #print axioms Lax342547Proofs.LabelDecomposition.low_rank_label_decomposition
+#print axioms Lax342547Proofs.SparsePins.sparse_pin_labels
+#print axioms Lax342547Proofs.SparsePins.sparse_pin_labels_finset
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample

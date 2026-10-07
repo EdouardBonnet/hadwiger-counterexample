@@ -32,4 +32,6 @@ import Lax342547Proofs.RawFrames
 import Lax342547Proofs.RawLaw
 import Lax342547Proofs.SampledGraph
 import Lax342547Proofs.SelectorInterpolation
+import Lax342547Proofs.SparsePins
+import Lax342547Proofs.SparseSupport
 import Lax342547Proofs.TagGeometry

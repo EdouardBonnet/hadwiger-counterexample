@@ -55,6 +55,8 @@ by positions and may contain repeated raw vertices.
 - Lemma 5.2: the full low-rank label decomposition, including the Boolean
   diagonal identities, the label-count and sum-of-ranks bounds, and recovery
   of all higher-degree moments. Its proof has only Lean's standard axioms.
+- Lemma 5.3: the exact uniform label budget across all sparse expansions in
+  all projected pin spaces, including the paper's finite-sum formulation.
 - The ordinary fractional-coloring lower and upper bounds.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
@@ -79,7 +81,7 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 Validated on October 7, 2026: `lake build` and `lax build . --replay` pass,
-with 25 concepts and 27 annotated proofs. Lax reports 21 retained-helper
+with 26 concepts and 28 annotated proofs. Lax reports 23 retained-helper
 warnings and no errors.
 
 The completed preliminary proofs report only Lean's standard background

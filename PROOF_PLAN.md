@@ -61,14 +61,15 @@ The closing checks are:
 | Matrix frame existence, tensor embedding, and finite raw-space count | New checked proofs; uniform law defined |
 | Base-moment span and selector interpolation, Lemma 5.1 | Complete checked proofs |
 | Low-rank label decomposition, Lemma 5.2 | Complete checked proof, including the sum-of-ranks bound |
+| Uniform sparse pin label budget, Lemma 5.3 | Complete checked proof, over all sparse vectors in all projected spaces |
 | Entire concrete model, with the paper's testers and mixers | Not assembled |
 | Entropy/containers and the probabilistic construction | Not proved |
 | Theorem 1.1 | Open |
 | Counterexample corollaries | Checked only conditional on Theorem 1.1 |
 
 Numbered steps can measure checklist progress, but they are not equal units
-of difficulty or time. The October 7 moment-algebra work completed six steps
-in §8.1; substantial parts of the construction remain open.
+of difficulty or time. The October 7 moment-algebra work completed all seven
+steps in §8.1; substantial parts of the construction remain open.
 
 ## 3. Fix the common mathematical interfaces
 
@@ -319,7 +320,7 @@ must not assume a later collision or overlap conclusion.
 6. **Complete.** Recover higher-degree moments: a minimal discrepant monomial produces
    the identity submatrix indexed by complementary half-subsets. Prove
    its rank exceeds the rank budget.
-7. Bound the union of sparse labels appearing in projected pin directions,
+7. **Complete.** Bound the union of sparse labels appearing in projected pin directions,
    using a basis and selector interpolation. Preserve the exact budget `B₀`.
 
 The completed result is
@@ -331,6 +332,14 @@ The reconstructed matrix is a Gram matrix on the quotient, so its rank is
 bounded before applying the higher-degree uniqueness theorem. This avoids
 needing to establish its moment-span membership for the reconstruction step.
 The axiom audit reports only `propext`, `Classical.choice`, and `Quot.sound`.
+
+The checked [`sparse_pin_labels`](proofs/Lax342547Proofs/SparsePins.lean)
+then bounds all sparse expansions in all projected spaces, with the exact
+budget `2 |E| K (R + 14)`. It constructs an independent sparse generating
+family for each space and uses selector interpolation to exclude every
+additional label. Both finitely supported coefficients and the paper's
+finite-sum notation are covered, with degree condition
+`(K + 1) * (R + 14) ≤ degree + 1` and only standard background axioms.
 
 ### 8.2 Atoms and uniform mixers, Definition 5.4 and Lemma 5.5
 

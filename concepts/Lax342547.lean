@@ -21,5 +21,6 @@ import Lax342547.RawFrames
 import Lax342547.RawLaw
 import Lax342547.SampledGraph
 import Lax342547.SelectorInterpolation
+import Lax342547.SparsePins
 import Lax342547.TagGeometry
 import Lax342547.BaseMoments
