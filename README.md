@@ -61,6 +61,12 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 
 ## Build and audit
 
+Validated on October 7, 2026: `lake build` and `lax build . --replay` pass.
+Lax reports 10 concepts and 8 annotated proofs. Seven unused-helper warnings
+refer to retained upstream graph lemmas; they are available for the construction
+work. The completion checker exits with status 1, identifying Theorem 1.1 as
+the unresolved dependency of both counterexample consequences.
+
 ```sh
 cd proofs
 lake build
