@@ -1,0 +1,578 @@
+[
+  {
+    "section": 1,
+    "number": "1.1",
+    "kind": "theorem",
+    "title": null,
+    "label": "thm:main",
+    "source": "references/openai/paper-source/sections/01-introduction.tex",
+    "line": 20
+  },
+  {
+    "section": 1,
+    "number": "1.2",
+    "kind": "corollary",
+    "title": null,
+    "label": "cor:hadwiger",
+    "source": "references/openai/paper-source/sections/01-introduction.tex",
+    "line": 48
+  },
+  {
+    "section": 2,
+    "number": "2.1",
+    "kind": "definition",
+    "title": null,
+    "label": "def:hole",
+    "source": "references/openai/paper-source/sections/02-geometry.tex",
+    "line": 22
+  },
+  {
+    "section": 2,
+    "number": "2.2",
+    "kind": "lemma",
+    "title": null,
+    "label": "lem:hole-triangle-free",
+    "source": "references/openai/paper-source/sections/02-geometry.tex",
+    "line": 41
+  },
+  {
+    "section": 2,
+    "number": "2.3",
+    "kind": "lemma",
+    "title": null,
+    "label": "lem:cut-kernel",
+    "source": "references/openai/paper-source/sections/02-geometry.tex",
+    "line": 171
+  },
+  {
+    "section": 3,
+    "number": "3.1",
+    "kind": "theorem",
+    "title": "Raw supersaturation",
+    "label": "thm:raw-supersaturation",
+    "source": "references/openai/paper-source/sections/03-distributions.tex",
+    "line": 8
+  },
+  {
+    "section": 3,
+    "number": "3.2",
+    "kind": "lemma",
+    "title": null,
+    "label": "lem:entropy-support",
+    "source": "references/openai/paper-source/sections/03-distributions.tex",
+    "line": 32
+  },
+  {
+    "section": 3,
+    "number": "3.3",
+    "kind": "lemma",
+    "title": null,
+    "label": "lem:terminal-cut",
+    "source": "references/openai/paper-source/sections/03-distributions.tex",
+    "line": 76
+  },
+  {
+    "section": 3,
+    "number": "3.4",
+    "kind": "proposition",
+    "title": null,
+    "label": "prop:raw-to-graph",
+    "source": "references/openai/paper-source/sections/03-distributions.tex",
+    "line": 118
+  },
+  {
+    "section": 3,
+    "number": "3.5",
+    "kind": "proposition",
+    "title": null,
+    "label": "prop:matching-minor",
+    "source": "references/openai/paper-source/sections/03-distributions.tex",
+    "line": 218
+  },
+  {
+    "section": 4,
+    "number": "4.1",
+    "kind": "lemma",
+    "title": null,
+    "label": "lem:paired-frame-orbit",
+    "source": "references/openai/paper-source/sections/03-frame-laws.tex",
+    "line": 19
+  },
+  {
+    "section": 4,
+    "number": "4.2",
+    "kind": "lemma",
+    "title": "Gram normalization",
+    "label": "lem:gram-frame-normalization",
+    "source": "references/openai/paper-source/sections/03-frame-laws.tex",
+    "line": 44
+  },
+  {
+    "section": 4,
+    "number": "4.3",
+    "kind": "lemma",
+    "title": null,
+    "label": "lem:frame-images",
+    "source": "references/openai/paper-source/sections/03-frame-laws.tex",
+    "line": 63
+  },
+  {
+    "section": 4,
+    "number": "4.4",
+    "kind": "lemma",
+    "title": null,
+    "label": "lem:raw-intersections",
+    "source": "references/openai/paper-source/sections/03-frame-laws.tex",
+    "line": 166
+  },
+  {
+    "section": 4,
+    "number": "4.5",
+    "kind": "lemma",
+    "title": "Two peelings",
+    "label": "lem:peeling",
+    "source": "references/openai/paper-source/sections/03-frame-laws.tex",
+    "line": 280
+  },
+  {
+    "section": 4,
+    "number": "4.6",
+    "kind": "lemma",
+    "title": "Walsh estimates",
+    "label": "lem:walsh",
+    "source": "references/openai/paper-source/sections/03-frame-laws.tex",
+    "line": 433
+  },
+  {
+    "section": 5,
+    "number": "5.1",
+    "kind": "lemma",
+    "title": null,
+    "label": "lem:base-moments",
+    "source": "references/openai/paper-source/sections/04-moments.tex",
+    "line": 34
+  },
+  {
+    "section": 5,
+    "number": "5.2",
+    "kind": "lemma",
+    "title": "Label support",
+    "label": "lem:label-support",
+    "source": "references/openai/paper-source/sections/04-moments.tex",
+    "line": 60
+  },
+  {
+    "section": 5,
+    "number": "5.3",
+    "kind": "lemma",
+    "title": null,
+    "label": "lem:sparse-pin-labels",
+    "source": "references/openai/paper-source/sections/04-moments.tex",
+    "line": 176
+  },
+  {
+    "section": 5,
+    "number": "5.4",
+    "kind": "definition",
+    "title": "Atoms and flavors",
+    "label": "def:atom",
+    "source": "references/openai/paper-source/sections/04-moments.tex",
+    "line": 231
+  },
+  {
+    "section": 5,
+    "number": "5.5",
+    "kind": "lemma",
+    "title": "Uniform mixing forms",
+    "label": "lem:generic-mixers",
+    "source": "references/openai/paper-source/sections/04-moments.tex",
+    "line": 269
+  },
+  {
+    "section": 6,
+    "number": "6.1",
+    "kind": "definition",
+    "title": null,
+    "label": "def:small-table",
+    "source": "references/openai/paper-source/sections/05-realization.tex",
+    "line": 48
+  },
+  {
+    "section": 6,
+    "number": "6.2",
+    "kind": "lemma",
+    "title": "Table flags and binary prescriptions",
+    "label": "lem:small-tables",
+    "source": "references/openai/paper-source/sections/05-realization.tex",
+    "line": 108
+  },
+  {
+    "section": 6,
+    "number": "6.3",
+    "kind": "theorem",
+    "title": "Gradient realization",
+    "label": "thm:gradient-realization",
+    "source": "references/openai/paper-source/sections/05-realization.tex",
+    "line": 205
+  },
+  {
+    "section": 7,
+    "number": "7.1",
+    "kind": "proposition",
+    "title": "Collision criterion",
+    "label": "prop:collision",
+    "source": "references/openai/paper-source/sections/06-collision.tex",
+    "line": 68
+  },
+  {
+    "section": 8,
+    "number": "8.1",
+    "kind": "definition",
+    "title": null,
+    "label": null,
+    "source": "references/openai/paper-source/sections/07-phases.tex",
+    "line": 69
+  },
+  {
+    "section": 8,
+    "number": "8.2",
+    "kind": "theorem",
+    "title": "Phase alternative",
+    "label": "thm:phase-alternative",
+    "source": "references/openai/paper-source/sections/07-phases.tex",
+    "line": 82
+  },
+  {
+    "section": 8,
+    "number": "8.3",
+    "kind": "lemma",
+    "title": "Rank growth without a cover",
+    "label": "lem:no-cover-rank",
+    "source": "references/openai/paper-source/sections/07-phases.tex",
+    "line": 126
+  },
+  {
+    "section": 8,
+    "number": "8.4",
+    "kind": "lemma",
+    "title": "Injection on accepting pairs",
+    "label": "lem:injection",
+    "source": "references/openai/paper-source/sections/07-phases.tex",
+    "line": 562
+  },
+  {
+    "section": 8,
+    "number": "8.5",
+    "kind": "lemma",
+    "title": "Consequences of a tiny cover",
+    "label": "lem:tiny-cover",
+    "source": "references/openai/paper-source/sections/07-phases.tex",
+    "line": 648
+  },
+  {
+    "section": 9,
+    "number": "9.1",
+    "kind": "definition",
+    "title": "Common prediction",
+    "label": "def:prediction",
+    "source": "references/openai/paper-source/sections/08-preparation.tex",
+    "line": 30
+  },
+  {
+    "section": 9,
+    "number": "9.2",
+    "kind": "proposition",
+    "title": "Status preparation",
+    "label": "prop:status-preparation",
+    "source": "references/openai/paper-source/sections/08-preparation.tex",
+    "line": 125
+  },
+  {
+    "section": 9,
+    "number": "9.3",
+    "kind": "lemma",
+    "title": "Exactification of vanishing prediction classes",
+    "label": "lem:empty-status",
+    "source": "references/openai/paper-source/sections/08-preparation.tex",
+    "line": 175
+  },
+  {
+    "section": 9,
+    "number": "9.4",
+    "kind": "lemma",
+    "title": "Affine-slice comparison",
+    "label": "lem:synthetic-slice",
+    "source": "references/openai/paper-source/sections/08-preparation.tex",
+    "line": 243
+  },
+  {
+    "section": 9,
+    "number": "9.5",
+    "kind": "lemma",
+    "title": "Equal coefficients when the tensor difference vanishes",
+    "label": "lem:zero-delta",
+    "source": "references/openai/paper-source/sections/08-preparation.tex",
+    "line": 327
+  },
+  {
+    "section": 10,
+    "number": "10.1",
+    "kind": "lemma",
+    "title": "Uniform histogram control",
+    "label": "lem:histogram-control",
+    "source": "references/openai/paper-source/sections/09-histograms.tex",
+    "line": 74
+  },
+  {
+    "section": 10,
+    "number": "10.2",
+    "kind": "lemma",
+    "title": "Gram normalization",
+    "label": "lem:histogram-gram-normalization",
+    "source": "references/openai/paper-source/sections/09-histograms.tex",
+    "line": 111
+  },
+  {
+    "section": 10,
+    "number": "10.3",
+    "kind": "lemma",
+    "title": "Comparison of two bounded batches",
+    "label": "lem:histogram-batch-comparison",
+    "source": "references/openai/paper-source/sections/09-histograms.tex",
+    "line": 142
+  },
+  {
+    "section": 10,
+    "number": "10.4",
+    "kind": "lemma",
+    "title": "Product tests under the key reference",
+    "label": "lem:reference-product",
+    "source": "references/openai/paper-source/sections/09-histograms.tex",
+    "line": 181
+  },
+  {
+    "section": 10,
+    "number": "10.5",
+    "kind": "lemma",
+    "title": "Many queries and prescribed cells",
+    "label": "lem:histogram-many-queries",
+    "source": "references/openai/paper-source/sections/09-histograms.tex",
+    "line": 215
+  },
+  {
+    "section": 10,
+    "number": "10.6",
+    "kind": "lemma",
+    "title": "Typicality of common input-and-key tests",
+    "label": "lem:typicality",
+    "source": "references/openai/paper-source/sections/09-histograms.tex",
+    "line": 523
+  },
+  {
+    "section": 10,
+    "number": "10.7",
+    "kind": "lemma",
+    "title": "Binary mixing",
+    "label": "lem:binary-mixing",
+    "source": "references/openai/paper-source/sections/09-histograms.tex",
+    "line": 646
+  },
+  {
+    "section": 10,
+    "number": "10.8",
+    "kind": "lemma",
+    "title": "Quadratic signs on affine subspaces",
+    "label": "lem:histogram-quadratic-bias",
+    "source": "references/openai/paper-source/sections/09-histograms.tex",
+    "line": 732
+  },
+  {
+    "section": 10,
+    "number": "10.9",
+    "kind": "lemma",
+    "title": "Unary reference law and base-status positivity",
+    "label": "lem:unary-positivity",
+    "source": "references/openai/paper-source/sections/09-histograms.tex",
+    "line": 754
+  },
+  {
+    "section": 11,
+    "number": "11.1",
+    "kind": "theorem",
+    "title": "Weak product comparison",
+    "label": "thm:weak-product",
+    "source": "references/openai/paper-source/sections/10-product-tests.tex",
+    "line": 19
+  },
+  {
+    "section": 11,
+    "number": "11.2",
+    "kind": "lemma",
+    "title": "Finite twisted regularity",
+    "label": "lem:product-twisted-regularity",
+    "source": "references/openai/paper-source/sections/10-product-tests.tex",
+    "line": 89
+  },
+  {
+    "section": 11,
+    "number": "11.3",
+    "kind": "lemma",
+    "title": "A terminal remainder on actual inputs",
+    "label": "lem:product-terminal-remainder",
+    "source": "references/openai/paper-source/sections/10-product-tests.tex",
+    "line": 140
+  },
+  {
+    "section": 11,
+    "number": "11.4",
+    "kind": "corollary",
+    "title": "Factorized integration of the approximant",
+    "label": "cor:weak-product-factorized-integration",
+    "source": "references/openai/paper-source/sections/10-product-tests.tex",
+    "line": 342
+  },
+  {
+    "section": 12,
+    "number": "12.1",
+    "kind": "definition",
+    "title": "Numerical option",
+    "label": "def:limit-option",
+    "source": "references/openai/paper-source/sections/11-common-limit.tex",
+    "line": 20
+  },
+  {
+    "section": 12,
+    "number": "12.2",
+    "kind": "lemma",
+    "title": "Global projections with adaptive filter choices",
+    "label": "lem:limit-global-projection",
+    "source": "references/openai/paper-source/sections/11-common-limit.tex",
+    "line": 132
+  },
+  {
+    "section": 12,
+    "number": "12.3",
+    "kind": "lemma",
+    "title": "Common signature model",
+    "label": "lem:limit-model",
+    "source": "references/openai/paper-source/sections/11-common-limit.tex",
+    "line": 242
+  },
+  {
+    "section": 12,
+    "number": "12.4",
+    "kind": "lemma",
+    "title": "Passage of vanishing overlaps",
+    "label": "lem:limit-zero-product",
+    "source": "references/openai/paper-source/sections/11-common-limit.tex",
+    "line": 375
+  },
+  {
+    "section": 12,
+    "number": "12.5",
+    "kind": "lemma",
+    "title": "Successful-query density",
+    "label": "lem:limit-density",
+    "source": "references/openai/paper-source/sections/11-common-limit.tex",
+    "line": 452
+  },
+  {
+    "section": 12,
+    "number": "12.6",
+    "kind": "proposition",
+    "title": "The limiting overlap obstruction",
+    "label": "prop:limit-overlap",
+    "source": "references/openai/paper-source/sections/11-common-limit.tex",
+    "line": 550
+  },
+  {
+    "section": 13,
+    "number": "13.1",
+    "kind": "definition",
+    "title": "Available generator",
+    "label": "def:status-generator",
+    "source": "references/openai/paper-source/sections/12-status-span.tex",
+    "line": 27
+  },
+  {
+    "section": 13,
+    "number": "13.2",
+    "kind": "lemma",
+    "title": "Dual relations",
+    "label": "lem:status-duality",
+    "source": "references/openai/paper-source/sections/12-status-span.tex",
+    "line": 100
+  },
+  {
+    "section": 13,
+    "number": "13.3",
+    "kind": "lemma",
+    "title": "Extraction of a global prediction",
+    "label": "lem:status-global-prediction",
+    "source": "references/openai/paper-source/sections/12-status-span.tex",
+    "line": 145
+  },
+  {
+    "section": 13,
+    "number": "13.4",
+    "kind": "lemma",
+    "title": "Predicted scalar compatibility",
+    "label": "lem:status-predicted",
+    "source": "references/openai/paper-source/sections/12-status-span.tex",
+    "line": 294
+  },
+  {
+    "section": 13,
+    "number": "13.5",
+    "kind": "lemma",
+    "title": "Scalar solvability on positive mass",
+    "label": "lem:status-span",
+    "source": "references/openai/paper-source/sections/12-status-span.tex",
+    "line": 387
+  },
+  {
+    "section": 13,
+    "number": "13.6",
+    "kind": "lemma",
+    "title": "Fresh lists of at most seven generators",
+    "label": "lem:fresh-lists",
+    "source": "references/openai/paper-source/sections/12-status-span.tex",
+    "line": 425
+  },
+  {
+    "section": 13,
+    "number": "13.7",
+    "kind": "proposition",
+    "title": "Positive-mass overlap",
+    "label": "prop:positive-overlap",
+    "source": "references/openai/paper-source/sections/12-status-span.tex",
+    "line": 504
+  },
+  {
+    "section": 14,
+    "number": "14.1",
+    "kind": "lemma",
+    "title": "Uniform large-set hit estimate",
+    "label": "lem:rare-large-set-hit",
+    "source": "references/openai/paper-source/sections/13-rare-overlap.tex",
+    "line": 73
+  },
+  {
+    "section": 14,
+    "number": "14.2",
+    "kind": "lemma",
+    "title": "Superlevel sets from all-filter nets",
+    "label": "lem:rare-superlevel-nets",
+    "source": "references/openai/paper-source/sections/13-rare-overlap.tex",
+    "line": 235
+  },
+  {
+    "section": 14,
+    "number": "14.3",
+    "kind": "proposition",
+    "title": null,
+    "label": "prop:rare-overlap",
+    "source": "references/openai/paper-source/sections/13-rare-overlap.tex",
+    "line": 286
+  }
+]

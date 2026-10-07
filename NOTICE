@@ -1,0 +1,8 @@
+This project includes material from OpenAI's openai/math repository,
+https://github.com/openai/math, commit
+adc7f1241b42e322a6451854ab7e4b4c146bf78a, licensed under Apache-2.0.
+
+The paper and unchanged Lean reference files are retained in references/openai.
+The HadwigerMatching proofs and the clique-minor preliminaries were adapted
+to the Lax concept/proof package structure. Modified files identify the source
+commit and the nature of those changes in their headers.

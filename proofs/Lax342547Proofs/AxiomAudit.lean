@@ -1,0 +1,16 @@
+import Lax342547Proofs.Counterexample
+import Lax342547Proofs.FractionalCounterexample
+import Lax342547Proofs.HoleTriangleFree
+import Lax342547Proofs.SampledGraph
+
+-- Completed preliminary results: background axioms only.
+#print axioms Lax342547Proofs.HadwigerMatching.hadwiger_matching_bound
+#print axioms Lax342547Proofs.HadwigerMatching.card_le_twice_chromaticNumber_of_indepNum
+#print axioms Lax342547Proofs.HoleTriangleFree.hole_properties
+#print axioms Lax342547Proofs.SampledGraph.sampleGraph_indepNum_le_two
+#print axioms Lax342547Proofs.FractionalColoring.fractional_chromatic_lower_bound
+#print axioms Lax342547Proofs.FractionalColoring.fractional_chromatic_le_chromatic
+
+-- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
+#print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample
+#print axioms Lax342547Proofs.FractionalCounterexample.arbitrarily_large_fractional_counterexample

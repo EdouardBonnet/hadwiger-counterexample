@@ -1,0 +1,13 @@
+{
+  "repository": "https://github.com/openai/math",
+  "commit": "adc7f1241b42e322a6451854ab7e4b4c146bf78a",
+  "paper_path": "preprints/A-counterexample-to-Hadwigers-conjecture-September-23-2026/paper.pdf",
+  "paper_sha256": "a97293542586d3518b9355dcea732012b09d4ce809126da73d285ba0d3906128",
+  "paper_date": "2026-09-23",
+  "retrieved": "2026-10-07",
+  "license": "Apache-2.0",
+  "formalized_upstream": [
+    "Proposition 3.5: the matching-minor bound and its ordinary chromatic consequence"
+  ],
+  "unproved_target": "Theorem 1.1 and the graph construction, including raw supersaturation (Theorem 3.1)"
+}
