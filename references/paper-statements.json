@@ -189,6 +189,15 @@
     "line": 269
   },
   {
+    "section": 5,
+    "number": "5.6",
+    "kind": "remark",
+    "title": null,
+    "label": "rem:Z-reparametrization",
+    "source": "references/openai/paper-source/sections/04-moments.tex",
+    "line": 398
+  },
+  {
     "section": 6,
     "number": "6.1",
     "kind": "definition",
@@ -270,6 +279,15 @@
     "line": 648
   },
   {
+    "section": 8,
+    "number": "8.6",
+    "kind": "remark",
+    "title": null,
+    "label": "rem:tiny-accepting-family",
+    "source": "references/openai/paper-source/sections/07-phases.tex",
+    "line": 777
+  },
+  {
     "section": 9,
     "number": "9.1",
     "kind": "definition",
@@ -313,6 +331,15 @@
     "label": "lem:zero-delta",
     "source": "references/openai/paper-source/sections/08-preparation.tex",
     "line": 327
+  },
+  {
+    "section": 9,
+    "number": "9.6",
+    "kind": "remark",
+    "title": "No feedback from later accuracies",
+    "label": "rem:preparation-accuracies",
+    "source": "references/openai/paper-source/sections/08-preparation.tex",
+    "line": 703
   },
   {
     "section": 10,
@@ -362,6 +389,15 @@
   {
     "section": 10,
     "number": "10.6",
+    "kind": "remark",
+    "title": null,
+    "label": "rem:histogram-leaf-versus-mixed",
+    "source": "references/openai/paper-source/sections/09-histograms.tex",
+    "line": 495
+  },
+  {
+    "section": 10,
+    "number": "10.7",
     "kind": "lemma",
     "title": "Typicality of common input-and-key tests",
     "label": "lem:typicality",
@@ -370,7 +406,16 @@
   },
   {
     "section": 10,
-    "number": "10.7",
+    "number": "10.8",
+    "kind": "remark",
+    "title": null,
+    "label": "rem:typicality-no-test-supremum",
+    "source": "references/openai/paper-source/sections/09-histograms.tex",
+    "line": 632
+  },
+  {
+    "section": 10,
+    "number": "10.9",
     "kind": "lemma",
     "title": "Binary mixing",
     "label": "lem:binary-mixing",
@@ -379,7 +424,7 @@
   },
   {
     "section": 10,
-    "number": "10.8",
+    "number": "10.10",
     "kind": "lemma",
     "title": "Quadratic signs on affine subspaces",
     "label": "lem:histogram-quadratic-bias",
@@ -388,12 +433,21 @@
   },
   {
     "section": 10,
-    "number": "10.9",
+    "number": "10.11",
     "kind": "lemma",
     "title": "Unary reference law and base-status positivity",
     "label": "lem:unary-positivity",
     "source": "references/openai/paper-source/sections/09-histograms.tex",
     "line": 754
+  },
+  {
+    "section": 10,
+    "number": "10.12",
+    "kind": "remark",
+    "title": null,
+    "label": "rem:unary-positivity-key-only",
+    "source": "references/openai/paper-source/sections/09-histograms.tex",
+    "line": 915
   },
   {
     "section": 11,
@@ -432,6 +486,15 @@
     "line": 342
   },
   {
+    "section": 11,
+    "number": "11.5",
+    "kind": "remark",
+    "title": "What the two comparisons do not assert",
+    "label": "rem:weak-product-filter-class",
+    "source": "references/openai/paper-source/sections/10-product-tests.tex",
+    "line": 366
+  },
+  {
     "section": 12,
     "number": "12.1",
     "kind": "definition",
@@ -443,6 +506,15 @@
   {
     "section": 12,
     "number": "12.2",
+    "kind": "remark",
+    "title": "Two different classes of flags",
+    "label": "rem:limit-filter-boundary",
+    "source": "references/openai/paper-source/sections/11-common-limit.tex",
+    "line": 79
+  },
+  {
+    "section": 12,
+    "number": "12.3",
     "kind": "lemma",
     "title": "Global projections with adaptive filter choices",
     "label": "lem:limit-global-projection",
@@ -451,7 +523,7 @@
   },
   {
     "section": 12,
-    "number": "12.3",
+    "number": "12.4",
     "kind": "lemma",
     "title": "Common signature model",
     "label": "lem:limit-model",
@@ -460,7 +532,7 @@
   },
   {
     "section": 12,
-    "number": "12.4",
+    "number": "12.5",
     "kind": "lemma",
     "title": "Passage of vanishing overlaps",
     "label": "lem:limit-zero-product",
@@ -469,7 +541,7 @@
   },
   {
     "section": 12,
-    "number": "12.5",
+    "number": "12.6",
     "kind": "lemma",
     "title": "Successful-query density",
     "label": "lem:limit-density",
@@ -478,7 +550,7 @@
   },
   {
     "section": 12,
-    "number": "12.6",
+    "number": "12.7",
     "kind": "proposition",
     "title": "The limiting overlap obstruction",
     "label": "prop:limit-overlap",
@@ -560,6 +632,15 @@
   {
     "section": 14,
     "number": "14.2",
+    "kind": "remark",
+    "title": null,
+    "label": "rem:rare-restriction-caps",
+    "source": "references/openai/paper-source/sections/13-rare-overlap.tex",
+    "line": 216
+  },
+  {
+    "section": 14,
+    "number": "14.3",
     "kind": "lemma",
     "title": "Superlevel sets from all-filter nets",
     "label": "lem:rare-superlevel-nets",
@@ -568,7 +649,7 @@
   },
   {
     "section": 14,
-    "number": "14.3",
+    "number": "14.4",
     "kind": "proposition",
     "title": null,
     "label": "prop:rare-overlap",

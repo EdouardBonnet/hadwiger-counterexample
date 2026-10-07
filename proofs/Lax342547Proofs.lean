@@ -1,8 +1,12 @@
 import Lax342547Proofs.AxiomAudit
 import Lax342547Proofs.CliqueMinor
 import Lax342547Proofs.Counterexample
+import Lax342547Proofs.CutFunctionals
+import Lax342547Proofs.CutProfiles
 import Lax342547Proofs.FractionalColoring
 import Lax342547Proofs.FractionalCounterexample
+import Lax342547Proofs.FrameExistence
+import Lax342547Proofs.GradientForm
 import Lax342547Proofs.HadwigerMatching.BasicMatching
 import Lax342547Proofs.HadwigerMatching.BranchCounting
 import Lax342547Proofs.HadwigerMatching.BranchGeometry
@@ -13,4 +17,8 @@ import Lax342547Proofs.HadwigerMatching.MinorBound
 import Lax342547Proofs.HadwigerMatching.PairingExtension
 import Lax342547Proofs.HadwigerMatching.SmallBranches
 import Lax342547Proofs.HoleTriangleFree
+import Lax342547Proofs.MomentSpace
+import Lax342547Proofs.RawFrames
+import Lax342547Proofs.RawLaw
 import Lax342547Proofs.SampledGraph
+import Lax342547Proofs.TagGeometry

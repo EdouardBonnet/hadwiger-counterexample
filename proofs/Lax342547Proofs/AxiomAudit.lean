@@ -2,6 +2,12 @@ import Lax342547Proofs.Counterexample
 import Lax342547Proofs.FractionalCounterexample
 import Lax342547Proofs.HoleTriangleFree
 import Lax342547Proofs.SampledGraph
+import Lax342547Proofs.CutFunctionals
+import Lax342547Proofs.TagGeometry
+import Lax342547Proofs.FrameExistence
+import Lax342547Proofs.GradientForm
+import Lax342547Proofs.RawFrames
+import Lax342547Proofs.RawLaw
 
 -- Completed preliminary results: background axioms only.
 #print axioms Lax342547Proofs.HadwigerMatching.hadwiger_matching_bound
@@ -10,6 +16,16 @@ import Lax342547Proofs.SampledGraph
 #print axioms Lax342547Proofs.SampledGraph.sampleGraph_indepNum_le_two
 #print axioms Lax342547Proofs.FractionalColoring.fractional_chromatic_lower_bound
 #print axioms Lax342547Proofs.FractionalColoring.fractional_chromatic_le_chromatic
+#print axioms Lax342547Proofs.MomentSpace.momentSpace_iInter
+#print axioms Lax342547Proofs.CutProfiles.same_cut_iff
+#print axioms Lax342547Proofs.TagGeometry.majority_intersection
+#print axioms Lax342547Proofs.TagGeometry.same_cut_common_constant
+#print axioms Lax342547Proofs.CutFunctionals.representative_sums_eq
+#print axioms Lax342547Proofs.GradientForm.form_properties
+#print axioms Lax342547Proofs.RawFrames.tensor_realization
+#print axioms Lax342547Proofs.RawFrames.frame_sample_indepNum_le_two
+#print axioms Lax342547Proofs.FrameExistence.frame_nonempty_of_card_le
+#print axioms Lax342547Proofs.RawLaw.raw_card_bound
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample

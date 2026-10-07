@@ -6,5 +6,8 @@ $h(G)<26m/75+2/3<m/2\le\chi_f(G)\le\chi(G)$ for $m\ge5$.
 
 The present proofs establish the matching-minor bound, the ordinary and
 fractional chromatic bounds, and the triangle-free binary hole relation.
+They also establish the moment-space cut kernel, generic cut-functional
+descent identities, frame existence, the tensor embedding and annihilation
+identities, and the finite raw-space cardinality bound.
 The graph-existence assertion remains unproved. Both counterexample
 consequences explicitly depend on that assertion.

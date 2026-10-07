@@ -5,6 +5,9 @@ and both ordinary and fractional consequences in Corollary 1.2. No graph
 with the required connected-matching bound has been constructed in Lean.
 The project is not ready for submission as a complete counterexample.
 
+See [PROOF_PLAN.md](PROOF_PLAN.md) for the detailed mathematical plan;
+this file is the shorter status and acceptance checklist.
+
 ## Acceptance criteria
 
 1. An annotated proof discharges
@@ -27,8 +30,9 @@ The project is not ready for submission as a complete counterexample.
 | Chromatic and fractional chromatic bounds | §1, Proposition 3.5 | Proved |
 | Binary hole equations, symmetry, looplessness, triangle exclusion | Definition 2.1, Lemma 2.2 | Defined and proved |
 | Independence bound for sampled positions | Equation (2.2) | Proved, without assuming an injective sample |
-| Boolean point moments, cut profiles, and cut kernel | §2.2–2.3, Lemma 2.3 | Not formalized |
-| Uniform raw frames, injective tensor realization, and annihilators | §2.4, equations (2.13)–(2.16) | Not formalized |
+| Boolean point moments, cut profiles, and cut kernel | §2.2–2.3, Lemma 2.3 | Projection, majority intersection, and constant-kernel proofs checked |
+| Concrete tester functionals, mixer form, and self-Gram matrix | §2.3 | Generic descent and symmetric-form properties checked; concrete instantiation open |
+| Uniform raw frames, injective tensor realization, and annihilators | §2.4, equations (2.13)–(2.16) | Frame existence, embedding, self-contraction, and raw-space count checked; uniform law defined; product-law and full-model integration open |
 | Finite entropy projection, including the full support assertion | Lemma 3.2 | Not formalized |
 | Real-capacity terminal cut with both endpoint and pair exceptions | Lemma 3.3 | Not formalized |
 | Entropy-controlled fingerprints and sample probability bounds | Proposition 3.4 | Not formalized |
@@ -41,8 +45,8 @@ The project is not ready for submission as a complete counterexample.
 | Accepted queries and overlap-to-four-holes implication | §7, Proposition 7.1 | Not formalized |
 | Phase alternatives and accepting-pair injection | §8 | Not formalized |
 | Common prediction, exactification, and status preparation | §9, Proposition 9.2 | Not formalized |
-| Histogram compactness, Gram comparisons, and many-query bounds | §10.1–10.5 | Not formalized |
-| Mixed-law tests, binary mixing, and unary positivity | §10.6–10.8 | Not formalized |
+| Histogram compactness, Gram comparisons, and many-query bounds | Lemmas 10.1–10.5 | Not formalized |
+| Mixed-law tests, binary mixing, and unary positivity | Lemmas 10.7–10.11 | Not formalized |
 | Weak product testing and factorized integration | §11 | Not formalized |
 | Common subsequential limit and vanishing-overlap implication | §12 | Not formalized |
 | Dual scalar system, fresh lists, and positive-mass overlap | §13 | Not formalized |
@@ -54,11 +58,12 @@ The project is not ready for submission as a complete counterexample.
 
 ## Next implementation steps
 
-1. Define the selector and base-coordinate spaces, point moments, and cut
-   profiles, then prove Lemma 2.3. Use the pinned TeX as the source of truth.
-2. Define the actual finite raw frame space and its probability law. Derive
-   its `HoleData` instance from the tensor construction and annihilator
-   equations, then connect it to the already proved sampling lemma.
+1. Instantiate the proved moment/cut framework with the concrete selector
+   coordinates and ordered testers. Descend the testers to the cut space,
+   define the actual mixer and self-Gram matrices, and prove their formulas.
+2. Finish the finite reference-law identities and assemble the concrete
+   model. The generic matrix-frame `HoleData` and its sampled-graph bound
+   are already checked; connect them to these specific functionals.
 3. State raw supersaturation using this concrete law. Preserve the separate
    marginal caps and joint cap; the two endpoints of a unit can be dependent.
    An abstract structure with a supersaturation field is not a construction.

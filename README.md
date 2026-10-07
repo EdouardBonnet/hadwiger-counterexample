@@ -11,6 +11,11 @@ not establish the counterexample without that construction.
 The Lax identifier is `lax-342547`. The concept and proof packages already
 use the archive's Lean `v4.33.0` environment and pinned mathlib revision.
 
+The [detailed proof plan](PROOF_PLAN.md) gives the mathematical steps,
+interfaces, dependency order, quantitative obligations, and completion
+criteria for the entire construction. It distinguishes checked results
+from planned arguments and treats the rare-overlap branch separately.
+
 ## Target
 
 For every lower bound, construct a finite graph on `Fin m`, with `m` at least
@@ -38,6 +43,14 @@ by positions and may contain repeated raw vertices.
 - Lemma 2.2: symmetry, looplessness, and triangle-freeness of the hole relation.
 - Equation (2.2): the independence bound for a graph sampled from a triangle-free
   hole relation, including samples with repetition.
+- Lemma 2.3: coordinate projections of moment spaces, majority intersections
+  for the cyclic tags, and the constant kernel of the unordered cut map.
+- The generic descent argument for the cut-functional sums and the symmetry
+  and diagonal identity for the gradient form.
+- Raw-frame nonemptiness whenever `N ≥ 2(d+h)`, injectivity of the matrix
+  tensor embedding, and the zero self-contraction identity.
+- The raw-space cardinality bound; the finite uniform raw law is defined.
+  The frame model is connected to the sampled-graph independence proof.
 - The ordinary fractional-coloring lower and upper bounds.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
@@ -61,11 +74,15 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 
 ## Build and audit
 
-Validated on October 7, 2026: `lake build` and `lax build . --replay` pass.
-Lax reports 10 concepts and 8 annotated proofs. Seven unused-helper warnings
-refer to retained upstream graph lemmas; they are available for the construction
-work. The completion checker exits with status 1, identifying Theorem 1.1 as
-the unresolved dependency of both counterexample consequences.
+Validated on October 7, 2026: `lake build` and `lax build . --replay` pass,
+with 19 concepts and 17 annotated proofs. Lax reports 14 retained-helper
+warnings and no errors.
+
+The completed preliminary proofs report only Lean's standard background
+axioms in `AxiomAudit.lean`. The completion checker must still exit with
+status 1, identifying Theorem 1.1 as the unresolved dependency of both
+counterexample consequences. Unused helpers are retained for the remaining
+construction and integration work.
 
 ```sh
 cd proofs
