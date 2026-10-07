@@ -51,6 +51,10 @@ by positions and may contain repeated raw vertices.
   tensor embedding, and the zero self-contraction identity.
 - The raw-space cardinality bound; the finite uniform raw law is defined.
   The frame model is connected to the sampled-graph independence proof.
+- Lemma 5.1: the exact base-moment span and selector interpolation.
+- Lemma 5.2: the full low-rank label decomposition, including the Boolean
+  diagonal identities, the label-count and sum-of-ranks bounds, and recovery
+  of all higher-degree moments. Its proof has only Lean's standard axioms.
 - The ordinary fractional-coloring lower and upper bounds.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
@@ -75,7 +79,7 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 Validated on October 7, 2026: `lake build` and `lax build . --replay` pass,
-with 19 concepts and 17 annotated proofs. Lax reports 14 retained-helper
+with 25 concepts and 27 annotated proofs. Lax reports 21 retained-helper
 warnings and no errors.
 
 The completed preliminary proofs report only Lean's standard background

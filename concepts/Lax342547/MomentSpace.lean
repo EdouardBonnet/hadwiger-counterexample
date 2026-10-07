@@ -1,6 +1,8 @@
 import Mathlib.LinearAlgebra.Matrix.BilinearForm
 import Mathlib.Data.ZMod.Basic
+import Mathlib.Algebra.Field.ZMod
 import Mathlib.Data.Finset.Powerset
+import Mathlib.Data.Fintype.Powerset
 
 /-!
 ---
@@ -18,6 +20,12 @@ abbrev Binary := ZMod 2
 
 def SelectorCoordinates (b degree : ℕ) :=
   {S : Finset (Fin b) // S.card ≤ degree}
+
+instance (b degree : ℕ) : Fintype (SelectorCoordinates b degree) :=
+  inferInstanceAs (Fintype {S : Finset (Fin b) // S.card ≤ degree})
+
+instance (b degree : ℕ) : DecidableEq (SelectorCoordinates b degree) :=
+  inferInstanceAs (DecidableEq {S : Finset (Fin b) // S.card ≤ degree})
 
 def selectorEval {b degree : ℕ} (s : Fin b → Binary)
     (c : SelectorCoordinates b degree) : Binary := ∏ i ∈ c.val, s i

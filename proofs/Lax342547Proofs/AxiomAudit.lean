@@ -8,6 +8,12 @@ import Lax342547Proofs.FrameExistence
 import Lax342547Proofs.GradientForm
 import Lax342547Proofs.RawFrames
 import Lax342547Proofs.RawLaw
+import Lax342547Proofs.BaseMoments
+import Lax342547Proofs.SelectorInterpolation
+import Lax342547Proofs.MomentRecovery
+import Lax342547Proofs.FlatRank
+import Lax342547Proofs.JointProjectors
+import Lax342547Proofs.LabelDecomposition
 
 -- Completed preliminary results: background axioms only.
 #print axioms Lax342547Proofs.HadwigerMatching.hadwiger_matching_bound
@@ -26,6 +32,16 @@ import Lax342547Proofs.RawLaw
 #print axioms Lax342547Proofs.RawFrames.frame_sample_indepNum_le_two
 #print axioms Lax342547Proofs.FrameExistence.frame_nonempty_of_card_le
 #print axioms Lax342547Proofs.RawLaw.raw_card_bound
+#print axioms Lax342547Proofs.BaseMoments.mem_baseMomentSpace_iff
+#print axioms Lax342547Proofs.SelectorInterpolation.selectorEval_linearIndependent
+#print axioms Lax342547Proofs.MomentRecovery.eq_zero_of_rank_le
+#print axioms Lax342547Proofs.MomentRecovery.eq_of_agree_low
+#print axioms Lax342547Proofs.FlatRank.exists_flat_level
+#print axioms Lax342547Proofs.FlatRank.quotientPairing_nondegenerate
+#print axioms Lax342547Proofs.FlatRank.quotient_restriction_surjective
+#print axioms Lax342547Proofs.FlatRank.exists_commuting_idempotents
+#print axioms Lax342547Proofs.JointProjectors.exists_joint_decomposition
+#print axioms Lax342547Proofs.LabelDecomposition.low_rank_label_decomposition
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample

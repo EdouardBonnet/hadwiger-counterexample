@@ -39,7 +39,8 @@ this file is the shorter status and acceptance checklist.
 | Frame extension, Gram normalization, sparse intersections | §4.1–4.2 | Not formalized |
 | Two peelings with exact pins and subsequent image bounds | §4.3, Lemma 4.5 | Not formalized |
 | Bilinear/Walsh estimates | §4.4 | Not formalized |
-| Low-rank Boolean moment decomposition and sparse label supports | §5.1–5.2 | Not formalized |
+| Base-moment span, selector interpolation, and low-rank label decomposition | Lemmas 5.1–5.2 | Complete; all label identities, rank bounds, and reconstruction checked |
+| Sparse label supports of projected pins | Lemma 5.3 | Not formalized |
 | Uniform mixing matrices, chosen before the unit law | §5.3, Lemma 5.5 | Not formalized |
 | Scalar recipes, table flags, gradient realization | §6, Theorem 6.3 | Not formalized |
 | Accepted queries and overlap-to-four-holes implication | §7, Proposition 7.1 | Not formalized |
@@ -57,6 +58,11 @@ this file is the shorter status and acceptance checklist.
 | Ordinary and fractional counterexample consequences | Corollary 1.2 | Proved assuming Theorem 1.1 |
 
 ## Next implementation steps
+
+The next independent algebraic target is Lemma 5.3: use the checked selector
+interpolation theorem to bound all labels occurring in sparse vectors of a
+projected pin space. Lemma 5.2 is now available for the later mixer and
+gradient-realization arguments.
 
 1. Instantiate the proved moment/cut framework with the concrete selector
    coordinates and ordered testers. Descend the testers to the cut space,

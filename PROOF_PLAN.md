@@ -59,13 +59,16 @@ The closing checks are:
 | Independence of representative sums | New checked generic proof; concrete testers still need instantiation |
 | Symmetry and diagonal of the gradient form | New checked generic proof; concrete mixers still need instantiation |
 | Matrix frame existence, tensor embedding, and finite raw-space count | New checked proofs; uniform law defined |
+| Base-moment span and selector interpolation, Lemma 5.1 | Complete checked proofs |
+| Low-rank label decomposition, Lemma 5.2 | Complete checked proof, including the sum-of-ranks bound |
 | Entire concrete model, with the paper's testers and mixers | Not assembled |
 | Entropy/containers and the probabilistic construction | Not proved |
 | Theorem 1.1 | Open |
 | Counterexample corollaries | Checked only conditional on Theorem 1.1 |
 
-These results do not provide a sensible percentage-complete estimate.
-Most of the difficult argument is still ahead.
+Numbered steps can measure checklist progress, but they are not equal units
+of difficulty or time. The October 7 moment-algebra work completed six steps
+in §8.1; substantial parts of the construction remain open.
 
 ## 3. Fix the common mathematical interfaces
 
@@ -298,26 +301,36 @@ must not assume a later collision or overlap conclusion.
 
 ### 8.1 Boolean moment algebra, Lemmas 5.1–5.3
 
-1. Prove the exact span characterization of base moments: symmetry and
+1. **Complete.** Prove the exact span characterization of base moments: symmetry and
    `Zᵢᵢ = Z₀ᵢ`. Construct the diagonal and off-diagonal basis matrices from
    the stated sums of point moments.
-2. Prove selector interpolation on a finite set of distinct labels using
+2. **Complete.** Prove selector interpolation on a finite set of distinct labels using
    products of separating affine bit functions. Account for squarefree
    reduction and the degree bound.
-3. For the low-rank label decomposition, define the truncated moment
+3. **Complete.** For the low-rank label decomposition, define the truncated moment
    pairing and its increasing restrictions. Prove existence of three
    consecutive equal ranks in the required interval.
-4. Pass to the radical quotient. Define selector multiplication on it
+4. **Complete.** Pass to the radical quotient. Define selector multiplication on it
    and prove well-definedness, self-adjointness, commutativity, and
    idempotence separately.
-5. Split the quotient into simultaneous binary eigenspaces. Construct
+5. **Complete.** Split the quotient into simultaneous binary eigenspaces. Construct
    the label blocks, prove their Boolean diagonal identities, and bound
    the sum of their ranks.
-6. Recover higher-degree moments: a minimal discrepant monomial produces
+6. **Complete.** Recover higher-degree moments: a minimal discrepant monomial produces
    the identity submatrix indexed by complementary half-subsets. Prove
    its rank exceeds the rank budget.
 7. Bound the union of sparse labels appearing in projected pin directions,
    using a basis and selector interpolation. Preserve the exact budget `B₀`.
+
+The completed result is
+[`low_rank_label_decomposition`](proofs/Lax342547Proofs/LabelDecomposition.lean).
+It starts with membership in the actual point-moment span and a matrix-rank
+bound, constructs every intermediate object, and assumes only `6R + 4 ≤ jStar`.
+It does not take a decomposition or a flat quotient as an external hypothesis.
+The reconstructed matrix is a Gram matrix on the quotient, so its rank is
+bounded before applying the higher-degree uniqueness theorem. This avoids
+needing to establish its moment-span membership for the reconstruction step.
+The axiom audit reports only `propext`, `Classical.choice`, and `Quot.sound`.
 
 ### 8.2 Atoms and uniform mixers, Definition 5.4 and Lemma 5.5
 
