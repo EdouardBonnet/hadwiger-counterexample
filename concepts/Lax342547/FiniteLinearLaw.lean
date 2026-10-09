@@ -3,6 +3,7 @@ import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
 import Mathlib.LinearAlgebra.Quotient.Basic
 import Mathlib.Probability.Distributions.Uniform
 import Mathlib.Probability.ProbabilityMassFunction.Constructions
+import Mathlib.LinearAlgebra.Dimension.Constructions
 
 /-!
 ---
@@ -16,6 +17,20 @@ These are the projection and domination steps used for mixer row bits.
 -/
 
 namespace Lax342547.FiniteLinearLaw
+
+def familyMap {K T : Type} [Field K] {V W : T → Type}
+    [∀ i, AddCommGroup (V i)] [∀ i, Module K (V i)]
+    [∀ i, AddCommGroup (W i)] [∀ i, Module K (W i)]
+    (f : ∀ i, V i →ₗ[K] W i) : (∀ i, V i) →ₗ[K] (∀ i, W i) :=
+  LinearMap.pi (fun i => (f i).comp (LinearMap.proj i))
+
+axiom family_codimension {K T : Type} [Field K] [Fintype T] {V W : T → Type}
+    [∀ i, AddCommGroup (V i)] [∀ i, Module K (V i)]
+    [∀ i, AddCommGroup (W i)] [∀ i, Module K (W i)]
+    [∀ i, FiniteDimensional K (V i)] [∀ i, FiniteDimensional K (W i)]
+    (f : ∀ i, V i →ₗ[K] W i) (c : T → ℕ)
+    (hc : ∀ i, Module.finrank K (W i) ≤ Module.finrank K (LinearMap.range (f i)) + c i) :
+    Module.finrank K (∀ i, W i) ≤ Module.finrank K (LinearMap.range (familyMap f)) + ∑ i, c i
 
 axiom codimension_map_le {K V W : Type} [Field K] [AddCommGroup V] [Module K V]
     [AddCommGroup W] [Module K W] [FiniteDimensional K V] [FiniteDimensional K W]

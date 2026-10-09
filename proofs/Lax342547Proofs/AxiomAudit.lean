@@ -25,6 +25,10 @@ import Lax342547Proofs.OrderedMixerLaw
 import Lax342547Proofs.ProfileCounting
 import Lax342547Proofs.CorankCounting
 import Lax342547Proofs.SharpMixerLaw
+import Lax342547Proofs.FormalQuadratic
+import Lax342547Proofs.UnaryMixer
+import Lax342547Proofs.UnaryRowLaw
+import Lax342547Proofs.UnaryMixers
 
 -- Completed preliminary results: background axioms only.
 #print axioms Lax342547Proofs.HadwigerMatching.hadwiger_matching_bound
@@ -98,6 +102,30 @@ import Lax342547Proofs.SharpMixerLaw
 #print axioms Lax342547Proofs.SharpMixerLaw.alternating_block_uniform
 #print axioms Lax342547Proofs.SharpMixerLaw.alternating_low_rank_bound
 #print axioms Lax342547Proofs.SharpMixerLaw.label_parity_low_rank_bounds
+#print axioms Lax342547Proofs.RestrictionRank.bilinear_pullback_rank
+#print axioms Lax342547Proofs.FiniteLinearLaw.family_codimension
+#print axioms Lax342547Proofs.FormalQuadratic.polar_rank
+#print axioms Lax342547Proofs.FormalQuadratic.affine_polar
+#print axioms Lax342547Proofs.FormalQuadratic.affine_polar_matrix_rank
+#print axioms Lax342547Proofs.UnaryMixer.formal_rank
+#print axioms Lax342547Proofs.UnaryMixer.substitution_rank
+#print axioms Lax342547Proofs.UnaryMixer.incident_card
+#print axioms Lax342547Proofs.UnaryMixer.mixer_atom_expansion
+#print axioms Lax342547Proofs.UnaryMixer.unary_affine_quadratic
+#print axioms Lax342547Proofs.UnaryMixer.unary_polar
+#print axioms Lax342547Proofs.UnaryMixer.unary_rank_bound
+#print axioms Lax342547Proofs.UnaryMixer.unary_rank_lower
+#print axioms Lax342547Proofs.UnaryMixer.row_space_dimension
+#print axioms Lax342547Proofs.UnaryMixer.unary_depends_on_rows
+#print axioms Lax342547Proofs.UnaryRowLaw.mixerRows_rank
+#print axioms Lax342547Proofs.UnaryRowLaw.joint_row_law
+#print axioms Lax342547Proofs.UnaryRowLaw.row_corank_bound
+#print axioms Lax342547Proofs.UnaryRowLaw.unary_failure_probability
+#print axioms Lax342547Proofs.UnaryMixers.simultaneous_failure_bound
+#print axioms Lax342547Proofs.UnaryMixers.exists_of_failureBound_lt_one
+#print axioms Lax342547Proofs.UnaryMixers.failureBound_lt_one
+#print axioms Lax342547Proofs.UnaryMixers.exists_for_large_n
+#print axioms Lax342547Proofs.UnaryMixers.exists_uniform_unary
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample

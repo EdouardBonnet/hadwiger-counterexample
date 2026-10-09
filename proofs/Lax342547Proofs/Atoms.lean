@@ -65,6 +65,27 @@ theorem atom_role {hr : 2 * r ≤ n} (D : Testers (k := k) (b := b) (degree := d
   rw [atom, ConcreteCut.role_formula]
   simp [atomRepresentation, Pi.single_apply, apply_ite]
 
+theorem atom_aTag {hr : 2 * r ≤ n} (D : Testers (k := k) (b := b) (degree := degree) hr)
+    (l : Tag k) (s : Fin b → Binary) (z : Base k n → Binary)
+    (hz : ∀ i, i ∉ allowedBase k n l → z i = 0) (t : Tag k) :
+    D.aTag t (atom l s z hz) = ∑ d, blockTester (degree := degree) hr (ordinary d t)
+      (pointMoment selectorEval s z) := by
+  classical
+  rw [atom, D.ordinary_formula]
+  simp [ordinarySum, representativeAt, atomRepresentation, Pi.single_apply, apply_ite,
+    LinearMap.sum_apply]
+
+theorem atom_bTag {hr : 2 * r ≤ n} (D : Testers (k := k) (b := b) (degree := degree) hr)
+    (l : Tag k) (s : Fin b → Binary) (z : Base k n → Binary)
+    (hz : ∀ i, i ∉ allowedBase k n l → z i = 0) (t : Tag k) :
+    D.bTag t (atom l s z hz) = if l = t then 0 else
+      blockTester (degree := degree) hr shared (pointMoment selectorEval s z) := by
+  classical
+  rw [atom, D.shared_formula]
+  by_cases hlt : l = t <;>
+    simp [sharedSum, representativeAt, atomRepresentation, Pi.single_apply, apply_ite,
+      LinearMap.sum_apply, hlt, eq_comm]
+
 theorem atom_diagonal (hr : 2 * r ≤ n) (l : Tag k) (s : Fin b → Binary) (z : Base k n → Binary)
     (hz : ∀ i, i ∉ allowedBase k n l → z i = 0) :
     chiStar (degree := degree) hr (atomRepresentation l s z hz) =

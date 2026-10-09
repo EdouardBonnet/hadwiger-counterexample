@@ -40,3 +40,7 @@ import Lax342547.SymmetricFactorization
 import Lax342547.ProfileCounting
 import Lax342547.CorankCounting
 import Lax342547.SharpMixerLaw
+import Lax342547.FormalQuadratic
+import Lax342547.UnaryMixer
+import Lax342547.UnaryRowLaw
+import Lax342547.UnaryMixers

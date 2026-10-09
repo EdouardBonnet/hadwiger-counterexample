@@ -76,7 +76,12 @@ by positions and may contain repeated raw vertices.
   restriction, and all three sharp-parity probability bounds are checked,
   including the alternating block of side `n/2` rounded down. The affine
   change of point inputs under a base-block variation is also checked.
-  The uniform mixer existence theorem itself remains open.
+- The unary part of Lemma 5.5: the actual atom's affine quadratic expansion,
+  exact formal polar rank, and bounded row space chosen before the non-Z
+  fixing. The joint row density, corank estimate, and finite union yield
+  simultaneous unary mixers for all sufficiently large `n`, with an
+  explicit proved threshold under `p_* (g²+3) K ≤ s₀`. The new proofs use
+  only Lean's standard axioms. The joint unary/binary mixer choice remains open.
 - The ordinary fractional-coloring lower and upper bounds.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
@@ -101,7 +106,7 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 Validated on October 9, 2026: `lake build` and `lax build . --replay` pass,
-with 42 concepts and 71 annotated proofs. Lax reports 27 retained-helper
+with 46 concepts and 95 annotated proofs. Lax reports 25 retained-helper
 warnings and no errors.
 
 The completed preliminary proofs report only Lean's standard background

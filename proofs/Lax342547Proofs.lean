@@ -51,3 +51,7 @@ import Lax342547Proofs.SymmetricFactorization
 import Lax342547Proofs.ProfileCounting
 import Lax342547Proofs.CorankCounting
 import Lax342547Proofs.SharpMixerLaw
+import Lax342547Proofs.FormalQuadratic
+import Lax342547Proofs.UnaryMixer
+import Lax342547Proofs.UnaryRowLaw
+import Lax342547Proofs.UnaryMixers

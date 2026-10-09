@@ -366,22 +366,32 @@ finite-sum notation are covered, with degree condition
 
 1. **Complete.** Define every flavor as an explicit finite parameter domain, with its
    allowed testers, free `Z` coordinates, and uniform distribution.
-2. **Partial.** Express atom evaluation of the mixer form through bounded row-bit
+2. **Complete.** Express atom evaluation of the mixer form through bounded row-bit
    spaces. Prove the forward/reverse compatibility rank calculation.
    The exact compatibility condition and codimension, its observation-law
    density bound after an injective free-direction restriction, and rank
    loss of at most twice the restricted codimension are checked. The exact
    affine point-input variation under a base-block change is checked too.
-   The atom-specific quadratic expansion and its formal polar rank remain open.
-3. **Partial.** Bound the number of low-rank coefficient profiles and rank-deficient
-   random row maps; union bound uniformly over profiles, labels, tags,
-   and flavors.
+   The actual atom evaluation is now a constant tester term plus an affine
+   substitution into the disjoint formal quadratic. Its polar rank is the
+   exact formal row dimension, and substitution loses at most twice the
+   row-map codimension. The fixed row space has dimension at most
+   `4J(g-1)K` and determines all evaluations before the non-Z values are fixed.
+3. **Complete for the unary estimates.** Bound the number of low-rank coefficient
+   profiles and rank-deficient random row maps; union bound uniformly over
+   profiles, labels, and tags. All non-Z fixings, hence all flavors, are
+   covered inside each event without an additional union.
    Rectangular factorization and its probability bound are checked.
    Symmetric factorization works in characteristic two without a diagonal
    assumption. The actual cut profiles of total rank at most `K` number
    at most `(K+1)^|E| 2^(dK+K²)`, and the row-corank probability is at most
-   `2^(ms)/2^(sn)`. Substituting the coordinate dimension, aggregating the
-   independent row laws, and the uniform union bound remain open.
+   `2^(ms)/2^(sn)`. The joint row law has domination factor `2^(2JK²)`;
+   its packed matrix is proved to represent the actual formal-row map.
+   Substituting the coordinate dimension and taking the finite union gives
+   the explicit failure bound in `UnaryMixers.failureBound`. A proved
+   threshold makes it less than one. `exists_uniform_unary` constructs
+   simultaneous unary mixers and bounded row spaces for all sufficiently
+   large `n`, under `p_* (g²+3) K ≤ s₀` and `k>0`, where `g=2k+1`.
 4. **Partial.** For distinct labels, prove all the required nontrivial binary parities
    of ordered mixer evaluations and `E` evaluations have large rank.
    The distinct labels have independent combined free-direction columns.
@@ -393,9 +403,21 @@ finite-sum notation are covered, with degree condition
    bounds are checked, including the alternating subblock of side `⌊n/2⌋`.
    Lifting these restriction estimates to every flavor's bilinear part and
    the simultaneous large-rank probability conclusion remain open.
-5. Choose all mixer matrices simultaneously for a fixed large `n`.
+5. **Partial.** Choose all mixer matrices simultaneously for a fixed large `n`.
    Only then quantify over unit laws and orientation-dependent effective
-   spaces. The mixer choice cannot depend on those laws.
+   spaces. The mixer choice cannot depend on those laws. Simultaneous
+   unary existence is checked, including an explicit threshold independent
+   of the tester family. The binary union, a shared probability margin,
+   the joint unary/binary choice, and instantiation of the paper's parameter
+   ledger remain open.
+
+The unary endpoint is
+[`exists_uniform_unary`](proofs/Lax342547Proofs/UnaryMixers.lean).
+It quantifies over all nonzero actual cut profiles of total rank at most
+`K`, then tags and labels, then chooses the bounded row space, then
+quantifies over allowed base-coordinate fixings. It proves both the
+`2(J-s₀)` polar-rank bound and dependence only on those row bits. Its
+closure uses only `propext`, `Classical.choice`, and `Quot.sound`.
 
 **Exit condition:** a proved existence theorem for the mixers with every
 consumer-visible property explicit. This is one of the main algebraic

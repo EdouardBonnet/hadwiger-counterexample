@@ -129,4 +129,40 @@ theorem uniform_image_of_surjective (f : V →ₗ[Binary] W) (hf : Function.Surj
       (by exact_mod_cast (Fintype.card_ne_zero (α := LinearMap.ker f)))
       (by simp)
 
+noncomputable def familyRangeEquiv {K T : Type} [Field K] {V W : T → Type}
+    [∀ i, AddCommGroup (V i)] [∀ i, Module K (V i)]
+    [∀ i, AddCommGroup (W i)] [∀ i, Module K (W i)]
+    (f : ∀ i, V i →ₗ[K] W i) :
+    LinearMap.range (Lax342547.FiniteLinearLaw.familyMap f) ≃ₗ[K] (∀ i, LinearMap.range (f i)) where
+  toFun x i := ⟨x.val i, by
+    obtain ⟨v, hv⟩ := x.property
+    exact ⟨v i, congrFun hv i⟩⟩
+  invFun y := ⟨fun i => (y i).val, by
+    choose v hv using fun i => (y i).property
+    exact ⟨v, funext hv⟩⟩
+  left_inv x := by apply Subtype.ext; rfl
+  right_inv y := by funext i; apply Subtype.ext; rfl
+  map_add' x y := rfl
+  map_smul' a x := rfl
+
+/--
+---
+conclusion: Lax342547.FiniteLinearLaw.family_codimension
+---
+The image of a coordinatewise family of linear maps is linearly
+equivalent to the product of their images. Dimensions therefore add,
+and summing the individual codimension bounds proves the joint bound.
+-/
+theorem family_codimension {K T : Type} [Field K] [Fintype T] {V W : T → Type}
+    [∀ i, AddCommGroup (V i)] [∀ i, Module K (V i)]
+    [∀ i, AddCommGroup (W i)] [∀ i, Module K (W i)]
+    [∀ i, FiniteDimensional K (V i)] [∀ i, FiniteDimensional K (W i)]
+    (f : ∀ i, V i →ₗ[K] W i) (c : T → ℕ)
+    (hc : ∀ i, Module.finrank K (W i) ≤ Module.finrank K (LinearMap.range (f i)) + c i) :
+    Module.finrank K (∀ i, W i) ≤
+      Module.finrank K (LinearMap.range (Lax342547.FiniteLinearLaw.familyMap f)) + ∑ i, c i := by
+  rw [(familyRangeEquiv f).finrank_eq, Module.finrank_pi_fintype, Module.finrank_pi_fintype,
+    ← Finset.sum_add_distrib]
+  exact Finset.sum_le_sum (fun i _ => hc i)
+
 end Lax342547Proofs.FiniteLinearLaw

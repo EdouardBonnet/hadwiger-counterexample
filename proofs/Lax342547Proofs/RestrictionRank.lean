@@ -66,4 +66,33 @@ theorem bilinear_restriction_rank (B : LinearMap.BilinForm K V) (S : Submodule K
         (Module.finrank K V - Module.finrank K S) := Nat.add_le_add_right hout _
     _ = _ := by rw [hk]; omega
 
+omit [FiniteDimensional K V] in
+theorem surjective_pullback_rank (B : LinearMap.BilinForm K V) (A : W →ₗ[K] V)
+    (hA : Function.Surjective A) :
+    Module.finrank K (LinearMap.range (B.comp A A)) = Module.finrank K (LinearMap.range B) := by
+  have heq : B.comp A A = A.dualMap.comp (LinearMap.comp B A) := rfl
+  rw [heq, LinearMap.range_comp, LinearMap.range_comp,
+    LinearMap.range_eq_top.mpr hA, Submodule.map_top]
+  exact (Submodule.equivMapOfInjective A.dualMap
+    (LinearMap.dualMap_injective_of_surjective hA) (LinearMap.range B)).finrank_eq.symm
+
+/--
+---
+conclusion: Lax342547.RestrictionRank.bilinear_pullback_rank
+---
+Factor the row map through its image. Pullback along the resulting
+surjection preserves rank, because its dual is injective. The only
+loss is restriction to the image, which costs at most twice its
+codimension.
+-/
+theorem bilinear_pullback_rank (B : LinearMap.BilinForm K V) (A : W →ₗ[K] V) :
+    Module.finrank K (LinearMap.range B) ≤ Module.finrank K (LinearMap.range (B.comp A A)) +
+      2 * (Module.finrank K V - Module.finrank K (LinearMap.range A)) := by
+  have h := bilinear_restriction_rank B (LinearMap.range A)
+  have heq := surjective_pullback_rank (B.restrict (LinearMap.range A)) A.rangeRestrict
+    (LinearMap.range_eq_top.mp A.range_rangeRestrict)
+  change Module.finrank K (LinearMap.range (B.comp A A)) = _ at heq
+  rw [← heq] at h
+  exact h
+
 end Lax342547Proofs.RestrictionRank
