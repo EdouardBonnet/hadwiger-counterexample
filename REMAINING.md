@@ -31,8 +31,8 @@ this file is the shorter status and acceptance checklist.
 | Binary hole equations, symmetry, looplessness, triangle exclusion | Definition 2.1, Lemma 2.2 | Defined and proved |
 | Independence bound for sampled positions | Equation (2.2) | Proved, without assuming an injective sample |
 | Boolean point moments, cut profiles, and cut kernel | §2.2–2.3, Lemma 2.3 | Projection, majority intersection, and constant-kernel proofs checked |
-| Concrete tester functionals, mixer form, and self-Gram matrix | §2.3 | Generic descent and symmetric-form properties checked; concrete instantiation open |
-| Uniform raw frames, injective tensor realization, and annihilators | §2.4, equations (2.13)–(2.16) | Frame existence, embedding, self-contraction, and raw-space count checked; uniform law defined; product-law and full-model integration open |
+| Concrete tester functionals, mixer form, and self-Gram matrix | §2.3 | Complete, including cut descent, the moment identity, and Z-coordinate invariance |
+| Uniform raw frames, injective tensor realization, and annihilators | §2.4, equations (2.13)–(2.16) | Concrete model assembled; frame existence, embedding, self-contraction, raw-space count, product law, and sampled-graph independence checked |
 | Finite entropy projection, including the full support assertion | Lemma 3.2 | Not formalized |
 | Real-capacity terminal cut with both endpoint and pair exceptions | Lemma 3.3 | Not formalized |
 | Entropy-controlled fingerprints and sample probability bounds | Proposition 3.4 | Not formalized |
@@ -41,6 +41,7 @@ this file is the shorter status and acceptance checklist.
 | Bilinear/Walsh estimates | §4.4 | Not formalized |
 | Base-moment span, selector interpolation, and low-rank label decomposition | Lemmas 5.1–5.2 | Complete; all label identities, rank bounds, and reconstruction checked |
 | Sparse label supports of projected pins | Lemma 5.3 | Complete; the exact uniform label budget covers all sparse vectors |
+| Atoms, flavors, and finite parameter laws | Definition 5.4 | Defined; incidence formula, role/diagonal bits, retained coordinates, and product law checked |
 | Uniform mixing matrices, chosen before the unit law | §5.3, Lemma 5.5 | Not formalized |
 | Scalar recipes, table flags, gradient realization | §6, Theorem 6.3 | Not formalized |
 | Accepted queries and overlap-to-four-holes implication | §7, Proposition 7.1 | Not formalized |
@@ -59,18 +60,15 @@ this file is the shorter status and acceptance checklist.
 
 ## Next implementation steps
 
-The Boolean moment algebra in Lemmas 5.1–5.3 is complete. The low-rank
-decomposition and the uniform sparse-label budget are available for the
-later mixer and gradient-realization arguments. The next algebraic work is
-the concrete tester and mixer setup, followed by the uniform mixer theorem
-in Lemma 5.5; its probability and rank estimates remain open.
+The concrete algebraic model and Boolean moment algebra in Lemmas 5.1–5.3
+are complete. Atoms and flavor distributions are now defined on that
+model. The next algebraic target is the uniform mixer theorem in Lemma 5.5;
+its probability and rank estimates remain open.
 
-1. Instantiate the proved moment/cut framework with the concrete selector
-   coordinates and ordered testers. Descend the testers to the cut space,
-   define the actual mixer and self-Gram matrices, and prove their formulas.
-2. Finish the finite reference-law identities and assemble the concrete
-   model. The generic matrix-frame `HoleData` and its sampled-graph bound
-   are already checked; connect them to these specific functionals.
+1. Prove the forward/reverse matrix compatibility calculation and its
+   codimension cost, then the random row-map and low-rank profile counts.
+2. Establish the unary and binary mixer rank bounds simultaneously, with
+   all mixers chosen before the unit law.
 3. State raw supersaturation using this concrete law. Preserve the separate
    marginal caps and joint cap; the two endpoints of a unit can be dependent.
    An abstract structure with a supersaturation field is not a construction.

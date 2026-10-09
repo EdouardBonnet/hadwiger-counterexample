@@ -15,6 +15,9 @@ import Lax342547Proofs.FlatRank
 import Lax342547Proofs.JointProjectors
 import Lax342547Proofs.LabelDecomposition
 import Lax342547Proofs.SparsePins
+import Lax342547Proofs.Atoms
+import Lax342547Proofs.CoordinateCounts
+import Lax342547Proofs.ConcreteModel
 
 -- Completed preliminary results: background axioms only.
 #print axioms Lax342547Proofs.HadwigerMatching.hadwiger_matching_bound
@@ -45,6 +48,17 @@ import Lax342547Proofs.SparsePins
 #print axioms Lax342547Proofs.LabelDecomposition.low_rank_label_decomposition
 #print axioms Lax342547Proofs.SparsePins.sparse_pin_labels
 #print axioms Lax342547Proofs.SparsePins.sparse_pin_labels_finset
+#print axioms Lax342547Proofs.CoordinateCounts.coordinate_dimensions
+#print axioms Lax342547Proofs.ConcreteGeometry.selfGram_moments
+#print axioms Lax342547Proofs.ConcreteGeometry.selfGram_changeZ
+#print axioms Lax342547Proofs.ConcreteCut.exists_testers
+#print axioms Lax342547Proofs.ConcreteCut.gradient_properties
+#print axioms Lax342547Proofs.RawLaw.uniformLaw_product
+#print axioms Lax342547Proofs.ConcreteModel.exists_model
+#print axioms Lax342547Proofs.ConcreteModel.graph_indepNum_le_two
+#print axioms Lax342547Proofs.Atoms.atom_component
+#print axioms Lax342547Proofs.Atoms.flavor_coordinates
+#print axioms Lax342547Proofs.Atoms.parameterLaw_product
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample

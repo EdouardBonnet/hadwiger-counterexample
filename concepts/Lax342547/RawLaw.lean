@@ -25,4 +25,8 @@ axiom raw_card_bound (E : Matrix B B Binary) :
     Fintype.card (Comp → Frame B H N E) ≤
       2 ^ (2 * Fintype.card Comp * Fintype.card N * (Fintype.card B + Fintype.card H))
 
+axiom uniformLaw_product (E : Matrix B B Binary) [Nonempty (Frame B H N E)]
+    (o : Comp → Frame B H N E) :
+    uniformLaw E o = ∏ e, PMF.uniformOfFintype (Frame B H N E) (o e)
+
 end Lax342547.RawLaw

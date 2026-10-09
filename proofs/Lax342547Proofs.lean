@@ -35,3 +35,8 @@ import Lax342547Proofs.SelectorInterpolation
 import Lax342547Proofs.SparsePins
 import Lax342547Proofs.SparseSupport
 import Lax342547Proofs.TagGeometry
+import Lax342547Proofs.Atoms
+import Lax342547Proofs.ConcreteGeometry
+import Lax342547Proofs.CoordinateCounts
+import Lax342547Proofs.ConcreteCut
+import Lax342547Proofs.ConcreteModel

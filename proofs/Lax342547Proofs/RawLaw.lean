@@ -47,4 +47,17 @@ theorem uniformLaw_apply (E : Matrix B B Binary) [Nonempty (Frame B H N E)]
     uniformLaw E o = (Fintype.card (Comp → Frame B H N E) : ℝ≥0∞)⁻¹ :=
   PMF.uniformOfFintype_apply o
 
+/--
+---
+conclusion: Lax342547.RawLaw.uniformLaw_product
+---
+The cardinality of the function space is the product of the cardinalities
+of the component spaces. Its uniform mass therefore factors exactly as
+the product of the component uniform masses.
+-/
+theorem uniformLaw_product (E : Matrix B B Binary) [Nonempty (Frame B H N E)]
+    (o : Comp → Frame B H N E) :
+    uniformLaw E o = ∏ e, PMF.uniformOfFintype (Frame B H N E) (o e) := by
+  simp [uniformLaw_apply, PMF.uniformOfFintype_apply, ENNReal.inv_pow]
+
 end Lax342547Proofs.RawLaw

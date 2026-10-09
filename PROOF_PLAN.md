@@ -56,13 +56,15 @@ The closing checks are:
 | Abstract hole relation and Lemma 2.2 | Checked |
 | Sampled-position independence bound, including repetition | Checked |
 | Moment coordinate projections, cyclic majority intersection, cut kernel | New checked proofs of Lemma 2.3's algebraic content |
-| Independence of representative sums | New checked generic proof; concrete testers still need instantiation |
-| Symmetry and diagonal of the gradient form | New checked generic proof; concrete mixers still need instantiation |
-| Matrix frame existence, tensor embedding, and finite raw-space count | New checked proofs; uniform law defined |
+| Concrete testers and their cut-space descent | Checked, with the paper's ordered coordinate pairs |
+| Symmetry and diagonal of the concrete gradient form | Checked for the ordered mixer sum |
+| Self-Gram moment identity and Z-coordinate invariance | Checked on the actual coordinate space |
+| Matrix frame existence, tensor embedding, and finite raw-space count | Checked, including the product law across components |
 | Base-moment span and selector interpolation, Lemma 5.1 | Complete checked proofs |
 | Low-rank label decomposition, Lemma 5.2 | Complete checked proof, including the sum-of-ranks bound |
 | Uniform sparse pin label budget, Lemma 5.3 | Complete checked proof, over all sparse vectors in all projected spaces |
-| Entire concrete model, with the paper's testers and mixers | Not assembled |
+| Entire concrete model, with the paper's testers and arbitrary mixers | Constructed; sampled graphs have independence number at most two |
+| Atoms, flavors, and their finite parameter laws | Defined; component formulas, retained coordinates, and product law checked |
 | Entropy/containers and the probabilistic construction | Not proved |
 | Theorem 1.1 | Open |
 | Counterexample corollaries | Checked only conditional on Theorem 1.1 |
@@ -70,6 +72,8 @@ The closing checks are:
 Numbered steps can measure checklist progress, but they are not equal units
 of difficulty or time. The October 7 moment-algebra work completed all seven
 steps in §8.1; substantial parts of the construction remain open.
+The October 9 work completes the concrete algebraic model in §4 and the
+atom/flavor setup in §8.2, step 1. The uniform mixer estimates remain open.
 
 ## 3. Fix the common mathematical interfaces
 
@@ -138,29 +142,29 @@ not `o(N)`; it is paid by choosing `M₀` sufficiently large.
 
 **Required inputs:** finite-dimensional binary linear algebra and matrices.
 
-1. Specialize `MomentSpace.point` to the squarefree selector evaluations.
+1. **Complete.** Specialize `MomentSpace.point` to the squarefree selector evaluations.
    Prove the coefficient count
    `pStar = ∑ j ≤ jStar, b.choose j` and the base dimension.
-2. Instantiate `TagGeometry.allowedBase` for the paper's `O,S,#,Z`
+2. **Complete.** Instantiate `TagGeometry.allowedBase` for the paper's `O,S,#,Z`
    coordinates. The majority-intersection and cut-kernel proofs are now
    available; connect them to this specialization.
-3. Define each ordinary tester and the shared tester by selecting the
+3. **Complete.** Define each ordinary tester and the shared tester by selecting the
    indicated ordered matrix entries and summing the `r₀` pairs. Prove
    their evaluation formulas on point moments.
-4. Show ordinary testers vanish on `WStar`. Apply the representative-sum
+4. **Complete.** Show ordinary testers vanish on `WStar`. Apply the representative-sum
    invariance theorem to construct genuine linear functionals `a_t`,
    `a`, and `b_t` on the cut space, using quotient/range descent.
    Keep `χStar` a function of a **representation**, as in the paper.
-5. Define `T⁰`, `B¹`, `T¹`, and `T`. Instantiate `GradientForm` to obtain
+5. **Complete.** Define `T⁰`, `B¹`, `T¹`, and `T`. Instantiate `GradientForm` to obtain
    symmetry and `T x x = a x`. Record the ordered components in `B¹`.
-6. Define the ordered tester matrix and `E#`, using selector degree one.
+6. **Complete.** Define the ordered tester matrix and `E#`, using selector degree one.
    Prove `⟨E,w⟩ = η(w)` for every `w ∈ W`, and prove invariance under
    every invertible change of the free `Z` coordinates.
-7. Assemble the matrix frames, finite raw space, and uniform law.
+7. **Complete.** Assemble the matrix frames, finite raw space, and uniform law.
    Use the explicit frame construction to prove nonemptiness for
    `N ≥ 2(d+h)`. Prove the product law across components and the bound
    `|Ω| ≤ 2^(2|E|N(d+h))`.
-8. Restrict the checked tensor embedding to the cut space and produce
+8. **Complete.** Restrict the checked tensor embedding to the cut space and produce
    the actual `HoleData`. Instantiate the checked hole and sampling
    results to obtain `indepNum ≤ 2` for every sample.
 
@@ -168,6 +172,14 @@ not `o(N)`; it is paid by choosing `M₀` sufficiently large.
 parameter values satisfying the elementary dimension conditions and
 arbitrary mixer matrices. The model's independence bound is a closed
 proof. No connected-matching claim is attached to arbitrary mixers.
+
+The checked [`exists_model`](proofs/Lax342547Proofs/ConcreteModel.lean)
+meets this condition. Its profile space is proved equal to the original
+restricted cut image. The self-Gram matrix is constructed from the
+ordered tester and selector-dependent # forms, and its invariance is
+proved for every linear Z-coordinate change. The model records its
+actual tensor embedding, contractions, gradient, and uniform law.
+Only standard Lean background axioms occur in its proof closure.
 
 ## 5. Prove the finite supersaturation-to-graph argument — §3
 
@@ -343,7 +355,7 @@ finite-sum notation are covered, with degree condition
 
 ### 8.2 Atoms and uniform mixers, Definition 5.4 and Lemma 5.5
 
-1. Define every flavor as an explicit finite parameter domain, with its
+1. **Complete.** Define every flavor as an explicit finite parameter domain, with its
    allowed testers, free `Z` coordinates, and uniform distribution.
 2. Express atom evaluation of the mixer form through bounded row-bit
    spaces. Prove the forward/reverse compatibility rank calculation.
