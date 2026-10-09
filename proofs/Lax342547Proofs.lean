@@ -74,3 +74,7 @@ import Lax342547Proofs.InjectiveFrames
 import Lax342547Proofs.ChannelDensity
 import Lax342547Proofs.FrameTuples
 import Lax342547Proofs.ConditionalMinus
+import Lax342547Proofs.ProductImages
+import Lax342547Proofs.ProductMinusImages
+import Lax342547Proofs.ReferenceImages
+import Lax342547Proofs.ImageScale

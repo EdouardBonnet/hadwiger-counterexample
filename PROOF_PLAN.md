@@ -74,7 +74,7 @@ The closing checks are:
 | Gram normalization, Lemma 4.2 | Complete: exact Gram law, conditional rank failure, both probability bounds, and the explicit quarter-factor lower bound |
 | Frame marginals and conditional laws, Lemma 4.3(a) | Uniform marginals, conditional independence, affine minus-column law, both rank-failure bounds, channel transpose failures, and joint channel density checked |
 | Prescribed tuple images, Lemma 4.3(b) | Uniform paired-orbit laws for primal tuples and full tuples at fixed channel Gram; product laws permit varying tuple dimensions |
-| Affine exact-image and dependence bounds | Checked for arbitrary nominal rank and column spaces containing a common translation subspace; raw two-endpoint conditioning remains to be assembled |
+| Full reference image cap, Lemma 4.3(c) | Checked for arbitrary actual nominal ranks, dependent tuples, both endpoints and signs, and all components, including a single scale choice paying every cost |
 | Entropy/containers and the probabilistic construction | Not proved |
 | Theorem 1.1 | Open |
 | Counterexample corollaries | Checked only conditional on Theorem 1.1 |
@@ -89,13 +89,15 @@ the paper's displayed mixer parameters. All four Walsh steps in §6.2 are
 also checked, including a finite conditional mixture estimate retaining
 cell masses. The marginal and conditional frame laws in Lemma 4.3(a,b)
 are now checked, with explicit density constants and rank losses. The full
-reference image cap in Lemma 4.3(c), the finite graph-transfer argument,
-and the later construction remain open.
+reference image cap in Lemma 4.3(c) is also checked, including the all-rank
+quantifiers and the ambient scale choice. The sparse-intersection and
+peeling arguments, the finite graph transfer, and the later construction
+remain open.
 
-As of the October 9 frame-law checkpoint, overall completion is estimated
-conservatively at **about 24%**, weighted by remaining mathematical
+As of the October 9 full reference-cap checkpoint, overall completion is estimated
+conservatively at **about 26%**, weighted by remaining mathematical
 difficulty rather than declaration count. The validated archive contains
-62 concepts and 166 annotated proofs, with 164 closed proof networks.
+66 concepts and 180 annotated proofs, with 178 closed proof networks.
 The two remaining conditional proofs are the consequences of the open
 graph-existence theorem. The requested 50% milestone has not been reached.
 
@@ -285,10 +287,10 @@ parameter inequalities. This closes the whole finite transfer, not Theorem 3.1.
    frames, using orbit uniformity and equal completion counts.
 4. **Complete.** Prove conditional independence of the two channel draws given `P,Q`.
    It is a different claim from independence of all four frame maps.
-5. Prove the reference exact-image cap for a tuple with total nominal
+5. **Complete.** Prove the reference exact-image cap for a tuple with total nominal
    rank `t`, measured in the direct sum of both endpoints and both signs.
    Keep the bound uniform for every possible `t`, including `t = O(n)`.
-6. Expose the fixed conditioning factors and the loss of `2(d+h)`
+6. **Complete.** Expose the fixed conditioning factors and the loss of `2(d+h)`
    dimensions. Pay them using `M₀` and a sufficiently large `n`.
 
 [`PairedFrames`](proofs/Lax342547Proofs/PairedFrames.lean) proves the full
@@ -308,9 +310,9 @@ filtering and renormalizing the actual raw law.
 columns sharing a translation subspace S. It also gives the dependence
 bound `2^(number of columns - dim S)` and the corresponding failure bound
 for extending a fixed injective map. The raw-frame conditional laws and
-their individual conditioning costs are now checked. Combining both
-endpoints and both signs, and paying all dimension losses, remains in
-steps 5 and 6. No full reference image cap is claimed yet.
+their individual conditioning costs are now checked. The product image
+theorems below combine both endpoints and signs and pay all losses,
+completing steps 5 and 6.
 
 [`GramColumns`](proofs/Lax342547Proofs/GramColumns.lean) proves that an
 injective p-frame induces the exactly uniform p-by-q Gram law. It
@@ -343,6 +345,28 @@ bound `2^(2(d+h)-N)` and a factor-two event bound under
 `2(d+h)+1 ≤ N`. `GramColumns.extension_failure` and
 `ConditionalChannels.channel_rank_failures` give `2^(2d+h-N)` for each
 channel before its separate injectivity conditioning at fixed P,Q.
+
+[`ProductImages`](proofs/Lax342547Proofs/ProductImages.lean) proves the exact
+independent-column image law in the nominal direct sum of all draws and
+the injective-frame conditioning bound. It also extracts an independent
+tuple of exactly the rank of an arbitrary coefficient matrix.
+[`ProductMinusImages`](proofs/Lax342547Proofs/ProductMinusImages.lean)
+proves the affine minus-image cap after exposing all plus frames; their
+common annihilator has dimension at least `N-k(d+h)` for k draws.
+[`ReferenceImages`](proofs/Lax342547Proofs/ReferenceImages.lean) integrates
+over the actual plus-frame fibers and multiplies over components. For
+two endpoints its finite cap is
+`16^|E| / 2^(N t₊ + (N-2(d+h)) t₋)`, for the actual summed nominal ranks,
+without requiring the original tuple columns to be independent.
+
+[`ImageScale.reference_image_cap`](proofs/Lax342547Proofs/ImageScale.lean)
+pays this fixed prefactor and dimension loss to prove exactly
+`2^(-(1-ε)tN)` for every `t≥1`. The proof uses the slightly larger
+prefactor `16^|E|` instead of the paper's illustrative `4^|E|`; both are
+absorbed by the same type of scale choice. `exists_paper_scale` supplies
+one M₀ for the actual count `d=pStar*(1+(g²+3)n)` and fixed channel size h,
+valid for every positive n and independent of every tested rank and law.
+All six steps in §6.1 are complete.
 
 ### 6.2 Walsh estimates, Lemma 4.6
 

@@ -36,7 +36,8 @@ this file is the shorter status and acceptance checklist.
 | Finite entropy projection, including the full support assertion | Lemma 3.2 | Not formalized |
 | Real-capacity terminal cut with both endpoint and pair exceptions | Lemma 3.3 | Not formalized |
 | Entropy-controlled fingerprints and sample probability bounds | Proposition 3.4 | Not formalized |
-| Frame extension, Gram normalization, sparse intersections | §4.1–4.2 | Lemmas 4.1–4.2 and the marginal, conditional, and tuple laws in 4.3(a,b) checked, including all channel density and rank bounds. The full two-endpoint reference cap in 4.3(c) and sparse intersections remain open |
+| Frame laws and full reference image cap | §4.1, Lemmas 4.1–4.3 | Complete: paired orbits, normalization, conditional laws, tuple laws, density bounds, and the all-rank two-endpoint reference cap with uniform scale choice |
+| Sparse intersections and representatives | §4.2, Lemma 4.4 | Not formalized |
 | Two peelings with exact pins and subsequent image bounds | §4.3, Lemma 4.5 | Not formalized |
 | Bilinear/Walsh estimates | §4.4, Lemma 4.6 | Complete: exact energy identity, bilinear-rank bound, densities, subprobability masses, separate phases, bit rank, and finite conditional mixtures |
 | Base-moment span, selector interpolation, and low-rank label decomposition | Lemmas 5.1–5.2 | Complete; all label identities, rank bounds, and reconstruction checked |
@@ -65,13 +66,11 @@ mixer theorem in Lemma 5.5 are complete. The endpoint
 `UniformMixers.exists_paper_mixers` chooses all matrices before any unit law
 and proves the unary and binary properties with the paper's mixer parameters.
 
-1. Establish the remaining frame laws of §4.1 with exact finite
-   probabilities and explicit rank/density losses. The paired orbit,
-   two-sided Gram normalization and its quarter-factor lower bound,
-   uniform marginals, conditional laws, rank-failure bounds, channel density,
-   and tuple orbit laws are checked. Combine the arbitrary-rank affine image
-   bounds across both endpoints and both signs, using the checked raw
-   minus-column laws and explicit normalization factors.
+1. Prove sparse intersections and both peelings in §4.2–4.3 using the
+   completed reference frame laws. The endpoint `ImageScale.reference_image_cap`
+   gives `2^(-(1-ε)tN)` for the actual summed ranks, including arbitrary
+   dependent tuples and ranks growing with n. `exists_paper_scale` pays
+   every density and dimension cost with one M₀ independent of the law.
    All three Walsh
    estimates in Lemma 4.6 are now checked, including a conditional mixture
    version that preserves the actual cell masses.

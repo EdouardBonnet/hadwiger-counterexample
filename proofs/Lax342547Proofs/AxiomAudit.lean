@@ -39,6 +39,7 @@ import Lax342547Proofs.InjectiveFrames
 import Lax342547Proofs.ChannelDensity
 import Lax342547Proofs.FrameTuples
 import Lax342547Proofs.ConditionalMinus
+import Lax342547Proofs.ImageScale
 
 -- Completed preliminary results: background axioms only.
 #print axioms Lax342547Proofs.HadwigerMatching.hadwiger_matching_bound
@@ -207,6 +208,20 @@ import Lax342547Proofs.ConditionalMinus
 #print axioms Lax342547Proofs.ConditionalMinus.rank_failure
 #print axioms Lax342547Proofs.ConditionalMinus.raw_conditioning
 #print axioms Lax342547Proofs.ConditionalMinus.completion_event_bound
+#print axioms Lax342547Proofs.ProductImages.rank_restriction
+#print axioms Lax342547Proofs.ProductImages.right_uniform
+#print axioms Lax342547Proofs.ProductImages.joint_uniform
+#print axioms Lax342547Proofs.ProductImages.injective_image_bound
+#print axioms Lax342547Proofs.ProductImages.raw_plus_image_bound
+#print axioms Lax342547Proofs.ProductMinusImages.affine_image_bound
+#print axioms Lax342547Proofs.ProductMinusImages.completion_image_bound
+#print axioms Lax342547Proofs.ReferenceImages.joint_cap
+#print axioms Lax342547Proofs.ReferenceImages.joint_rank_cap
+#print axioms Lax342547Proofs.ReferenceImages.all_components_cap
+#print axioms Lax342547Proofs.ImageScale.cost_bound
+#print axioms Lax342547Proofs.ImageScale.exists_scale
+#print axioms Lax342547Proofs.ImageScale.exists_paper_scale
+#print axioms Lax342547Proofs.ImageScale.reference_image_cap
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample

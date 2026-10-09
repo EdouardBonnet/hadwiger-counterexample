@@ -132,4 +132,21 @@ theorem map_pi_apply {ι : Type} {α β : ι → Type} [Fintype ι] [DecidableEq
   rw [Fintype.card_congr e, Fintype.card_pi, Fintype.card_pi, Nat.cast_prod, Nat.cast_prod]
   exact (ENNReal.prod_div_distrib_of_ne_top (by intro i _; simp)).symm
 
+theorem uniform_pi_apply {ι : Type} {α : ι → Type} [Fintype ι] [DecidableEq ι]
+    [∀ i, Fintype (α i)] [∀ i, Nonempty (α i)] (x : ∀ i, α i) :
+    PMF.uniformOfFintype (∀ i, α i) x = ∏ i, PMF.uniformOfFintype (α i) (x i) := by
+  simp only [PMF.uniformOfFintype_apply, Fintype.card_pi, Nat.cast_prod]
+  exact ENNReal.prod_inv_distrib (by intro i _ j _ _; exact Or.inr (by simp))
+
+theorem map_pi_density {ι : Type} {α β : ι → Type} [Fintype ι] [DecidableEq ι]
+    [∀ i, Fintype (α i)] [∀ i, Nonempty (α i)]
+    [∀ i, Fintype (β i)] [∀ i, Nonempty (β i)]
+    (f : ∀ i, α i → β i) (c : ι → ℝ≥0∞)
+    (h : ∀ i y, (PMF.uniformOfFintype (α i)).map (f i) y ≤ c i * PMF.uniformOfFintype (β i) y)
+    (y : ∀ i, β i) :
+    (PMF.uniformOfFintype (∀ i, α i)).map (fun x i => f i (x i)) y ≤
+      (∏ i, c i) * PMF.uniformOfFintype (∀ i, β i) y := by
+  rw [map_pi_apply, uniform_pi_apply, ← Finset.prod_mul_distrib]
+  exact Finset.prod_le_prod' (fun i _ => h i (y i))
+
 end Lax342547Proofs.FiniteUniform

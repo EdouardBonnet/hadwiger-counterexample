@@ -99,4 +99,76 @@ theorem point_density_of_constant {α : Type} [Fintype α] [Nonempty α]
     _ ≤ (c * u y) * 1 := mul_le_mul_of_nonneg_left hp zero_le
     _ = _ := mul_one _
 
+theorem uniform_fiber_sum {α β : Type} [Fintype α] [Nonempty α] [Fintype β] [DecidableEq β]
+    (f : α → β) [∀ y, Nonempty {x : α // f x = y}] (S : Set α) :
+    (PMF.uniformOfFintype α).toOuterMeasure S =
+      ∑ y, (PMF.uniformOfFintype α).map f y *
+        (PMF.uniformOfFintype {x : α // f x = y}).toOuterMeasure {x | x.val ∈ S} := by
+  classical
+  have hpoint (y : β) : (PMF.uniformOfFintype α).map f y =
+      (PMF.uniformOfFintype α).toOuterMeasure {x | f x = y} := by
+    rw [← PMF.toOuterMeasure_apply_singleton, PMF.toOuterMeasure_map_apply]
+    rfl
+  have he (y : β) : (PMF.uniformOfFintype α).map f y *
+      (PMF.uniformOfFintype {x : α // f x = y}).toOuterMeasure {x | x.val ∈ S} =
+      (PMF.uniformOfFintype α).toOuterMeasure ({x | f x = y} ∩ S) := by
+    rw [hpoint]
+    exact (@uniform_subtype_event α inferInstance inferInstance {x | f x = y} S
+      (inferInstance : Fintype {x : α // f x = y})
+      (inferInstance : Nonempty {x : α // f x = y})).symm
+  simp_rw [he]
+  simp_rw [PMF.toOuterMeasure_apply_fintype]
+  rw [Finset.sum_comm]
+  apply Finset.sum_congr rfl
+  intro x _
+  by_cases hx : x ∈ S
+  · simp [Set.indicator_apply, hx, eq_comm]
+  · simp [hx]
+
+theorem uniform_fiber_event_bound {α β : Type} [Fintype α] [Nonempty α] [Fintype β] [DecidableEq β]
+    (f : α → β) [∀ y, Nonempty {x : α // f x = y}]
+    (S : Set α) (T : Set β) (c : ℝ≥0∞)
+    (hST : ∀ x ∈ S, f x ∈ T)
+    (hb : ∀ y ∈ T,
+      (PMF.uniformOfFintype {x : α // f x = y}).toOuterMeasure {x | x.val ∈ S} ≤ c) :
+    (PMF.uniformOfFintype α).toOuterMeasure S ≤
+      c * ((PMF.uniformOfFintype α).map f).toOuterMeasure T := by
+  classical
+  rw [uniform_fiber_sum f S, PMF.toOuterMeasure_apply_fintype, Finset.mul_sum]
+  apply Finset.sum_le_sum
+  intro y _
+  by_cases hy : y ∈ T
+  · simp only [Set.indicator_of_mem hy]
+    rw [mul_comm c]
+    exact mul_le_mul_of_nonneg_left (hb y hy) zero_le
+  · have hs : {x : {x : α // f x = y} | x.val ∈ S} = ∅ := by
+      ext x
+      simp only [Set.mem_ofPred_eq, Set.mem_empty_iff_false, iff_false]
+      exact fun hx => hy (x.property ▸ hST x.val hx)
+    simp [hs, hy]
+
+theorem event_density {α : Type} [Fintype α] (p q : PMF α) (c : ℝ≥0∞)
+    (h : ∀ x, p x ≤ c * q x) (S : Set α) : p.toOuterMeasure S ≤ c * q.toOuterMeasure S := by
+  classical
+  rw [PMF.toOuterMeasure_apply_fintype, PMF.toOuterMeasure_apply_fintype, Finset.mul_sum]
+  apply Finset.sum_le_sum
+  intro x _
+  by_cases hx : x ∈ S
+  · simpa only [Set.indicator_of_mem hx] using h x
+  · simp only [Set.indicator_of_notMem hx, mul_zero, le_refl]
+
+theorem map_density {α β : Type} [Fintype α] (p q : PMF α) (c : ℝ≥0∞)
+    (h : ∀ x, p x ≤ c * q x) (f : α → β) (y : β) : p.map f y ≤ c * q.map f y := by
+  rw [← PMF.toOuterMeasure_apply_singleton, ← PMF.toOuterMeasure_apply_singleton,
+    PMF.toOuterMeasure_map_apply, PMF.toOuterMeasure_map_apply]
+  exact event_density p q c h _
+
+theorem uniform_subtype_point_factor {α : Type} [Fintype α] [Nonempty α]
+    (S : Set α) [Fintype S] [Nonempty S] (c : ℝ≥0∞)
+    (hc : 1 ≤ c * (PMF.uniformOfFintype α).toOuterMeasure S) (y : α) :
+    (PMF.uniformOfFintype S).map Subtype.val y ≤ c * PMF.uniformOfFintype α y := by
+  rw [← PMF.toOuterMeasure_apply_singleton, PMF.toOuterMeasure_map_apply,
+    ← PMF.toOuterMeasure_apply_singleton]
+  exact uniform_subtype_bound_factor S {y} c hc
+
 end Lax342547Proofs.FiniteProbability

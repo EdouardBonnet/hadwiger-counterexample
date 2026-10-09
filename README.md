@@ -100,7 +100,11 @@ by positions and may contain repeated raw vertices.
   minus and channel laws, their rank-failure bounds, channel transpose
   failures and joint density, and prescribed tuple orbit laws. Independent
   tuple laws allow dimensions and Gram values to vary across draws.
-  The two-endpoint reference image cap in part (c) remains open.
+- Lemma 4.3(c): the full reference image cap `2^(-(1-ε)tN)` for directions
+  mixing both endpoints, across both signs and all components. It uses
+  actual nominal ranks, permits dependent tuples and ranks growing with n,
+  and includes a single ambient scale choice paying every conditioning
+  and dimension cost.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
 
@@ -124,7 +128,7 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 Validated on October 9, 2026: `lake build` and `lax build . --replay` pass,
-with 62 concepts and 166 annotated proofs, 164 of which have no open
+with 66 concepts and 180 annotated proofs, 178 of which have no open
 mathematical assumptions. All kernel replays pass. The only conditional
 proofs are the two counterexample consequences of the open Theorem 1.1.
 
