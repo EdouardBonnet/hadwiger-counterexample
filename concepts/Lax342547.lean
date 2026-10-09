@@ -29,3 +29,8 @@ import Lax342547.ConcreteGeometry
 import Lax342547.CoordinateCounts
 import Lax342547.ConcreteCut
 import Lax342547.ConcreteModel
+import Lax342547.MixerCompatibility
+import Lax342547.FiniteLinearLaw
+import Lax342547.MixerRowLaw
+import Lax342547.RestrictionRank
+import Lax342547.LowRankCounting

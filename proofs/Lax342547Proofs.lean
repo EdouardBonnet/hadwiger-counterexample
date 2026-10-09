@@ -40,3 +40,8 @@ import Lax342547Proofs.ConcreteGeometry
 import Lax342547Proofs.CoordinateCounts
 import Lax342547Proofs.ConcreteCut
 import Lax342547Proofs.ConcreteModel
+import Lax342547Proofs.MixerCompatibility
+import Lax342547Proofs.FiniteLinearLaw
+import Lax342547Proofs.MixerRowLaw
+import Lax342547Proofs.RestrictionRank
+import Lax342547Proofs.LowRankCounting

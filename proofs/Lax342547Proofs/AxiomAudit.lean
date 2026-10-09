@@ -18,6 +18,9 @@ import Lax342547Proofs.SparsePins
 import Lax342547Proofs.Atoms
 import Lax342547Proofs.CoordinateCounts
 import Lax342547Proofs.ConcreteModel
+import Lax342547Proofs.MixerRowLaw
+import Lax342547Proofs.RestrictionRank
+import Lax342547Proofs.LowRankCounting
 
 -- Completed preliminary results: background axioms only.
 #print axioms Lax342547Proofs.HadwigerMatching.hadwiger_matching_bound
@@ -59,6 +62,15 @@ import Lax342547Proofs.ConcreteModel
 #print axioms Lax342547Proofs.Atoms.atom_component
 #print axioms Lax342547Proofs.Atoms.flavor_coordinates
 #print axioms Lax342547Proofs.Atoms.parameterLaw_product
+#print axioms Lax342547Proofs.MixerCompatibility.compatible_extensions
+#print axioms Lax342547Proofs.MixerCompatibility.restrictions_codimension
+#print axioms Lax342547Proofs.FiniteLinearLaw.codimension_map_le
+#print axioms Lax342547Proofs.FiniteLinearLaw.uniform_image_bound
+#print axioms Lax342547Proofs.MixerRowLaw.row_law_bound
+#print axioms Lax342547Proofs.RestrictionRank.bilinear_restriction_rank
+#print axioms Lax342547Proofs.LowRankCounting.factorization
+#print axioms Lax342547Proofs.LowRankCounting.card_low_rank
+#print axioms Lax342547Proofs.LowRankCounting.uniform_low_rank_bound
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample

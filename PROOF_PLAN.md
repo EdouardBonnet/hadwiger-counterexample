@@ -65,6 +65,7 @@ The closing checks are:
 | Uniform sparse pin label budget, Lemma 5.3 | Complete checked proof, over all sparse vectors in all projected spaces |
 | Entire concrete model, with the paper's testers and arbitrary mixers | Constructed; sampled graphs have independence number at most two |
 | Atoms, flavors, and their finite parameter laws | Defined; component formulas, retained coordinates, and product law checked |
+| Mixer compatibility, observation density, rank loss, rectangular low-rank counts | Checked; the simultaneous mixer existence theorem remains open |
 | Entropy/containers and the probabilistic construction | Not proved |
 | Theorem 1.1 | Open |
 | Counterexample corollaries | Checked only conditional on Theorem 1.1 |
@@ -73,7 +74,10 @@ Numbered steps can measure checklist progress, but they are not equal units
 of difficulty or time. The October 7 moment-algebra work completed all seven
 steps in §8.1; substantial parts of the construction remain open.
 The October 9 work completes the concrete algebraic model in §4 and the
-atom/flavor setup in §8.2, step 1. The uniform mixer estimates remain open.
+atom/flavor setup in §8.2, step 1. Parts of steps 2–3 are now checked:
+forward/reverse compatibility and its density cost, bilinear restriction
+rank loss, and rectangular low-rank counts. The uniform mixer theorem
+remains open.
 
 ## 3. Fix the common mathematical interfaces
 
@@ -357,11 +361,18 @@ finite-sum notation are covered, with degree condition
 
 1. **Complete.** Define every flavor as an explicit finite parameter domain, with its
    allowed testers, free `Z` coordinates, and uniform distribution.
-2. Express atom evaluation of the mixer form through bounded row-bit
+2. **Partial.** Express atom evaluation of the mixer form through bounded row-bit
    spaces. Prove the forward/reverse compatibility rank calculation.
-3. Bound the number of low-rank coefficient profiles and rank-deficient
+   The exact compatibility condition and codimension, its observation-law
+   density bound after an injective free-direction restriction, and rank
+   loss of at most twice the restricted codimension are checked. The
+   atom-specific quadratic expansion and its formal polar rank remain open.
+3. **Partial.** Bound the number of low-rank coefficient profiles and rank-deficient
    random row maps; union bound uniformly over profiles, labels, tags,
    and flavors.
+   Rectangular factorization, the count `2^((d₁+d₂)r)`, and its uniform
+   probability bound are checked. Symmetric profile counting, the sharper
+   row-corank estimate, and the uniform union bound remain open.
 4. For distinct labels, prove all the required nontrivial binary parities
    of ordered mixer evaluations and `E` evaluations have large rank.
 5. Choose all mixer matrices simultaneously for a fixed large `n`.

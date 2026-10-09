@@ -63,6 +63,11 @@ by positions and may contain repeated raw vertices.
   all projected pin spaces, including the paper's finite-sum formulation.
 - Definition 5.4: concrete atoms and all flavor parameter domains, with
   their incidence formulas and independent uniform retained bits.
+- Estimates used in Lemma 5.5: exact forward/reverse compatibility,
+  the resulting density bound on free-direction observations, loss of
+  at most twice the codimension under bilinear restriction, and rectangular
+  low-rank factorization, counting, and uniform probability bounds.
+  The uniform mixer existence theorem itself remains open.
 - The ordinary fractional-coloring lower and upper bounds.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
@@ -87,7 +92,7 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 Validated on October 9, 2026: `lake build` and `lax build . --replay` pass,
-with 31 concepts and 39 annotated proofs. Lax reports 27 retained-helper
+with 36 concepts and 48 annotated proofs. Lax reports 27 retained-helper
 warnings and no errors.
 
 The completed preliminary proofs report only Lean's standard background
