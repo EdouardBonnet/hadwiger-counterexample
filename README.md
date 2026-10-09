@@ -88,6 +88,11 @@ by positions and may contain repeated raw vertices.
   any unit law. `UniformMixers.exists_paper_mixers` uses the paper's
   `s₀=40(K+1)p_*(g²+5)` and `J=101(s₀+K²+1)`, with an explicit threshold
   and the exact binary rank condition `n ≤ 5 * rank`.
+- Lemma 4.6: binary-character orthogonality, the exact Walsh energy identity,
+  the `1 / sqrt(2^rank)` bilinear correlation bound, bounded-density factors,
+  subprobability weights, and arbitrary separate phases. The vector-slot
+  form has exactly `N * rank C` bits of rank. A finite conditional mixture
+  theorem retains the actual cell masses and density costs.
 - The ordinary fractional-coloring lower and upper bounds.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
@@ -112,7 +117,7 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 Validated on October 9, 2026: `lake build` and `lax build . --replay` pass,
-with 49 concepts and 109 annotated proofs. Lax reports 26 retained-helper
+with 52 concepts and 123 annotated proofs. Lax reports 26 retained-helper
 warnings and no errors.
 
 The completed preliminary proofs report only Lean's standard background

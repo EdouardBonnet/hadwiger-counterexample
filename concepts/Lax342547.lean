@@ -47,3 +47,6 @@ import Lax342547.UnaryMixers
 import Lax342547.BinaryMixer
 import Lax342547.BinaryMixers
 import Lax342547.UniformMixers
+import Lax342547.Walsh
+import Lax342547.BilinearWalsh
+import Lax342547.SlotWalsh

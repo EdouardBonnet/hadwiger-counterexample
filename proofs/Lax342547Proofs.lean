@@ -58,3 +58,6 @@ import Lax342547Proofs.UnaryMixers
 import Lax342547Proofs.BinaryMixer
 import Lax342547Proofs.BinaryMixers
 import Lax342547Proofs.UniformMixers
+import Lax342547Proofs.Walsh
+import Lax342547Proofs.BilinearWalsh
+import Lax342547Proofs.SlotWalsh

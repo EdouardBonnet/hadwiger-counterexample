@@ -30,6 +30,7 @@ import Lax342547Proofs.UnaryMixer
 import Lax342547Proofs.UnaryRowLaw
 import Lax342547Proofs.UnaryMixers
 import Lax342547Proofs.UniformMixers
+import Lax342547Proofs.SlotWalsh
 
 -- Completed preliminary results: background axioms only.
 #print axioms Lax342547Proofs.HadwigerMatching.hadwiger_matching_bound
@@ -141,6 +142,20 @@ import Lax342547Proofs.UniformMixers
 #print axioms Lax342547Proofs.UniformMixers.exists_uniform_mixers
 #print axioms Lax342547Proofs.UniformMixers.paper_parameters
 #print axioms Lax342547Proofs.UniformMixers.exists_paper_mixers
+#print axioms Lax342547Proofs.Walsh.linear_orthogonality
+#print axioms Lax342547Proofs.Walsh.orthogonality
+#print axioms Lax342547Proofs.Walsh.transform_energy
+#print axioms Lax342547Proofs.Walsh.dot_correlation_sq
+#print axioms Lax342547Proofs.Walsh.subprobability_dot_bound
+#print axioms Lax342547Proofs.BilinearWalsh.correlation_sq
+#print axioms Lax342547Proofs.BilinearWalsh.uniform_bound
+#print axioms Lax342547Proofs.BilinearWalsh.bounded_weight_bound
+#print axioms Lax342547Proofs.BilinearWalsh.density_bound
+#print axioms Lax342547Proofs.BilinearWalsh.separate_phase_bound
+#print axioms Lax342547Proofs.BilinearWalsh.conditional_mixture_bound
+#print axioms Lax342547Proofs.SlotWalsh.bit_evaluation
+#print axioms Lax342547Proofs.SlotWalsh.bit_rank
+#print axioms Lax342547Proofs.SlotWalsh.nonzero_pattern_bound
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample

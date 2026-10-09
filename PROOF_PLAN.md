@@ -69,6 +69,7 @@ The closing checks are:
 | Ordered random mixer evaluations at distinct labels | Joint uniform law, family parity laws, and low-rank probabilities checked on the free directions |
 | Self-Gram binary parities | Concrete sharp/free restriction identities and the three sharp-parity probability bounds checked |
 | Uniform mixers, Lemma 5.5 | Complete: simultaneous unary and binary conclusions, every flavor, explicit threshold, and the paper's mixer parameters |
+| Walsh estimates, Lemma 4.6 | Complete: rank-dependent correlation, bounded densities, subprobability weights, separate phases, and the vector-slot bit rank |
 | Entropy/containers and the probabilistic construction | Not proved |
 | Theorem 1.1 | Open |
 | Counterexample corollaries | Checked only conditional on Theorem 1.1 |
@@ -79,8 +80,10 @@ steps in §8.1; substantial parts of the construction remain open.
 The October 9 work completes the concrete algebraic model in §4 and all
 five steps of §8.2. The full uniform mixer theorem is now checked, including
 the actual flavor bilinear parts, both finite unions, a joint choice, and
-the paper's displayed mixer parameters. The frame-law and Walsh estimates,
-the finite graph-transfer argument, and the later construction remain open.
+the paper's displayed mixer parameters. All four Walsh steps in §6.2 are
+also checked, including a finite conditional mixture estimate retaining
+cell masses. The remaining frame laws, the finite graph-transfer argument,
+and the later construction remain open.
 
 ## 3. Fix the common mathematical interfaces
 
@@ -276,10 +279,24 @@ parameter inequalities. This closes the whole finite transfer, not Theorem 3.1.
 
 ### 6.2 Walsh estimates, Lemma 4.6
 
-1. Prove orthogonality of binary characters on a finite vector space.
-2. Derive the `L²` operator bound for a bilinear phase from its rank.
-3. Add affine terms and density bounds without changing the rank argument.
-4. Formulate the conditional version used after pinning and freezing keys.
+1. **Complete.** Prove orthogonality of binary characters on a finite vector space.
+2. **Complete.** Derive the `L²` operator bound for a bilinear phase from its rank.
+3. **Complete.** Add affine terms and density bounds without changing the rank argument.
+4. **Complete.** Formulate the conditional version used after pinning and freezing keys.
+
+[`Walsh`](proofs/Lax342547Proofs/Walsh.lean) proves character orthogonality,
+the exact transform energy identity, and Lemma 4.6(b) for real bounded
+weights and subprobability masses. [`BilinearWalsh`](proofs/Lax342547Proofs/BilinearWalsh.lean)
+groups weights over the fibers of a rectangular binary matrix, applies
+fiberwise Cauchy–Schwarz, and uses rank-nullity to obtain the exact
+`1 / sqrt(2^rank)` normalized bound. It includes the two density factors,
+arbitrary separate phases, and finite conditioning records with varying
+coefficient spaces and unnormalized cell masses.
+[`SlotWalsh`](proofs/Lax342547Proofs/SlotWalsh.lean) identifies the actual
+vector-slot pairing matrix and proves its bit rank is `N * rank C`.
+A nonzero cross pattern therefore has correlation at most `1 / sqrt(2^N)`.
+All three parts of Lemma 4.6 have closed checked proofs. Instantiating them
+with the frame laws and pin/key quotients remains part of the later work.
 
 **Exit condition:** exact finite estimates with explicit rank and density
 parameters. Later uses should instantiate these estimates, not reproduce

@@ -38,7 +38,7 @@ this file is the shorter status and acceptance checklist.
 | Entropy-controlled fingerprints and sample probability bounds | Proposition 3.4 | Not formalized |
 | Frame extension, Gram normalization, sparse intersections | §4.1–4.2 | Not formalized |
 | Two peelings with exact pins and subsequent image bounds | §4.3, Lemma 4.5 | Not formalized |
-| Bilinear/Walsh estimates | §4.4 | Not formalized |
+| Bilinear/Walsh estimates | §4.4, Lemma 4.6 | Complete: exact energy identity, bilinear-rank bound, densities, subprobability masses, separate phases, bit rank, and finite conditional mixtures |
 | Base-moment span, selector interpolation, and low-rank label decomposition | Lemmas 5.1–5.2 | Complete; all label identities, rank bounds, and reconstruction checked |
 | Sparse label supports of projected pins | Lemma 5.3 | Complete; the exact uniform label budget covers all sparse vectors |
 | Atoms, flavors, and finite parameter laws | Definition 5.4 | Defined; incidence formula, role/diagonal bits, retained coordinates, and product law checked |
@@ -65,8 +65,10 @@ mixer theorem in Lemma 5.5 are complete. The endpoint
 `UniformMixers.exists_paper_mixers` chooses all matrices before any unit law
 and proves the unary and binary properties with the paper's mixer parameters.
 
-1. Establish the remaining frame-law and Walsh estimates of §4 with exact
-   finite probabilities and explicit rank/density losses.
+1. Establish the remaining frame laws of §4.1 with exact finite
+   probabilities and explicit rank/density losses. All three Walsh
+   estimates in Lemma 4.6 are now checked, including a conditional mixture
+   version that preserves the actual cell masses.
 2. Build the pin, effective-space, and table interfaces required for §6;
    then prove scalar recipe compatibility and full gradient realization.
 3. State raw supersaturation using this concrete law. Preserve the separate
