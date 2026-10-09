@@ -41,6 +41,7 @@ import Lax342547Proofs.FrameTuples
 import Lax342547Proofs.ConditionalMinus
 import Lax342547Proofs.ImageScale
 import Lax342547Proofs.SparseIntersections
+import Lax342547Proofs.RawPeeling
 
 -- Completed preliminary results: background axioms only.
 #print axioms Lax342547Proofs.HadwigerMatching.hadwiger_matching_bound
@@ -248,6 +249,24 @@ import Lax342547Proofs.SparseIntersections
 #print axioms Lax342547Proofs.SparseIntersections.paper_sparse_parameters
 #print axioms Lax342547Proofs.SparseIntersections.exists_concrete_scale
 #print axioms Lax342547Proofs.SparseIntersections.raw_intersections
+#print axioms Lax342547Proofs.ExactPins.event_refinement
+#print axioms Lax342547Proofs.ExactPins.rank_refinement
+#print axioms Lax342547Proofs.ExactPins.rank_mono
+#print axioms Lax342547Proofs.ExactPins.basis_rank
+#print axioms Lax342547Proofs.ExactPins.event_basis
+#print axioms Lax342547Proofs.LeafExtraction.exists_leaf
+#print axioms Lax342547Proofs.LeafPartition.exists_partition
+#print axioms Lax342547Proofs.ReferencePins.reference_pin_cap
+#print axioms Lax342547Proofs.Conditioning.filter_event
+#print axioms Lax342547Proofs.Conditioning.filter_event_bound
+#print axioms Lax342547Proofs.Conditioning.filter_density
+#print axioms Lax342547Proofs.Conditioning.weighted_filter
+#print axioms Lax342547Proofs.Conditioning.disjoint_mixture
+#print axioms Lax342547Proofs.PeelingBudget.rank_comparison
+#print axioms Lax342547Proofs.PeelingBudget.conservative_rank_bound
+#print axioms Lax342547Proofs.PeelingBudget.density_cost
+#print axioms Lax342547Proofs.BoundedPeeling.bounded_partition
+#print axioms Lax342547Proofs.RawPeeling.raw_peeling
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample

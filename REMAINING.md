@@ -38,7 +38,7 @@ this file is the shorter status and acceptance checklist.
 | Entropy-controlled fingerprints and sample probability bounds | Proposition 3.4 | Not formalized |
 | Frame laws and full reference image cap | §4.1, Lemmas 4.1–4.3 | Complete: paired orbits, normalization, conditional laws, tuple laws, density bounds, and the all-rank two-endpoint reference cap with uniform scale choice |
 | Sparse intersections and representatives | §4.2, Lemma 4.4 | Complete: explicit exponential exception, exact coefficient count, shared-tensor ranks, unique majority-zero representatives, support and chiStar bounds, and a uniform concrete scale |
-| Two peelings with exact pins and subsequent image bounds | §4.3, Lemma 4.5 | Not formalized |
+| Two peelings with exact pins and subsequent image bounds | §4.3, Lemma 4.5 | First peeling checked: finite partition, preserved pins, quotient-rank budget, normalized image/density bounds, and actual-mass mixture; restriction/repinning costs and final budget remain |
 | Bilinear/Walsh estimates | §4.4, Lemma 4.6 | Complete: exact energy identity, bilinear-rank bound, densities, subprobability masses, separate phases, bit rank, and finite conditional mixtures |
 | Base-moment span, selector interpolation, and low-rank label decomposition | Lemmas 5.1–5.2 | Complete; all label identities, rank bounds, and reconstruction checked |
 | Sparse label supports of projected pins | Lemma 5.3 | Complete; the exact uniform label budget covers all sparse vectors |
@@ -66,7 +66,7 @@ mixer theorem in Lemma 5.5 are complete. The endpoint
 `UniformMixers.exists_paper_mixers` chooses all matrices before any unit law
 and proves the unary and binary properties with the paper's mixer parameters.
 
-1. Prove both peelings in §4.3 using the
+1. Complete the restriction and repinning stages of §4.3 using the
    completed reference frame laws. The endpoint `ImageScale.reference_image_cap`
    gives `2^(-(1-ε)tN)` for the actual summed ranks, including arbitrary
    dependent tuples and ranks growing with n. `exists_paper_scale` pays
@@ -74,6 +74,10 @@ and proves the unary and binary properties with the paper's mixer parameters.
    `SparseIntersections.raw_intersections` now proves all conclusions of
    Lemma 4.4, with exception at most `2^(-DN/4)`. Its concrete scale choice
    pays the bounded coefficient-description count independently of the law.
+   `RawPeeling.raw_peeling` now proves the finite disjoint partition and
+   normalized all-rank image bounds, preserving initial pins and retaining
+   actual leaf masses. Prove the mixed-law trimming, metadata split count,
+   and final K budget needed to apply it a second time.
    All three Walsh
    estimates in Lemma 4.6 are now checked, including a conditional mixture
    version that preserves the actual cell masses.

@@ -70,3 +70,11 @@ import Lax342547.SparseRepresentatives
 import Lax342547.KernelWitness
 import Lax342547.RawIntersections
 import Lax342547.SparseIntersections
+import Lax342547.ExactPins
+import Lax342547.LeafExtraction
+import Lax342547.LeafPartition
+import Lax342547.ReferencePins
+import Lax342547.Conditioning
+import Lax342547.PeelingBudget
+import Lax342547.BoundedPeeling
+import Lax342547.RawPeeling

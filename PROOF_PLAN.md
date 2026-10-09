@@ -76,6 +76,7 @@ The closing checks are:
 | Prescribed tuple images, Lemma 4.3(b) | Uniform paired-orbit laws for primal tuples and full tuples at fixed channel Gram; product laws permit varying tuple dimensions |
 | Full reference image cap, Lemma 4.3(c) | Checked for arbitrary actual nominal ranks, dependent tuples, both endpoints and signs, and all components, including a single scale choice paying every cost |
 | Sparse intersections and representatives, Lemma 4.4 | Complete: bounded coefficient certificates, explicit exponential exception, tensor ranks, unique majority-zero representatives, support bound, trace/chiStar identity, and a uniform concrete scale |
+| First exact-pin peeling, Lemma 4.5(a) | Checked finite disjoint partition, exact quotient ranks, dimension/density budgets, normalized all-rank leaf caps, and recovery with actual leaf masses; restrictions and repinning remain |
 | Entropy/containers and the probabilistic construction | Not proved |
 | Theorem 1.1 | Open |
 | Counterexample corollaries | Checked only conditional on Theorem 1.1 |
@@ -94,13 +95,14 @@ reference image cap in Lemma 4.3(c) is also checked, including the all-rank
 quantifiers and the ambient scale choice. Lemma 4.4 is also checked on the
 actual concrete moment profiles, with an explicit `2^(-DN/4)` exception
 bound and one ambient scale independent of n and of the unit law. The
-peeling arguments, the finite graph transfer, and the later construction
-remain open.
+first finite peeling is checked, including the actual raw reference law
+and preservation of initial pins. The restriction and repinning costs,
+the finite graph transfer, and the later construction remain open.
 
-As of the October 9 sparse-intersection checkpoint, overall completion is estimated
-conservatively at **about 28%**, weighted by remaining mathematical
+As of the October 9 first-peeling checkpoint, overall completion is estimated
+conservatively at **about 30%**, weighted by remaining mathematical
 difficulty rather than declaration count. The validated archive contains
-72 concepts and 205 annotated proofs, with 203 closed proof networks.
+80 concepts and 223 annotated proofs, with 221 closed proof networks.
 The two remaining conditional proofs are the consequences of the open
 graph-existence theorem. The requested 50% milestone has not been reached.
 
@@ -439,16 +441,48 @@ satisfy the required majority inequality and give support at most 16000.
 
 ### 7.2 Two peelings, Lemma 4.5
 
-1. Define pins in the direct sum of the two endpoints' nominal spaces.
-2. Specify the exact-image test that violates a desired cap and the
+1. **Complete.** Define pins in the direct sum of the two endpoints' nominal spaces.
+2. **Complete.** Specify the exact-image test that violates a desired cap and the
    refinement operation that adds it as a pin.
-3. Prove a potential/density budget bounds the total added dimension.
-4. Store bases, exact images, leaf weights, and the conditional leaf laws.
-5. Prove the first leaf law has all required unpinned image caps.
+3. **Complete.** Prove a potential/density budget bounds the total added dimension.
+4. **Complete.** Store bases, exact images, leaf weights, and the conditional leaf laws.
+5. **Complete.** Prove the first leaf law has all required unpinned image caps.
 6. Prove the second peeling after the allowed extra restrictions and pins,
    preserving old effective spaces and respecting the final budget `K`.
 7. Track the mixed marginal bounds separately from the individual leaf
    bounds. A normalized rare leaf need not satisfy the original marginals.
+
+[`ExactPins`](proofs/Lax342547Proofs/ExactPins.lean) stores each nominal
+subspace with its prescribed linear image. It proves exact refinement
+of events and identifies the rank increase with the sum of dimensions in
+the old nominal quotients. Basis matrices and their exact images identify
+these events with the actual raw tuples in
+[`ReferencePins`](proofs/Lax342547Proofs/ReferencePins.lean).
+
+[`LeafExtraction`](proofs/Lax342547Proofs/LeafExtraction.lean) chooses an
+extension of maximal rank among those meeting the strict mass lower bound.
+A violating positive-rank test would yield a larger such extension.
+[`LeafPartition`](proofs/Lax342547Proofs/LeafPartition.lean) repeatedly
+removes a nonempty extracted support by finite induction, leaving mass
+at most delta and proving pairwise disjointness of all retained leaves.
+
+[`PeelingBudget`](proofs/Lax342547Proofs/PeelingBudget.lean) proves the
+exact comparison `(ζ-ε)u < D+ζ`, its conservative `4(D+1)/ζ` consequence,
+and the density normalization cost.
+[`BoundedPeeling`](proofs/Lax342547Proofs/BoundedPeeling.lean) combines
+these with the normalized all-rank leaf laws.
+[`RawPeeling.raw_peeling`](proofs/Lax342547Proofs/RawPeeling.lean) applies
+the construction to the actual endpoint/sign observation maps. It permits
+initial pins, preserves every old image, and bounds total dimension by
+the initial rank plus the new budget. Empty initial pins give the first
+peeling on any selected residual support, including the complement of the
+Lemma 4.4 exception.
+
+[`Conditioning`](proofs/Lax342547Proofs/Conditioning.lean) proves exact
+event and density normalization formulas and reconstructs disjoint mixtures
+with their actual masses. Applying the second peeling after the paper's
+restrictions and metadata split still requires their uniform mass-loss
+and density estimates; those costs are not assumed closed here.
 
 **Exit condition:** a finite decomposition with all mass losses, pin
 dimensions, and all-rank image bounds proved. The decomposition itself

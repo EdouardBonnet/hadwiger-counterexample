@@ -84,3 +84,11 @@ import Lax342547Proofs.SparseRepresentatives
 import Lax342547Proofs.KernelWitness
 import Lax342547Proofs.RawIntersections
 import Lax342547Proofs.SparseIntersections
+import Lax342547Proofs.ExactPins
+import Lax342547Proofs.LeafExtraction
+import Lax342547Proofs.LeafPartition
+import Lax342547Proofs.ReferencePins
+import Lax342547Proofs.Conditioning
+import Lax342547Proofs.PeelingBudget
+import Lax342547Proofs.BoundedPeeling
+import Lax342547Proofs.RawPeeling
