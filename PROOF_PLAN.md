@@ -76,7 +76,7 @@ The closing checks are:
 | Prescribed tuple images, Lemma 4.3(b) | Uniform paired-orbit laws for primal tuples and full tuples at fixed channel Gram; product laws permit varying tuple dimensions |
 | Full reference image cap, Lemma 4.3(c) | Checked for arbitrary actual nominal ranks, dependent tuples, both endpoints and signs, and all components, including a single scale choice paying every cost |
 | Sparse intersections and representatives, Lemma 4.4 | Complete: bounded coefficient certificates, explicit exponential exception, tensor ranks, unique majority-zero representatives, support bound, trace/chiStar identity, and a uniform concrete scale |
-| First exact-pin peeling, Lemma 4.5(a) | Checked finite disjoint partition, exact quotient ranks, dimension/density budgets, normalized all-rank leaf caps, and recovery with actual leaf masses; restrictions and repinning remain |
+| Both exact-pin peelings, Lemma 4.5 | Checked finite partitions, quotient ranks, restriction trimming, metadata/image counts, final pin budget, preserved effective spaces, all-rank leaf caps, and actual-mass recovery; mixed marginal costs tracked separately |
 | Entropy/containers and the probabilistic construction | Not proved |
 | Theorem 1.1 | Open |
 | Counterexample corollaries | Checked only conditional on Theorem 1.1 |
@@ -95,14 +95,16 @@ reference image cap in Lemma 4.3(c) is also checked, including the all-rank
 quantifiers and the ambient scale choice. Lemma 4.4 is also checked on the
 actual concrete moment profiles, with an explicit `2^(-DN/4)` exception
 bound and one ambient scale independent of n and of the unit law. The
-first finite peeling is checked, including the actual raw reference law
-and preservation of initial pins. The restriction and repinning costs,
-the finite graph transfer, and the later construction remain open.
+two finite peelings are checked, including restriction trimming, exact
+metadata/image counts, both absolute density costs, the paper's final
+pin budget, and preservation of old effective spaces. The mixed marginal
+normalization and successive-restriction identities are checked separately.
+The finite graph transfer and the later construction remain open.
 
-As of the October 9 first-peeling checkpoint, overall completion is estimated
-conservatively at **about 30%**, weighted by remaining mathematical
+As of the October 9 two-peeling checkpoint, overall completion is estimated
+conservatively at **about 32%**, weighted by remaining mathematical
 difficulty rather than declaration count. The validated archive contains
-80 concepts and 223 annotated proofs, with 221 closed proof networks.
+88 concepts and 249 annotated proofs, with 247 closed proof networks.
 The two remaining conditional proofs are the consequences of the open
 graph-existence theorem. The requested 50% milestone has not been reached.
 
@@ -447,9 +449,9 @@ satisfy the required majority inequality and give support at most 16000.
 3. **Complete.** Prove a potential/density budget bounds the total added dimension.
 4. **Complete.** Store bases, exact images, leaf weights, and the conditional leaf laws.
 5. **Complete.** Prove the first leaf law has all required unpinned image caps.
-6. Prove the second peeling after the allowed extra restrictions and pins,
+6. **Complete.** Prove the second peeling after the allowed extra restrictions and pins,
    preserving old effective spaces and respecting the final budget `K`.
-7. Track the mixed marginal bounds separately from the individual leaf
+7. **Complete.** Track the mixed marginal bounds separately from the individual leaf
    bounds. A normalized rare leaf need not satisfy the original marginals.
 
 [`ExactPins`](proofs/Lax342547Proofs/ExactPins.lean) stores each nominal
@@ -480,13 +482,45 @@ Lemma 4.4 exception.
 
 [`Conditioning`](proofs/Lax342547Proofs/Conditioning.lean) proves exact
 event and density normalization formulas and reconstructs disjoint mixtures
-with their actual masses. Applying the second peeling after the paper's
-restrictions and metadata split still requires their uniform mass-loss
-and density estimates; those costs are not assumed closed here.
+with their actual masses. [`LeafTrimming`](proofs/Lax342547Proofs/LeafTrimming.lean)
+bounds the fraction discarded after a combined restriction of mass at
+least `2^(-ηN)` by `2^(-(ζ-η)N)`. On each surviving leaf it gives the
+`1-2ζ` image cap and the explicit density normalization cost.
+[`RestrictedLeaves`](proofs/Lax342547Proofs/RestrictedLeaves.lean) packages
+these conclusions uniformly over every quotient rank and leaf in a finite
+weighted family. Successive restrictions equal their combined intersection.
+The separate `filtered_marginal` theorem charges a mixed-law marginal cap
+only the inverse mixed retained mass; it makes no original marginal claim
+for a normalized rare individual leaf.
+
+[`MetadataPins`](proofs/Lax342547Proofs/MetadataPins.lean) counts all exact
+image records as at most `|J| * 2^(uN)` and joins their pins to the old ones.
+[`SplitTrimming`](proofs/Lax342547Proofs/SplitTrimming.lean) discards at most
+`2^(a*n-N)` when `|J| ≤ 2^(a*n)`, hence at most `2^(-N/2)` under the explicit
+scale condition `2*a*n ≤ N`. It proves the absolute starting density
+`2^((D+K₁+u+5)N)` for every retained part after preceding leaf trimming.
+
+[`SecondPeeling`](proofs/Lax342547Proofs/SecondPeeling.lean) peels each such
+part while preserving all old and deliberately added pins. It proves
+`K₁+u+ceil(4(D+K₁+u+6)/ζ) ≤ ceil(10(D+K₁+u+10)/ζ)` and carries the residual
+bound back to the original part mass. The actual raw-law specialization is
+[`raw_second_peeling`](proofs/Lax342547Proofs/RawSecondPeeling.lean).
+[`MixtureRecovery`](proofs/Lax342547Proofs/MixtureRecovery.lean) proves exact
+nested mass recovery and sums the per-fiber residual bounds to the same
+global budget. Further restrictions use the same checked trimming theorem.
+[`ProjectedPins`](proofs/Lax342547Proofs/ProjectedPins.lean) defines the
+actual endpoint primal projections and effective tensor spaces, proves the
+projection dimension bound, and preserves every old effective space under
+pin extension. Its dimension and tensor-rank bounds are part of §9.
 
 **Exit condition:** a finite decomposition with all mass losses, pin
 dimensions, and all-rank image bounds proved. The decomposition itself
 must not assume a later collision or overlap conclusion.
+
+**Exit condition met in quantitative finite form.** The small-cost
+restriction is expressed by an explicit lower mass bound `2^(-ηN)`, and
+the metadata cost by an explicit count `2^(a*n)`. Later asymptotic arguments
+must supply these bounds uniformly; they are not hidden in this result.
 
 ## 8. Low-rank moments and the choice of mixers — §5
 
@@ -613,6 +647,8 @@ sparse-label bounds, and mixers.
 
 1. Define effective spaces, small tables, admissibility, injection flags,
    and the private/protected channel decomposition.
+   Effective spaces and their monotonicity under pin extension are defined
+   and checked; their dimension/rank bounds and the table interfaces remain.
 2. Define witness lists and all scalar recipe equations. Preserve the
    allowed lengths `1,…,7` and freshness of labels across both incident lists.
 3. Prove Lemma 6.2: the table restrictions separate into two orientation

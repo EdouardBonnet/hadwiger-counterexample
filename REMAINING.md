@@ -38,13 +38,13 @@ this file is the shorter status and acceptance checklist.
 | Entropy-controlled fingerprints and sample probability bounds | Proposition 3.4 | Not formalized |
 | Frame laws and full reference image cap | §4.1, Lemmas 4.1–4.3 | Complete: paired orbits, normalization, conditional laws, tuple laws, density bounds, and the all-rank two-endpoint reference cap with uniform scale choice |
 | Sparse intersections and representatives | §4.2, Lemma 4.4 | Complete: explicit exponential exception, exact coefficient count, shared-tensor ranks, unique majority-zero representatives, support and chiStar bounds, and a uniform concrete scale |
-| Two peelings with exact pins and subsequent image bounds | §4.3, Lemma 4.5 | First peeling checked: finite partition, preserved pins, quotient-rank budget, normalized image/density bounds, and actual-mass mixture; restriction/repinning costs and final budget remain |
+| Two peelings with exact pins and subsequent image bounds | §4.3, Lemma 4.5 | Complete in quantitative finite form: both partitions, restriction trimming, metadata/image count, preserved pins and effective spaces, final rank budget, image/density bounds, mixed marginal costs, and actual-mass recovery |
 | Bilinear/Walsh estimates | §4.4, Lemma 4.6 | Complete: exact energy identity, bilinear-rank bound, densities, subprobability masses, separate phases, bit rank, and finite conditional mixtures |
 | Base-moment span, selector interpolation, and low-rank label decomposition | Lemmas 5.1–5.2 | Complete; all label identities, rank bounds, and reconstruction checked |
 | Sparse label supports of projected pins | Lemma 5.3 | Complete; the exact uniform label budget covers all sparse vectors |
 | Atoms, flavors, and finite parameter laws | Definition 5.4 | Defined; incidence formula, role/diagonal bits, retained coordinates, and product law checked |
 | Uniform mixing matrices, chosen before the unit law | §5.3, Lemma 5.5 | Complete: simultaneous unary rank/row spaces and all binary parities on every flavor, explicit large-n threshold, and the paper's mixer parameters |
-| Scalar recipes, table flags, gradient realization | §6, Theorem 6.3 | Not formalized |
+| Scalar recipes, table flags, gradient realization | §6, Theorem 6.3 | Effective spaces and their preservation under pin extension defined and checked; dimension/rank bounds, tables, recipes, and realization remain |
 | Accepted queries and overlap-to-four-holes implication | §7, Proposition 7.1 | Not formalized |
 | Phase alternatives and accepting-pair injection | §8 | Not formalized |
 | Common prediction, exactification, and status preparation | §9, Proposition 9.2 | Not formalized |
@@ -66,8 +66,8 @@ mixer theorem in Lemma 5.5 are complete. The endpoint
 `UniformMixers.exists_paper_mixers` chooses all matrices before any unit law
 and proves the unary and binary properties with the paper's mixer parameters.
 
-1. Complete the restriction and repinning stages of §4.3 using the
-   completed reference frame laws. The endpoint `ImageScale.reference_image_cap`
+1. The two peeling stages of §4.3 are complete in quantitative finite form.
+   The endpoint `ImageScale.reference_image_cap`
    gives `2^(-(1-ε)tN)` for the actual summed ranks, including arbitrary
    dependent tuples and ranks growing with n. `exists_paper_scale` pays
    every density and dimension cost with one M₀ independent of the law.
@@ -76,13 +76,19 @@ and proves the unary and binary properties with the paper's mixer parameters.
    pays the bounded coefficient-description count independently of the law.
    `RawPeeling.raw_peeling` now proves the finite disjoint partition and
    normalized all-rank image bounds, preserving initial pins and retaining
-   actual leaf masses. Prove the mixed-law trimming, metadata split count,
-   and final K budget needed to apply it a second time.
+   actual leaf masses. `RestrictedLeaves.restricted_family` proves the
+   trimming bounds for a combined restriction of mass at least `2^(-ηN)`.
+   `RawSecondPeeling.raw_second_peeling` bounds discarded metadata fibers
+   by `2^(-N/2)` and provides fresh leaves within the paper's final K budget.
+   `MixtureRecovery` charges relative losses with the actual fiber masses.
+   `ProjectedPins.effective_mono` preserves old effective spaces.
    All three Walsh
    estimates in Lemma 4.6 are now checked, including a conditional mixture
    version that preserves the actual cell masses.
-2. Build the pin, effective-space, and table interfaces required for §6;
-   then prove scalar recipe compatibility and full gradient realization.
+2. Complete effective-space dimension and rank bounds and the table
+   interfaces required for §6; then prove scalar recipe compatibility and
+   full gradient realization. Pins, primal projections, effective tensor
+   spaces, and their preservation under extension are already defined.
 3. State raw supersaturation using this concrete law. Preserve the separate
    marginal caps and joint cap; the two endpoints of a unit can be dependent.
    An abstract structure with a supersaturation field is not a construction.

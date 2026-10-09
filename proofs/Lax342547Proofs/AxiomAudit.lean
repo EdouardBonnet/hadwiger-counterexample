@@ -42,6 +42,9 @@ import Lax342547Proofs.ConditionalMinus
 import Lax342547Proofs.ImageScale
 import Lax342547Proofs.SparseIntersections
 import Lax342547Proofs.RawPeeling
+import Lax342547Proofs.RawSecondPeeling
+import Lax342547Proofs.RestrictedLeaves
+import Lax342547Proofs.ProjectedPins
 
 -- Completed preliminary results: background axioms only.
 #print axioms Lax342547Proofs.HadwigerMatching.hadwiger_matching_bound
@@ -267,6 +270,32 @@ import Lax342547Proofs.RawPeeling
 #print axioms Lax342547Proofs.PeelingBudget.density_cost
 #print axioms Lax342547Proofs.BoundedPeeling.bounded_partition
 #print axioms Lax342547Proofs.RawPeeling.raw_peeling
+#print axioms Lax342547Proofs.LeafTrimming.weighted_discard
+#print axioms Lax342547Proofs.LeafTrimming.restricted_discard
+#print axioms Lax342547Proofs.LeafTrimming.event_after_restriction
+#print axioms Lax342547Proofs.LeafTrimming.minentropy_after_restriction
+#print axioms Lax342547Proofs.LeafTrimming.density_after_restriction
+#print axioms Lax342547Proofs.LeafTrimming.filtered_marginal
+#print axioms Lax342547Proofs.LeafTrimming.combined_restriction
+#print axioms Lax342547Proofs.MetadataPins.image_count
+#print axioms Lax342547Proofs.MetadataPins.key_count
+#print axioms Lax342547Proofs.MetadataPins.refined_fiber
+#print axioms Lax342547Proofs.SplitTrimming.small_fibers
+#print axioms Lax342547Proofs.SplitTrimming.metadata_discard
+#print axioms Lax342547Proofs.SplitTrimming.exponential_discard
+#print axioms Lax342547Proofs.SplitTrimming.repinning_density
+#print axioms Lax342547Proofs.SecondPeeling.final_rank_budget
+#print axioms Lax342547Proofs.SecondPeeling.second_part
+#print axioms Lax342547Proofs.RestrictedLeaves.restricted_family
+#print axioms Lax342547Proofs.RestrictedLeaves.weighted_residual
+#print axioms Lax342547Proofs.RawSecondPeeling.raw_second_peeling
+#print axioms Lax342547Proofs.MixtureRecovery.mixture_event
+#print axioms Lax342547Proofs.MixtureRecovery.nested_weighted_filter
+#print axioms Lax342547Proofs.MixtureRecovery.conditional_event_mass
+#print axioms Lax342547Proofs.MixtureRecovery.fiber_residual
+#print axioms Lax342547Proofs.ProjectedPins.projected_rank
+#print axioms Lax342547Proofs.ProjectedPins.projected_mono
+#print axioms Lax342547Proofs.ProjectedPins.effective_mono
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample

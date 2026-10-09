@@ -78,3 +78,11 @@ import Lax342547.Conditioning
 import Lax342547.PeelingBudget
 import Lax342547.BoundedPeeling
 import Lax342547.RawPeeling
+import Lax342547.LeafTrimming
+import Lax342547.MetadataPins
+import Lax342547.SplitTrimming
+import Lax342547.SecondPeeling
+import Lax342547.RestrictedLeaves
+import Lax342547.RawSecondPeeling
+import Lax342547.MixtureRecovery
+import Lax342547.ProjectedPins

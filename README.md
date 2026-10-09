@@ -111,12 +111,13 @@ by positions and may contain repeated raw vertices.
   `4D/g` support bound, and equality of their `χStar` values are checked
   on the actual concrete profiles. One ambient scale pays every cost
   independently of n and of the unit law.
-- Lemma 4.5(a): finite exact-pin peeling for the actual raw frame law,
+- Lemma 4.5: both finite exact-pin peelings for the actual raw frame law,
   including disjoint supports, the discarded-mass bound, nominal quotient
   ranks, bounded new dimension, normalized all-rank image caps, and joint
   density bounds. Conditional parts recover the retained law with their
-  actual masses. Initial pins are preserved; the later restriction and
-  metadata costs for the second peeling remain open.
+  actual masses. Metadata/image counts, restriction trimming, final pin budget, and
+  preservation of effective spaces are checked. Exact nested masses and
+  mixed marginal normalization are tracked separately.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
 
@@ -140,7 +141,7 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 Validated on October 9, 2026: `lake build` and `lax build . --replay` pass,
-with 80 concepts and 223 annotated proofs, 221 of which have no open
+with 88 concepts and 249 annotated proofs, 247 of which have no open
 mathematical assumptions. All kernel replays pass. The only conditional
 proofs are the two counterexample consequences of the open Theorem 1.1.
 

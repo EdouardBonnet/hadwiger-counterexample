@@ -92,3 +92,11 @@ import Lax342547Proofs.Conditioning
 import Lax342547Proofs.PeelingBudget
 import Lax342547Proofs.BoundedPeeling
 import Lax342547Proofs.RawPeeling
+import Lax342547Proofs.LeafTrimming
+import Lax342547Proofs.MetadataPins
+import Lax342547Proofs.SplitTrimming
+import Lax342547Proofs.SecondPeeling
+import Lax342547Proofs.RestrictedLeaves
+import Lax342547Proofs.RawSecondPeeling
+import Lax342547Proofs.MixtureRecovery
+import Lax342547Proofs.ProjectedPins
