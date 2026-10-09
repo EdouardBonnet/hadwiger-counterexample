@@ -45,4 +45,14 @@ axiom conditional_failure [DecidableEq I] [DecidableEq J] [DecidableEq N]
     (PMF.uniformOfFintype (GramFiber A G)).toOuterMeasure {B | ¬ Function.Injective B.val.mulVec} ≤
       (2 : ℝ≥0∞) ^ (Fintype.card I + Fintype.card J) / 2 ^ Fintype.card N
 
+axiom extension_failure {K : Type} [Fintype K]
+    [DecidableEq I] [DecidableEq J] [DecidableEq N]
+    (P : Matrix N K Binary) (hP : Function.Injective P.mulVec)
+    (A : Matrix N I Binary) (hA : Function.Injective A.mulVec) (G : Matrix I J Binary)
+    [Nonempty (GramFiber A G)] :
+    (PMF.uniformOfFintype (GramFiber A G)).toOuterMeasure
+      {X | ¬ Function.Injective (fun z : (K → Binary) × (J → Binary) =>
+        P.mulVec z.1 + X.val.mulVec z.2)} ≤
+      (2 : ℝ≥0∞) ^ (Fintype.card K + Fintype.card I + Fintype.card J) / 2 ^ Fintype.card N
+
 end Lax342547.GramColumns

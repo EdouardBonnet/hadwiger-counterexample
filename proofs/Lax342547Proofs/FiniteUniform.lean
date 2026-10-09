@@ -4,6 +4,19 @@ namespace Lax342547Proofs.FiniteUniform
 
 open scoped ENNReal
 
+theorem map_apply_eq_of_transport {α β : Type} [Fintype α] [Nonempty α]
+    (f : α → β) (y z : β) (e : α ≃ α)
+    (he : ∀ x, f (e x) = z ↔ f x = y) :
+    (PMF.uniformOfFintype α).map f y = (PMF.uniformOfFintype α).map f z := by
+  classical
+  let e' : {x : α // f x = y} ≃ {x : α // f x = z} := {
+    toFun := fun x => ⟨e x.val, (he x.val).mpr x.property⟩
+    invFun := fun x => ⟨e.symm x.val, (he (e.symm x.val)).mp (by simpa using x.property)⟩
+    left_inv := fun x => by ext; simp
+    right_inv := fun x => by ext; simp }
+  rw [FiniteLinearLaw.map_uniform_apply, FiniteLinearLaw.map_uniform_apply,
+    Nat.card_congr e']
+
 theorem map_eq_of_fibers {α β : Type} [Fintype α] [Nonempty α] [Fintype β] [Nonempty β]
     (f : α → β) (hf : ∀ y z, Nonempty ({x : α // f x = y} ≃ {x : α // f x = z})) :
     (PMF.uniformOfFintype α).map f = PMF.uniformOfFintype β := by
@@ -89,5 +102,34 @@ theorem filter_uniform {α : Type} [Fintype α] [Nonempty α]
       ENNReal.inv_div (Or.inl (by simp)) (Or.inl (by simp))]
     rw [div_eq_mul_inv, ← mul_assoc, ENNReal.inv_mul_cancel (by simp) (by simp), one_mul]
   · simp [hx]
+
+theorem map_fun_apply {ι α β : Type} [Fintype ι] [DecidableEq ι]
+    [Fintype α] [Nonempty α] (f : ι → α → β) (y : ι → β) :
+    (PMF.uniformOfFintype (ι → α)).map (fun x i => f i (x i)) y =
+      ∏ i, (PMF.uniformOfFintype α).map (f i) (y i) := by
+  classical
+  let e : {x : ι → α // (fun i => f i (x i)) = y} ≃ (∀ i, {a : α // f i a = y i}) := {
+    toFun := fun x i => ⟨x.val i, congrFun x.property i⟩
+    invFun := fun x => ⟨fun i => (x i).val, funext (fun i => (x i).property)⟩
+    left_inv := fun x => rfl
+    right_inv := fun x => rfl }
+  simp_rw [FiniteLinearLaw.map_uniform_apply, Nat.card_eq_fintype_card]
+  rw [Fintype.card_congr e, Fintype.card_pi]
+  simp only [Nat.cast_prod, Fintype.card_fun, Nat.cast_pow, div_eq_mul_inv,
+    Finset.prod_mul_distrib, Finset.prod_const, Finset.card_univ, ENNReal.inv_pow]
+
+theorem map_pi_apply {ι : Type} {α β : ι → Type} [Fintype ι] [DecidableEq ι]
+    [∀ i, Fintype (α i)] [∀ i, Nonempty (α i)] (f : ∀ i, α i → β i) (y : ∀ i, β i) :
+    (PMF.uniformOfFintype (∀ i, α i)).map (fun x i => f i (x i)) y =
+      ∏ i, (PMF.uniformOfFintype (α i)).map (f i) (y i) := by
+  classical
+  let e : {x : ∀ i, α i // (fun i => f i (x i)) = y} ≃ (∀ i, {a : α i // f i a = y i}) := {
+    toFun := fun x i => ⟨x.val i, congrFun x.property i⟩
+    invFun := fun x => ⟨fun i => (x i).val, funext (fun i => (x i).property)⟩
+    left_inv := fun x => rfl
+    right_inv := fun x => rfl }
+  simp_rw [FiniteLinearLaw.map_uniform_apply, Nat.card_eq_fintype_card]
+  rw [Fintype.card_congr e, Fintype.card_pi, Fintype.card_pi, Nat.cast_prod, Nat.cast_prod]
+  exact (ENNReal.prod_div_distrib_of_ne_top (by intro i _; simp)).symm
 
 end Lax342547Proofs.FiniteUniform

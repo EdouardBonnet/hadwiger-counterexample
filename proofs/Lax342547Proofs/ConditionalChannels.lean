@@ -1,9 +1,11 @@
 import Lax342547.ConditionalChannels
 import Lax342547Proofs.FiniteUniform
+import Lax342547Proofs.GramColumns
 
 namespace Lax342547Proofs.ConditionalChannels
 
 open Lax342547.MomentSpace Lax342547.RawFrames Lax342547.ConditionalChannels
+open scoped ENNReal
 
 variable {B H N : Type} [Fintype B] [Fintype H] [Fintype N]
 
@@ -64,5 +66,29 @@ theorem raw_conditioning {E : Matrix B B Binary} {P Q : Matrix N B Binary}
   rw [FiniteUniform.filter_uniform (α := Frame B H N E) {F | F.P = P ∧ F.Q = Q} h]
   rw [← conditional_uniform hgram, PMF.map_comp, PMF.map_comp]
   rfl
+
+/--
+---
+conclusion: Lax342547.ConditionalChannels.channel_rank_failures
+---
+The zero-Gram fibers are precisely the independent uniform columns in
+the two annihilators. Their failure to extend P and Q injectively is
+bounded by 2^(2d+h-N) on each side, before the separate rank conditionings.
+-/
+theorem channel_rank_failures [DecidableEq B] [DecidableEq H] [DecidableEq N]
+    (P Q : Matrix N B Binary) (hP : Function.Injective P.mulVec) (hQ : Function.Injective Q.mulVec)
+    [Nonempty (Lax342547.GramColumns.GramFiber Q (0 : Matrix B H Binary))]
+    [Nonempty (Lax342547.GramColumns.GramFiber P (0 : Matrix B H Binary))] :
+    (PMF.uniformOfFintype (Lax342547.GramColumns.GramFiber Q (0 : Matrix B H Binary))).toOuterMeasure
+        {X | ¬ Function.Injective (fun z : (B → Binary) × (H → Binary) =>
+          P.mulVec z.1 + X.val.mulVec z.2)} ≤
+        (2 : ℝ≥0∞) ^ (2 * Fintype.card B + Fintype.card H) / 2 ^ Fintype.card N ∧
+    (PMF.uniformOfFintype (Lax342547.GramColumns.GramFiber P (0 : Matrix B H Binary))).toOuterMeasure
+        {Y | ¬ Function.Injective (fun z : (B → Binary) × (H → Binary) =>
+          Q.mulVec z.1 + Y.val.mulVec z.2)} ≤
+        (2 : ℝ≥0∞) ^ (2 * Fintype.card B + Fintype.card H) / 2 ^ Fintype.card N := by
+  constructor
+  · simpa only [two_mul] using GramColumns.extension_failure P hP Q hQ (0 : Matrix B H Binary)
+  · simpa only [two_mul] using GramColumns.extension_failure Q hQ P hP (0 : Matrix B H Binary)
 
 end Lax342547Proofs.ConditionalChannels

@@ -56,3 +56,7 @@ import Lax342547.ConditionalChannels
 import Lax342547.AffineImages
 import Lax342547.GramColumns
 import Lax342547.GramNormalization
+import Lax342547.InjectiveFrames
+import Lax342547.ChannelDensity
+import Lax342547.FrameTuples
+import Lax342547.ConditionalMinus

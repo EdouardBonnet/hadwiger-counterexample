@@ -35,6 +35,10 @@ import Lax342547Proofs.FrameSymmetry
 import Lax342547Proofs.ConditionalChannels
 import Lax342547Proofs.AffineImages
 import Lax342547Proofs.GramNormalization
+import Lax342547Proofs.InjectiveFrames
+import Lax342547Proofs.ChannelDensity
+import Lax342547Proofs.FrameTuples
+import Lax342547Proofs.ConditionalMinus
 
 -- Completed preliminary results: background axioms only.
 #print axioms Lax342547Proofs.HadwigerMatching.hadwiger_matching_bound
@@ -181,6 +185,28 @@ import Lax342547Proofs.GramNormalization
 #print axioms Lax342547Proofs.GramNormalization.normalization_upper
 #print axioms Lax342547Proofs.GramNormalization.normalization_lower
 #print axioms Lax342547Proofs.GramNormalization.normalization_quarter
+#print axioms Lax342547Proofs.InjectiveFrames.injective_mass_half
+#print axioms Lax342547Proofs.InjectiveFrames.injection_event_bound
+#print axioms Lax342547Proofs.InjectiveFrames.transpose_uniform
+#print axioms Lax342547Proofs.InjectiveFrames.transpose_failure
+#print axioms Lax342547Proofs.InjectiveFrames.raw_transpose_failures
+#print axioms Lax342547Proofs.ChannelDensity.same_gram_mass
+#print axioms Lax342547Proofs.ChannelDensity.point_density
+#print axioms Lax342547Proofs.ChannelDensity.event_density
+#print axioms Lax342547Proofs.ChannelDensity.all_components_density
+#print axioms Lax342547Proofs.FrameTuples.primal_uniform
+#print axioms Lax342547Proofs.FrameTuples.full_uniform
+#print axioms Lax342547Proofs.FrameTuples.raw_full_conditioning
+#print axioms Lax342547Proofs.FrameTuples.primal_product
+#print axioms Lax342547Proofs.FrameTuples.primal_family
+#print axioms Lax342547Proofs.FrameTuples.full_product
+#print axioms Lax342547Proofs.AffineImages.extension_dependence_bound
+#print axioms Lax342547Proofs.GramColumns.extension_failure
+#print axioms Lax342547Proofs.ConditionalChannels.channel_rank_failures
+#print axioms Lax342547Proofs.ConditionalMinus.conditional_uniform
+#print axioms Lax342547Proofs.ConditionalMinus.rank_failure
+#print axioms Lax342547Proofs.ConditionalMinus.raw_conditioning
+#print axioms Lax342547Proofs.ConditionalMinus.completion_event_bound
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample

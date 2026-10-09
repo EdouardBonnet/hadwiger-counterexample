@@ -1,4 +1,5 @@
 import Lax342547.FrameSymmetry
+import Lax342547.GramColumns
 
 /-!
 ---
@@ -14,6 +15,7 @@ channel completions, with the actual finite normalizing factors.
 namespace Lax342547.ConditionalChannels
 
 open Lax342547.MomentSpace Lax342547.RawFrames
+open scoped ENNReal
 
 variable {B H N : Type} [Fintype B] [Fintype H] [Fintype N]
 
@@ -88,5 +90,18 @@ axiom raw_conditioning {E : Matrix B B Binary} {P Q : Matrix N B Binary}
       (fun F => (F.X, F.Y)) =
     (PMF.uniformOfFintype (PlusCompletion (H := H) P Q × MinusCompletion (H := H) P Q)).map
       (fun z => (z.1.val, z.2.val))
+
+axiom channel_rank_failures [DecidableEq B] [DecidableEq H] [DecidableEq N]
+    (P Q : Matrix N B Binary) (hP : Function.Injective P.mulVec) (hQ : Function.Injective Q.mulVec)
+    [Nonempty (GramColumns.GramFiber Q (0 : Matrix B H Binary))]
+    [Nonempty (GramColumns.GramFiber P (0 : Matrix B H Binary))] :
+    (PMF.uniformOfFintype (GramColumns.GramFiber Q (0 : Matrix B H Binary))).toOuterMeasure
+        {X | ¬ Function.Injective (fun z : (B → Binary) × (H → Binary) =>
+          P.mulVec z.1 + X.val.mulVec z.2)} ≤
+        (2 : ℝ≥0∞) ^ (2 * Fintype.card B + Fintype.card H) / 2 ^ Fintype.card N ∧
+    (PMF.uniformOfFintype (GramColumns.GramFiber P (0 : Matrix B H Binary))).toOuterMeasure
+        {Y | ¬ Function.Injective (fun z : (B → Binary) × (H → Binary) =>
+          Q.mulVec z.1 + Y.val.mulVec z.2)} ≤
+        (2 : ℝ≥0∞) ^ (2 * Fintype.card B + Fintype.card H) / 2 ^ Fintype.card N
 
 end Lax342547.ConditionalChannels

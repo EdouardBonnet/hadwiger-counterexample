@@ -67,12 +67,12 @@ theorem image_bound [DecidableEq J] [FiniteDimensional Binary V]
     (evaluation_rank S S₀ hS C hC)
 
 omit [Fintype T] in
-theorem coefficient_bound [DecidableEq J] [FiniteDimensional Binary V]
+theorem coefficient_target_bound [DecidableEq J] [FiniteDimensional Binary V]
     (S : J → Submodule Binary V) [∀ j, Fintype (S j)]
     (S₀ : Submodule Binary V) (hS : ∀ j, S₀ ≤ S j) (a : J → V)
-    (c : J → Binary) (hc : c ≠ 0) :
+    (c : J → Binary) (hc : c ≠ 0) (y : V) :
     (PMF.uniformOfFintype (∀ j, S j)).toOuterMeasure
-      {x | columnMap (fun j => a j + (x j).val) c = 0} ≤
+      {x | columnMap (fun j => a j + (x j).val) c = y} ≤
       1 / (2 : ℝ≥0∞) ^ Module.finrank Binary S₀ := by
   classical
   obtain ⟨j, hj⟩ : ∃ j, c j ≠ 0 := by
@@ -87,17 +87,27 @@ theorem coefficient_bound [DecidableEq J] [FiniteDimensional Binary V]
     funext u
     cases u
     exact mul_left_cancel₀ hj he
-  have h := image_bound S S₀ hS C hC a (0 : Unit → V)
+  have h := image_bound S S₀ hS C hC a (fun _ : Unit => y)
   rw [← PMF.toOuterMeasure_apply_singleton] at h
   change ((PMF.uniformOfFintype (∀ j, S j)).map _).toOuterMeasure _ ≤ _ at h
   rw [PMF.toOuterMeasure_map_apply] at h
   have hset : (fun x : ∀ j, S j => (fun t : Unit => ∑ j, C j t • a j) + evaluation S C x) ⁻¹'
-      {0} = {x | columnMap (fun j => a j + (x j).val) c = 0} := by
+      {fun _ : Unit => y} = {x | columnMap (fun j => a j + (x j).val) c = y} := by
     ext x
     simp only [Set.mem_preimage, Set.mem_singleton_iff, Set.mem_ofPred_eq, funext_iff]
     simp [C, evaluation, columnMap, smul_add, Finset.sum_add_distrib]
   rw [hset] at h
   simpa only [Fintype.card_unit, one_mul] using h
+
+omit [Fintype T] in
+theorem coefficient_bound [DecidableEq J] [FiniteDimensional Binary V]
+    (S : J → Submodule Binary V) [∀ j, Fintype (S j)]
+    (S₀ : Submodule Binary V) (hS : ∀ j, S₀ ≤ S j) (a : J → V)
+    (c : J → Binary) (hc : c ≠ 0) :
+    (PMF.uniformOfFintype (∀ j, S j)).toOuterMeasure
+      {x | columnMap (fun j => a j + (x j).val) c = 0} ≤
+      1 / (2 : ℝ≥0∞) ^ Module.finrank Binary S₀ :=
+  coefficient_target_bound S S₀ hS a c hc 0
 
 omit [Fintype T] in
 /--
@@ -141,6 +151,68 @@ theorem dependence_bound [DecidableEq J] [FiniteDimensional Binary V]
       MeasureTheory.measure_iUnion_fintype_le p.toOuterMeasure _
     _ ≤ ∑ _c : R, 1 / (2 : ℝ≥0∞) ^ Module.finrank Binary S₀ :=
       Finset.sum_le_sum (fun c _ => coefficient_bound S S₀ hS a c.val c.property)
+    _ = (Fintype.card R : ℝ≥0∞) / 2 ^ Module.finrank Binary S₀ := by simp [div_eq_mul_inv]
+    _ ≤ _ := ENNReal.div_le_div_right hR _
+
+omit [Fintype T] in
+/--
+---
+conclusion: Lax342547.AffineImages.extension_dependence_bound
+---
+A new dependence extending an injective fixed map must have a nonzero
+coefficient among the random columns. Its image equals a prescribed
+negative old image. The affine single-image bound applies to each such
+relation; union over old coefficients and nonzero new coefficients.
+-/
+theorem extension_dependence_bound {U : Type} [AddCommGroup U] [Module Binary U] [Fintype U]
+    [DecidableEq J] [FiniteDimensional Binary V]
+    (P : U →ₗ[Binary] V) (hP : Function.Injective P)
+    (S : J → Submodule Binary V) [∀ j, Fintype (S j)]
+    (S₀ : Submodule Binary V) (hS : ∀ j, S₀ ≤ S j) (a : J → V) :
+    (PMF.uniformOfFintype (∀ j, S j)).toOuterMeasure
+      {x | ¬ Function.Injective (fun z : U × (J → Binary) =>
+        P z.1 + columnMap (fun j => a j + (x j).val) z.2)} ≤
+      (Fintype.card U : ℝ≥0∞) * 2 ^ Fintype.card J / 2 ^ Module.finrank Binary S₀ := by
+  classical
+  let p := PMF.uniformOfFintype (∀ j, S j)
+  let R := U × {c : J → Binary // c ≠ 0}
+  let A (r : R) := {x : ∀ j, S j | columnMap (fun j => a j + (x j).val) r.2.val = -P r.1}
+  have hsub : {x | ¬ Function.Injective (fun z : U × (J → Binary) =>
+      P z.1 + columnMap (fun j => a j + (x j).val) z.2)} ⊆ ⋃ r : R, A r := by
+    intro x hx
+    change ¬ Function.Injective _ at hx
+    rw [Function.Injective] at hx
+    push Not at hx
+    obtain ⟨⟨u, c⟩, ⟨v, d⟩, he, hne⟩ := hx
+    have hcd : c ≠ d := by
+      intro hcd
+      apply hne
+      have huv : u = v := hP (add_right_cancel (by simpa only [hcd] using he))
+      exact Prod.ext huv hcd
+    apply Set.mem_iUnion.mpr
+    refine ⟨(u - v, ⟨c - d, sub_ne_zero.mpr hcd⟩), ?_⟩
+    change columnMap (fun j => a j + (x j).val) (c - d) = -P (u - v)
+    rw [map_sub, map_sub]
+    have he' : P u + columnMap (fun j => a j + (x j).val) c =
+        P v + columnMap (fun j => a j + (x j).val) d := he
+    calc
+      _ = (P u + columnMap (fun j => a j + (x j).val) c) -
+          (P v + columnMap (fun j => a j + (x j).val) d) - (P u - P v) := by abel
+      _ = _ := by rw [he']; simp
+  have hR : (Fintype.card R : ℝ≥0∞) ≤ (Fintype.card U : ℝ≥0∞) * 2 ^ Fintype.card J := by
+    have h := Fintype.card_subtype_le (fun c : J → Binary => c ≠ 0)
+    have hc : Fintype.card (J → Binary) = 2 ^ Fintype.card J := by simp [Binary, ZMod.card]
+    rw [hc] at h
+    have h' : Fintype.card R ≤ Fintype.card U * 2 ^ Fintype.card J := by
+      rw [Fintype.card_prod]
+      exact Nat.mul_le_mul_left _ h
+    exact_mod_cast h'
+  calc
+    _ ≤ p.toOuterMeasure (⋃ r : R, A r) := p.toOuterMeasure.mono hsub
+    _ ≤ ∑ r : R, p.toOuterMeasure (A r) :=
+      MeasureTheory.measure_iUnion_fintype_le p.toOuterMeasure _
+    _ ≤ ∑ _r : R, 1 / (2 : ℝ≥0∞) ^ Module.finrank Binary S₀ :=
+      Finset.sum_le_sum (fun r _ => coefficient_target_bound S S₀ hS a r.2.val r.2.property (-P r.1))
     _ = (Fintype.card R : ℝ≥0∞) / 2 ^ Module.finrank Binary S₀ := by simp [div_eq_mul_inv]
     _ ≤ _ := ENNReal.div_le_div_right hR _
 

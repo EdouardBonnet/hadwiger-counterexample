@@ -94,6 +94,13 @@ by positions and may contain repeated raw vertices.
   form has exactly `N * rank C` bits of rank. A finite conditional mixture
   theorem retains the actual cell masses and density costs.
 - The ordinary fractional-coloring lower and upper bounds.
+- Lemmas 4.1–4.2: the paired-frame orbit over arbitrary fields and both
+  Gram normalization bounds, with the explicit quarter-factor lower bound.
+- Lemma 4.3(a,b): all uniform frame marginals, the actual conditional
+  minus and channel laws, their rank-failure bounds, channel transpose
+  failures and joint density, and prescribed tuple orbit laws. Independent
+  tuple laws allow dimensions and Gram values to vary across draws.
+  The two-endpoint reference image cap in part (c) remains open.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
 
@@ -117,8 +124,9 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 Validated on October 9, 2026: `lake build` and `lax build . --replay` pass,
-with 52 concepts and 123 annotated proofs. Lax reports 26 retained-helper
-warnings and no errors.
+with 62 concepts and 166 annotated proofs, 164 of which have no open
+mathematical assumptions. All kernel replays pass. The only conditional
+proofs are the two counterexample consequences of the open Theorem 1.1.
 
 The completed preliminary proofs report only Lean's standard background
 axioms in `AxiomAudit.lean`. The completion checker must still exit with

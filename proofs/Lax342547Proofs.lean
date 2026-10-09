@@ -70,3 +70,7 @@ import Lax342547Proofs.AffineImages
 import Lax342547Proofs.FiniteProbability
 import Lax342547Proofs.GramColumns
 import Lax342547Proofs.GramNormalization
+import Lax342547Proofs.InjectiveFrames
+import Lax342547Proofs.ChannelDensity
+import Lax342547Proofs.FrameTuples
+import Lax342547Proofs.ConditionalMinus

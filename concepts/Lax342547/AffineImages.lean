@@ -54,4 +54,14 @@ axiom dependence_bound [DecidableEq J] [FiniteDimensional Binary V]
       {x | ¬ Function.Injective (columnMap (fun j => a j + (x j).val))} ≤
       (2 : ℝ≥0∞) ^ Fintype.card J / 2 ^ Module.finrank Binary S₀
 
+axiom extension_dependence_bound {U : Type} [AddCommGroup U] [Module Binary U] [Fintype U]
+    [DecidableEq J] [FiniteDimensional Binary V]
+    (P : U →ₗ[Binary] V) (hP : Function.Injective P)
+    (S : J → Submodule Binary V) [∀ j, Fintype (S j)]
+    (S₀ : Submodule Binary V) (hS : ∀ j, S₀ ≤ S j) (a : J → V) :
+    (PMF.uniformOfFintype (∀ j, S j)).toOuterMeasure
+      {x | ¬ Function.Injective (fun z : U × (J → Binary) =>
+        P z.1 + columnMap (fun j => a j + (x j).val) z.2)} ≤
+      (Fintype.card U : ℝ≥0∞) * 2 ^ Fintype.card J / 2 ^ Module.finrank Binary S₀
+
 end Lax342547.AffineImages
