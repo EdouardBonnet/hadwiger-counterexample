@@ -34,3 +34,8 @@ import Lax342547.FiniteLinearLaw
 import Lax342547.MixerRowLaw
 import Lax342547.RestrictionRank
 import Lax342547.LowRankCounting
+import Lax342547.AtomDirections
+import Lax342547.OrderedMixerLaw
+import Lax342547.SymmetricFactorization
+import Lax342547.ProfileCounting
+import Lax342547.CorankCounting

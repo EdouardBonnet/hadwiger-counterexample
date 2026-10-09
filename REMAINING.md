@@ -42,7 +42,7 @@ this file is the shorter status and acceptance checklist.
 | Base-moment span, selector interpolation, and low-rank label decomposition | Lemmas 5.1–5.2 | Complete; all label identities, rank bounds, and reconstruction checked |
 | Sparse label supports of projected pins | Lemma 5.3 | Complete; the exact uniform label budget covers all sparse vectors |
 | Atoms, flavors, and finite parameter laws | Definition 5.4 | Defined; incidence formula, role/diagonal bits, retained coordinates, and product law checked |
-| Uniform mixing matrices, chosen before the unit law | §5.3, Lemma 5.5 | Compatibility, observation density, restriction rank loss, and rectangular low-rank counts checked; existence still open |
+| Uniform mixing matrices, chosen before the unit law | §5.3, Lemma 5.5 | Compatibility/density, restriction rank loss, concrete profile and row-corank counts, and distinct-label ordered uniform laws checked; existence still open |
 | Scalar recipes, table flags, gradient realization | §6, Theorem 6.3 | Not formalized |
 | Accepted queries and overlap-to-four-holes implication | §7, Proposition 7.1 | Not formalized |
 | Phase alternatives and accepting-pair injection | §8 | Not formalized |
@@ -67,8 +67,9 @@ several of its probability and rank estimates are now checked, but the
 unary/binary rank arguments and simultaneous existence remain open.
 
 1. Connect the checked compatibility/density calculation to the atom's
-   formal quadratic row variables. Prove the symmetric low-rank profile
-   count and the sharper random row-corank estimate.
+   formal quadratic row variables. Aggregate the row laws and use the
+   checked symmetric profile count and sharp row-corank bound in the
+   uniform union bound. Complete the `E`-only binary parity argument.
 2. Establish the unary and binary mixer rank bounds simultaneously, with
    all mixers chosen before the unit law.
 3. State raw supersaturation using this concrete law. Preserve the separate

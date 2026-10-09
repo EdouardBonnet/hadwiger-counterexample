@@ -45,3 +45,8 @@ import Lax342547Proofs.FiniteLinearLaw
 import Lax342547Proofs.MixerRowLaw
 import Lax342547Proofs.RestrictionRank
 import Lax342547Proofs.LowRankCounting
+import Lax342547Proofs.AtomDirections
+import Lax342547Proofs.OrderedMixerLaw
+import Lax342547Proofs.SymmetricFactorization
+import Lax342547Proofs.ProfileCounting
+import Lax342547Proofs.CorankCounting

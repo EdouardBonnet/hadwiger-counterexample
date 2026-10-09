@@ -21,6 +21,9 @@ import Lax342547Proofs.ConcreteModel
 import Lax342547Proofs.MixerRowLaw
 import Lax342547Proofs.RestrictionRank
 import Lax342547Proofs.LowRankCounting
+import Lax342547Proofs.OrderedMixerLaw
+import Lax342547Proofs.ProfileCounting
+import Lax342547Proofs.CorankCounting
 
 -- Completed preliminary results: background axioms only.
 #print axioms Lax342547Proofs.HadwigerMatching.hadwiger_matching_bound
@@ -71,6 +74,20 @@ import Lax342547Proofs.LowRankCounting
 #print axioms Lax342547Proofs.LowRankCounting.factorization
 #print axioms Lax342547Proofs.LowRankCounting.card_low_rank
 #print axioms Lax342547Proofs.LowRankCounting.uniform_low_rank_bound
+#print axioms Lax342547Proofs.FiniteLinearLaw.uniform_image_of_surjective
+#print axioms Lax342547Proofs.AtomDirections.blockDirections_injective
+#print axioms Lax342547Proofs.AtomDirections.distinct_directions_injective
+#print axioms Lax342547Proofs.OrderedMixerLaw.orders_surjective
+#print axioms Lax342547Proofs.OrderedMixerLaw.orders_uniform
+#print axioms Lax342547Proofs.OrderedMixerLaw.ordered_parity_uniform
+#print axioms Lax342547Proofs.OrderedMixerLaw.atom_orders_uniform
+#print axioms Lax342547Proofs.SymmetricFactorization.symmetric_factorization
+#print axioms Lax342547Proofs.SymmetricFactorization.card_symmetric_rank
+#print axioms Lax342547Proofs.ProfileCounting.card_symmetric_profiles
+#print axioms Lax342547Proofs.ProfileCounting.card_concrete_profiles
+#print axioms Lax342547Proofs.CorankCounting.exists_row_relations
+#print axioms Lax342547Proofs.CorankCounting.card_corank
+#print axioms Lax342547Proofs.CorankCounting.uniform_corank_bound
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample

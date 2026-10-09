@@ -67,6 +67,10 @@ by positions and may contain repeated raw vertices.
   the resulting density bound on free-direction observations, loss of
   at most twice the codimension under bilinear restriction, and rectangular
   low-rank factorization, counting, and uniform probability bounds.
+  Symmetric factorization and the low-total-rank count are checked for
+  the actual cut-profile space. The sharper row-corank probability is
+  `2^(ms)/2^(sn)`. Distinct labels have independent free-direction spaces,
+  giving a uniform pair of ordered mixer blocks and uniform nonzero parities.
   The uniform mixer existence theorem itself remains open.
 - The ordinary fractional-coloring lower and upper bounds.
 - The ordinary and fractional counterexample consequences, **conditional on
@@ -92,7 +96,7 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 Validated on October 9, 2026: `lake build` and `lax build . --replay` pass,
-with 36 concepts and 48 annotated proofs. Lax reports 27 retained-helper
+with 41 concepts and 62 annotated proofs. Lax reports 27 retained-helper
 warnings and no errors.
 
 The completed preliminary proofs report only Lean's standard background

@@ -98,4 +98,35 @@ theorem uniform_image_bound (f : V →ₗ[Binary] W) (c : ℕ)
       (ENNReal.le_div_iff_mul_le (Or.inl hW) (Or.inl (by simp))).mpr h'
     _ = _ := by simp only [div_eq_mul_inv]; exact mul_right_comm _ _ _
 
+/--
+---
+conclusion: Lax342547.FiniteLinearLaw.uniform_image_of_surjective
+---
+All fibers of a surjective linear map are translates of its kernel.
+Rank-nullity therefore gives equal normalized mass at every output.
+-/
+theorem uniform_image_of_surjective (f : V →ₗ[Binary] W) (hf : Function.Surjective f) :
+    (PMF.uniformOfFintype V).map f = PMF.uniformOfFintype W := by
+  classical
+  have hcard : Fintype.card V = Fintype.card (LinearMap.ker f) * Fintype.card W := by
+    have hd := f.finrank_range_add_finrank_ker
+    rw [LinearMap.range_eq_top.mpr hf, finrank_top] at hd
+    rw [binary_card V, binary_card (LinearMap.ker f), binary_card W, ← pow_add]
+    congr 1
+    omega
+  ext y
+  obtain ⟨x₀, hx₀⟩ := hf y
+  let e : {x : V // f x = y} ≃ LinearMap.ker f :=
+    { toFun := fun x => ⟨x.val - x₀, by simp [LinearMap.mem_ker, x.property, hx₀]⟩
+      invFun := fun z => ⟨z.val + x₀, by simp [hx₀, show f z.val = 0 from z.property]⟩
+      left_inv := fun x => by ext; simp
+      right_inv := fun z => by ext; simp }
+  have he := Fintype.card_congr e
+  rw [map_uniform_apply, Nat.card_eq_fintype_card, he, PMF.uniformOfFintype_apply,
+    hcard, Nat.cast_mul]
+  simpa only [mul_one, one_div] using
+    ENNReal.mul_div_mul_left 1 (Fintype.card W)
+      (by exact_mod_cast (Fintype.card_ne_zero (α := LinearMap.ker f)))
+      (by simp)
+
 end Lax342547Proofs.FiniteLinearLaw

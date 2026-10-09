@@ -65,7 +65,8 @@ The closing checks are:
 | Uniform sparse pin label budget, Lemma 5.3 | Complete checked proof, over all sparse vectors in all projected spaces |
 | Entire concrete model, with the paper's testers and arbitrary mixers | Constructed; sampled graphs have independence number at most two |
 | Atoms, flavors, and their finite parameter laws | Defined; component formulas, retained coordinates, and product law checked |
-| Mixer compatibility, observation density, rank loss, rectangular low-rank counts | Checked; the simultaneous mixer existence theorem remains open |
+| Mixer compatibility, observation density, rank loss, profile and row-corank counts | Checked, including the actual cut profiles |
+| Ordered random mixer evaluations at distinct labels | Joint uniform law and nonzero parity laws checked on the free directions |
 | Entropy/containers and the probabilistic construction | Not proved |
 | Theorem 1.1 | Open |
 | Counterexample corollaries | Checked only conditional on Theorem 1.1 |
@@ -76,8 +77,10 @@ steps in §8.1; substantial parts of the construction remain open.
 The October 9 work completes the concrete algebraic model in §4 and the
 atom/flavor setup in §8.2, step 1. Parts of steps 2–3 are now checked:
 forward/reverse compatibility and its density cost, bilinear restriction
-rank loss, and rectangular low-rank counts. The uniform mixer theorem
-remains open.
+rank loss, symmetric profile and rectangular matrix counts, and the sharp
+row-corank probability. Step 4 now includes distinct-label free-direction
+independence and the ordered-block and parity uniform laws. The uniform
+mixer theorem remains open.
 
 ## 3. Fix the common mathematical interfaces
 
@@ -370,11 +373,18 @@ finite-sum notation are covered, with degree condition
 3. **Partial.** Bound the number of low-rank coefficient profiles and rank-deficient
    random row maps; union bound uniformly over profiles, labels, tags,
    and flavors.
-   Rectangular factorization, the count `2^((d₁+d₂)r)`, and its uniform
-   probability bound are checked. Symmetric profile counting, the sharper
-   row-corank estimate, and the uniform union bound remain open.
-4. For distinct labels, prove all the required nontrivial binary parities
+   Rectangular factorization and its probability bound are checked.
+   Symmetric factorization works in characteristic two without a diagonal
+   assumption. The actual cut profiles of total rank at most `K` number
+   at most `(K+1)^|E| 2^(dK+K²)`, and the row-corank probability is at most
+   `2^(ms)/2^(sn)`. Substituting the coordinate dimension, aggregating the
+   independent row laws, and the uniform union bound remain open.
+4. **Partial.** For distinct labels, prove all the required nontrivial binary parities
    of ordered mixer evaluations and `E` evaluations have large rank.
+   The distinct labels have independent combined free-direction columns.
+   The two ordered blocks of one uniform mixer are jointly uniform, and
+   every nonzero ordered parity is uniform. The `E`-only parities and
+   the simultaneous large-rank probability conclusion remain open.
 5. Choose all mixer matrices simultaneously for a fixed large `n`.
    Only then quantify over unit laws and orientation-dependent effective
    spaces. The mixer choice cannot depend on those laws.
