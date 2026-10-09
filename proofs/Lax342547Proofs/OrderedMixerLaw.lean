@@ -2,6 +2,7 @@ import Lax342547.OrderedMixerLaw
 import Lax342547Proofs.AtomDirections
 import Lax342547Proofs.MixerCompatibility
 import Lax342547Proofs.FiniteLinearLaw
+import Lax342547Proofs.LowRankCounting
 
 namespace Lax342547Proofs.OrderedMixerLaw
 
@@ -103,5 +104,55 @@ theorem atom_orders_uniform {k n b degree : ℕ} (hd : 1 ≤ degree)
   apply AtomDirections.distinct_directions_injective hd s t hst free
   intro i j hij
   simpa [free] using hij
+
+theorem familyParity_surjective {F : Type} [Fintype F]
+    (D : Matrix I N K) (E : Matrix I P K)
+    (hDE : Function.Injective (Matrix.fromCols D E).mulVec)
+    (a b : F → K) (hab : ∃ j, a j ≠ 0 ∨ b j ≠ 0) :
+    Function.Surjective (familyParity D E a b) := by
+  classical
+  obtain ⟨j, hj⟩ := hab
+  intro A
+  obtain ⟨L, hL⟩ := ((parity_surjective (a j) (b j) hj).comp (orders_surjective D E hDE)) A
+  refine ⟨Pi.single j L, ?_⟩
+  simpa [familyParity, LinearMap.sum_apply, Pi.single_apply, apply_ite] using hL
+
+/--
+---
+conclusion: Lax342547.OrderedMixerLaw.family_parity_uniform
+---
+Select an index with a nonzero ordered coefficient. Its observation can
+realize any target while the other matrices are zero, so the full parity
+map is a surjective linear map on the independent matrix family.
+-/
+theorem family_parity_uniform {I N P F : Type} [Fintype I] [Fintype N] [Fintype P] [Fintype F]
+    [DecidableEq I] [DecidableEq N] [DecidableEq P] [DecidableEq F]
+    (D : Matrix I N Binary) (E : Matrix I P Binary)
+    (hDE : Function.Injective (Matrix.fromCols D E).mulVec)
+    (a b : F → Binary) (hab : ∃ j, a j ≠ 0 ∨ b j ≠ 0) :
+    (PMF.uniformOfFintype (F → Matrix I I Binary)).map (familyParity D E a b) =
+      PMF.uniformOfFintype (Matrix N P Binary) :=
+  FiniteLinearLaw.uniform_image_of_surjective _ (familyParity_surjective D E hDE a b hab)
+
+open scoped ENNReal
+
+/--
+---
+conclusion: Lax342547.OrderedMixerLaw.family_parity_low_rank_bound
+---
+Every nonempty ordered parity of the independent mixer family is uniform.
+Apply the rectangular low-rank matrix count to its push-forward law.
+-/
+theorem family_parity_low_rank_bound {I N P F : Type} [Fintype I] [Fintype N] [Fintype P] [Fintype F]
+    [DecidableEq I] [DecidableEq N] [DecidableEq P] [DecidableEq F]
+    (D : Matrix I N Binary) (E : Matrix I P Binary)
+    (hDE : Function.Injective (Matrix.fromCols D E).mulVec)
+    (a b : F → Binary) (hab : ∃ j, a j ≠ 0 ∨ b j ≠ 0) (r : ℕ) :
+    (PMF.uniformOfFintype (F → Matrix I I Binary)).toOuterMeasure
+      {L | (familyParity D E a b L).rank ≤ r} ≤
+        (2 : ℝ≥0∞) ^ ((Fintype.card N + Fintype.card P) * r) / 2 ^ (Fintype.card N * Fintype.card P) := by
+  have h := LowRankCounting.uniform_low_rank_bound (I := N) (J := P) r
+  rw [← family_parity_uniform D E hDE a b hab, PMF.toOuterMeasure_map_apply] at h
+  exact h
 
 end Lax342547Proofs.OrderedMixerLaw

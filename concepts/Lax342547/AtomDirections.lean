@@ -22,6 +22,16 @@ noncomputable def blockDirections {k n b degree : ℕ} (s : Fin b → Binary)
   classical
   exact fun i j => if i.2 = some (c j) then selectorEval s i.1 else 0
 
+noncomputable def varyBlock {k n : ℕ} (z : Base k n → Binary) (c : Fin n → Base k n)
+    (v : Fin n → Binary) : Base k n → Binary := by
+  classical
+  exact fun i => z i + ∑ j, if c j = i then v j else 0
+
+axiom point_varyBlock {k n b degree : ℕ} (s : Fin b → Binary) (z : Base k n → Binary)
+    (c : Fin n → Base k n) (v : Fin n → Binary) :
+    point (selectorEval (degree := degree)) s (varyBlock z c v) =
+      point selectorEval s z + (blockDirections s c).mulVec v
+
 axiom blockDirections_injective {k n b degree : ℕ} (s : Fin b → Binary)
     (c : Fin n → Base k n) (hc : Function.Injective c) :
     Function.Injective (blockDirections (degree := degree) s c).mulVec

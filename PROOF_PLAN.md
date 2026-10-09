@@ -66,7 +66,8 @@ The closing checks are:
 | Entire concrete model, with the paper's testers and arbitrary mixers | Constructed; sampled graphs have independence number at most two |
 | Atoms, flavors, and their finite parameter laws | Defined; component formulas, retained coordinates, and product law checked |
 | Mixer compatibility, observation density, rank loss, profile and row-corank counts | Checked, including the actual cut profiles |
-| Ordered random mixer evaluations at distinct labels | Joint uniform law and nonzero parity laws checked on the free directions |
+| Ordered random mixer evaluations at distinct labels | Joint uniform law, family parity laws, and low-rank probabilities checked on the free directions |
+| Self-Gram binary parities | Concrete sharp/free restriction identities and the three sharp-parity probability bounds checked |
 | Entropy/containers and the probabilistic construction | Not proved |
 | Theorem 1.1 | Open |
 | Counterexample corollaries | Checked only conditional on Theorem 1.1 |
@@ -79,7 +80,8 @@ atom/flavor setup in §8.2, step 1. Parts of steps 2–3 are now checked:
 forward/reverse compatibility and its density cost, bilinear restriction
 rank loss, symmetric profile and rectangular matrix counts, and the sharp
 row-corank probability. Step 4 now includes distinct-label free-direction
-independence and the ordered-block and parity uniform laws. The uniform
+independence, parity laws for entire mixer families, and the concrete
+self-Gram restrictions and sharp-parity probability bounds. The uniform
 mixer theorem remains open.
 
 ## 3. Fix the common mathematical interfaces
@@ -368,8 +370,9 @@ finite-sum notation are covered, with degree condition
    spaces. Prove the forward/reverse compatibility rank calculation.
    The exact compatibility condition and codimension, its observation-law
    density bound after an injective free-direction restriction, and rank
-   loss of at most twice the restricted codimension are checked. The
-   atom-specific quadratic expansion and its formal polar rank remain open.
+   loss of at most twice the restricted codimension are checked. The exact
+   affine point-input variation under a base-block change is checked too.
+   The atom-specific quadratic expansion and its formal polar rank remain open.
 3. **Partial.** Bound the number of low-rank coefficient profiles and rank-deficient
    random row maps; union bound uniformly over profiles, labels, tags,
    and flavors.
@@ -382,8 +385,13 @@ finite-sum notation are covered, with degree condition
 4. **Partial.** For distinct labels, prove all the required nontrivial binary parities
    of ordered mixer evaluations and `E` evaluations have large rank.
    The distinct labels have independent combined free-direction columns.
-   The two ordered blocks of one uniform mixer are jointly uniform, and
-   every nonzero ordered parity is uniform. The `E`-only parities and
+   The two ordered blocks of one uniform mixer are jointly uniform. Every
+   nonempty ordered parity of an independent family is uniform and obeys
+   the checked low-rank probability bound. The actual `E` restriction on
+   the sharp directions is the label-weighted sum of the `M_a`, and its
+   free-direction restriction is zero. All three sharp-parity probability
+   bounds are checked, including the alternating subblock of side `⌊n/2⌋`.
+   Lifting these restriction estimates to every flavor's bilinear part and
    the simultaneous large-rank probability conclusion remain open.
 5. Choose all mixer matrices simultaneously for a fixed large `n`.
    Only then quantify over unit laws and orientation-dependent effective

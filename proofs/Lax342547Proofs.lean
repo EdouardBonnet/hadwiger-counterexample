@@ -50,3 +50,4 @@ import Lax342547Proofs.OrderedMixerLaw
 import Lax342547Proofs.SymmetricFactorization
 import Lax342547Proofs.ProfileCounting
 import Lax342547Proofs.CorankCounting
+import Lax342547Proofs.SharpMixerLaw

@@ -70,7 +70,12 @@ by positions and may contain repeated raw vertices.
   Symmetric factorization and the low-total-rank count are checked for
   the actual cut-profile space. The sharper row-corank probability is
   `2^(ms)/2^(sn)`. Distinct labels have independent free-direction spaces,
-  giving a uniform pair of ordered mixer blocks and uniform nonzero parities.
+  giving a uniform pair of ordered mixer blocks and uniform nonempty parities
+  across an independent mixer family, with the associated low-rank bounds.
+  The sharp restriction of the actual self-Gram matrix, its vanishing free
+  restriction, and all three sharp-parity probability bounds are checked,
+  including the alternating block of side `n/2` rounded down. The affine
+  change of point inputs under a base-block variation is also checked.
   The uniform mixer existence theorem itself remains open.
 - The ordinary fractional-coloring lower and upper bounds.
 - The ordinary and fractional counterexample consequences, **conditional on
@@ -96,7 +101,7 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 Validated on October 9, 2026: `lake build` and `lax build . --replay` pass,
-with 41 concepts and 62 annotated proofs. Lax reports 27 retained-helper
+with 42 concepts and 71 annotated proofs. Lax reports 27 retained-helper
 warnings and no errors.
 
 The completed preliminary proofs report only Lean's standard background

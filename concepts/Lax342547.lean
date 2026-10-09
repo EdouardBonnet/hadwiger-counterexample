@@ -39,3 +39,4 @@ import Lax342547.OrderedMixerLaw
 import Lax342547.SymmetricFactorization
 import Lax342547.ProfileCounting
 import Lax342547.CorankCounting
+import Lax342547.SharpMixerLaw

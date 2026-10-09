@@ -24,6 +24,7 @@ import Lax342547Proofs.LowRankCounting
 import Lax342547Proofs.OrderedMixerLaw
 import Lax342547Proofs.ProfileCounting
 import Lax342547Proofs.CorankCounting
+import Lax342547Proofs.SharpMixerLaw
 
 -- Completed preliminary results: background axioms only.
 #print axioms Lax342547Proofs.HadwigerMatching.hadwiger_matching_bound
@@ -88,6 +89,15 @@ import Lax342547Proofs.CorankCounting
 #print axioms Lax342547Proofs.CorankCounting.exists_row_relations
 #print axioms Lax342547Proofs.CorankCounting.card_corank
 #print axioms Lax342547Proofs.CorankCounting.uniform_corank_bound
+#print axioms Lax342547Proofs.AtomDirections.point_varyBlock
+#print axioms Lax342547Proofs.OrderedMixerLaw.family_parity_uniform
+#print axioms Lax342547Proofs.OrderedMixerLaw.family_parity_low_rank_bound
+#print axioms Lax342547Proofs.SharpMixerLaw.label_weighted_uniform
+#print axioms Lax342547Proofs.SharpMixerLaw.selfGram_sharp_block
+#print axioms Lax342547Proofs.SharpMixerLaw.selfGram_free_block
+#print axioms Lax342547Proofs.SharpMixerLaw.alternating_block_uniform
+#print axioms Lax342547Proofs.SharpMixerLaw.alternating_low_rank_bound
+#print axioms Lax342547Proofs.SharpMixerLaw.label_parity_low_rank_bounds
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample

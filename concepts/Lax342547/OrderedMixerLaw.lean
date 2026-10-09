@@ -1,5 +1,6 @@
 import Lax342547.AtomDirections
 import Lax342547.FiniteLinearLaw
+import Lax342547.LowRankCounting
 
 /-!
 ---
@@ -27,6 +28,10 @@ def parity (a b : K) : (Matrix N P K × Matrix P N K) →ₗ[K] Matrix N P K whe
   toFun x := a • x.1 + b • x.2.transpose
   map_add' x y := by simp [smul_add, add_add_add_comm]
   map_smul' c x := by simp [smul_add, smul_smul, mul_comm]
+
+def familyParity {F : Type} [Fintype F] (D : Matrix I N K) (E : Matrix I P K) (a b : F → K) :
+    (F → Matrix I I K) →ₗ[K] Matrix N P K :=
+  ∑ j, ((parity (a j) (b j)).comp (orders D E)).comp (LinearMap.proj j)
 
 axiom orders_surjective [Fintype N] [Fintype P]
     (D : Matrix I N K) (E : Matrix I P K)
@@ -56,5 +61,24 @@ axiom atom_orders_uniform {k n b degree : ℕ} (hd : 1 ≤ degree)
     (PMF.uniformOfFintype (Moment k n b degree)).map
       (orders (blockDirections s free) (blockDirections t free)) =
       PMF.uniformOfFintype (Matrix (Fin n) (Fin n) Binary × Matrix (Fin n) (Fin n) Binary)
+
+axiom family_parity_uniform {I N P F : Type} [Fintype I] [Fintype N] [Fintype P] [Fintype F]
+    [DecidableEq I] [DecidableEq N] [DecidableEq P] [DecidableEq F]
+    (D : Matrix I N Binary) (E : Matrix I P Binary)
+    (hDE : Function.Injective (Matrix.fromCols D E).mulVec)
+    (a b : F → Binary) (hab : ∃ j, a j ≠ 0 ∨ b j ≠ 0) :
+    (PMF.uniformOfFintype (F → Matrix I I Binary)).map (familyParity D E a b) =
+      PMF.uniformOfFintype (Matrix N P Binary)
+
+open scoped ENNReal
+
+axiom family_parity_low_rank_bound {I N P F : Type} [Fintype I] [Fintype N] [Fintype P] [Fintype F]
+    [DecidableEq I] [DecidableEq N] [DecidableEq P] [DecidableEq F]
+    (D : Matrix I N Binary) (E : Matrix I P Binary)
+    (hDE : Function.Injective (Matrix.fromCols D E).mulVec)
+    (a b : F → Binary) (hab : ∃ j, a j ≠ 0 ∨ b j ≠ 0) (r : ℕ) :
+    (PMF.uniformOfFintype (F → Matrix I I Binary)).toOuterMeasure
+      {L | (familyParity D E a b L).rank ≤ r} ≤
+        (2 : ℝ≥0∞) ^ ((Fintype.card N + Fintype.card P) * r) / 2 ^ (Fintype.card N * Fintype.card P)
 
 end Lax342547.OrderedMixerLaw

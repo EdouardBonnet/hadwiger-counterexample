@@ -12,6 +12,23 @@ open Lax342547Proofs.ConcreteGeometry
 
 variable {k n b degree : ℕ}
 
+/--
+---
+conclusion: Lax342547.AtomDirections.point_varyBlock
+---
+At a fixed selector label, varying one base block changes the point
+input by exactly the direction matrix. The constant base coordinate
+does not change, so this formula keeps the affine shift explicit.
+-/
+theorem point_varyBlock (s : Fin b → Binary) (z : Base k n → Binary)
+    (c : Fin n → Base k n) (v : Fin n → Binary) :
+    point (selectorEval (degree := degree)) s (varyBlock z c v) =
+      point selectorEval s z + (blockDirections s c).mulVec v := by
+  classical
+  ext ⟨S, i⟩
+  cases i <;> simp [point, baseEval, varyBlock, blockDirections, Matrix.mulVec, dotProduct,
+    mul_add, Finset.mul_sum, eq_comm, ite_mul, mul_ite]
+
 theorem blockDirections_mulVec (s : Fin b → Binary) (c : Fin n → Base k n)
     (hc : Function.Injective c) (v : Fin n → Binary) (S : SelectorCoordinates b degree) (i : Fin n) :
     (blockDirections s c).mulVec v (S, some (c i)) = selectorEval s S * v i := by
