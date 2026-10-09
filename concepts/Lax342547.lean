@@ -54,3 +54,5 @@ import Lax342547.PairedFrames
 import Lax342547.FrameSymmetry
 import Lax342547.ConditionalChannels
 import Lax342547.AffineImages
+import Lax342547.GramColumns
+import Lax342547.GramNormalization

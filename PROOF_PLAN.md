@@ -71,7 +71,8 @@ The closing checks are:
 | Uniform mixers, Lemma 5.5 | Complete: simultaneous unary and binary conclusions, every flavor, explicit threshold, and the paper's mixer parameters |
 | Walsh estimates, Lemma 4.6 | Complete: rank-dependent correlation, bounded densities, subprobability weights, separate phases, and the vector-slot bit rank |
 | Paired-frame orbit, Lemma 4.1 | Complete over arbitrary fields, including the concrete matrix inverse-transpose identities |
-| Frame marginals and conditional channels, Lemma 4.3(a) | All four uniform injective-frame marginals and conditional X,Y independence at fixed P,Q checked; quantitative normalization still open |
+| Gram normalization, Lemma 4.2 | Complete: exact Gram law, conditional rank failure, both probability bounds, and the explicit quarter-factor lower bound |
+| Frame marginals and conditional channels, Lemma 4.3(a) | All four uniform injective-frame marginals and conditional X,Y independence at fixed P,Q checked; remaining conditional rank estimates and joint channel density still open |
 | Affine exact-image and dependence bounds | Checked for arbitrary nominal rank and column spaces containing a common translation subspace; raw two-endpoint conditioning remains to be assembled |
 | Entropy/containers and the probabilistic construction | Not proved |
 | Theorem 1.1 | Open |
@@ -267,7 +268,7 @@ parameter inequalities. This closes the whole finite transfer, not Theorem 3.1.
    the intersection with the pairing kernel, then matching complementary
    lifts. Verify that the resulting map and inverse transpose satisfy
    both frame identities.
-2. Prove the Gram probability bounds by exposing the plus vectors and
+2. **Complete.** Prove the Gram probability bounds by exposing the plus vectors and
    then the minus columns. Bound rank failure by a union over nonzero
    coefficient vectors.
 3. **Partially complete.** Identify the marginal and conditional laws of primal and channel
@@ -297,7 +298,19 @@ filtering and renormalizing the actual raw law.
 columns sharing a translation subspace S. It also gives the dependence
 bound `2^(number of columns - dim S)`. These estimates still need the
 raw-frame conditional-law identification and the quantitative conditioning
-costs in steps 2, 3, 5, and 6. No full reference image cap is claimed yet.
+costs in steps 3, 5, and 6. No full reference image cap is claimed yet.
+
+[`GramColumns`](proofs/Lax342547Proofs/GramColumns.lean) proves that an
+injective p-frame induces the exactly uniform p-by-q Gram law. It
+identifies each fixed-Gram fiber with independent affine columns parallel
+to the plus annihilator, and proves the conditional minus-rank failure
+bound `2^(p+q-N)`.
+[`GramNormalization`](proofs/Lax342547Proofs/GramNormalization.lean)
+integrates these conditional laws to prove both bounds of Lemma 4.2,
+including both individual injectivity requirements. It also proves the
+explicit lower bound `2^(-pq-2)` under `p+q+1 ≤ N`. The extended-real
+subtractions are truncated at zero; under the paper's dimension
+hypothesis they agree with the displayed nonnegative lower bound.
 
 ### 6.2 Walsh estimates, Lemma 4.6
 

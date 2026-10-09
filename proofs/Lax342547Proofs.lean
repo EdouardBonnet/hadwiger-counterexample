@@ -67,3 +67,6 @@ import Lax342547Proofs.FiniteUniform
 import Lax342547Proofs.FrameSymmetry
 import Lax342547Proofs.ConditionalChannels
 import Lax342547Proofs.AffineImages
+import Lax342547Proofs.FiniteProbability
+import Lax342547Proofs.GramColumns
+import Lax342547Proofs.GramNormalization

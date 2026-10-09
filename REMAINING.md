@@ -36,7 +36,7 @@ this file is the shorter status and acceptance checklist.
 | Finite entropy projection, including the full support assertion | Lemma 3.2 | Not formalized |
 | Real-capacity terminal cut with both endpoint and pair exceptions | Lemma 3.3 | Not formalized |
 | Entropy-controlled fingerprints and sample probability bounds | Proposition 3.4 | Not formalized |
-| Frame extension, Gram normalization, sparse intersections | §4.1–4.2 | Paired orbit complete; four uniform frame/channel marginals, conditional channel independence, and arbitrary-rank affine image bounds checked. Gram normalization, full reference cap, and sparse intersections remain open |
+| Frame extension, Gram normalization, sparse intersections | §4.1–4.2 | Paired orbit and full Gram normalization complete; four uniform frame/channel marginals, conditional channel independence, and arbitrary-rank affine image bounds checked. Remaining conditional frame laws, full reference cap, and sparse intersections remain open |
 | Two peelings with exact pins and subsequent image bounds | §4.3, Lemma 4.5 | Not formalized |
 | Bilinear/Walsh estimates | §4.4, Lemma 4.6 | Complete: exact energy identity, bilinear-rank bound, densities, subprobability masses, separate phases, bit rank, and finite conditional mixtures |
 | Base-moment span, selector interpolation, and low-rank label decomposition | Lemmas 5.1–5.2 | Complete; all label identities, rank bounds, and reconstruction checked |
@@ -67,9 +67,10 @@ and proves the unary and binary properties with the paper's mixer parameters.
 
 1. Establish the remaining frame laws of §4.1 with exact finite
    probabilities and explicit rank/density losses. The paired orbit,
+   two-sided Gram normalization and its quarter-factor lower bound,
    uniform marginals, and conditional channel independence are checked.
    Assemble the arbitrary-rank affine image and dependence bounds with
-   the actual Gram-conditioned columns and their normalization factors.
+   the actual raw minus-column laws and their normalization factors.
    All three Walsh
    estimates in Lemma 4.6 are now checked, including a conditional mixture
    version that preserves the actual cell masses.

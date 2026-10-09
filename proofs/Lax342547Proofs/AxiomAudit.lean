@@ -34,6 +34,7 @@ import Lax342547Proofs.SlotWalsh
 import Lax342547Proofs.FrameSymmetry
 import Lax342547Proofs.ConditionalChannels
 import Lax342547Proofs.AffineImages
+import Lax342547Proofs.GramNormalization
 
 -- Completed preliminary results: background axioms only.
 #print axioms Lax342547Proofs.HadwigerMatching.hadwiger_matching_bound
@@ -173,6 +174,13 @@ import Lax342547Proofs.AffineImages
 #print axioms Lax342547Proofs.AffineImages.evaluation_rank
 #print axioms Lax342547Proofs.AffineImages.image_bound
 #print axioms Lax342547Proofs.AffineImages.dependence_bound
+#print axioms Lax342547Proofs.GramColumns.gram_uniform
+#print axioms Lax342547Proofs.GramColumns.gram_probability
+#print axioms Lax342547Proofs.GramColumns.conditional_failure
+#print axioms Lax342547Proofs.GramNormalization.column_failure
+#print axioms Lax342547Proofs.GramNormalization.normalization_upper
+#print axioms Lax342547Proofs.GramNormalization.normalization_lower
+#print axioms Lax342547Proofs.GramNormalization.normalization_quarter
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample
