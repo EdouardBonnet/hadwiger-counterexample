@@ -78,3 +78,9 @@ import Lax342547Proofs.ProductImages
 import Lax342547Proofs.ProductMinusImages
 import Lax342547Proofs.ReferenceImages
 import Lax342547Proofs.ImageScale
+import Lax342547Proofs.CutSparsity
+import Lax342547Proofs.TensorIntersections
+import Lax342547Proofs.SparseRepresentatives
+import Lax342547Proofs.KernelWitness
+import Lax342547Proofs.RawIntersections
+import Lax342547Proofs.SparseIntersections

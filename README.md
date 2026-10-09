@@ -105,6 +105,12 @@ by positions and may contain repeated raw vertices.
   actual nominal ranks, permits dependent tuples and ranks growing with n,
   and includes a single ambient scale choice paying every conditioning
   and dimension cost.
+- Lemma 4.4: bounded coefficient certificates and their exact count give
+  an explicit `2^(-DN/4)` intersection exception under the joint density
+  cap. Shared tensor ranks, unique majority-zero representatives, the
+  `4D/g` support bound, and equality of their `χStar` values are checked
+  on the actual concrete profiles. One ambient scale pays every cost
+  independently of n and of the unit law.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
 
@@ -128,7 +134,7 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 Validated on October 9, 2026: `lake build` and `lax build . --replay` pass,
-with 66 concepts and 180 annotated proofs, 178 of which have no open
+with 72 concepts and 205 annotated proofs, 203 of which have no open
 mathematical assumptions. All kernel replays pass. The only conditional
 proofs are the two counterexample consequences of the open Theorem 1.1.
 

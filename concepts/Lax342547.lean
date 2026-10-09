@@ -64,3 +64,9 @@ import Lax342547.ProductImages
 import Lax342547.ProductMinusImages
 import Lax342547.ReferenceImages
 import Lax342547.ImageScale
+import Lax342547.CutSparsity
+import Lax342547.TensorIntersections
+import Lax342547.SparseRepresentatives
+import Lax342547.KernelWitness
+import Lax342547.RawIntersections
+import Lax342547.SparseIntersections

@@ -75,6 +75,7 @@ The closing checks are:
 | Frame marginals and conditional laws, Lemma 4.3(a) | Uniform marginals, conditional independence, affine minus-column law, both rank-failure bounds, channel transpose failures, and joint channel density checked |
 | Prescribed tuple images, Lemma 4.3(b) | Uniform paired-orbit laws for primal tuples and full tuples at fixed channel Gram; product laws permit varying tuple dimensions |
 | Full reference image cap, Lemma 4.3(c) | Checked for arbitrary actual nominal ranks, dependent tuples, both endpoints and signs, and all components, including a single scale choice paying every cost |
+| Sparse intersections and representatives, Lemma 4.4 | Complete: bounded coefficient certificates, explicit exponential exception, tensor ranks, unique majority-zero representatives, support bound, trace/chiStar identity, and a uniform concrete scale |
 | Entropy/containers and the probabilistic construction | Not proved |
 | Theorem 1.1 | Open |
 | Counterexample corollaries | Checked only conditional on Theorem 1.1 |
@@ -90,14 +91,16 @@ also checked, including a finite conditional mixture estimate retaining
 cell masses. The marginal and conditional frame laws in Lemma 4.3(a,b)
 are now checked, with explicit density constants and rank losses. The full
 reference image cap in Lemma 4.3(c) is also checked, including the all-rank
-quantifiers and the ambient scale choice. The sparse-intersection and
+quantifiers and the ambient scale choice. Lemma 4.4 is also checked on the
+actual concrete moment profiles, with an explicit `2^(-DN/4)` exception
+bound and one ambient scale independent of n and of the unit law. The
 peeling arguments, the finite graph transfer, and the later construction
 remain open.
 
-As of the October 9 full reference-cap checkpoint, overall completion is estimated
-conservatively at **about 26%**, weighted by remaining mathematical
+As of the October 9 sparse-intersection checkpoint, overall completion is estimated
+conservatively at **about 28%**, weighted by remaining mathematical
 difficulty rather than declaration count. The validated archive contains
-66 concepts and 180 annotated proofs, with 178 closed proof networks.
+72 concepts and 205 annotated proofs, with 203 closed proof networks.
 The two remaining conditional proofs are the consequences of the open
 graph-existence theorem. The requested 50% milestone has not been reached.
 
@@ -397,16 +400,42 @@ informal Fourier arguments with hidden conditioning costs.
 
 ### 7.1 Sparse representatives, Lemma 4.4
 
-1. Count coefficient descriptions of boundedly many independent shared
+1. **Complete.** Count coefficient descriptions of boundedly many independent shared
    image vectors, then apply the exact-image cap and joint-density cap.
-2. Bound the summed intersection dimensions outside an exponentially
+2. **Complete.** Bound the summed intersection dimensions outside an exponentially
    small exceptional set.
-3. Transfer these bounds to the component ranks of shared tensors.
-4. Prove the combinatorial cut argument: few unequal tag pairs force a
+3. **Complete.** Transfer these bounds to the component ranks of shared tensors.
+4. **Complete.** Prove the combinatorial cut argument: few unequal tag pairs force a
    strict majority of equal representatives. Normalize that value to zero
    using the cut kernel and prove uniqueness of this normalization.
-5. Prove the support bound `4D/g` and the trace identity giving equality
+5. **Complete.** Prove the support bound `4D/g` and the trace identity giving equality
    of the two `χStar` values.
+
+[`KernelWitness`](proofs/Lax342547Proofs/KernelWitness.lean) describes a
+large sum of kernel dimensions using q coefficient columns per component,
+padding unused columns by zero. It proves the exact description count
+`2^(|E| * 2(d+h) * q)` and the finite certificate union bound.
+[`RawIntersections`](proofs/Lax342547Proofs/RawIntersections.lean) bounds
+primal intersections by these relation kernels and applies the full
+reference-image cap at q=2D. After paying the joint density and a coefficient
+cost at most DN/4, its exceptional probability is at most `2^(-DN/4)`.
+
+[`TensorIntersections`](proofs/Lax342547Proofs/TensorIntersections.lean)
+proves rank preservation, the shared-column-space bound, and the exact
+trace/self-Gram pairing. [`CutSparsity`](proofs/Lax342547Proofs/CutSparsity.lean)
+counts unordered unequal tag pairs through their endpoint flags, forces a
+strict majority, and proves the unique majority-zero normalization.
+[`SparseRepresentatives`](proofs/Lax342547Proofs/SparseRepresentatives.lean)
+applies these results to the actual allowed moment spaces and proves
+the support and `χStar` assertions. Two strict majority zero sets already
+intersect, so the trace argument does not need the paper's weaker combined
+support estimate to find a common zero tag.
+
+[`SparseIntersections.raw_intersections`](proofs/Lax342547Proofs/SparseIntersections.lean)
+combines every conclusion of Lemma 4.4. `exists_concrete_scale` uses the
+checked coordinate count to supply a single M₀ paying all its hypotheses
+for every positive n, independently of the law. The paper's early constants
+satisfy the required majority inequality and give support at most 16000.
 
 ### 7.2 Two peelings, Lemma 4.5
 

@@ -40,6 +40,7 @@ import Lax342547Proofs.ChannelDensity
 import Lax342547Proofs.FrameTuples
 import Lax342547Proofs.ConditionalMinus
 import Lax342547Proofs.ImageScale
+import Lax342547Proofs.SparseIntersections
 
 -- Completed preliminary results: background axioms only.
 #print axioms Lax342547Proofs.HadwigerMatching.hadwiger_matching_bound
@@ -222,6 +223,31 @@ import Lax342547Proofs.ImageScale
 #print axioms Lax342547Proofs.ImageScale.exists_scale
 #print axioms Lax342547Proofs.ImageScale.exists_paper_scale
 #print axioms Lax342547Proofs.ImageScale.reference_image_cap
+#print axioms Lax342547Proofs.CutSparsity.unequal_card_le
+#print axioms Lax342547Proofs.CutSparsity.exists_majority
+#print axioms Lax342547Proofs.CutSparsity.minority_bound
+#print axioms Lax342547Proofs.CutSparsity.majority_unique
+#print axioms Lax342547Proofs.CutSparsity.exists_unique_normalized
+#print axioms Lax342547Proofs.TensorIntersections.sandwich_rank
+#print axioms Lax342547Proofs.TensorIntersections.shared_rank
+#print axioms Lax342547Proofs.TensorIntersections.shared_total_rank
+#print axioms Lax342547Proofs.TensorIntersections.trace_sandwich
+#print axioms Lax342547Proofs.SparseRepresentatives.cutSize_le_rank
+#print axioms Lax342547Proofs.SparseRepresentatives.normalized_representation
+#print axioms Lax342547Proofs.SparseRepresentatives.shared_chiStar
+#print axioms Lax342547Proofs.SparseRepresentatives.shared_sparse_profiles
+#print axioms Lax342547Proofs.KernelWitness.exists_kernel_witness
+#print axioms Lax342547Proofs.KernelWitness.exists_family_witness
+#print axioms Lax342547Proofs.KernelWitness.coefficient_count
+#print axioms Lax342547Proofs.KernelWitness.kernel_event_bound
+#print axioms Lax342547Proofs.RawIntersections.intersection_kernel_bound
+#print axioms Lax342547Proofs.RawIntersections.reference_kernel_bound
+#print axioms Lax342547Proofs.RawIntersections.capped_intersection_bound
+#print axioms Lax342547Proofs.RawIntersections.exists_intersection_scale
+#print axioms Lax342547Proofs.RawIntersections.exists_paper_intersection_scale
+#print axioms Lax342547Proofs.SparseIntersections.paper_sparse_parameters
+#print axioms Lax342547Proofs.SparseIntersections.exists_concrete_scale
+#print axioms Lax342547Proofs.SparseIntersections.raw_intersections
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample
