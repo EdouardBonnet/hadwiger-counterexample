@@ -50,3 +50,7 @@ import Lax342547.UniformMixers
 import Lax342547.Walsh
 import Lax342547.BilinearWalsh
 import Lax342547.SlotWalsh
+import Lax342547.PairedFrames
+import Lax342547.FrameSymmetry
+import Lax342547.ConditionalChannels
+import Lax342547.AffineImages

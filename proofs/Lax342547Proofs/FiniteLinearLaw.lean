@@ -165,4 +165,36 @@ theorem family_codimension {K T : Type} [Field K] [Fintype T] {V W : T → Type}
     ← Finset.sum_add_distrib]
   exact Finset.sum_le_sum (fun i _ => hc i)
 
+omit [Fintype W] [FiniteDimensional Binary W] in
+/--
+---
+conclusion: Lax342547.FiniteLinearLaw.uniform_affine_image_bound
+---
+Translation does not change fiber cardinalities. Each nonempty fiber
+has at most the kernel cardinality, and rank-nullity gives the reciprocal
+power of two for every lower bound on the image dimension.
+-/
+theorem uniform_affine_image_bound (f : V →ₗ[Binary] W) (a y : W) (r : ℕ)
+    (hr : r ≤ Module.finrank Binary (LinearMap.range f)) :
+    (PMF.uniformOfFintype V).map (fun x => a + f x) y ≤ 1 / (2 : ℝ≥0∞) ^ r := by
+  classical
+  have he : (PMF.uniformOfFintype V).map (fun x => a + f x) y =
+      (PMF.uniformOfFintype V).map f (y - a) := by
+    simp only [PMF.map_apply, sub_eq_iff_eq_add, add_comm]
+  rw [he, map_uniform_apply]
+  have hf : (Nat.card {x : V // f x = y - a} : ℝ≥0∞) ≤
+      (2 : ℝ≥0∞) ^ Module.finrank Binary (LinearMap.ker f) := by
+    have h := fiber_card_le_kernel f (y - a)
+    rw [Nat.card_eq_fintype_card (α := LinearMap.ker f), binary_card (LinearMap.ker f)] at h
+    exact_mod_cast h
+  calc
+    _ ≤ (2 : ℝ≥0∞) ^ Module.finrank Binary (LinearMap.ker f) / Fintype.card V :=
+      ENNReal.div_le_div_right hf _
+    _ = 1 / (2 : ℝ≥0∞) ^ Module.finrank Binary (LinearMap.range f) := by
+      rw [binary_card V, Nat.cast_pow, Nat.cast_ofNat,
+        ← f.finrank_range_add_finrank_ker, pow_add]
+      simpa only [one_mul] using ENNReal.mul_div_mul_right
+        1 ((2 : ℝ≥0∞) ^ Module.finrank Binary (LinearMap.range f)) (by simp) (by simp)
+    _ ≤ _ := ENNReal.div_le_div_left (pow_le_pow_right₀ (by norm_num) hr) _
+
 end Lax342547Proofs.FiniteLinearLaw

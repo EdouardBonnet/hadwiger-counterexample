@@ -53,4 +53,11 @@ axiom uniform_image_of_surjective {V W : Type} [AddCommGroup V] [Module Binary V
     (f : V →ₗ[Binary] W) (hf : Function.Surjective f) :
     (PMF.uniformOfFintype V).map f = PMF.uniformOfFintype W
 
+axiom uniform_affine_image_bound {V W : Type} [AddCommGroup V] [Module Binary V]
+    [AddCommGroup W] [Module Binary W] [Fintype V]
+    [FiniteDimensional Binary V]
+    (f : V →ₗ[Binary] W) (a y : W) (r : ℕ)
+    (hr : r ≤ Module.finrank Binary (LinearMap.range f)) :
+    (PMF.uniformOfFintype V).map (fun x => a + f x) y ≤ 1 / (2 : ℝ≥0∞) ^ r
+
 end Lax342547.FiniteLinearLaw

@@ -61,3 +61,9 @@ import Lax342547Proofs.UniformMixers
 import Lax342547Proofs.Walsh
 import Lax342547Proofs.BilinearWalsh
 import Lax342547Proofs.SlotWalsh
+import Lax342547Proofs.PairedFrames
+import Lax342547Proofs.LinearExtension
+import Lax342547Proofs.FiniteUniform
+import Lax342547Proofs.FrameSymmetry
+import Lax342547Proofs.ConditionalChannels
+import Lax342547Proofs.AffineImages

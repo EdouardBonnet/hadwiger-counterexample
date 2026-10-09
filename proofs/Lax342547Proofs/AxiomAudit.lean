@@ -31,6 +31,9 @@ import Lax342547Proofs.UnaryRowLaw
 import Lax342547Proofs.UnaryMixers
 import Lax342547Proofs.UniformMixers
 import Lax342547Proofs.SlotWalsh
+import Lax342547Proofs.FrameSymmetry
+import Lax342547Proofs.ConditionalChannels
+import Lax342547Proofs.AffineImages
 
 -- Completed preliminary results: background axioms only.
 #print axioms Lax342547Proofs.HadwigerMatching.hadwiger_matching_bound
@@ -156,6 +159,20 @@ import Lax342547Proofs.SlotWalsh
 #print axioms Lax342547Proofs.SlotWalsh.bit_evaluation
 #print axioms Lax342547Proofs.SlotWalsh.bit_rank
 #print axioms Lax342547Proofs.SlotWalsh.nonzero_pattern_bound
+#print axioms Lax342547Proofs.PairedFrames.paired_frame_orbit
+#print axioms Lax342547Proofs.PairedFrames.paired_matrix_orbit
+#print axioms Lax342547Proofs.FrameSymmetry.plus_uniform
+#print axioms Lax342547Proofs.FrameSymmetry.minus_uniform
+#print axioms Lax342547Proofs.FrameSymmetry.plusChannel_uniform
+#print axioms Lax342547Proofs.FrameSymmetry.minusChannel_uniform
+#print axioms Lax342547Proofs.FrameSymmetry.full_frame_orbit
+#print axioms Lax342547Proofs.ConditionalChannels.conditional_uniform
+#print axioms Lax342547Proofs.ConditionalChannels.conditional_point
+#print axioms Lax342547Proofs.ConditionalChannels.raw_conditioning
+#print axioms Lax342547Proofs.FiniteLinearLaw.uniform_affine_image_bound
+#print axioms Lax342547Proofs.AffineImages.evaluation_rank
+#print axioms Lax342547Proofs.AffineImages.image_bound
+#print axioms Lax342547Proofs.AffineImages.dependence_bound
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample

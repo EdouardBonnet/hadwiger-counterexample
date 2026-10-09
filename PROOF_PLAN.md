@@ -70,6 +70,9 @@ The closing checks are:
 | Self-Gram binary parities | Concrete sharp/free restriction identities and the three sharp-parity probability bounds checked |
 | Uniform mixers, Lemma 5.5 | Complete: simultaneous unary and binary conclusions, every flavor, explicit threshold, and the paper's mixer parameters |
 | Walsh estimates, Lemma 4.6 | Complete: rank-dependent correlation, bounded densities, subprobability weights, separate phases, and the vector-slot bit rank |
+| Paired-frame orbit, Lemma 4.1 | Complete over arbitrary fields, including the concrete matrix inverse-transpose identities |
+| Frame marginals and conditional channels, Lemma 4.3(a) | All four uniform injective-frame marginals and conditional X,Y independence at fixed P,Q checked; quantitative normalization still open |
+| Affine exact-image and dependence bounds | Checked for arbitrary nominal rank and column spaces containing a common translation subspace; raw two-endpoint conditioning remains to be assembled |
 | Entropy/containers and the probabilistic construction | Not proved |
 | Theorem 1.1 | Open |
 | Counterexample corollaries | Checked only conditional on Theorem 1.1 |
@@ -260,22 +263,41 @@ parameter inequalities. This closes the whole finite transfer, not Theorem 3.1.
 
 ### 6.1 Orbit and exact finite counts, Lemmas 4.1–4.3
 
-1. Prove the paired-frame orbit theorem by extending an isomorphism on
+1. **Complete.** Prove the paired-frame orbit theorem by extending an isomorphism on
    the intersection with the pairing kernel, then matching complementary
    lifts. Verify that the resulting map and inverse transpose satisfy
    both frame identities.
 2. Prove the Gram probability bounds by exposing the plus vectors and
    then the minus columns. Bound rank failure by a union over nonzero
    coefficient vectors.
-3. Identify the marginal and conditional laws of primal and channel
+3. **Partially complete.** Identify the marginal and conditional laws of primal and channel
    frames, using orbit uniformity and equal completion counts.
-4. Prove conditional independence of the two channel draws given `P,Q`.
+4. **Complete.** Prove conditional independence of the two channel draws given `P,Q`.
    It is a different claim from independence of all four frame maps.
 5. Prove the reference exact-image cap for a tuple with total nominal
    rank `t`, measured in the direct sum of both endpoints and both signs.
    Keep the bound uniform for every possible `t`, including `t = O(n)`.
 6. Expose the fixed conditioning factors and the loss of `2(d+h)`
    dimensions. Pay them using `M₀` and a sufficiently large `n`.
+
+[`PairedFrames`](proofs/Lax342547Proofs/PairedFrames.lean) proves the full
+paired orbit without assuming a nondegenerate Gram matrix. Its extension
+argument splits the evaluation surjections, matches their kernel injections,
+and corrects the remaining difference by a shear. The matrix version gives
+both inverse identities and the exact primal and dual actions.
+[`FrameSymmetry`](proofs/Lax342547Proofs/FrameSymmetry.lean) uses bijections of
+completion fibers to prove the uniform combined-plus, combined-minus, X,
+and Y marginals. It also proves the full raw-frame orbit at fixed channel Gram.
+[`ConditionalChannels`](proofs/Lax342547Proofs/ConditionalChannels.lean)
+identifies the fixed-P,Q fiber with the Cartesian product of its X and Y
+completion spaces, proves the pointwise product law, and connects it to
+filtering and renormalizing the actual raw law.
+[`AffineImages`](proofs/Lax342547Proofs/AffineImages.lean) proves the exact
+`2^(-t dim S)` cap for arbitrary-rank nominal tuples of independent affine
+columns sharing a translation subspace S. It also gives the dependence
+bound `2^(number of columns - dim S)`. These estimates still need the
+raw-frame conditional-law identification and the quantitative conditioning
+costs in steps 2, 3, 5, and 6. No full reference image cap is claimed yet.
 
 ### 6.2 Walsh estimates, Lemma 4.6
 
