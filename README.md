@@ -81,7 +81,13 @@ by positions and may contain repeated raw vertices.
   fixing. The joint row density, corank estimate, and finite union yield
   simultaneous unary mixers for all sufficiently large `n`, with an
   explicit proved threshold under `p_* (g²+3) K ≤ s₀`. The new proofs use
-  only Lean's standard axioms. The joint unary/binary mixer choice remains open.
+  only Lean's standard axioms.
+- The full Lemma 5.5: the actual bilinear parts on every flavor contain
+  the checked free and sharp restrictions. Finite union bounds and the
+  strengthened unary estimate yield a joint choice of every mixer before
+  any unit law. `UniformMixers.exists_paper_mixers` uses the paper's
+  `s₀=40(K+1)p_*(g²+5)` and `J=101(s₀+K²+1)`, with an explicit threshold
+  and the exact binary rank condition `n ≤ 5 * rank`.
 - The ordinary fractional-coloring lower and upper bounds.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
@@ -106,7 +112,7 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 Validated on October 9, 2026: `lake build` and `lax build . --replay` pass,
-with 46 concepts and 95 annotated proofs. Lax reports 25 retained-helper
+with 49 concepts and 109 annotated proofs. Lax reports 26 retained-helper
 warnings and no errors.
 
 The completed preliminary proofs report only Lean's standard background

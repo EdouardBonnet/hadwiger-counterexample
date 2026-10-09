@@ -42,7 +42,7 @@ this file is the shorter status and acceptance checklist.
 | Base-moment span, selector interpolation, and low-rank label decomposition | Lemmas 5.1–5.2 | Complete; all label identities, rank bounds, and reconstruction checked |
 | Sparse label supports of projected pins | Lemma 5.3 | Complete; the exact uniform label budget covers all sparse vectors |
 | Atoms, flavors, and finite parameter laws | Definition 5.4 | Defined; incidence formula, role/diagonal bits, retained coordinates, and product law checked |
-| Uniform mixing matrices, chosen before the unit law | §5.3, Lemma 5.5 | Simultaneous unary rank and bounded-row-space existence proved with an explicit large-n threshold; binary parity estimates checked; joint unary/binary existence still open |
+| Uniform mixing matrices, chosen before the unit law | §5.3, Lemma 5.5 | Complete: simultaneous unary rank/row spaces and all binary parities on every flavor, explicit large-n threshold, and the paper's mixer parameters |
 | Scalar recipes, table flags, gradient realization | §6, Theorem 6.3 | Not formalized |
 | Accepted queries and overlap-to-four-holes implication | §7, Proposition 7.1 | Not formalized |
 | Phase alternatives and accepting-pair injection | §8 | Not formalized |
@@ -60,22 +60,15 @@ this file is the shorter status and acceptance checklist.
 
 ## Next implementation steps
 
-The concrete algebraic model and Boolean moment algebra in Lemmas 5.1–5.3
-are complete. Atoms and flavor distributions are now defined on that
-model. The next algebraic target is the uniform mixer theorem in Lemma 5.5;
-the unary part now has a complete probability argument and simultaneous
-existence theorem under an explicit parameter margin. The binary assembly
-and the joint unary/binary choice remain open.
+The concrete algebraic model, Lemmas 5.1–5.3, and the full uniform
+mixer theorem in Lemma 5.5 are complete. The endpoint
+`UniformMixers.exists_paper_mixers` chooses all matrices before any unit law
+and proves the unary and binary properties with the paper's mixer parameters.
 
-1. Lift the checked ordered and sharp/free restriction estimates to every
-   flavor's binary bilinear part. Count the binary tests and prove their
-   simultaneous large-rank probability estimate.
-2. Combine the binary estimate with the proved unary failure bound using
-   a shared probability margin, and instantiate the paper's parameter
-   choices. Choose all mixers before the unit law. The unary theorem
-   `UnaryMixers.exists_uniform_unary` already supplies the fixed bounded
-   row space and polar rank for all non-Z fixings, with a proved threshold
-   under `p_* (g²+3) K ≤ s₀`.
+1. Establish the remaining frame-law and Walsh estimates of §4 with exact
+   finite probabilities and explicit rank/density losses.
+2. Build the pin, effective-space, and table interfaces required for §6;
+   then prove scalar recipe compatibility and full gradient realization.
 3. State raw supersaturation using this concrete law. Preserve the separate
    marginal caps and joint cap; the two endpoints of a unit can be dependent.
    An abstract structure with a supersaturation field is not a construction.

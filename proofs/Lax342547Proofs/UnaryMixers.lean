@@ -145,6 +145,78 @@ theorem failureBound_lt_one (k n b degree J K s₀ : ℕ)
 
 /--
 ---
+conclusion: Lax342547.UnaryMixers.failureBound_le_geometric
+---
+Separate the profile-count exponent into its constant part and its slope
+in n. The unary corank exponent exceeds that slope by at least one,
+leaving the explicit constant threshold times 2^(-n).
+-/
+theorem failureBound_le_geometric (k n b degree J K s₀ : ℕ)
+    (hmargin : (∑ j ∈ Finset.range (degree + 1), b.choose j) * ((2 * k + 1) ^ 2 + 3) * K ≤ s₀) :
+    failureBound k n b degree J K s₀ ≤ (threshold k b degree J K s₀ : ℝ≥0∞) / 2 ^ n := by
+  let a := (∑ j ∈ Finset.range (degree + 1), b.choose j) * ((2 * k + 1) ^ 2 + 3) * K
+  let q := 2 * J * K ^ 2 + (s₀ + 1) * (4 * J * (2 * k) * K)
+  have hcount := (CoordinateCounts.coordinate_dimensions k n b degree).2.2
+  have he : Fintype.card (Coordinate k n b degree) * K + K * K + q =
+      ((∑ j ∈ Finset.range (degree + 1), b.choose j) * K + K * K + q) + a * n := by
+    rw [hcount]
+    dsimp [a]
+    ring
+  have hnum : testCountBound k n b degree K * 2 ^ q =
+      threshold k b degree J K s₀ * 2 ^ (a * n) := by
+    unfold testCountBound threshold
+    rw [show (((K + 1) ^ Fintype.card (Component (Tag k)) *
+        2 ^ (Fintype.card (Coordinate k n b degree) * K + K * K)) * (2 * k + 1) * 2 ^ b) * 2 ^ q =
+        ((K + 1) ^ Fintype.card (Component (Tag k)) * (2 * k + 1) * 2 ^ b) *
+          (2 ^ (Fintype.card (Coordinate k n b degree) * K + K * K) * 2 ^ q) by ring]
+    rw [← pow_add, he, pow_add]
+    dsimp [q]
+    ring
+  have hcast : (testCountBound k n b degree K : ℝ≥0∞) * 2 ^ q =
+      (threshold k b degree J K s₀ : ℝ≥0∞) * 2 ^ (a * n) := by exact_mod_cast hnum
+  have hexp : n + a * n ≤ (s₀ + 1) * n := by
+    have h := Nat.mul_le_mul_right n hmargin
+    dsimp [a] at *
+    nlinarith
+  unfold failureBound
+  rw [← mul_div_assoc, hcast]
+  calc
+    _ ≤ (threshold k b degree J K s₀ : ℝ≥0∞) * 2 ^ (a * n) / 2 ^ (n + a * n) :=
+      ENNReal.div_le_div_left (pow_le_pow_right₀ (by norm_num) hexp) _
+    _ = _ := by
+      rw [pow_add]
+      exact ENNReal.mul_div_mul_right _ _ (by simp) (by simp)
+
+/--
+---
+conclusion: Lax342547.UnaryMixers.uniform_of_good
+---
+For each profile, tag, and label, its symmetric component factorization
+determines a bounded row space before any non-Z fixing. The good event
+supplies all polar-rank bounds and the factorization supplies dependence
+only on those rows, for that same already chosen mixer family.
+-/
+theorem uniform_of_good {k n b degree r₀ J K s₀ : ℕ} {hr : 2 * r₀ ≤ n}
+    (D : Testers (k := k) (b := b) (degree := degree) hr)
+    (M : Index (Component (Tag k)) J → Moment k n b degree)
+    (hM : Good D K s₀ M) : UniformUnary D K s₀ M := by
+  intro x hx hK l s
+  have hf (e : Component (Tag k)) :=
+    SymmetricFactorization.symmetric_factorization (x.val e) (ProfileCounting.profile_transpose x e)
+  choose Z H hZ hHsym hH hfactor using hf
+  refine ⟨Lax342547.UnaryMixer.zRowSpace Z (leftMixers M) (rightMixers M) l s,
+    UnaryMixer.row_space_dimension Z (leftMixers M) (rightMixers M) l s hK, ?_⟩
+  intro z hz
+  constructor
+  · apply Nat.le_of_not_gt
+    intro hbad
+    exact hM x hx hK l s ⟨z, hz, hbad⟩
+  · intro u v hrows
+    exact UnaryMixer.unary_depends_on_rows D x Z H hfactor (leftMixers M) (rightMixers M)
+      l s z hz u v hrows
+
+/--
+---
 conclusion: Lax342547.UnaryMixers.exists_for_large_n
 ---
 Use the explicit threshold, independent of n and of the tester family.
@@ -179,20 +251,6 @@ theorem exists_uniform_unary (k b degree J K s₀ : ℕ) (hk : 0 < k)
   refine ⟨n₀, ?_⟩
   intro n hn r₀ hr D
   obtain ⟨M, hM⟩ := hn₀ n hn r₀ hr D
-  refine ⟨M, ?_⟩
-  intro x hx hK l s
-  have hf (e : Component (Tag k)) :=
-    SymmetricFactorization.symmetric_factorization (x.val e) (ProfileCounting.profile_transpose x e)
-  choose Z H hZ hHsym hH hfactor using hf
-  refine ⟨Lax342547.UnaryMixer.zRowSpace Z (leftMixers M) (rightMixers M) l s,
-    UnaryMixer.row_space_dimension Z (leftMixers M) (rightMixers M) l s hK, ?_⟩
-  intro z hz
-  constructor
-  · apply Nat.le_of_not_gt
-    intro hbad
-    exact hM x hx hK l s ⟨z, hz, hbad⟩
-  · intro u v hrows
-    exact UnaryMixer.unary_depends_on_rows D x Z H hfactor (leftMixers M) (rightMixers M)
-      l s z hz u v hrows
+  exact ⟨M, uniform_of_good D M hM⟩
 
 end Lax342547Proofs.UnaryMixers

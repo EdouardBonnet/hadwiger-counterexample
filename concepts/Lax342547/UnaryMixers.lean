@@ -57,6 +57,15 @@ noncomputable def threshold (k b degree J K s₀ : ℕ) : ℕ :=
     2 ^ ((∑ j ∈ Finset.range (degree + 1), b.choose j) * K + K * K +
       (2 * J * K ^ 2 + (s₀ + 1) * (4 * J * (2 * k) * K)))
 
+axiom failureBound_le_geometric (k n b degree J K s₀ : ℕ)
+    (hmargin : (∑ j ∈ Finset.range (degree + 1), b.choose j) * ((2 * k + 1) ^ 2 + 3) * K ≤ s₀) :
+    failureBound k n b degree J K s₀ ≤ (threshold k b degree J K s₀ : ℝ≥0∞) / 2 ^ n
+
+axiom uniform_of_good {k n b degree r₀ J K s₀ : ℕ} {hr : 2 * r₀ ≤ n}
+    (D : Testers (k := k) (b := b) (degree := degree) hr)
+    (M : Index (Component (Tag k)) J → Moment k n b degree)
+    (hM : Good D K s₀ M) : UniformUnary D K s₀ M
+
 axiom failureBound_lt_one (k n b degree J K s₀ : ℕ)
     (hmargin : (∑ j ∈ Finset.range (degree + 1), b.choose j) * ((2 * k + 1) ^ 2 + 3) * K ≤ s₀)
     (hn : threshold k b degree J K s₀ ≤ n) :

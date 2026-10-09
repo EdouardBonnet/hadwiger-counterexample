@@ -55,3 +55,6 @@ import Lax342547Proofs.FormalQuadratic
 import Lax342547Proofs.UnaryMixer
 import Lax342547Proofs.UnaryRowLaw
 import Lax342547Proofs.UnaryMixers
+import Lax342547Proofs.BinaryMixer
+import Lax342547Proofs.BinaryMixers
+import Lax342547Proofs.UniformMixers

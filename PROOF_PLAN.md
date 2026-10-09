@@ -68,6 +68,7 @@ The closing checks are:
 | Mixer compatibility, observation density, rank loss, profile and row-corank counts | Checked, including the actual cut profiles |
 | Ordered random mixer evaluations at distinct labels | Joint uniform law, family parity laws, and low-rank probabilities checked on the free directions |
 | Self-Gram binary parities | Concrete sharp/free restriction identities and the three sharp-parity probability bounds checked |
+| Uniform mixers, Lemma 5.5 | Complete: simultaneous unary and binary conclusions, every flavor, explicit threshold, and the paper's mixer parameters |
 | Entropy/containers and the probabilistic construction | Not proved |
 | Theorem 1.1 | Open |
 | Counterexample corollaries | Checked only conditional on Theorem 1.1 |
@@ -75,14 +76,11 @@ The closing checks are:
 Numbered steps can measure checklist progress, but they are not equal units
 of difficulty or time. The October 7 moment-algebra work completed all seven
 steps in §8.1; substantial parts of the construction remain open.
-The October 9 work completes the concrete algebraic model in §4 and the
-atom/flavor setup in §8.2, step 1. Parts of steps 2–3 are now checked:
-forward/reverse compatibility and its density cost, bilinear restriction
-rank loss, symmetric profile and rectangular matrix counts, and the sharp
-row-corank probability. Step 4 now includes distinct-label free-direction
-independence, parity laws for entire mixer families, and the concrete
-self-Gram restrictions and sharp-parity probability bounds. The uniform
-mixer theorem remains open.
+The October 9 work completes the concrete algebraic model in §4 and all
+five steps of §8.2. The full uniform mixer theorem is now checked, including
+the actual flavor bilinear parts, both finite unions, a joint choice, and
+the paper's displayed mixer parameters. The frame-law and Walsh estimates,
+the finite graph-transfer argument, and the later construction remain open.
 
 ## 3. Fix the common mathematical interfaces
 
@@ -377,7 +375,7 @@ finite-sum notation are covered, with degree condition
    exact formal row dimension, and substitution loses at most twice the
    row-map codimension. The fixed row space has dimension at most
    `4J(g-1)K` and determines all evaluations before the non-Z values are fixed.
-3. **Complete for the unary estimates.** Bound the number of low-rank coefficient
+3. **Complete.** Bound the number of low-rank coefficient
    profiles and rank-deficient random row maps; union bound uniformly over
    profiles, labels, and tags. All non-Z fixings, hence all flavors, are
    covered inside each event without an additional union.
@@ -392,7 +390,7 @@ finite-sum notation are covered, with degree condition
    threshold makes it less than one. `exists_uniform_unary` constructs
    simultaneous unary mixers and bounded row spaces for all sufficiently
    large `n`, under `p_* (g²+3) K ≤ s₀` and `k>0`, where `g=2k+1`.
-4. **Partial.** For distinct labels, prove all the required nontrivial binary parities
+4. **Complete.** For distinct labels, prove all the required nontrivial binary parities
    of ordered mixer evaluations and `E` evaluations have large rank.
    The distinct labels have independent combined free-direction columns.
    The two ordered blocks of one uniform mixer are jointly uniform. Every
@@ -401,15 +399,23 @@ finite-sum notation are covered, with degree condition
    the sharp directions is the label-weighted sum of the `M_a`, and its
    free-direction restriction is zero. All three sharp-parity probability
    bounds are checked, including the alternating subblock of side `⌊n/2⌋`.
-   Lifting these restriction estimates to every flavor's bilinear part and
-   the simultaneous large-rank probability conclusion remain open.
-5. **Partial.** Choose all mixer matrices simultaneously for a fixed large `n`.
+   The actual ordered point-input parity is identified with its ambient
+   matrix, and its mixed coefficient matrix is the flavor restriction.
+   Both always-retained blocks occur as submatrices, so the rank bounds
+   hold for every flavor. Finite unions over labels and coefficients give
+   explicit bounds `2^(2b+2|F|)/2^n` for indexed mixers and `2^(2b+2)/2^n`
+   for the self-Gram parities when `n≥50`. The exact conclusion is
+   `n ≤ 5 * rank`, with no rounding loss in the paper's `n/5` threshold.
+5. **Complete.** Choose all mixer matrices simultaneously for a fixed large `n`.
    Only then quantify over unit laws and orientation-dependent effective
    spaces. The mixer choice cannot depend on those laws. Simultaneous
    unary existence is checked, including an explicit threshold independent
-   of the tester family. The binary union, a shared probability margin,
-   the joint unary/binary choice, and instantiation of the paper's parameter
-   ledger remain open.
+   of the tester family. The unary failure bound is sharpened to `C/2^n`.
+   Adding the indexed binary failure bound gives a sum below one above
+   `UniformMixers.threshold`; the sharp matrices are chosen next.
+   The checked paper parameters are `s₀=40(K+1)p_*(g²+5)` and
+   `J=101(s₀+K²+1)`. This closes the mixer-specific parameter obligations;
+   the remainder of Appendix A still belongs to §17.
 
 The unary endpoint is
 [`exists_uniform_unary`](proofs/Lax342547Proofs/UnaryMixers.lean).
@@ -422,6 +428,12 @@ closure uses only `propext`, `Classical.choice`, and `Quot.sound`.
 **Exit condition:** a proved existence theorem for the mixers with every
 consumer-visible property explicit. This is one of the main algebraic
 checkpoints; its rank estimates must be fully expanded in Lean.
+
+**Exit condition met.**
+[`UniformMixers.exists_paper_mixers`](proofs/Lax342547Proofs/UniformMixers.lean)
+supplies both parts of Lemma 5.5 for every sufficiently large `n`, before
+any unit law is chosen. The axiom audit reports only `propext`,
+`Classical.choice`, and `Quot.sound` for this endpoint.
 
 ## 9. Scalar recipes and full gradient realization — §6
 

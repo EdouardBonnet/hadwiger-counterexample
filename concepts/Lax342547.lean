@@ -44,3 +44,6 @@ import Lax342547.FormalQuadratic
 import Lax342547.UnaryMixer
 import Lax342547.UnaryRowLaw
 import Lax342547.UnaryMixers
+import Lax342547.BinaryMixer
+import Lax342547.BinaryMixers
+import Lax342547.UniformMixers

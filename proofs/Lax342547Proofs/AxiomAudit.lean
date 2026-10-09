@@ -29,6 +29,7 @@ import Lax342547Proofs.FormalQuadratic
 import Lax342547Proofs.UnaryMixer
 import Lax342547Proofs.UnaryRowLaw
 import Lax342547Proofs.UnaryMixers
+import Lax342547Proofs.UniformMixers
 
 -- Completed preliminary results: background axioms only.
 #print axioms Lax342547Proofs.HadwigerMatching.hadwiger_matching_bound
@@ -126,6 +127,20 @@ import Lax342547Proofs.UnaryMixers
 #print axioms Lax342547Proofs.UnaryMixers.failureBound_lt_one
 #print axioms Lax342547Proofs.UnaryMixers.exists_for_large_n
 #print axioms Lax342547Proofs.UnaryMixers.exists_uniform_unary
+#print axioms Lax342547Proofs.UnaryMixers.failureBound_le_geometric
+#print axioms Lax342547Proofs.UnaryMixers.uniform_of_good
+#print axioms Lax342547Proofs.BinaryMixer.ambientParity_eval
+#print axioms Lax342547Proofs.BinaryMixer.pointInput_affine
+#print axioms Lax342547Proofs.BinaryMixer.bilinearPart_eq
+#print axioms Lax342547Proofs.BinaryMixer.block_rank_le
+#print axioms Lax342547Proofs.BinaryMixer.parity_free_block
+#print axioms Lax342547Proofs.BinaryMixer.selfGram_parity_sharp_block
+#print axioms Lax342547Proofs.BinaryMixers.uniform_of_restrictions
+#print axioms Lax342547Proofs.BinaryMixers.mixer_failure_bound
+#print axioms Lax342547Proofs.BinaryMixers.sharp_failure_bound
+#print axioms Lax342547Proofs.UniformMixers.exists_uniform_mixers
+#print axioms Lax342547Proofs.UniformMixers.paper_parameters
+#print axioms Lax342547Proofs.UniformMixers.exists_paper_mixers
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample
