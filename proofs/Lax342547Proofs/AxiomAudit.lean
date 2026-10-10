@@ -8,6 +8,8 @@ import Lax342547Proofs.SparseKeyCoefficients
 import Lax342547Proofs.BarredElimination
 import Lax342547Proofs.PrimalContractions
 import Lax342547Proofs.ChannelChanges
+import Lax342547Proofs.DerivativeContractions
+import Lax342547Proofs.DerivativeResponses
 import Lax342547Proofs.QuotientExtractors
 import Lax342547Proofs.QuotientRank
 import Lax342547Proofs.SelectedMoments
@@ -461,6 +463,22 @@ import Lax342547Proofs.PairedWitnesses
 #print axioms Lax342547Proofs.ChannelChanges.row_injection_zero
 #print axioms Lax342547Proofs.ChannelChanges.column_injection_zero
 #print axioms Lax342547Proofs.ChannelChanges.channel_entry
+#print axioms Lax342547Proofs.PrimalContractions.unselected_pin_contraction_mode
+#print axioms Lax342547Proofs.DerivativeContractions.right_rank_one
+#print axioms Lax342547Proofs.DerivativeContractions.transpose_contraction
+#print axioms Lax342547Proofs.DerivativeContractions.left_rank_one
+#print axioms Lax342547Proofs.DerivativeContractions.paired_transpose
+#print axioms Lax342547Proofs.DerivativeResponses.pure_annihilation
+#print axioms Lax342547Proofs.DerivativeResponses.derivative_annihilation
+#print axioms Lax342547Proofs.DerivativeResponses.atom_annihilates
+#print axioms Lax342547Proofs.DerivativeResponses.selected_part_annihilates
+#print axioms Lax342547Proofs.DerivativeResponses.subtract_annihilates
+#print axioms Lax342547Proofs.DerivativeResponses.component_annihilation
+#print axioms Lax342547Proofs.DerivativeResponses.unselected_obstruction
+#print axioms Lax342547Proofs.DerivativeResponses.right_test
+#print axioms Lax342547Proofs.DerivativeResponses.plus_contraction_zero
+#print axioms Lax342547Proofs.DerivativeResponses.left_test
+#print axioms Lax342547Proofs.DerivativeResponses.minus_contraction_zero
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample

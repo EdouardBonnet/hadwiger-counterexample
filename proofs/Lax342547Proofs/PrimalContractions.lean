@@ -167,4 +167,56 @@ theorem unselected_pin_contraction {k n b degree r R : ℕ} {hr : 2 * r ≤ n}
         simp [primalProjection, primalEmbedding, hj]
       simpa [hj] using hz
 
+/--
+---
+conclusion: Lax342547.PrimalContractions.unselected_pin_contraction_mode
+---
+The sparse contraction argument works in either sign. The quotient
+test places it in the indicated barred space; sparse key elimination
+and the same-sign protected/private complement put it in the actual pin.
+-/
+theorem unselected_pin_contraction_mode {k n b degree r R : ℕ} {hr : 2 * r ≤ n}
+    {H N : Type} [Fintype H] (W : Lists k n b degree r hr)
+    (P : Pin (Component (Tag k) × Bool) (Fin 2 × (Coordinate k n b degree ⊕ H)) N)
+    (A : Fin 2 → Finset (Fin b → Binary)) (hA : Covers P A R)
+    (hfresh : ∀ i z t, (W.left i z t).label ∉ A i)
+    (p : Bool) (U V : Fin 2 → Submodule Binary (H → Binary)) (e : Component (Tag k))
+    (hU : ∀ j, IsCompl (protectedChannel P j (e, p)) (U j))
+    (M : Fin 2 → Moment k n b degree)
+    (h : PairedAnnihilates M (barred W P U (e, p)) (barred W P V (e, !p)))
+    (i : Fin 2) (L : Finset (Fin b → Binary)) (hL : L.card ≤ R)
+    (hdisjoint : Disjoint L (chosenLabels W i))
+    (Z : (Fin b → Binary) → Matrix (Option (Base k n)) (Option (Base k n)) Binary)
+    (hM : M i = ∑ s ∈ L, Lax342547.TensorBlocks.block selectorEval s (Z s))
+    (ψ : Module.Dual Binary (Vector k n b degree))
+    (hψ : projected P i (e, !p) ⊔ individualKeys W i e ≤ LinearMap.ker ψ) :
+    (M i).mulVecLin (coordinates ψ) ∈ pinnedPrimal P i (e, p) := by
+  classical
+  have hd := endpoint_vector M _ _ h i _
+    (Lax342547Proofs.BarredSpaces.barred_projection W P V (e, !p) i) ψ hψ
+  let coeff := fun s a => ∑ c, selectorEval (degree := degree) s c.1 * Z s a c.2 * coordinates ψ c
+  have hsparse : (M i).mulVecLin (coordinates ψ) = ∑ s ∈ L, labelTensor selectorEval s (coeff s) := by
+    rw [hM]
+    exact sparse_contraction _ L Z _
+  refine Lax342547Proofs.BarredElimination.sparse_barred W P A hA hfresh U (e, p) hU
+    (fun j => if j = i then L else ∅) ?_ ?_ (fun _ => coeff) _ ?_ ?_ hd
+  · intro j
+    by_cases hj : j = i <;> simp [hj, hL]
+  · intro j
+    by_cases hj : j = i
+    · subst j
+      simpa using hdisjoint
+    · simp [hj]
+  · intro j a
+    simp [primalEmbedding]
+  · intro j
+    by_cases hj : j = i
+    · subst j
+      simpa [primalProjection, primalEmbedding] using hsparse
+    · have hz : primalProjection j (primalEmbedding (H := H) i
+          ((M i).mulVecLin (coordinates ψ))) = 0 := by
+        ext c
+        simp [primalProjection, primalEmbedding, hj]
+      simpa [hj] using hz
+
 end Lax342547Proofs.PrimalContractions

@@ -102,10 +102,10 @@ pin budget, and preservation of old effective spaces. The mixed marginal
 normalization and successive-restriction identities are checked separately.
 The finite graph transfer and the later construction remain open.
 
-After the sparse contraction and channel change proofs, overall completion
-is estimated conservatively at **about 35%**, weighted by remaining mathematical
+After the full derivative response and two contraction tests, overall completion
+is estimated conservatively at **about 37%**, weighted by remaining mathematical
 difficulty rather than declaration count. The validated archive contains
-132 concepts and 364 annotated proofs, with 362 closed proof networks.
+134 concepts and 380 annotated proofs, with 378 closed proof networks.
 The two remaining conditional proofs are the consequences of the open
 graph-existence theorem. The requested 50% milestone has not been reached.
 
@@ -688,12 +688,12 @@ sparse-label bounds, and mixers.
    Triangle interpolation gives one scalar for each selected witness on
    its entire tag star. Subtracting these actual atoms preserves pure
    annihilation and gives a reconstruction on unselected labels with the
-   same support and sum-of-block-ranks budgets. Unselected pure contractions
-   now lie in the actual plus primal pin. Allowed channel changes preserve
-   frozen entries and vanish on opposite primal inputs. The actual row and
-   column injection flags give zero-vector criteria from orthogonal tests.
-   Assembling the derivative response, deriving those tests, the reciprocal
-   contraction, and the final duality argument remain.
+   same support and sum-of-block-ranks budgets. The full response, including
+   both allowed derivative families, now kills every selected atom and is
+   preserved by subtraction. Both reciprocal unselected contractions lie
+   in their actual primal pins. Rank-one derivative tests and the actual
+   row and column injection flags force both contractions to zero.
+   Conversion to effective profiles and the final duality argument remain.
 5. Construct bounded-rank derivative corrections. Prove the baseline
    rank `3K+28` and residual rank `14K+140`, rather than declaring them
    as opaque bounds.
@@ -787,10 +787,10 @@ individual matrix lemmas does not close the coupled obstruction argument.
 | Isolate selected blocks | Extract the fresh coefficient through the pin-plus-key quotient and apply it to each component label summand | Checked in `TensorBlocks` and `SelectedBlocks`, using the actual witness lists |
 | Scalar selected moment | Prove a Boolean base moment killed modulo that affine ray in both factors equals a scalar point moment | Checked in `SelectedMoments` and `TensorAnnihilators.selected_block` |
 | Cut consistency | Separate the triangle relations label by label and prove the selected scalar is equal on every component of its tag star | Checked in `LabelRelations` and `SelectedScalars.selected_decomposition` |
-| Subtract selected atoms | Subtract those scalar multiples as actual cut profiles, preserving response annihilation and the component rank and support budgets | Pure annihilation and bounded reconstruction on unselected labels checked in `SelectedRemoval` and `ResidualLabels`; preservation of derivative responses remains |
-| Derivative response | Define all allowed derivative maps into the protected-channel orthogonal spaces; prove their frozen-entry and reciprocal-role compatibility | Allowed quotient maps, bilinear channel changes, frozen-entry preservation, opposite primal vanishing, and exact channel-coordinate reading checked in `ChannelChanges`; assembled response remains |
-| Eliminate residual keys | For an unselected residual profile, use the strong exclusion and protected/private complement to remove every selected key and channel term in a pure contraction | Sparse vector elimination checked in `SparseKeyCoefficients` and `BarredElimination`; plus contraction membership in the actual primal pin checked in `PrimalContractions`; reciprocal contraction remains |
-| Use table injection | Test rank-one derivative maps; use both injection flags to force each residual contraction to vanish | Actual row and column zero-vector criteria from orthogonal tests checked in `ChannelChanges`; deriving tests from the full response remains |
+| Subtract selected atoms | Subtract those scalar multiples as actual cut profiles, preserving response annihilation and the component rank and support budgets | Full pure and derivative annihilation, selected subtraction, and bounded unselected reconstruction checked in `DerivativeResponses.unselected_obstruction` |
+| Derivative response | Define all allowed derivative maps into the protected-channel orthogonal spaces; prove their frozen-entry and reciprocal-role compatibility | Allowed bilinear changes checked in `ChannelChanges`; the full pure-plus-derivative functional system on actual profile pairs is assembled in `DerivativeResponses` |
+| Eliminate residual keys | For an unselected residual profile, use the strong exclusion and protected/private complement to remove every selected key and channel term in a pure contraction | Both signs checked using `PrimalContractions.unselected_pin_contraction_mode` and transposition of the paired quotient tests in `DerivativeContractions` |
+| Use table injection | Test rank-one derivative maps; use both injection flags to force each residual contraction to vanish | Actual rank-one tests and both zero-contraction conclusions checked in `DerivativeResponses.plus_contraction_zero` and `minus_contraction_zero` |
 | Effective residual | Convert vanishing contractions into membership in the projected pin tensor products, then remove their remaining key directions | Open |
 | Linear solvability | Combine effective and selected-atom residual vanishing with the proved obstruction reduction and finite-dimensional annihilator duality | Open |
 
@@ -847,36 +847,42 @@ frozen-entry preservation, vanishing on opposite primal inputs, and exact
 reading of each output coordinate on a channel basis vector. Coordinate
 duality detects protected-space membership from orthogonal tests. The
 actual table's first and second injection flags then give row and column
-zero-vector criteria for pinned primal inputs. These criteria require
-explicit scalar pairing tests; those tests have not yet been derived from
-an assembled derivative response.
+zero-vector criteria for pinned primal inputs. The scalar pairing tests
+are now derived from the full derivative response below.
+
+`DerivativeResponses` assembles the two allowed derivative families with
+the independent pure bilinear family, on the actual pair of cut profiles.
+Every selected atom kills this full response; selected subtraction preserves
+it, and `unselected_obstruction` retains the original support, Boolean moment,
+and sum-of-block-ranks budgets. Each component can be tested independently.
+An individual functional killing its projected pin and keys descends through
+the actual barred quotient after being extended by zero on the other primal
+endpoint and channels. Multiplying it by an allowed perpendicular channel
+vector gives a rank-one derivative test. The checked scalar identity reads
+the baseline evaluation of the residual contraction. Pin membership and the
+actual row injection flag force the plus contraction to zero. Transposing
+the paired tensor test, using the minus protected/private complement, and
+testing the reciprocal derivative gives the minus zero-contraction result.
+No symmetry assumption on an arbitrary residual matrix is needed.
 
 The next obligations are:
 
-1. For each component and a fixed channel endpoint, assemble the two
-   allowed quotient-map families with the arbitrary pure bilinear family
-   into one linear response on pairs of actual cut profiles. Use the
-   actual baseline cross forms extending the prescribed table.
-2. Prove each selected atom kills both derivative terms because its two
-   factors are keys. Extend selected subtraction to this full response.
-3. Test a derivative map that is a quotient functional times an arbitrary
-   perpendicular channel vector. Prove its response is the pairing of
-   that vector with the baseline channel evaluation of the contracted
-   residual. Apply the checked row injection criterion.
-4. Prove the reciprocal contraction statement, retaining the actual minus
-   pin and the reciprocal baseline map. Apply the column injection criterion.
-5. Convert the two vanishing contraction statements into tensor-product
-   membership in the individual projected pin-plus-key spaces. Use the
-   unselected sparse column and row reconstructions to remove the remaining
-   keys and obtain actual effective profiles.
-6. Combine the effective remainder and selected atoms with target residual
-   vanishing. Apply finite-dimensional annihilator duality to construct
-   the unrestricted linearized solution, before proving its rank bounds.
+1. Convert the two vanishing contraction statements into row and column
+   membership in the projected pin-plus-key spaces. Prove the corresponding
+   matrix is in their tensor product, then remove keys using the unselected
+   sparse row and column reconstructions to obtain actual effective profiles.
+2. Package the response families as a linear map from their finite-dimensional
+   parameter space to the dual of the actual profile-pair space. Prove
+   linearity in these parameters explicitly. Combine the effective remainder
+   and selected atoms with target residual vanishing, and use annihilator
+   duality to construct an unrestricted linearized solution.
+3. Prove the bounded-rank derivative corrections, compression, pure correction
+   rank bound, and private-channel factorization required by Theorem 6.3.
 
 The checked rank and selected-moment steps are independent of the private
-channel dimension. The open derivative and injection steps must use the
-actual table maps; assuming an obstruction-space inclusion would leave
-the principal mathematical argument unproved.
+channel dimension. The derivative and injection steps use the actual table
+maps. The remaining effective-space and duality steps must retain these definitions;
+an assumed obstruction-space inclusion would leave the argument unproved.
 
 ## 10. Accepted queries imply four holes — §7
 

@@ -105,14 +105,14 @@ and proves the unary and binary properties with the paper's mixer parameters.
    quotients now isolate actual selected tensor blocks. Triangle consistency
    gives one scalar per witness across its tag star. Subtracting those
    atoms preserves pure annihilation and leaves only unselected labels,
-   with the original support and sum-of-block-ranks budgets. Define the
-   full derivative response and prove that selected atoms also annihilate
-   it. Sparse vector key/channel elimination and the plus pure contraction's
-   membership in the actual primal pin are checked. Allowed bilinear channel
-   changes preserve frozen entries and vanish on opposite primal inputs.
-   Actual row and column injection criteria from orthogonal channel tests
-   are checked. Derive those tests from the assembled derivative response,
-   prove the reciprocal contraction, and remove keys from both tensor factors;
+   with the original support and sum-of-block-ranks budgets. The full
+   pure-plus-derivative response is assembled and kills every selected atom;
+   selected subtraction preserves it. Both sparse reciprocal contractions
+   belong to their actual primal pins. Rank-one derivative tests and the
+   actual row/column injection flags force both contractions to zero.
+   Convert these vanishing tests into tensor membership, remove the remaining
+   keys, and prove the effective remainder. Package the parameter response
+   as a linear map and prove the required annihilator duality;
    then solve the whole-space gradient
    problem by annihilator duality, bounded-rank corrections, compression,
    and private-channel factorization. Theorem 6.3 remains open.

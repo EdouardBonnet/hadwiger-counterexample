@@ -156,8 +156,11 @@ by positions and may contain repeated raw vertices.
   pin membership using protected/private complementarity. Pure contraction
   tests put the unselected plus contraction in the actual primal pin.
   Allowed channel changes preserve frozen entries and vanish on opposite
-  primal inputs. Actual row and column table injection criteria are proved;
-  deriving their pairing tests from the full derivative response remains open.
+  primal inputs. The full pure-plus-derivative response kills every selected
+  atom and is preserved by selected subtraction. Actual rank-one derivative
+  tests and both table-injection flags force the reciprocal residual
+  contractions to zero. Conversion to effective profiles and annihilator
+  duality remain open.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
 
@@ -181,7 +184,7 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 At the latest validated checkpoint, `lake build` and `lax build . --replay` pass,
-with 132 concepts and 364 annotated proofs, 362 of which have no open
+with 134 concepts and 380 annotated proofs, 378 of which have no open
 mathematical assumptions. All kernel replays pass. The only conditional
 proofs are the two counterexample consequences of the open Theorem 1.1.
 
