@@ -11,7 +11,7 @@ Channel changes factor through a frozen nominal quotient and take values
 orthogonal to the opposite protected channel. They preserve the frozen
 entries and vanish on opposite primal inputs. Orthogonal channel tests
 and the actual table injection flags force a pinned primal vector to zero.
-Deriving these tests from the full derivative response is still required.
+`DerivativeResponses` derives these tests from the full derivative response.
 -/
 
 namespace Lax342547.ChannelChanges

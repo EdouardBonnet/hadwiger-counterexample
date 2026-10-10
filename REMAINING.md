@@ -97,8 +97,8 @@ and proves the unary and binary properties with the paper's mixer parameters.
    key spans are disjoint from the tables and have dimension at most 28.
    Frozen baseline cross forms extend those tables and have reciprocal
    channel ranks at most `3K+28`. The target residual vanishes on effective
-   profiles and all selected atoms. Finish the metadata format and prove
-   that every annihilator obstruction lies in this space. The actual pure
+   profiles and all selected atoms. The full obstruction is now proved
+   to lie in this space. The actual pure
    response now gives component rank at most `2K+28` and a bounded label
    decomposition. Strong sparse exclusions and the scalar selected-moment
    lemma are checked. Fresh coefficient extractors through pin and key
@@ -110,8 +110,9 @@ and proves the unary and binary properties with the paper's mixer parameters.
    selected subtraction preserves it. Both sparse reciprocal contractions
    belong to their actual primal pins. Rank-one derivative tests and the
    actual row/column injection flags force both contractions to zero.
-   Convert these vanishing tests into tensor membership, remove the remaining
-   keys, and prove the effective remainder. Package the parameter response
+   Vanishing contractions give row and column membership; sparse key removal
+   and tensor reconstruction prove the effective remainder. Finish the
+   metadata format, package the parameter response
    as a linear map and prove the required annihilator duality;
    then solve the whole-space gradient
    problem by annihilator duality, bounded-rank corrections, compression,

@@ -141,7 +141,8 @@ by positions and may contain repeated raw vertices.
   incident key spans, and frozen baseline cross forms extending the tables.
   Both reciprocal endpoint roles have channel rank at most `3K+28` for the
   same baseline. The target residual vanishes on effective profiles and
-  every selected atom; the whole-space annihilator argument remains open.
+  every selected atom. The obstruction-space reduction is checked; linear
+  solvability and bounded corrections remain.
 - Pure responses on the barred quotients of the actual nominal spaces.
   Their annihilating pairs of cut profiles have component rank at most
   `2K+28` and bounded label decompositions. Strong sparse pin exclusions
@@ -159,8 +160,10 @@ by positions and may contain repeated raw vertices.
   primal inputs. The full pure-plus-derivative response kills every selected
   atom and is preserved by selected subtraction. Actual rank-one derivative
   tests and both table-injection flags force the reciprocal residual
-  contractions to zero. Conversion to effective profiles and annihilator
-  duality remain open.
+  contractions to zero. Row and column membership, sparse key removal,
+  and tensor reconstruction now put the remainder in the actual effective
+  profile spaces. Every full obstruction decomposes into selected atoms
+  and this effective remainder. The final annihilator duality remains open.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
 
@@ -184,7 +187,7 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 At the latest validated checkpoint, `lake build` and `lax build . --replay` pass,
-with 134 concepts and 380 annotated proofs, 378 of which have no open
+with 135 concepts and 388 annotated proofs, 386 of which have no open
 mathematical assumptions. All kernel replays pass. The only conditional
 proofs are the two counterexample consequences of the open Theorem 1.1.
 

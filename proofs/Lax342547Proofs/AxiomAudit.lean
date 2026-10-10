@@ -10,6 +10,7 @@ import Lax342547Proofs.PrimalContractions
 import Lax342547Proofs.ChannelChanges
 import Lax342547Proofs.DerivativeContractions
 import Lax342547Proofs.DerivativeResponses
+import Lax342547Proofs.EffectiveObstructions
 import Lax342547Proofs.QuotientExtractors
 import Lax342547Proofs.QuotientRank
 import Lax342547Proofs.SelectedMoments
@@ -479,6 +480,14 @@ import Lax342547Proofs.PairedWitnesses
 #print axioms Lax342547Proofs.DerivativeResponses.plus_contraction_zero
 #print axioms Lax342547Proofs.DerivativeResponses.left_test
 #print axioms Lax342547Proofs.DerivativeResponses.minus_contraction_zero
+#print axioms Lax342547Proofs.EffectiveObstructions.rows_of_contraction_zero
+#print axioms Lax342547Proofs.EffectiveObstructions.tensor_of_columns_rows
+#print axioms Lax342547Proofs.EffectiveObstructions.unselected_vector
+#print axioms Lax342547Proofs.EffectiveObstructions.sparse_columns
+#print axioms Lax342547Proofs.EffectiveObstructions.transpose_blocks
+#print axioms Lax342547Proofs.EffectiveObstructions.unselected_tensor
+#print axioms Lax342547Proofs.EffectiveObstructions.effective_component
+#print axioms Lax342547Proofs.EffectiveObstructions.obstruction_decomposition
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample

@@ -10,6 +10,7 @@ import Lax342547.PrimalContractions
 import Lax342547.ChannelChanges
 import Lax342547.DerivativeContractions
 import Lax342547.DerivativeResponses
+import Lax342547.EffectiveObstructions
 import Lax342547.QuotientExtractors
 import Lax342547.QuotientRank
 import Lax342547.SelectedMoments

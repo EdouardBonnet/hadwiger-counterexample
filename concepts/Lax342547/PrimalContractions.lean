@@ -9,7 +9,8 @@ type: definition and theorem
 Pure nominal quotient responses put a tested individual contraction in
 the barred space. Unselected sparse labels eliminate its key and private
 terms, so the contraction lies in the actual primal pin intersection.
-Derivative tests and table injection remain separate obligations.
+`DerivativeResponses` pairs this membership with the actual derivative
+tests and table injection flags in both reciprocal modes.
 -/
 
 namespace Lax342547.PrimalContractions
