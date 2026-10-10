@@ -222,7 +222,7 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 At the latest validated checkpoint, `lake build` and `lax build . --replay` pass,
-with 178 concepts and 614 annotated proofs, 612 of which have no open
+with 188 concepts and 660 annotated proofs, 658 of which have no open
 mathematical assumptions. All kernel replays pass. The only conditional
 proofs are the two counterexample consequences of the open Theorem 1.1.
 

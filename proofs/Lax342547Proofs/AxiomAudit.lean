@@ -1,3 +1,13 @@
+import Lax342547Proofs.PairRecovery
+import Lax342547Proofs.CellAveraging
+import Lax342547Proofs.LeafBlockCaps
+import Lax342547Proofs.LeafCellImages
+import Lax342547Proofs.RightQueryImages
+import Lax342547Proofs.ComponentTests
+import Lax342547Proofs.RawJointImages
+import Lax342547Proofs.ComponentCharacters
+import Lax342547Proofs.RealCellLaws
+import Lax342547Proofs.RawQueryImages
 import Lax342547Proofs.QueryIndependence
 import Lax342547Proofs.JointKeyCap
 import Lax342547Proofs.JointDirections
@@ -801,6 +811,62 @@ import Lax342547Proofs.PairedWitnesses
 #print axioms Lax342547Proofs.JointKeyCap.leaf_key_fresh_image_cap
 
 #print axioms Lax342547Proofs.QueryIndependence.actual_key_independence
+
+#print axioms Lax342547Proofs.RawQueryImages.observation_primal_plus
+#print axioms Lax342547Proofs.RawQueryImages.observation_primal_minus
+#print axioms Lax342547Proofs.RawQueryImages.key_map_coordinate
+#print axioms Lax342547Proofs.RawQueryImages.key_observations_left
+#print axioms Lax342547Proofs.RawQueryImages.left_tuple_event
+#print axioms Lax342547Proofs.RawQueryImages.key_dimension
+#print axioms Lax342547Proofs.RawQueryImages.actual_left_key_cap
+
+#print axioms Lax342547Proofs.RealCellLaws.weights_nonneg
+#print axioms Lax342547Proofs.RealCellLaws.weights_total
+#print axioms Lax342547Proofs.RealCellLaws.event_mass
+#print axioms Lax342547Proofs.RealCellLaws.subtype_integral
+#print axioms Lax342547Proofs.RealCellLaws.subtype_weights_total
+#print axioms Lax342547Proofs.RealCellLaws.subtype_weights_nonneg
+#print axioms Lax342547Proofs.RealCellLaws.subtype_image_push
+#print axioms Lax342547Proofs.RealCellLaws.subtype_conditional_cap
+#print axioms Lax342547Proofs.RealCellLaws.pmf_subtype_conditional_cap
+#print axioms Lax342547Proofs.RealCellLaws.pmf_paper_subtype_cap
+
+#print axioms Lax342547Proofs.ComponentCharacters.block_factor_pair
+#print axioms Lax342547Proofs.ComponentCharacters.block_factor_phase
+#print axioms Lax342547Proofs.ComponentCharacters.block_image_dimension
+#print axioms Lax342547Proofs.ComponentCharacters.component_character_bound
+#print axioms Lax342547Proofs.ComponentCharacters.retained_component_character_dichotomy
+
+#print axioms Lax342547Proofs.RawJointImages.actual_left_key_fresh_cap
+
+#print axioms Lax342547Proofs.ComponentTests.coefficient_character
+#print axioms Lax342547Proofs.ComponentTests.component_scalar_agreement
+
+#print axioms Lax342547Proofs.RightQueryImages.reindex_injective
+#print axioms Lax342547Proofs.RightQueryImages.left_flip_right_tuple
+#print axioms Lax342547Proofs.RightQueryImages.right_tuple_event
+#print axioms Lax342547Proofs.RightQueryImages.flipped_slot_count
+#print axioms Lax342547Proofs.RightQueryImages.actual_right_key_cap
+
+#print axioms Lax342547Proofs.LeafCellImages.original_leaf_cell_image_cap
+
+#print axioms Lax342547Proofs.LeafBlockCaps.block_image_fiber
+#print axioms Lax342547Proofs.LeafBlockCaps.block_image_push
+#print axioms Lax342547Proofs.LeafBlockCaps.original_leaf_block_cap
+#print axioms Lax342547Proofs.LeafBlockCaps.original_leaf_all_rank_block_cap
+
+#print axioms Lax342547Proofs.CellAveraging.conditional_rectangle_mass
+#print axioms Lax342547Proofs.CellAveraging.conditional_rectangle_lower
+#print axioms Lax342547Proofs.CellAveraging.partition_rectangle_mass
+#print axioms Lax342547Proofs.CellAveraging.pair_event_mass_nonneg
+#print axioms Lax342547Proofs.CellAveraging.retained_cell_pair_lower
+
+#print axioms Lax342547Proofs.PairRecovery.pair_mass_domination
+#print axioms Lax342547Proofs.PairRecovery.real_filter_domination
+#print axioms Lax342547Proofs.PairRecovery.restriction_pair_recovery
+#print axioms Lax342547Proofs.PairRecovery.independent_pair_apply
+#print axioms Lax342547Proofs.PairRecovery.pair_mass_pmf_event
+#print axioms Lax342547Proofs.PairRecovery.restriction_pair_event_recovery
 
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample
 #print axioms Lax342547Proofs.FractionalCounterexample.arbitrarily_large_fractional_counterexample

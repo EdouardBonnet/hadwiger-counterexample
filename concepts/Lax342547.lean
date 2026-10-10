@@ -1,3 +1,13 @@
+import Lax342547.PairRecovery
+import Lax342547.CellAveraging
+import Lax342547.LeafBlockCaps
+import Lax342547.LeafCellImages
+import Lax342547.RightQueryImages
+import Lax342547.ComponentTests
+import Lax342547.RawJointImages
+import Lax342547.ComponentCharacters
+import Lax342547.RealCellLaws
+import Lax342547.RawQueryImages
 import Lax342547.QueryIndependence
 import Lax342547.JointKeyCap
 import Lax342547.JointDirections

@@ -104,9 +104,9 @@ normalization and successive-restriction identities are checked separately.
 The finite graph transfer and the later construction remain open.
 
 After completing deterministic gradient realization and the first collision dependencies,
-overall completion is estimated conservatively at **about 53%**, weighted by remaining mathematical
+overall completion is estimated conservatively at **about 56%**, weighted by remaining mathematical
 difficulty rather than declaration count. The validated archive contains
-178 concepts and 614 annotated proofs, with 612 closed proof networks.
+188 concepts and 660 annotated proofs, with 658 closed proof networks.
 The two remaining conditional proofs are the consequences of the open
 graph-existence theorem. The requested 60% milestone has not been reached; the collision criterion
 and substantial later probabilistic construction remain.
@@ -997,14 +997,24 @@ explicit conditional image caps. `LeafImages`, `JointDirections`, and
 actual exact-pin leaf entropy bound; `QueryIndependence` checks the old-pin
 independence of actual selected key directions.
 
-Proposition 7.1 is still open. These estimates must be assembled over all
-components and both cross orientations, with the actual `PrimalRecords`
-tests. The complete numerical/status record count must be retained, and
-the chosen gradient target must depend only on those records. Conditional
-PMF caps must be connected to the real weighted cell laws. Then average
-original cells, independent parameters, and leaves with their actual masses,
-restore the squared restriction mass, and absorb bounded options using the
-paper's exponent slack. Later phase and status arguments remain separate.
+`RawQueryImages` and `RightQueryImages` identify the actual tuple events
+and prove both endpoint key caps, with the same slot count after reindexing.
+`RawJointImages`, `RealCellLaws`, `LeafCellImages`, and `LeafBlockCaps`
+connect the exact PMF leaf bounds to normalized real laws on the original
+retained cells, including arbitrary component ranks and the rank-zero case.
+`ComponentCharacters` and `ComponentTests` prove the complete joint
+character dichotomy and simultaneous scalar-test bound across components
+and both cross orientations, preserving dependence within each unit.
+`CellAveraging` recovers original cell-pair rectangles with their actual
+mass product and sums disjoint record partitions. `PairRecovery` restores
+the squared restriction mass for actual independent PMF events.
+
+Proposition 7.1 is still open. The joint scalar tests must be instantiated
+with the actual `PrimalRecords` entries and the gradient target selected
+from the original records. The complete numerical/status record count
+and independent parameter/leaf averaging must be assembled, and bounded
+options and exponent slack paid. Later phase and status arguments remain
+separate.
 
 ## 11. Phase alternatives and status preparation — §§8–9
 
