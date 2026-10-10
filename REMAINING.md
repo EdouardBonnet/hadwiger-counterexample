@@ -106,8 +106,9 @@ and proves the unary and binary properties with the paper's mixer parameters.
    gives one scalar per witness across its tag star. Subtracting those
    atoms preserves pure annihilation and leaves only unselected labels,
    with the original support and sum-of-block-ranks budgets. Define the
-   full derivative response, prove that selected atoms also annihilate it,
-   eliminate the residual key/channel terms, and use table injection;
+   full derivative response and prove that selected atoms also annihilate
+   it. Sparse vector key/channel elimination is now checked; apply it to
+   the pure contractions and use table injection;
    then solve the whole-space gradient
    problem by annihilator duality, bounded-rank corrections, compression,
    and private-channel factorization. Theorem 6.3 remains open.

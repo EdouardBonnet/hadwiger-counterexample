@@ -4,6 +4,8 @@ import Lax342547Proofs.LabelRelations
 import Lax342547Proofs.SelectedScalars
 import Lax342547Proofs.SelectedRemoval
 import Lax342547Proofs.ResidualLabels
+import Lax342547Proofs.SparseKeyCoefficients
+import Lax342547Proofs.BarredElimination
 import Lax342547Proofs.QuotientExtractors
 import Lax342547Proofs.QuotientRank
 import Lax342547Proofs.SelectedMoments
@@ -443,6 +445,10 @@ import Lax342547Proofs.PairedWitnesses
 #print axioms Lax342547Proofs.SelectedRemoval.subtract_annihilates
 #print axioms Lax342547Proofs.ResidualLabels.residual_reconstruction
 #print axioms Lax342547Proofs.ResidualLabels.unselected_obstruction
+#print axioms Lax342547Proofs.SparseKeyCoefficients.coefficients_zero
+#print axioms Lax342547Proofs.BarredElimination.individual_keys_zero
+#print axioms Lax342547Proofs.BarredElimination.private_primal_pin
+#print axioms Lax342547Proofs.BarredElimination.sparse_barred
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample

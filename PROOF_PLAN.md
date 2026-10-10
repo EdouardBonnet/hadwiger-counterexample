@@ -105,7 +105,7 @@ The finite graph transfer and the later construction remain open.
 At the selected-atom and unselected-residual checkpoint, overall completion is estimated
 conservatively at **about 34%**, weighted by remaining mathematical
 difficulty rather than declaration count. The validated archive contains
-128 concepts and 350 annotated proofs, with 348 closed proof networks.
+130 concepts and 354 annotated proofs, with 352 closed proof networks.
 The two remaining conditional proofs are the consequences of the open
 graph-existence theorem. The requested 50% milestone has not been reached.
 
@@ -785,7 +785,7 @@ individual matrix lemmas does not close the coupled obstruction argument.
 | Cut consistency | Separate the triangle relations label by label and prove the selected scalar is equal on every component of its tag star | Checked in `LabelRelations` and `SelectedScalars.selected_decomposition` |
 | Subtract selected atoms | Subtract those scalar multiples as actual cut profiles, preserving response annihilation and the component rank and support budgets | Pure annihilation and bounded reconstruction on unselected labels checked in `SelectedRemoval` and `ResidualLabels`; preservation of derivative responses remains |
 | Derivative response | Define all allowed derivative maps into the protected-channel orthogonal spaces; prove their frozen-entry and reciprocal-role compatibility | Open |
-| Eliminate residual keys | For an unselected residual profile, use the strong exclusion and protected/private complement to remove every selected key and channel term in a pure contraction | Open |
+| Eliminate residual keys | For an unselected residual profile, use the strong exclusion and protected/private complement to remove every selected key and channel term in a pure contraction | Sparse vector elimination checked in `SparseKeyCoefficients` and `BarredElimination`; application to pure contractions remains |
 | Use table injection | Test rank-one derivative maps; use both injection flags to force each residual contraction to vanish | Open |
 | Effective residual | Convert vanishing contractions into membership in the projected pin tensor products, then remove their remaining key directions | Open |
 | Linear solvability | Combine effective and selected-atom residual vanishing with the proved obstruction reduction and finite-dimensional annihilator duality | Open |
@@ -823,6 +823,14 @@ moment identities; the support and sum-of-block-ranks bounds stay at
 `2K+28`. Pure annihilation is preserved, so the existing component-rank
 theorem also applies to the remainder. Exact nonincrease relative to each
 original component's rank is not asserted by this endpoint.
+
+`SparseKeyCoefficients.coefficients_zero` extracts every fresh key
+coefficient from a short key combination differing from an unselected
+sparse vector by a projected pin. `BarredElimination.sparse_barred`
+applies it to both endpoint projections of an actual barred decomposition.
+All key projections vanish. Protected/private channel complementarity
+then forces the private vector to vanish, leaving a pin vector. Applying
+this result to the contractions detected by pure annihilation remains.
 
 The next obligation is the full derivative response. Define the allowed
 nominal quotient maps into the orthogonal spaces of the opposite pin's

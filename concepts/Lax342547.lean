@@ -4,6 +4,8 @@ import Lax342547.LabelRelations
 import Lax342547.SelectedScalars
 import Lax342547.SelectedRemoval
 import Lax342547.ResidualLabels
+import Lax342547.SparseKeyCoefficients
+import Lax342547.BarredElimination
 import Lax342547.QuotientExtractors
 import Lax342547.QuotientRank
 import Lax342547.SelectedMoments

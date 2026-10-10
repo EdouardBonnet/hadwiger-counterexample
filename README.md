@@ -151,6 +151,9 @@ by positions and may contain repeated raw vertices.
   blocks. Triangle relations give one scalar per selected witness on its
   tag star. Subtracting those actual atoms preserves pure annihilation and
   leaves a bounded reconstruction using only unselected labels. The full
+  Fresh key coefficients vanish in unselected sparse expansions. For a
+  primal sparse vector, the actual barred-space decomposition reduces to
+  pin membership using protected/private complementarity. The full
   derivative-response reduction and table injection remain open.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
@@ -175,7 +178,7 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 At the latest validated checkpoint, `lake build` and `lax build . --replay` pass,
-with 128 concepts and 350 annotated proofs, 348 of which have no open
+with 130 concepts and 354 annotated proofs, 352 of which have no open
 mathematical assumptions. All kernel replays pass. The only conditional
 proofs are the two counterexample consequences of the open Theorem 1.1.
 
