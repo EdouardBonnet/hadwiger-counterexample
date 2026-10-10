@@ -118,6 +118,21 @@ by positions and may contain repeated raw vertices.
   actual masses. Metadata/image counts, restriction trimming, final pin budget, and
   preservation of effective spaces are checked. Exact nested masses and
   mixed marginal normalization are tracked separately.
+- The deterministic table and prescription work for Lemma 6.2: effective
+  spaces have dimension at most K squared and total component rank at most
+  K; table spaces, protected channel projections, private complements, and
+  the four injection flags are defined. Admissibility separates into two
+  unary filters on the actual frame orientations. Fresh selected rays are
+  independent modulo the table spaces, with the exact sparse-label budget.
+  Table counts are independent of the primal dimension; padded nominal
+  coefficient records have an explicit linear-size bit count.
+- Compatible row sums are realized by an explicit symmetric binary matrix.
+  The coupled recipe and role equations give the required compatibility.
+  `ConcreteRecipes.prescribe` chooses indexed ordered L/R bits using only
+  tags, tester summaries, and opposite role/p bits, and proves the desired
+  list-gradient identities for any actual atoms and mixers satisfying
+  those tests. Occurrence of these bits and gradient realization on the
+  entire cut space remain separate, open tasks.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
 
@@ -140,8 +155,8 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 
 ## Build and audit
 
-Validated on October 9, 2026: `lake build` and `lax build . --replay` pass,
-with 88 concepts and 249 annotated proofs, 247 of which have no open
+At the latest validated checkpoint, `lake build` and `lax build . --replay` pass,
+with 99 concepts and 277 annotated proofs, 275 of which have no open
 mathematical assumptions. All kernel replays pass. The only conditional
 proofs are the two counterexample consequences of the open Theorem 1.1.
 

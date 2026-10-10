@@ -44,7 +44,7 @@ this file is the shorter status and acceptance checklist.
 | Sparse label supports of projected pins | Lemma 5.3 | Complete; the exact uniform label budget covers all sparse vectors |
 | Atoms, flavors, and finite parameter laws | Definition 5.4 | Defined; incidence formula, role/diagonal bits, retained coordinates, and product law checked |
 | Uniform mixing matrices, chosen before the unit law | §5.3, Lemma 5.5 | Complete: simultaneous unary rank/row spaces and all binary parities on every flavor, explicit large-n threshold, and the paper's mixer parameters |
-| Scalar recipes, table flags, gradient realization | §6, Theorem 6.3 | Effective spaces and their preservation under pin extension defined and checked; dimension/rank bounds, tables, recipes, and realization remain |
+| Scalar recipes, table flags, gradient realization | §6, Theorem 6.3 | Effective dimension/rank bounds, table spaces and injection flags, private complements, unary admissibility, fresh-key independence, coefficient/table counts, and concrete atom prescriptions checked; full paired recipes, effective table contractions, and whole-space realization remain |
 | Accepted queries and overlap-to-four-holes implication | §7, Proposition 7.1 | Not formalized |
 | Phase alternatives and accepting-pair injection | §8 | Not formalized |
 | Common prediction, exactification, and status preparation | §9, Proposition 9.2 | Not formalized |
@@ -85,10 +85,15 @@ and proves the unary and binary properties with the paper's mixer parameters.
    All three Walsh
    estimates in Lemma 4.6 are now checked, including a conditional mixture
    version that preserves the actual cell masses.
-2. Complete effective-space dimension and rank bounds and the table
-   interfaces required for §6; then prove scalar recipe compatibility and
-   full gradient realization. Pins, primal projections, effective tensor
-   spaces, and their preservation under extension are already defined.
+2. The effective bounds, table spaces, private/protected decomposition,
+   injection flags, unary admissibility, and fresh-key independence are
+   checked. `ConcreteRecipes.prescribe` constructs formal L/R prescriptions
+   from numerical data and proves their concrete list-gradient identities.
+   Table counts and padded nominal coefficient records have explicit bit
+   bounds. Next define the effective table contractions and complete the
+   paired-list/metadata interface; then solve the whole-space gradient
+   problem by annihilator duality, bounded-rank corrections, compression,
+   and private-channel factorization. Theorem 6.3 remains open.
 3. State raw supersaturation using this concrete law. Preserve the separate
    marginal caps and joint cap; the two endpoints of a unit can be dependent.
    An abstract structure with a supersaturation field is not a construction.

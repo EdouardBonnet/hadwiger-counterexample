@@ -86,3 +86,14 @@ import Lax342547.RestrictedLeaves
 import Lax342547.RawSecondPeeling
 import Lax342547.MixtureRecovery
 import Lax342547.ProjectedPins
+import Lax342547.EffectiveBounds
+import Lax342547.SymmetricPrescriptions
+import Lax342547.TableSpaces
+import Lax342547.FreshKeys
+import Lax342547.SmallTables
+import Lax342547.BinaryPrescriptions
+import Lax342547.RecipeRows
+import Lax342547.WitnessAtoms
+import Lax342547.AtomProducts
+import Lax342547.ConcreteRecipes
+import Lax342547.TableCounts

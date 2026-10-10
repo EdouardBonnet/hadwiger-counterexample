@@ -100,3 +100,14 @@ import Lax342547Proofs.RestrictedLeaves
 import Lax342547Proofs.RawSecondPeeling
 import Lax342547Proofs.MixtureRecovery
 import Lax342547Proofs.ProjectedPins
+import Lax342547Proofs.EffectiveBounds
+import Lax342547Proofs.SymmetricPrescriptions
+import Lax342547Proofs.TableSpaces
+import Lax342547Proofs.FreshKeys
+import Lax342547Proofs.SmallTables
+import Lax342547Proofs.BinaryPrescriptions
+import Lax342547Proofs.RecipeRows
+import Lax342547Proofs.WitnessAtoms
+import Lax342547Proofs.AtomProducts
+import Lax342547Proofs.ConcreteRecipes
+import Lax342547Proofs.TableCounts

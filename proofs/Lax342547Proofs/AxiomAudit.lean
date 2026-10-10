@@ -45,6 +45,17 @@ import Lax342547Proofs.RawPeeling
 import Lax342547Proofs.RawSecondPeeling
 import Lax342547Proofs.RestrictedLeaves
 import Lax342547Proofs.ProjectedPins
+import Lax342547Proofs.EffectiveBounds
+import Lax342547Proofs.SymmetricPrescriptions
+import Lax342547Proofs.TableSpaces
+import Lax342547Proofs.FreshKeys
+import Lax342547Proofs.SmallTables
+import Lax342547Proofs.BinaryPrescriptions
+import Lax342547Proofs.RecipeRows
+import Lax342547Proofs.WitnessAtoms
+import Lax342547Proofs.AtomProducts
+import Lax342547Proofs.ConcreteRecipes
+import Lax342547Proofs.TableCounts
 
 -- Completed preliminary results: background axioms only.
 #print axioms Lax342547Proofs.HadwigerMatching.hadwiger_matching_bound
@@ -296,6 +307,35 @@ import Lax342547Proofs.ProjectedPins
 #print axioms Lax342547Proofs.ProjectedPins.projected_rank
 #print axioms Lax342547Proofs.ProjectedPins.projected_mono
 #print axioms Lax342547Proofs.ProjectedPins.effective_mono
+
+#print axioms Lax342547Proofs.EffectiveBounds.tensor_dimension
+#print axioms Lax342547Proofs.EffectiveBounds.tensor_rank
+#print axioms Lax342547Proofs.EffectiveBounds.effective_bounds
+#print axioms Lax342547Proofs.SymmetricPrescriptions.diagonal_rows
+#print axioms Lax342547Proofs.SymmetricPrescriptions.rectangular_sums
+#print axioms Lax342547Proofs.SymmetricPrescriptions.two_lists
+#print axioms Lax342547Proofs.TableSpaces.pin_le_table
+#print axioms Lax342547Proofs.TableSpaces.table_mono
+#print axioms Lax342547Proofs.TableSpaces.protected_rank
+#print axioms Lax342547Proofs.TableSpaces.private_complement
+#print axioms Lax342547Proofs.TableSpaces.table_dimension
+#print axioms Lax342547Proofs.FreshKeys.fresh_points
+#print axioms Lax342547Proofs.FreshKeys.fresh_keys
+#print axioms Lax342547Proofs.SmallTables.admissible_iff_filters
+#print axioms Lax342547Proofs.SmallTables.raw_admissible_iff_filters
+#print axioms Lax342547Proofs.BinaryPrescriptions.realize
+#print axioms Lax342547Proofs.RecipeRows.recipe_matrix
+#print axioms Lax342547Proofs.RecipeRows.recipe_bits
+#print axioms Lax342547Proofs.WitnessAtoms.tester_properties
+#print axioms Lax342547Proofs.WitnessAtoms.atom_testers
+#print axioms Lax342547Proofs.WitnessAtoms.allowed_index
+#print axioms Lax342547Proofs.AtomProducts.mixing_atoms
+#print axioms Lax342547Proofs.AtomProducts.gradient_atoms
+#print axioms Lax342547Proofs.AtomProducts.gradient_of_prescriptions
+#print axioms Lax342547Proofs.ConcreteRecipes.prescribe
+#print axioms Lax342547Proofs.TableCounts.table_count
+#print axioms Lax342547Proofs.TableCounts.coefficient_code
+#print axioms Lax342547Proofs.TableCounts.coefficient_count
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample
