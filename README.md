@@ -142,6 +142,13 @@ by positions and may contain repeated raw vertices.
   Both reciprocal endpoint roles have channel rank at most `3K+28` for the
   same baseline. The target residual vanishes on effective profiles and
   every selected atom; the whole-space annihilator argument remains open.
+- Pure responses on the barred quotients of the actual nominal spaces.
+  Their annihilating pairs of cut profiles have component rank at most
+  `2K+28` and bounded label decompositions. Strong sparse pin exclusions
+  cover arbitrary base coefficients. A selected affine-ray moment block
+  is forced to be a scalar point moment. Fresh coefficients can be
+  extracted through pin and key quotients. The coupled selected-label and
+  derivative-response reductions remain open.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
 
@@ -165,7 +172,7 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 At the latest validated checkpoint, `lake build` and `lax build . --replay` pass,
-with 103 concepts and 288 annotated proofs, 286 of which have no open
+with 122 concepts and 332 annotated proofs, 330 of which have no open
 mathematical assumptions. All kernel replays pass. The only conditional
 proofs are the two counterexample consequences of the open Theorem 1.1.
 

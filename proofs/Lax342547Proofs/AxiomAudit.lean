@@ -1,3 +1,11 @@
+import Lax342547Proofs.QuotientExtractors
+import Lax342547Proofs.QuotientRank
+import Lax342547Proofs.SelectedMoments
+import Lax342547Proofs.TensorAnnihilators
+import Lax342547Proofs.PairedAnnihilators
+import Lax342547Proofs.BarredSpaces
+import Lax342547Proofs.PureObstructions
+import Lax342547Proofs.PinLabelExclusions
 import Lax342547Proofs.PairedRecipes
 import Lax342547Proofs.FrozenBaselines
 import Lax342547Proofs.PrimalRetractions
@@ -386,6 +394,30 @@ import Lax342547Proofs.PairedWitnesses
 #print axioms Lax342547Proofs.FrozenValues.selected_values
 #print axioms Lax342547Proofs.RecipeResiduals.selected_gradients
 #print axioms Lax342547Proofs.RecipeResiduals.residual_correct
+
+#print axioms Lax342547Proofs.QuotientRank.killed_composition_rank
+#print axioms Lax342547Proofs.QuotientRank.killed_matrix_rank
+#print axioms Lax342547Proofs.QuotientRank.killed_quotients_rank
+#print axioms Lax342547Proofs.SelectedMoments.projection_kernel
+#print axioms Lax342547Proofs.SelectedMoments.moment_ray
+#print axioms Lax342547Proofs.TensorAnnihilators.pure_rank
+#print axioms Lax342547Proofs.TensorAnnihilators.pure_sandwich
+#print axioms Lax342547Proofs.TensorAnnihilators.selected_block
+#print axioms Lax342547Proofs.PairedAnnihilators.endpoint_projection
+#print axioms Lax342547Proofs.PairedAnnihilators.endpoint_rank
+#print axioms Lax342547Proofs.BarredSpaces.individual_key_dimension
+#print axioms Lax342547Proofs.BarredSpaces.barred_projection
+#print axioms Lax342547Proofs.BarredSpaces.annihilator_component_rank
+#print axioms Lax342547Proofs.PureObstructions.component_annihilation
+#print axioms Lax342547Proofs.PureObstructions.component_rank
+#print axioms Lax342547Proofs.PureObstructions.component_labels
+#print axioms Lax342547Proofs.PinLabelExclusions.covers_exists
+#print axioms Lax342547Proofs.PinLabelExclusions.fresh_coefficient
+#print axioms Lax342547Proofs.PinLabelExclusions.keys_exclusion
+
+#print axioms Lax342547Proofs.QuotientExtractors.quotient_factor
+#print axioms Lax342547Proofs.QuotientExtractors.pin_extractor
+#print axioms Lax342547Proofs.QuotientExtractors.key_extractor
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample

@@ -98,7 +98,13 @@ and proves the unary and binary properties with the paper's mixer parameters.
    Frozen baseline cross forms extend those tables and have reciprocal
    channel ranks at most `3K+28`. The target residual vanishes on effective
    profiles and all selected atoms. Finish the metadata format and prove
-   that every annihilator obstruction lies in this space; then solve the whole-space gradient
+   that every annihilator obstruction lies in this space. The actual pure
+   response now gives component rank at most `2K+28` and a bounded label
+   decomposition. Strong sparse exclusions and the scalar selected-moment
+   lemma are checked. Fresh coefficient extractors through pin and key
+   quotients are checked. Applying them to selected tensor blocks, enforcing triangle
+   consistency, and using derivative responses with table injection remain;
+   then solve the whole-space gradient
    problem by annihilator duality, bounded-rank corrections, compression,
    and private-channel factorization. Theorem 6.3 remains open.
 3. State raw supersaturation using this concrete law. Preserve the separate
