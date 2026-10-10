@@ -1,3 +1,15 @@
+import Lax342547Proofs.PrimalRecords
+import Lax342547Proofs.FourHoles
+import Lax342547Proofs.GradientRealization
+import Lax342547Proofs.FrozenGradients
+import Lax342547Proofs.FrozenAssembly
+import Lax342547Proofs.GradientAssembly
+import Lax342547Proofs.ChannelAssembly
+import Lax342547Proofs.RecipeChannels
+import Lax342547Proofs.NonlinearChannels
+import Lax342547Proofs.TargetMatrices
+import Lax342547Proofs.TargetTesters
+import Lax342547Proofs.StarRouting
 import Lax342547Proofs.ChannelFactorization
 import Lax342547Proofs.RankedProjection
 import Lax342547Proofs.CompressedResidual
@@ -602,6 +614,79 @@ import Lax342547Proofs.PairedWitnesses
 #print axioms Lax342547Proofs.ChannelFactorization.remaining_values_orthogonal
 #print axioms Lax342547Proofs.ChannelFactorization.remaining_values_factor
 #print axioms Lax342547Proofs.ChannelFactorization.allowed_pure_factor
+
+#print axioms Lax342547Proofs.StarRouting.matrix_sum_rank
+#print axioms Lax342547Proofs.StarRouting.ordered_tester_rank
+#print axioms Lax342547Proofs.StarRouting.tester_matrix_representation
+#print axioms Lax342547Proofs.StarRouting.interval_center_excluded
+#print axioms Lax342547Proofs.StarRouting.ordinary_tester_disallowed_zero
+#print axioms Lax342547Proofs.StarRouting.star_cut_sum
+#print axioms Lax342547Proofs.StarRouting.incidence_sum
+#print axioms Lax342547Proofs.StarRouting.star_matrix_representation
+#print axioms Lax342547Proofs.StarRouting.matrix_smul_rank
+#print axioms Lax342547Proofs.StarRouting.matrix_add_rank
+#print axioms Lax342547Proofs.StarRouting.matrix_finset_sum_rank
+#print axioms Lax342547Proofs.StarRouting.star_matrix_rank
+
+#print axioms Lax342547Proofs.TargetTesters.ordinary_star_representation
+#print axioms Lax342547Proofs.TargetTesters.shared_matrix_rank
+#print axioms Lax342547Proofs.TargetTesters.shared_matrix_representation
+#print axioms Lax342547Proofs.TargetTesters.tester_coefficient
+#print axioms Lax342547Proofs.TargetTesters.tester_target_formula
+#print axioms Lax342547Proofs.TargetTesters.left_witness_cut
+#print axioms Lax342547Proofs.TargetTesters.left_shared_sum
+#print axioms Lax342547Proofs.TargetTesters.witness_tester_rank
+#print axioms Lax342547Proofs.TargetTesters.witness_tester_representation
+
+#print axioms Lax342547Proofs.TargetMatrices.sandwich_adjoint
+#print axioms Lax342547Proofs.TargetMatrices.mixer_matrix_representation
+#print axioms Lax342547Proofs.TargetMatrices.witness_component_rank
+#print axioms Lax342547Proofs.TargetMatrices.mixer_matrix_rank
+#print axioms Lax342547Proofs.TargetMatrices.target_matrix_rank
+#print axioms Lax342547Proofs.TargetMatrices.target_matrix_representation
+#print axioms Lax342547Proofs.TargetMatrices.target_family_representation
+
+#print axioms Lax342547Proofs.NonlinearChannels.primal_values_rank
+#print axioms Lax342547Proofs.NonlinearChannels.primal_plus_values
+#print axioms Lax342547Proofs.NonlinearChannels.primal_minus_values
+#print axioms Lax342547Proofs.NonlinearChannels.extra_product_add
+#print axioms Lax342547Proofs.NonlinearChannels.ambient_add_left
+#print axioms Lax342547Proofs.NonlinearChannels.ambient_add_right
+#print axioms Lax342547Proofs.NonlinearChannels.ambient_orthogonal_zero
+#print axioms Lax342547Proofs.NonlinearChannels.restriction_add
+#print axioms Lax342547Proofs.NonlinearChannels.component_response_unchanged
+#print axioms Lax342547Proofs.NonlinearChannels.nonlinear_component_correction
+#print axioms Lax342547Proofs.NonlinearChannels.paper_channel_capacity
+#print axioms Lax342547Proofs.NonlinearChannels.ambient_add_expansion
+
+#print axioms Lax342547Proofs.RecipeChannels.nonlinear_recipe
+
+#print axioms Lax342547Proofs.ChannelAssembly.channel_change_coordinate
+#print axioms Lax342547Proofs.ChannelAssembly.assembled_plus
+#print axioms Lax342547Proofs.ChannelAssembly.assembled_minus
+#print axioms Lax342547Proofs.ChannelAssembly.reciprocal_plus
+#print axioms Lax342547Proofs.ChannelAssembly.reciprocal_minus
+
+#print axioms Lax342547Proofs.GradientAssembly.contraction_expansion
+#print axioms Lax342547Proofs.GradientAssembly.corrected_gradients
+#print axioms Lax342547Proofs.GradientAssembly.simultaneous_gradients
+
+#print axioms Lax342547Proofs.FrozenAssembly.flip_lists_twice
+#print axioms Lax342547Proofs.FrozenAssembly.barred_channel_frozen
+#print axioms Lax342547Proofs.FrozenAssembly.assembled_frozen
+
+#print axioms Lax342547Proofs.FrozenGradients.frozen_gradients
+
+#print axioms Lax342547Proofs.GradientRealization.gradient_realization
+
+#print axioms Lax342547Proofs.FourHoles.four_holes
+
+#print axioms Lax342547Proofs.PrimalRecords.entry_count
+#print axioms Lax342547Proofs.PrimalRecords.coordinate_map_ext
+#print axioms Lax342547Proofs.PrimalRecords.entries_determine
+#print axioms Lax342547Proofs.PrimalRecords.agreement_contractions
+#print axioms Lax342547Proofs.PrimalRecords.entries_give_four_holes
+#print axioms Lax342547Proofs.PrimalRecords.record_count
 
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample
 #print axioms Lax342547Proofs.FractionalCounterexample.arbitrarily_large_fractional_counterexample

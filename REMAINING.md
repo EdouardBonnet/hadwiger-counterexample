@@ -44,7 +44,7 @@ this file is the shorter status and acceptance checklist.
 | Sparse label supports of projected pins | Lemma 5.3 | Complete; the exact uniform label budget covers all sparse vectors |
 | Atoms, flavors, and finite parameter laws | Definition 5.4 | Defined; incidence formula, role/diagonal bits, retained coordinates, and product law checked |
 | Uniform mixing matrices, chosen before the unit law | §5.3, Lemma 5.5 | Complete: simultaneous unary rank/row spaces and all binary parities on every flavor, explicit large-n threshold, and the paper's mixer parameters |
-| Scalar recipes, table flags, gradient realization | §6, Theorem 6.3 | Effective dimension/rank bounds, table spaces and injection flags, private complements, unary admissibility, fresh-key independence, coefficient/table counts, concrete atom prescriptions, effective contractions, and full paired recipes checked; all four endpoint prescriptions, frozen baselines of rank at most 3K+28, and residual vanishing on effective/selected profiles checked; whole-space realization remains |
+| Scalar recipes, table flags, gradient realization | §6, Theorem 6.3 | Effective dimension/rank bounds, table spaces and injection flags, private complements, unary admissibility, fresh-key independence, coefficient/table counts, concrete atom prescriptions, effective contractions, and full paired recipes checked; all four endpoint prescriptions, frozen baselines of rank at most 3K+28, and residual vanishing on effective/selected profiles checked; whole-space realization, frozen assembly, all four holes, and primal record count checked under the genuine recipe and capacity hypotheses |
 | Accepted queries and overlap-to-four-holes implication | §7, Proposition 7.1 | Not formalized |
 | Phase alternatives and accepting-pair injection | §8 | Not formalized |
 | Common prediction, exactification, and status preparation | §9, Proposition 9.2 | Not formalized |
@@ -124,11 +124,14 @@ and proves the unary and binary properties with the paper's mixer parameters.
    through the actual barred quotients yields the paper's `Dquo` bound and
    preserves the entire recipe response. Allowed pure factorization and the
    pairing capacity loss `2K+4R` are checked, including vanishing cross terms.
-   Still prove the explicit tester/mixer target routing bound
-   `15r₀+14J|E|`, use the parameter margin to fit the restored form, and
-   assemble all opposite endpoints and both unit roles into cross forms
-   satisfying the gradient equations and frozen constraints simultaneously.
-   Theorem 6.3 remains open.
+   The explicit tester/mixer routing bound `15r₀+14J|E|`, the channel
+   margin, nonlinear correction, reciprocal assembly, and frozen constraints
+   are now checked. `GradientRealization.realize` constructs the cross forms
+   from the actual scalar recipe and binary prescriptions; `FourHoles`
+   supplies the four witnesses. `PrimalRecords` proves the exact entry count
+   and that matching records determines every required contraction.
+   The next mathematical work is the collision criterion of §7, including
+   its actual records, conditional image caps, and quotient characters.
 3. State raw supersaturation using this concrete law. Preserve the separate
    marginal caps and joint cap; the two endpoints of a unit can be dependent.
    An abstract structure with a supersaturation field is not a construction.

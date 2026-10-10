@@ -77,8 +77,8 @@ The closing checks are:
 | Full reference image cap, Lemma 4.3(c) | Checked for arbitrary actual nominal ranks, dependent tuples, both endpoints and signs, and all components, including a single scale choice paying every cost |
 | Sparse intersections and representatives, Lemma 4.4 | Complete: bounded coefficient certificates, explicit exponential exception, tensor ranks, unique majority-zero representatives, support bound, trace/chiStar identity, and a uniform concrete scale |
 | Both exact-pin peelings, Lemma 4.5 | Checked finite partitions, quotient ranks, restriction trimming, metadata/image counts, final pin budget, preserved effective spaces, all-rank leaf caps, and actual-mass recovery; mixed marginal costs tracked separately |
-| Table coordinates and atom prescriptions, Lemma 6.2 | Effective dimension/rank bounds, protected/private channels, unary admissibility, fresh-key independence, table and nominal-coefficient counts, effective contractions, paired lists, and the concrete numerical-to-atom-gradient prescription theorem checked; all four endpoint prescriptions and the bounded baseline checked; whole-space realization remains |
-| Gradient realization, Theorem 6.3 | Actual obstruction decomposition, recipe solvability, bounded derivatives, `14K+140` residual matrices, chosen pin/key-preserving compression with `Dquo` rank, and allowed pure factorization checked; explicit initial-target routing and simultaneous gradient assembly remain |
+| Table coordinates and atom prescriptions, Lemma 6.2 | Effective dimension/rank bounds, protected/private channels, unary admissibility, fresh-key independence, table and nominal-coefficient counts, effective contractions, paired lists, and the concrete numerical-to-atom-gradient prescription theorem checked; all four endpoint prescriptions and the bounded baseline checked; whole-space realization and frozen assembly checked |
+| Gradient realization, Theorem 6.3 | Actual obstruction decomposition, recipe solvability, bounded derivatives, `14K+140` residual matrices, chosen pin/key-preserving compression with `Dquo` rank, and allowed pure factorization checked; explicit target routing, capacity margin, nonlinear correction, frozen assembly, four-hole implication, and primal record count checked |
 | Entropy/containers and the probabilistic construction | Not proved |
 | Theorem 1.1 | Open |
 | Counterexample corollaries | Checked only conditional on Theorem 1.1 |
@@ -103,12 +103,13 @@ pin budget, and preservation of old effective spaces. The mixed marginal
 normalization and successive-restriction identities are checked separately.
 The finite graph transfer and the later construction remain open.
 
-After residual compression and allowed pure factorization for the actual recipe,
-overall completion is estimated conservatively at **about 44%**, weighted by remaining mathematical
+After completing deterministic gradient realization for the actual recipe,
+overall completion is estimated conservatively at **about 50%**, weighted by remaining mathematical
 difficulty rather than declaration count. The validated archive contains
-145 concepts and 481 annotated proofs, with 479 closed proof networks.
+157 concepts and 542 annotated proofs, with 540 closed proof networks.
 The two remaining conditional proofs are the consequences of the open
-graph-existence theorem. The requested 50% milestone has not been reached.
+graph-existence theorem. The requested 60% milestone has not been reached; the collision criterion
+and substantial later probabilistic construction remain.
 
 ## 3. Fix the common mathematical interfaces
 
@@ -792,8 +793,9 @@ selected atoms. The whole-space obstruction decomposition is checked;
 parameter linearity and annihilator duality construct the unrestricted
 linearized recipe solution. Bounded derivatives, the `14K+140` residual
 representation, target-preserving compression, and allowed pure
-factorization are checked. Explicit target routing and simultaneous
-whole-space gradient realization remain open.
+factorization are checked. Explicit target routing, the channel capacity margin, simultaneous
+whole-space gradient realization, frozen assembly, and all four holes
+are now checked.
 
 ### 9.1 Detailed annihilator reduction
 
@@ -820,7 +822,7 @@ individual matrix lemmas does not close the coupled obstruction argument.
 | Residual representation | Remove the projected pure target, include the bounded derivative product, and prove per-individual matrix rank at most `14K+140` | Checked in `ResponseMatrices`, `RankedProjection`, and `ResidualRealization` |
 | Compression | Choose pin/key-fixing maps preserving residual matrices and the actual cut domain; descend through barred quotients and bound the pure correction | Checked in `BaseCompression`, `ConstrainedCompression`, `QuotientCompression`, and `CompressedResidual`, with the paper's `Dblk` and `Dquo` |
 | Pure factorization | Factor through allowed channel values orthogonal to baseline and earlier derivative values | Checked in `ChannelFactorization` whenever the rank fits; capacity loss at most `2K+4R` |
-| Final gradient assembly | Prove the explicit initial-target routing bound, apply the parameter margin, and combine both opposite endpoints and unit roles into actual cross forms | Open |
+| Final gradient assembly | Prove the explicit initial-target routing bound, apply the parameter margin, and combine both opposite endpoints and unit roles into actual cross forms | Checked in `TargetMatrices`, `RecipeChannels`, `GradientAssembly`, `FrozenGradients`, and `GradientRealization` |
 
 For the selected-block step, let L be the union of a component's moment
 labels and the selected key labels. Define `E_L(c)` as the sum of
@@ -935,24 +937,23 @@ restored pure form costs at most the original matrix-rank sum plus `Dquo`.
 remaining pairing rank using allowed outputs orthogonal to baseline and
 bounded derivative values. The pairing capacity loss is at most `2K+4R`.
 
-The next obligations are:
+These obligations are now checked. `StarRouting` and `TargetTesters`
+construct the ordered tester stars; `TargetMatrices` adds the mixer terms
+and proves the per-individual bound `15r₀+14J|E|`. `NonlinearChannels`
+uses the paper's margin to fit the restored form of rank at most
+`30r₀+28J|E|+Dquo`, retaining the actual perpendicular value spaces.
+`RecipeChannels` combines compressed residuals with the nonlinear channel
+correction. `ChannelAssembly`, `GradientAssembly`, and `FrozenAssembly`
+prove the exact reciprocal coordinate, contraction, and frozen-entry
+identities. `FrozenGradients` and `GradientRealization` construct the forms
+from the actual admissible table, matched keys, sparse covers, scalar recipe,
+binary prescriptions, and explicit degree/channel margins.
 
-1. Construct the explicit tester/mixer target matrices with per-individual
-   rank at most `15r₀+14J|E|`. The general representation existence theorem
-   proves no such bound. The current recipe theorem therefore retains its
-   supplied target matrices and their rank sum honestly.
-2. Apply the paper's `970r₀` margin to the restored pure form, whose resulting
-   bound must be `30r₀+28J|E|+Dquo`.
-3. Add the realized pure channel changes to the bounded derivatives, prove
-   the exact nonlinear contraction identities, and assemble all opposite
-   endpoints and both unit roles while preserving frozen pins and keys.
-4. Prove the whole-space gradients, the scalar constraint count, and the
-   resulting four-hole assertion in Theorem 6.3.
-
-The checked rank and selected-moment steps are independent of the private
-channel dimension. The derivative and injection steps use the actual table
-maps. The remaining rank and realization steps must retain these definitions
-and the actual allowed parameter spaces.
+`FourHoles` obtains the four actual hole witnesses. `PrimalRecords` counts
+exactly `16|E|h dim(B)` tested bits and proves that agreement fixes every
+required contraction. This completes the deterministic §6.3 step, without
+assuming solvability of the gradient system. The probabilistic occurrence
+of compatible recipes and cross entries is the next dependency.
 
 ## 10. Accepted queries imply four holes — §7
 

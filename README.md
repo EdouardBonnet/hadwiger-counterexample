@@ -131,8 +131,8 @@ by positions and may contain repeated raw vertices.
   `ConcreteRecipes.prescribe` chooses indexed ordered L/R bits using only
   tags, tester summaries, and opposite role/p bits, and proves the desired
   list-gradient identities for any actual atoms and mixers satisfying
-  those tests. Occurrence of these bits and gradient realization on the
-  entire cut space remain separate, open tasks.
+  those tests. Occurrence of these bits remains a probabilistic task; deterministic
+  realization on the entire cut space is now checked.
 - The effective table contraction is defined independently of chosen
   extensions and identified with the actual frame contraction. Full paired
   witness lists and scalar recipes are defined, with the fourteen-ray
@@ -143,8 +143,8 @@ by positions and may contain repeated raw vertices.
   same baseline. The target residual vanishes on effective profiles and
   every selected atom. The obstruction-space reduction is checked;
   unrestricted linear solvability and bounded derivative corrections are
-  checked. Residual rank bounds and compression are checked; the complete
-  gradient realization remains open.
+  checked. Residual rank bounds, compression, and the complete gradient
+  realization are checked under the actual recipe and capacity hypotheses.
 - Pure responses on the barred quotients of the actual nominal spaces.
   Their annihilating pairs of cut profiles have component rank at most
   `2K+28` and bounded label decompositions. Strong sparse pin exclusions
@@ -184,8 +184,11 @@ by positions and may contain repeated raw vertices.
   rank fits the surviving dot pairing. Orthogonality to protected channels,
   baseline values and bounded derivative values costs at most `K+2R` on each
   side. The resulting maps realize the form exactly and have the required
-  vanishing cross terms. The explicit tester/mixer target routing and
-  simultaneous gradient assembly for Theorem 6.3 remain open.
+  vanishing cross terms. The explicit tester/mixer target routing has rank at most
+  `15r₀+14J|E|`. The paper's channel margin fits the restored pure form;
+  both reciprocal endpoint roles assemble simultaneously while preserving
+  frozen pins and keys. All four whole-space gradients and hole witnesses
+  are checked. The primal record count is `16|E|h dim(B)` bits.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
 
@@ -209,7 +212,7 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 At the latest validated checkpoint, `lake build` and `lax build . --replay` pass,
-with 145 concepts and 481 annotated proofs, 479 of which have no open
+with 157 concepts and 542 annotated proofs, 540 of which have no open
 mathematical assumptions. All kernel replays pass. The only conditional
 proofs are the two counterexample consequences of the open Theorem 1.1.
 

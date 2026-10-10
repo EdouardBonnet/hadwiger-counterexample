@@ -1,3 +1,15 @@
+import Lax342547Proofs.PrimalRecords
+import Lax342547Proofs.FourHoles
+import Lax342547Proofs.GradientRealization
+import Lax342547Proofs.FrozenGradients
+import Lax342547Proofs.FrozenAssembly
+import Lax342547Proofs.GradientAssembly
+import Lax342547Proofs.ChannelAssembly
+import Lax342547Proofs.RecipeChannels
+import Lax342547Proofs.NonlinearChannels
+import Lax342547Proofs.TargetMatrices
+import Lax342547Proofs.TargetTesters
+import Lax342547Proofs.StarRouting
 import Lax342547Proofs.ChannelFactorization
 import Lax342547Proofs.RankedProjection
 import Lax342547Proofs.CompressedResidual
