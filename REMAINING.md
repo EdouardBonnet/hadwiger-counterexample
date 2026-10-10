@@ -102,8 +102,12 @@ and proves the unary and binary properties with the paper's mixer parameters.
    response now gives component rank at most `2K+28` and a bounded label
    decomposition. Strong sparse exclusions and the scalar selected-moment
    lemma are checked. Fresh coefficient extractors through pin and key
-   quotients are checked. Applying them to selected tensor blocks, enforcing triangle
-   consistency, and using derivative responses with table injection remain;
+   quotients now isolate actual selected tensor blocks. Triangle consistency
+   gives one scalar per witness across its tag star. Subtracting those
+   atoms preserves pure annihilation and leaves only unselected labels,
+   with the original support and sum-of-block-ranks budgets. Define the
+   full derivative response, prove that selected atoms also annihilate it,
+   eliminate the residual key/channel terms, and use table injection;
    then solve the whole-space gradient
    problem by annihilator duality, bounded-rank corrections, compression,
    and private-channel factorization. Theorem 6.3 remains open.

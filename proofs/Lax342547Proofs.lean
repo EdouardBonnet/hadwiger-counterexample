@@ -1,3 +1,9 @@
+import Lax342547Proofs.TensorBlocks
+import Lax342547Proofs.SelectedBlocks
+import Lax342547Proofs.LabelRelations
+import Lax342547Proofs.SelectedScalars
+import Lax342547Proofs.SelectedRemoval
+import Lax342547Proofs.ResidualLabels
 import Lax342547Proofs.QuotientExtractors
 import Lax342547Proofs.QuotientRank
 import Lax342547Proofs.SelectedMoments

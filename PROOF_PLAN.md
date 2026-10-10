@@ -102,10 +102,10 @@ pin budget, and preservation of old effective spaces. The mixed marginal
 normalization and successive-restriction identities are checked separately.
 The finite graph transfer and the later construction remain open.
 
-At the pure-obstruction and quotient-extractor checkpoint, overall completion is estimated
-conservatively at **about 33%**, weighted by remaining mathematical
+At the selected-atom and unselected-residual checkpoint, overall completion is estimated
+conservatively at **about 34%**, weighted by remaining mathematical
 difficulty rather than declaration count. The validated archive contains
-122 concepts and 332 annotated proofs, with 330 closed proof networks.
+128 concepts and 350 annotated proofs, with 348 closed proof networks.
 The two remaining conditional proofs are the consequences of the open
 graph-existence theorem. The requested 50% milestone has not been reached.
 
@@ -684,6 +684,12 @@ sparse-label bounds, and mixers.
    its component rank bound `2K+28` and the resulting label decompositions
    are checked. Selected affine-ray moment blocks reduce to scalar point
    moments, and sparse pin exclusions cover arbitrary base coefficients.
+   The quotient extractors now isolate the actual selected tensor blocks.
+   Triangle interpolation gives one scalar for each selected witness on
+   its entire tag star. Subtracting these actual atoms preserves pure
+   annihilation and gives a reconstruction on unselected labels with the
+   same support and sum-of-block-ranks budgets. The derivative-response
+   reduction, table injection, and final duality argument remain.
 5. Construct bounded-rank derivative corrections. Prove the baseline
    rank `3K+28` and residual rank `14K+140`, rather than declaring them
    as opaque bounds.
@@ -774,10 +780,10 @@ individual matrix lemmas does not close the coupled obstruction argument.
 | Individual rank | Separate each endpoint and component; prove rank at most `2K+28` from the two kernel dimensions | Checked in `QuotientRank`, `TensorAnnihilators`, and `PairedAnnihilators` |
 | Label decomposition | Apply Lemma 5.2 to every actual component, retaining the label count, Boolean identities, and sum-of-block-ranks bound | Checked in `PureObstructions.component_labels` |
 | Strong sparse exclusion | Choose one exclusion covering arbitrary base-vector coefficients in every short projected pin expansion, including expansions with other excluded labels | Checked in `PinLabelExclusions`; it implies the earlier fresh-key hypotheses |
-| Isolate selected blocks | Extract the fresh coefficient through the pin-plus-key quotient and apply it to each component label summand | In progress: pin and key quotient extractors checked in `QuotientExtractors`; tensor-block integration remains |
+| Isolate selected blocks | Extract the fresh coefficient through the pin-plus-key quotient and apply it to each component label summand | Checked in `TensorBlocks` and `SelectedBlocks`, using the actual witness lists |
 | Scalar selected moment | Prove a Boolean base moment killed modulo that affine ray in both factors equals a scalar point moment | Checked in `SelectedMoments` and `TensorAnnihilators.selected_block` |
-| Cut consistency | Separate the triangle relations label by label and prove the selected scalar is equal on every component of its tag star | Open |
-| Subtract selected atoms | Subtract those scalar multiples as actual cut profiles, preserving response annihilation and the component rank and support budgets | Open |
+| Cut consistency | Separate the triangle relations label by label and prove the selected scalar is equal on every component of its tag star | Checked in `LabelRelations` and `SelectedScalars.selected_decomposition` |
+| Subtract selected atoms | Subtract those scalar multiples as actual cut profiles, preserving response annihilation and the component rank and support budgets | Pure annihilation and bounded reconstruction on unselected labels checked in `SelectedRemoval` and `ResidualLabels`; preservation of derivative responses remains |
 | Derivative response | Define all allowed derivative maps into the protected-channel orthogonal spaces; prove their frozen-entry and reciprocal-role compatibility | Open |
 | Eliminate residual keys | For an unselected residual profile, use the strong exclusion and protected/private complement to remove every selected key and channel term in a pure contraction | Open |
 | Use table injection | Test rank-one derivative maps; use both injection flags to force each residual contraction to vanish | Open |
@@ -792,8 +798,11 @@ selected key span it can therefore change only along that label's
 incident affine key ray. Factor the coefficient projection, followed by
 the quotient by that ray, through `E_L` and the pin-plus-key quotient;
 then extend it linearly to the ambient quotient. These two extractors
-are now checked in `QuotientExtractors`. Pulling back arbitrary
-base quotient bilinear forms isolates the selected base moment block.
+are checked in `QuotientExtractors`. `TensorBlocks.block_contraction`
+proves that contraction commutes with a base block's tensor lift.
+Pulling back arbitrary base quotient bilinear forms therefore isolates
+the selected base moment block. `SelectedBlocks.selected_obstruction`
+applies this to the actual lists, pins, and obstruction components.
 For a nonincident selected atom the ray is zero, so the entire block must
 vanish. For an incident atom, `TensorAnnihilators.selected_block` supplies
 its scalar point-moment form.
@@ -803,9 +812,28 @@ sets, whose size is at most `3R_*`. Selector interpolation separates the
 actual cut triangle identity at each label. The selected label is
 supported on its tag star; evaluate the resulting matrix identity at
 its two constant base coordinates to compare the scalar coefficients.
-The selected point has constant coordinate one. Subtract the resulting
-scalar atom in the actual cut-profile space, then use the sum-of-ranks
-part of the label decomposition to retain the residual rank budget.
+The selected point has constant coordinate one. These steps are checked
+in `LabelRelations` and `SelectedScalars`. The endpoint
+`SelectedScalars.selected_decomposition` chooses the component blocks
+and the common scalar for every selected witness directly from an actual
+pure obstruction. `ResidualLabels.unselected_obstruction` subtracts the
+resulting scalar atoms in the actual cut-profile space and deletes their
+labels from the reconstruction. Every surviving block keeps its Boolean
+moment identities; the support and sum-of-block-ranks bounds stay at
+`2K+28`. Pure annihilation is preserved, so the existing component-rank
+theorem also applies to the remainder. Exact nonincrease relative to each
+original component's rank is not asserted by this endpoint.
+
+The next obligation is the full derivative response. Define the allowed
+nominal quotient maps into the orthogonal spaces of the opposite pin's
+protected channels. Extend them to bilinear changes supported on those
+channel arguments. Prove frozen-entry preservation and independence of
+the reciprocal roles on primal inputs. Include these maps with the pure
+forms in one linear response operator. Each selected atom must annihilate
+this enlarged operator before subtraction can be used in its kernel.
+Then eliminate selected keys and private channels from contractions of
+the unselected remainder, test rank-one derivatives, and invoke the
+actual table injection flags.
 
 The checked rank and selected-moment steps are independent of the private
 channel dimension. The open derivative and injection steps must use the

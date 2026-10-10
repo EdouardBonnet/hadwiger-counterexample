@@ -1,3 +1,9 @@
+import Lax342547Proofs.TensorBlocks
+import Lax342547Proofs.SelectedBlocks
+import Lax342547Proofs.LabelRelations
+import Lax342547Proofs.SelectedScalars
+import Lax342547Proofs.SelectedRemoval
+import Lax342547Proofs.ResidualLabels
 import Lax342547Proofs.QuotientExtractors
 import Lax342547Proofs.QuotientRank
 import Lax342547Proofs.SelectedMoments
@@ -418,6 +424,25 @@ import Lax342547Proofs.PairedWitnesses
 #print axioms Lax342547Proofs.QuotientExtractors.quotient_factor
 #print axioms Lax342547Proofs.QuotientExtractors.pin_extractor
 #print axioms Lax342547Proofs.QuotientExtractors.key_extractor
+
+#print axioms Lax342547Proofs.TensorBlocks.block_contraction
+#print axioms Lax342547Proofs.TensorBlocks.quotient_isolation
+#print axioms Lax342547Proofs.SelectedBlocks.individual_extractor
+#print axioms Lax342547Proofs.SelectedBlocks.selected_component
+#print axioms Lax342547Proofs.SelectedBlocks.selected_obstruction
+#print axioms Lax342547Proofs.LabelRelations.blocks_unique
+#print axioms Lax342547Proofs.LabelRelations.triangle_blocks
+#print axioms Lax342547Proofs.LabelRelations.cut_triangle
+#print axioms Lax342547Proofs.SelectedScalars.profile_triangle
+#print axioms Lax342547Proofs.SelectedScalars.star_scalar
+#print axioms Lax342547Proofs.SelectedScalars.selected_scalar
+#print axioms Lax342547Proofs.SelectedScalars.obstruction_scalar
+#print axioms Lax342547Proofs.SelectedScalars.selected_decomposition
+#print axioms Lax342547Proofs.SelectedRemoval.atom_annihilates
+#print axioms Lax342547Proofs.SelectedRemoval.selected_part_annihilates
+#print axioms Lax342547Proofs.SelectedRemoval.subtract_annihilates
+#print axioms Lax342547Proofs.ResidualLabels.residual_reconstruction
+#print axioms Lax342547Proofs.ResidualLabels.unselected_obstruction
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample

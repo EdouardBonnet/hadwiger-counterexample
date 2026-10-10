@@ -147,8 +147,11 @@ by positions and may contain repeated raw vertices.
   `2K+28` and bounded label decompositions. Strong sparse pin exclusions
   cover arbitrary base coefficients. A selected affine-ray moment block
   is forced to be a scalar point moment. Fresh coefficients can be
-  extracted through pin and key quotients. The coupled selected-label and
-  derivative-response reductions remain open.
+  extracted through pin and key quotients and applied to the actual tensor
+  blocks. Triangle relations give one scalar per selected witness on its
+  tag star. Subtracting those actual atoms preserves pure annihilation and
+  leaves a bounded reconstruction using only unselected labels. The full
+  derivative-response reduction and table injection remain open.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
 
@@ -172,7 +175,7 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 At the latest validated checkpoint, `lake build` and `lax build . --replay` pass,
-with 122 concepts and 332 annotated proofs, 330 of which have no open
+with 128 concepts and 350 annotated proofs, 348 of which have no open
 mathematical assumptions. All kernel replays pass. The only conditional
 proofs are the two counterexample consequences of the open Theorem 1.1.
 
