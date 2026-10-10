@@ -97,3 +97,7 @@ import Lax342547.WitnessAtoms
 import Lax342547.AtomProducts
 import Lax342547.ConcreteRecipes
 import Lax342547.TableCounts
+import Lax342547.TensorContractions
+import Lax342547.TableContractions
+import Lax342547.RawContractions
+import Lax342547.PairedWitnesses

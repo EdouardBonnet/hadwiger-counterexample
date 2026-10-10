@@ -56,6 +56,10 @@ import Lax342547Proofs.WitnessAtoms
 import Lax342547Proofs.AtomProducts
 import Lax342547Proofs.ConcreteRecipes
 import Lax342547Proofs.TableCounts
+import Lax342547Proofs.TensorContractions
+import Lax342547Proofs.TableContractions
+import Lax342547Proofs.RawContractions
+import Lax342547Proofs.PairedWitnesses
 
 -- Completed preliminary results: background axioms only.
 #print axioms Lax342547Proofs.HadwigerMatching.hadwiger_matching_bound
@@ -336,6 +340,18 @@ import Lax342547Proofs.TableCounts
 #print axioms Lax342547Proofs.TableCounts.table_count
 #print axioms Lax342547Proofs.TableCounts.coefficient_code
 #print axioms Lax342547Proofs.TableCounts.coefficient_count
+
+#print axioms Lax342547Proofs.TensorContractions.ambient_outer
+#print axioms Lax342547Proofs.TensorContractions.contraction_outer
+#print axioms Lax342547Proofs.TensorContractions.extension_agreement
+#print axioms Lax342547Proofs.TensorContractions.contraction_unique
+#print axioms Lax342547Proofs.TableContractions.star_extension
+#print axioms Lax342547Proofs.RawContractions.observation_blocks
+#print axioms Lax342547Proofs.RawContractions.raw_contraction
+#print axioms Lax342547Proofs.RawContractions.raw_star_contraction
+#print axioms Lax342547Proofs.PairedWitnesses.list_budgets
+#print axioms Lax342547Proofs.PairedWitnesses.diagonal_sums
+#print axioms Lax342547Proofs.PairedWitnesses.tensor_sharing
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample

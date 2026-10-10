@@ -111,3 +111,7 @@ import Lax342547Proofs.WitnessAtoms
 import Lax342547Proofs.AtomProducts
 import Lax342547Proofs.ConcreteRecipes
 import Lax342547Proofs.TableCounts
+import Lax342547Proofs.TensorContractions
+import Lax342547Proofs.TableContractions
+import Lax342547Proofs.RawContractions
+import Lax342547Proofs.PairedWitnesses

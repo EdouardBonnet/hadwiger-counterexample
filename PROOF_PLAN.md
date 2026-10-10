@@ -77,7 +77,7 @@ The closing checks are:
 | Full reference image cap, Lemma 4.3(c) | Checked for arbitrary actual nominal ranks, dependent tuples, both endpoints and signs, and all components, including a single scale choice paying every cost |
 | Sparse intersections and representatives, Lemma 4.4 | Complete: bounded coefficient certificates, explicit exponential exception, tensor ranks, unique majority-zero representatives, support bound, trace/chiStar identity, and a uniform concrete scale |
 | Both exact-pin peelings, Lemma 4.5 | Checked finite partitions, quotient ranks, restriction trimming, metadata/image counts, final pin budget, preserved effective spaces, all-rank leaf caps, and actual-mass recovery; mixed marginal costs tracked separately |
-| Table coordinates and atom prescriptions, Lemma 6.2 | Effective dimension/rank bounds, protected/private channels, unary admissibility, fresh-key independence, table and nominal-coefficient counts, and the concrete numerical-to-atom-gradient prescription theorem checked; full recipe packaging and whole-space realization remain |
+| Table coordinates and atom prescriptions, Lemma 6.2 | Effective dimension/rank bounds, protected/private channels, unary admissibility, fresh-key independence, table and nominal-coefficient counts, effective contractions, paired lists, and the concrete numerical-to-atom-gradient prescription theorem checked; applying prescriptions to all four endpoints and whole-space realization remain |
 | Entropy/containers and the probabilistic construction | Not proved |
 | Theorem 1.1 | Open |
 | Counterexample corollaries | Checked only conditional on Theorem 1.1 |
@@ -102,10 +102,10 @@ pin budget, and preservation of old effective spaces. The mixed marginal
 normalization and successive-restriction identities are checked separately.
 The finite graph transfer and the later construction remain open.
 
-At the table-and-prescription checkpoint, overall completion is estimated
+At the paired-witness and table-contraction checkpoint, overall completion is estimated
 conservatively at **about 33%**, weighted by remaining mathematical
 difficulty rather than declaration count. The validated archive contains
-99 concepts and 277 annotated proofs, with 275 closed proof networks.
+103 concepts and 288 annotated proofs, with 286 closed proof networks.
 The two remaining conditional proofs are the consequences of the open
 graph-existence theorem. The requested 50% milestone has not been reached.
 
@@ -648,18 +648,19 @@ sparse-label bounds, and mixers.
 
 1. Define effective spaces, small tables, admissibility, injection flags,
    and the private/protected channel decomposition.
-   **In progress.** These spaces and flags are defined. Effective dimension
+   **Complete.** These spaces and flags are defined. Effective dimension
    and total-rank bounds, table dimension bounds, protected projection
    bounds, private complements, and pin-extension monotonicity are checked.
-   The table-derived contraction on effective profiles remains to be defined
-   and connected to actual channel contractions.
+   The table-derived contraction is well defined on effective profiles,
+   independent of its chosen linear extensions, and agrees with actual
+   channel contractions whenever the full cross forms extend the table.
 2. Define witness lists and all scalar recipe equations. Preserve the
    allowed lengths `1,…,7` and freshness of labels across both incident lists.
-   **In progress.** Actual point atoms and their numerical tester records
-   are defined. The two role equations, opposite coupled equation, and
-   resulting atom-gradient identities are formalized for any two nonempty
-   finite lists. The full paired-list structure, odd diagonal sums, and
-   effective-space equations remain to be assembled.
+   **Complete.** Actual point atoms and their numerical tester records
+   are defined. The full paired-list structure records matched tags and
+   diagonal bits, label freshness, lengths, role parity, both effective-space
+   equations, and both coupled endpoint equations. Each endpoint uses at
+   most fourteen rays; diagonal sums and matched-key tensor sharing are proved.
 3. Prove Lemma 6.2: the table restrictions separate into two orientation
    filters; fresh key directions are independent modulo the stored spaces;
    the binary prescriptions are consistent exactly when the scalar
@@ -700,6 +701,16 @@ nominal endpoint blocks. The injection quotients use the protected channel
 of the pinned input's sign, even though the table evaluates against the
 opposite-sign channel. `raw_admissible_iff_filters` uses fixed stored pin
 images to separate both cross orientations.
+
+[`TensorContractions`](proofs/Lax342547Proofs/TensorContractions.lean)
+constructs the linear dot-product contraction on the tensor span and proves
+that all ambient extensions give the same value. This gives the effective
+table contraction in [`TableContractions`](proofs/Lax342547Proofs/TableContractions.lean).
+[`RawContractions`](proofs/Lax342547Proofs/RawContractions.lean) identifies
+its ambient formula with the actual raw-frame trace contraction.
+[`PairedWitnesses`](proofs/Lax342547Proofs/PairedWitnesses.lean) supplies the
+full scalar-recipe definition, fourteen-ray bounds, diagonal identities,
+and sharing of the two witness tensors under positionwise matched keys.
 
 [`FreshKeys.fresh_keys`](proofs/Lax342547Proofs/FreshKeys.lean) projects any
 purported dependence onto each endpoint. The sparse exclusion and the

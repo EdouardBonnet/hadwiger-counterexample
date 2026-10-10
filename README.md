@@ -133,6 +133,10 @@ by positions and may contain repeated raw vertices.
   list-gradient identities for any actual atoms and mixers satisfying
   those tests. Occurrence of these bits and gradient realization on the
   entire cut space remain separate, open tasks.
+- The effective table contraction is defined independently of chosen
+  extensions and identified with the actual frame contraction. Full paired
+  witness lists and scalar recipes are defined, with the fourteen-ray
+  budget, diagonal sums, and matched-key tensor sharing proved.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
 
@@ -156,7 +160,7 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 At the latest validated checkpoint, `lake build` and `lax build . --replay` pass,
-with 99 concepts and 277 annotated proofs, 275 of which have no open
+with 103 concepts and 288 annotated proofs, 286 of which have no open
 mathematical assumptions. All kernel replays pass. The only conditional
 proofs are the two counterexample consequences of the open Theorem 1.1.
 
