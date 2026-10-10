@@ -107,8 +107,12 @@ and proves the unary and binary properties with the paper's mixer parameters.
    atoms preserves pure annihilation and leaves only unselected labels,
    with the original support and sum-of-block-ranks budgets. Define the
    full derivative response and prove that selected atoms also annihilate
-   it. Sparse vector key/channel elimination is now checked; apply it to
-   the pure contractions and use table injection;
+   it. Sparse vector key/channel elimination and the plus pure contraction's
+   membership in the actual primal pin are checked. Allowed bilinear channel
+   changes preserve frozen entries and vanish on opposite primal inputs.
+   Actual row and column injection criteria from orthogonal channel tests
+   are checked. Derive those tests from the assembled derivative response,
+   prove the reciprocal contraction, and remove keys from both tensor factors;
    then solve the whole-space gradient
    problem by annihilator duality, bounded-rank corrections, compression,
    and private-channel factorization. Theorem 6.3 remains open.

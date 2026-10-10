@@ -6,6 +6,8 @@ import Lax342547Proofs.SelectedRemoval
 import Lax342547Proofs.ResidualLabels
 import Lax342547Proofs.SparseKeyCoefficients
 import Lax342547Proofs.BarredElimination
+import Lax342547Proofs.PrimalContractions
+import Lax342547Proofs.ChannelChanges
 import Lax342547Proofs.QuotientExtractors
 import Lax342547Proofs.QuotientRank
 import Lax342547Proofs.SelectedMoments

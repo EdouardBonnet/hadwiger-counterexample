@@ -6,6 +6,8 @@ import Lax342547Proofs.SelectedRemoval
 import Lax342547Proofs.ResidualLabels
 import Lax342547Proofs.SparseKeyCoefficients
 import Lax342547Proofs.BarredElimination
+import Lax342547Proofs.PrimalContractions
+import Lax342547Proofs.ChannelChanges
 import Lax342547Proofs.QuotientExtractors
 import Lax342547Proofs.QuotientRank
 import Lax342547Proofs.SelectedMoments
@@ -449,6 +451,16 @@ import Lax342547Proofs.PairedWitnesses
 #print axioms Lax342547Proofs.BarredElimination.individual_keys_zero
 #print axioms Lax342547Proofs.BarredElimination.private_primal_pin
 #print axioms Lax342547Proofs.BarredElimination.sparse_barred
+#print axioms Lax342547Proofs.PrimalContractions.endpoint_vector
+#print axioms Lax342547Proofs.PrimalContractions.sparse_contraction
+#print axioms Lax342547Proofs.PrimalContractions.unselected_pin_contraction
+#print axioms Lax342547Proofs.ChannelChanges.frozen
+#print axioms Lax342547Proofs.ChannelChanges.opposite_primal
+#print axioms Lax342547Proofs.ChannelChanges.pin_frozen
+#print axioms Lax342547Proofs.ChannelChanges.perpendicular_detects
+#print axioms Lax342547Proofs.ChannelChanges.row_injection_zero
+#print axioms Lax342547Proofs.ChannelChanges.column_injection_zero
+#print axioms Lax342547Proofs.ChannelChanges.channel_entry
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample

@@ -6,6 +6,8 @@ import Lax342547.SelectedRemoval
 import Lax342547.ResidualLabels
 import Lax342547.SparseKeyCoefficients
 import Lax342547.BarredElimination
+import Lax342547.PrimalContractions
+import Lax342547.ChannelChanges
 import Lax342547.QuotientExtractors
 import Lax342547.QuotientRank
 import Lax342547.SelectedMoments
