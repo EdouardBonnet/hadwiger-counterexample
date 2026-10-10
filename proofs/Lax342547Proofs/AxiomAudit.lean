@@ -1,3 +1,21 @@
+import Lax342547Proofs.LeafCollision
+import Lax342547Proofs.CollisionScales
+import Lax342547Proofs.CollisionCosts
+import Lax342547Proofs.ActualCellCollision
+import Lax342547Proofs.FiniteCollision
+import Lax342547Proofs.ConditionalPairs
+import Lax342547Proofs.RecordCollision
+import Lax342547Proofs.RawRetainedCells
+import Lax342547Proofs.CellRepresentatives
+import Lax342547Proofs.RawCellEntropy
+import Lax342547Proofs.PinReindexing
+import Lax342547Proofs.FrozenCellDirections
+import Lax342547Proofs.IndependentMixtures
+import Lax342547Proofs.QueryRecordBounds
+import Lax342547Proofs.ParameterCellAveraging
+import Lax342547Proofs.CollisionExponents
+import Lax342547Proofs.JoinedRecords
+import Lax342547Proofs.PrimalGramTests
 import Lax342547Proofs.PairRecovery
 import Lax342547Proofs.CellAveraging
 import Lax342547Proofs.LeafBlockCaps
@@ -867,6 +885,89 @@ import Lax342547Proofs.PairedWitnesses
 #print axioms Lax342547Proofs.PairRecovery.independent_pair_apply
 #print axioms Lax342547Proofs.PairRecovery.pair_mass_pmf_event
 #print axioms Lax342547Proofs.PairRecovery.restriction_pair_event_recovery
+
+#print axioms Lax342547Proofs.PrimalGramTests.gram_form_evaluation
+#print axioms Lax342547Proofs.PrimalGramTests.raw_oriented_forms
+#print axioms Lax342547Proofs.PrimalGramTests.matrix_pair_outer
+#print axioms Lax342547Proofs.PrimalGramTests.entry_target_bits
+#print axioms Lax342547Proofs.PrimalGramTests.entry_actual_bits
+#print axioms Lax342547Proofs.PrimalGramTests.primal_entry_agreement
+#print axioms Lax342547Proofs.PrimalGramTests.primal_cell_four_holes
+
+#print axioms Lax342547Proofs.JoinedRecords.joined_rank_budget
+#print axioms Lax342547Proofs.JoinedRecords.joined_record_count
+#print axioms Lax342547Proofs.JoinedRecords.joined_record_bound
+#print axioms Lax342547Proofs.JoinedRecords.nominal_column_count
+#print axioms Lax342547Proofs.JoinedRecords.coordinate_linear_budget
+#print axioms Lax342547Proofs.JoinedRecords.basis_vectors_span
+#print axioms Lax342547Proofs.JoinedRecords.basis_records_cross_agreement
+
+#print axioms Lax342547Proofs.CollisionExponents.pruning_power_identity
+#print axioms Lax342547Proofs.CollisionExponents.pruning_overlap_bound
+#print axioms Lax342547Proofs.CollisionExponents.scalar_agreement_power
+#print axioms Lax342547Proofs.CollisionExponents.paper_scalar_smallness
+#print axioms Lax342547Proofs.CollisionExponents.paper_scalar_cost
+#print axioms Lax342547Proofs.CollisionExponents.collision_lower_from_overlap
+
+#print axioms Lax342547Proofs.ParameterCellAveraging.average_mono
+#print axioms Lax342547Proofs.ParameterCellAveraging.average_const
+#print axioms Lax342547Proofs.ParameterCellAveraging.average_cell_pair_lower
+
+#print axioms Lax342547Proofs.QueryRecordBounds.key_map_range
+#print axioms Lax342547Proofs.QueryRecordBounds.record_linear_bound
+#print axioms Lax342547Proofs.QueryRecordBounds.actual_nominal_column_linear_bound
+#print axioms Lax342547Proofs.QueryRecordBounds.actual_joined_rank_budget
+
+#print axioms Lax342547Proofs.IndependentMixtures.independent_pair_mixture
+#print axioms Lax342547Proofs.IndependentMixtures.independent_mixture_event
+
+#print axioms Lax342547Proofs.FrozenCellDirections.pin_key_frozen_images
+#print axioms Lax342547Proofs.FrozenCellDirections.right_pin_key_frozen_images
+#print axioms Lax342547Proofs.FrozenCellDirections.frozen_target_oriented
+#print axioms Lax342547Proofs.FrozenCellDirections.record_target_oriented
+
+#print axioms Lax342547Proofs.PinReindexing.relative_rank_reindex
+#print axioms Lax342547Proofs.PinReindexing.event_reindex
+#print axioms Lax342547Proofs.PinReindexing.leaf_cap_reindex
+
+#print axioms Lax342547Proofs.RawCellEntropy.left_cell_block_cap
+#print axioms Lax342547Proofs.RawCellEntropy.right_cell_block_cap
+
+#print axioms Lax342547Proofs.CellRepresentatives.positive_cell_member
+#print axioms Lax342547Proofs.CellRepresentatives.retained_cell_representatives
+
+#print axioms Lax342547Proofs.RawRetainedCells.retained_four_holes
+#print axioms Lax342547Proofs.RawRetainedCells.realized_retained_four_holes
+
+#print axioms Lax342547Proofs.RecordCollision.key_record_mass_total
+#print axioms Lax342547Proofs.RecordCollision.retained_key_record_identity
+#print axioms Lax342547Proofs.RecordCollision.key_record_mass_nonneg
+#print axioms Lax342547Proofs.RecordCollision.key_record_mass_subprobability
+
+#print axioms Lax342547Proofs.ConditionalPairs.subtype_pair_event
+
+#print axioms Lax342547Proofs.FiniteCollision.average_sub
+#print axioms Lax342547Proofs.FiniteCollision.independent_key_overlap
+#print axioms Lax342547Proofs.FiniteCollision.averaged_record_pruning
+#print axioms Lax342547Proofs.FiniteCollision.finite_collision_lower
+
+#print axioms Lax342547Proofs.ActualCellCollision.realized_conditional_four_holes
+
+#print axioms Lax342547Proofs.CollisionCosts.pruning_half_overlap
+#print axioms Lax342547Proofs.CollisionCosts.collision_exponential_lower
+#print axioms Lax342547Proofs.CollisionCosts.restriction_exponential_lower
+
+#print axioms Lax342547Proofs.CollisionScales.record_scale
+#print axioms Lax342547Proofs.CollisionScales.scalar_scale
+#print axioms Lax342547Proofs.CollisionScales.eventual_pruning_gap
+#print axioms Lax342547Proofs.CollisionScales.bounded_options
+#print axioms Lax342547Proofs.CollisionScales.bounded_option_exponent
+
+#print axioms Lax342547Proofs.LeafCollision.mixture_real_weights
+#print axioms Lax342547Proofs.LeafCollision.real_pair_mixture
+#print axioms Lax342547Proofs.LeafCollision.weighted_collision_lower
+#print axioms Lax342547Proofs.LeafCollision.skipped_collision_bound
+#print axioms Lax342547Proofs.LeafCollision.original_law_exponential_collision
 
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample
 #print axioms Lax342547Proofs.FractionalCounterexample.arbitrarily_large_fractional_counterexample

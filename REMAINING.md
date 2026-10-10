@@ -45,7 +45,7 @@ this file is the shorter status and acceptance checklist.
 | Atoms, flavors, and finite parameter laws | Definition 5.4 | Defined; incidence formula, role/diagonal bits, retained coordinates, and product law checked |
 | Uniform mixing matrices, chosen before the unit law | §5.3, Lemma 5.5 | Complete: simultaneous unary rank/row spaces and all binary parities on every flavor, explicit large-n threshold, and the paper's mixer parameters |
 | Scalar recipes, table flags, gradient realization | §6, Theorem 6.3 | Effective dimension/rank bounds, table spaces and injection flags, private complements, unary admissibility, fresh-key independence, coefficient/table counts, concrete atom prescriptions, effective contractions, and full paired recipes checked; all four endpoint prescriptions, frozen baselines of rank at most 3K+28, and residual vanishing on effective/selected profiles checked; whole-space realization, frozen assembly, all four holes, and primal record count checked under the genuine recipe and capacity hypotheses |
-| Accepted queries and overlap-to-four-holes implication | §7, Proposition 7.1 | Actual key slots and reference space, overlap normalization, opposite-parameter cell pruning, frozen records, quotient factorization, cross-Gram character estimates, simultaneous linear scalar tests, and all-rank joint leaf image caps checked; both actual endpoint key caps, original-cell PMF-to-real entropy, joint multi-component character tests, cell-rectangle recovery and squared restriction costs checked; actual primal-entry/target instantiation, full record metadata, parameter/leaf averaging and quantitative collision assembly remain |
+| Accepted queries and overlap-to-four-holes implication | §7, Proposition 7.1 | Finite collision core checked: actual primal-entry/target instantiation and all four holes in original PMF cells, both all-rank leaf image caps, key-indexed unary records, independent parameter and actual leaf-mass averaging, skipped pairs, pruning/scalar exponents, squared restriction recovery and bounded-option costs; complete numerical/status metadata encoding, uniform record budget/target selection and the full asymptotic Proposition 7.1 wrapper remain |
 | Phase alternatives and accepting-pair injection | §8 | Not formalized |
 | Common prediction, exactification, and status preparation | §9, Proposition 9.2 | Not formalized |
 | Histogram compactness, Gram comparisons, and many-query bounds | Lemmas 10.1–10.5 | Not formalized |
@@ -130,8 +130,16 @@ and proves the unary and binary properties with the paper's mixer parameters.
    from the actual scalar recipe and binary prescriptions; `FourHoles`
    supplies the four witnesses. `PrimalRecords` proves the exact entry count
    and that matching records determines every required contraction.
-   The next mathematical work is the collision criterion of §7, including
-   its actual records, conditional image caps, and quotient characters.
+   The finite collision core of §7 is now checked. `RawRetainedCells` and
+   `ActualCellCollision` construct the target and prove four actual holes
+   inside unchanged PMF cells. `FiniteCollision` accounts for independent
+   parameters and record pruning; `LeafCollision` averages the original
+   independent leaf masses, permits skipped pairs, and recovers the original
+   law with the squared restriction cost. `CollisionCosts` and
+   `CollisionScales` prove the numerical margins and bounded-option costs.
+   Finish the complete numerical/status metadata encoding and its uniform
+   count, select targets consistently for every actual record cell, and
+   assemble Proposition 7.1 with its full asymptotic quantifiers.
 3. State raw supersaturation using this concrete law. Preserve the separate
    marginal caps and joint cap; the two endpoints of a unit can be dependent.
    An abstract structure with a supersaturation field is not a construction.

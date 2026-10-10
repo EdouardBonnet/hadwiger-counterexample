@@ -103,13 +103,25 @@ pin budget, and preservation of old effective spaces. The mixed marginal
 normalization and successive-restriction identities are checked separately.
 The finite graph transfer and the later construction remain open.
 
-After completing deterministic gradient realization and the first collision dependencies,
-overall completion is estimated conservatively at **about 56%**, weighted by remaining mathematical
-difficulty rather than declaration count. The validated archive contains
-188 concepts and 660 annotated proofs, with 658 closed proof networks.
-The two remaining conditional proofs are the consequences of the open
-graph-existence theorem. The requested 60% milestone has not been reached; the collision criterion
-and substantial later probabilistic construction remain.
+After completing deterministic gradient realization and the finite collision
+core, overall completion is estimated conservatively at **about 60%**, weighted
+by remaining mathematical difficulty rather than declaration count. The
+validated archive contains 206 concepts and 725 annotated proofs, with 723
+closed proof networks. The two conditional proofs are the consequences of the
+open graph-existence theorem.
+
+This milestone includes actual primal tests, target construction and all four
+holes inside original PMF cells, their all-rank entropy caps in both cross
+orientations, accepted-key record identities, independent parameter and leaf
+averaging, skipped pairs, squared restriction recovery, explicit exponent and
+scale bounds, and bounded-option costs. `LeafCollision.original_law_exponential_collision`
+gives a finite original-law bound from the affine leaf-pair estimates; it does
+not by itself discharge those estimates for every numerical query. The full
+status/metadata encoding, its uniform record budget and consistent target
+selection for all cells, and the asymptotic wrapper of Proposition 7.1 remain.
+The later probabilistic construction, containers and final graph transfer
+are substantial open work. This is a progress estimate, not a proof of
+Theorem 1.1 or a claim that 60% of the numbered paper declarations are proved.
 
 ## 3. Fix the common mathematical interfaces
 

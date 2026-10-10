@@ -189,16 +189,18 @@ by positions and may contain repeated raw vertices.
   both reciprocal endpoint roles assemble simultaneously while preserving
   frozen pins and keys. All four whole-space gradients and hole witnesses
   are checked. The primal record count is `16|E|h dim(B)` bits.
-- Collision dependencies: the actual paired-list key slot count and
-  constrained reference space, uniform overlap normalization, and pruning
-  of unary cells depending on opposite parameters. Frozen unary records
-  determine every cross entry with a frozen factor. Quotient projections
-  and independent rank factors yield the exact zero-character case and
-  the `.45N` Walsh bound for a cross Gram block. Finite Fourier inversion
-  gives simultaneous agreement of linear Gram tests under explicit
-  all-rank conditional image caps. Exact-pin leaf entropy bounds the joint
-  key and additional image tuple before cell conditioning. The full
-  multi-component collision proposition and its averaging remain open.
+- Collision dependencies: actual primal-entry tests now yield all four holes
+  in an original retained-cell pair. Both image caps come from the original
+  PMF leaf min-entropy; separate unary records freeze the target directions,
+  and the checked gradient-realization theorem constructs the target.
+  Key-indexed records recover the accepted key mass exactly. The finite
+  collision inequality averages over independent parameters, permits record
+  partitions depending on the opposite parameters, and includes the explicit
+  pruning cost from the key-space and record counts. Actual independent leaf
+  masses, skipped pairs, squared restriction recovery, bounded options, and
+  quantitative exponent margins are checked. Joined pin/key records have
+  explicit rank and column budgets. Completing the numerical/status record
+  encoding and the paper's full asymptotic Proposition 7.1 wrapper remains.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
 
@@ -222,7 +224,7 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 At the latest validated checkpoint, `lake build` and `lax build . --replay` pass,
-with 188 concepts and 660 annotated proofs, 658 of which have no open
+with 206 concepts and 725 annotated proofs, 723 of which have no open
 mathematical assumptions. All kernel replays pass. The only conditional
 proofs are the two counterexample consequences of the open Theorem 1.1.
 
