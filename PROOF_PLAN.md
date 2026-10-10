@@ -103,10 +103,10 @@ pin budget, and preservation of old effective spaces. The mixed marginal
 normalization and successive-restriction identities are checked separately.
 The finite graph transfer and the later construction remain open.
 
-After completing deterministic gradient realization for the actual recipe,
-overall completion is estimated conservatively at **about 50%**, weighted by remaining mathematical
+After completing deterministic gradient realization and the first collision dependencies,
+overall completion is estimated conservatively at **about 53%**, weighted by remaining mathematical
 difficulty rather than declaration count. The validated archive contains
-157 concepts and 542 annotated proofs, with 540 closed proof networks.
+178 concepts and 614 annotated proofs, with 612 closed proof networks.
 The two remaining conditional proofs are the consequences of the open
 graph-existence theorem. The requested 60% milestone has not been reached; the collision criterion
 and substantial later probabilistic construction remain.
@@ -976,6 +976,35 @@ of compatible recipes and cross entries is the next dependency.
 **Exit condition:** an explicit inequality converting successful-query
 overlap into four-hole probability. It must handle the overlap scales
 used by both final branches.
+
+The checked §7 dependencies now include `QuerySlots`, `ReferenceKeys`,
+and `QueryReference`: all actual incident plus/minus vector slots are
+counted, equal raw tuples imply matched keys, and the constrained Gram
+reference space has positive density independent of the ambient dimension.
+`KeyMeasures` proves the exact accepted subprobability and uniform-overlap
+identities. `CollisionPruning` bounds discarded collision mass and permits
+separate record partitions depending on opposite parameters.
+
+`FrozenRecords` counts unary pairings with already fixed images and shows
+that the two records determine every frozen cross entry. `FrozenCharacters`
+and `ProjectedCoefficients` prove exact agreement of zero quotient terms.
+`RankFactors`, `QuotientFactors`, and `CoefficientPhase` supply independently
+injective quotient directions and their actual image dot-product phase.
+`PushforwardWalsh`, `RetainedCharacters`, and `ScalarGramAgreement` prove
+single-cross-Gram character decay and simultaneous scalar agreement from
+explicit conditional image caps. `LeafImages`, `JointDirections`, and
+`JointKeyCap` derive the joint key-plus-additional image estimate from the
+actual exact-pin leaf entropy bound; `QueryIndependence` checks the old-pin
+independence of actual selected key directions.
+
+Proposition 7.1 is still open. These estimates must be assembled over all
+components and both cross orientations, with the actual `PrimalRecords`
+tests. The complete numerical/status record count must be retained, and
+the chosen gradient target must depend only on those records. Conditional
+PMF caps must be connected to the real weighted cell laws. Then average
+original cells, independent parameters, and leaves with their actual masses,
+restore the squared restriction mass, and absorb bounded options using the
+paper's exponent slack. Later phase and status arguments remain separate.
 
 ## 11. Phase alternatives and status preparation — §§8–9
 

@@ -189,6 +189,16 @@ by positions and may contain repeated raw vertices.
   both reciprocal endpoint roles assemble simultaneously while preserving
   frozen pins and keys. All four whole-space gradients and hole witnesses
   are checked. The primal record count is `16|E|h dim(B)` bits.
+- Collision dependencies: the actual paired-list key slot count and
+  constrained reference space, uniform overlap normalization, and pruning
+  of unary cells depending on opposite parameters. Frozen unary records
+  determine every cross entry with a frozen factor. Quotient projections
+  and independent rank factors yield the exact zero-character case and
+  the `.45N` Walsh bound for a cross Gram block. Finite Fourier inversion
+  gives simultaneous agreement of linear Gram tests under explicit
+  all-rank conditional image caps. Exact-pin leaf entropy bounds the joint
+  key and additional image tuple before cell conditioning. The full
+  multi-component collision proposition and its averaging remain open.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
 
@@ -212,7 +222,7 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 At the latest validated checkpoint, `lake build` and `lax build . --replay` pass,
-with 157 concepts and 542 annotated proofs, 540 of which have no open
+with 178 concepts and 614 annotated proofs, 612 of which have no open
 mathematical assumptions. All kernel replays pass. The only conditional
 proofs are the two counterexample consequences of the open Theorem 1.1.
 
