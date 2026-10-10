@@ -112,10 +112,10 @@ and proves the unary and binary properties with the paper's mixer parameters.
    actual row/column injection flags force both contractions to zero.
    Vanishing contractions give row and column membership; sparse key removal
    and tensor reconstruction prove the effective remainder. Finish the
-   metadata format, package the parameter response
-   as a linear map and prove the required annihilator duality;
-   then solve the whole-space gradient
-   problem by annihilator duality, bounded-rank corrections, compression,
+   metadata format. Parameter linearity and annihilator duality are checked,
+   giving an unrestricted solution for the actual recipe residual on the
+   whole profile-pair space. Finish the gradient realization using
+   bounded-rank corrections, compression,
    and private-channel factorization. Theorem 6.3 remains open.
 3. State raw supersaturation using this concrete law. Preserve the separate
    marginal caps and joint cap; the two endpoints of a unit can be dependent.

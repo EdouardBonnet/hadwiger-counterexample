@@ -1,3 +1,4 @@
+import Lax342547Proofs.ResponseSolvability
 import Lax342547Proofs.TensorBlocks
 import Lax342547Proofs.SelectedBlocks
 import Lax342547Proofs.LabelRelations
@@ -490,5 +491,14 @@ import Lax342547Proofs.PairedWitnesses
 #print axioms Lax342547Proofs.EffectiveObstructions.obstruction_decomposition
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
+#print axioms Lax342547Proofs.ResponseSolvability.full_add
+#print axioms Lax342547Proofs.ResponseSolvability.full_smul
+#print axioms Lax342547Proofs.ResponseSolvability.dual_range
+#print axioms Lax342547Proofs.ResponseSolvability.solvable_of_annihilator_zero
+#print axioms Lax342547Proofs.ResponseSolvability.selected_part_correct
+#print axioms Lax342547Proofs.ResponseSolvability.obstruction_correct
+#print axioms Lax342547Proofs.ResponseSolvability.unrestricted_solution
+#print axioms Lax342547Proofs.ResponseSolvability.recipe_solution
+
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample
 #print axioms Lax342547Proofs.FractionalCounterexample.arbitrarily_large_fractional_counterexample

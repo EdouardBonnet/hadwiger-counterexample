@@ -102,10 +102,10 @@ pin budget, and preservation of old effective spaces. The mixed marginal
 normalization and successive-restriction identities are checked separately.
 The finite graph transfer and the later construction remain open.
 
-After the full obstruction-space decomposition, overall completion
-is estimated conservatively at **about 39%**, weighted by remaining mathematical
+After unrestricted linearized solvability for the actual recipe, overall completion
+is estimated conservatively at **about 41%**, weighted by remaining mathematical
 difficulty rather than declaration count. The validated archive contains
-135 concepts and 388 annotated proofs, with 386 closed proof networks.
+136 concepts and 396 annotated proofs, with 394 closed proof networks.
 The two remaining conditional proofs are the consequences of the open
 graph-existence theorem. The requested 50% milestone has not been reached.
 
@@ -677,7 +677,7 @@ sparse-label bounds, and mixers.
    A putative obstruction has bounded component rank; use the label
    decomposition and injection flags to reduce it to atom and effective
    space equations already included in the recipes.
-   **In progress.** The target residual is proved to vanish on the effective
+   **Checked for the unrestricted linear problem.** The target residual is proved to vanish on the effective
    profile space plus the span of every selected endpoint atom. Every
    full annihilator obstruction is now proved to lie in that space. The
    pure-response system on actual pairs of cut profiles is now defined;
@@ -694,8 +694,10 @@ sparse-label bounds, and mixers.
    in their actual primal pins. Rank-one derivative tests and the actual
    row and column injection flags force both contractions to zero.
    Row and column membership, sparse key removal, and tensor reconstruction
-   give the actual effective remainder. Parameter linearity and the final
-   duality argument remain.
+   give the actual effective remainder. Parameter linearity constructs a
+   linear map into the dual of the actual profile-pair space. Double
+   annihilation puts the target residual in its range and supplies an
+   unrestricted solution. Bounded ranks and final realization are separate.
 5. Construct bounded-rank derivative corrections. Prove the baseline
    rank `3K+28` and residual rank `14K+140`, rather than declaring them
    as opaque bounds.
@@ -772,8 +774,8 @@ bounds to the actual tables and selected key spans, giving `3K+28`.
 selected atoms; [`RecipeResiduals`](proofs/Lax342547Proofs/RecipeResiduals.lean)
 proves that the target residual vanishes on effective profiles and all
 selected atoms. The whole-space obstruction decomposition is checked;
-parameter linearity, annihilator duality, and bounded derivative corrections
-are still open.
+parameter linearity and annihilator duality construct the unrestricted
+linearized recipe solution. Bounded derivative corrections are still open.
 
 ### 9.1 Detailed annihilator reduction
 
@@ -795,7 +797,7 @@ individual matrix lemmas does not close the coupled obstruction argument.
 | Eliminate residual keys | For an unselected residual profile, use the strong exclusion and protected/private complement to remove every selected key and channel term in a pure contraction | Both signs checked using `PrimalContractions.unselected_pin_contraction_mode` and transposition of the paired quotient tests in `DerivativeContractions` |
 | Use table injection | Test rank-one derivative maps; use both injection flags to force each residual contraction to vanish | Actual rank-one tests and both zero-contraction conclusions checked in `DerivativeResponses.plus_contraction_zero` and `minus_contraction_zero` |
 | Effective residual | Convert vanishing contractions into membership in the projected pin tensor products, then remove their remaining key directions | Checked in `EffectiveObstructions`, including the actual full `obstruction_decomposition` |
-| Linear solvability | Combine effective and selected-atom residual vanishing with the proved obstruction reduction and finite-dimensional annihilator duality | Open |
+| Linear solvability | Combine effective and selected-atom residual vanishing with the proved obstruction reduction and finite-dimensional annihilator duality | Checked in `ResponseSolvability`, including `recipe_solution` for the actual residual |
 
 For the selected-block step, let L be the union of a component's moment
 labels and the selected key labels. Define `E_L(c)` as the sum of
@@ -876,20 +878,27 @@ rows. `obstruction_decomposition` proves that every full obstruction is the
 sum of selected atoms and a remainder in each endpoint's actual effective
 profile space, retaining the original pins, tables, and allowed derivatives.
 
+`ResponseSolvability` proves additivity and scalar homogeneity in the pure
+and derivative parameters. Its proof constructs their product module's
+linear map into the dual of the actual profile-pair space. The target
+residual vanishes on its coannihilator by the full obstruction decomposition
+and the checked recipe identities. Finite-dimensional double annihilation
+places the target in the actual response range. `recipe_solution` gives the
+unrestricted pure and derivative parameters realizing the whole residual;
+it assumes no obstruction-space inclusion or response-linearity oracle.
+
 The next obligations are:
 
-1. Package the response families as a linear map from their finite-dimensional
-   parameter space to the dual of the actual profile-pair space. Prove
-   linearity in these parameters explicitly. Combine the effective remainder
-   and selected atoms with target residual vanishing, and use annihilator
-   duality to construct an unrestricted linearized solution.
-2. Prove the bounded-rank derivative corrections, compression, pure correction
-   rank bound, and private-channel factorization required by Theorem 6.3.
+1. Bound the derivative outputs inside their original perpendicular value
+   spaces while preserving their pairings with both reciprocal baselines.
+   Prove the `14K+140` per-individual residual representation bound.
+2. Prove compression, the pure correction rank bound, and private-channel
+   factorization required by Theorem 6.3.
 
 The checked rank and selected-moment steps are independent of the private
 channel dimension. The derivative and injection steps use the actual table
-maps. The remaining duality steps must retain these definitions;
-an assumed obstruction-space inclusion would leave the argument unproved.
+maps. The remaining rank and realization steps must retain these definitions
+and the actual allowed parameter spaces.
 
 ## 10. Accepted queries imply four holes — §7
 
