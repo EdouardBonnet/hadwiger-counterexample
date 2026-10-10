@@ -114,8 +114,11 @@ and proves the unary and binary properties with the paper's mixer parameters.
    and tensor reconstruction prove the effective remainder. Finish the
    metadata format. Parameter linearity and annihilator duality are checked,
    giving an unrestricted solution for the actual recipe residual on the
-   whole profile-pair space. Finish the gradient realization using
-   bounded-rank corrections, compression,
+   whole profile-pair space. Allowed output projections now preserve this
+   entire response with both derivative ranks at most `3K+28`, retaining
+   the actual quotient domains and perpendicular value spaces. Prove the
+   `14K+140` residual representation and finish the gradient realization using
+   compression, bounded pure corrections,
    and private-channel factorization. Theorem 6.3 remains open.
 3. State raw supersaturation using this concrete law. Preserve the separate
    marginal caps and joint cap; the two endpoints of a unit can be dependent.

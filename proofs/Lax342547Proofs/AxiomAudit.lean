@@ -1,3 +1,4 @@
+import Lax342547Proofs.BoundedDerivatives
 import Lax342547Proofs.ResponseSolvability
 import Lax342547Proofs.TensorBlocks
 import Lax342547Proofs.SelectedBlocks
@@ -499,6 +500,14 @@ import Lax342547Proofs.PairedWitnesses
 #print axioms Lax342547Proofs.ResponseSolvability.obstruction_correct
 #print axioms Lax342547Proofs.ResponseSolvability.unrestricted_solution
 #print axioms Lax342547Proofs.ResponseSolvability.recipe_solution
+
+#print axioms Lax342547Proofs.BoundedDerivatives.observed_projection
+#print axioms Lax342547Proofs.BoundedDerivatives.allowed_projection
+#print axioms Lax342547Proofs.BoundedDerivatives.bounded_derivative
+#print axioms Lax342547Proofs.BoundedDerivatives.bounded_derivative_covectors
+#print axioms Lax342547Proofs.BoundedDerivatives.bounded_component
+#print axioms Lax342547Proofs.BoundedDerivatives.bounded_response
+#print axioms Lax342547Proofs.BoundedDerivatives.bounded_recipe_solution
 
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample
 #print axioms Lax342547Proofs.FractionalCounterexample.arbitrarily_large_fractional_counterexample

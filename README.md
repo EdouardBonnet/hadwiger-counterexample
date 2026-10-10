@@ -142,7 +142,8 @@ by positions and may contain repeated raw vertices.
   Both reciprocal endpoint roles have channel rank at most `3K+28` for the
   same baseline. The target residual vanishes on effective profiles and
   every selected atom. The obstruction-space reduction is checked; linear
-  unrestricted linear solvability is checked. Bounded corrections remain.
+  unrestricted linear solvability and bounded derivative corrections are
+  checked. Residual rank bounds and final realization remain.
 - Pure responses on the barred quotients of the actual nominal spaces.
   Their annihilating pairs of cut profiles have component rank at most
   `2K+28` and bounded label decompositions. Strong sparse pin exclusions
@@ -166,6 +167,12 @@ by positions and may contain repeated raw vertices.
   and this effective remainder. Parameter linearity and finite-dimensional
   annihilator duality construct an unrestricted response realizing the
   actual scalar-recipe residual on the whole profile-pair space.
+- Allowed derivative outputs can be compressed inside their original
+  perpendicular value spaces while preserving all baseline pairings.
+  The actual recipe solution retains its full response and barred domain
+  quotients, with both derivative ranks at most `3K+28` per component.
+  The `14K+140` residual representation, compression, and final pure
+  realization remain open.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
 
@@ -189,7 +196,7 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 At the latest validated checkpoint, `lake build` and `lax build . --replay` pass,
-with 136 concepts and 396 annotated proofs, 394 of which have no open
+with 137 concepts and 403 annotated proofs, 401 of which have no open
 mathematical assumptions. All kernel replays pass. The only conditional
 proofs are the two counterexample consequences of the open Theorem 1.1.
 

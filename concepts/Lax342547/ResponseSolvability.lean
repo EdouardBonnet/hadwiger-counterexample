@@ -9,8 +9,8 @@ type: definition and theorem
 The actual pure and allowed derivative response families are linear in their
 parameters. The proved full obstruction decomposition and finite-dimensional
 annihilator duality construct unrestricted solutions on the whole cut-profile
-pair space. Bounded derivative ranks, compression and private-channel
-factorization remain separate obligations.
+pair space. Bounded derivative ranks are treated separately; compression
+and private-channel factorization remain further obligations.
 -/
 
 namespace Lax342547.ResponseSolvability
