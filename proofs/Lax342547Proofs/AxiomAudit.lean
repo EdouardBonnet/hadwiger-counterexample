@@ -1,3 +1,11 @@
+import Lax342547Proofs.ChannelFactorization
+import Lax342547Proofs.RankedProjection
+import Lax342547Proofs.CompressedResidual
+import Lax342547Proofs.ConstrainedCompression
+import Lax342547Proofs.QuotientCompression
+import Lax342547Proofs.BaseCompression
+import Lax342547Proofs.ResidualRealization
+import Lax342547Proofs.ResponseMatrices
 import Lax342547Proofs.BoundedDerivatives
 import Lax342547Proofs.ResponseSolvability
 import Lax342547Proofs.TensorBlocks
@@ -508,6 +516,92 @@ import Lax342547Proofs.PairedWitnesses
 #print axioms Lax342547Proofs.BoundedDerivatives.bounded_component
 #print axioms Lax342547Proofs.BoundedDerivatives.bounded_response
 #print axioms Lax342547Proofs.BoundedDerivatives.bounded_recipe_solution
+
+#print axioms Lax342547Proofs.ResponseMatrices.coefficients_product
+#print axioms Lax342547Proofs.ResponseMatrices.toMatrix_rank
+#print axioms Lax342547Proofs.ResponseMatrices.coefficients_rank
+#print axioms Lax342547Proofs.ResponseMatrices.projection_difference
+#print axioms Lax342547Proofs.ResponseMatrices.projection_difference_rank
+#print axioms Lax342547Proofs.ResponseMatrices.quotient_projection
+#print axioms Lax342547Proofs.ResponseMatrices.projected_endpoint_response
+#print axioms Lax342547Proofs.ResponseMatrices.projected_paired_response
+#print axioms Lax342547Proofs.ResponseMatrices.projected_pin_key_dimension
+#print axioms Lax342547Proofs.ResponseMatrices.actual_pure_projection
+#print axioms Lax342547Proofs.ResponseMatrices.ambient_matrix_representation
+#print axioms Lax342547Proofs.ResponseMatrices.matrix_representation
+#print axioms Lax342547Proofs.ResponseMatrices.comp_left_rank
+#print axioms Lax342547Proofs.ResponseMatrices.comp_right_rank
+#print axioms Lax342547Proofs.ResponseMatrices.restriction_rank
+#print axioms Lax342547Proofs.ResponseMatrices.baseline_coordinate_rank
+#print axioms Lax342547Proofs.ResponseMatrices.extra_product_response
+#print axioms Lax342547Proofs.ResponseMatrices.rank_sub_le
+#print axioms Lax342547Proofs.ResponseMatrices.bounded_residual_rank
+
+#print axioms Lax342547Proofs.ResidualRealization.matrixPair_sub
+#print axioms Lax342547Proofs.ResidualRealization.matrix_response_sub
+#print axioms Lax342547Proofs.ResidualRealization.projected_target
+#print axioms Lax342547Proofs.ResidualRealization.baseline_response
+#print axioms Lax342547Proofs.ResidualRealization.derivative_response
+#print axioms Lax342547Proofs.ResidualRealization.product_response
+#print axioms Lax342547Proofs.ResidualRealization.pure_response_sub
+#print axioms Lax342547Proofs.ResidualRealization.bounded_remainder
+#print axioms Lax342547Proofs.ResidualRealization.paired_matrix_representation
+#print axioms Lax342547Proofs.ResidualRealization.recipe_remainder
+
+#print axioms Lax342547Proofs.BaseCompression.fixing_observed_projection
+#print axioms Lax342547Proofs.BaseCompression.liftBase_point
+#print axioms Lax342547Proofs.BaseCompression.tensorMap_point
+#print axioms Lax342547Proofs.BaseCompression.tensorMap_moments
+#print axioms Lax342547Proofs.BaseCompression.blockMap_allowed
+#print axioms Lax342547Proofs.BaseCompression.blockMap_tagSpace
+#print axioms Lax342547Proofs.BaseCompression.componentMap_cut
+#print axioms Lax342547Proofs.BaseCompression.blockMap_profile
+#print axioms Lax342547Proofs.BaseCompression.liftBase_rank
+#print axioms Lax342547Proofs.BaseCompression.matrixPair_trace
+#print axioms Lax342547Proofs.BaseCompression.matrixPair_tensorMap
+#print axioms Lax342547Proofs.BaseCompression.tensorMap_target
+#print axioms Lax342547Proofs.BaseCompression.blockMap_rank
+#print axioms Lax342547Proofs.BaseCompression.concrete_compression_rank
+
+#print axioms Lax342547Proofs.QuotientCompression.nominalLift_primal
+#print axioms Lax342547Proofs.QuotientCompression.nominalLift_fix
+#print axioms Lax342547Proofs.QuotientCompression.nominalLift_sum
+#print axioms Lax342547Proofs.QuotientCompression.barred_fixed
+#print axioms Lax342547Proofs.QuotientCompression.quotient_lift_rank
+#print axioms Lax342547Proofs.QuotientCompression.barred_compression
+#print axioms Lax342547Proofs.QuotientCompression.compressed_bilinear_rank
+#print axioms Lax342547Proofs.QuotientCompression.pure_compressed
+
+#print axioms Lax342547Proofs.ConstrainedCompression.vector_decomposition
+#print axioms Lax342547Proofs.ConstrainedCompression.lifted_decomposition
+#print axioms Lax342547Proofs.ConstrainedCompression.pi_range_rank
+#print axioms Lax342547Proofs.ConstrainedCompression.fixedSlices_mem
+#print axioms Lax342547Proofs.ConstrainedCompression.fixedSlices_rank
+#print axioms Lax342547Proofs.ConstrainedCompression.observations_rank
+#print axioms Lax342547Proofs.ConstrainedCompression.exists_block_compression
+#print axioms Lax342547Proofs.ConstrainedCompression.preserved_matrix
+#print axioms Lax342547Proofs.ConstrainedCompression.actual_block_compression
+
+#print axioms Lax342547Proofs.CompressedResidual.compressed_pure_solution
+#print axioms Lax342547Proofs.CompressedResidual.compressed_recipe
+
+#print axioms Lax342547Proofs.RankedProjection.bilinear_comp_rank
+#print axioms Lax342547Proofs.RankedProjection.matrix_bilinear_rank
+#print axioms Lax342547Proofs.RankedProjection.linear_add_rank
+#print axioms Lax342547Proofs.RankedProjection.linear_sum_rank
+#print axioms Lax342547Proofs.RankedProjection.projected_endpoint_response
+#print axioms Lax342547Proofs.RankedProjection.projected_paired_response
+#print axioms Lax342547Proofs.RankedProjection.actual_pure_projection
+
+#print axioms Lax342547Proofs.ChannelFactorization.factor_through_pairing
+#print axioms Lax342547Proofs.ChannelFactorization.factor_in_channel_spaces
+#print axioms Lax342547Proofs.ChannelFactorization.perpendicular_dimension
+#print axioms Lax342547Proofs.ChannelFactorization.channel_pairing_rank
+#print axioms Lax342547Proofs.ChannelFactorization.remaining_values_dimension
+#print axioms Lax342547Proofs.ChannelFactorization.remaining_values_allowed
+#print axioms Lax342547Proofs.ChannelFactorization.remaining_values_orthogonal
+#print axioms Lax342547Proofs.ChannelFactorization.remaining_values_factor
+#print axioms Lax342547Proofs.ChannelFactorization.allowed_pure_factor
 
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample
 #print axioms Lax342547Proofs.FractionalCounterexample.arbitrarily_large_fractional_counterexample

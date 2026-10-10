@@ -116,10 +116,19 @@ and proves the unary and binary properties with the paper's mixer parameters.
    giving an unrestricted solution for the actual recipe residual on the
    whole profile-pair space. Allowed output projections now preserve this
    entire response with both derivative ranks at most `3K+28`, retaining
-   the actual quotient domains and perpendicular value spaces. Prove the
-   `14K+140` residual representation and finish the gradient realization using
-   compression, bounded pure corrections,
-   and private-channel factorization. Theorem 6.3 remains open.
+   the actual quotient domains and perpendicular value spaces. The actual
+   recipe remainder now has per-individual matrix rank at most `14K+140`.
+   The initial projected pure form has rank bounded by the sum of the two
+   target-matrix ranks. Chosen block maps preserve the target, projected
+   pin/key vectors, allowed moments, and the cut-profile domain. Compression
+   through the actual barred quotients yields the paper's `Dquo` bound and
+   preserves the entire recipe response. Allowed pure factorization and the
+   pairing capacity loss `2K+4R` are checked, including vanishing cross terms.
+   Still prove the explicit tester/mixer target routing bound
+   `15r₀+14J|E|`, use the parameter margin to fit the restored form, and
+   assemble all opposite endpoints and both unit roles into cross forms
+   satisfying the gradient equations and frozen constraints simultaneously.
+   Theorem 6.3 remains open.
 3. State raw supersaturation using this concrete law. Preserve the separate
    marginal caps and joint cap; the two endpoints of a unit can be dependent.
    An abstract structure with a supersaturation field is not a construction.

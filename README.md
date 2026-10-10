@@ -141,9 +141,10 @@ by positions and may contain repeated raw vertices.
   incident key spans, and frozen baseline cross forms extending the tables.
   Both reciprocal endpoint roles have channel rank at most `3K+28` for the
   same baseline. The target residual vanishes on effective profiles and
-  every selected atom. The obstruction-space reduction is checked; linear
+  every selected atom. The obstruction-space reduction is checked;
   unrestricted linear solvability and bounded derivative corrections are
-  checked. Residual rank bounds and final realization remain.
+  checked. Residual rank bounds and compression are checked; the complete
+  gradient realization remains open.
 - Pure responses on the barred quotients of the actual nominal spaces.
   Their annihilating pairs of cut profiles have component rank at most
   `2K+28` and bounded label decompositions. Strong sparse pin exclusions
@@ -171,8 +172,20 @@ by positions and may contain repeated raw vertices.
   perpendicular value spaces while preserving all baseline pairings.
   The actual recipe solution retains its full response and barred domain
   quotients, with both derivative ranks at most `3K+28` per component.
-  The `14K+140` residual representation, compression, and final pure
-  realization remain open.
+- The actual recipe residual has a checked per-individual matrix rank bound
+  `14K+140` after removal of the projected target and derivative product.
+  The initial projected pure form has rank at most the sum of the two
+  target-matrix ranks. Chosen block maps fix all projected pins and keys,
+  preserve the residual target, and preserve allowed moments and the actual
+  cut-profile domain. They descend to barred quotients, where private
+  channel directions vanish. The compressed pure correction has rank at
+  most `Dquo`, with the paper's explicit block and quotient bounds.
+- A pure quotient form factors through allowed channel values whenever its
+  rank fits the surviving dot pairing. Orthogonality to protected channels,
+  baseline values and bounded derivative values costs at most `K+2R` on each
+  side. The resulting maps realize the form exactly and have the required
+  vanishing cross terms. The explicit tester/mixer target routing and
+  simultaneous gradient assembly for Theorem 6.3 remain open.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
 
@@ -196,7 +209,7 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 At the latest validated checkpoint, `lake build` and `lax build . --replay` pass,
-with 137 concepts and 403 annotated proofs, 401 of which have no open
+with 145 concepts and 481 annotated proofs, 479 of which have no open
 mathematical assumptions. All kernel replays pass. The only conditional
 proofs are the two counterexample consequences of the open Theorem 1.1.
 

@@ -78,7 +78,7 @@ The closing checks are:
 | Sparse intersections and representatives, Lemma 4.4 | Complete: bounded coefficient certificates, explicit exponential exception, tensor ranks, unique majority-zero representatives, support bound, trace/chiStar identity, and a uniform concrete scale |
 | Both exact-pin peelings, Lemma 4.5 | Checked finite partitions, quotient ranks, restriction trimming, metadata/image counts, final pin budget, preserved effective spaces, all-rank leaf caps, and actual-mass recovery; mixed marginal costs tracked separately |
 | Table coordinates and atom prescriptions, Lemma 6.2 | Effective dimension/rank bounds, protected/private channels, unary admissibility, fresh-key independence, table and nominal-coefficient counts, effective contractions, paired lists, and the concrete numerical-to-atom-gradient prescription theorem checked; all four endpoint prescriptions and the bounded baseline checked; whole-space realization remains |
-| Gradient realization, Theorem 6.3 | Actual full obstruction decomposition, parameter linearity, unrestricted recipe solvability, and derivative replacements of rank at most `3K+28` checked; residual representation, compression, and final channel factorization remain |
+| Gradient realization, Theorem 6.3 | Actual obstruction decomposition, recipe solvability, bounded derivatives, `14K+140` residual matrices, chosen pin/key-preserving compression with `Dquo` rank, and allowed pure factorization checked; explicit initial-target routing and simultaneous gradient assembly remain |
 | Entropy/containers and the probabilistic construction | Not proved |
 | Theorem 1.1 | Open |
 | Counterexample corollaries | Checked only conditional on Theorem 1.1 |
@@ -103,10 +103,10 @@ pin budget, and preservation of old effective spaces. The mixed marginal
 normalization and successive-restriction identities are checked separately.
 The finite graph transfer and the later construction remain open.
 
-After bounded derivative solutions for the actual recipe, overall completion
-is estimated conservatively at **about 43%**, weighted by remaining mathematical
+After residual compression and allowed pure factorization for the actual recipe,
+overall completion is estimated conservatively at **about 44%**, weighted by remaining mathematical
 difficulty rather than declaration count. The validated archive contains
-137 concepts and 403 annotated proofs, with 401 closed proof networks.
+145 concepts and 481 annotated proofs, with 479 closed proof networks.
 The two remaining conditional proofs are the consequences of the open
 graph-existence theorem. The requested 50% milestone has not been reached.
 
@@ -702,20 +702,30 @@ sparse-label bounds, and mixers.
 5. Construct bounded-rank derivative corrections. Prove the baseline
    rank `3K+28` and residual rank `14K+140`, rather than declaring them
    as opaque bounds.
-   **In progress.** The actual baseline cross forms are constructed, extend
+   **Complete.** The actual baseline cross forms are constructed, extend
    the prescribed tables, and preserve every frozen pin and fresh selected
    key. Their channel ranks are at most `3K+28` in both reciprocal endpoint
    roles. Sections of the observed baseline pairings replace both allowed
    derivative families by maps of rank at most `3K+28`, preserving the
    entire linearized response and the barred/perpendicular constraints.
-   This is checked for the actual scalar-recipe solution. The per-individual
-   `14K+140` residual representation remains.
-6. Prove the block compression maps preserve allowed point moments and
-   therefore preserve the cut-profile domain.
-7. Bound the pure correction rank by `30r₀ + 28J|E| + Dquo`.
-8. Factor the correction through the remaining private channel pairing.
-   Verify orthogonality to the baseline and earlier corrections, and
-   simultaneous consistency in the two endpoint roles.
+   This is checked for the actual scalar-recipe solution. The projected
+   target and bounded derivative product are removed, giving the checked
+   per-individual `14K+140` residual representation.
+6. **Complete.** Choose block compression maps that fix actual projected
+   pins and keys and preserve the residual matrices' row/column forms.
+   They preserve allowed point moments and the actual cut-profile domain,
+   descend through the barred quotients, and give the paper's `Dquo` bound.
+7. **In progress.** Bound the restored pure correction rank by
+   `30r₀ + 28J|E| + Dquo`. The initial projected form has rank at most the
+   sum of the two target-matrix ranks, and the restored form costs at most
+   that sum plus `Dquo`. The explicit target routing bound
+   `15r₀+14J|E|` is still required; arbitrary matrix representations do not
+   supply it.
+8. **In progress.** Pure forms factor through the remaining allowed channel
+   pairing whenever their rank fits. The capacity loss is at most
+   `2K+4Blin`, and the factors are orthogonal to baseline and bounded
+   derivative values. Apply the actual parameter margin and verify
+   simultaneous consistency in the two opposite endpoints and unit roles.
 9. Conclude the gradient identities on **every vector of the cut space**,
    not just on a sampled family of atoms. Count the scalar constraints
    needed to test them later.
@@ -780,8 +790,10 @@ selected atoms; [`RecipeResiduals`](proofs/Lax342547Proofs/RecipeResiduals.lean)
 proves that the target residual vanishes on effective profiles and all
 selected atoms. The whole-space obstruction decomposition is checked;
 parameter linearity and annihilator duality construct the unrestricted
-linearized recipe solution. Bounded derivative corrections are checked;
-residual representation, compression, and final realization remain open.
+linearized recipe solution. Bounded derivatives, the `14K+140` residual
+representation, target-preserving compression, and allowed pure
+factorization are checked. Explicit target routing and simultaneous
+whole-space gradient realization remain open.
 
 ### 9.1 Detailed annihilator reduction
 
@@ -805,8 +817,10 @@ individual matrix lemmas does not close the coupled obstruction argument.
 | Effective residual | Convert vanishing contractions into membership in the projected pin tensor products, then remove their remaining key directions | Checked in `EffectiveObstructions`, including the actual full `obstruction_decomposition` |
 | Linear solvability | Combine effective and selected-atom residual vanishing with the proved obstruction reduction and finite-dimensional annihilator duality | Checked in `ResponseSolvability`, including `recipe_solution` for the actual residual |
 | Bounded derivatives | Replace derivative outputs inside their allowed value spaces, preserving both reciprocal baseline pairings and the full response | Checked in `BoundedDerivatives`, including the actual `bounded_recipe_solution` with rank `3K+28` in each component |
-| Residual representation | Remove the projected pure target, include the bounded derivative product, and prove per-individual matrix rank at most `14K+140` | Open |
-| Compression and pure realization | Preserve the actual cut domain, bound the remaining pure solution, and factor it through the available private channels | Open |
+| Residual representation | Remove the projected pure target, include the bounded derivative product, and prove per-individual matrix rank at most `14K+140` | Checked in `ResponseMatrices`, `RankedProjection`, and `ResidualRealization` |
+| Compression | Choose pin/key-fixing maps preserving residual matrices and the actual cut domain; descend through barred quotients and bound the pure correction | Checked in `BaseCompression`, `ConstrainedCompression`, `QuotientCompression`, and `CompressedResidual`, with the paper's `Dblk` and `Dquo` |
+| Pure factorization | Factor through allowed channel values orthogonal to baseline and earlier derivative values | Checked in `ChannelFactorization` whenever the rank fits; capacity loss at most `2K+4R` |
+| Final gradient assembly | Prove the explicit initial-target routing bound, apply the parameter margin, and combine both opposite endpoints and unit roles into actual cross forms | Open |
 
 For the selected-block step, let L be the union of a component's moment
 labels and the selected key labels. Define `E_L(c)` as the sum of
@@ -906,12 +920,34 @@ matrices. The component choices preserve the full response. Its
 `bounded_recipe_solution` retains the actual recipe residual with both
 derivative ranks at most `3K+28`; the pure family is still unrestricted.
 
+`ResidualRealization.recipe_remainder` removes the projected target and
+bounded derivative product from that actual solution. Its residual
+matrices have rank at most `14K+140`. `RankedProjection` additionally
+bounds the initial pure form by the sum of the two individual matrix
+ranks. `ConstrainedCompression` chooses the block maps from actual
+pin/key slices and row/column observations. `BaseCompression` proves
+allowed-point and cut-domain preservation. `QuotientCompression` descends
+through the actual barred spaces, counting only protected surviving
+channel directions. `CompressedResidual.compressed_recipe` preserves the
+whole recipe response and bounds the pure correction by `Dquo`; the
+restored pure form costs at most the original matrix-rank sum plus `Dquo`.
+`ChannelFactorization.allowed_pure_factor` realizes any form fitting the
+remaining pairing rank using allowed outputs orthogonal to baseline and
+bounded derivative values. The pairing capacity loss is at most `2K+4R`.
+
 The next obligations are:
 
-1. Remove the projected pure target and include the bounded derivative
-   product. Prove the `14K+140` per-individual residual representation bound.
-2. Prove compression, the pure correction rank bound, and private-channel
-   factorization required by Theorem 6.3.
+1. Construct the explicit tester/mixer target matrices with per-individual
+   rank at most `15r₀+14J|E|`. The general representation existence theorem
+   proves no such bound. The current recipe theorem therefore retains its
+   supplied target matrices and their rank sum honestly.
+2. Apply the paper's `970r₀` margin to the restored pure form, whose resulting
+   bound must be `30r₀+28J|E|+Dquo`.
+3. Add the realized pure channel changes to the bounded derivatives, prove
+   the exact nonlinear contraction identities, and assemble all opposite
+   endpoints and both unit roles while preserving frozen pins and keys.
+4. Prove the whole-space gradients, the scalar constraint count, and the
+   resulting four-hole assertion in Theorem 6.3.
 
 The checked rank and selected-moment steps are independent of the private
 channel dimension. The derivative and injection steps use the actual table
