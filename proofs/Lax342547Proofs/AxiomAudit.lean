@@ -1,3 +1,14 @@
+import Lax342547Proofs.PairedRecipes
+import Lax342547Proofs.FrozenBaselines
+import Lax342547Proofs.PrimalRetractions
+import Lax342547Proofs.BaselineRank
+import Lax342547Proofs.NominalPrimal
+import Lax342547Proofs.NominalBaselines
+import Lax342547Proofs.KeySpans
+import Lax342547Proofs.PairedKeys
+import Lax342547Proofs.RawBaselines
+import Lax342547Proofs.FrozenValues
+import Lax342547Proofs.RecipeResiduals
 import Lax342547Proofs.Counterexample
 import Lax342547Proofs.FractionalCounterexample
 import Lax342547Proofs.HoleTriangleFree
@@ -352,6 +363,29 @@ import Lax342547Proofs.PairedWitnesses
 #print axioms Lax342547Proofs.PairedWitnesses.list_budgets
 #print axioms Lax342547Proofs.PairedWitnesses.diagonal_sums
 #print axioms Lax342547Proofs.PairedWitnesses.tensor_sharing
+
+#print axioms Lax342547Proofs.PairedRecipes.endpoint_fresh
+#print axioms Lax342547Proofs.PairedRecipes.flip_recipe
+#print axioms Lax342547Proofs.PairedRecipes.paired_prescriptions
+#print axioms Lax342547Proofs.FrozenBaselines.splitting_exists
+#print axioms Lax342547Proofs.FrozenBaselines.baseline_properties
+#print axioms Lax342547Proofs.PrimalRetractions.bounded_retraction
+#print axioms Lax342547Proofs.BaselineRank.channel_rank
+#print axioms Lax342547Proofs.BaselineRank.bounded_baseline
+#print axioms Lax342547Proofs.NominalPrimal.table_spans
+#print axioms Lax342547Proofs.NominalPrimal.table_primal_dimension
+#print axioms Lax342547Proofs.NominalPrimal.key_space_bound
+#print axioms Lax342547Proofs.NominalBaselines.nominal_baseline
+#print axioms Lax342547Proofs.KeySpans.exclusions_exists
+#print axioms Lax342547Proofs.KeySpans.independent_sum
+#print axioms Lax342547Proofs.KeySpans.span_disjoint
+#print axioms Lax342547Proofs.PairedKeys.key_bounds
+#print axioms Lax342547Proofs.PairedKeys.fresh_spans
+#print axioms Lax342547Proofs.RawBaselines.raw_baselines
+#print axioms Lax342547Proofs.FrozenValues.frozen_atom
+#print axioms Lax342547Proofs.FrozenValues.selected_values
+#print axioms Lax342547Proofs.RecipeResiduals.selected_gradients
+#print axioms Lax342547Proofs.RecipeResiduals.residual_correct
 
 -- These presently expose the unresolved Theorem 1.1, not a closed counterexample proof.
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample

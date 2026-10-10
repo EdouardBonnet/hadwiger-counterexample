@@ -77,7 +77,7 @@ The closing checks are:
 | Full reference image cap, Lemma 4.3(c) | Checked for arbitrary actual nominal ranks, dependent tuples, both endpoints and signs, and all components, including a single scale choice paying every cost |
 | Sparse intersections and representatives, Lemma 4.4 | Complete: bounded coefficient certificates, explicit exponential exception, tensor ranks, unique majority-zero representatives, support bound, trace/chiStar identity, and a uniform concrete scale |
 | Both exact-pin peelings, Lemma 4.5 | Checked finite partitions, quotient ranks, restriction trimming, metadata/image counts, final pin budget, preserved effective spaces, all-rank leaf caps, and actual-mass recovery; mixed marginal costs tracked separately |
-| Table coordinates and atom prescriptions, Lemma 6.2 | Effective dimension/rank bounds, protected/private channels, unary admissibility, fresh-key independence, table and nominal-coefficient counts, effective contractions, paired lists, and the concrete numerical-to-atom-gradient prescription theorem checked; applying prescriptions to all four endpoints and whole-space realization remain |
+| Table coordinates and atom prescriptions, Lemma 6.2 | Effective dimension/rank bounds, protected/private channels, unary admissibility, fresh-key independence, table and nominal-coefficient counts, effective contractions, paired lists, and the concrete numerical-to-atom-gradient prescription theorem checked; all four endpoint prescriptions and the bounded baseline checked; whole-space realization remains |
 | Entropy/containers and the probabilistic construction | Not proved |
 | Theorem 1.1 | Open |
 | Counterexample corollaries | Checked only conditional on Theorem 1.1 |
@@ -102,10 +102,10 @@ pin budget, and preservation of old effective spaces. The mixed marginal
 normalization and successive-restriction identities are checked separately.
 The finite graph transfer and the later construction remain open.
 
-At the paired-witness and table-contraction checkpoint, overall completion is estimated
+At the frozen-baseline and recipe-residual checkpoint, overall completion is estimated
 conservatively at **about 33%**, weighted by remaining mathematical
 difficulty rather than declaration count. The validated archive contains
-103 concepts and 288 annotated proofs, with 286 closed proof networks.
+114 concepts and 310 annotated proofs, with 308 closed proof networks.
 The two remaining conditional proofs are the consequences of the open
 graph-existence theorem. The requested 50% milestone has not been reached.
 
@@ -671,14 +671,22 @@ sparse-label bounds, and mixers.
    construct a symmetric matrix and indexed L/R prescriptions that give
    the concrete atom-gradient identities. Table counts and padded nominal
    coefficient counts are checked. Integration with the full paired-list
-   recipe and its complete numerical metadata format remains.
+   recipe is checked at all four endpoints. The complete numerical metadata
+   format remains.
 4. Prove the linearized realization problem by annihilator duality.
    A putative obstruction has bounded component rank; use the label
    decomposition and injection flags to reduce it to atom and effective
    space equations already included in the recipes.
+   **In progress.** The target residual is proved to vanish on the effective
+   profile space plus the span of every selected endpoint atom. The remaining
+   obligation is to put every annihilator obstruction in that space.
 5. Construct bounded-rank derivative corrections. Prove the baseline
    rank `3K+28` and residual rank `14K+140`, rather than declaring them
    as opaque bounds.
+   **In progress.** The actual baseline cross forms are constructed, extend
+   the prescribed tables, and preserve every frozen pin and fresh selected
+   key. Their channel ranks are at most `3K+28` in both reciprocal endpoint
+   roles. Controlled derivative corrections and the residual bound remain.
 6. Prove the block compression maps preserve allowed point moments and
    therefore preserve the cut-profile domain.
 7. Bound the pure correction rank by `30r₀ + 28J|E| + Dquo`.
@@ -732,8 +740,23 @@ numerical tester part and actual ordered mixer evaluations.
 chooses the bits before any actual atoms or mixer matrices, then proves
 the requested gradient identities for every realization of those tests.
 It assumes neither occurrence nor independence of the evaluations.
-The construction of cross forms realizing gradients on every cut profile
-is still open.
+[`PairedRecipes`](proofs/Lax342547Proofs/PairedRecipes.lean) applies those
+prescriptions to both lists at both endpoints. [`KeySpans`](proofs/Lax342547Proofs/KeySpans.lean)
+and [`PairedKeys`](proofs/Lax342547Proofs/PairedKeys.lean) prove disjointness
+of the actual incident key spans from the tables and their dimension bound 28.
+
+[`FrozenBaselines`](proofs/Lax342547Proofs/FrozenBaselines.lean) constructs
+splittings and a table-compatible frozen extension. [`PrimalRetractions`](proofs/Lax342547Proofs/PrimalRetractions.lean)
+and [`BaselineRank`](proofs/Lax342547Proofs/BaselineRank.lean) choose primal-preserving
+retractions and prove reciprocal rank bounds for the same extension.
+[`NominalBaselines`](proofs/Lax342547Proofs/NominalBaselines.lean) and
+[`RawBaselines`](proofs/Lax342547Proofs/RawBaselines.lean) specialize these
+bounds to the actual tables and selected key spans, giving `3K+28`.
+[`FrozenValues`](proofs/Lax342547Proofs/FrozenValues.lean) evaluates the
+selected atoms; [`RecipeResiduals`](proofs/Lax342547Proofs/RecipeResiduals.lean)
+proves that the target residual vanishes on effective profiles and all
+selected atoms. The whole-space annihilator argument and derivative
+corrections are still open.
 
 ## 10. Accepted queries imply four holes — §7
 

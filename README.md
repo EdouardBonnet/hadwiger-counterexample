@@ -137,6 +137,11 @@ by positions and may contain repeated raw vertices.
   extensions and identified with the actual frame contraction. Full paired
   witness lists and scalar recipes are defined, with the fourteen-ray
   budget, diagonal sums, and matched-key tensor sharing proved.
+- Numerical prescriptions for all four endpoints, independence of the actual
+  incident key spans, and frozen baseline cross forms extending the tables.
+  Both reciprocal endpoint roles have channel rank at most `3K+28` for the
+  same baseline. The target residual vanishes on effective profiles and
+  every selected atom; the whole-space annihilator argument remains open.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
 
