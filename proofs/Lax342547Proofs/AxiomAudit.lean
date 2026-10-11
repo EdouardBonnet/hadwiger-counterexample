@@ -1,3 +1,24 @@
+import Lax342547Proofs.MarkedPhase
+import Lax342547Proofs.PointQuadratics
+import Lax342547Proofs.SmallNoCover
+import Lax342547Proofs.PhaseScales
+import Lax342547Proofs.QuadraticDegree
+import Lax342547Proofs.FixedNoCover
+import Lax342547Proofs.DyadicMoments
+import Lax342547Proofs.CommonAtoms
+import Lax342547Proofs.NoCoverPhase
+import Lax342547Proofs.MomentBudgets
+import Lax342547Proofs.PhaseAverages
+import Lax342547Proofs.UniformPhaseTails
+import Lax342547Proofs.PairingRank
+import Lax342547Proofs.TinyCompatibility
+import Lax342547Proofs.TotalRankCount
+import Lax342547Proofs.BooleanWeight
+import Lax342547Proofs.CoverSpace
+import Lax342547Proofs.ChannelColumns
+import Lax342547Proofs.PairPositions
+import Lax342547Proofs.HadamardRank
+import Lax342547Proofs.CoverAvoidance
 import Lax342547Proofs.NoCoverMoments
 import Lax342547Proofs.ComponentMoments
 import Lax342547Proofs.TensorCharacters
@@ -1359,6 +1380,88 @@ import Lax342547Proofs.PairedWitnesses
 #print axioms Lax342547Proofs.NoCoverMoments.sum_matrix_rank
 #print axioms Lax342547Proofs.NoCoverMoments.no_cover_even_moment
 #print axioms Lax342547Proofs.NoCoverMoments.no_cover_phase_tail
+
+#print axioms Lax342547Proofs.CoverAvoidance.finrank_map_of_disjoint_kernel
+#print axioms Lax342547Proofs.CoverAvoidance.quotient_rank_of_avoidance
+#print axioms Lax342547Proofs.CoverAvoidance.restriction_rank_of_avoidance
+#print axioms Lax342547Proofs.CoverAvoidance.projection_rank_of_avoidance
+
+#print axioms Lax342547Proofs.HadamardRank.hadamard_rank
+#print axioms Lax342547Proofs.HadamardRank.all_one_rank
+#print axioms Lax342547Proofs.HadamardRank.one_add_rank
+#print axioms Lax342547Proofs.HadamardRank.incompatible_tuple_bound
+#print axioms Lax342547Proofs.HadamardRank.compatible_pair_in_tuple
+
+#print axioms Lax342547Proofs.PairPositions.distinct_pair_probability
+#print axioms Lax342547Proofs.PairPositions.inevitable_pair_mass
+
+#print axioms Lax342547Proofs.ChannelColumns.columns_uniform_weights
+#print axioms Lax342547Proofs.ChannelColumns.pmf_weights_map
+#print axioms Lax342547Proofs.ChannelColumns.push_cell_mass
+#print axioms Lax342547Proofs.ChannelColumns.raw_channel_point_cap
+#print axioms Lax342547Proofs.ChannelColumns.raw_channel_event_cap
+#print axioms Lax342547Proofs.ChannelColumns.no_cover_raw_phase_tail
+
+#print axioms Lax342547Proofs.CoverSpace.covered_decomposition
+#print axioms Lax342547Proofs.CoverSpace.cover_space_dimension
+
+#print axioms Lax342547Proofs.BooleanWeight.flip_twice
+#print axioms Lax342547Proofs.BooleanWeight.derivative_monomial
+#print axioms Lax342547Proofs.BooleanWeight.derivative_degree
+#print axioms Lax342547Proofs.BooleanWeight.invariant_constant
+#print axioms Lax342547Proofs.BooleanWeight.derivative_weight
+#print axioms Lax342547Proofs.BooleanWeight.constant_weight
+#print axioms Lax342547Proofs.BooleanWeight.nonzero_weight
+#print axioms Lax342547Proofs.BooleanWeight.uniform_nonzero_mass
+#print axioms Lax342547Proofs.BooleanWeight.uniform_error_exactification
+#print axioms Lax342547Proofs.BooleanWeight.excluded_labels_exactification
+
+#print axioms Lax342547Proofs.TotalRankCount.exists_rank_factors
+#print axioms Lax342547Proofs.TotalRankCount.factor_card_bound
+#print axioms Lax342547Proofs.TotalRankCount.total_rank_card
+
+#print axioms Lax342547Proofs.TinyCompatibility.tiny_compatible_mass
+#print axioms Lax342547Proofs.TinyCompatibility.tiny_compatible_mass_rank_bound
+
+#print axioms Lax342547Proofs.PairingRank.pairing_matrix_rank_le
+#print axioms Lax342547Proofs.PairingRank.covered_pairing_rank
+
+#print axioms Lax342547Proofs.UniformPhaseTails.no_cover_raw_family_tail
+#print axioms Lax342547Proofs.UniformPhaseTails.no_cover_uniform_target_tail
+
+#print axioms Lax342547Proofs.PhaseAverages.tensor_character_abs
+#print axioms Lax342547Proofs.PhaseAverages.conditional_phase_abs_le_one
+#print axioms Lax342547Proofs.PhaseAverages.finite_event_density
+#print axioms Lax342547Proofs.PhaseAverages.average_from_phase_tail
+
+#print axioms Lax342547Proofs.MomentBudgets.power_ratio_bound
+#print axioms Lax342547Proofs.MomentBudgets.no_cover_budget
+#print axioms Lax342547Proofs.MomentBudgets.dyadic_budget_margins
+
+#print axioms Lax342547Proofs.NoCoverPhase.no_cover_phase_average
+
+#print axioms Lax342547Proofs.CommonAtoms.common_atom_sum_zero
+#print axioms Lax342547Proofs.CommonAtoms.common_atom_constant_zero
+
+#print axioms Lax342547Proofs.DyadicMoments.exists_dyadic_moment_order
+#print axioms Lax342547Proofs.DyadicMoments.fixed_dyadic_budget
+#print axioms Lax342547Proofs.DyadicMoments.dyadic_budget_with_fixed_parameters
+
+#print axioms Lax342547Proofs.FixedNoCover.fixed_parameter_no_cover_phase
+
+#print axioms Lax342547Proofs.QuadraticDegree.quadratic_function_degree
+#print axioms Lax342547Proofs.QuadraticDegree.linear_outer_product_degree
+#print axioms Lax342547Proofs.QuadraticDegree.quadratic_error_exactification
+
+#print axioms Lax342547Proofs.PhaseScales.phase_density_budget
+#print axioms Lax342547Proofs.PhaseScales.phase_numerical_margin
+
+#print axioms Lax342547Proofs.SmallNoCover.no_cover_phase_small
+
+#print axioms Lax342547Proofs.PointQuadratics.base_evaluation_degree
+#print axioms Lax342547Proofs.PointQuadratics.point_tensor_evaluation_degree
+
+#print axioms Lax342547Proofs.MarkedPhase.no_cover_marked_unit_phase
 
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample
 #print axioms Lax342547Proofs.FractionalCounterexample.arbitrarily_large_fractional_counterexample

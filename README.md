@@ -216,6 +216,18 @@ by positions and may contain repeated raw vertices.
   quantitative exponent margins are checked. Joined pin/key records have
   explicit rank and column budgets. Completing the numerical/status record
   encoding and the paper's full asymptotic Proposition 7.1 wrapper remains.
+- Finite phase estimates: actual raw-channel density transfer, uniform
+  counting of targets by total component rank, and fixed-parameter
+  single-orientation no-cover phase bounds. Marks may depend on the whole
+  unit. The full two-endpoint alternative and large-cover concentration
+  are still open at this checkpoint.
+- Tiny-cover finite algebra: covered-map dimension bounds and the actual
+  pairing-kernel compatibility probability of order `N^(-4)`. The Fourier
+  singleton estimates and accepting-pair injection remain open.
+- Boolean exactification: actual selector-span nonvanishing, recovery past
+  excluded labels, degree-two point-tensor evaluations, and the odd-tag
+  common-atom identity. The full common-prediction/preparation theorem remains
+  open.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
 
@@ -239,11 +251,11 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 At the latest validated checkpoint, `lake build` and `lax build . --replay` pass,
-with 281 concepts and 966 annotated proofs, 964 of which have no open
+with 302 concepts and 1,027 annotated proofs, 1,025 of which have no open
 mathematical assumptions. All kernel replays pass. The only proofs with unresolved archive dependencies are the two
 counterexample consequences of the open Theorem 1.1. The finite graph
 transfer has raw supersaturation as an explicit mathematical hypothesis.
-Overall mathematical completion is estimated at about 70%; the requested
+Overall mathematical completion is estimated at about 73%; the requested
 80% milestone has not yet been reached.
 
 The completed preliminary proofs report only Lean's standard background
