@@ -1,5 +1,6 @@
 import Lax342547.FrozenAssembly
-import Lax342547Proofs.GradientAssembly
+import Lax342547.ChannelChanges
+import Lax342547.PairedKeys
 
 namespace Lax342547Proofs.FrozenAssembly
 open Lax342547.FrozenAssembly
@@ -36,14 +37,14 @@ theorem barred_channel_frozen {k n b degree r : ℕ} {hr : 2 * r ≤ n} {H N : T
     (v w : Nominal (Coordinate k n b degree) H)
     (h : v ∈ P.space a ⊔ keys W a.1 ∨ w ∈ Q.space c ⊔ keys (Lax342547.PairedRecipes.flip W) c.1) :
     channelChange (barred W P U a) (protectedChannel Q z c) δ z v w = 0 := by
-  apply Lax342547Proofs.ChannelChanges.frozen
+  apply Lax342547.ChannelChanges.frozen
   rcases h with hv | hw
   · exact Or.inl (Submodule.mem_sup_left hv)
   · right
     obtain ⟨p, hp, key, hkey, heq⟩ := Submodule.mem_sup.mp hw
     have hkey0 : channelProjection z key = 0 := by
       ext h
-      exact (Lax342547Proofs.PairedKeys.key_bounds (Lax342547.PairedRecipes.flip W) c.1).1 hkey z h
+      exact (Lax342547.PairedKeys.key_bounds (Lax342547.PairedRecipes.flip W) c.1).1 hkey z h
     rw [← heq, map_add, hkey0, add_zero]
     exact ⟨p, hp, rfl⟩
 
@@ -66,11 +67,11 @@ theorem assembled_frozen {k n b degree r : ℕ} {hr : 2 * r ≤ n} {H N : Type} 
   intro e
   constructor
   · intro v w h
-    have h₁ (z : Fin 2) := barred_channel_frozen W P Q (U e) (e, true) (e, false) z (δ z e) v w h
+    have h₁ (z : Fin 2) := Lax342547.FrozenAssembly.barred_channel_frozen W P Q (U e) (e, true) (e, false) z (δ z e) v w h
     have hswap : w ∈ Q.space (e, false) ⊔ keys (Lax342547.PairedRecipes.flip W) e ∨
         v ∈ P.space (e, true) ⊔ keys (Lax342547.PairedRecipes.flip (Lax342547.PairedRecipes.flip W)) e := by
-      simpa only [flip_lists_twice] using h.symm
-    have h₂ (i : Fin 2) := barred_channel_frozen (Lax342547.PairedRecipes.flip W) Q P (V' e)
+      simpa only [Lax342547.FrozenAssembly.flip_lists_twice] using h.symm
+    have h₂ (i : Fin 2) := Lax342547.FrozenAssembly.barred_channel_frozen (Lax342547.PairedRecipes.flip W) Q P (V' e)
       (e, false) (e, true) i (ε' i e) w v hswap
     change F.forward e v w + (∑ z, channelChange (barred W P (U e) (e, true))
       (protectedChannel Q z (e, false)) (δ z e) z v w) +
@@ -81,10 +82,10 @@ theorem assembled_frozen {k n b degree r : ℕ} {hr : 2 * r ≤ n} {H N : Type} 
   · intro v w h
     have hflip : v ∈ Q.space (e, true) ⊔ keys (Lax342547.PairedRecipes.flip W) e ∨
         w ∈ P.space (e, false) ⊔ keys (Lax342547.PairedRecipes.flip (Lax342547.PairedRecipes.flip W)) e := by
-      simpa only [flip_lists_twice] using h
-    have h₁ (i : Fin 2) := barred_channel_frozen (Lax342547.PairedRecipes.flip W) Q P (U' e)
+      simpa only [Lax342547.FrozenAssembly.flip_lists_twice] using h
+    have h₁ (i : Fin 2) := Lax342547.FrozenAssembly.barred_channel_frozen (Lax342547.PairedRecipes.flip W) Q P (U' e)
       (e, true) (e, false) i (δ' i e) v w hflip
-    have h₂ (z : Fin 2) := barred_channel_frozen W P Q (V e) (e, false) (e, true) z (ε z e) w v h.symm
+    have h₂ (z : Fin 2) := Lax342547.FrozenAssembly.barred_channel_frozen W P Q (V e) (e, false) (e, true) z (ε z e) w v h.symm
     change F.reverse e v w + (∑ i, channelChange (barred (Lax342547.PairedRecipes.flip W) Q (U' e) (e, true))
       (protectedChannel P i (e, false)) (δ' i e) i v w) +
       (∑ z, channelChange (barred W P (V e) (e, false))

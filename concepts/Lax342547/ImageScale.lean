@@ -4,7 +4,7 @@ import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
 /-!
 ---
 title: Paying the reference-image conditioning and dimension costs
-type: theorem
+type: lemma
 ---
 The finite two-endpoint cap has prefactor 16 per component and loses
 2(d+h) dimensions on minus images. Both costs are paid uniformly over

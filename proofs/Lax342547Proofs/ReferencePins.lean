@@ -1,6 +1,6 @@
 import Lax342547.ReferencePins
-import Lax342547Proofs.ExactPins
-import Lax342547Proofs.ImageScale
+import Lax342547.ExactPins
+import Lax342547.ImageScale
 
 namespace Lax342547Proofs.ReferencePins
 
@@ -35,9 +35,9 @@ theorem reference_pin_cap {Comp B H N : Type}
       ((p.toOuterMeasure_apply_eq_one_iff Set.univ).mpr (Set.subset_univ _))
   · have hrank : P.rank = (∑ e : Comp, (P.basisMatrix (e, true)).rank) +
         ∑ e : Comp, (P.basisMatrix (e, false)).rank := by
-      simp only [ExactPins.basis_rank, Pin.rank, Fintype.sum_prod_type, Fintype.sum_bool,
+      simp only [Lax342547.ExactPins.basis_rank, Pin.rank, Fintype.sum_prod_type, Fintype.sum_bool,
         Finset.sum_add_distrib]
-    have h := ImageScale.reference_image_cap (E := E) ε hε hN hp hc
+    have h := Lax342547.ImageScale.reference_image_cap (E := E) ε hε hN hp hc
       (fun e => P.basisMatrix (e, true)) (fun e => P.basisMatrix (e, false))
       (fun e => P.basisImage (e, true)) (fun e => P.basisImage (e, false))
       (by rw [← hrank]; omega)
@@ -47,7 +47,7 @@ theorem reference_pin_cap {Comp B H N : Type}
           minusImages (P.basisMatrix (e, false)) (fun i => o i e) = P.basisImage (e, false)} := by
       rw [show P.event (observation (E := E)) =
         P.event (fun o a => (observationMatrix (E := E) o a).mulVecLin) from rfl,
-        ExactPins.event_basis]
+        Lax342547.ExactPins.event_basis]
       ext o
       simp only [Set.mem_ofPred_eq]
       constructor

@@ -1,6 +1,7 @@
 import Lax342547.RestrictedLeaves
-import Lax342547Proofs.LeafTrimming
 import Lax342547Proofs.Conditioning
+import Lax342547.Conditioning
+import Lax342547.LeafTrimming
 
 namespace Lax342547Proofs.RestrictedLeaves
 
@@ -39,17 +40,17 @@ theorem restricted_family {Ω J Axis I N : Type}
     ∀ j, (2 : ℝ≥0∞) ^ (-(ζ * n)) ≤ (p j).toOuterMeasure (S j) →
       LawBound (p j) μ A (P j) (S j)
         ((2 : ℝ≥0∞) ^ (-((1 - 2 * ζ) * n))) ((2 : ℝ≥0∞) ^ ((C + ζ) * n)) := by
-  refine ⟨LeafTrimming.restricted_discard w _ ζ η n hw hq, ?_⟩
+  refine ⟨Lax342547.LeafTrimming.restricted_discard w _ ζ η n hw hq, ?_⟩
   intro j hj
   have hpos : 0 < (p j).toOuterMeasure (S j) :=
     (ENNReal.rpow_pos (by norm_num) (by norm_num)).trans_le hj
   have hS := Conditioning.support_of_positive (p j) (S j) hpos
-  refine ⟨hS, ?_, ?_, Conditioning.weighted_filter (p j) (S j) hS⟩
+  refine ⟨hS, ?_, ?_, Lax342547.Conditioning.weighted_filter (p j) (S j) hS⟩
   · intro Q hQ
     rw [rank_power]
-    exact LeafTrimming.minentropy_after_restriction (p j) (S j) (Q.event A) hS ζ n
+    exact Lax342547.LeafTrimming.minentropy_after_restriction (p j) (S j) (Q.event A) hS ζ n
       ((P j).relativeRank Q) hζ hQ hj (by simpa only [rank_power] using hcap j Q hQ)
-  · exact LeafTrimming.density_after_restriction (p j) μ (S j) hS C ζ n hj (hdensity j)
+  · exact Lax342547.LeafTrimming.density_after_restriction (p j) μ (S j) hS C ζ n hj (hdensity j)
 
 /--
 ---

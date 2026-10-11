@@ -1,6 +1,8 @@
 import Lax342547.SelectedScalars
-import Lax342547Proofs.SelectedBlocks
 import Lax342547Proofs.LabelRelations
+import Lax342547.LabelRelations
+import Lax342547.PureObstructions
+import Lax342547.SelectedBlocks
 
 namespace Lax342547Proofs.SelectedScalars
 
@@ -33,11 +35,11 @@ theorem profile_triangle {k n b degree R : ℕ} (x : Profile k n b degree)
   change cutMap w.val = x.val at hw
   have ht : x.val (edge a b hab) + x.val (edge b c hbc) + x.val (edge a c hac) = 0 := by
     rw [← hw]
-    exact LabelRelations.cut_triangle w.val a b c hab hbc hac
+    exact Lax342547.LabelRelations.cut_triangle w.val a b c hab hbc hac
   have hsum : (∑ j : Fin 3, ∑ s ∈ L (E j), block (selectorEval (degree := degree)) s (Z (E j) s)) = 0 := by
     simp_rw [← hM]
     simpa [Fin.sum_univ_three, E, add_assoc] using ht
-  have hsep := LabelRelations.triangle_blocks (L ∘ E) (Z ∘ E)
+  have hsep := Lax342547.LabelRelations.triangle_blocks (L ∘ E) (Z ∘ E)
     (fun j => hL (E j)) hdegree hsum
   intro s
   simpa [Fin.sum_univ_three, E, Function.comp_def, add_assoc] using hsep s
@@ -110,13 +112,13 @@ theorem selected_scalar {k n b degree R : ℕ} (hk : 0 < k) (x : Profile k n b d
   let c (e : Component (Tag k)) := (supported (L e) (Z e) s) none none
   have htriangle (a b d : Tag k) (hab : a ≠ b) (hbd : b ≠ d) (had : a ≠ d) :
       c (edge a b hab) + c (edge b d hbd) + c (edge a d had) = 0 := by
-    have ht := profile_triangle x L Z hL hdegree hM a b d hab hbd had s
+    have ht := Lax342547.SelectedScalars.profile_triangle x L Z hL hdegree hM a b d hab hbd had s
     exact congrArg (fun M => M none none) ht
   have hout (e : Component (Tag k)) (he : l ∉ e.val) : c e = 0 := by
     have hz := hshape e
     rw [if_neg he] at hz
     exact congrArg (fun M => M none none) hz
-  obtain ⟨v, hv⟩ := star_scalar l c htriangle hout
+  obtain ⟨v, hv⟩ := Lax342547.SelectedScalars.star_scalar l c htriangle hout
   refine ⟨v, ?_⟩
   intro e
   rw [hshape e]
@@ -148,12 +150,12 @@ theorem obstruction_scalar {k n b degree r R : ℕ} {hr : 2 * r ≤ n} {H N : Ty
     ∃ v : Binary, ∀ e, supported (L e) (Z e) (W.left i u.1 u.2).label =
       if (W.left i u.1 u.2).tag ∈ e.val then v • baseMoment (W.left i u.1 u.2).base else 0 := by
   classical
-  apply selected_scalar hk (x i) L Z hL hdegree hM (W.left i u.1 u.2).label
+  apply Lax342547.SelectedScalars.selected_scalar hk (x i) L Z hL hdegree hM (W.left i u.1 u.2).label
     (W.left i u.1 u.2).tag (W.left i u.1 u.2).base
   intro e
   by_cases hs : (W.left i u.1 u.2).label ∈ L e
   · simp only [supported, hs, if_pos]
-    apply SelectedBlocks.selected_obstruction W P A hA U V x h i e (L e) (hL e) (Z e) _ u hs hfresh
+    apply Lax342547.SelectedBlocks.selected_obstruction W P A hA U V x h i e (L e) (hL e) (Z e) _ u hs hfresh
       (hZ e _ hs)
     intro a c
     have hm := congrArg (fun M => M a c) (hM e)
@@ -188,14 +190,14 @@ theorem selected_decomposition {k n b degree r K : ℕ} {hr : 2 * r ≤ n} {H N 
         if (W.left i u.1 u.2).tag ∈ e.val then c u • baseMoment (W.left i u.1 u.2).base else 0 := by
   classical
   choose L Z hL hZ hRanks hM using
-    (fun e => PureObstructions.component_labels W P hK U V x h hdegree i e)
+    (fun e => Lax342547.PureObstructions.component_labels W P hK U V x h hdegree i e)
   have hmat (e : Component (Tag k)) :
       (x i).val e = ∑ s ∈ L e, block selectorEval s (Z e s) := by
     ext a d
     simpa [Matrix.sum_apply, Lax342547.TensorBlocks.block] using hM e a d
   have htri : 3 * (2 * K + 28) ≤ degree + 1 := by omega
   have hscalar (u : Σ z, Fin (W.length i z)) :=
-    obstruction_scalar hk W P A hA U V x h i L Z hL htri hmat
+    Lax342547.SelectedScalars.obstruction_scalar hk W P A hA U V x h i L Z hL htri hmat
       (fun e s hs => hZ e s hs) u (hfresh i u.1 u.2)
   choose c hc using hscalar
   exact ⟨L, Z, c, fun e => ⟨hL e, hZ e, hRanks e, hM e⟩, hc⟩

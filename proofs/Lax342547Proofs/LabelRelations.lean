@@ -1,7 +1,6 @@
 import Lax342547.LabelRelations
-import Lax342547Proofs.TensorBlocks
-import Lax342547Proofs.SelectorInterpolation
 import Lax342547Proofs.CutProfiles
+import Lax342547.SelectorInterpolation
 
 namespace Lax342547Proofs.LabelRelations
 
@@ -23,7 +22,7 @@ theorem blocks_unique {Base : Type} [Fintype Base] {b degree : ℕ}
     (hdegree : L.card ≤ degree + 1) (h : (∑ s ∈ L, block (selectorEval (degree := degree)) s (Z s)) = 0) :
     ∀ s ∈ L, Z s = 0 := by
   classical
-  have hli := SelectorInterpolation.selectorEval_linearIndependent
+  have hli := Lax342547.SelectorInterpolation.selectorEval_linearIndependent
     (fun s : L => s.val) Subtype.val_injective (by simpa using hdegree)
   rw [← Finset.sum_coe_sort L] at h
   intro s hs
@@ -82,7 +81,7 @@ theorem triangle_blocks {Base : Type} [Fintype Base] {b degree R : ℕ}
     exact h
   intro s
   by_cases hs : s ∈ J
-  · exact blocks_unique J _ hcard hz s hs
+  · exact Lax342547.LabelRelations.blocks_unique J _ hcard hz s hs
   · have hout (i : Fin 3) : s ∉ L i := fun hsi => hs (hsub i hsi)
     simp [supported, hout]
 

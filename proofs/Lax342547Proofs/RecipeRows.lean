@@ -1,6 +1,6 @@
 import Lax342547.RecipeRows
-import Lax342547Proofs.SymmetricPrescriptions
-import Lax342547Proofs.BinaryPrescriptions
+import Lax342547.BinaryPrescriptions
+import Lax342547.SymmetricPrescriptions
 
 namespace Lax342547Proofs.RecipeRows
 
@@ -46,7 +46,7 @@ theorem recipe_matrix {I J : Type} [Fintype I] [Fintype J] [Nonempty I] [Nonempt
       _ = _ := by simp [add_assoc, add_left_comm, add_comm, hcancel]
   let c₁ : I ⊕ J → Binary := Sum.elim (fun i => a (.inl i)) (fun j => a (.inr j) + p (.inr j))
   let c₂ : I ⊕ J → Binary := Sum.elim (fun i => a (.inl i) + p (.inl i)) (fun j => a (.inr j))
-  obtain ⟨M, hsym, hdiag, h₁, h₂⟩ := SymmetricPrescriptions.two_lists a c₁ c₂ rfl rfl hcross
+  obtain ⟨M, hsym, hdiag, h₁, h₂⟩ := Lax342547.SymmetricPrescriptions.two_lists a c₁ c₂ rfl rfl hcross
   refine ⟨M, hsym, hdiag, ?_, ?_, ?_, ?_⟩
   · intro i
     rw [Finset.sum_congr rfl (fun t _ => hsym _ _), h₁]
@@ -86,8 +86,8 @@ theorem recipe_bits {I J Term : Type} [Fintype I] [Fintype J] [Fintype Term]
       (∀ j : J, a (Sum.inr j) + ∑ t : I, T (Sum.inl t) (Sum.inr j) = p (Sum.inr j)) ∧
       (∀ j : J, a (Sum.inr j) + ∑ t : J, T (Sum.inr t) (Sum.inr j) = 0) ∧
       (∀ i : I, a (Sum.inl i) + ∑ t : J, T (Sum.inr t) (Sum.inl i) = p (Sum.inl i)) := by
-  obtain ⟨M, hMsym, hMdiag, hM⟩ := recipe_matrix a opposite p hrole₁ hrole₂ hcoupled
-  obtain ⟨L, R, hallowed', hT⟩ := BinaryPrescriptions.realize allowed hallowed T₀ M hsym hMsym
+  obtain ⟨M, hMsym, hMdiag, hM⟩ := Lax342547.RecipeRows.recipe_matrix a opposite p hrole₁ hrole₂ hcoupled
+  obtain ⟨L, R, hallowed', hT⟩ := Lax342547.BinaryPrescriptions.realize allowed hallowed T₀ M hsym hMsym
     (fun x => (hMdiag x).trans (hdiag x).symm)
   exact ⟨L, R, hallowed', by simpa only [hT] using hM⟩
 

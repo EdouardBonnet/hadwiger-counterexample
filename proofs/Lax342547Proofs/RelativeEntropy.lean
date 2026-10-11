@@ -2,7 +2,7 @@ import Lax342547.RelativeEntropy
 import Mathlib.InformationTheory.KullbackLeibler.KLFun
 import Mathlib.Topology.Instances.Real.Lemmas
 import Mathlib.Analysis.Convex.StdSimplex
-import Lax342547Proofs.RetainedImages
+import Lax342547.RetainedImages
 
 namespace Lax342547Proofs.RelativeEntropy
 open Lax342547.RelativeEntropy
@@ -69,7 +69,7 @@ conclusion: Lax342547.RelativeEntropy.compact_entropy_minimizer
 theorem compact_entropy_minimizer {Ω : Type} [Fintype Ω]
     (P : Set (Ω → ℝ)) (q : Ω → ℝ) (hP : IsCompact P) (hne : P.Nonempty) :
     ∃ ρ ∈ P, ∀ ρ' ∈ P, entropy ρ q ≤ entropy ρ' q := by
-  obtain ⟨ρ,hρ,hmin⟩ := hP.exists_isMinOn hne (continuous_entropy q).continuousOn
+  obtain ⟨ρ,hρ,hmin⟩ := hP.exists_isMinOn hne (Lax342547.RelativeEntropy.continuous_entropy q).continuousOn
   exact ⟨ρ,hρ,hmin⟩
 
 /--
@@ -117,14 +117,14 @@ theorem entropy_support_cost {Ω : Type} [Fintype Ω] (ρ q : Ω → ℝ) (S : �
   classical
   let m := Lax342547.RetainedImages.cellMass q S
   let qS := Lax342547.RetainedImages.conditionalLaw q S
-  have hqS : Probability qS := ⟨Lax342547Proofs.RetainedImages.conditional_law_nonneg q S hq.1,
-    Lax342547Proofs.RetainedImages.conditional_law_total q S hmass⟩
+  have hqS : Probability qS := ⟨Lax342547.RetainedImages.conditional_law_nonneg q S hq.1,
+    Lax342547.RetainedImages.conditional_law_total q S hmass⟩
   have hρS (x : Ω) (hp : 0 < ρ x) : S x := by by_contra hn; rw [hS x hn] at hp; linarith
   have hqSsupport (x : Ω) (hp : 0 < ρ x) : 0 < qS x := by
     dsimp [qS, Lax342547.RetainedImages.conditionalLaw]
     rw [if_pos (hρS x hp)]
     exact div_pos (hsupport x hp) hmass
-  have hn := entropy_nonneg ρ qS hρ hqS hqSsupport
+  have hn := Lax342547.RelativeEntropy.entropy_nonneg ρ qS hρ hqS hqSsupport
   have he : entropy ρ qS = entropy ρ q + Real.log m := by
     unfold entropy
     have hx (x : Ω) : ρ x*Real.log (ρ x)-ρ x*Real.log (qS x) =

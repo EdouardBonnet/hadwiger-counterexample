@@ -3,7 +3,7 @@ import Lax342547.RawFrames
 /-!
 ---
 title: Nonempty raw frame spaces
-type: theorem
+type: lemma
 ---
 The doubled coordinate space has dimension $2(d+h)$. The plus frame is
 the coordinate inclusion into its first half; the minus frame has the

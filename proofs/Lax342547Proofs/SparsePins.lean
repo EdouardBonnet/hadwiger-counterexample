@@ -1,6 +1,6 @@
 import Lax342547.SparsePins
 import Lax342547Proofs.SparseSupport
-import Lax342547Proofs.SelectorInterpolation
+import Lax342547.SelectorInterpolation
 
 namespace Lax342547Proofs.SparsePins
 
@@ -19,7 +19,7 @@ theorem eq_zero_of_expansion_eq_zero {Base : Type} {b degree : ℕ}
     (hcard : c.support.card ≤ degree + 1)
     (hzero : expansion (selectorEval (degree := degree)) c = 0) : c = 0 := by
   classical
-  have hlin := SelectorInterpolation.selectorEval_linearIndependent (degree := degree)
+  have hlin := Lax342547.SelectorInterpolation.selectorEval_linearIndependent (degree := degree)
     (fun s : c.support => s.val) Subtype.val_injective (by simpa only [Fintype.card_coe] using hcard)
   have hrel (x : Base) :
       ∑ s : c.support, c s.val x • selectorEval (degree := degree) s.val = 0 := by
@@ -99,7 +99,7 @@ theorem sparse_pin_labels_finset {Base Component : Type} [Fintype Base] [Fintype
         L.card ≤ R + 14 →
         (∑ s ∈ L, labelTensor (selectorEval (degree := degree)) s (z s)) ∈ U sign e →
         ∀ s ∈ L, z s ≠ 0 → s ∈ B := by
-  obtain ⟨B, hB, hcover⟩ := sparse_pin_labels U hdim hdegree
+  obtain ⟨B, hB, hcover⟩ := Lax342547.SparsePins.sparse_pin_labels U hdim hdegree
   refine ⟨B, hB, ?_⟩
   intro sign e L z hL hz s hs hzs
   let c := Finsupp.indicator L (fun t _ => z t)

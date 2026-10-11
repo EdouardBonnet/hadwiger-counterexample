@@ -1,5 +1,7 @@
 import Lax342547.PairPositions
-import Lax342547Proofs.DisjointSampling
+import Lax342547.CellAveraging
+import Lax342547.DisjointSampling
+import Lax342547.FiniteSampling
 
 namespace Lax342547Proofs.PairPositions
 open Lax342547.PairPositions
@@ -24,7 +26,7 @@ theorem distinct_pair_probability {ι Ω : Type} [Fintype ι] [Fintype Ω] [Deci
       have huv : u = v := Subsingleton.elim _ _
       subst v
       cases b <;> cases c <;> simp_all }
-  have hh := Lax342547Proofs.DisjointSampling.disjoint_pair_probability μ a E hμ
+  have hh := Lax342547.DisjointSampling.disjoint_pair_probability μ a E hμ
   simpa [a] using hh
 
 /--
@@ -38,9 +40,9 @@ theorem inevitable_pair_mass {ι Ω : Type} [Fintype ι] [Fintype Ω] [Decidable
     1 ≤ (Fintype.card ι : ℝ)^2*pairEventMass μ μ E := by
   classical
   let ρ := productLaw (fun _ : ι => μ)
-  have hprob := Lax342547Proofs.FiniteSampling.product_probability (fun _ : ι => μ) (fun _ => hμ)
+  have hprob := Lax342547.FiniteSampling.product_probability (fun _ : ι => μ) (fun _ => hμ)
   let B := fun ij : ι × ι => fun x : ι → Ω => ij.1 ≠ ij.2 ∧ E (x ij.1) (x ij.2)
-  have hu := Lax342547Proofs.FiniteSampling.cell_mass_union_bound ρ B Finset.univ hprob.1
+  have hu := Lax342547.FiniteSampling.cell_mass_union_bound ρ B Finset.univ hprob.1
   have hm : cellMass ρ (fun x => ∃ ij ∈ (Finset.univ : Finset (ι × ι)), B ij x) = 1 := by
     unfold cellMass
     have hh : ∀ x : ι → Ω, ∃ ij ∈ (Finset.univ : Finset (ι × ι)), B ij x := by
@@ -54,8 +56,8 @@ theorem inevitable_pair_mass {ι Ω : Type} [Fintype ι] [Fintype Ω] [Decidable
     by_cases hij : ij.1 = ij.2
     · have hm0 : cellMass ρ (B ij) = 0 := by simp [cellMass,B,hij]
       rw [hm0]
-      exact Lax342547Proofs.CellAveraging.pair_event_mass_nonneg μ μ E hμ.1 hμ.1
-    · simpa [B,ρ,hij] using (distinct_pair_probability μ E ij.1 ij.2 hij hμ).le
+      exact Lax342547.CellAveraging.pair_event_mass_nonneg μ μ E hμ.1 hμ.1
+    · simpa [B,ρ,hij] using (Lax342547.PairPositions.distinct_pair_probability μ E ij.1 ij.2 hij hμ).le
   exact hu.trans (by
     calc
       _ ≤ ∑ _ : ι × ι, pairEventMass μ μ E := Finset.sum_le_sum (fun ij _ => hlocal ij)

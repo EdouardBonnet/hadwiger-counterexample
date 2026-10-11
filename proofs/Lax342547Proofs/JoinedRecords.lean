@@ -1,6 +1,5 @@
 import Lax342547.JoinedRecords
-import Lax342547Proofs.FrozenRecords
-import Lax342547Proofs.RawQueryImages
+import Lax342547.FrozenRecords
 
 namespace Lax342547Proofs.JoinedRecords
 open Lax342547.JoinedRecords
@@ -61,11 +60,11 @@ theorem joined_record_bound {Axis I N Status : Type} {U : Axis → Type}
     exact Fintype.card (RecordType Axis I (fun a => Module.finrank Binary (joined P keys a)) Status) ≤
       2 ^ (Fintype.card I * (K+k) + s) := by
   classical
-  rw [joined_record_count, pow_add]
+  rw [Lax342547.JoinedRecords.joined_record_count, pow_add]
   apply Nat.mul_le_mul _ hstatus
   apply Nat.pow_le_pow_right (by omega : 0 < 2)
   apply Nat.mul_le_mul_left
-  exact (joined_rank_budget P keys).trans (Nat.add_le_add hP hkeys)
+  exact (Lax342547.JoinedRecords.joined_rank_budget P keys).trans (Nat.add_le_add hP hkeys)
 
 /--
 ---
@@ -119,8 +118,8 @@ theorem basis_records_cross_agreement {I N : Type} [Fintype I] [Fintype N]
     (hrecB : record B leftImages = record B' leftImages) :
     (∀ v ∈ D, ∀ w, dotProduct (A v) (B w) = dotProduct (A' v) (B' w)) ∧
     (∀ v w, w ∈ E → dotProduct (A v) (B w) = dotProduct (A' v) (B' w)) := by
-  have h := Lax342547Proofs.FrozenRecords.two_records_cross_agreement A A' B B'
+  have h := Lax342547.FrozenRecords.two_records_cross_agreement A A' B B'
     (basisVectors D) (basisVectors E) leftImages rightImages hleft hright hrecA hrecB
-  rwa [basis_vectors_span, basis_vectors_span] at h
+  rwa [Lax342547.JoinedRecords.basis_vectors_span, Lax342547.JoinedRecords.basis_vectors_span] at h
 
 end Lax342547Proofs.JoinedRecords

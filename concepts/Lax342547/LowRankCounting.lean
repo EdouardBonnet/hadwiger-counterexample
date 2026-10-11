@@ -5,7 +5,7 @@ import Mathlib.Probability.Distributions.Uniform
 /-!
 ---
 title: Factorization and counting of low-rank binary matrices
-type: theorem
+type: lemma
 ---
 A rank-at-most-r matrix factors through r coordinates. Counting the two
 factors gives the rectangular low-rank estimate used for binary mixer

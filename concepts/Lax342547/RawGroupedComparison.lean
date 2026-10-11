@@ -3,7 +3,7 @@ import Lax342547.GroupTensorComparison
 /-!
 ---
 title: Actual grouped raw observations with arbitrary common tests
-type: theorem
+type: lemma
 ---
 Nominal joint independence is checked separately in every component and
 sign. Independent raw frame groups then compare arbitrary common tests of

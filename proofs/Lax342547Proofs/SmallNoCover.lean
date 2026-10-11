@@ -1,6 +1,6 @@
 import Lax342547.SmallNoCover
-import Lax342547Proofs.FixedNoCover
-import Lax342547Proofs.PhaseScales
+import Lax342547.FixedNoCover
+import Lax342547.PhaseScales
 
 namespace Lax342547Proofs.SmallNoCover
 open Lax342547.SmallNoCover
@@ -41,11 +41,11 @@ theorem no_cover_phase_small {e B N Ω : Type} [Fintype e] [Fintype B] [Fintype 
       (Module.finrank Binary T : ℝ) ≤ (r : ℝ)*(Fintype.card N/c) →
       cellMass μ (fun x => projection (LinearMap.piMap (fun i => (A x i).mulVecLin)) S T = 0) ≤ 1/(2 : ℝ)^P) :
     |∑ o, β o*(∑ x, μ x*ψ (S o) x*tensorCharacter h (A x) (columnsEquiv h (fun a => channels (o a))))| < 1/200 := by
-  have hh' := Lax342547Proofs.FixedNoCover.fixed_parameter_no_cover_phase E μ A ψ r h a c (2*r+10) P
+  have hh' := Lax342547.FixedNoCover.fixed_parameter_no_cover_phase E μ A ψ r h a c (2*r+10) P
     hN hμ hr hA hψ hc hscale hP hh β L S hβ hL hβcap hS hcover
-  have hbudget := Lax342547Proofs.PhaseScales.phase_density_budget r h m (Fintype.card N) (2*r+10)
+  have hbudget := Lax342547.PhaseScales.phase_density_budget r h m (Fintype.card N) (2*r+10)
     (Fintype.card e) L hL hLcap le_rfl hbig
   exact (hh'.trans (add_le_add le_rfl hbudget)).trans_lt
-    (Lax342547Proofs.PhaseScales.phase_numerical_margin a (Fintype.card N) ha hpos)
+    (Lax342547.PhaseScales.phase_numerical_margin a (Fintype.card N) ha hpos)
 
 end Lax342547Proofs.SmallNoCover

@@ -1,6 +1,7 @@
 import Lax342547.NominalBaselines
-import Lax342547Proofs.NominalPrimal
-import Lax342547Proofs.BaselineRank
+import Lax342547.BaselineRank
+import Lax342547.NominalPrimal
+import Lax342547.TableSpaces
 
 namespace Lax342547Proofs.NominalBaselines
 
@@ -36,19 +37,19 @@ theorem nominal_baseline {Comp B H N : Type} [Fintype Comp] [Fintype B] [Fintype
           (F.compl₁₂ (primal (B := B) (H := H)).subtype (channelEmbedding z))) ≤ 3 * K + 28 ∧
         Module.finrank Binary (LinearMap.range
           (F.flip.compl₁₂ (primal (B := B) (H := H)).subtype (channelEmbedding z))) ≤ 3 * K + 28 := by
-  obtain ⟨F, hfrozen, htable, hleft, hright⟩ := BaselineRank.bounded_baseline
+  obtain ⟨F, hfrozen, htable, hleft, hright⟩ := Lax342547.BaselineRank.bounded_baseline
     (C := H → Binary)
     (tableSpace P a) (P.space a) Keys primal (tableSpace Q b) (Q.space b) Keys' primal
-    (TableSpaces.pin_le_table P a) (TableSpaces.pin_le_table Q b) hfresh hfresh'
-    (NominalPrimal.table_spans P a) hkey (NominalPrimal.table_spans Q b) hkey' A T h
+    (Lax342547.TableSpaces.pin_le_table P a) (Lax342547.TableSpaces.pin_le_table Q b) hfresh hfresh'
+    (Lax342547.NominalPrimal.table_spans P a) hkey (Lax342547.NominalPrimal.table_spans Q b) hkey' A T h
   have hdP : Module.finrank Binary (P.space a) ≤ K :=
     (Finset.single_le_sum (fun _ _ => Nat.zero_le _) (Finset.mem_univ a)).trans hP
   have hdQ : Module.finrank Binary (Q.space b) ≤ K :=
     (Finset.single_le_sum (fun _ _ => Nat.zero_le _) (Finset.mem_univ b)).trans hQ
   have htP : Module.finrank Binary ↥(tableSpace P a ⊓ primal) ≤ 2 * K :=
-    (NominalPrimal.table_primal_dimension P a).trans (Nat.mul_le_mul_left 2 hP)
+    (Lax342547.NominalPrimal.table_primal_dimension P a).trans (Nat.mul_le_mul_left 2 hP)
   have htQ : Module.finrank Binary ↥(tableSpace Q b ⊓ primal) ≤ 2 * K :=
-    (NominalPrimal.table_primal_dimension Q b).trans (Nat.mul_le_mul_left 2 hQ)
+    (Lax342547.NominalPrimal.table_primal_dimension Q b).trans (Nat.mul_le_mul_left 2 hQ)
   refine ⟨F, hfrozen, htable, ?_⟩
   intro z
   constructor

@@ -1,5 +1,5 @@
 import Lax342547.PhaseScales
-import Lax342547Proofs.MomentBudgets
+import Lax342547.MomentBudgets
 
 namespace Lax342547Proofs.PhaseScales
 open Lax342547.PhaseScales
@@ -32,7 +32,7 @@ theorem phase_density_budget (r h m N Γ E : ℕ) (L : ℝ) (hL : 0 ≤ L)
     congr 2
     ring
   apply hh.trans
-  apply Lax342547Proofs.MomentBudgets.power_ratio_bound
+  apply Lax342547.MomentBudgets.power_ratio_bound
   have hg := Nat.mul_le_mul_right N hΓ
   have he : (m+N)+r*E+2*N*r+E*(h*h+2)+8*N ≤ (2*r+10)*N := by nlinarith
   exact he.trans hg

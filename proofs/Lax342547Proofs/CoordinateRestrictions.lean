@@ -1,6 +1,6 @@
 import Lax342547.CoordinateRestrictions
-import Lax342547Proofs.FiniteSampling
 import Mathlib.Logic.Equiv.Set
+import Lax342547.FiniteSampling
 
 namespace Lax342547Proofs.CoordinateRestrictions
 open Lax342547.CoordinateRestrictions
@@ -32,7 +32,7 @@ theorem sum_restriction {J K Ω : Type} [Fintype J] [Fintype K] [Fintype Ω]
   unfold cellMass
   rw [← e.sum_comp]
   simp only [Fintype.sum_prod_type]
-  have ht := (Lax342547Proofs.FiniteSampling.product_probability (fun _ : K => μ) (fun _ => hμ)).2
+  have ht := (Lax342547.FiniteSampling.product_probability (fun _ : K => μ) (fun _ => hμ)).2
   apply Finset.sum_congr rfl
   intro sample _
   change (∑ free : K → Ω, if A sample then
@@ -70,9 +70,9 @@ theorem embedding_restriction {J ι Ω : Type} [Fintype J] [Fintype ι] [Fintype
     rfl
   have harg (sample : J ⊕ K → Ω) : (fun j => fe sample (a j)) = fun j => sample (.inl j) := by
     funext j
-    rw [← complete_left a j]
+    rw [← Lax342547.CoordinateRestrictions.complete_left a j]
     exact Equiv.piCongrLeft_apply_apply (fun _ : ι => Ω) e sample (.inl j)
   simp_rw [harg,hval]
-  exact sum_restriction μ A hμ
+  exact Lax342547.CoordinateRestrictions.sum_restriction μ A hμ
 
 end Lax342547Proofs.CoordinateRestrictions

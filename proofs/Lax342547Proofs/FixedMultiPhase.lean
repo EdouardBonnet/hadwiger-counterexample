@@ -1,7 +1,6 @@
 import Lax342547.FixedMultiPhase
-import Lax342547Proofs.MultiChannelPhase
-import Lax342547Proofs.DyadicMoments
-import Lax342547Proofs.DyadicMoments
+import Lax342547.DyadicMoments
+import Lax342547.MultiChannelPhase
 
 namespace Lax342547Proofs.FixedMultiPhase
 
@@ -47,7 +46,7 @@ theorem fixed_parameter_marked_unit_phase {e d B N Ω U : Type} [Fintype e] [Fin
   have hhD : 4*2^(100*r+10)*(a+Γ*(2*c)+1) ≤ Fintype.card d*h :=
     hh.trans (by simpa only [one_mul] using Nat.mul_le_mul_right h ((show 1 ≤ Fintype.card d from Fintype.card_pos_iff.mpr (inferInstance : Nonempty d))))
   obtain ⟨k,t,hk,hsize,hlo,hbudget⟩ :=
-    Lax342547Proofs.DyadicMoments.dyadic_budget_with_fixed_parameters c (100*r+10) a Γ P (Fintype.card d*h)
+    Lax342547.DyadicMoments.dyadic_budget_with_fixed_parameters c (100*r+10) a Γ P (Fintype.card d*h)
       (Fintype.card N) hc hs hP hhD
   have hm : 2*t ≤ Fintype.card N/c := by
     apply (Nat.le_div_iff_mul_le hc).mpr
@@ -73,7 +72,7 @@ theorem fixed_parameter_marked_unit_phase {e d B N Ω U : Type} [Fintype e] [Fin
         (le_div_iff₀ hcr).mpr (by simpa only [mul_comm] using hcm)
       exact mul_le_mul_of_nonneg_left hs' (Nat.cast_nonneg r)
     exact hcover T U hT hU (hdT.trans hdim) (hdU.trans hdim)
-  have havg := Lax342547Proofs.MultiChannelPhase.no_cover_marked_unit_phase (d := d) E μ A ψ r h t k
+  have havg := Lax342547.MultiChannelPhase.no_cover_marked_unit_phase (d := d) E μ A ψ r h t k
     (1/(2 : ℝ)^P) (1/(2 : ℝ)^a) hN hμ hp0 hp1 hr hA hψ hsize (by omega) hθ
     β image L S hβ hL hβcap hS hcovers
   have hb := mul_le_mul_of_nonneg_left hbudget

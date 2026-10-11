@@ -1,7 +1,10 @@
 import Lax342547.RawFrameComparison
-import Lax342547Proofs.RawBatchComparison
-import Lax342547Proofs.FrameTuples
-import Lax342547Proofs.InjectionAsymptotics
+import Lax342547.ChannelColumns
+import Lax342547.FrameTuples
+import Lax342547.InjectionAsymptotics
+import Lax342547.PushforwardWalsh
+import Lax342547.RawBatchComparison
+import Lax342547Proofs.JoinedGramOrbits
 
 namespace Lax342547Proofs.RawFrameComparison
 noncomputable section
@@ -54,7 +57,7 @@ theorem eventually_valid (I J K L : Type) [Fintype I] [Fintype J] [Fintype K] [F
         ((2 : ℝ)^(Fintype.card K*Fintype.card L+2))/Real.sqrt ((2 : ℝ)^n) ≤
         1/(2 : ℝ)^(Fintype.card (Lax342547.CrossGramBasis.Slots I J K L)+1) := by
   let D : ℝ := ((2 : ℝ)^(Fintype.card I*Fintype.card J+2))*((2 : ℝ)^(Fintype.card K*Fintype.card L+2))
-  have ht := (InjectionAsymptotics.polynomial_dyadic_floor_tends_zero 0 2 (by omega)).const_mul D
+  have ht := (Lax342547.InjectionAsymptotics.polynomial_dyadic_floor_tends_zero 0 2 (by omega)).const_mul D
   have ht' : Filter.Tendsto (fun n : ℕ => D/(2 : ℝ)^(n/2)) Filter.atTop (nhds 0) := by simpa only [pow_zero,one_div,mul_zero,div_eq_mul_inv,one_mul] using ht
   have he : ∀ᶠ n : ℕ in Filter.atTop,D/(2 : ℝ)^(n/2) <
       1/(2 : ℝ)^(Fintype.card (Lax342547.CrossGramBasis.Slots I J K L)+1) :=
@@ -94,23 +97,23 @@ theorem observation_comparison [DecidableEq I] [DecidableEq J] [DecidableEq K] [
   have hx' := congrArg (fun q => ∑ z,weights q z*f z) hx
   have hy' := congrArg (fun q => ∑ z,weights q z*g z) hy
   have hxy' := congrArg (fun q => ∑ z,weights q z*(f z.1*g z.2)) hxy
-  simp_rw [ChannelColumns.pmf_weights_map] at hx' hy' hxy'
-  rw [PushforwardWalsh.push_integral,PushforwardWalsh.push_integral] at hxy'
-  rw [PushforwardWalsh.push_integral,PushforwardWalsh.push_integral] at hx' hy'
+  simp_rw [Lax342547.ChannelColumns.pmf_weights_map] at hx' hy' hxy'
+  rw [Lax342547.PushforwardWalsh.push_integral,Lax342547.PushforwardWalsh.push_integral] at hxy'
+  rw [Lax342547.PushforwardWalsh.push_integral,Lax342547.PushforwardWalsh.push_integral] at hx' hy'
   have hmG : (∑ z : Orbit (Fin n) G,weights (PMF.uniformOfFintype _) z*f (batchEquiv z.val)) =
       ∑ z,batchLaw G z*f z := by
     unfold batchLaw
-    simp_rw [ChannelColumns.pmf_weights_map]
-    rw [PushforwardWalsh.push_integral]
+    simp_rw [Lax342547.ChannelColumns.pmf_weights_map]
+    rw [Lax342547.PushforwardWalsh.push_integral]
   have hmH : (∑ z : Orbit (Fin n) H,weights (PMF.uniformOfFintype _) z*g (batchEquiv z.val)) =
       ∑ z,batchLaw H z*g z := by
     unfold batchLaw
-    simp_rw [ChannelColumns.pmf_weights_map]
-    rw [PushforwardWalsh.push_integral]
+    simp_rw [Lax342547.ChannelColumns.pmf_weights_map]
+    rw [Lax342547.PushforwardWalsh.push_integral]
   rw [hmG] at hx'
   rw [hmH] at hy'
   rw [hxy',hx',hy']
-  exact RawBatchComparison.union_test_comparison n G H A B f g hN₁ hN₂ hf hg hsmall
+  exact Lax342547.RawBatchComparison.union_test_comparison n G H A B f g hN₁ hN₂ hf hg hsmall
 
 theorem orbit_uniform_congr {U V N : Type} [Fintype U] [Fintype V] [Fintype N]
     {P Q : Matrix U V Binary} (h : P = Q)
@@ -174,10 +177,10 @@ theorem primal_test_comparison [DecidableEq I] [DecidableEq J] [DecidableEq K] [
   let hOrbit : Nonempty (Orbit (Fin n) ((Matrix.fromCols C₁ C₂).transpose*E*(Matrix.fromCols D₁ D₂))) :=
     ⟨primalTuple (H := H) (E := E) _ _ hC hD (Classical.choice inferInstance)⟩
   let : Nonempty (Orbit (Fin n) (Matrix.fromBlocks G A B₀ H₀)) := hgram ▸ hOrbit
-  have hx := congrArg (fun p => p.map (fun z => batchEquiv z.val)) (FrameTuples.primal_uniform (H := H) (N := Fin n) (E := E) C₁ D₁ hC₁ hD₁)
-  have hy := congrArg (fun p => p.map (fun z => batchEquiv z.val)) (FrameTuples.primal_uniform (H := H) (N := Fin n) (E := E) C₂ D₂ hC₂ hD₂)
+  have hx := congrArg (fun p => p.map (fun z => batchEquiv z.val)) (Lax342547.FrameTuples.primal_uniform (H := H) (N := Fin n) (E := E) C₁ D₁ hC₁ hD₁)
+  have hy := congrArg (fun p => p.map (fun z => batchEquiv z.val)) (Lax342547.FrameTuples.primal_uniform (H := H) (N := Fin n) (E := E) C₂ D₂ hC₂ hD₂)
   rw [PMF.map_comp] at hx hy
-  have hu := congrArg (fun p => p.map Subtype.val) (FrameTuples.primal_uniform (H := H) (N := Fin n) (E := E) _ _ hC hD)
+  have hu := congrArg (fun p => p.map Subtype.val) (Lax342547.FrameTuples.primal_uniform (H := H) (N := Fin n) (E := E) _ _ hC hD)
   rw [PMF.map_comp] at hu
   simp only [Function.comp_def,primalTuple] at hu
   have hu' := hu.trans (orbit_uniform_congr (N := Fin n) hgram)
@@ -247,10 +250,10 @@ theorem full_test_comparison [DecidableEq I] [DecidableEq J] [DecidableEq K] [De
   let hOrbit : Nonempty (Orbit (Fin n) ((Matrix.fromCols C₁ C₂).transpose*(fullGram E S)*(Matrix.fromCols D₁ D₂))) :=
     ⟨fullTuple (N := Fin n) (E := E) (G := S) _ _ hC hD (Classical.choice inferInstance)⟩
   let : Nonempty (Orbit (Fin n) (Matrix.fromBlocks G A B₀ H₀)) := hgram ▸ hOrbit
-  have hx := congrArg (fun p => p.map (fun z => batchEquiv z.val)) (FrameTuples.full_uniform (N := Fin n) (E := E) (G := S) C₁ D₁ hC₁ hD₁)
-  have hy := congrArg (fun p => p.map (fun z => batchEquiv z.val)) (FrameTuples.full_uniform (N := Fin n) (E := E) (G := S) C₂ D₂ hC₂ hD₂)
+  have hx := congrArg (fun p => p.map (fun z => batchEquiv z.val)) (Lax342547.FrameTuples.full_uniform (N := Fin n) (E := E) (G := S) C₁ D₁ hC₁ hD₁)
+  have hy := congrArg (fun p => p.map (fun z => batchEquiv z.val)) (Lax342547.FrameTuples.full_uniform (N := Fin n) (E := E) (G := S) C₂ D₂ hC₂ hD₂)
   rw [PMF.map_comp] at hx hy
-  have hu := congrArg (fun p => p.map Subtype.val) (FrameTuples.full_uniform (N := Fin n) (E := E) (G := S) _ _ hC hD)
+  have hu := congrArg (fun p => p.map Subtype.val) (Lax342547.FrameTuples.full_uniform (N := Fin n) (E := E) (G := S) _ _ hC hD)
   rw [PMF.map_comp] at hu
   simp only [Function.comp_def,fullTuple] at hu
   have hu' := hu.trans (orbit_uniform_congr (N := Fin n) hgram)

@@ -1,6 +1,6 @@
 import Lax342547.TotalRankCount
-import Lax342547Proofs.LowRankCounting
 import Mathlib.Data.Fintype.Card
+import Lax342547.LowRankCounting
 
 namespace Lax342547Proofs.TotalRankCount
 open Lax342547.TotalRankCount
@@ -23,7 +23,7 @@ theorem exists_rank_factors {e I J : Type} [Fintype e] [Fintype I] [Fintype J]
   let a : RankBudgets e r := ⟨fun i => ⟨(A i).rank,by have hh := heach i; omega⟩,hA⟩
   have hex (i : e) : ∃ X : Matrix I (Fin (a.val i).val) Binary,
       ∃ Y : Matrix (Fin (a.val i).val) J Binary, X*Y = A i :=
-    Lax342547Proofs.LowRankCounting.factorization (A i) (A i).rank le_rfl
+    Lax342547.LowRankCounting.factorization (A i) (A i).rank le_rfl
   choose X Y hXY using hex
   exact ⟨⟨a,X,Y⟩,funext hXY⟩
 
@@ -61,7 +61,7 @@ theorem total_rank_card {e I J : Type} [Fintype e] [Fintype I] [Fintype J]
       (r+1)^Fintype.card e*2^((Fintype.card I+Fintype.card J)*r) := by
   classical
   let C := {A : e → Matrix I J Binary // ∑ i, (A i).rank ≤ r}
-  have hex (A : C) := exists_rank_factors r A.val A.property
+  have hex (A : C) := Lax342547.TotalRankCount.exists_rank_factors r A.val A.property
   choose f hf using hex
   have hinj : Function.Injective f := by
     intro A B he
@@ -75,7 +75,7 @@ theorem total_rank_card {e I J : Type} [Fintype e] [Fintype I] [Fintype J]
     _ ≤ Fintype.card (Σ a : RankBudgets e r, Factors I J r a) := hh
     _ = ∑ a : RankBudgets e r, Fintype.card (Factors I J r a) := Fintype.card_sigma
     _ ≤ ∑ _ : RankBudgets e r, 2^((Fintype.card I+Fintype.card J)*r) :=
-      Finset.sum_le_sum (fun a _ => factor_card_bound r a)
+      Finset.sum_le_sum (fun a _ => Lax342547.TotalRankCount.factor_card_bound r a)
     _ = Fintype.card (RankBudgets e r)*2^((Fintype.card I+Fintype.card J)*r) := by simp
     _ ≤ _ := Nat.mul_le_mul_right _ ha
 

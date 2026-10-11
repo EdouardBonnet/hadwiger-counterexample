@@ -1,6 +1,10 @@
 import Lax342547.UnaryMixers
-import Lax342547Proofs.UnaryRowLaw
-import Lax342547Proofs.CoordinateCounts
+import Lax342547.CoordinateCounts
+import Lax342547.ProfileCounting
+import Lax342547.SymmetricFactorization
+import Lax342547.UnaryMixer
+import Lax342547.UnaryRowLaw
+import Lax342547Proofs.ProfileCounting
 
 namespace Lax342547Proofs.UnaryMixers
 
@@ -13,7 +17,7 @@ open scoped ENNReal
 theorem test_count_le (k n b degree K : ℕ) :
     Fintype.card (Test k n b degree K) ≤ testCountBound k n b degree K := by
   classical
-  have hc := ProfileCounting.card_concrete_profiles k n b degree K
+  have hc := Lax342547.ProfileCounting.card_concrete_profiles k n b degree K
   rw [← Nat.card_eq_fintype_card, Test, Nat.card_prod, Nat.card_prod]
   have htag : Nat.card (Tag k) = 2 * k + 1 := by
     rw [Nat.card_eq_fintype_card]
@@ -63,7 +67,7 @@ theorem simultaneous_failure_bound {k n b degree r₀ J K : ℕ} {hr : 2 * r₀ 
     by_cases hx : t.1.val = 0
     · simp [hx]
     · simpa only [hx, ne_eq, not_false_eq_true, true_and] using
-        UnaryRowLaw.unary_failure_probability (J := J) hk D t.1.val hx t.1.property t.2.1 t.2.2 s₀
+        Lax342547.UnaryRowLaw.unary_failure_probability (J := J) hk D t.1.val hx t.1.property t.2.1 t.2.2 s₀
   rw [bad_eq_union]
   calc
     _ ≤ ∑ t : Test k n b degree K,
@@ -91,7 +95,7 @@ theorem exists_of_failureBound_lt_one {k n b degree r₀ J K : ℕ} {hr : 2 * r�
   by_contra hn
   have hall : ∀ M : Index (Component (Tag k)) J → Moment k n b degree, ¬ Good D K s₀ M :=
     not_exists.mp hn
-  have h := simultaneous_failure_bound (J := J) (K := K) hk D s₀
+  have h := Lax342547.UnaryMixers.simultaneous_failure_bound (J := J) (K := K) hk D s₀
   have heq : {M : Index (Component (Tag k)) J → Moment k n b degree | ¬ Good D K s₀ M} = Set.univ := by
     ext M
     simp only [Set.mem_ofPred_eq, Set.mem_univ, iff_true]
@@ -115,7 +119,7 @@ theorem failureBound_lt_one (k n b degree J K s₀ : ℕ)
     failureBound k n b degree J K s₀ < 1 := by
   let a := (∑ j ∈ Finset.range (degree + 1), b.choose j) * ((2 * k + 1) ^ 2 + 3) * K
   let q := 2 * J * K ^ 2 + (s₀ + 1) * (4 * J * (2 * k) * K)
-  have hcount := (CoordinateCounts.coordinate_dimensions k n b degree).2.2
+  have hcount := (Lax342547.CoordinateCounts.coordinate_dimensions k n b degree).2.2
   have he : Fintype.card (Coordinate k n b degree) * K + K * K + q =
       ((∑ j ∈ Finset.range (degree + 1), b.choose j) * K + K * K + q) + a * n := by
     rw [hcount]
@@ -156,7 +160,7 @@ theorem failureBound_le_geometric (k n b degree J K s₀ : ℕ)
     failureBound k n b degree J K s₀ ≤ (threshold k b degree J K s₀ : ℝ≥0∞) / 2 ^ n := by
   let a := (∑ j ∈ Finset.range (degree + 1), b.choose j) * ((2 * k + 1) ^ 2 + 3) * K
   let q := 2 * J * K ^ 2 + (s₀ + 1) * (4 * J * (2 * k) * K)
-  have hcount := (CoordinateCounts.coordinate_dimensions k n b degree).2.2
+  have hcount := (Lax342547.CoordinateCounts.coordinate_dimensions k n b degree).2.2
   have he : Fintype.card (Coordinate k n b degree) * K + K * K + q =
       ((∑ j ∈ Finset.range (degree + 1), b.choose j) * K + K * K + q) + a * n := by
     rw [hcount]
@@ -202,17 +206,17 @@ theorem uniform_of_good {k n b degree r₀ J K s₀ : ℕ} {hr : 2 * r₀ ≤ n}
     (hM : Good D K s₀ M) : UniformUnary D K s₀ M := by
   intro x hx hK l s
   have hf (e : Component (Tag k)) :=
-    SymmetricFactorization.symmetric_factorization (x.val e) (ProfileCounting.profile_transpose x e)
+    Lax342547.SymmetricFactorization.symmetric_factorization (x.val e) (ProfileCounting.profile_transpose x e)
   choose Z H hZ hHsym hH hfactor using hf
   refine ⟨Lax342547.UnaryMixer.zRowSpace Z (leftMixers M) (rightMixers M) l s,
-    UnaryMixer.row_space_dimension Z (leftMixers M) (rightMixers M) l s hK, ?_⟩
+    Lax342547.UnaryMixer.row_space_dimension Z (leftMixers M) (rightMixers M) l s hK, ?_⟩
   intro z hz
   constructor
   · apply Nat.le_of_not_gt
     intro hbad
     exact hM x hx hK l s ⟨z, hz, hbad⟩
   · intro u v hrows
-    exact UnaryMixer.unary_depends_on_rows D x Z H hfactor (leftMixers M) (rightMixers M)
+    exact Lax342547.UnaryMixer.unary_depends_on_rows D x Z H hfactor (leftMixers M) (rightMixers M)
       l s z hz u v hrows
 
 /--
@@ -230,7 +234,7 @@ theorem exists_for_large_n (k b degree J K s₀ : ℕ) (hk : 0 < k)
       ∃ M : Index (Component (Tag k)) J → Moment k n b degree, Good D K s₀ M := by
   refine ⟨threshold k b degree J K s₀, ?_⟩
   intro n hn r₀ hr D
-  exact exists_of_failureBound_lt_one hk D s₀ (failureBound_lt_one k n b degree J K s₀ hmargin hn)
+  exact Lax342547.UnaryMixers.exists_of_failureBound_lt_one hk D s₀ (Lax342547.UnaryMixers.failureBound_lt_one k n b degree J K s₀ hmargin hn)
 
 /--
 ---
@@ -247,10 +251,10 @@ theorem exists_uniform_unary (k b degree J K s₀ : ℕ) (hk : 0 < k)
     ∃ n₀, ∀ n, n₀ ≤ n → ∀ r₀ (hr : 2 * r₀ ≤ n)
       (D : Testers (k := k) (b := b) (degree := degree) hr),
       ∃ M : Index (Component (Tag k)) J → Moment k n b degree, UniformUnary D K s₀ M := by
-  obtain ⟨n₀, hn₀⟩ := exists_for_large_n k b degree J K s₀ hk hmargin
+  obtain ⟨n₀, hn₀⟩ := Lax342547.UnaryMixers.exists_for_large_n k b degree J K s₀ hk hmargin
   refine ⟨n₀, ?_⟩
   intro n hn r₀ hr D
   obtain ⟨M, hM⟩ := hn₀ n hn r₀ hr D
-  exact ⟨M, uniform_of_good D M hM⟩
+  exact ⟨M, Lax342547.UnaryMixers.uniform_of_good D M hM⟩
 
 end Lax342547Proofs.UnaryMixers

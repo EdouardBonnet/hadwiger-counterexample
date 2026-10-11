@@ -1,5 +1,6 @@
 import Lax342547.EntropySelectors
-import Lax342547Proofs.ContainerLaws
+import Lax342547.ContainerLaws
+import Lax342547.RelativeEntropy
 
 namespace Lax342547Proofs.EntropySelectors
 open Lax342547.EntropySelectors
@@ -51,11 +52,11 @@ theorem entropy_selectors {U : Type} [Fintype U] [Nonempty U]
         v ∈ R ∧ ε ≤ neighborMass ρ H v ∧ (∃ w ∈ R, H v w) := by
     intro R
     by_cases ha : (residual P R).Nonempty
-    · obtain ⟨ρ,hρ,hmin⟩ := Lax342547Proofs.RelativeEntropy.compact_entropy_minimizer
-        (residual P R) q (Lax342547Proofs.ContainerLaws.residual_compact P R hc) ha
-      obtain ⟨v,hv,hm⟩ := Lax342547Proofs.ContainerLaws.heavy_neighbor
+    · obtain ⟨ρ,hρ,hmin⟩ := Lax342547.RelativeEntropy.compact_entropy_minimizer
+        (residual P R) q (Lax342547.ContainerLaws.residual_compact P R hc) ha
+      obtain ⟨v,hv,hm⟩ := Lax342547.ContainerLaws.heavy_neighbor
         ρ H R ε (hprob ρ hρ.1) hρ.2 hε (hsuper ρ hρ.1)
-      exact ⟨ρ,v,fun _ => ⟨hρ,hmin,hv,hm,heavy_neighbor_nonempty ρ R H v hρ.2 (hε.trans_le hm)⟩⟩
+      exact ⟨ρ,v,fun _ => ⟨hρ,hmin,hv,hm,Lax342547.EntropySelectors.heavy_neighbor_nonempty ρ R H v hρ.2 (hε.trans_le hm)⟩⟩
     · exact ⟨fun _ => 0,Classical.choice inferInstance,fun h => (ha h).elim⟩
   choose law pick hspec using hall
   exact ⟨law,pick,hspec⟩

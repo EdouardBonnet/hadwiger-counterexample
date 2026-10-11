@@ -1,6 +1,6 @@
 import Lax342547.DyadicMoments
-import Lax342547Proofs.MomentBudgets
 import Mathlib.Data.Nat.Log
+import Lax342547.MomentBudgets
 
 namespace Lax342547Proofs.DyadicMoments
 open Lax342547.DyadicMoments
@@ -50,12 +50,12 @@ theorem fixed_dyadic_budget (c n a Γ N : ℕ) (hc : 0 < c) (hN : c*2^(n+2) ≤ 
       (((4 : ℝ)^(2*t)*(1/(2 : ℝ)^(2^n*(2+a+Γ*(2*c)+1)))^(2^(k-n))+
         1/(2 : ℝ)^((4*2^n*(a+Γ*(2*c)+1))*2^(k-(n+2))))/(1/(2 : ℝ)^a)^(2*t)) ≤
           1/(2 : ℝ)^(Γ*N) := by
-  obtain ⟨k,t,hk,hsize,hlo,hhi⟩ := exists_dyadic_moment_order c n N hc hN
-  have hm := Lax342547Proofs.MomentBudgets.dyadic_budget_margins n k a
+  obtain ⟨k,t,hk,hsize,hlo,hhi⟩ := Lax342547.DyadicMoments.exists_dyadic_moment_order c n N hc hN
+  have hm := Lax342547.MomentBudgets.dyadic_budget_margins n k a
     (2^n*(2+a+Γ*(2*c)+1)) (4*2^n*(a+Γ*(2*c)+1)) Γ N (2*c) hk hhi le_rfl le_rfl
   refine ⟨k,t,hk,hsize,hlo,?_⟩
   rw [hsize]
-  exact Lax342547Proofs.MomentBudgets.no_cover_budget _ _ _ _ _ _ _ _ hm.1 hm.2
+  exact Lax342547.MomentBudgets.no_cover_budget _ _ _ _ _ _ _ _ hm.1 hm.2
 
 /--
 ---
@@ -69,10 +69,10 @@ theorem dyadic_budget_with_fixed_parameters (c n a Γ P h N : ℕ) (hc : 0 < c)
       (((4 : ℝ)^(2*t)*(1/(2 : ℝ)^P)^(2^(k-n))+
         1/(2 : ℝ)^(h*2^(k-(n+2))))/(1/(2 : ℝ)^a)^(2*t)) ≤
           1/(2 : ℝ)^(Γ*N) := by
-  obtain ⟨k,t,hk,hsize,hlo,hhi⟩ := exists_dyadic_moment_order c n N hc hN
-  have hm := Lax342547Proofs.MomentBudgets.dyadic_budget_margins n k a P h Γ N (2*c) hk hhi hP hh
+  obtain ⟨k,t,hk,hsize,hlo,hhi⟩ := Lax342547.DyadicMoments.exists_dyadic_moment_order c n N hc hN
+  have hm := Lax342547.MomentBudgets.dyadic_budget_margins n k a P h Γ N (2*c) hk hhi hP hh
   refine ⟨k,t,hk,hsize,hlo,?_⟩
   rw [hsize]
-  exact Lax342547Proofs.MomentBudgets.no_cover_budget _ _ _ _ _ _ _ _ hm.1 hm.2
+  exact Lax342547.MomentBudgets.no_cover_budget _ _ _ _ _ _ _ _ hm.1 hm.2
 
 end Lax342547Proofs.DyadicMoments

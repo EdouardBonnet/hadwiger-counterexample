@@ -1,8 +1,11 @@
 import Lax342547.NoCoverCertificate
-import Lax342547Proofs.ProjectedCounts
-import Lax342547Proofs.ExposedSums
-import Lax342547Proofs.FilterOccurrences
-import Lax342547Proofs.CoverCounts
+import Lax342547.CoverCounts
+import Lax342547.CoverProjection
+import Lax342547.ExposedSums
+import Lax342547.GreedySpans
+import Lax342547.PartitionLists
+import Lax342547.ProjectedCounts
+import Lax342547.SmallExposure
 
 namespace Lax342547Proofs.NoCoverCertificate
 open Lax342547.NoCoverCertificate
@@ -32,7 +35,7 @@ theorem low_rank_cover_certificate {K V W ι : Type} [Field K] [Fintype ι] [Dec
   have hR : ∀ i, (Module.finrank K (R i) : ℝ) ≤ r := by
     intro i
     simpa only [R,LinearMap.finrank_range_dualMap_eq_finrank_range] using hM i
-  obtain ⟨l,hl,hI,j,hj,hd⟩ := Lax342547Proofs.SmallExposure.simultaneous_small_exposure C R r k n hM hR hcard hnk hn
+  obtain ⟨l,hl,hI,j,hj,hd⟩ := Lax342547.SmallExposure.simultaneous_small_exposure C R r k n hM hR hcard hnk hn
   let b := (2 : ℕ)^(k-j)
   let t := l.length-b
   let E := (l.take t).toFinset
@@ -45,10 +48,10 @@ theorem low_rank_cover_certificate {K V W ι : Type} [Field K] [Fintype ι] [Dec
     have hpow : 2*2^(k-n) = (2 : ℕ)^(k-n+1) := by rw [pow_succ]; omega
     rw [hpow]
     exact Nat.pow_le_pow_right (by omega) (by omega)
-  have hF : F.card = b := Lax342547Proofs.PartitionLists.take_drop_card l hl b hbl
+  have hF : F.card = b := Lax342547.PartitionLists.take_drop_card l hl b hbl
   have hST : deficit C S (l.drop t)+deficit R T (l.drop t) < (b : ℝ)/4 := by
     simpa only [S,T,t,b,Nat.cast_pow,Nat.cast_ofNat] using hd
-  have hc := Lax342547Proofs.ProjectedCounts.projected_nonzero_count M S T (l.drop t) (hl.drop)
+  have hc := Lax342547.ProjectedCounts.projected_nonzero_count M S T (l.drop t) (hl.drop)
   have hc' : ((F.filter (fun i => projection (M i) S T ≠ 0)).card : ℝ) ≤
       Module.finrank K (LinearMap.range (projection (∑ i : F, M i.val) S T))+
       deficit C S (l.drop t)+deficit R T (l.drop t) := by
@@ -57,14 +60,14 @@ theorem low_rank_cover_certificate {K V W ι : Type} [Field K] [Fintype ι] [Dec
     simp only [Finset.card_filter]
     rw [Finset.sum_coe_sort (l.drop t).toFinset (fun i => if projection (M i) S T ≠ 0 then (1 : ℕ) else 0)]
   have hs : projection (∑ i : F, M i.val) S T = projection (∑ i, M i) S T :=
-    Lax342547Proofs.ExposedSums.remaining_projection_sum M l hl hI t
+    Lax342547.ExposedSums.remaining_projection_sum M l hl hI t
   rw [hs] at hc'
-  have hr := Lax342547Proofs.CoverProjection.projection_rank_le (∑ i, M i) S T
+  have hr := Lax342547.CoverProjection.projection_rank_le (∑ i, M i) S T
   have hr' : (Module.finrank K (LinearMap.range (projection (∑ i, M i) S T)) : ℝ) < (2^(k-n) : ℝ)/4 := by
     have hr'' : (Module.finrank K (LinearMap.range (projection (∑ i, M i) S T)) : ℝ) ≤
         Module.finrank K (LinearMap.range (∑ i, M i)) := by exact_mod_cast hr
     exact hr''.trans_lt hlow
-  have hz := Lax342547Proofs.CoverCounts.covered_count_lower_bound F
+  have hz := Lax342547.CoverCounts.covered_count_lower_bound F
     (fun i => projection (M i) S T ≠ 0) b (2^(k-n))
     (Module.finrank K (LinearMap.range (projection (∑ i, M i) S T)))
     (deficit C S (l.drop t)+deficit R T (l.drop t)) hF hbt (by simpa only [Nat.cast_pow,Nat.cast_ofNat] using hr') hST (by
@@ -76,11 +79,11 @@ theorem low_rank_cover_certificate {K V W ι : Type} [Field K] [Fintype ι] [Dec
   let J := F.filter (fun i => projection (M i) S T = 0)
   have hJ : 2^(k-n) ≤ J.card := by simpa only [not_not] using hz
   refine ⟨E,J,?_,hJ,?_⟩
-  · exact (Lax342547Proofs.PartitionLists.take_drop_disjoint l hl t).mono_right (Finset.filter_subset _ _)
+  · exact (Lax342547.PartitionLists.take_drop_disjoint l hl t).mono_right (Finset.filter_subset _ _)
   · intro i hi
     have heq := (Finset.mem_filter.mp hi).2
-    have hS : S = E.sup C := by simp only [S,E,Lax342547Proofs.GreedySpans.span_after_eq,bot_sup_eq]
-    have hT : T = E.sup R := by simp only [T,E,Lax342547Proofs.GreedySpans.span_after_eq,bot_sup_eq]
+    have hS : S = E.sup C := by simp only [S,E,Lax342547.GreedySpans.span_after_eq,bot_sup_eq]
+    have hT : T = E.sup R := by simp only [T,E,Lax342547.GreedySpans.span_after_eq,bot_sup_eq]
     rw [hS,hT] at heq
     exact heq
 

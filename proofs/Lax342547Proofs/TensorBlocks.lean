@@ -1,5 +1,4 @@
 import Lax342547.TensorBlocks
-import Lax342547Proofs.TensorAnnihilators
 import Lax342547Proofs.UnaryMixer
 
 namespace Lax342547Proofs.TensorBlocks
@@ -82,7 +81,7 @@ theorem quotient_isolation {Label Coord Base : Type} [Fintype Coord] [Fintype Ba
       pureContraction S T (β.compl₁₂ q r) (block p t (Z t)) =
         if t = s then pureContraction A B β (Z t) else 0 := by
     unfold pureContraction
-    have hc := block_contraction p t (Z t) S.mkQ T.mkQ (β.compl₁₂ q r)
+    have hc := Lax342547.TensorBlocks.block_contraction p t (Z t) S.mkQ T.mkQ (β.compl₁₂ q r)
     have hc' : matrixPair (LinearMap.BilinForm.toMatrix'
         ((β.compl₁₂ q r).compl₁₂ S.mkQ T.mkQ)) (block p t (Z t)) =
         matrixPair (LinearMap.BilinForm.toMatrix'

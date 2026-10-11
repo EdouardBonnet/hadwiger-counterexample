@@ -1,5 +1,6 @@
 import Lax342547.JointKeyCap
-import Lax342547Proofs.JointDirections
+import Lax342547.JointDirections
+import Lax342547.LeafImages
 
 namespace Lax342547Proofs.JointKeyCap
 open Lax342547.JointKeyCap
@@ -35,9 +36,9 @@ theorem leaf_key_fresh_image_cap {Ω Axis I N : Type} {U V : Axis → Type}
     simp only [Set.mem_ofPred_eq, LinearMap.comp_coprod, LinearMap.prod_ext_iff,
       LinearMap.coprod_inl, LinearMap.coprod_inr]
   rw [he]
-  have h := Lax342547Proofs.LeafImages.leaf_tuple_image_cap p A P
+  have h := Lax342547.LeafImages.leaf_tuple_image_cap p A P
     (fun a => (keys a).coprod (fresh a))
-    (fun a => Lax342547Proofs.JointDirections.appended_quotient_injective (P.space a) (keys a) (fresh a) (hkeys a) (hfresh a))
+    (fun a => Lax342547.JointDirections.appended_quotient_injective (P.space a) (keys a) (fresh a) (hkeys a) (hfresh a))
     (fun a => (yk a).coprod (yf a)) α hcap
     (by simpa only [Module.finrank_prod, Finset.sum_add_distrib] using hr)
   simpa only [Module.finrank_prod, Finset.sum_add_distrib] using h

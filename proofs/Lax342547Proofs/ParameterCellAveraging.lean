@@ -1,5 +1,5 @@
 import Lax342547.ParameterCellAveraging
-import Lax342547Proofs.CellAveraging
+import Lax342547.CellAveraging
 
 namespace Lax342547Proofs.ParameterCellAveraging
 open Lax342547.ParameterCellAveraging
@@ -54,13 +54,13 @@ theorem average_cell_pair_lower {A B ΩA ΩB C D : Type}
           (conditionalLaw β (fun b => acceptB y b ∧ recordB y x b = d)) H) :
     ε * average p q (fun x y => retainedPairs (recordMass α (recordA x y) (acceptA x))
       (recordMass β (recordB y x) (acceptB y)) (valid x y) τ) ≤ pairEventMass α β H := by
-  have h := average_mono p q
+  have h := Lax342547.ParameterCellAveraging.average_mono p q
     (fun x y => ε * retainedPairs (recordMass α (recordA x y) (acceptA x))
       (recordMass β (recordB y x) (acceptB y)) (valid x y) τ)
     (fun _ _ => pairEventMass α β H) hp hq
-    (fun x y => Lax342547Proofs.CellAveraging.retained_cell_pair_lower α β (recordA x y) (recordB y x)
+    (fun x y => Lax342547.CellAveraging.retained_cell_pair_lower α β (recordA x y) (recordB y x)
       (acceptA x) (acceptB y) (valid x y) H τ ε hα hβ hτ (hloc x y))
-  rw [average_const p q hpsum hqsum] at h
+  rw [Lax342547.ParameterCellAveraging.average_const p q hpsum hqsum] at h
   have he : average p q (fun x y => ε * retainedPairs (recordMass α (recordA x y) (acceptA x))
       (recordMass β (recordB y x) (acceptB y)) (valid x y) τ) =
       ε * average p q (fun x y => retainedPairs (recordMass α (recordA x y) (acceptA x))

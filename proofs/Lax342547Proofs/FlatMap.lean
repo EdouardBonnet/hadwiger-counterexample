@@ -1,4 +1,5 @@
 import Lax342547Proofs.FlatRank
+import Lax342547.FlatRank
 
 namespace Lax342547Proofs.FlatMap
 
@@ -33,7 +34,7 @@ theorem exists_descended_shift (B : LinearMap.BilinForm K V) (hB : B.IsSymm)
   have hker : q.ker ≤ (B.ker.mkQ.comp shift).ker := by
     intro x hx
     change B.ker.mkQ (shift x) = 0
-    apply (FlatRank.quotientPairing_nondegenerate B hB).1
+    apply (Lax342547.FlatRank.quotientPairing_nondegenerate B hB).1
     intro y
     obtain ⟨z, rfl⟩ := hsurj y
     change B (shift x) (f z) = 0
@@ -74,7 +75,7 @@ theorem exists_commuting_idempotents {ι : Type}
   · intro a
     apply LinearMap.ext
     intro x
-    apply FlatRank.pairing_ext _ (FlatRank.quotientPairing_nondegenerate B hB)
+    apply FlatRank.pairing_ext _ (Lax342547.FlatRank.quotientPairing_nondegenerate B hB)
     intro y
     change quotientPairing B hB (M a (M a x)) y = quotientPairing B hB (M a x) y
     rw [hsym]
@@ -87,7 +88,7 @@ theorem exists_commuting_idempotents {ι : Type}
   · intro a c
     apply LinearMap.ext
     intro x
-    apply FlatRank.pairing_ext _ (FlatRank.quotientPairing_nondegenerate B hB)
+    apply FlatRank.pairing_ext _ (Lax342547.FlatRank.quotientPairing_nondegenerate B hB)
     intro y
     change quotientPairing B hB (M a (M c x)) y = quotientPairing B hB (M c (M a x)) y
     rw [hsym a (M c x) y, hsym c (M a x) y]

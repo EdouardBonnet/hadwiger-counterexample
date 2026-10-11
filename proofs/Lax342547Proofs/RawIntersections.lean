@@ -1,7 +1,7 @@
 import Lax342547.RawIntersections
-import Lax342547Proofs.ImageScale
-import Lax342547Proofs.KernelWitness
 import Lax342547Proofs.FiniteProbability
+import Lax342547.ImageScale
+import Lax342547.KernelWitness
 
 namespace Lax342547Proofs.RawIntersections
 
@@ -98,7 +98,7 @@ theorem reference_kernel_bound {Comp B H N : Type}
       (hrank : q ≤ ∑ e, (C e).rank) :
       p.toOuterMeasure {o | ∀ e, jointPlus o e * C e = 0} ≤
         (2 : ℝ≥0∞) ^ (-((3 / 4 : ℝ) * q * Fintype.card N)) := by
-    have h := ImageScale.reference_image_cap (E := E) (1 / 4) (by norm_num) hN hp hc C
+    have h := Lax342547.ImageScale.reference_image_cap (E := E) (1 / 4) (by norm_num) hN hp hc C
       (fun _ => (0 : Matrix (Fin 2 × (B ⊕ H)) (Fin 0) Binary))
       (fun _ => 0) (fun _ => 0) (by simpa using hq.trans hrank)
     have he : {o : Fin 2 → Comp → Frame B H N E | ∀ e, jointPlus o e * C e = 0} =
@@ -115,10 +115,10 @@ theorem reference_kernel_bound {Comp B H N : Type}
     nlinarith
   calc
     _ ≤ p.toOuterMeasure {o | q ≤ ∑ e, Module.finrank Binary (LinearMap.ker (jointPlus o e).mulVecLin)} :=
-      p.toOuterMeasure.mono (fun o ho => ho.trans (intersection_kernel_bound o))
+      p.toOuterMeasure.mono (fun o ho => ho.trans (Lax342547.RawIntersections.intersection_kernel_bound o))
     _ ≤ _ := by
       simpa only [Fintype.card_prod, Fintype.card_fin, Fintype.card_sum] using
-        KernelWitness.kernel_event_bound p jointPlus q _ hcap
+        Lax342547.KernelWitness.kernel_event_bound p jointPlus q _ hcap
 
 theorem density_exponent_bound (D N a : ℕ) (ha : (a : ℝ) ≤ (D : ℝ) * N / 4) :
     (2 : ℝ≥0∞) ^ (D * N) *
@@ -162,7 +162,7 @@ theorem capped_intersection_bound {Comp B H N : Type}
     _ ≤ (2 : ℝ≥0∞) ^ (D * Fintype.card N) *
         ((2 : ℝ≥0∞) ^ (Fintype.card Comp * (2 * (Fintype.card B + Fintype.card H)) * (2 * D)) *
           (2 : ℝ≥0∞) ^ (-((3 / 4 : ℝ) * (2 * D : ℕ) * Fintype.card N))) :=
-      mul_le_mul_of_nonneg_left (reference_kernel_bound (2 * D) (by omega) hN hp hc) zero_le
+      mul_le_mul_of_nonneg_left (Lax342547.RawIntersections.reference_kernel_bound (2 * D) (by omega) hN hp hc) zero_le
     _ ≤ _ := density_exponent_bound D _ _ hcount
 
 /--
@@ -215,7 +215,7 @@ theorem exists_paper_intersection_scale (pStar g h c : ℕ) :
       (8 : ℝ) * c ≤ (1 / 4 : ℝ) * (M * n : ℕ) ∧
       ∀ D : ℕ, (c * (2 * (pStar * (1 + (g * g + 3) * n) + h)) * (2 * D) : ℕ) ≤
         (D : ℝ) * (M * n : ℕ) / 4 := by
-  obtain ⟨M, hM⟩ := exists_intersection_scale (pStar * (g * g + 3)) (pStar + h) c
+  obtain ⟨M, hM⟩ := Lax342547.RawIntersections.exists_intersection_scale (pStar * (g * g + 3)) (pStar + h) c
   refine ⟨M, fun n hn => ?_⟩
   have he : pStar * (g * g + 3) * n + (pStar + h) = pStar * (1 + (g * g + 3) * n) + h := by ring
   simpa only [he] using hM n hn

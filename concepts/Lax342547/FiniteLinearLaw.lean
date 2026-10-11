@@ -8,7 +8,7 @@ import Mathlib.LinearAlgebra.Dimension.Constructions
 /-!
 ---
 title: Finite linear images and their uniform-law density bounds
-type: theorem
+type: lemma
 ---
 Surjective linear observation cannot increase the codimension of a
 subspace. Over the binary field, an image of codimension at most c has

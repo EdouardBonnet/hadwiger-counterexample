@@ -3,7 +3,7 @@ import Lax342547.QuotientExtractors
 /-!
 ---
 title: Unselected sparse vectors cannot conceal fresh key coefficients
-type: theorem
+type: lemma
 ---
 If an unselected sparse vector differs from a short fresh key combination
 by a projected pin, each key's base-vector coefficient is zero. This

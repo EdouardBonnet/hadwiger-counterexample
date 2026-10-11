@@ -1,5 +1,4 @@
 import Lax342547.FingerprintScales
-import Lax342547Proofs.RawToGraph
 import Mathlib.Data.Nat.Choose.Bounds
 import Mathlib.Analysis.SpecificLimits.Normed
 
@@ -31,7 +30,7 @@ theorem paper_fingerprint_length (g N : ℕ) (hg : 0 < g) (hN : 0 < N) :
   have he1 : 1/(2 : ℝ)^(100*g*N) < 1 := by
     apply (div_lt_one (by positivity)).mpr
     exact one_lt_pow₀ (by norm_num) (by positivity)
-  have hp := logarithmic_progress _ he he1
+  have hp := Lax342547.FingerprintScales.logarithmic_progress _ he he1
   have hlog : 0 ≤ Real.log ((2 : ℝ)^(4000*g*N)) := by
     rw [Real.log_pow]
     positivity

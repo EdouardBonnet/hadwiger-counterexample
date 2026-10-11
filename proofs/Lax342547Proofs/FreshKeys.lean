@@ -1,6 +1,7 @@
 import Lax342547.FreshKeys
 import Lax342547Proofs.TableSpaces
 import Lax342547Proofs.SparsePins
+import Lax342547.ProjectedPins
 
 namespace Lax342547Proofs.FreshKeys
 
@@ -73,8 +74,8 @@ theorem fresh_keys {Base Comp H N : Type} [Fintype Base] [Fintype Comp] [Fintype
   have hdim (i : Fin 2) (s : Bool) (e : Comp) :
       Module.finrank Binary (projected P i (e, s)) ≤ K :=
     ((Finset.single_le_sum (fun _ _ => Nat.zero_le _) (Finset.mem_univ (e, s))).trans
-      (ProjectedPins.projected_rank P i)).trans hK
-  choose B hB hfresh using fun i => fresh_points (fun s e => projected P i (e, s)) (hdim i) hdegree
+      (Lax342547.ProjectedPins.projected_rank P i)).trans hK
+  choose B hB hfresh using fun i => Lax342547.FreshKeys.fresh_points (fun s e => projected P i (e, s)) (hdim i) hdegree
   refine ⟨B, hB, ?_⟩
   intro a L c z hL hdis hmem i s hs
   apply hfresh i a.2 a.1 (L i) (c i) (z i) (hL i) (hdis i) ?_ s hs

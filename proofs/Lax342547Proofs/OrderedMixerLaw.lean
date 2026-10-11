@@ -1,8 +1,8 @@
 import Lax342547.OrderedMixerLaw
-import Lax342547Proofs.AtomDirections
 import Lax342547Proofs.MixerCompatibility
-import Lax342547Proofs.FiniteLinearLaw
-import Lax342547Proofs.LowRankCounting
+import Lax342547.AtomDirections
+import Lax342547.FiniteLinearLaw
+import Lax342547.LowRankCounting
 
 namespace Lax342547Proofs.OrderedMixerLaw
 
@@ -68,7 +68,7 @@ theorem orders_uniform {I N P : Type} [Fintype I] [Fintype N] [Fintype P]
     (hDE : Function.Injective (Matrix.fromCols D E).mulVec) :
     (PMF.uniformOfFintype (Matrix I I Binary)).map (orders D E) =
       PMF.uniformOfFintype (Matrix N P Binary × Matrix P N Binary) :=
-  FiniteLinearLaw.uniform_image_of_surjective _ (orders_surjective D E hDE)
+  Lax342547.FiniteLinearLaw.uniform_image_of_surjective _ (Lax342547.OrderedMixerLaw.orders_surjective D E hDE)
 
 /--
 ---
@@ -85,8 +85,8 @@ theorem ordered_parity_uniform {I N P : Type} [Fintype I] [Fintype N] [Fintype P
     (a b : Binary) (hab : a ≠ 0 ∨ b ≠ 0) :
     (PMF.uniformOfFintype (Matrix I I Binary)).map ((parity a b).comp (orders D E)) =
       PMF.uniformOfFintype (Matrix N P Binary) :=
-  FiniteLinearLaw.uniform_image_of_surjective _
-    ((parity_surjective a b hab).comp (orders_surjective D E hDE))
+  Lax342547.FiniteLinearLaw.uniform_image_of_surjective _
+    ((parity_surjective a b hab).comp (Lax342547.OrderedMixerLaw.orders_surjective D E hDE))
 
 /--
 ---
@@ -100,8 +100,8 @@ theorem atom_orders_uniform {k n b degree : ℕ} (hd : 1 ≤ degree)
     (PMF.uniformOfFintype (Moment k n b degree)).map
       (orders (blockDirections s free) (blockDirections t free)) =
       PMF.uniformOfFintype (Matrix (Fin n) (Fin n) Binary × Matrix (Fin n) (Fin n) Binary) := by
-  apply orders_uniform
-  apply AtomDirections.distinct_directions_injective hd s t hst free
+  apply Lax342547.OrderedMixerLaw.orders_uniform
+  apply Lax342547.AtomDirections.distinct_directions_injective hd s t hst free
   intro i j hij
   simpa [free] using hij
 
@@ -113,7 +113,7 @@ theorem familyParity_surjective {F : Type} [Fintype F]
   classical
   obtain ⟨j, hj⟩ := hab
   intro A
-  obtain ⟨L, hL⟩ := ((parity_surjective (a j) (b j) hj).comp (orders_surjective D E hDE)) A
+  obtain ⟨L, hL⟩ := ((parity_surjective (a j) (b j) hj).comp (Lax342547.OrderedMixerLaw.orders_surjective D E hDE)) A
   refine ⟨Pi.single j L, ?_⟩
   simpa [familyParity, LinearMap.sum_apply, Pi.single_apply, apply_ite] using hL
 
@@ -132,7 +132,7 @@ theorem family_parity_uniform {I N P F : Type} [Fintype I] [Fintype N] [Fintype 
     (a b : F → Binary) (hab : ∃ j, a j ≠ 0 ∨ b j ≠ 0) :
     (PMF.uniformOfFintype (F → Matrix I I Binary)).map (familyParity D E a b) =
       PMF.uniformOfFintype (Matrix N P Binary) :=
-  FiniteLinearLaw.uniform_image_of_surjective _ (familyParity_surjective D E hDE a b hab)
+  Lax342547.FiniteLinearLaw.uniform_image_of_surjective _ (familyParity_surjective D E hDE a b hab)
 
 open scoped ENNReal
 
@@ -151,8 +151,8 @@ theorem family_parity_low_rank_bound {I N P F : Type} [Fintype I] [Fintype N] [F
     (PMF.uniformOfFintype (F → Matrix I I Binary)).toOuterMeasure
       {L | (familyParity D E a b L).rank ≤ r} ≤
         (2 : ℝ≥0∞) ^ ((Fintype.card N + Fintype.card P) * r) / 2 ^ (Fintype.card N * Fintype.card P) := by
-  have h := LowRankCounting.uniform_low_rank_bound (I := N) (J := P) r
-  rw [← family_parity_uniform D E hDE a b hab, PMF.toOuterMeasure_map_apply] at h
+  have h := Lax342547.LowRankCounting.uniform_low_rank_bound (I := N) (J := P) r
+  rw [← Lax342547.OrderedMixerLaw.family_parity_uniform D E hDE a b hab, PMF.toOuterMeasure_map_apply] at h
   exact h
 
 end Lax342547Proofs.OrderedMixerLaw

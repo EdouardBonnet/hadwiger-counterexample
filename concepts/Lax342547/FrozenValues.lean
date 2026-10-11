@@ -3,7 +3,7 @@ import Lax342547.RawBaselines
 /-!
 ---
 title: Baseline contractions on the selected atoms
-type: theorem
+type: lemma
 ---
 Freezing both signs of an atom's key retains its actual contraction.
 Matched keys then give zero toward the atom's matched endpoint and the

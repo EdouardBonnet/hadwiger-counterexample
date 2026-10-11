@@ -1,5 +1,4 @@
 import Lax342547.AmplifiedTests
-import Lax342547Proofs.FiniteSampling
 
 namespace Lax342547Proofs.AmplifiedTests
 open Lax342547.AmplifiedTests
@@ -54,7 +53,7 @@ theorem amplified_bad_mass {A B : Type} [Fintype A] [Fintype B]
       exact mul_le_mul_of_nonneg_left (hlower b h) (hβ b)
     · simp only [h,ite_false,mul_zero]
       exact mul_nonneg (hβ b) (hn b)
-  rw [test_fubini] at hl
+  rw [Lax342547.AmplifiedTests.test_fubini] at hl
   have hu : (∑ a,α a*cellMass β (T a)) ≤ U := by
     calc
       _ ≤ ∑ a,α a*U := Finset.sum_le_sum (fun a _ => mul_le_mul_of_nonneg_left (hupper a) (hα.1 a))

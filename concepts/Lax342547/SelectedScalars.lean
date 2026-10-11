@@ -4,7 +4,7 @@ import Lax342547.LabelRelations
 /-!
 ---
 title: Selected label coefficients agree across the cut profile
-type: theorem
+type: lemma
 ---
 The three-edge cut relation separates by label. A coefficient supported
 on one tag star consequently has one scalar on the entire star. Applying

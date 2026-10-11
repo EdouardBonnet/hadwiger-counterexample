@@ -1,5 +1,5 @@
 import Lax342547.SparseKeyCoefficients
-import Lax342547Proofs.QuotientExtractors
+import Lax342547.QuotientExtractors
 
 namespace Lax342547Proofs.SparseKeyCoefficients
 
@@ -35,7 +35,7 @@ theorem coefficients_zero {Base Comp H N I : Type} [Fintype I] {b degree R : ℕ
   have hsize : (L ∪ J).card ≤ R + 14 :=
     (Finset.card_union_le _ _).trans (Nat.add_le_add hL hJ)
   have hj : label j ∈ J := Finset.mem_image.mpr ⟨j, Finset.mem_univ _, rfl⟩
-  obtain ⟨q, hq⟩ := QuotientExtractors.pin_extractor P A hA i a (L ∪ J) hsize
+  obtain ⟨q, hq⟩ := Lax342547.QuotientExtractors.pin_extractor P A hA i a (L ∪ J) hsize
     (label j) (Finset.mem_union_right _ hj) (hfresh j)
   let f := q.comp (projected P i a).mkQ
   have hf (s : Fin b → Binary) (hs : s ∈ L ∪ J) (w : Option Base → Binary) :

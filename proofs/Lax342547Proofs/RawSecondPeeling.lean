@@ -1,6 +1,7 @@
 import Lax342547.RawSecondPeeling
-import Lax342547Proofs.SecondPeeling
-import Lax342547Proofs.ReferencePins
+import Lax342547.ReferencePins
+import Lax342547.SecondPeeling
+import Lax342547.SplitTrimming
 
 namespace Lax342547Proofs.RawSecondPeeling
 
@@ -44,11 +45,11 @@ theorem raw_second_peeling {J Comp B H N : Type}
       (2 : ℝ≥0∞) ^ (-(((u : ℝ) + 1) * Fintype.card N)) ≤
         (p.filter S hS).toOuterMeasure {o | record observation choice U o = k} →
       RepeeledPart (p.filter S hS) (PMF.uniformOfFintype _) observation P₀ choice U D ζ K₁ u k := by
-  refine ⟨SplitTrimming.exponential_discard (p.filter S hS) observation choice U a n u
+  refine ⟨Lax342547.SplitTrimming.exponential_discard (p.filter S hS) observation choice U a n u
     hchoices hu hscale, ?_⟩
   intro k hk
-  exact SecondPeeling.second_part p (PMF.uniformOfFintype _) observation P₀ S hS choice U
+  exact Lax342547.SecondPeeling.second_part p (PMF.uniformOfFintype _) observation P₀ S hS choice U
     D ζ ε K₁ u hD hζ hζ₁ hεζ (by omega) hP hPbudget hu hSbound hp
-    (ReferencePins.reference_pin_cap ε hε hN hcoeff hcomp) k hk
+    (Lax342547.ReferencePins.reference_pin_cap ε hε hN hcoeff hcomp) k hk
 
 end Lax342547Proofs.RawSecondPeeling

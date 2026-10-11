@@ -1,8 +1,8 @@
 import Lax342547.AcceptingInjection
-import Lax342547Proofs.FiniteInjection
-import Lax342547Proofs.AcceptingFamilies
-import Lax342547Proofs.UnitSpanAvoidance
-import Lax342547Proofs.GreedySpaces
+import Lax342547.AcceptingFamilies
+import Lax342547.FiniteInjection
+import Lax342547.GreedySpaces
+import Lax342547.UnitSpanAvoidance
 
 namespace Lax342547Proofs.AcceptingInjection
 open Lax342547.AcceptingInjection
@@ -34,11 +34,11 @@ theorem accepting_family_injection {A B I N H : Type}
     (∑ b,β b*cellMass α (fun a => C (key b) a ∧ pinFailure (V a) (Y b) (S b))) ≤
       η*(∑ b,β b*cellMass α (C (key b))) + τ +
       Fintype.card I*((L*((2 : ℝ)^(Fintype.card H*K+2*K*ℓ)/(2 : ℝ)^(Fintype.card H*ℓ)))/(η-δ)^ℓ) := by
-  apply Lax342547Proofs.AcceptingFamilies.accepting_family_loss α β C key
+  apply Lax342547.AcceptingFamilies.accepting_family_loss α β C key
     (fun b a => pinFailure (V a) (Y b) (S b)) η τ _ hα hβ hη hτ (by positivity)
   intro i hi
-  exact Lax342547Proofs.FiniteInjection.finite_injection_exception (conditionalLaw α (C i)) β V Y S
-    K ℓ L η δ (Lax342547Proofs.AcceptingFamilies.conditional_probability α (C i) hα (lt_of_lt_of_le hτ hi))
+  exact Lax342547.FiniteInjection.finite_injection_exception (conditionalLaw α (C i)) β V Y S
+    K ℓ L η δ (Lax342547.AcceptingFamilies.conditional_probability α (C i) hα (lt_of_lt_of_le hτ hi))
     hβ hL hgap hV hS hcap (havoid i hi)
 
 /--
@@ -67,12 +67,12 @@ theorem primal_accepting_family_injection {A B I P N H : Type}
       η*(∑ b,β b*cellMass α (C (key b))) + τ +
       Fintype.card I*((L*((2 : ℝ)^(Fintype.card H*K+2*K*ℓ)/(2 : ℝ)^(Fintype.card H*ℓ)))/
         (η-(M/τ)*(2*((2 : ℝ)^(Fintype.card P+Fintype.card H+K*ℓ)/(2 : ℝ)^Fintype.card N)))^ℓ) := by
-  apply accepting_family_injection α β C key V Y S K ℓ L η _ τ hα hβ hL hη hτ hgap hdV hS hBcap
+  apply Lax342547.AcceptingInjection.accepting_family_injection α β C key V Y S K ℓ L η _ τ hα hβ hL hη hτ hgap hdV hS hBcap
   intro i hi j hj t
-  have hdim := Lax342547Proofs.GreedySpaces.accumulated_dimension V K j t hdV
+  have hdim := Lax342547.GreedySpaces.accumulated_dimension V K j t hdV
   have hd : Module.finrank Binary ↥(⨆ k : Fin j,V (t k)) ≤ K*ℓ :=
     hdim.trans (Nat.mul_le_mul_left K hj.le)
-  have ha := Lax342547Proofs.UnitSpanAvoidance.conditioned_unit_span_avoidance E α image V
+  have ha := Lax342547.UnitSpanAvoidance.conditioned_unit_span_avoidance E α image V
     (⨆ k : Fin j,V (t k)) (C i) M τ hα.1 hM hτ hi hN hV hAcap
   exact ha.trans (mul_le_mul_of_nonneg_left
     (mul_le_mul_of_nonneg_left

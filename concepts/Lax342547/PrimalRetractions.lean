@@ -4,7 +4,7 @@ import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
 /-!
 ---
 title: Retractions with bounded rank on the primal inputs
-type: theorem
+type: lemma
 ---
 When the table together with the primal space spans the nominal space,
 one can retract onto table plus keys while preserving the primal space.

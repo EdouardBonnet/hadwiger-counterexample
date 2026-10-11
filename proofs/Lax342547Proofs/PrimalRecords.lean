@@ -1,5 +1,5 @@
 import Lax342547.PrimalRecords
-import Lax342547Proofs.FourHoles
+import Lax342547.FourHoles
 
 namespace Lax342547Proofs.PrimalRecords
 open Lax342547.PrimalRecords
@@ -46,18 +46,18 @@ theorem entries_determine {Comp B H : Type} [Fintype B] [Fintype H]
   constructor
   · intro e i z
     constructor
-    · apply coordinate_map_ext
+    · apply Lax342547.PrimalRecords.coordinate_map_ext
       intro b h
       exact hentry 0 0 e i z b h
-    · apply coordinate_map_ext
+    · apply Lax342547.PrimalRecords.coordinate_map_ext
       intro b h
       exact hentry 0 1 e i z b h
   · intro e i z
     constructor
-    · apply coordinate_map_ext
+    · apply Lax342547.PrimalRecords.coordinate_map_ext
       intro b h
       exact hentry 1 0 e i z b h
-    · apply coordinate_map_ext
+    · apply Lax342547.PrimalRecords.coordinate_map_ext
       intro b h
       exact hentry 1 1 e i z b h
 
@@ -105,9 +105,9 @@ theorem entries_give_four_holes {k n b degree r J : ℕ} {hr : 2 * r ≤ n}
     (hright : ∀ i z x, fullContraction G.flip (Profile k n b degree) z i x =
       (D.role + gradient D L R (rightWitness W i z)) x) :
     ∀ i z, Hole holes (oA i) (oB z) := by
-  have hc := agreement_contractions (rawForms oA oB) G
-    (entries_determine (rawForms oA oB) G heq) (Profile k n b degree)
-  apply Lax342547Proofs.FourHoles.four_holes W D L R oA oB holes hrole hgradient hU hu hkeys hroles
+  have hc := Lax342547.PrimalRecords.agreement_contractions (rawForms oA oB) G
+    (Lax342547.PrimalRecords.entries_determine (rawForms oA oB) G heq) (Profile k n b degree)
+  apply Lax342547.FourHoles.four_holes W D L R oA oB holes hrole hgradient hU hu hkeys hroles
   · intro i z x
     rw [hc.1 i z]
     exact hleft i z x
@@ -127,6 +127,6 @@ theorem record_count {Comp B H : Type} [Fintype Comp] [Fintype B] [Fintype H] :
       exact Fintype.card (EntryIndex Comp B H → Binary) =
         2 ^ (16 * Fintype.card Comp * Fintype.card H * Fintype.card B) := by
   classical
-  rw [Fintype.card_fun, ZMod.card, entry_count]
+  rw [Fintype.card_fun, ZMod.card, Lax342547.PrimalRecords.entry_count]
 
 end Lax342547Proofs.PrimalRecords

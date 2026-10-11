@@ -1,5 +1,5 @@
 import Lax342547.AdaptiveSampling
-import Lax342547Proofs.CoordinateRestrictions
+import Lax342547.FiniteSampling
 
 namespace Lax342547Proofs.AdaptiveSampling
 open Lax342547.AdaptiveSampling
@@ -28,7 +28,7 @@ theorem adaptive_cylinder_probability {J K Ω : Type} [Fintype J] [Fintype K] [F
   intro exposed _
   simp_rw [he]
   simp only [Sum.elim_inl,Sum.elim_inr]
-  have hh := Lax342547Proofs.FiniteSampling.cylinder_probability
+  have hh := Lax342547.FiniteSampling.cylinder_probability
     (fun _ : K => μ) (fun _ => A exposed)
   simp only [Finset.prod_const,Finset.card_univ] at hh
   calc
@@ -54,8 +54,8 @@ theorem adaptive_cylinder_bound {J K Ω : Type} [Fintype J] [Fintype K] [Fintype
     cellMass (productLaw (fun _ : J ⊕ K => μ))
       (fun sample => ∀ k, A (fun j => sample (.inl j)) (sample (.inr k))) ≤ p^Fintype.card K := by
   classical
-  rw [adaptive_cylinder_probability]
-  have hprob := Lax342547Proofs.FiniteSampling.product_probability (fun _ : J => μ) (fun _ => hμ)
+  rw [Lax342547.AdaptiveSampling.adaptive_cylinder_probability]
+  have hprob := Lax342547.FiniteSampling.product_probability (fun _ : J => μ) (fun _ => hμ)
   calc
     _ ≤ ∑ exposed : J → Ω, productLaw (fun _ : J => μ) exposed*p^Fintype.card K := by
       apply Finset.sum_le_sum

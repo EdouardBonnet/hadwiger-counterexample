@@ -1,7 +1,8 @@
 import Lax342547.AtomFunctionals
-import Lax342547Proofs.CommonAtoms
-import Lax342547Proofs.PointQuadratics
 import Mathlib.LinearAlgebra.Dual.Lemmas
+import Lax342547.Atoms
+import Lax342547.QuadraticDegree
+import Lax342547Proofs.SelectorInterpolation
 
 namespace Lax342547Proofs.AtomFunctionals
 open Lax342547.AtomFunctionals
@@ -26,7 +27,7 @@ theorem atom_local_functional {k n b degree : ℕ} (l : Tag k)
   intro s z hz
   have he : (atom (degree := degree) l s z hz).val = starMatrixMap l (pointMoment selectorEval s z) := by
     funext e
-    exact Lax342547Proofs.Atoms.atom_component l s z hz e
+    exact Lax342547.Atoms.atom_component l s z hz e
   have hf := LinearMap.congr_fun hΨ (atom (degree := degree) l s z hz)
   change Ψ (atom (degree := degree) l s z hz).val = φ (atom (degree := degree) l s z hz) at hf
   rw [← hf,he]
@@ -63,7 +64,7 @@ theorem atom_functional_ext {k n b degree : ℕ} (φ : Module.Dual Binary (Profi
       obtain ⟨s,z,hz,rfl⟩ := hM
       have he : starMatrixMap l (pointMoment selectorEval s z) = (atom (degree := degree) l s z hz).val := by
         funext e
-        exact (Lax342547Proofs.Atoms.atom_component l s z hz e).symm
+        exact (Lax342547.Atoms.atom_component l s z hz e).symm
       rw [he]
       have hf := LinearMap.congr_fun hΨ (atom (degree := degree) l s z hz)
       change Ψ (atom (degree := degree) l s z hz).val = φ (atom (degree := degree) l s z hz) at hf
@@ -77,7 +78,7 @@ theorem atom_functional_ext {k n b degree : ℕ} (φ : Module.Dual Binary (Profi
   change Ψ x.val = φ x at hf
   rw [← hf,← hw]
   change Ψ (cutMap w.val) = 0
-  rw [cut_star_sum,map_sum]
+  rw [Lax342547.AtomFunctionals.cut_star_sum,map_sum]
   apply Finset.sum_eq_zero
   intro l _
   exact hzero l (w.val l) (w.property l (Set.mem_univ l))
@@ -93,14 +94,14 @@ theorem atom_base_degree {k n b degree r : ℕ} (l : Tag k) (s : Fin b → Binar
     (hz : ∀ x i,i ∉ allowedBase k n l → z x i = 0)
     (hdegree : ∀ i,(fun x => z x i) ∈ selectorSpan r 1) :
     (fun x => φ (atom (degree := degree) l s (z x) (hz x))) ∈ selectorSpan r 2 := by
-  obtain ⟨ψ,hψ⟩ := atom_local_functional l φ
+  obtain ⟨ψ,hψ⟩ := Lax342547.AtomFunctionals.atom_local_functional l φ
   have hf (i : SelectorCoordinates b degree × Option (Base k n)) :
       (fun x => point selectorEval s (z x) i) ∈ selectorSpan r 1 := by
     apply (selectorSpan r 1).smul_mem (selectorEval s i.1)
     cases i.2 with
     | none => exact Lax342547Proofs.SelectorInterpolation.constant_mem 1 1
     | some j => exact hdegree j
-  have hp := Lax342547Proofs.QuadraticDegree.linear_outer_product_degree ψ
+  have hp := Lax342547.QuadraticDegree.linear_outer_product_degree ψ
     (fun i x => point selectorEval s (z x) i) hf
   have he : (fun x => φ (atom (degree := degree) l s (z x) (hz x))) =
       (fun x => ψ (Matrix.of (fun i j => point selectorEval s (z x) i*point selectorEval s (z x) j))) :=

@@ -4,7 +4,7 @@ import Mathlib.LinearAlgebra.Dimension.LinearMap
 /-!
 ---
 title: Bounded allowed derivatives preserving the actual linearized response
-type: theorem
+type: lemma
 ---
 Sections of the observed baseline pairings compress derivative outputs
 inside their original perpendicular value spaces. The two actual derivative

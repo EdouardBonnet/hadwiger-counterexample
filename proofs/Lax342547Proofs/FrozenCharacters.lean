@@ -1,7 +1,6 @@
 import Lax342547.FrozenCharacters
-import Lax342547Proofs.TensorAnnihilators
-import Lax342547Proofs.ResidualRealization
 import Mathlib.LinearAlgebra.Quotient.Defs
+import Lax342547.ResidualRealization
 
 namespace Lax342547Proofs.FrozenCharacters
 open Lax342547.FrozenCharacters
@@ -63,7 +62,7 @@ theorem zero_quotient_frozen_agreement {I : Type} [Fintype I]
       exact matrixPair (LinearMap.BilinForm.toMatrix' F) C =
         matrixPair (LinearMap.BilinForm.toMatrix' G) C := by
   classical
-  obtain ⟨Q, hQ⟩ := quotient_bilinear D E (F - G)
+  obtain ⟨Q, hQ⟩ := Lax342547.FrozenCharacters.quotient_bilinear D E (F - G)
     (fun v hv w => by simp only [LinearMap.sub_apply, sub_eq_zero]; exact hD v hv w)
     (fun v w hw => by simp only [LinearMap.sub_apply, sub_eq_zero]; exact hE v w hw)
   have h := hC Q
@@ -74,7 +73,7 @@ theorem zero_quotient_frozen_agreement {I : Type} [Fintype I]
     ext i j
     rfl
   rw [hm] at h
-  rw [Lax342547Proofs.ResidualRealization.matrixPair_sub, LinearMap.sub_apply] at h
+  rw [Lax342547.ResidualRealization.matrixPair_sub, LinearMap.sub_apply] at h
   exact sub_eq_zero.mp h
 
 end Lax342547Proofs.FrozenCharacters

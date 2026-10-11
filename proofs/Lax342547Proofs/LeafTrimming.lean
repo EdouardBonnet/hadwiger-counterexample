@@ -4,6 +4,7 @@ import Lax342547Proofs.FiniteProbability
 import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.NormNum
 import Mathlib.Tactic.Positivity
+import Lax342547.Conditioning
 
 namespace Lax342547Proofs.LeafTrimming
 
@@ -47,7 +48,7 @@ theorem restricted_discard {J : Type} [Fintype J] (w q : J → ℝ≥0∞)
       (2 : ℝ≥0∞) ^ (-((ζ - η) * N)) := by
   calc
     _ ≤ (2 : ℝ≥0∞) ^ (-(ζ * N)) / (2 : ℝ≥0∞) ^ (-(η * N)) :=
-      ENNReal.div_le_div (weighted_discard w q _ hw) hq
+      ENNReal.div_le_div (Lax342547.LeafTrimming.weighted_discard w q _ hw) hq
     _ = _ := by
       rw [← ENNReal.rpow_sub _ _ (by norm_num) (by norm_num)]
       congr 1
@@ -64,7 +65,7 @@ theorem event_after_restriction {Ω : Type} [Fintype Ω] (p : PMF Ω)
     (S T : Set Ω) (hS : ∃ o ∈ S, o ∈ p.support) (τ b : ℝ≥0∞)
     (hτ : τ ≤ p.toOuterMeasure S) (hb : p.toOuterMeasure T ≤ b) :
     (p.filter S hS).toOuterMeasure T ≤ b / τ := by
-  rw [Conditioning.filter_event]
+  rw [Lax342547.Conditioning.filter_event]
   exact ENNReal.div_le_div ((p.toOuterMeasure.mono Set.inter_subset_right).trans hb) hτ
 
 /--
@@ -83,7 +84,7 @@ theorem minentropy_after_restriction {Ω : Type} [Fintype Ω] (p : PMF Ω)
     (p.filter S hS).toOuterMeasure T ≤ (2 : ℝ≥0∞) ^ (-((1 - 2 * ζ) * t * N)) := by
   calc
     _ ≤ (2 : ℝ≥0∞) ^ (-((1 - ζ) * t * N)) / (2 : ℝ≥0∞) ^ (-(ζ * N)) :=
-      event_after_restriction p S T hS _ _ hSbound hTbound
+      Lax342547.LeafTrimming.event_after_restriction p S T hS _ _ hSbound hTbound
     _ = (2 : ℝ≥0∞) ^ (-((1 - ζ) * t * N) - (-(ζ * N))) := by
       rw [ENNReal.rpow_sub _ _ (by norm_num) (by norm_num)]
     _ ≤ _ := ENNReal.rpow_le_rpow_of_exponent_le (by norm_num) (by
@@ -107,7 +108,7 @@ theorem density_after_restriction {Ω : Type} (p μ : PMF Ω)
   intro o
   calc
     _ ≤ ((2 : ℝ≥0∞) ^ (C * N) / p.toOuterMeasure S) * μ o :=
-      Conditioning.filter_density p μ S hS _ hp o
+      Lax342547.Conditioning.filter_density p μ S hS _ hp o
     _ ≤ ((2 : ℝ≥0∞) ^ (C * N) / (2 : ℝ≥0∞) ^ (-(ζ * N))) * μ o :=
       mul_le_mul_of_nonneg_right (ENNReal.div_le_div_left hSbound _) zero_le
     _ = _ := by
@@ -128,7 +129,7 @@ theorem filtered_marginal {Ω V : Type} [Fintype Ω] (p : PMF Ω) (μ : PMF V)
     (M : ℝ≥0∞) (hp : ∀ v, p.map f v ≤ M * μ v) :
     ∀ v, (p.filter S hS).map f v ≤ (M / p.toOuterMeasure S) * μ v := by
   intro v
-  have hd := Conditioning.filter_density p p S hS 1 (by simp)
+  have hd := Lax342547.Conditioning.filter_density p p S hS 1 (by simp)
   calc
     _ ≤ (1 / p.toOuterMeasure S) * p.map f v :=
       FiniteProbability.map_density (p.filter S hS) p _ hd f v
@@ -152,7 +153,7 @@ theorem combined_restriction {Ω : Type} [Fintype Ω] (p : PMF Ω) (S T : Set Ω
   have hm0 := Conditioning.mass_ne_zero p S hS
   have hmtop := Conditioning.mass_ne_top p S
   ext o
-  rw [PMF.filter_apply, ← PMF.toOuterMeasure_apply, Conditioning.filter_event,
+  rw [PMF.filter_apply, ← PMF.toOuterMeasure_apply, Lax342547.Conditioning.filter_event,
     PMF.filter_apply, ← PMF.toOuterMeasure_apply]
   by_cases hs : o ∈ S
   · by_cases ht : o ∈ T

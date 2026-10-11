@@ -1,7 +1,10 @@
 import Lax342547.NoCoverRank
-import Lax342547Proofs.NoCoverCertificate
-import Lax342547Proofs.CoverClasses
-import Lax342547Proofs.AdaptiveUnion
+import Lax342547.AdaptiveUnion
+import Lax342547.CoverClasses
+import Lax342547.FiniteSampling
+import Lax342547.ListDeficits
+import Lax342547.ModeBudgets
+import Lax342547.NoCoverCertificate
 
 namespace Lax342547Proofs.NoCoverRank
 open Lax342547.NoCoverRank
@@ -41,12 +44,12 @@ theorem no_cover_rank_probability {K V W ι Ω : Type} [Field K]
   have hA : ∀ E exposed, cellMass μ (A E exposed) ≤ p := by
     intro E exposed
     apply hcover
-    · exact Lax342547Proofs.CoverClasses.finite_join_closed P hP _ _ (fun i _ => hPC _)
-    · exact Lax342547Proofs.CoverClasses.finite_join_closed Q hQ _ _ (fun i _ => hQR _)
-    · have hb := Lax342547Proofs.ModeBudgets.mode_span_budget
+    · exact Lax342547.CoverClasses.finite_join_closed P hP _ _ (fun i _ => hPC _)
+    · exact Lax342547.CoverClasses.finite_join_closed Q hQ _ _ (fun i _ => hQR _)
+    · have hb := Lax342547.ModeBudgets.mode_span_budget
         (fun i : E => LinearMap.range (M (exposed i))) r hr (fun i => hM _) Finset.univ
       exact hb.trans (mul_le_mul_of_nonneg_left (by rw [Fintype.card_coe]; exact_mod_cast (Finset.card_le_univ E)) hr)
-    · have hb := Lax342547Proofs.ModeBudgets.mode_span_budget
+    · have hb := Lax342547.ModeBudgets.mode_span_budget
         (fun i : E => LinearMap.range (M (exposed i)).dualMap) r hr
         (fun i => by simpa only [LinearMap.finrank_range_dualMap_eq_finrank_range] using hM (exposed i)) Finset.univ
       exact hb.trans (mul_le_mul_of_nonneg_left (by rw [Fintype.card_coe]; exact_mod_cast (Finset.card_le_univ E)) hr)
@@ -55,12 +58,12 @@ theorem no_cover_rank_probability {K V W ι Ω : Type} [Field K]
       ∃ E J : Finset ι, Disjoint E J ∧ 2^(k-n) ≤ J.card ∧
         ∀ j ∈ J, A E (fun e => sample e.val) (sample j) := by
     intro sample hs
-    obtain ⟨E,J,hd,hk,hcov⟩ := Lax342547Proofs.NoCoverCertificate.low_rank_cover_certificate
+    obtain ⟨E,J,hd,hk,hcov⟩ := Lax342547.NoCoverCertificate.low_rank_cover_certificate
       (fun i => M (sample i)) r k n (fun i => hM _) hcard hnk hn hs
     refine ⟨E,J,hd,hk,?_⟩
     intro j hj
-    have hC := Lax342547Proofs.ListDeficits.finset_span_eq (fun i => LinearMap.range (M (sample i))) E
-    have hR := Lax342547Proofs.ListDeficits.finset_span_eq (fun i => LinearMap.range (M (sample i)).dualMap) E
+    have hC := Lax342547.ListDeficits.finset_span_eq (fun i => LinearMap.range (M (sample i))) E
+    have hR := Lax342547.ListDeficits.finset_span_eq (fun i => LinearMap.range (M (sample i)).dualMap) E
     have hC' : Finset.univ.sup (fun i : E => LinearMap.range (M (sample i.val))) = E.sup (fun i => LinearMap.range (M (sample i))) := by
       rw [Finset.sup_eq_iSup]
       simpa using hC
@@ -70,8 +73,8 @@ theorem no_cover_rank_probability {K V W ι Ω : Type} [Field K]
     dsimp only [A]
     rw [hC',hR']
     exact hcov j hj
-  have hprob := Lax342547Proofs.FiniteSampling.product_probability (fun _ : ι => μ) (fun _ => hμ)
-  exact (Lax342547Proofs.FiniteSampling.cell_mass_mono _ _ _ hprob.1 hcert).trans
-    (Lax342547Proofs.AdaptiveUnion.adaptive_cover_union μ A p (2^(k-n)) hμ hp0 hp1 hA)
+  have hprob := Lax342547.FiniteSampling.product_probability (fun _ : ι => μ) (fun _ => hμ)
+  exact (Lax342547.FiniteSampling.cell_mass_mono _ _ _ hprob.1 hcert).trans
+    (Lax342547.AdaptiveUnion.adaptive_cover_union μ A p (2^(k-n)) hμ hp0 hp1 hA)
 
 end Lax342547Proofs.NoCoverRank

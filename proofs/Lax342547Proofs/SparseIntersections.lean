@@ -1,8 +1,10 @@
 import Lax342547.SparseIntersections
-import Lax342547Proofs.RawIntersections
-import Lax342547Proofs.SparseRepresentatives
-import Lax342547Proofs.FrameExistence
-import Lax342547Proofs.CoordinateCounts
+import Lax342547.CoordinateCounts
+import Lax342547.CutSparsity
+import Lax342547.FrameExistence
+import Lax342547.RawIntersections
+import Lax342547.SparseRepresentatives
+import Lax342547.TensorIntersections
 
 namespace Lax342547Proofs.SparseIntersections
 
@@ -38,16 +40,16 @@ theorem exists_concrete_scale (k b degree h : ℕ) :
       (8 : ℝ) * Fintype.card (Component (Tag k)) ≤ (1 / 4 : ℝ) * (M₀ * n : ℕ) ∧
       ∀ D : ℕ, (Fintype.card (Component (Tag k)) * (2 * (Fintype.card (Coordinate k n b degree) + h)) * (2 * D) : ℕ) ≤
         (D : ℝ) * (M₀ * n : ℕ) / 4 := by
-  obtain ⟨M₀, hM⟩ := RawIntersections.exists_paper_intersection_scale
+  obtain ⟨M₀, hM⟩ := Lax342547.RawIntersections.exists_paper_intersection_scale
     (∑ j ∈ Finset.range (degree + 1), b.choose j) (2 * k + 1) h (Fintype.card (Component (Tag k)))
   refine ⟨M₀, fun n hn => ?_⟩
-  rw [(CoordinateCounts.coordinate_dimensions k n b degree).2.2]
+  rw [(Lax342547.CoordinateCounts.coordinate_dimensions k n b degree).2.2]
   simpa only [pow_two] using hM n hn
 
 theorem normalized_unique {k n b degree : ℕ} (x : Profile k n b degree)
     (w v : Representation k n b degree) (hw : Normalized x w) (hv : Normalized x v) : w = v := by
   apply Subtype.ext
-  exact CutSparsity.majority_unique w.val v.val (hw.1.trans hv.1.symm)
+  exact Lax342547.CutSparsity.majority_unique w.val v.val (hw.1.trans hv.1.symm)
     (by simpa only [Tag, ZMod.card] using hw.2) (by simpa only [Tag, ZMod.card] using hv.2)
 
 /--
@@ -84,19 +86,19 @@ theorem raw_intersections {k n b degree r h N : ℕ}
             (∀ u : Representation k n b degree, Normalized y u → u = v) := by
   classical
   let : Nonempty (Frame (Coordinate k n b degree) (Fin h) (Fin N) (selfGram hr hd M)) :=
-    FrameExistence.frame_nonempty_of_card_le _ (by simpa using Nat.le_of_succ_le hN)
+    Lax342547.FrameExistence.frame_nonempty_of_card_le _ (by simpa using Nat.le_of_succ_le hN)
   constructor
   · have hdensity (o) : σ o ≤ (2 : ℝ≥0∞) ^ (D * Fintype.card (Fin N)) * PMF.uniformOfFintype _ o := by
       simpa only [Fintype.card_fin, PMF.uniformOfFintype_apply, div_eq_mul_inv] using hσ o
-    simpa only [Fintype.card_fin] using RawIntersections.capped_intersection_bound D hD
+    simpa only [Fintype.card_fin] using Lax342547.RawIntersections.capped_intersection_bound D hD
       (by simpa only [Fintype.card_fin] using hN) (by simpa only [Fintype.card_fin] using hp)
       (by simpa only [Fintype.card_fin] using hc) (by simpa only [Fintype.card_fin] using hcount) σ hdensity
   · intro o ho x y hxy
     have hsmall' : 4 * (2 * D) < (2 * k + 1) * (2 * k + 1) := by omega
-    have hrank := TensorIntersections.shared_total_rank (o 0) (o 1) x.val y.val hxy
+    have hrank := Lax342547.TensorIntersections.shared_total_rank (o 0) (o 1) x.val y.val hxy
     have hx : (∑ e, (x.val e).rank) ≤ 2 * D := hrank.2.trans ho
     have hy : (∑ e, (y.val e).rank) ≤ 2 * D := by rw [← hrank.1]; exact hx
-    obtain ⟨w, v, hw, hv, hsw, hsv, hchi⟩ := SparseRepresentatives.shared_sparse_profiles
+    obtain ⟨w, v, hw, hv, hsw, hsv, hchi⟩ := Lax342547.SparseRepresentatives.shared_sparse_profiles
       hr hd M (o 0) (o 1) (2 * D) hsmall' ho x y hxy
     refine ⟨hx, hy, w, v, hw, hv, ?_, ?_, hchi,
       fun u hu => normalized_unique x u w hu hw, fun u hu => normalized_unique y u v hu hv⟩

@@ -1,6 +1,4 @@
 import Lax342547.FrozenRecords
-import Lax342547Proofs.FrozenCharacters
-import Lax342547Proofs.RawFrames
 
 namespace Lax342547Proofs.FrozenRecords
 open Lax342547.FrozenRecords
@@ -51,7 +49,7 @@ theorem records_determine_frozen {I X N : Type} [Fintype I] [Fintype N]
     (w : Submodule.span Binary (Set.range frozen)) :
     dotProduct (A v) w.val = dotProduct (A' v) w.val := by
   have hgen (x : X) : dotProduct (A v) (frozen x) = dotProduct (A' v) (frozen x) := by
-    rw [record_evaluation, record_evaluation, hrec]
+    rw [Lax342547.FrozenRecords.record_evaluation, Lax342547.FrozenRecords.record_evaluation, hrec]
   have heq : ∀ w ∈ Submodule.span Binary (Set.range frozen),
       dotProduct (A v) w = dotProduct (A' v) w := by
     intro w hw
@@ -84,10 +82,10 @@ theorem two_records_cross_agreement {I J X Y N : Type}
   have hpointL (x : X) (w : J → Binary) :
       dotProduct (A (left x)) (B w) = dotProduct (A' (left x)) (B' w) := by
     rw [(hleft x).1, (hleft x).2, dotProduct_comm (leftImages x), dotProduct_comm (leftImages x)]
-    rw [record_evaluation, record_evaluation, hrecB]
+    rw [Lax342547.FrozenRecords.record_evaluation, Lax342547.FrozenRecords.record_evaluation, hrecB]
   have hpointR (v : I → Binary) (y : Y) :
       dotProduct (A v) (B (right y)) = dotProduct (A' v) (B' (right y)) := by
-    rw [(hright y).1, (hright y).2, record_evaluation, record_evaluation, hrecA]
+    rw [(hright y).1, (hright y).2, Lax342547.FrozenRecords.record_evaluation, Lax342547.FrozenRecords.record_evaluation, hrecA]
   constructor
   · intro v hv w
     induction hv using Submodule.span_induction with

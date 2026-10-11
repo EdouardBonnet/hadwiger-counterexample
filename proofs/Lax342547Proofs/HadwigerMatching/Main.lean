@@ -4,10 +4,10 @@ adc7f1241b42e322a6451854ab7e4b4c146bf78a (Apache-2.0).
 Changes: Lax package separation, namespaces, explicit variables, and archive annotations.
 -/
 import Lax342547.CliqueMinor
-import Lax342547Proofs.HadwigerMatching.MinorBound
-import Lax342547Proofs.HadwigerMatching.ChromaticBound
 import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.NormNum
+import Lax342547.ChromaticBound
+import Lax342547.MatchingMinorBound
 
 namespace Lax342547Proofs
 
@@ -30,14 +30,14 @@ theorem full_matching_minor_proposition
         26 * (m : ℚ) / 75 + 2 / 3 < (m : ℚ) / 2 ∧
         (m : ℚ) / 2 ≤ (G.chromaticNumber.toNat : ℚ)) := by
   dsimp only
-  have hn := hadwiger_matching_bound G
+  have hn := Lax342547.MatchingMinorBound.hadwiger_matching_bound G
   have hq : 3 * (hadwigerNumber G : ℚ) ≤
       (Fintype.card V : ℚ) + 4 * (connectedMatchingNumber G : ℚ) + 2 := by
     exact_mod_cast hn
   refine ⟨by linarith, ?_⟩
   intro hα hc hm
   have hm' : (5 : ℚ) ≤ (Fintype.card V : ℚ) := by exact_mod_cast hm
-  have hnχ := card_le_twice_chromaticNumber_of_indepNum G hα
+  have hnχ := Lax342547.ChromaticBound.card_le_twice_chromaticNumber_of_indepNum G hα
   have hχ : (Fintype.card V : ℚ) ≤ 2 * (G.chromaticNumber.toNat : ℚ) := by
     exact_mod_cast hnχ
   refine ⟨?_, ?_, ?_⟩ <;> linarith

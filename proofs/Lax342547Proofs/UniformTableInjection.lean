@@ -1,6 +1,6 @@
 import Lax342547.UniformTableInjection
-import Lax342547Proofs.PreparedInjection
-import Lax342547Proofs.PreparedInjectionScale
+import Lax342547.PreparedInjection
+import Lax342547.PreparedInjectionScale
 
 namespace Lax342547Proofs.UniformTableInjection
 
@@ -38,7 +38,7 @@ theorem exists_uniform_injection {Comp : Type} [Fintype Comp] [Nonempty Comp]
         (fun ab => accept ab.1 ab.2 ∧ ¬ Injecting (T ab.1 ab.2)) ≤
         ε*cellMass (fun ab : U × U => ρ ab.1*ρ ab.2) (fun ab => accept ab.1 ab.2) := by
   have hJ : 0 < 16*Fintype.card Comp := Nat.mul_pos (by decide) Fintype.card_pos
-  obtain ⟨t,h,hparam⟩ := Lax342547Proofs.PreparedInjectionScale.exists_prepared_parameters
+  obtain ⟨t,h,hparam⟩ := Lax342547.PreparedInjectionScale.exists_prepared_parameters
     K Cs (16*Fintype.card Comp) ε hJ hε
   refine ⟨h,fun c => ?_⟩
   obtain ⟨N₀,hN₀⟩ := hparam c
@@ -54,7 +54,7 @@ theorem exists_uniform_injection {Comp : Type} [Fintype Comp] [Nonempty Comp]
       _ = (2 : ℝ)^m*2 := mul_comm _ _
       _ ≤ (2 : ℝ)^m*(2 : ℝ)^N := mul_le_mul_of_nonneg_left htwo (by positivity)
       _ = _ := (pow_add _ _ _).symm
-  exact Lax342547Proofs.PreparedInjection.actual_relative_table_injection
+  exact Lax342547.PreparedInjection.actual_relative_table_injection
     ρ P A accept CL CR keyL keyR T K m t Cs M (ε/(2*(16*Fintype.card Comp : ℕ))) ε
     hρ hM (by simpa using hbudget) hcapM (by simpa using hcapMB) (by simpa using hcount)
     hP hcap hleft hright hT c hJ hε.le rfl (by simpa using haccept) (by simpa using htail)

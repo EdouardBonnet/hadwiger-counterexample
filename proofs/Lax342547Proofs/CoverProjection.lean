@@ -1,6 +1,4 @@
 import Lax342547.CoverProjection
-import Lax342547Proofs.ProjectedSpans
-import Lax342547Proofs.RankLoss
 
 namespace Lax342547Proofs.CoverProjection
 open Lax342547.CoverProjection
@@ -59,7 +57,7 @@ theorem projection_rank_le {K V W : Type} [Field K] [AddCommGroup V] [Module K V
     [AddCommGroup W] [Module K W] [FiniteDimensional K V] [FiniteDimensional K W]
     (M : V →ₗ[K] W) (S : Submodule K W) (T : Submodule K (Module.Dual K V)) :
     Module.finrank K (LinearMap.range (projection M S T)) ≤ Module.finrank K (LinearMap.range M) := by
-  apply (Submodule.finrank_mono (projected_column_envelope M S T)).trans
+  apply (Submodule.finrank_mono (Lax342547.CoverProjection.projected_column_envelope M S T)).trans
   exact Submodule.finrank_map_le _ _
 
 /--

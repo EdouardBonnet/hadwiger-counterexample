@@ -1,7 +1,6 @@
 import Lax342547.PointPrediction
-import Lax342547Proofs.CommonExactification
-import Lax342547Proofs.PointQuadratics
-import Lax342547Proofs.BooleanWeight
+import Lax342547.CommonExactification
+import Lax342547.PointQuadratics
 
 namespace Lax342547Proofs.PointPrediction
 open Lax342547.PointPrediction
@@ -21,7 +20,7 @@ theorem marked_point_degree {b : ℕ} {Label Coord : Type} [Fintype Coord]
     (φ : Module.Dual Binary (Matrix (Coord × Option (Fin b)) (Coord × Option (Fin b)) Binary))
     (α : Binary) (q : (Fin b → Binary) → Binary) (hq : q ∈ selectorSpan b 2) :
     (fun x => φ (pointMoment p s x)+α*q x) ∈ selectorSpan b 2 := by
-  have hp := Lax342547Proofs.PointQuadratics.point_tensor_evaluation_degree p s φ
+  have hp := Lax342547.PointQuadratics.point_tensor_evaluation_degree p s φ
   have hα := (selectorSpan b 2).smul_mem α hq
   have hs := (selectorSpan b 2).add_mem hp hα
   exact hs
@@ -41,9 +40,9 @@ theorem retained_point_prediction {U Label Coord : Type} [Fintype U] [Fintype Co
     ∃ u₀ : U, 1-16*ε ≤ cellMass β (fun u =>
       (fun x => φ u (pointMoment p s x)+α u*q x) =
       (fun x => φ u₀ (pointMoment p s x)+α u₀*q x)) := by
-  have hh := Lax342547Proofs.CommonExactification.retained_common_prediction β f
+  have hh := Lax342547.CommonExactification.retained_common_prediction β f
     (fun u x => φ u (pointMoment p s x)+α u*q x) ε (1/16) hβ
-    (fun u => marked_point_degree p s (φ u) (α u) q hq) (by norm_num) hε (by norm_num) herror
+    (fun u => Lax342547.PointPrediction.marked_point_degree p s (φ u) (α u) q hq) (by norm_num) hε (by norm_num) herror
   have he : ε/(1/16) = 16*ε := by ring
   simpa only [he] using hh
 

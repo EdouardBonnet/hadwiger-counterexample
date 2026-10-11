@@ -1,5 +1,5 @@
 import Lax342547.ProjectedOffsets
-import Lax342547Proofs.QuotientFactorLifts
+import Lax342547.QuotientFactorLifts
 
 namespace Lax342547Proofs.ProjectedOffsets
 open Lax342547.ProjectedOffsets
@@ -28,7 +28,7 @@ theorem actual_common_projection_offsets {K V W : Type} [Field K]
         Module.finrank K (LinearMap.range (Q₁-Q₂).dualMap) ≤
         2*Module.finrank K (LinearMap.range (Lax342547.CoverProjection.projection M₁ S T)) := by
   let F := Lax342547.CoverProjection.projection M₁ S T
-  apply Lax342547Proofs.QuotientFactorLifts.common_quotient_offsets S T
+  apply Lax342547.QuotientFactorLifts.common_quotient_offsets S T
     (LinearMap.range F).subtype F.rangeRestrict M₁ M₂
     (LinearMap.range F).injective_subtype (by rintro ⟨z,hz⟩; obtain ⟨v,rfl⟩ := hz; exact ⟨v,rfl⟩) hS₁ hT₁ hS₂ hT₂
   · exact rfl

@@ -52,7 +52,7 @@ theorem filter_event_bound {Ω : Type} [Fintype Ω] (p : PMF Ω) (S T : Set Ω)
     (hS : ∃ o ∈ S, o ∈ p.support) (c : ℝ≥0∞)
     (hc : p.toOuterMeasure (S ∩ T) ≤ c * p.toOuterMeasure S) :
     (p.filter S hS).toOuterMeasure T ≤ c := by
-  rw [filter_event]
+  rw [Lax342547.Conditioning.filter_event]
   exact (ENNReal.div_le_iff (mass_ne_zero p S hS) (mass_ne_top p S)).mpr hc
 
 /--
@@ -103,7 +103,7 @@ theorem disjoint_mixture {Ω J : Type} [DecidableEq Ω] (p : PMF Ω)
     (∑ j : {j // j ∈ L}, p.toOuterMeasure (S j.val) * (p.filter (S j.val) (hS j.val j.property)) o) =
       (L.biUnion S : Set Ω).indicator p o := by
   classical
-  simp only [weighted_filter]
+  simp only [Lax342547.Conditioning.weighted_filter]
   by_cases ho : o ∈ L.biUnion S
   · obtain ⟨j, hj, hoj⟩ := Finset.mem_biUnion.mp ho
     rw [Set.indicator_of_mem ho, Finset.sum_eq_single (⟨j, hj⟩ : {j // j ∈ L})]

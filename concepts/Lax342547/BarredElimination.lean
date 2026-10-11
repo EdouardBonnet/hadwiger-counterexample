@@ -4,7 +4,7 @@ import Lax342547.SparseKeyCoefficients
 /-!
 ---
 title: Sparse unselected primal vectors in barred spaces lie in the pins
-type: theorem
+type: lemma
 ---
 Fresh selected keys cannot appear in a pin decomposition of an unselected
 sparse vector. Once the keys vanish, protected/private channel

@@ -1,6 +1,7 @@
 import Lax342547.PinLabelExclusions
 import Lax342547Proofs.SparsePins
 import Lax342547Proofs.TableSpaces
+import Lax342547.ProjectedPins
 
 namespace Lax342547Proofs.PinLabelExclusions
 
@@ -24,7 +25,7 @@ theorem covers_exists [Fintype Base] [Fintype Comp] [Fintype H] {K R : ℕ}
   have hdim (i : Fin 2) (sign : Bool) (e : Comp) :
       Module.finrank Binary (projected P i (e, sign)) ≤ K :=
     ((Finset.single_le_sum (fun _ _ => Nat.zero_le _) (Finset.mem_univ (e, sign))).trans
-      (ProjectedPins.projected_rank P i)).trans hK
+      (Lax342547.ProjectedPins.projected_rank P i)).trans hK
   choose A hsize hcover using fun i => SparsePins.sparse_pin_labels_finset
     (fun sign e => projected P i (e, sign)) (hdim i) hdegree
   exact ⟨A, hsize, fun i a => hcover i a.2 a.1⟩
@@ -73,7 +74,7 @@ theorem keys_exclusion {R : ℕ}
   have hmem' : (∑ t ∈ L i, Lax342547.SparsePins.labelTensor
       (selectorEval (degree := degree)) t (c i t • baseEval (z i t))) ∈ projected P i a := by
     simpa only [heq] using hp'
-  have hz := fresh_coefficient P A hA i a (L i) (fun t => c i t • baseEval (z i t))
+  have hz := Lax342547.PinLabelExclusions.fresh_coefficient P A hA i a (L i) (fun t => c i t • baseEval (z i t))
     ((hcard i).trans (by omega)) hmem' s hs (Finset.disjoint_left.mp (hfresh i) hs)
   have hc := congrFun hz none
   simpa [baseEval] using hc

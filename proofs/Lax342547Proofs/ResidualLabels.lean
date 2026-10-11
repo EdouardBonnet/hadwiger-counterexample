@@ -1,7 +1,8 @@
 import Lax342547.ResidualLabels
-import Lax342547Proofs.SelectedRemoval
-import Lax342547Proofs.Atoms
 import Mathlib.Algebra.BigOperators.Group.Finset.Piecewise
+import Lax342547.Atoms
+import Lax342547.SelectedRemoval
+import Lax342547.SelectedScalars
 
 namespace Lax342547Proofs.ResidualLabels
 
@@ -68,8 +69,8 @@ theorem residual_reconstruction (W : Lists k n b degree r hr)
     rw [hc i u e]
     by_cases he : (W.left i u.1 u.2).tag ∈ e.val
     · simp only [if_pos he, map_smul, block_point,
-        Lax342547.WitnessAtoms.PointAtom.profile, Atoms.atom_component]
-    · simp [he, Lax342547.WitnessAtoms.PointAtom.profile, Atoms.atom_component]
+        Lax342547.WitnessAtoms.PointAtom.profile, Lax342547.Atoms.atom_component]
+    · simp [he, Lax342547.WitnessAtoms.PointAtom.profile, Lax342547.Atoms.atom_component]
   have himage := sum_supported_image (fun u : Σ z, Fin (W.length i z) => (W.left i u.1 u.2).label)
     (W.left_fresh i) (L i e) (Z i e) (selectorEval (degree := degree))
   have hpart' : ((selectedPart W c) i).val e =
@@ -107,14 +108,14 @@ theorem unselected_obstruction {K : ℕ} [Fintype H] (hk : 0 < k)
         ((x - selectedPart W c) i).val e = ∑ s ∈ L i e, block selectorEval s (Z i e s) := by
   classical
   choose L Z c hdec hc using
-    (fun i => SelectedScalars.selected_decomposition hk W P hK A hA hfresh U V x h hdegree i)
+    (fun i => Lax342547.SelectedScalars.selected_decomposition hk W P hK A hA hfresh U V x h hdegree i)
   have hmat (i : Fin 2) (e : Component (Tag k)) :
       (x i).val e = ∑ s ∈ L i e, block selectorEval s (Z i e s) := by
     ext a d
     simpa [Matrix.sum_apply, Lax342547.TensorBlocks.block] using (hdec i e).2.2.2 a d
-  have hres := residual_reconstruction W x L Z c hmat hc
+  have hres := Lax342547.ResidualLabels.residual_reconstruction W x L Z c hmat hc
   refine ⟨c, fun i e => L i e \ chosenLabels W i, Z,
-    SelectedRemoval.subtract_annihilates W P U V x h c, ?_⟩
+    Lax342547.SelectedRemoval.subtract_annihilates W P U V x h c, ?_⟩
   intro i e
   refine ⟨(Finset.card_le_card Finset.sdiff_subset).trans (hdec i e).1, ?_, ?_, hres i e⟩
   · intro s hs

@@ -1,6 +1,10 @@
 import Lax342547.ConditionalMinus
 import Lax342547Proofs.GramColumns
 import Lax342547Proofs.GramNormalization
+import Lax342547.AffineImages
+import Lax342547Proofs.FiniteProbability
+import Lax342547Proofs.FiniteUniform
+import Lax342547Proofs.PairedFrames
 
 namespace Lax342547Proofs.ConditionalMinus
 
@@ -85,7 +89,7 @@ theorem rank_failure [DecidableEq B] [DecidableEq H] [DecidableEq N]
     rw [Set.mem_preimage, Set.mem_ofPred_eq, Set.mem_ofPred_eq, he]
     exact not_congr (combined_injective_iff (e x).1.val (e x).2.val).symm
   rw [hset]
-  have hb := AffineImages.dependence_bound (columnSpace P X) S (common_space_le P X) a
+  have hb := Lax342547.AffineImages.dependence_bound (columnSpace P X) S (common_space_le P X) a
   have hd := (Matrix.fromCols P X).transpose.mulVecLin.finrank_range_add_finrank_ker
   rw [LinearMap.range_eq_top.mpr (PairedFrames.transpose_surjective (Matrix.fromCols P X) hPX),
     finrank_top, Module.finrank_fintype_fun_eq_card, Module.finrank_fintype_fun_eq_card,
@@ -122,7 +126,7 @@ theorem raw_conditioning {E : Matrix B B Binary} {P : Matrix N B Binary} {X : Ma
     obtain ⟨F, hF, _⟩ := h
     exact ⟨⟨F, hF⟩⟩
   rw [FiniteUniform.filter_uniform (α := Frame B H N E) {F | F.P = P ∧ F.X = X} h]
-  rw [← conditional_uniform hPX, PMF.map_comp, PMF.map_comp]
+  rw [← Lax342547.ConditionalMinus.conditional_uniform hPX, PMF.map_comp, PMF.map_comp]
   rfl
 
 /--
@@ -141,7 +145,7 @@ theorem completion_event_bound [DecidableEq B] [DecidableEq H] [DecidableEq N]
     (S : Set (ColumnProduct E P X)) :
     (PMF.uniformOfFintype (Completion E P X)).toOuterMeasure {z | z.val ∈ S} ≤
       2 * (PMF.uniformOfFintype (ColumnProduct E P X)).toOuterMeasure S := by
-  have hb := (rank_failure E P X hPX).trans (GramNormalization.power_ratio_le_half _ _ hN)
+  have hb := (Lax342547.ConditionalMinus.rank_failure E P X hPX).trans (GramNormalization.power_ratio_le_half _ _ hN)
   have hm := FiniteProbability.event_ge_of_compl_le (PMF.uniformOfFintype (ColumnProduct E P X))
     {z | Good z} (1 / 2) hb
   have hc : 1 ≤ 2 * (PMF.uniformOfFintype (ColumnProduct E P X)).toOuterMeasure {z | Good z} := by

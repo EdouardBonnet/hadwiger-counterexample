@@ -1,7 +1,7 @@
 import Lax342547.ChannelColumns
-import Lax342547Proofs.ChannelDensity
-import Lax342547Proofs.NoCoverMoments
-import Lax342547Proofs.RealCellLaws
+import Lax342547.ChannelDensity
+import Lax342547.NoCoverMoments
+import Lax342547.PushforwardWalsh
 
 namespace Lax342547Proofs.ChannelColumns
 open Lax342547.ChannelColumns
@@ -57,7 +57,7 @@ theorem push_cell_mass {Ω X : Type} [Fintype Ω] [Fintype X]
     (ρ : Ω → ℝ) (f : Ω → X) (P : X → Prop) :
     cellMass (push ρ f) P = cellMass ρ (fun o => P (f o)) := by
   classical
-  have hh := Lax342547Proofs.PushforwardWalsh.push_integral ρ f (fun x => if P x then 1 else 0)
+  have hh := Lax342547.PushforwardWalsh.push_integral ρ f (fun x => if P x then 1 else 0)
   simpa [cellMass,mul_ite] using hh
 
 /--
@@ -72,12 +72,12 @@ theorem raw_channel_point_cap {e B N : Type} [Fintype e] [Fintype B] [Fintype N]
     weights ((Lax342547.RawLaw.uniformLaw E).map (fun o a => channels (o a))) z ≤
       (2 : ℝ)^(Fintype.card e*(h*h+2))*
         productLaw (fun _ : e × Fin h => channelLaw) (columnsEquiv h z) := by
-  have hh := Lax342547Proofs.ChannelDensity.all_components_density E (by simp only [Fintype.card_fin]; omega) z
+  have hh := Lax342547.ChannelDensity.all_components_density E (by simp only [Fintype.card_fin]; omega) z
   have hfin : (2 : ENNReal)^(Fintype.card e*(h*h+2))*
       PMF.uniformOfFintype (e → Matrix N (Fin h) Binary × Matrix N (Fin h) Binary) z ≠ ⊤ := ENNReal.mul_ne_top (by simp) (PMF.apply_ne_top _ _)
   simp only [Fintype.card_fin] at hh
   have ht := ENNReal.toReal_mono hfin hh
-  rw [← columns_uniform_weights h z]
+  rw [← Lax342547.ChannelColumns.columns_uniform_weights h z]
   simpa only [weights,ENNReal.toReal_mul,ENNReal.toReal_pow,ENNReal.toReal_ofNat] using ht
 
 /--
@@ -94,7 +94,7 @@ theorem raw_channel_event_cap {e B N : Type} [Fintype e] [Fintype B] [Fintype N]
       (2 : ℝ)^(Fintype.card e*(h*h+2))*cellMass (productLaw (fun _ : e × Fin h => channelLaw)) P := by
   classical
   let f := fun o : e → Frame B (Fin h) N E => fun a => channels (o a)
-  rw [← push_cell_mass (weights (Lax342547.RawLaw.uniformLaw E)) f (fun z => P (columnsEquiv h z))]
+  rw [← Lax342547.ChannelColumns.push_cell_mass (weights (Lax342547.RawLaw.uniformLaw E)) f (fun z => P (columnsEquiv h z))]
   have he : cellMass (productLaw (fun _ : e × Fin h => channelLaw)) P =
       ∑ z : e → Matrix N (Fin h) Binary × Matrix N (Fin h) Binary,
         if P (columnsEquiv h z) then productLaw (fun _ : e × Fin h => channelLaw) (columnsEquiv h z) else 0 := by
@@ -104,10 +104,10 @@ theorem raw_channel_event_cap {e B N : Type} [Fintype e] [Fintype B] [Fintype N]
   unfold cellMass
   apply Finset.sum_le_sum
   intro z _
-  rw [← pmf_weights_map]
+  rw [← Lax342547.ChannelColumns.pmf_weights_map]
   by_cases hz : P (columnsEquiv h z)
   · simp only [hz,ite_true]
-    exact raw_channel_point_cap h E hN z
+    exact Lax342547.ChannelColumns.raw_channel_point_cap h E hN z
   · simp [hz]
 
 /--
@@ -132,10 +132,10 @@ theorem no_cover_raw_phase_tail {e B N Ω : Type} [Fintype e] [Fintype B] [Finty
       (fun o => θ ≤ |∑ x, μ x*ψ x*tensorCharacter h (A x) (columnsEquiv h (fun a => channels (o a)))|) ≤
       (2 : ℝ)^(Fintype.card e*(h*h+2))*
         (((4 : ℝ)^(2*t)*p^(2^(k-(100*r+10)))+1/(2 : ℝ)^(h*2^(k-(100*r+12))))/θ^(2*t)) := by
-  have hh := raw_channel_event_cap h E hN
+  have hh := Lax342547.ChannelColumns.raw_channel_event_cap h E hN
     (fun c => θ ≤ |∑ x, μ x*ψ x*tensorCharacter h (A x) c|)
   exact hh.trans (mul_le_mul_of_nonneg_left
-    (Lax342547Proofs.NoCoverMoments.no_cover_phase_tail μ A ψ r h t k p θ hμ hp0 hp1 hr hA hψ hsize hk hcover hθ)
+    (Lax342547.NoCoverMoments.no_cover_phase_tail μ A ψ r h t k p θ hμ hp0 hp1 hr hA hψ hsize hk hcover hθ)
     (by positivity))
 
 end Lax342547Proofs.ChannelColumns

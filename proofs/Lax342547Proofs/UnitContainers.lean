@@ -1,6 +1,7 @@
 import Lax342547.UnitContainers
-import Lax342547Proofs.EntropyContainers
-import Lax342547Proofs.TerminalCuts
+import Lax342547.EntropyContainers
+import Lax342547.TerminalCuts
+import Lax342547.UnitLaws
 
 namespace Lax342547Proofs.UnitContainers
 open Lax342547.UnitContainers
@@ -47,8 +48,8 @@ theorem terminal_unit_exceptions {Ω : Type} [Fintype Ω]
       (∀ x y, R₀ x y → (x,y) ∈ R → S x ∨ S y ∨ E x y) := by
   have hn' : ¬ ∃ ρ, Feasible μ (fun x y => R₀ x y ∧ (x,y) ∈ R) M κ ρ := by
     rintro ⟨ρ,hρ⟩
-    exact hn ⟨ρ,(residual_feasible_iff μ R₀ M κ R ρ).mpr hρ⟩
-  obtain ⟨S,E,hS,hE,hcover⟩ := Lax342547Proofs.TerminalCuts.terminal_cut
+    exact hn ⟨ρ,(Lax342547.UnitContainers.residual_feasible_iff μ R₀ M κ R ρ).mpr hρ⟩
+  obtain ⟨S,E,hS,hE,hcover⟩ := Lax342547.TerminalCuts.terminal_cut
     μ (fun x y => R₀ x y ∧ (x,y) ∈ R) M κ hμ hM hκ hn'
   exact ⟨S,E,hS,hE,fun x y h₀ hR => hcover x y ⟨h₀,hR⟩⟩
 
@@ -69,16 +70,16 @@ theorem unit_container_family {Ω : Type} [Fintype Ω] [Nonempty Ω]
         cellMass μ S < 1/M ∧ pairEventMass μ μ E < 1/κ ∧
         (∀ x y, R₀ x y → (x,y) ∈ R → S x ∨ S y ∨ E x y)) ∧
       (∀ I : Finset (Ω × Ω), (∀ x ∈ I, ∀ y ∈ I, ¬ H x y) → ∃ R ∈ C, I ⊆ R) := by
-  obtain ⟨C,hcount,hterminal,hcover⟩ := Lax342547Proofs.EntropyContainers.entropy_container_family
+  obtain ⟨C,hcount,hterminal,hcover⟩ := Lax342547.EntropyContainers.entropy_container_family
     {ρ | Feasible μ R₀ M κ ρ} (fun xy => μ xy.1*μ xy.2) H ε (Real.log κ) L
-    (Lax342547Proofs.UnitLaws.feasible_compact μ R₀ M κ)
-    (Lax342547Proofs.UnitLaws.feasible_convex μ R₀ M κ)
+    (Lax342547.UnitLaws.feasible_compact μ R₀ M κ)
+    (Lax342547.UnitLaws.feasible_convex μ R₀ M κ)
     (fun ρ hρ => hρ.1)
-    (fun ρ hρ => Lax342547Proofs.UnitLaws.feasible_entropy_budget μ R₀ M κ ρ hμ hμpos hκ hρ)
+    (fun ρ hρ => Lax342547.UnitLaws.feasible_entropy_budget μ R₀ M κ ρ hμ hμpos hκ hρ)
     hε hε1 hL hsuper
   refine ⟨C,?_,?_,hcover⟩
   · simpa only [Fintype.card_prod,pow_two] using hcount
   · intro R hR
-    exact terminal_unit_exceptions μ R₀ M κ R hμ.1 hM hκ (hterminal R hR)
+    exact Lax342547.UnitContainers.terminal_unit_exceptions μ R₀ M κ R hμ.1 hM hκ (hterminal R hR)
 
 end Lax342547Proofs.UnitContainers

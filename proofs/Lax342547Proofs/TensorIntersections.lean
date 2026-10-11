@@ -47,8 +47,8 @@ theorem shared_rank {E : Matrix B B Binary} (F G : Frame B H N E)
     (w v : Matrix B B Binary) (h : sandwich F.P F.Q w = sandwich G.P G.Q v) :
     w.rank = v.rank ∧ w.rank ≤ Module.finrank Binary (intersectionSpace F.P G.P) := by
   constructor
-  · rw [← sandwich_rank F w, h, sandwich_rank G v]
-  · rw [← sandwich_rank F w]
+  · rw [← Lax342547.TensorIntersections.sandwich_rank F w, h, Lax342547.TensorIntersections.sandwich_rank G v]
+  · rw [← Lax342547.TensorIntersections.sandwich_rank F w]
     apply Submodule.finrank_mono
     refine le_inf (range_sandwich_le F w) ?_
     rw [h]
@@ -66,7 +66,7 @@ theorem shared_total_rank {Comp : Type} [Fintype Comp] {E : Matrix B B Binary}
     (h : profileMap F w = profileMap G v) :
     (∑ e, (w e).rank) = ∑ e, (v e).rank ∧
       (∑ e, (w e).rank) ≤ ∑ e, Module.finrank Binary (intersectionSpace (F e).P (G e).P) := by
-  have he (e : Comp) := shared_rank (F e) (G e) (w e) (v e) (congrFun h e)
+  have he (e : Comp) := Lax342547.TensorIntersections.shared_rank (F e) (G e) (w e) (v e) (congrFun h e)
   exact ⟨Finset.sum_congr rfl (fun e _ => (he e).1),
     Finset.sum_le_sum (fun e _ => (he e).2)⟩
 

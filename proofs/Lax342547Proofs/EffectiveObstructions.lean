@@ -1,7 +1,8 @@
 import Lax342547.EffectiveObstructions
-import Lax342547Proofs.DerivativeResponses
 import Lax342547Proofs.PrimalRetractions
-import Lax342547Proofs.EffectiveBounds
+import Lax342547.BarredElimination
+import Lax342547.DerivativeResponses
+import Lax342547Proofs.TensorAnnihilators
 
 namespace Lax342547Proofs.EffectiveObstructions
 
@@ -118,7 +119,7 @@ theorem unselected_vector {k n b degree r R : ℕ} {hr : 2 * r ≤ n} {H N : Typ
   have hpin : (∑ s ∈ L, labelTensor (selectorEval (degree := degree)) s (v s)) - q ∈ projected P i a := by
     rw [← hpq, add_sub_cancel_right]
     exact hp
-  have hqzero := Lax342547Proofs.BarredElimination.individual_keys_zero W P A hA i a L hL v
+  have hqzero := Lax342547.BarredElimination.individual_keys_zero W P A hA i a L hL v
     hdisjoint hfresh q hq hpin
   rw [hqzero, add_zero] at hpq
   exact hpq ▸ hp
@@ -177,27 +178,27 @@ theorem unselected_tensor {k n b degree r R : ℕ} {hr : 2 * r ≤ n} {H N : Typ
     (hcol : ∀ j, (fun a => M a j) ∈ projected P i (e, true) ⊔ individualKeys W i e)
     (hrow : ∀ a, (fun j => M a j) ∈ projected P i (e, false) ⊔ individualKeys W i e) :
     M ∈ tensorSpace (projected P i (e, true)) (projected P i (e, false)) := by
-  apply tensor_of_columns_rows
+  apply Lax342547.EffectiveObstructions.tensor_of_columns_rows
   · intro j
-    obtain ⟨v, hv⟩ := sparse_columns selectorEval L Z j
+    obtain ⟨v, hv⟩ := Lax342547.EffectiveObstructions.sparse_columns selectorEval L Z j
     have he : (fun a => M a j) = ∑ s ∈ L, labelTensor selectorEval s (v s) := by
       rw [hM]
       exact hv
     rw [he]
-    apply unselected_vector W P A hA i (e, true) L hL v hdisjoint hfresh
+    apply Lax342547.EffectiveObstructions.unselected_vector W P A hA i (e, true) L hL v hdisjoint hfresh
     rw [← he]
     exact hcol j
   · intro a
-    obtain ⟨v, hv⟩ := sparse_columns selectorEval L (fun s => (Z s).transpose) a
+    obtain ⟨v, hv⟩ := Lax342547.EffectiveObstructions.sparse_columns selectorEval L (fun s => (Z s).transpose) a
     have ht : M.transpose = ∑ s ∈ L, Lax342547.TensorBlocks.block selectorEval s ((Z s).transpose) := by
       rw [hM]
-      exact transpose_blocks selectorEval L Z
+      exact Lax342547.EffectiveObstructions.transpose_blocks selectorEval L Z
     have he : (fun j => M a j) = ∑ s ∈ L, labelTensor selectorEval s (v s) := by
       change (fun j => M.transpose j a) = _
       rw [ht]
       exact hv
     rw [he]
-    apply unselected_vector W P A hA i (e, false) L hL v hdisjoint hfresh
+    apply Lax342547.EffectiveObstructions.unselected_vector W P A hA i (e, false) L hL v hdisjoint hfresh
     rw [← he]
     exact hrow a
 
@@ -227,14 +228,14 @@ theorem effective_component {k n b degree r R : ℕ} {hr : 2 * r ≤ n} {H N : T
     (Z : (Fin b → Binary) → Matrix (Option (Base k n)) (Option (Base k n)) Binary)
     (hM : (x i).val e = ∑ s ∈ L, Lax342547.TensorBlocks.block selectorEval s (Z s)) :
     (x i).val e ∈ tensorSpace (projected P i (e, true)) (projected P i (e, false)) := by
-  have hrow := rows_of_contraction_zero ((x i).val e) (projected P i (e, false) ⊔ individualKeys W i e)
-    (fun ψ hψ => Lax342547Proofs.DerivativeResponses.plus_contraction_zero W P Q A hA hfresh U V T hT
+  have hrow := Lax342547.EffectiveObstructions.rows_of_contraction_zero ((x i).val e) (projected P i (e, false) ⊔ individualKeys W i e)
+    (fun ψ hψ => Lax342547.DerivativeResponses.plus_contraction_zero W P Q A hA hfresh U V T hT
       F hF z x h e i hU L hL hdisjoint Z hM ψ hψ)
-  have hcol := rows_of_contraction_zero ((x i).val e).transpose
+  have hcol := Lax342547.EffectiveObstructions.rows_of_contraction_zero ((x i).val e).transpose
     (projected P i (e, true) ⊔ individualKeys W i e)
-    (fun ψ hψ => Lax342547Proofs.DerivativeResponses.minus_contraction_zero W P Q A hA hfresh U V T hT
+    (fun ψ hψ => Lax342547.DerivativeResponses.minus_contraction_zero W P Q A hA hfresh U V T hT
       F hF z x h e i hV L hL hdisjoint Z hM ψ hψ)
-  exact unselected_tensor W P A hA i e L hL hdisjoint (hfresh i) Z _ hM hcol hrow
+  exact Lax342547.EffectiveObstructions.unselected_tensor W P A hA i e L hL hdisjoint (hfresh i) Z _ hM hcol hrow
 
 /--
 ---
@@ -261,11 +262,11 @@ theorem obstruction_decomposition {k n b degree r K : ℕ} {hr : 2 * r ≤ n} {H
       ∀ i, ((x - Lax342547.SelectedRemoval.selectedPart W c) i) ∈
         effective (Profile k n b degree) P i := by
   classical
-  obtain ⟨c, L, Z, hann, hlabels⟩ := Lax342547Proofs.DerivativeResponses.unselected_obstruction hk W P Q
+  obtain ⟨c, L, Z, hann, hlabels⟩ := Lax342547.DerivativeResponses.unselected_obstruction hk W P Q
     hK A hA hfresh U V F z x h hdegree
   refine ⟨c, ?_⟩
   intro i e
-  apply effective_component W P Q A hA hfresh U V T hT F hF z _ hann e i (hU e) (hV e)
+  apply Lax342547.EffectiveObstructions.effective_component W P Q A hA hfresh U V T hT F hF z _ hann e i (hU e) (hV e)
     (L i e) (hlabels i e).1 _ (Z i e) (hlabels i e).2.2.2
   exact Finset.disjoint_left.mpr (fun s hs hchosen => ((hlabels i e).2.1 s hs).1 hchosen)
 

@@ -1,5 +1,6 @@
 import Lax342547.RecipeResiduals
-import Lax342547Proofs.FrozenValues
+import Lax342547.FrozenValues
+import Lax342547.TableContractions
 
 namespace Lax342547Proofs.RecipeResiduals
 
@@ -60,7 +61,7 @@ theorem residual_correct (W : Lists k n b degree r hr)
     change D.role x + gradient D L R (leftWitness W i z) x -
       fullContraction F (Profile k n b degree) i z x = 0
     rw [h.effectiveLeft i z ⟨x, hx⟩,
-      TableContractions.star_extension T F htable (Profile k n b degree) i z ⟨x, hx⟩,
+      Lax342547.TableContractions.star_extension T F htable (Profile k n b degree) i z ⟨x, hx⟩,
       ← add_assoc, ZModModule.add_self, zero_add, sub_self]
   · apply Submodule.span_le.mpr
     rintro _ ⟨x, rfl⟩
@@ -71,11 +72,11 @@ theorem residual_correct (W : Lists k n b degree r hr)
     cases x with
     | inl t =>
       simp only [endpointAtoms, Sum.elim_inl]
-      rw [FrozenValues.selected_values W P Q oA oB F hfrozen hkeys i z 0 t]
-      exact selected_gradients W D L R oB i (hgradients i) z 0 t
+      rw [Lax342547.FrozenValues.selected_values W P Q oA oB F hfrozen hkeys i z 0 t]
+      exact Lax342547.RecipeResiduals.selected_gradients W D L R oB i (hgradients i) z 0 t
     | inr t =>
       simp only [endpointAtoms, Sum.elim_inr]
-      rw [FrozenValues.selected_values W P Q oA oB F hfrozen hkeys i z 1 t]
-      exact selected_gradients W D L R oB i (hgradients i) z 1 t
+      rw [Lax342547.FrozenValues.selected_values W P Q oA oB F hfrozen hkeys i z 1 t]
+      exact Lax342547.RecipeResiduals.selected_gradients W D L R oB i (hgradients i) z 1 t
 
 end Lax342547Proofs.RecipeResiduals

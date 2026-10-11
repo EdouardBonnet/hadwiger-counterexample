@@ -4,7 +4,7 @@ import Mathlib.LinearAlgebra.Matrix.ToLin
 /-!
 ---
 title: Paired-frame orbit under the primal and dual actions
-type: theorem
+type: lemma
 ---
 Lemma 4.1: two individually injective pairs of frames with equal Gram
 pairings differ by one ambient linear automorphism, acting contragrediently

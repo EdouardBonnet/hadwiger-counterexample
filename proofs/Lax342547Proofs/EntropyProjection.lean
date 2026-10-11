@@ -1,5 +1,6 @@
 import Lax342547.EntropyProjection
-import Lax342547Proofs.EntropyLines
+import Lax342547.EntropyLines
+import Lax342547.RelativeEntropy
 
 namespace Lax342547Proofs.EntropyProjection
 open Lax342547.EntropyProjection
@@ -31,7 +32,7 @@ theorem minimizer_full_support {Ω : Type} [Fintype Ω]
     · refine ⟨x, Finset.mem_univ x, ?_⟩
       rw [if_pos hz]
       exact hx
-  have htend := Lax342547Proofs.EntropyLines.entropy_new_support_slope
+  have htend := Lax342547.EntropyLines.entropy_new_support_slope
     ρ ρ' q (hprob ρ' hρ').1 hnew
   have he := htend.eventually (eventually_lt_atBot (0:ℝ))
   have hsmall : ∀ᶠ t : ℝ in 𝓝[>] 0, t < 1 :=
@@ -55,7 +56,7 @@ theorem minimizer_variational {Ω : Type} [Fintype Ω]
     (hmin : ∀ p ∈ P, entropy ρ q ≤ entropy p q) (ρ' : Ω → ℝ) (hρ' : ρ' ∈ P) :
     0 ≤ ∑ x, (ρ' x-ρ x)*(Real.log (ρ x)-Real.log (q x)) := by
   classical
-  have hs := minimizer_full_support P q ρ hprob hconv hρ hmin ρ' hρ'
+  have hs := Lax342547.EntropyProjection.minimizer_full_support P q ρ hprob hconv hρ hmin ρ' hρ'
   have hz (x : Ω) (hx : ρ x = 0) : ρ' x = 0 := by
     by_contra hn
     have hp : 0 < ρ' x := lt_of_le_of_ne ((hprob ρ' hρ').1 x) (Ne.symm hn)
@@ -69,7 +70,7 @@ theorem minimizer_variational {Ω : Type} [Fintype Ω]
     by_cases hx : ρ x = 0
     · simp [hx, hz x hx, mix]
     · simp [hx, coordinate]
-  have hd := (Lax342547Proofs.EntropyLines.old_entropy_derivative ρ ρ' q).tendsto_slope_zero_right
+  have hd := (Lax342547.EntropyLines.old_entropy_derivative ρ ρ' q).tendsto_slope_zero_right
   have hd' : Tendsto (fun t => (oldEntropy ρ ρ' q t-oldEntropy ρ ρ' q 0)/t)
       (𝓝[>] 0) (𝓝 (oldDerivative ρ ρ' q)) := by
     simpa only [zero_add, smul_eq_mul, div_eq_mul_inv, mul_comm] using hd
@@ -80,7 +81,7 @@ theorem minimizer_variational {Ω : Type} [Fintype Ω]
     have ht : 0 < t := ht0
     have hp : mix ρ ρ' t ∈ P :=
       hconv hρ hρ' (by linarith : 0 ≤ 1-t) ht.le (by ring)
-    rw [hid, Lax342547Proofs.EntropyLines.old_entropy_zero]
+    rw [hid, Lax342547.EntropyLines.old_entropy_zero]
     exact div_nonneg (sub_nonneg.mpr (hmin _ hp)) ht.le
   have hder : 0 ≤ oldDerivative ρ ρ' q := ge_of_tendsto hd' hnonneg
   have he : oldDerivative ρ ρ' q = ∑ x, (ρ' x-ρ x)*(Real.log (ρ x)-Real.log (q x)) := by
@@ -105,9 +106,9 @@ theorem projection_inequality {Ω : Type} [Fintype Ω]
     (hprob : ∀ p ∈ P, Probability p) (hconv : Convex ℝ P) (hρ : ρ ∈ P)
     (hmin : ∀ p ∈ P, entropy ρ q ≤ entropy p q) (ρ' : Ω → ℝ) (hρ' : ρ' ∈ P) :
     entropy ρ' ρ ≤ entropy ρ' q-entropy ρ q := by
-  have hs := minimizer_full_support P q ρ hprob hconv hρ hmin ρ' hρ'
-  have hv := minimizer_variational P q ρ hprob hconv hρ hmin ρ' hρ'
-  rw [Lax342547Proofs.RelativeEntropy.entropy_decomposition ρ ρ' q hs (hprob ρ hρ).1 (hprob ρ' hρ').1]
+  have hs := Lax342547.EntropyProjection.minimizer_full_support P q ρ hprob hconv hρ hmin ρ' hρ'
+  have hv := Lax342547.EntropyProjection.minimizer_variational P q ρ hprob hconv hρ hmin ρ' hρ'
+  rw [Lax342547.RelativeEntropy.entropy_decomposition ρ ρ' q hs (hprob ρ hρ).1 (hprob ρ' hρ').1]
   linarith
 
 /--
@@ -122,10 +123,10 @@ theorem projection_support_cost {Ω : Type} [Fintype Ω]
     (S : Ω → Prop) (hS : ∀ x, ¬ S x → ρ' x = 0)
     (hmass : 0 < Lax342547.RetainedImages.cellMass ρ S) :
     -Real.log (Lax342547.RetainedImages.cellMass ρ S) ≤ entropy ρ' q-entropy ρ q := by
-  have hs := minimizer_full_support P q ρ hprob hconv hρ hmin ρ' hρ'
-  exact (Lax342547Proofs.RelativeEntropy.entropy_support_cost ρ' ρ S
+  have hs := Lax342547.EntropyProjection.minimizer_full_support P q ρ hprob hconv hρ hmin ρ' hρ'
+  exact (Lax342547.RelativeEntropy.entropy_support_cost ρ' ρ S
     (hprob ρ' hρ') (hprob ρ hρ) hs hS hmass).trans
-    (projection_inequality P q ρ hprob hconv hρ hmin ρ' hρ')
+    (Lax342547.EntropyProjection.projection_inequality P q ρ hprob hconv hρ hmin ρ' hρ')
 
 /--
 ---
@@ -138,8 +139,8 @@ theorem entropy_projection {Ω : Type} [Fintype Ω]
     ∃ ρ ∈ P, (∀ ρ' ∈ P, entropy ρ q ≤ entropy ρ' q) ∧
       (∀ ρ' ∈ P, ∀ x, 0 < ρ' x → 0 < ρ x) ∧
       (∀ ρ' ∈ P, entropy ρ' ρ ≤ entropy ρ' q-entropy ρ q) := by
-  obtain ⟨ρ,hρ,hmin⟩ := Lax342547Proofs.RelativeEntropy.compact_entropy_minimizer P q hcompact hne
-  exact ⟨ρ,hρ,hmin,minimizer_full_support P q ρ hprob hconv hρ hmin,
-    fun ρ' hρ' => projection_inequality P q ρ hprob hconv hρ hmin ρ' hρ'⟩
+  obtain ⟨ρ,hρ,hmin⟩ := Lax342547.RelativeEntropy.compact_entropy_minimizer P q hcompact hne
+  exact ⟨ρ,hρ,hmin,Lax342547.EntropyProjection.minimizer_full_support P q ρ hprob hconv hρ hmin,
+    fun ρ' hρ' => Lax342547.EntropyProjection.projection_inequality P q ρ hprob hconv hρ hmin ρ' hρ'⟩
 
 end Lax342547Proofs.EntropyProjection

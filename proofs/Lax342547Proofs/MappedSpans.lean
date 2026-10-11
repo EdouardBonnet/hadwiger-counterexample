@@ -1,5 +1,6 @@
 import Lax342547.MappedSpans
-import Lax342547Proofs.ActualDeficits
+import Lax342547.ActualDeficits
+import Lax342547.GreedySpans
 
 namespace Lax342547Proofs.MappedSpans
 open Lax342547.MappedSpans
@@ -46,9 +47,9 @@ theorem mapped_deficit_eq {K V U ι : Type} [Field K] [DecidableEq ι]
     (S : ι → Submodule K V) (f : V →ₗ[K] U) (l : List ι) :
     mappedDeficit S f l = deficit S (LinearMap.ker f) l := by
   unfold mappedDeficit deficit
-  simp_rw [mapped_dimension_gain]
-  rw [← Lax342547Proofs.ActualDeficits.map_finset_sup,mapped_dimension_gain,
-    Lax342547Proofs.GreedySpans.increments_sum,Lax342547Proofs.GreedySpans.span_after_eq]
+  simp_rw [Lax342547.MappedSpans.mapped_dimension_gain]
+  rw [← Lax342547.ActualDeficits.map_finset_sup,Lax342547.MappedSpans.mapped_dimension_gain,
+    Lax342547.GreedySpans.increments_sum,Lax342547.GreedySpans.span_after_eq]
   rfl
 
 end Lax342547Proofs.MappedSpans

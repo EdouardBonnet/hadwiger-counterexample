@@ -1,5 +1,8 @@
 import Lax342547.RecipeChannels
-import Lax342547Proofs.NonlinearChannels
+import Lax342547.CompressedResidual
+import Lax342547.NonlinearChannels
+import Lax342547.TableSpaces
+import Lax342547.TargetMatrices
 
 namespace Lax342547Proofs.RecipeChannels
 open Lax342547.RecipeChannels
@@ -49,28 +52,28 @@ theorem nonlinear_recipe {k n b degree r : ℕ} {hr : 2 * r ≤ n}
         ∑ i, (Lax342547.RecipeResiduals.residual W D L R F i z).comp (LinearMap.proj i) := by
   classical
   let M := fun i => Lax342547.TargetMatrices.targetMatrix W D L R i z
-  have hM := Lax342547Proofs.TargetMatrices.target_family_representation W D L R z
+  have hM := Lax342547.TargetMatrices.target_family_representation W D L R z
     (fun i => hrecipe.odd i z)
   obtain ⟨M0, R0, β0, γ, δ, ε, hβ0, hrβ0, hM0, hγ, hR0, hrγ, hrβ,
-    hrδε, hsolution⟩ := Lax342547Proofs.CompressedResidual.compressed_recipe hk W D L R oA oB
+    hrδε, hsolution⟩ := Lax342547.CompressedResidual.compressed_recipe hk W D L R oA oB
       P Q hK A B hA hfresh U V hU hV T hT F hF hbounded hrecipe hfrozen hkeys
       hgradients hdegree z M hM
   have hcapacity (e : Component (Tag k)) :
       Module.finrank Binary (LinearMap.range (β0 e + γ e)) + 2 * K + 4 * (3 * K + 28) ≤ Fintype.card H := by
-    apply Lax342547Proofs.NonlinearChannels.paper_channel_capacity (hmargin := hmargin) (hchannels := hchannels)
+    apply Lax342547.NonlinearChannels.paper_channel_capacity (hmargin := hmargin) (hchannels := hchannels)
     have hsum : (∑ i : Fin 2, (M i e).rank) ≤ 30 * r + 28 * copies * Fintype.card (Component (Tag k)) := by
       have hh : (∑ i : Fin 2, (M i e).rank) ≤
           ∑ _ : Fin 2, (15 * r + 14 * copies * Fintype.card (Component (Tag k))) :=
         by
           dsimp only [M]
-          exact Finset.sum_le_sum (fun i _ => Lax342547Proofs.TargetMatrices.target_matrix_rank W D L R i z e)
+          exact Finset.sum_le_sum (fun i _ => Lax342547.TargetMatrices.target_matrix_rank W D L R i z e)
       simp only [Finset.sum_const, Finset.card_univ, Fintype.card_fin, smul_eq_mul] at hh
       nlinarith
     exact (hrβ e).trans (Nat.add_le_add_right hsum _)
   have hprotected (a : Component (Tag k) × Bool) : Module.finrank Binary (protectedChannel Q z a) ≤ K := by
     exact (Finset.single_le_sum (fun a _ => Nat.zero_le (Module.finrank Binary (protectedChannel Q z a)))
-      (Finset.mem_univ a)).trans ((Lax342547Proofs.TableSpaces.protected_rank Q z).trans hQ)
-  have hcomponent (e : Component (Tag k)) := Lax342547Proofs.NonlinearChannels.nonlinear_component_correction
+      (Finset.mem_univ a)).trans ((Lax342547.TableSpaces.protected_rank Q z).trans hQ)
+  have hcomponent (e : Component (Tag k)) := Lax342547.NonlinearChannels.nonlinear_component_correction
     F e z (barred W P (U e) (e, true)) (barred W P (V e) (e, false))
     (protectedChannel Q z (e, false)) (protectedChannel Q z (e, true)) (δ e) (ε e) (β0 e + γ e)
     (hprotected (e, false)) (hprotected (e, true)) (hbounded e z).1 (hbounded e z).2.2.2

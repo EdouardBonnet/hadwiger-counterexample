@@ -1,6 +1,6 @@
 import Lax342547.PairedKeys
-import Lax342547Proofs.KeySpans
-import Lax342547Proofs.PairedWitnesses
+import Lax342547.KeySpans
+import Lax342547.PairedWitnesses
 
 namespace Lax342547Proofs.PairedKeys
 
@@ -13,7 +13,7 @@ variable {k n b degree r : ℕ} {hr : 2 * r ≤ n} {H N : Type}
 theorem position_count (W : Lists k n b degree r hr) : Fintype.card (Positions W) ≤ 28 := by
   rw [Fintype.card_sigma]
   calc
-    _ ≤ ∑ _i : Fin 2, 14 := Finset.sum_le_sum (fun i _ => (PairedWitnesses.list_budgets W).1 i)
+    _ ≤ ∑ _i : Fin 2, 14 := Finset.sum_le_sum (fun i _ => (Lax342547.PairedWitnesses.list_budgets W).1 i)
     _ = 28 := by simp
 
 theorem keys_le_rays (W : Lists k n b degree r hr) (e : Component (Tag k)) :
@@ -55,8 +55,8 @@ theorem left_fresh_spans [Fintype H]
     (A : Fin 2 → Finset (Fin b → Binary)) (hA : Excludes P A)
     (hfresh : ∀ i z t, (W.left i z t).label ∉ A i) (a : Component (Tag k) × Bool) :
     Disjoint (tableSpace P a) (keys (H := H) W a.1) := by
-  have h := KeySpans.span_disjoint P A hA (labels W) (bases W) W.left_fresh
-    (fun i => (PairedWitnesses.list_budgets W).1 i) (fun i x => hfresh i x.1 x.2) a
+  have h := Lax342547.KeySpans.span_disjoint P A hA (labels W) (bases W) W.left_fresh
+    (fun i => (Lax342547.PairedWitnesses.list_budgets W).1 i) (fun i x => hfresh i x.1 x.2) a
   exact h.mono_right (keys_le_rays W a.1)
 
 /--

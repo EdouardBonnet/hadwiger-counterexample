@@ -62,7 +62,7 @@ conclusion: Lax342547.RealFlows.feasible_compact
 theorem feasible_compact {V : Type} [Fintype V] (c : V → V → ℝ) (s t : V) :
     IsCompact {f | Feasible c f s t} := by
   apply IsCompact.of_isClosed_subset (isCompact_Icc (a := fun a b => -c b a) (b := c))
-    (feasible_closed c s t)
+    (Lax342547.RealFlows.feasible_closed c s t)
   intro f hf
   constructor
   · intro a b
@@ -82,8 +82,8 @@ theorem maximal_flow {V : Type} [Fintype V] (c : V → V → ℝ) (s t : V)
   have hcont : Continuous (fun f : V → V → ℝ => divergence f s) := by
     unfold divergence
     exact continuous_finsetSum _ (fun b _ => (continuous_apply b).comp (continuous_apply s))
-  obtain ⟨f,hf,hmax⟩ := (feasible_compact c s t).exists_isMaxOn
-    ⟨fun _ _ => 0, zero_feasible c s t hc⟩ hcont.continuousOn
+  obtain ⟨f,hf,hmax⟩ := (Lax342547.RealFlows.feasible_compact c s t).exists_isMaxOn
+    ⟨fun _ _ => 0, Lax342547.RealFlows.zero_feasible c s t hc⟩ hcont.continuousOn
   exact ⟨f,hf,fun g hg => hmax hg⟩
 
 end Lax342547Proofs.RealFlows

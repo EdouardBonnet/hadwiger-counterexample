@@ -1,8 +1,10 @@
 import Lax342547.LeafCollision
-import Lax342547Proofs.IndependentMixtures
-import Lax342547Proofs.ParameterCellAveraging
-import Lax342547Proofs.CollisionCosts
-import Lax342547Proofs.CellAveraging
+import Lax342547.CellAveraging
+import Lax342547.CollisionCosts
+import Lax342547.IndependentMixtures
+import Lax342547.PairRecovery
+import Lax342547.ParameterCellAveraging
+import Lax342547.RealCellLaws
 
 namespace Lax342547Proofs.LeafCollision
 open Lax342547.LeafCollision
@@ -40,8 +42,8 @@ theorem real_pair_mixture {ΩA ΩB J K : Type}
       average (fun j => (w j).toReal) (fun k => (v k).toReal)
         (fun j k => pairMass (weights (p j)) (weights (q k)) H) := by
   classical
-  rw [Lax342547Proofs.PairRecovery.pair_mass_pmf_event,
-    Lax342547Proofs.IndependentMixtures.independent_mixture_event p q p₀ q₀ w v hp hq]
+  rw [Lax342547.PairRecovery.pair_mass_pmf_event,
+    Lax342547.IndependentMixtures.independent_mixture_event p q p₀ q₀ w v hp hq]
   have hfin (jk : J × K) :
       (w jk.1 * v jk.2) * (independentPair (p jk.1) (q jk.2)).toOuterMeasure {ab | H ab.1 ab.2} ≠ ⊤ := by
     apply ENNReal.mul_ne_top (ENNReal.mul_ne_top (hw jk.1) (hv jk.2))
@@ -50,7 +52,7 @@ theorem real_pair_mixture {ΩA ΩB J K : Type}
   rw [ENNReal.toReal_sum (fun jk _ => hfin jk)]
   unfold average
   rw [Fintype.sum_prod_type]
-  simp only [ENNReal.toReal_mul, ← Lax342547Proofs.PairRecovery.pair_mass_pmf_event]
+  simp only [ENNReal.toReal_mul, ← Lax342547.PairRecovery.pair_mass_pmf_event]
 
 /--
 ---
@@ -69,10 +71,10 @@ theorem weighted_collision_lower {ΩA ΩB J K : Type}
       pairMass (weights (p j)) (weights (q k)) H) :
     agreement*(average (fun j => (w j).toReal) (fun k => (v k).toReal) overlap-error)/keys ≤
       pairMass (weights p₀) (weights q₀) H := by
-  have h := Lax342547Proofs.ParameterCellAveraging.average_mono
+  have h := Lax342547.ParameterCellAveraging.average_mono
     (fun j => (w j).toReal) (fun k => (v k).toReal) _ _
     (fun j => ENNReal.toReal_nonneg) (fun k => ENNReal.toReal_nonneg) hbound
-  rw [← real_pair_mixture p q p₀ q₀ w v hw hv hp hq H] at h
+  rw [← Lax342547.LeafCollision.real_pair_mixture p q p₀ q₀ w v hw hv hp hq H] at h
   have he : average (fun j => (w j).toReal) (fun k => (v k).toReal)
       (fun j k => agreement*(overlap j k-error)/keys) =
       agreement*(average (fun j => (w j).toReal) (fun k => (v k).toReal) overlap-error)/keys := by
@@ -105,9 +107,9 @@ theorem skipped_collision_bound {ΩA ΩB : Type} [Fintype ΩA] [Fintype ΩB]
   · simp only [hu, if_false, zero_sub]
     have hn : agreement*(-error)/keys ≤ 0 :=
       div_nonpos_of_nonpos_of_nonneg (mul_nonpos_of_nonneg_of_nonpos hagreement (neg_nonpos.mpr herror)) hkeys.le
-    exact hn.trans (Lax342547Proofs.CellAveraging.pair_event_mass_nonneg
-      (weights p) (weights q) H (Lax342547Proofs.RealCellLaws.weights_nonneg p)
-      (Lax342547Proofs.RealCellLaws.weights_nonneg q))
+    exact hn.trans (Lax342547.CellAveraging.pair_event_mass_nonneg
+      (weights p) (weights q) H (Lax342547.RealCellLaws.weights_nonneg p)
+      (Lax342547.RealCellLaws.weights_nonneg q))
 
 /--
 ---
@@ -128,13 +130,13 @@ theorem original_law_exponential_collision {Ω J : Type} [Fintype Ω] [Fintype J
     (hbound : ∀ j l, agreement*(overlap j l-error)/keys ≤ pairMass (weights (p j)) (weights (p l)) H) :
     (2:ℝ)^(-((k+1/50+3*η)*N)-1) ≤
       ((independentPair σ σ).toOuterMeasure {ab | H ab.1 ab.2}).toReal := by
-  have havg := weighted_collision_lower p p (σ.filter S hS) (σ.filter S hS)
+  have havg := Lax342547.LeafCollision.weighted_collision_lower p p (σ.filter S hS) (σ.filter S hS)
     w w hw hw hwsum hwsum hp hp H overlap keys error agreement hbound
-  have hrestricted := Lax342547Proofs.CollisionCosts.collision_exponential_lower
+  have hrestricted := Lax342547.CollisionCosts.collision_exponential_lower
     k η N keys _ error agreement _ hkeys hkeybound hoverlap herror hscale hagreement havg
-  have hrecovery := Lax342547Proofs.PairRecovery.restriction_pair_recovery σ S hS H
-  have horiginal := Lax342547Proofs.CollisionCosts.restriction_exponential_lower
+  have hrecovery := Lax342547.PairRecovery.restriction_pair_recovery σ S hS H
+  have horiginal := Lax342547.CollisionCosts.restriction_exponential_lower
     k η N _ _ _ hmass hrestricted hrecovery
-  rwa [Lax342547Proofs.PairRecovery.pair_mass_pmf_event] at horiginal
+  rwa [Lax342547.PairRecovery.pair_mass_pmf_event] at horiginal
 
 end Lax342547Proofs.LeafCollision

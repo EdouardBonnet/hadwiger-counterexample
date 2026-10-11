@@ -1,6 +1,6 @@
 import Lax342547.FixedNoCover
-import Lax342547Proofs.NoCoverPhase
-import Lax342547Proofs.DyadicMoments
+import Lax342547.DyadicMoments
+import Lax342547.NoCoverPhase
 
 namespace Lax342547Proofs.FixedNoCover
 open Lax342547.FixedNoCover
@@ -43,7 +43,7 @@ theorem fixed_parameter_no_cover_phase {e B N Ω : Type} [Fintype e] [Fintype B]
   classical
   have hs : c*2^((100*r+10)+2) ≤ Fintype.card N := by simpa only [Nat.add_assoc] using hscale
   obtain ⟨k,t,hk,hsize,hlo,hbudget⟩ :=
-    Lax342547Proofs.DyadicMoments.dyadic_budget_with_fixed_parameters c (100*r+10) a Γ P h
+    Lax342547.DyadicMoments.dyadic_budget_with_fixed_parameters c (100*r+10) a Γ P h
       (Fintype.card N) hc hs hP hh
   have hm : 2*t ≤ Fintype.card N/c := by
     apply (Nat.le_div_iff_mul_le hc).mpr
@@ -69,7 +69,7 @@ theorem fixed_parameter_no_cover_phase {e B N Ω : Type} [Fintype e] [Fintype B]
         (le_div_iff₀ hcr).mpr (by simpa only [mul_comm] using hcm)
       exact mul_le_mul_of_nonneg_left hs' (Nat.cast_nonneg r)
     exact hcover T U hT hU (hdT.trans hdim) (hdU.trans hdim)
-  have havg := Lax342547Proofs.NoCoverPhase.no_cover_phase_average E μ A ψ r h t k
+  have havg := Lax342547.NoCoverPhase.no_cover_phase_average E μ A ψ r h t k
     (1/(2 : ℝ)^P) (1/(2 : ℝ)^a) hN hμ hp0 hp1 hr hA hψ hsize (by omega) hθ
     β L S hβ hL hβcap hS hcovers
   have hb := mul_le_mul_of_nonneg_left hbudget

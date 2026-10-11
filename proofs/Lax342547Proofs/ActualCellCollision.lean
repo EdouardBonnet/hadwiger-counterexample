@@ -1,10 +1,7 @@
 import Lax342547.ActualCellCollision
-import Lax342547Proofs.RawCellEntropy
-import Lax342547Proofs.CellRepresentatives
-import Lax342547Proofs.GradientRealization
+import Lax342547.ConditionalPairs
+import Lax342547.RawRetainedCells
 
-import Lax342547Proofs.RawRetainedCells
-import Lax342547Proofs.ConditionalPairs
 
 namespace Lax342547Proofs.ActualCellCollision
 open Lax342547.ActualCellCollision
@@ -76,8 +73,8 @@ theorem realized_conditional_four_holes {k n b degree r J K : ℕ} {hr : 2 * r �
           (Lax342547.RetainedImages.conditionalLaw (weights pB) D)
           (fun x y => ∀ i z, Hole holes (x i) (y z)) := by
   classical
-  rw [← Lax342547Proofs.ConditionalPairs.subtype_pair_event]
-  exact Lax342547Proofs.RawRetainedCells.realized_retained_four_holes hk0 W pA pB P Q
+  rw [← Lax342547.ConditionalPairs.subtype_pair_event]
+  exact Lax342547.RawRetainedCells.realized_retained_four_holes hk0 W pA pB P Q
     hP hQ A B hA hB C D refA refB hAr hBr hC hD hkey testers L R holes
     hrole hgradient hU hu T hT hrecipe hgradients hgradients' hadmissible hdegree hmargin hchannels
     ζ hζ hζsmall hk hmassA hmassB hcapA hcapB hsmall

@@ -1,5 +1,5 @@
 import Lax342547.TableSpaces
-import Lax342547Proofs.ProjectedPins
+import Lax342547.ProjectedPins
 
 namespace Lax342547Proofs.TableSpaces
 
@@ -39,7 +39,7 @@ theorem table_mono {Comp B H N : Type}
     (P Q : Pin (Comp × Bool) (Fin 2 × (B ⊕ H)) N) (h : P.Extends Q) (a : Comp × Bool) :
     tableSpace P a ≤ tableSpace Q a := by
   intro v hv i
-  exact ProjectedPins.projected_mono P Q h i a (hv i)
+  exact Lax342547.ProjectedPins.projected_mono P Q h i a (hv i)
 
 /--
 ---
@@ -95,7 +95,7 @@ theorem table_dimension {Comp B H N : Type} [Fintype Comp] [Fintype B] [Fintype 
   classical
   have hprimal (i : Fin 2) : Module.finrank Binary (projected P i a) ≤ P.rank :=
     (Finset.single_le_sum (fun _ _ => Nat.zero_le _) (Finset.mem_univ a)).trans
-      (ProjectedPins.projected_rank P i)
+      (Lax342547.ProjectedPins.projected_rank P i)
   calc
     _ ≤ Module.finrank Binary (∀ i : Fin 2, projected P i a × (H → Binary)) :=
       LinearMap.finrank_le_finrank_of_injective (coordinateMap_injective P a)

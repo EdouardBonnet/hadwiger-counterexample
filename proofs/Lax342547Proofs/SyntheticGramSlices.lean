@@ -1,7 +1,9 @@
 import Lax342547.SyntheticGramSlices
-import Lax342547Proofs.FlavorAffineSlices
-import Lax342547Proofs.PureTesterRoom
-import Lax342547Proofs.TesterProductRouting
+import Lax342547.FiniteSampling
+import Lax342547.FlavorAffineSlices
+import Lax342547.PureTesterRoom
+import Lax342547.RealCellLaws
+import Lax342547.TesterProductRouting
 
 namespace Lax342547Proofs.SyntheticGramSlices
 noncomputable section
@@ -56,17 +58,17 @@ theorem pure_slice_gram_mass {k n b degree r q m : ℕ}
       (weights (PMF.uniformOfFintype (Coefficients n l (pureOutside T₀) (Fin q ⊕ Fin q))))
       (fun V => (pointColumns sel (value V)).transpose*selfGram hr hd M*pointColumns sel (value V) = sliceGram R C) := by
   classical
-  apply (PureTesterRoom.uniform_floor_bound l T₀ (Fin q ⊕ Fin q)).trans
+  apply (Lax342547.PureTesterRoom.uniform_floor_bound l T₀ (Fin q ⊕ Fin q)).trans
   have hq : q ≤ Fintype.card (Pairs l (pureOutside T₀) r) := by
-    rw [PureTesterRoom.pure_pairs_card]
+    rw [Lax342547.PureTesterRoom.pure_pairs_card]
     exact hroom
   let c : Fin q → Pairs l (pureOutside T₀) r := fun j =>
     (Fintype.equivFin (Pairs l (pureOutside T₀) r)).symm (Fin.castLE hq j)
   have hc : Function.Injective c := (Fintype.equivFin (Pairs l (pureOutside T₀) r)).symm.injective.comp
     (Fin.castLE_injective hq)
-  have hh := TesterProductRouting.product_gram_cell_mass hr hd M sel l (pureOutside T₀)
+  have hh := Lax342547.TesterProductRouting.product_gram_cell_mass hr hd M sel l (pureOutside T₀)
     c hc (leftFactor q) (rightFactor R C)
-  rw [← slice_gram_products R C] at hh
+  rw [← Lax342547.SyntheticGramSlices.slice_gram_products R C] at hh
   exact hh
 
 
@@ -104,14 +106,14 @@ theorem pure_slice_variance {S H : Type} [Fintype S] [DecidableEq S]
   have hGram : uniformFloor k r (Fin q ⊕ Fin q) ≤ cellMass
       (weights (PMF.uniformOfFintype (Coefficients n l (pureOutside T₀) (Fin q ⊕ Fin q))))
       (fun V => Lax342547.AffineSliceVariance.GramEvent sel E G (value V)) := by
-    apply (pure_slice_gram_mass hr hd M sel l T₀ hroom R C).trans
-    apply FiniteSampling.cell_mass_mono _ _ _ (RealCellLaws.weights_nonneg _)
+    apply (Lax342547.SyntheticGramSlices.pure_slice_gram_mass hr hd M sel l T₀ hroom R C).trans
+    apply Lax342547.FiniteSampling.cell_mass_mono _ _ _ (Lax342547.RealCellLaws.weights_nonneg _)
     intro V hV i
     rw [hE i,hG i]
     exact hV
-  exact FlavorAffineSlices.flavor_slice_variance (S := S) (H := H) (D := Fin q ⊕ Fin q)
+  exact Lax342547.FlavorAffineSlices.flavor_slice_variance (S := S) (H := H) (D := Fin q ⊕ Fin q)
     l (pureOutside T₀) N sel E G (uniformFloor k r (Fin q ⊕ Fin q))
-    (PureTesterRoom.uniformFloor_pos k r _) hGram test htest hN hsmall
+    (Lax342547.PureTesterRoom.uniformFloor_pos k r _) hGram test htest hN hsmall
 
 
 end

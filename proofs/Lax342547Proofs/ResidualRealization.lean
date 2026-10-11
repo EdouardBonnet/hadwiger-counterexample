@@ -1,5 +1,8 @@
 import Lax342547.ResidualRealization
-import Lax342547Proofs.RankedProjection
+import Lax342547.BoundedDerivatives
+import Lax342547.RankedProjection
+import Lax342547.ResponseMatrices
+import Lax342547Proofs.ResponseSolvability
 
 namespace Lax342547Proofs.ResidualRealization
 
@@ -32,7 +35,7 @@ theorem matrix_response_sub {Comp B : Type} [Fintype Comp] [Fintype B]
     (X : Submodule Binary (Comp → Matrix B B Binary)) (M Q : Fin 2 → Comp → Matrix B B Binary) :
     matrixResponse X (M - Q) = matrixResponse X M - matrixResponse X Q := by
   classical
-  simp [matrixResponse, matrixPair_sub, LinearMap.sub_comp, Finset.sum_sub_distrib]
+  simp [matrixResponse, Lax342547.ResidualRealization.matrixPair_sub, LinearMap.sub_comp, Finset.sum_sub_distrib]
 
 variable {k n b degree r : ℕ} {hr : 2 * r ≤ n} {H N : Type} [Fintype H]
 
@@ -61,7 +64,7 @@ theorem projected_target (W : Lists k n b degree r hr)
       ∀ i, (M i e - (A i).transpose * M i e * C i).rank ≤ 2 * K + 28 ∧
         ((A i).transpose * M i e * C i).rank ≤ (M i e).rank := by
     intro e
-    exact Lax342547Proofs.RankedProjection.actual_pure_projection W P hK (U e) (V e) e (fun i => M i e)
+    exact Lax342547.RankedProjection.actual_pure_projection W P hK (U e) (V e) e (fun i => M i e)
   choose A C β hβ hrβ hr using h
   let Q := fun i e => (A e i).transpose * M i e * C e i
   refine ⟨Q, β, ?_, hrβ, fun i e => hr e i⟩
@@ -125,7 +128,7 @@ theorem product_response (W : Lists k n b degree r hr)
   apply LinearMap.ext
   intro x
   simp only [Lax342547.PureObstructions.response, extraFamily,
-    Lax342547Proofs.ResponseMatrices.extra_product_response, matrixResponse, productMatrices,
+    Lax342547.ResponseMatrices.extra_product_response, matrixResponse, productMatrices,
     LinearMap.sum_apply, LinearMap.comp_apply, LinearMap.proj_apply,
     Submodule.subtype_apply, Lax342547.PureObstructions.endpointComponent]
   exact Finset.sum_comm
@@ -173,22 +176,22 @@ theorem bounded_remainder {K : ℕ} (W : Lists k n b degree r hr)
       (∀ i e, (R0 i e).rank ≤ 14 * K + 140) ∧
       β0 + β1 + extraFamily W P Q U V z δ ε = β := by
   classical
-  obtain ⟨M0, β0, hβ0, hrβ0, hr0⟩ := projected_target W P hK U V M
+  obtain ⟨M0, β0, hβ0, hrβ0, hr0⟩ := Lax342547.ResidualRealization.projected_target W P hK U V M
   let β1 := β - β0 - extraFamily W P Q U V z δ ε
   let R0 := M - M0 - baselineMatrices F z - derivativeMatrices W P Q U V F z δ ε -
     productMatrices W P Q U V z δ ε
   refine ⟨M0, R0, β0, β1, hβ0, hrβ0, fun i e => (hr0 i e).2, ?_, ?_, ?_⟩
-  · simp only [β1, pure_response_sub, hβ0, product_response, R0, matrix_response_sub]
-    rw [baseline_response, derivative_response]
+  · simp only [β1, Lax342547.ResidualRealization.pure_response_sub, hβ0, Lax342547.ResidualRealization.product_response, R0, Lax342547.ResidualRealization.matrix_response_sub]
+    rw [Lax342547.ResidualRealization.baseline_response, Lax342547.ResidualRealization.derivative_response]
     unfold fullResponse at hsol
     rw [eq_sub_of_add_eq hsol]
     abel
   · intro i e
-    have hplus := (Lax342547Proofs.ResponseMatrices.baseline_coordinate_rank F e z (3 * K + 28)
+    have hplus := (Lax342547.ResponseMatrices.baseline_coordinate_rank F e z (3 * K + 28)
       (hF e z).1 (hF e z).2.2.2 i).1
-    have hd := (Lax342547Proofs.ResponseMatrices.restriction_rank
+    have hd := (Lax342547.ResponseMatrices.restriction_rank
       (barred W P (U e) (e, true)) (protectedChannel Q z (e, false)) (δ e) i).trans (hδ e)
-    have hr := Lax342547Proofs.ResponseMatrices.bounded_residual_rank K (M i e) (M0 i e)
+    have hr := Lax342547.ResponseMatrices.bounded_residual_rank K (M i e) (M0 i e)
       (hr0 i e).1 (fullPlus F e i z) (fullMinus F e i z)
       (restriction (barred W P (U e) (e, true)) (protectedChannel Q z (e, false)) (δ e) i)
       (restriction (barred W P (V e) (e, false)) (protectedChannel Q z (e, true)) (ε e) i) hplus hd
@@ -210,7 +213,7 @@ theorem paired_matrix_representation {Comp B : Type} [Fintype Comp] [Fintype B]
   have h : ∀ i, ∃ M : Comp → Matrix B B Binary,
       ∀ x : X, t i x = ∑ e, matrixPair (M e) (x.val e) := by
     intro i
-    exact Lax342547Proofs.ResponseMatrices.matrix_representation X (t i)
+    exact Lax342547.ResponseMatrices.matrix_representation X (t i)
   choose M hM using h
   refine ⟨M, ?_⟩
   apply LinearMap.ext
@@ -261,14 +264,14 @@ theorem recipe_remainder [Fintype N] {K : ℕ} {E : Moment k n b degree}
         ∑ i, (Lax342547.RecipeResiduals.residual W D L R F i z).comp (LinearMap.proj i) := by
   classical
   obtain ⟨β, δ, ε, hsol, hbound⟩ :=
-    Lax342547Proofs.BoundedDerivatives.bounded_recipe_solution hk W D L R oA oB P Q hK
+    Lax342547.BoundedDerivatives.bounded_recipe_solution hk W D L R oA oB P Q hK
       A B hA hfresh U V hU hV T hT F hF hbounded hrecipe hfrozen hkeys hgradients hdegree z
   have htarget : fullResponse W P Q U V F z β δ ε = matrixResponse (Profile k n b degree) M -
       ∑ i, (fullContraction F (Profile k n b degree) i z).comp (LinearMap.proj i) := by
     rw [hsol, hM]
     simp only [Lax342547.RecipeResiduals.residual, LinearMap.sub_comp, Finset.sum_sub_distrib]
   obtain ⟨M0, R0, β0, β1, h0, hrβ0, hr0, h1, hr1, he⟩ :=
-    bounded_remainder W P Q hK U V F hbounded z M β δ ε (fun e => (hbound e).1) htarget
+    Lax342547.ResidualRealization.bounded_remainder W P Q hK U V F hbounded z M β δ ε (fun e => (hbound e).1) htarget
   refine ⟨M0, R0, β0, β1, δ, ε, h0, hrβ0, hr0, h1, hr1, hbound, ?_⟩
   rw [he]
   exact hsol

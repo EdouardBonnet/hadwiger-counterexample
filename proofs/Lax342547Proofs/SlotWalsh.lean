@@ -1,5 +1,5 @@
 import Lax342547.SlotWalsh
-import Lax342547Proofs.BilinearWalsh
+import Lax342547.BilinearWalsh
 
 namespace Lax342547Proofs.SlotWalsh
 
@@ -99,8 +99,8 @@ theorem nonzero_pattern_bound [DecidableEq I] [DecidableEq J]
     (f : (Fin N × I → Binary) → ℝ) (g : (Fin N × J → Binary) → ℝ)
     (hf : ∀ x, |f x| ≤ 1) (hg : ∀ y, |g y| ≤ 1) :
     |Lax342547.BilinearWalsh.average (bitMatrix C N) f g| ≤ 1 / Real.sqrt ((2 : ℝ) ^ N) := by
-  have h := BilinearWalsh.uniform_bound (bitMatrix C N) f g hf hg
-  rw [bit_rank] at h
+  have h := Lax342547.BilinearWalsh.uniform_bound (bitMatrix C N) f g hf hg
+  rw [Lax342547.SlotWalsh.bit_rank] at h
   refine h.trans ?_
   have hr : N ≤ N * C.rank := Nat.le_mul_of_pos_right N (rank_pos_of_ne_zero C hC)
   gcongr

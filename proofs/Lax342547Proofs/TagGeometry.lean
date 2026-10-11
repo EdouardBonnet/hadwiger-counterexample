@@ -1,6 +1,7 @@
 import Lax342547.TagGeometry
-import Lax342547Proofs.CutProfiles
 import Lean.Elab.Tactic.Omega
+import Lax342547.CutProfiles
+import Lax342547.MomentIntersection
 
 namespace Lax342547Proofs.TagGeometry
 
@@ -42,13 +43,13 @@ theorem majority_intersection {Label Coord : Type} (k n : ℕ)
   classical
   have hne : S.Nonempty := Finset.card_pos.mp (by omega)
   have : Nonempty {l // l ∈ S} := ⟨⟨hne.choose, hne.choose_spec⟩⟩
-  rw [← MomentSpace.momentSpace_iInter, majority_allowed k n S hS]
+  rw [← Lax342547.MomentIntersection.momentSpace_iInter, majority_allowed k n S hS]
 
 theorem all_tag_intersection {Label Coord : Type} (k n : ℕ)
     (p : Label → Coord → Binary) :
     (⨅ l : Tag k, momentSpace p (allowedBase k n l)) = momentSpace p (commonBase k n) := by
   classical
-  have h := majority_intersection k n p Finset.univ (by simp [ZMod.card]; omega)
+  have h := Lax342547.TagGeometry.majority_intersection k n p Finset.univ (by simp [ZMod.card]; omega)
   ext w
   rw [← h]
   simp only [Submodule.mem_iInf]
@@ -61,6 +62,6 @@ theorem same_cut_common_constant {Label Coord : Type} (k n : ℕ)
     (hv : ∀ t, v t ∈ momentSpace p (allowedBase k n t)) :
     cutMap w = cutMap v ↔ ∃ c ∈ momentSpace p (commonBase k n), ∀ t, w t + v t = c := by
   rw [← all_tag_intersection k n p]
-  exact CutProfiles.same_cut_iff _ w v hw hv
+  exact Lax342547.CutProfiles.same_cut_iff _ w v hw hv
 
 end Lax342547Proofs.TagGeometry

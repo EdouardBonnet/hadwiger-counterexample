@@ -1,7 +1,7 @@
 import Lax342547.PrimalContractions
-import Lax342547Proofs.BarredElimination
-import Lax342547Proofs.PairedAnnihilators
-import Lax342547Proofs.TensorBlocks
+import Lax342547.BarredElimination
+import Lax342547.BarredSpaces
+import Lax342547Proofs.TensorAnnihilators
 
 namespace Lax342547Proofs.PrimalContractions
 
@@ -140,13 +140,13 @@ theorem unselected_pin_contraction {k n b degree r R : ℕ} {hr : 2 * r ≤ n}
     (hψ : projected P i (e, false) ⊔ individualKeys W i e ≤ LinearMap.ker ψ) :
     (M i).mulVecLin (coordinates ψ) ∈ pinnedPrimal P i (e, true) := by
   classical
-  have hd := endpoint_vector M _ _ h i _
-    (Lax342547Proofs.BarredSpaces.barred_projection W P V (e, false) i) ψ hψ
+  have hd := Lax342547.PrimalContractions.endpoint_vector M _ _ h i _
+    (Lax342547.BarredSpaces.barred_projection W P V (e, false) i) ψ hψ
   let coeff := fun s a => ∑ c, selectorEval (degree := degree) s c.1 * Z s a c.2 * coordinates ψ c
   have hsparse : (M i).mulVecLin (coordinates ψ) = ∑ s ∈ L, labelTensor selectorEval s (coeff s) := by
     rw [hM]
-    exact sparse_contraction _ L Z _
-  refine Lax342547Proofs.BarredElimination.sparse_barred W P A hA hfresh U (e, true) hU
+    exact Lax342547.PrimalContractions.sparse_contraction _ L Z _
+  refine Lax342547.BarredElimination.sparse_barred W P A hA hfresh U (e, true) hU
     (fun j => if j = i then L else ∅) ?_ ?_ (fun _ => coeff) _ ?_ ?_ hd
   · intro j
     by_cases hj : j = i <;> simp [hj, hL]
@@ -192,13 +192,13 @@ theorem unselected_pin_contraction_mode {k n b degree r R : ℕ} {hr : 2 * r ≤
     (hψ : projected P i (e, !p) ⊔ individualKeys W i e ≤ LinearMap.ker ψ) :
     (M i).mulVecLin (coordinates ψ) ∈ pinnedPrimal P i (e, p) := by
   classical
-  have hd := endpoint_vector M _ _ h i _
-    (Lax342547Proofs.BarredSpaces.barred_projection W P V (e, !p) i) ψ hψ
+  have hd := Lax342547.PrimalContractions.endpoint_vector M _ _ h i _
+    (Lax342547.BarredSpaces.barred_projection W P V (e, !p) i) ψ hψ
   let coeff := fun s a => ∑ c, selectorEval (degree := degree) s c.1 * Z s a c.2 * coordinates ψ c
   have hsparse : (M i).mulVecLin (coordinates ψ) = ∑ s ∈ L, labelTensor selectorEval s (coeff s) := by
     rw [hM]
-    exact sparse_contraction _ L Z _
-  refine Lax342547Proofs.BarredElimination.sparse_barred W P A hA hfresh U (e, p) hU
+    exact Lax342547.PrimalContractions.sparse_contraction _ L Z _
+  refine Lax342547.BarredElimination.sparse_barred W P A hA hfresh U (e, p) hU
     (fun j => if j = i then L else ∅) ?_ ?_ (fun _ => coeff) _ ?_ ?_ hd
   · intro j
     by_cases hj : j = i <;> simp [hj, hL]

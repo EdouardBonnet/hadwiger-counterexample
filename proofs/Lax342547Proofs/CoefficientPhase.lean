@@ -1,6 +1,4 @@
 import Lax342547.CoefficientPhase
-import Lax342547Proofs.TargetMatrices
-import Lax342547Proofs.GramTests
 
 namespace Lax342547Proofs.CoefficientPhase
 open Lax342547.CoefficientPhase
@@ -30,7 +28,7 @@ theorem independent_factor_phase {I J R N : Type}
     (A : Matrix I R Binary) (B : Matrix J R Binary) (X : Matrix N I Binary) (Y : Matrix N J Binary) :
     coefficientPair (A * B.transpose) X Y = dotProduct (factorImage A X) (factorImage B Y) := by
   classical
-  rw [coefficient_trace, Matrix.transpose_mul, Matrix.transpose_transpose]
+  rw [Lax342547.CoefficientPhase.coefficient_trace, Matrix.transpose_mul, Matrix.transpose_transpose]
   rw [Matrix.mul_assoc, Matrix.trace_mul_comm B, ← Matrix.mul_assoc,
     ← Matrix.transpose_mul]
   rw [Matrix.mul_assoc]

@@ -1,6 +1,4 @@
 import Lax342547.MatchingSamples
-import Lax342547Proofs.SampledGraph
-import Lax342547Proofs.HadwigerMatching.BasicMatching
 import Mathlib.Data.Fintype.EquivFin
 
 namespace Lax342547Proofs.MatchingSamples
@@ -58,8 +56,8 @@ theorem matching_orientation_injective {V : Type} (G : SimpleGraph V) (M : Finse
   intro a b h
   change oriented a.1.val (hM.1 _ a.1.property).1 a.2 =
     oriented b.1.val (hM.1 _ b.1.property).1 b.2 at h
-  have ha := oriented_mem a.1.val (hM.1 _ a.1.property).1 a.2
-  have hb := oriented_mem b.1.val (hM.1 _ b.1.property).1 b.2
+  have ha := Lax342547.MatchingSamples.oriented_mem a.1.val (hM.1 _ a.1.property).1 a.2
+  have hb := Lax342547.MatchingSamples.oriented_mem b.1.val (hM.1 _ b.1.property).1 b.2
   have he : a.1 = b.1 := by
     apply Subtype.ext
     by_contra hn
@@ -70,7 +68,7 @@ theorem matching_orientation_injective {V : Type} (G : SimpleGraph V) (M : Finse
   rcases b with ⟨b,j⟩
   dsimp at he
   subst b
-  have hij := oriented_injective a.val (hM.1 _ a.property).1 h
+  have hij := Lax342547.MatchingSamples.oriented_injective a.val (hM.1 _ a.property).1 h
   exact Prod.ext rfl hij
 
 /--
@@ -91,8 +89,8 @@ theorem matching_unit_independence {Ω : Type} (hole : Ω → Ω → Prop)
     exact hloop _ (hholes false false)
   · have hv : e.val ≠ f.val := by intro hh; exact hef (Subtype.ext hh)
     obtain ⟨v,hve,w,hwf,hadj⟩ := hM.2.2 _ e.property _ f.property hv
-    obtain ⟨i,rfl⟩ := oriented_covers e.val (hM.1 _ e.property).1 v hve
-    obtain ⟨j,rfl⟩ := oriented_covers f.val (hM.1 _ f.property).1 w hwf
+    obtain ⟨i,rfl⟩ := Lax342547.MatchingSamples.oriented_covers e.val (hM.1 _ e.property).1 v hve
+    obtain ⟨j,rfl⟩ := Lax342547.MatchingSamples.oriented_covers f.val (hM.1 _ f.property).1 w hwf
     exact hadj.2 (hholes i j)
 
 
@@ -109,9 +107,9 @@ theorem matching_unit_is_unit {Ω : Type} (hole : Ω → Ω → Prop)
       (unitType sample e.val (hM.1 _ e.property).1).2 := by
   have hne : oriented e.val (hM.1 _ e.property).1 false ≠ oriented e.val (hM.1 _ e.property).1 true := by
     intro h
-    have hh := oriented_injective e.val (hM.1 _ e.property).1 h
+    have hh := Lax342547.MatchingSamples.oriented_injective e.val (hM.1 _ e.property).1 h
     cases hh
-  have hadj := (hM.1 _ e.property).2 (oriented_mem e.val _ false) (oriented_mem e.val _ true) hne
+  have hadj := (hM.1 _ e.property).2 (Lax342547.MatchingSamples.oriented_mem e.val _ false) (Lax342547.MatchingSamples.oriented_mem e.val _ true) hne
   exact hadj.2
 
 /--
@@ -130,11 +128,11 @@ theorem unit_types_independent {Ω : Type} (hole : Ω → Ω → Prop)
   constructor
   · intro u hu
     obtain ⟨e,_,rfl⟩ := Finset.mem_image.mp hu
-    exact matching_unit_is_unit hole hsymm sample M hM e
+    exact Lax342547.MatchingSamples.matching_unit_is_unit hole hsymm sample M hM e
   · intro u hu v hv hconf
     obtain ⟨e,_,rfl⟩ := Finset.mem_image.mp hu
     obtain ⟨f,_,rfl⟩ := Finset.mem_image.mp hv
-    apply matching_unit_independence hole hsymm hloop sample M hM e f
+    apply Lax342547.MatchingSamples.matching_unit_independence hole hsymm hloop sample M hM e f
     intro i j
     cases i <;> cases j
     · exact hconf.1

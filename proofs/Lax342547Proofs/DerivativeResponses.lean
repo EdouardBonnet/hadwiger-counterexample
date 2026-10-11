@@ -1,10 +1,16 @@
 import Lax342547.DerivativeResponses
 import Lax342547Proofs.DerivativeContractions
 import Lax342547Proofs.PureObstructions
-import Lax342547Proofs.SelectedRemoval
 import Lax342547Proofs.FrozenValues
-import Lax342547Proofs.ResidualLabels
-import Lax342547Proofs.ChannelChanges
+import Lax342547.Atoms
+import Lax342547.BarredSpaces
+import Lax342547.ChannelChanges
+import Lax342547.DerivativeContractions
+import Lax342547.PrimalContractions
+import Lax342547.PureObstructions
+import Lax342547.ResidualLabels
+import Lax342547.SelectedRemoval
+import Lax342547.TensorContractions
 
 namespace Lax342547Proofs.DerivativeResponses
 
@@ -130,16 +136,16 @@ theorem derivative_atom (W : Lists k n b degree r hr)
     by_cases hji : j = i <;> simp [Lax342547.PureObstructions.endpointComponent, hji]
   rw [he, component_single]
   by_cases htag : (W.left i u.1 u.2).tag ∈ e.val
-  · simp only [Lax342547.WitnessAtoms.PointAtom.profile, Lax342547Proofs.Atoms.atom_component, htag, if_pos]
+  · simp only [Lax342547.WitnessAtoms.PointAtom.profile, Lax342547.Atoms.atom_component, htag, if_pos]
     change Lax342547.TensorContractions.ambient _ _
         (Matrix.vecMulVec (W.left i u.1 u.2).vector (W.left i u.1 u.2).vector) +
       Lax342547.TensorContractions.ambient _ _
         (Matrix.vecMulVec (W.left i u.1 u.2).vector (W.left i u.1 u.2).vector) = 0
-    rw [TensorContractions.ambient_outer, TensorContractions.ambient_outer,
+    rw [Lax342547.TensorContractions.ambient_outer, Lax342547.TensorContractions.ambient_outer,
       restriction_key W P (V e) e false _ (δG e) i u htag,
       restriction_key W P (U e) e true _ (δF e) i u htag]
     simp
-  · simp [Lax342547.WitnessAtoms.PointAtom.profile, Lax342547Proofs.Atoms.atom_component, htag]
+  · simp [Lax342547.WitnessAtoms.PointAtom.profile, Lax342547.Atoms.atom_component, htag]
 
 /--
 ---
@@ -157,7 +163,7 @@ theorem atom_annihilates (W : Lists k n b degree r hr)
     Annihilates W P Q U V F z (Pi.single i (W.left i u.1 u.2).profile) := by
   intro β δF δG
   change Lax342547.PureObstructions.response W P U V β _ + response W P Q U V F z δF δG _ = 0
-  rw [SelectedRemoval.atom_annihilates W P U V i u β,
+  rw [Lax342547.SelectedRemoval.atom_annihilates W P U V i u β,
     derivative_atom W P Q U V F z δF δG i u, add_zero]
 
 /--
@@ -185,7 +191,7 @@ theorem selected_part_annihilates (W : Lists k n b degree r hr)
   apply Finset.sum_eq_zero
   intro u _
   change c i u • fullResponse W P Q U V F z β δF δG (Pi.single i (W.left i u.1 u.2).profile) = 0
-  rw [atom_annihilates W P Q U V F z i u β δF δG, smul_zero]
+  rw [Lax342547.DerivativeResponses.atom_annihilates W P Q U V F z i u β δF δG, smul_zero]
 
 /--
 ---
@@ -202,7 +208,7 @@ theorem subtract_annihilates (W : Lists k n b degree r hr)
     (c : ∀ i : Fin 2, (Σ z, Fin (W.length i z)) → Binary) :
     Annihilates W P Q U V F z (x - selectedPart W c) := by
   intro β δF δG
-  rw [map_sub, h β δF δG, selected_part_annihilates W P Q U V F z c β δF δG, sub_self]
+  rw [map_sub, h β δF δG, Lax342547.DerivativeResponses.selected_part_annihilates W P Q U V F z c β δF δG, sub_self]
 
 /--
 ---
@@ -225,7 +231,7 @@ theorem component_annihilation (W : Lists k n b degree r hr)
       (barred W P (V e) (e, false)) (protectedChannel Q z (e, false))
       (protectedChannel Q z (e, true)) δF δG (Lax342547.PureObstructions.endpointComponent e x) = 0 := by
   classical
-  have hh := derivative_annihilation W P Q U V F z x h (Pi.single e δF) (Pi.single e δG)
+  have hh := Lax342547.DerivativeResponses.derivative_annihilation W P Q U V F z x h (Pi.single e δF) (Pi.single e δG)
   simp only [response, LinearMap.sum_apply, LinearMap.comp_apply] at hh
   rw [Finset.sum_eq_single e] at hh
   · simpa only [Pi.single_eq_same] using hh
@@ -262,9 +268,9 @@ theorem unselected_obstruction {K : ℕ} (hk : 0 < k)
         (∑ s ∈ L i e, (Z i e s).rank) ≤ 2 * K + 28 ∧
         ((x - selectedPart W c) i).val e =
           ∑ s ∈ L i e, Lax342547.TensorBlocks.block selectorEval s (Z i e s) := by
-  obtain ⟨c, L, Z, _, hlabels⟩ := ResidualLabels.unselected_obstruction hk W P hK A hA hfresh
-    U V x (pure_annihilation W P Q U V F z x h) hdegree
-  exact ⟨c, L, Z, subtract_annihilates W P Q U V F z x h c, hlabels⟩
+  obtain ⟨c, L, Z, _, hlabels⟩ := Lax342547.ResidualLabels.unselected_obstruction hk W P hK A hA hfresh
+    U V x (Lax342547.DerivativeResponses.pure_annihilation W P Q U V F z x h) hdegree
+  exact ⟨c, L, Z, Lax342547.DerivativeResponses.subtract_annihilates W P Q U V F z x h c, hlabels⟩
 
 /--
 ---
@@ -291,7 +297,7 @@ theorem right_test (W : Lists k n b degree r hr)
   let ψnom := ψ.comp (Lax342547.ProjectedPins.primalProjection (H := H) i)
   have hψker : E ≤ LinearMap.ker ψnom := by
     intro v hv
-    exact hψ (BarredSpaces.barred_projection W P (V e) (e, false) i ⟨v, hv, rfl⟩)
+    exact hψ (Lax342547.BarredSpaces.barred_projection W P (V e) (e, false) i ⟨v, hv, rfl⟩)
   let δG := (E.liftQ ψnom hψker).smulRight (⟨c, hc⟩ : perpendicular (protectedChannel Q z (e, true)))
   have hr (j : Fin 2) : restriction E (protectedChannel Q z (e, true)) δG j =
       if j = i then ψ.smulRight c else 0 := by
@@ -307,14 +313,14 @@ theorem right_test (W : Lists k n b degree r hr)
       change ((ψ (Lax342547.ProjectedPins.primalProjection i (primalEmbedding j v))) • c) = _
       rw [hp, map_zero, zero_smul, if_neg hj]
       rfl
-  have hh := component_annihilation W P Q U V F z x h e 0 δG
+  have hh := Lax342547.DerivativeResponses.component_annihilation W P Q U V F z x h e 0 δG
   simp only [componentResponse, LinearMap.sum_apply, LinearMap.comp_apply, LinearMap.proj_apply,
     restriction_zero, DerivativeContractions.ambient_zero_left, add_zero] at hh
   change (∑ j, Lax342547.TensorContractions.ambient (fullPlus F e j z)
     (restriction E (protectedChannel Q z (e, true)) δG j) ((x j).val e)) = 0 at hh
   simp only [hr] at hh
   rw [Finset.sum_eq_single i] at hh
-  · rw [if_pos rfl, DerivativeContractions.right_rank_one] at hh
+  · rw [if_pos rfl, Lax342547.DerivativeContractions.right_rank_one] at hh
     exact hh
   · intro j _ hji
     rw [if_neg hji, DerivativeContractions.ambient_zero_right, LinearMap.zero_apply]
@@ -346,13 +352,13 @@ theorem plus_contraction_zero {R : ℕ} (W : Lists k n b degree r hr)
     (ψ : Module.Dual Binary (Vector k n b degree))
     (hψ : Lax342547.ProjectedPins.projected P i (e, false) ⊔ individualKeys W i e ≤ LinearMap.ker ψ) :
     ((x i).val e).mulVecLin (Lax342547.PrimalContractions.coordinates ψ) = 0 := by
-  have hpure := PureObstructions.component_annihilation W P U V x
-    (pure_annihilation W P Q U V F z x h) e
-  have hd := PrimalContractions.unselected_pin_contraction W P A hA hfresh (U e) (V e) e hU
+  have hpure := Lax342547.PureObstructions.component_annihilation W P U V x
+    (Lax342547.DerivativeResponses.pure_annihilation W P Q U V F z x h) e
+  have hd := Lax342547.PrimalContractions.unselected_pin_contraction W P A hA hfresh (U e) (V e) e hU
     (Lax342547.PureObstructions.endpointComponent e x) hpure i L hL hdisjoint Z hM ψ hψ
-  apply ChannelChanges.row_injection_zero T hT F hF e i z ⟨_, hd⟩
+  apply Lax342547.ChannelChanges.row_injection_zero T hT F hF e i z ⟨_, hd⟩
   intro c hc
-  exact right_test W P Q U V F z x h e i ψ hψ c hc
+  exact Lax342547.DerivativeResponses.right_test W P Q U V F z x h e i ψ hψ c hc
 
 /--
 ---
@@ -378,7 +384,7 @@ theorem left_test (W : Lists k n b degree r hr)
   let ψnom := ψ.comp (Lax342547.ProjectedPins.primalProjection (H := H) i)
   have hψker : E ≤ LinearMap.ker ψnom := by
     intro v hv
-    exact hψ (BarredSpaces.barred_projection W P (U e) (e, true) i ⟨v, hv, rfl⟩)
+    exact hψ (Lax342547.BarredSpaces.barred_projection W P (U e) (e, true) i ⟨v, hv, rfl⟩)
   let δF := (E.liftQ ψnom hψker).smulRight (⟨c, hc⟩ : perpendicular (protectedChannel Q z (e, false)))
   have hr (j : Fin 2) : restriction E (protectedChannel Q z (e, false)) δF j =
       if j = i then ψ.smulRight c else 0 := by
@@ -394,14 +400,14 @@ theorem left_test (W : Lists k n b degree r hr)
       change ((ψ (Lax342547.ProjectedPins.primalProjection i (primalEmbedding j v))) • c) = _
       rw [hp, map_zero, zero_smul, if_neg hj]
       rfl
-  have hh := component_annihilation W P Q U V F z x h e δF 0
+  have hh := Lax342547.DerivativeResponses.component_annihilation W P Q U V F z x h e δF 0
   simp only [componentResponse, LinearMap.sum_apply, LinearMap.comp_apply, LinearMap.proj_apply,
     restriction_zero, DerivativeContractions.ambient_zero_right, zero_add] at hh
   change (∑ j, Lax342547.TensorContractions.ambient
     (restriction E (protectedChannel Q z (e, false)) δF j) (fullMinus F e j z) ((x j).val e)) = 0 at hh
   simp only [hr] at hh
   rw [Finset.sum_eq_single i] at hh
-  · rw [if_pos rfl, DerivativeContractions.left_rank_one, dotProduct_comm] at hh
+  · rw [if_pos rfl, Lax342547.DerivativeContractions.left_rank_one, dotProduct_comm] at hh
     exact hh
   · intro j _ hji
     rw [if_neg hji, DerivativeContractions.ambient_zero_left, LinearMap.zero_apply]
@@ -435,21 +441,21 @@ theorem minus_contraction_zero {R : ℕ} (W : Lists k n b degree r hr)
     (hψ : Lax342547.ProjectedPins.projected P i (e, true) ⊔ individualKeys W i e ≤ LinearMap.ker ψ) :
     ((x i).val e).transpose.mulVecLin (Lax342547.PrimalContractions.coordinates ψ) = 0 := by
   classical
-  have hpure := PureObstructions.component_annihilation W P U V x
-    (pure_annihilation W P Q U V F z x h) e
-  have ht := DerivativeContractions.paired_transpose _ _ _ hpure
+  have hpure := Lax342547.PureObstructions.component_annihilation W P U V x
+    (Lax342547.DerivativeResponses.pure_annihilation W P Q U V F z x h) e
+  have ht := Lax342547.DerivativeContractions.paired_transpose _ _ _ hpure
   have hMt : ((x i).val e).transpose = ∑ s ∈ L,
       Lax342547.TensorBlocks.block selectorEval s ((Z s).transpose) := by
     rw [hM]
     ext a b
     simp [Matrix.sum_apply, Matrix.transpose_apply, Lax342547.TensorBlocks.block,
       mul_comm]
-  have hd := PrimalContractions.unselected_pin_contraction_mode W P A hA hfresh false
+  have hd := Lax342547.PrimalContractions.unselected_pin_contraction_mode W P A hA hfresh false
     (V e) (U e) e hV
     (fun j => ((x j).val e).transpose) ht i L hL hdisjoint
     (fun s => (Z s).transpose) hMt ψ hψ
-  apply ChannelChanges.column_injection_zero T hT F hF e i z ⟨_, hd⟩
+  apply Lax342547.ChannelChanges.column_injection_zero T hT F hF e i z ⟨_, hd⟩
   intro c hc
-  exact left_test W P Q U V F z x h e i ψ hψ c hc
+  exact Lax342547.DerivativeResponses.left_test W P Q U V F z x h e i ψ hψ c hc
 
 end Lax342547Proofs.DerivativeResponses

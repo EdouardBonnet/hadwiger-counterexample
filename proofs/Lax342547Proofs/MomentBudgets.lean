@@ -1,5 +1,4 @@
 import Lax342547.MomentBudgets
-import Lax342547Proofs.NoCoverMoments
 
 namespace Lax342547Proofs.MomentBudgets
 open Lax342547.MomentBudgets
@@ -34,8 +33,8 @@ theorem no_cover_budget (s q R a P h Γ N : ℕ)
     simp only [← pow_add]
     congr 1 <;> congr 1 <;> ring
   rw [he]
-  have h1 := power_ratio_bound ((2+a)*s) (P*q) (Γ*N+1) hP
-  have h2 := power_ratio_bound (a*s) (h*R) (Γ*N+1) hh
+  have h1 := Lax342547.MomentBudgets.power_ratio_bound ((2+a)*s) (P*q) (Γ*N+1) hP
+  have h2 := Lax342547.MomentBudgets.power_ratio_bound (a*s) (h*R) (Γ*N+1) hh
   have he2 : 1/(2 : ℝ)^(Γ*N+1)+1/(2 : ℝ)^(Γ*N+1) = 1/(2 : ℝ)^(Γ*N) := by
     rw [pow_succ]
     ring

@@ -1,6 +1,6 @@
 import Lax342547.WitnessAtoms
 import Lax342547Proofs.Atoms
-import Lax342547Proofs.UnaryMixer
+import Lax342547.UnaryMixer
 
 namespace Lax342547Proofs.WitnessAtoms
 
@@ -65,7 +65,7 @@ theorem allowed_index {k J : ℕ} (hk : 0 < k) (hJ : 0 < J) (x y : Numerical k) 
   classical
   have hexists (l : Tag k) : (Lax342547.UnaryMixer.incident l).Nonempty := by
     apply Finset.card_pos.mp
-    rw [UnaryMixer.incident_card]
+    rw [Lax342547.UnaryMixer.incident_card]
     omega
   obtain ⟨e, he⟩ := hexists x.tag
   obtain ⟨f, hf⟩ := hexists y.tag

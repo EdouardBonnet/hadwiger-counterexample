@@ -3,7 +3,7 @@ import Lax342547.Conditioning
 /-!
 ---
 title: Actual-mass recovery and residual bounds through finite splits
-type: theorem
+type: lemma
 ---
 Finite mixture event masses retain their original weights. Successive
 conditional parts recover the combined restriction exactly. Relative

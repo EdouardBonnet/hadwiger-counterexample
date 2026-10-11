@@ -1,7 +1,7 @@
 import Lax342547.AffineSliceIndependence
-import Lax342547Proofs.GramNormalization
-import Lax342547Proofs.FiniteLinearLaw
-import Lax342547Proofs.ConcreteGeometry
+import Lax342547.ConcreteGeometry
+import Lax342547.FiniteLinearLaw
+import Lax342547.GramNormalization
 
 namespace Lax342547Proofs.AffineSliceIndependence
 
@@ -74,7 +74,7 @@ conclusion: Lax342547.AffineSliceIndependence.joinedFree_uniform
 theorem joinedFree_uniform {D N : Type} [Fintype D] [Fintype N] [DecidableEq D] [DecidableEq N] :
     (PMF.uniformOfFintype (Matrix N (Option D) Binary × Matrix N (Option D) Binary)).map joinedFree =
       PMF.uniformOfFintype (Matrix N (Option (D ⊕ D)) Binary) :=
-  Lax342547Proofs.FiniteLinearLaw.uniform_image_of_surjective joinedFreeMap joinedFree_surjective
+  Lax342547.FiniteLinearLaw.uniform_image_of_surjective joinedFreeMap joinedFree_surjective
 
 /--
 ---
@@ -86,11 +86,11 @@ theorem affine_pair_failure {D N : Type} [Fintype D] [Fintype N] [DecidableEq D]
       {Z | ¬ Function.Injective (pairMap Z)} ≤
       (2 : ℝ≥0∞)^(2*Fintype.card D+1)/(2 : ℝ≥0∞)^Fintype.card N := by
   classical
-  have hh := Lax342547Proofs.GramNormalization.column_failure (J := Option (D ⊕ D)) (N := N)
-  rw [← joinedFree_uniform,PMF.toOuterMeasure_map_apply] at hh
+  have hh := Lax342547.GramNormalization.column_failure (J := Option (D ⊕ D)) (N := N)
+  rw [← Lax342547.AffineSliceIndependence.joinedFree_uniform,PMF.toOuterMeasure_map_apply] at hh
   have hsub : {Z : Matrix N (Option D) Binary × Matrix N (Option D) Binary |
       ¬ Function.Injective (pairMap Z)} ⊆ {Z | ¬ Function.Injective (joinedFree Z).mulVec} :=
-    fun Z hbad hgood => hbad (pairMap_injective_of_joined Z hgood)
+    fun Z hbad hgood => hbad (Lax342547.AffineSliceIndependence.pairMap_injective_of_joined Z hgood)
   exact ((PMF.uniformOfFintype _).toOuterMeasure.mono hsub).trans
     (by simpa [Fintype.card_option,Fintype.card_sum,two_mul,add_comm] using hh)
 
@@ -105,17 +105,19 @@ theorem point_pair_independent {k n b degree : ℕ} {D : Type} [Fintype D]
     Function.Injective (fun uv : (Option D → Binary) × (Option D → Binary) =>
       (pointColumns (degree := degree) s V).mulVec uv.1+
         (pointColumns (degree := degree) s W).mulVec uv.2) := by
-  have hfree := pairMap_injective_of_joined (freePart V,freePart W) hZ
+  have hfree := Lax342547.AffineSliceIndependence.pairMap_injective_of_joined (freePart V,freePart W) hZ
   intro uv uv' he
   apply hfree
   ext j
   cases j with
   | none =>
     have hh := congrFun he (emptySelector b degree,none)
-    simpa [pairMap,affineColumns,pointColumns,Matrix.mulVec,dotProduct,Fintype.sum_option] using hh
+    simpa [pairMap,affineColumns,pointColumns,Matrix.mulVec,dotProduct,Fintype.sum_option,
+      selectorEval,emptySelector] using hh
   | some i =>
     have hh := congrFun he (emptySelector b degree,some (free i))
-    simpa [pairMap,affineColumns,pointColumns,freePart,Matrix.mulVec,dotProduct] using hh
+    simpa [pairMap,affineColumns,pointColumns,freePart,Matrix.mulVec,dotProduct,
+      selectorEval,emptySelector] using hh
 
 /--
 ---
@@ -150,11 +152,11 @@ theorem point_gram_ignores_free {k n b degree r : ℕ} {D : Type} [Fintype D]
     (s : Fin b → Binary) (V W : Matrix (Base k n) (Option D) Binary) :
     (pointColumns s V).transpose*selfGram hr hd M*pointColumns s W =
       (pointColumns s (eraseFree V)).transpose*selfGram hr hd M*pointColumns s (eraseFree W) := by
-  have hE := Lax342547Proofs.ConcreteGeometry.selfGram_changeZ (k := k) hr hd M
+  have hE := Lax342547.ConcreteGeometry.selfGram_changeZ (k := k) hr hd M
     (0 : Matrix (Fin n) (Fin n) Binary)
   let Z := (changeZ (k := k) (b := b) (degree := degree) (0 : Matrix (Fin n) (Fin n) Binary)).toMatrix'
-  have hV := pointColumns_eraseFree (degree := degree) s V
-  have hW := pointColumns_eraseFree (degree := degree) s W
+  have hV := Lax342547.AffineSliceIndependence.pointColumns_eraseFree (degree := degree) s V
+  have hW := Lax342547.AffineSliceIndependence.pointColumns_eraseFree (degree := degree) s W
   change Z*pointColumns (degree := degree) s V = _ at hV
   change Z*pointColumns (degree := degree) s W = _ at hW
   calc
@@ -190,8 +192,8 @@ theorem point_gram_setFree {k n b degree r : ℕ} {D : Type} [Fintype D]
     (Z T : Matrix (Fin n) (Option D) Binary) :
     (pointColumns s (setFree V Z)).transpose*selfGram hr hd M*pointColumns s (setFree W T) =
       (pointColumns s V).transpose*selfGram hr hd M*pointColumns s W := by
-  rw [point_gram_ignores_free,eraseFree_setFree,eraseFree_setFree]
-  exact (point_gram_ignores_free hr hd M s V W).symm
+  rw [Lax342547.AffineSliceIndependence.point_gram_ignores_free,eraseFree_setFree,eraseFree_setFree]
+  exact (Lax342547.AffineSliceIndependence.point_gram_ignores_free hr hd M s V W).symm
 
 /--
 ---
@@ -213,9 +215,9 @@ theorem point_pair_failure {k n b degree : ℕ} {D : Type} [Fintype D] [Decidabl
       {Z | ¬ Function.Injective (joinedFree Z).mulVec} := by
     intro Z hbad hgood
     apply hbad
-    exact point_pair_independent s _ _ (by simpa using hgood)
-  have hh := Lax342547Proofs.GramNormalization.column_failure (J := Option (D ⊕ D)) (N := Fin n)
-  rw [← joinedFree_uniform,PMF.toOuterMeasure_map_apply] at hh
+    exact Lax342547.AffineSliceIndependence.point_pair_independent s _ _ (by simpa using hgood)
+  have hh := Lax342547.GramNormalization.column_failure (J := Option (D ⊕ D)) (N := Fin n)
+  rw [← Lax342547.AffineSliceIndependence.joinedFree_uniform,PMF.toOuterMeasure_map_apply] at hh
   exact ((PMF.uniformOfFintype _).toOuterMeasure.mono hsub).trans
     (by simpa [Fintype.card_option,Fintype.card_sum,two_mul,add_comm] using hh)
 

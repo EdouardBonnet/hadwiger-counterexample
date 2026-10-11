@@ -1,5 +1,5 @@
 import Lax342547.PolynomialTensors
-import Lax342547Proofs.QuadraticDegree
+import Lax342547Proofs.SelectorInterpolation
 
 namespace Lax342547Proofs.PolynomialTensors
 open Lax342547.PolynomialTensors
@@ -60,6 +60,6 @@ theorem selector_tensor_degree {b degree : ℕ} {Base : Type} [Fintype Base]
     ext s
     simp only [Pi.smul_apply,smul_eq_mul,point,selectorEval,monomial]
     ring
-  exact linear_outer_product_degree_bound φ (fun i s => point selectorEval s z i) hz
+  exact Lax342547.PolynomialTensors.linear_outer_product_degree_bound φ (fun i s => point selectorEval s z i) hz
 
 end Lax342547Proofs.PolynomialTensors

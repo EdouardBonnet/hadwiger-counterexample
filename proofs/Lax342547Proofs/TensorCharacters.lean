@@ -1,5 +1,5 @@
 import Lax342547.TensorCharacters
-import Lax342547Proofs.ChannelMoments
+import Lax342547.ChannelCharacters
 
 namespace Lax342547Proofs.TensorCharacters
 open Lax342547.TensorCharacters
@@ -23,7 +23,7 @@ theorem tensor_character_average {e I J : Type} [Fintype e] [Fintype I] [Fintype
     _ = ∏ i : e × Fin h, ∑ c : (I → Binary) × (J → Binary), channelLaw c*character (A i.1) c :=
       (Fintype.prod_sum (fun i : e × Fin h => fun c : (I → Binary) × (J → Binary) => channelLaw c*character (A i.1) c)).symm
     _ = _ := by
-      simp_rw [Lax342547Proofs.ChannelCharacters.character_average]
+      simp_rw [Lax342547.ChannelCharacters.character_average]
       rw [Fintype.prod_prod_type]
       simp only [Finset.prod_const,Finset.card_univ,Fintype.card_fin,one_div_pow]
       rw [Finset.prod_div_distrib]
@@ -46,6 +46,6 @@ theorem product_tensor_characters {e I J ι : Type} [Fintype e] [Fintype I] [Fin
   rw [Finset.prod_comm]
   apply Finset.prod_congr rfl
   intro j _
-  exact (Lax342547Proofs.ChannelCharacters.character_sum (fun i => A i j.1) (c j)).symm
+  exact (Lax342547.ChannelCharacters.character_sum (fun i => A i j.1) (c j)).symm
 
 end Lax342547Proofs.TensorCharacters

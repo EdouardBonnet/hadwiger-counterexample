@@ -1,7 +1,10 @@
 import Lax342547.ResponseMatrices
-import Lax342547Proofs.BoundedDerivatives
 import Mathlib.LinearAlgebra.Matrix.Rank
 import Lax342547Proofs.MomentRecovery
+import Lax342547.BarredSpaces
+import Lax342547.ProjectedPins
+import Lax342547Proofs.PrimalRetractions
+import Lax342547Proofs.ResponseSolvability
 
 namespace Lax342547Proofs.ResponseMatrices
 
@@ -52,9 +55,9 @@ theorem coefficients_rank {B H : Type} [Fintype B] [Fintype H]
     (coefficients f g).rank ≤ min (Module.finrank Binary (LinearMap.range f))
       (Module.finrank Binary (LinearMap.range g)) := by
   classical
-  rw [coefficients_product]
+  rw [Lax342547.ResponseMatrices.coefficients_product]
   have hr := Matrix.rank_mul_le (LinearMap.toMatrix' f).transpose (LinearMap.toMatrix' g)
-  simpa only [Matrix.rank_transpose, toMatrix_rank] using hr
+  simpa only [Matrix.rank_transpose, Lax342547.ResponseMatrices.toMatrix_rank] using hr
 
 /--
 ---
@@ -76,7 +79,7 @@ conclusion: Lax342547.ResponseMatrices.projection_difference_rank
 theorem projection_difference_rank {B : Type} [Fintype B] [DecidableEq B]
     (A M C : Matrix B B Binary) :
     (M - A.transpose * M * C).rank ≤ (1 - A).rank + (1 - C).rank := by
-  rw [projection_difference]
+  rw [Lax342547.ResponseMatrices.projection_difference]
   apply (Lax342547Proofs.MomentRecovery.rank_add_le _ _).trans
   apply Nat.add_le_add
   · exact (Matrix.rank_mul_le_left _ _).trans_eq (Matrix.rank_transpose _)
@@ -102,7 +105,7 @@ theorem quotient_projection {B : Type} [Fintype B]
     simp [hfix v hv]
   · have hdiff : 1 - A = LinearMap.toMatrix' p := by
       simp [A, map_sub]
-    rw [hdiff, toMatrix_rank]
+    rw [hdiff, Lax342547.ResponseMatrices.toMatrix_rank]
     apply Submodule.finrank_mono
     rintro _ ⟨v, rfl⟩
     exact hp v
@@ -176,7 +179,7 @@ theorem projected_paired_response {B H : Type} [Fintype B]
   have he : ∀ i, ∃ β : (Nominal B H ⧸ D) →ₗ[Binary] (Nominal B H ⧸ E) →ₗ[Binary] Binary,
       pureResponse D E β = (matrixPair ((A i).transpose * M i * C i)).comp (LinearMap.proj i) := by
     intro i
-    exact projected_endpoint_response D E i (M i) (A i) (C i) (hD i) (hE i)
+    exact Lax342547.ResponseMatrices.projected_endpoint_response D E i (M i) (A i) (C i) (hD i) (hE i)
   choose β hβ using he
   let L : ((Nominal B H ⧸ D) →ₗ[Binary] (Nominal B H ⧸ E) →ₗ[Binary] Binary) →ₗ[Binary]
       Module.Dual Binary (Fin 2 → Matrix B B Binary) :=
@@ -204,9 +207,9 @@ theorem projected_pin_key_dimension {k n b degree r K : ℕ} {hr : 2 * r ≤ n}
   classical
   have hp : Module.finrank Binary (projected P i a) ≤ K :=
     ((Finset.single_le_sum (fun _ _ => Nat.zero_le _) (Finset.mem_univ a)).trans
-      (Lax342547Proofs.ProjectedPins.projected_rank P i)).trans hK
+      (Lax342547.ProjectedPins.projected_rank P i)).trans hK
   exact (Submodule.finrank_add_le_finrank_add_finrank _ _).trans
-    (Nat.add_le_add hp (Lax342547Proofs.BarredSpaces.individual_key_dimension W i a.1))
+    (Nat.add_le_add hp (Lax342547.BarredSpaces.individual_key_dimension W i a.1))
 
 /--
 ---
@@ -230,27 +233,27 @@ theorem actual_pure_projection {k n b degree r K : ℕ} {hr : 2 * r ≤ n}
       projected P i (e, true) ⊔ individualKeys W i e ≤ LinearMap.ker A.mulVecLin ∧
       (1 - A).rank ≤ Module.finrank Binary ↥(projected P i (e, true) ⊔ individualKeys W i e) := by
     intro i
-    exact quotient_projection _
+    exact Lax342547.ResponseMatrices.quotient_projection _
   have hCp : ∀ i, ∃ C : Moment k n b degree,
       projected P i (e, false) ⊔ individualKeys W i e ≤ LinearMap.ker C.mulVecLin ∧
       (1 - C).rank ≤ Module.finrank Binary ↥(projected P i (e, false) ⊔ individualKeys W i e) := by
     intro i
-    exact quotient_projection _
+    exact Lax342547.ResponseMatrices.quotient_projection _
   choose A hA hrA using hAp
   choose C hC hrC using hCp
   have hD : ∀ i, (barred W P U (e, true)).map (primalProjection i) ≤ LinearMap.ker (A i).mulVecLin := by
     intro i
-    exact (Lax342547Proofs.BarredSpaces.barred_projection W P U (e, true) i).trans (hA i)
+    exact (Lax342547.BarredSpaces.barred_projection W P U (e, true) i).trans (hA i)
   have hE : ∀ i, (barred W P V (e, false)).map (primalProjection i) ≤ LinearMap.ker (C i).mulVecLin := by
     intro i
-    exact (Lax342547Proofs.BarredSpaces.barred_projection W P V (e, false) i).trans (hC i)
-  obtain ⟨β, hβ⟩ := projected_paired_response _ _ M A C hD hE
+    exact (Lax342547.BarredSpaces.barred_projection W P V (e, false) i).trans (hC i)
+  obtain ⟨β, hβ⟩ := Lax342547.ResponseMatrices.projected_paired_response _ _ M A C hD hE
   refine ⟨A, C, β, hβ, ?_⟩
   intro i
   constructor
-  · have ha := (hrA i).trans (projected_pin_key_dimension W P hK i (e, true))
-    have hc := (hrC i).trans (projected_pin_key_dimension W P hK i (e, false))
-    have hh := (projection_difference_rank (A i) (M i) (C i)).trans (Nat.add_le_add ha hc)
+  · have ha := (hrA i).trans (Lax342547.ResponseMatrices.projected_pin_key_dimension W P hK i (e, true))
+    have hc := (hrC i).trans (Lax342547.ResponseMatrices.projected_pin_key_dimension W P hK i (e, false))
+    have hh := (Lax342547.ResponseMatrices.projection_difference_rank (A i) (M i) (C i)).trans (Nat.add_le_add ha hc)
     omega
   · exact (Matrix.rank_mul_le_left _ _).trans (Matrix.rank_mul_le_right _ _)
 
@@ -283,7 +286,7 @@ theorem matrix_representation {Comp B : Type} [Fintype Comp] [Fintype B]
     (X : Submodule Binary (Comp → Matrix B B Binary)) (t : X →ₗ[Binary] Binary) :
     ∃ M : Comp → Matrix B B Binary, ∀ x : X, t x = ∑ e, matrixPair (M e) (x.val e) := by
   obtain ⟨t', ht⟩ := t.exists_extend
-  obtain ⟨M, hM⟩ := ambient_matrix_representation t'
+  obtain ⟨M, hM⟩ := Lax342547.ResponseMatrices.ambient_matrix_representation t'
   refine ⟨M, ?_⟩
   intro x
   have he := DFunLike.congr_fun ht x
@@ -330,7 +333,7 @@ theorem restriction_rank {B H : Type} [Fintype B] [Fintype H]
       Module.finrank Binary (LinearMap.range δ) := by
   change Module.finrank Binary (LinearMap.range
     ((perpendicular S).subtype.comp (δ.comp (D.mkQ.comp (primalEmbedding i))))) ≤ _
-  exact (comp_right_rank _ _).trans (comp_left_rank _ _)
+  exact (Lax342547.ResponseMatrices.comp_right_rank _ _).trans (Lax342547.ResponseMatrices.comp_left_rank _ _)
 
 /--
 ---
@@ -363,9 +366,9 @@ theorem baseline_coordinate_rank {Comp B H : Type} [Fintype B] [Fintype H]
     rfl
   constructor
   · rw [heplus]
-    exact ((comp_right_rank _ _).trans (comp_left_rank _ _)).trans hplus
+    exact ((Lax342547.ResponseMatrices.comp_right_rank _ _).trans (Lax342547.ResponseMatrices.comp_left_rank _ _)).trans hplus
   · rw [heminus]
-    exact ((comp_right_rank _ _).trans (comp_left_rank _ _)).trans hminus
+    exact ((Lax342547.ResponseMatrices.comp_right_rank _ _).trans (Lax342547.ResponseMatrices.comp_left_rank _ _)).trans hminus
 
 /--
 ---
@@ -402,14 +405,14 @@ theorem bounded_residual_rank {B H : Type} [Fintype B] [Fintype H] (K : ℕ)
     (hf : Module.finrank Binary (LinearMap.range f) ≤ 3 * K + 28)
     (hdf : Module.finrank Binary (LinearMap.range df) ≤ 3 * K + 28) :
     (residualCoefficients M Q f g df dg).rank ≤ 14 * K + 140 := by
-  have hb := ((coefficients_rank f g).trans (min_le_left _ _)).trans hf
-  have hδf := ((coefficients_rank df g).trans (min_le_left _ _)).trans hdf
-  have hδg := ((coefficients_rank f dg).trans (min_le_left _ _)).trans hf
-  have hprod := ((coefficients_rank df dg).trans (min_le_left _ _)).trans hdf
-  have h1 := rank_sub_le (M - Q) (coefficients f g)
-  have h2 := rank_sub_le (M - Q - coefficients f g) (coefficients df g)
-  have h3 := rank_sub_le (M - Q - coefficients f g - coefficients df g) (coefficients f dg)
-  have h4 := rank_sub_le (M - Q - coefficients f g - coefficients df g - coefficients f dg) (coefficients df dg)
+  have hb := ((Lax342547.ResponseMatrices.coefficients_rank f g).trans (min_le_left _ _)).trans hf
+  have hδf := ((Lax342547.ResponseMatrices.coefficients_rank df g).trans (min_le_left _ _)).trans hdf
+  have hδg := ((Lax342547.ResponseMatrices.coefficients_rank f dg).trans (min_le_left _ _)).trans hf
+  have hprod := ((Lax342547.ResponseMatrices.coefficients_rank df dg).trans (min_le_left _ _)).trans hdf
+  have h1 := Lax342547.ResponseMatrices.rank_sub_le (M - Q) (coefficients f g)
+  have h2 := Lax342547.ResponseMatrices.rank_sub_le (M - Q - coefficients f g) (coefficients df g)
+  have h3 := Lax342547.ResponseMatrices.rank_sub_le (M - Q - coefficients f g - coefficients df g) (coefficients f dg)
+  have h4 := Lax342547.ResponseMatrices.rank_sub_le (M - Q - coefficients f g - coefficients df g - coefficients f dg) (coefficients df dg)
   unfold residualCoefficients
   omega
 

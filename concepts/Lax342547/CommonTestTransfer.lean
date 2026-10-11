@@ -3,7 +3,7 @@ import Lax342547.EmpiricalVariance
 /-!
 ---
 title: Marginal transfer of common affine-slice tests
-type: theorem
+type: lemma
 ---
 A bounded marginal density transfers raw empirical variance to a quantitative
 comparison with the common reference mean. Near-certain empirical success

@@ -1,7 +1,5 @@
 import Lax342547.RecordCollision
-import Lax342547Proofs.KeyMeasures
-import Lax342547Proofs.CellAveraging
-import Lax342547Proofs.CollisionPruning
+import Lax342547.KeyMeasures
 
 namespace Lax342547Proofs.RecordCollision
 open Lax342547.RecordCollision
@@ -83,7 +81,7 @@ theorem key_record_mass_subprobability {Ω Q C : Type} [Fintype Ω] [Fintype Q] 
     (ρ : Ω → ℝ) (key : Ω → Q) (record : Ω → C) (accept : Ω → Prop)
     (hρ : ∀ ω, 0 ≤ ρ ω) (hsum : ∑ ω, ρ ω ≤ 1) :
     (∑ q, ∑ c, keyRecordMass ρ key record accept q c) ≤ 1 := by
-  simp_rw [key_record_mass_total]
-  exact Lax342547Proofs.KeyMeasures.key_mass_subprobability ρ key accept hρ hsum
+  simp_rw [Lax342547.RecordCollision.key_record_mass_total]
+  exact Lax342547.KeyMeasures.key_mass_subprobability ρ key accept hρ hsum
 
 end Lax342547Proofs.RecordCollision

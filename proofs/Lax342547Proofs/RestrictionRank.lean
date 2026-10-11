@@ -88,7 +88,7 @@ codimension.
 theorem bilinear_pullback_rank (B : LinearMap.BilinForm K V) (A : W →ₗ[K] V) :
     Module.finrank K (LinearMap.range B) ≤ Module.finrank K (LinearMap.range (B.comp A A)) +
       2 * (Module.finrank K V - Module.finrank K (LinearMap.range A)) := by
-  have h := bilinear_restriction_rank B (LinearMap.range A)
+  have h := Lax342547.RestrictionRank.bilinear_restriction_rank B (LinearMap.range A)
   have heq := surjective_pullback_rank (B.restrict (LinearMap.range A)) A.rangeRestrict
     (LinearMap.range_eq_top.mp A.range_rangeRestrict)
   change Module.finrank K (LinearMap.range (B.comp A A)) = _ at heq

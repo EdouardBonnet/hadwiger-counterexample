@@ -1,6 +1,10 @@
 import Lax342547.ProductMinusImages
-import Lax342547Proofs.ProductImages
 import Lax342547Proofs.ConditionalMinus
+import Lax342547.AffineImages
+import Lax342547.ConditionalMinus
+import Lax342547Proofs.FiniteProbability
+import Lax342547Proofs.FiniteUniform
+import Lax342547Proofs.GramColumns
 
 namespace Lax342547Proofs.ProductMinusImages
 
@@ -107,7 +111,7 @@ theorem affine_image_bound [DecidableEq Draw] [DecidableEq B] [DecidableEq H] [D
   rw [hu]
   calc
     _ ≤ 1 / (2 : ℝ≥0∞) ^ (Fintype.card T * Module.finrank Binary (commonSpace P X)) :=
-      AffineImages.image_bound S (commonSpace P X) (common_space_le P X) C hC a _
+      Lax342547.AffineImages.image_bound S (commonSpace P X) (common_space_le P X) C hC a _
     _ ≤ _ := ENNReal.div_le_div_left
       (pow_le_pow_right₀ (by norm_num) (Nat.mul_le_mul_left _ (common_dimension P X))) _
 
@@ -134,7 +138,7 @@ theorem completion_image_bound [DecidableEq Draw] [DecidableEq B] [DecidableEq H
         2 * PMF.uniformOfFintype (ColumnProduct E (P i) (X i)) z := by
     rw [← PMF.toOuterMeasure_apply_singleton, PMF.toOuterMeasure_map_apply,
       ← PMF.toOuterMeasure_apply_singleton]
-    exact ConditionalMinus.completion_event_bound E (P i) (X i) (hPX i) hN {z}
+    exact Lax342547.ConditionalMinus.completion_event_bound E (P i) (X i) (hPX i) hN {z}
   let p := (PMF.uniformOfFintype (∀ i, Completion E (P i) (X i))).map (fun z i => (z i).val)
   let q := PMF.uniformOfFintype (∀ i, ColumnProduct E (P i) (X i))
   have hp (z : ∀ i, ColumnProduct E (P i) (X i)) : p z ≤ (2 : ℝ≥0∞) ^ Fintype.card Draw * q z := by
@@ -148,7 +152,7 @@ theorem completion_image_bound [DecidableEq Draw] [DecidableEq B] [DecidableEq H
     _ ≤ (2 : ℝ≥0∞) ^ Fintype.card Draw * q.map (images C) y := hb
     _ ≤ (2 : ℝ≥0∞) ^ Fintype.card Draw *
         (1 / 2 ^ (Fintype.card T * (Fintype.card N - Fintype.card Draw * (Fintype.card B + Fintype.card H)))) :=
-      mul_le_mul_of_nonneg_left (affine_image_bound E P X hPX C hC y) zero_le
+      mul_le_mul_of_nonneg_left (Lax342547.ProductMinusImages.affine_image_bound E P X hPX C hC y) zero_le
     _ = _ := by rw [mul_one_div]
 
 end Lax342547Proofs.ProductMinusImages

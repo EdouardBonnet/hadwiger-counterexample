@@ -4,7 +4,7 @@ import Mathlib.LinearAlgebra.Dimension.Finite
 /-!
 ---
 title: Joint binary projections for commuting idempotents
-type: theorem
+type: lemma
 ---
 The simultaneous splitting used in Lemma 5.2, with both dimension bounds.
 The projections are indexed by all binary labels; at most dim(V) are nonzero.

@@ -4,7 +4,7 @@ import Lax342547.GramNormalization
 /-!
 ---
 title: Uniform injective frames and channel transpose failure
-type: theorem
+type: lemma
 ---
 Injectivity of an h-column frame has probability at least one half when
 N≥h+1, so conditioning costs at most a factor of two on every event.

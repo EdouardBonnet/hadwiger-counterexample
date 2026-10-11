@@ -1,6 +1,8 @@
 import Lax342547.UniformPhaseTails
-import Lax342547Proofs.ChannelColumns
-import Lax342547Proofs.TotalRankCount
+import Lax342547.ChannelColumns
+import Lax342547.FiniteSampling
+import Lax342547.RealCellLaws
+import Lax342547.TotalRankCount
 
 namespace Lax342547Proofs.UniformPhaseTails
 open Lax342547.UniformPhaseTails
@@ -37,11 +39,11 @@ theorem no_cover_raw_family_tail {e B N Ω C : Type} [Fintype e] [Fintype B] [Fi
   classical
   let P := fun c : C => fun o : e → Frame B (Fin h) N E =>
     θ ≤ |∑ x, μ x*ψ c x*tensorCharacter h (A x) (columnsEquiv h (fun a => channels (o a)))|
-  have hu := Lax342547Proofs.FiniteSampling.cell_mass_union_bound
+  have hu := Lax342547.FiniteSampling.cell_mass_union_bound
     (weights (Lax342547.RawLaw.uniformLaw E)) P Finset.univ
-    (Lax342547Proofs.RealCellLaws.weights_nonneg _)
+    (Lax342547.RealCellLaws.weights_nonneg _)
   simp only [Finset.mem_univ,true_and] at hu
-  have hloc (c : C) := Lax342547Proofs.ChannelColumns.no_cover_raw_phase_tail E μ A (ψ c)
+  have hloc (c : C) := Lax342547.ChannelColumns.no_cover_raw_phase_tail E μ A (ψ c)
     r h t k p θ hN hμ hp0 hp1 hr hA (hψ c) hsize hk hθ hcover
   calc
     _ ≤ ∑ c, cellMass (weights (Lax342547.RawLaw.uniformLaw E)) (P c) := hu
@@ -76,10 +78,10 @@ theorem no_cover_uniform_target_tail {e B N Ω : Type} [Fintype e] [Fintype B] [
         (((4 : ℝ)^(2*t)*p^(2^(k-(100*r+10)))+1/(2 : ℝ)^(h*2^(k-(100*r+12))))/θ^(2*t)) := by
   classical
   let C := {S : e → Matrix N N Binary // (∑ i, (S i).rank) ≤ r}
-  have hh := no_cover_raw_family_tail (C := C) E μ A (fun c => ψ c.val)
+  have hh := Lax342547.UniformPhaseTails.no_cover_raw_family_tail (C := C) E μ A (fun c => ψ c.val)
     r h t k p θ hN hμ hp0 hp1 hr hA (fun c => hψ c.val c.property) hsize hk hθ hcover
   have hc : (Fintype.card C : ℝ) ≤ (r+1 : ℝ)^Fintype.card e*(2 : ℝ)^(2*Fintype.card N*r) := by
-    have ht := Lax342547Proofs.TotalRankCount.total_rank_card (e := e) (I := N) (J := N) r
+    have ht := Lax342547.TotalRankCount.total_rank_card (e := e) (I := N) (J := N) r
     have he : (Fintype.card N+Fintype.card N)*r = 2*Fintype.card N*r := by ring
     rw [he] at ht
     exact_mod_cast ht

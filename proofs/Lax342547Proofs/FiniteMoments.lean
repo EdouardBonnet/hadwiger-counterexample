@@ -1,5 +1,4 @@
 import Lax342547.FiniteMoments
-import Lax342547Proofs.FiniteSampling
 import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 namespace Lax342547Proofs.FiniteMoments
@@ -42,7 +41,7 @@ theorem weighted_character_moment_bound {Ω C : Type} [Fintype Ω] [Fintype C]
       ∑ sample : Fin (2*t) → Ω, productLaw (fun _ : Fin (2*t) => μ) sample*
         (∑ c, ν c*∏ i, χ (sample i) c) := by
   classical
-  rw [finite_even_moment]
+  rw [Lax342547.FiniteMoments.finite_even_moment]
   apply Finset.sum_le_sum
   intro sample _
   have hp : (∏ i, ψ (sample i)) ≤ 1 := by

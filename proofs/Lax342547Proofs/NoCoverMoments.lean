@@ -1,6 +1,9 @@
 import Lax342547.NoCoverMoments
-import Lax342547Proofs.ComponentMoments
-import Lax342547Proofs.IndexedRankGrowth
+import Lax342547.ChannelCharacters
+import Lax342547.ComponentMoments
+import Lax342547.FiniteSampling
+import Lax342547.IndexedRankGrowth
+import Lax342547.MomentTails
 
 namespace Lax342547Proofs.NoCoverMoments
 open Lax342547.NoCoverMoments
@@ -51,11 +54,11 @@ theorem no_cover_even_moment {e I J Ω : Type} [Fintype e] [Fintype I] [Fintype 
   let R := (2 : ℕ)^(k-(100*r+12))
   let ρ := productLaw (fun _ : Fin (2*t) => μ)
   let rank := fun sample : Fin (2*t) → Ω => ∑ i, (∑ j, A (sample j) i).rank
-  have hprob := Lax342547Proofs.FiniteSampling.product_probability (fun _ : Fin (2*t) => μ) (fun _ => hμ)
-  have hmoment := Lax342547Proofs.ComponentMoments.component_even_moment_bound μ A ψ h t hμ.1 hψ
-  have hsplit := Lax342547Proofs.MomentTails.rank_moment_split ρ rank h R hprob
+  have hprob := Lax342547.FiniteSampling.product_probability (fun _ : Fin (2*t) => μ) (fun _ => hμ)
+  have hmoment := Lax342547.ComponentMoments.component_even_moment_bound μ A ψ h t hμ.1 hψ
+  have hsplit := Lax342547.MomentTails.rank_moment_split ρ rank h R hprob
   have hbad : cellMass ρ (fun sample => rank sample < R) ≤ (4 : ℝ)^(2*t)*p^(2^(k-m)) := by
-    have hg := Lax342547Proofs.IndexedRankGrowth.component_no_cover_rank_indexed (ι := Fin (2*t)) μ
+    have hg := Lax342547.IndexedRankGrowth.component_no_cover_rank_indexed (ι := Fin (2*t)) μ
       (fun x i => (A x i).mulVecLin) r k p hμ hp0 hp1 hr hA (by omega) (by simpa only [Fintype.card_fin] using hsize)
       (by
         intro S T hS hT hdS hdT
@@ -72,7 +75,7 @@ theorem no_cover_even_moment {e I J Ω : Type} [Fintype e] [Fintype I] [Fintype 
           (2^(k-(100*r+10)) : ℝ)/4) := by
       funext sample
       apply propext
-      simp_rw [sum_matrix_rank]
+      simp_rw [Lax342547.NoCoverMoments.sum_matrix_rank]
       rw [hpow]
       rw [← Nat.cast_sum]
       change rank sample < R ↔ (rank sample : ℝ) < (R : ℝ)
@@ -102,10 +105,10 @@ theorem no_cover_phase_tail {e I J Ω : Type} [Fintype e] [Fintype I] [Fintype J
       (fun c => θ ≤ |∑ x, μ x*ψ x*tensorCharacter h (A x) c|) ≤
       ((4 : ℝ)^(2*t)*p^(2^(k-(100*r+10)))+1/(2 : ℝ)^(h*2^(k-(100*r+12))))/θ^(2*t) := by
   classical
-  have hprob := Lax342547Proofs.FiniteSampling.product_probability
-    (fun _ : e × Fin h => (channelLaw (I := I) (J := J))) (fun _ => Lax342547Proofs.ChannelCharacters.channel_probability)
-  exact (Lax342547Proofs.MomentTails.finite_moment_markov _ _ θ (2*t) hprob.1 hθ).trans
+  have hprob := Lax342547.FiniteSampling.product_probability
+    (fun _ : e × Fin h => (channelLaw (I := I) (J := J))) (fun _ => Lax342547.ChannelCharacters.channel_probability)
+  exact (Lax342547.MomentTails.finite_moment_markov _ _ θ (2*t) hprob.1 hθ).trans
     (div_le_div_of_nonneg_right
-      (no_cover_even_moment μ A ψ r h t k p hμ hp0 hp1 hr hA hψ hsize hk hcover) (by positivity))
+      (Lax342547.NoCoverMoments.no_cover_even_moment μ A ψ r h t k p hμ hp0 hp1 hr hA hψ hsize hk hcover) (by positivity))
 
 end Lax342547Proofs.NoCoverMoments

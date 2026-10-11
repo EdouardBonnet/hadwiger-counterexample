@@ -1,6 +1,7 @@
 import Lax342547.FrameTranspose
-import Lax342547Proofs.UnitSpanAvoidance
-import Lax342547Proofs.FiniteLinearLaw
+import Lax342547.ChannelColumns
+import Lax342547.PhaseAverages
+import Lax342547.UnitSpanAvoidance
 
 namespace Lax342547Proofs.FrameTranspose
 open Lax342547.FrameTranspose
@@ -44,12 +45,12 @@ theorem capped_transpose_frame {A P H N : Type} [Fintype A] [Fintype P] [Fintype
       M*weights (PMF.uniformOfFintype (Frame P H N E.transpose)) f := by
   letI : Nonempty (Frame P H N E.transpose) := ⟨transposeFrame (Classical.choice inferInstance)⟩
   intro f
-  have he := Lax342547Proofs.ChannelColumns.push_cell_mass α image (fun g => transposeFrame g = f)
-  have hh := Lax342547Proofs.PhaseAverages.finite_event_density
+  have he := Lax342547.ChannelColumns.push_cell_mass α image (fun g => transposeFrame g = f)
+  have hh := Lax342547.PhaseAverages.finite_event_density
     (weights (PMF.uniformOfFintype (Frame P H N E))) (push α image) M hcap (fun g => transposeFrame g = f)
   change cellMass α (fun a => transposeFrame (image a) = f) ≤ _
   rw [← he]
-  have hu := uniform_equiv_push (transposeEquiv (H := H) (N := N) E) f
+  have hu := Lax342547.FrameTranspose.uniform_equiv_push (transposeEquiv (H := H) (N := N) E) f
   change cellMass (weights (PMF.uniformOfFintype (Frame P H N E))) (fun g => transposeFrame g = f) = _ at hu
   exact hh.trans_eq (congrArg (fun x => M*x) hu)
 
@@ -70,8 +71,8 @@ theorem conditioned_dual_span_avoidance {A P H N : Type}
     cellMass (Lax342547.RetainedImages.conditionalLaw α C) (fun a => ¬ Disjoint (V a) W) ≤
       (M/τ)*(2*((2 : ℝ)^(Fintype.card P+Fintype.card H+Module.finrank Binary W)/(2 : ℝ)^Fintype.card N)) := by
   letI : Nonempty (Frame P H N E.transpose) := ⟨transposeFrame (Classical.choice inferInstance)⟩
-  exact Lax342547Proofs.UnitSpanAvoidance.conditioned_unit_span_avoidance E.transpose α
+  exact Lax342547.UnitSpanAvoidance.conditioned_unit_span_avoidance E.transpose α
     (fun a => transposeFrame (image a)) V W C M τ hα hM hτ hC hN hV
-    (capped_transpose_frame E α image M hcap)
+    (Lax342547.FrameTranspose.capped_transpose_frame E α image M hcap)
 
 end Lax342547Proofs.FrameTranspose

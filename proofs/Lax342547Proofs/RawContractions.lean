@@ -1,5 +1,5 @@
 import Lax342547.RawContractions
-import Lax342547Proofs.TableContractions
+import Lax342547.TableContractions
 
 namespace Lax342547Proofs.RawContractions
 
@@ -39,8 +39,8 @@ theorem raw_plus (oA oB : Fin 2 → Comp → Frame B H N E) (e : Comp) (i z : Fi
   funext h
   change dotProduct (observation oA (e, true) (primalEmbedding i v))
     (observation oB (e, false) (channelEmbedding z (Pi.single h 1))) = _
-  rw [(observation_blocks oA e true i v 0).1,
-    (observation_blocks oB e false z 0 (Pi.single h 1)).2]
+  rw [(Lax342547.RawContractions.observation_blocks oA e true i v 0).1,
+    (Lax342547.RawContractions.observation_blocks oB e false z 0 (Pi.single h 1)).2]
   simp only [Bool.false_eq_true, if_false, if_true, Matrix.mulVecLin_apply,
     ← Matrix.mulVec_mulVec, Matrix.mulVec_single_one]
   simp [Matrix.mulVec, dotProduct, mul_comm]
@@ -53,8 +53,8 @@ theorem raw_minus (oA oB : Fin 2 → Comp → Frame B H N E) (e : Comp) (i z : F
   funext h
   change dotProduct (observation oB (e, true) (channelEmbedding z (Pi.single h 1)))
     (observation oA (e, false) (primalEmbedding i v)) = _
-  rw [(observation_blocks oB e true z 0 (Pi.single h 1)).2,
-    (observation_blocks oA e false i v 0).1]
+  rw [(Lax342547.RawContractions.observation_blocks oB e true z 0 (Pi.single h 1)).2,
+    (Lax342547.RawContractions.observation_blocks oA e false i v 0).1]
   simp only [Bool.false_eq_true, if_false, if_true, Matrix.mulVecLin_apply,
     ← Matrix.mulVec_mulVec, Matrix.mulVec_single_one]
   rfl
@@ -121,6 +121,6 @@ theorem raw_star_contraction [Fintype Comp] (oA oB : Fin 2 → Comp → Frame B 
     (hT : Lax342547.TableContractions.Extends (rawForms oA oB) T)
     (X : Submodule Binary (Comp → Matrix B B Binary)) (i z : Fin 2) (x : effective X P i) :
     starContraction T X i z x = profileContraction (oB z) (profileMap (oA i) x.val.val) := by
-  rw [TableContractions.star_extension T _ hT, raw_contraction]
+  rw [Lax342547.TableContractions.star_extension T _ hT, Lax342547.RawContractions.raw_contraction]
 
 end Lax342547Proofs.RawContractions

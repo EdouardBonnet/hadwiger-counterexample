@@ -1,7 +1,9 @@
 import Lax342547.BarredElimination
-import Lax342547Proofs.SparseKeyCoefficients
 import Lax342547Proofs.SelectedBlocks
-import Lax342547Proofs.PairedKeys
+import Lax342547.PairedKeys
+import Lax342547.PairedWitnesses
+import Lax342547.SparseKeyCoefficients
+import Lax342547Proofs.BarredSpaces
 
 namespace Lax342547Proofs.BarredElimination
 
@@ -38,9 +40,9 @@ theorem individual_keys_zero {R : ℕ} (W : Lists k n b degree r hr)
   have hlift : (∑ u, c u • labelTensor (selectorEval (degree := degree))
       (W.left i u.1 u.2).label (Lax342547.SelectedBlocks.keyBase W i a.1 u)) = q := by
     simpa only [SelectedBlocks.key_lift] using hc
-  have hcoeff := SparseKeyCoefficients.coefficients_zero P A hA i a L hL v
+  have hcoeff := Lax342547.SparseKeyCoefficients.coefficients_zero P A hA i a L hL v
     (fun u : Σ z, Fin (W.length i z) => (W.left i u.1 u.2).label) (W.left_fresh i)
-    (Lax342547.SelectedBlocks.keyBase W i a.1) ((PairedWitnesses.list_budgets W).1 i)
+    (Lax342547.SelectedBlocks.keyBase W i a.1) ((Lax342547.PairedWitnesses.list_budgets W).1 i)
     (fun u => hfresh u.1 u.2) hdisjoint c (hlift ▸ hpin)
   rw [← hlift]
   apply Finset.sum_eq_zero
@@ -142,17 +144,17 @@ theorem sparse_barred {R : ℕ} [Fintype H] (W : Lists k n b degree r hr)
   have hrepr : v = p + q + t := by rw [← hpq] at hwt; exact hwt.symm
   have hprivate := private_properties U t ht
   have hqzero (i : Fin 2) : primalProjection i q = 0 := by
-    apply individual_keys_zero W P A hA i a (L i) (hL i) (c i) (hdisjoint i) (hfresh i)
+    apply Lax342547.BarredElimination.individual_keys_zero W P A hA i a (L i) (hL i) (c i) (hdisjoint i) (hfresh i)
       (primalProjection i q)
     · exact BarredSpaces.projected_keys W i a.1 (Submodule.mem_map.mpr ⟨q, hq, rfl⟩)
     · rw [← hvec, hrepr, map_add, map_add, hprivate.1 i, add_zero, add_sub_cancel_right]
       exact Submodule.mem_map.mpr ⟨p, hp, rfl⟩
-  have hqprimal := (PairedKeys.key_bounds (H := H) W a.1).1 hq
+  have hqprimal := (Lax342547.PairedKeys.key_bounds (H := H) W a.1).1 hq
   have hq0 : q = 0 := by
     ext ⟨i, d | h⟩
     · exact congrFun (hqzero i) d
     · exact hqprimal i h
-  apply private_primal_pin P U a hU v hv
+  apply Lax342547.BarredElimination.private_primal_pin P U a hU v hv
   rw [hrepr, hq0, add_zero]
   exact Submodule.mem_sup.mpr ⟨p, hp, t, ht, rfl⟩
 

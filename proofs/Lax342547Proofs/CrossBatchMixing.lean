@@ -1,6 +1,10 @@
 import Lax342547.CrossBatchMixing
-import Lax342547Proofs.ConditionedMixing
 import Lax342547Proofs.SlotWalsh
+import Lax342547.BilinearWalsh
+import Lax342547.ConditionedMixing
+import Lax342547.FourierTests
+import Lax342547.SlotWalsh
+import Lax342547Proofs.Walsh
 
 namespace Lax342547Proofs.CrossBatchMixing
 
@@ -56,9 +60,9 @@ theorem weighted_character_bound {I J S : Type} [Fintype I] [Fintype J] [Fintype
     ⟨mul_nonneg hp.le (hα x).1,by have hh := (le_div_iff₀ hp).mp (hα x).2; simpa only [mul_comm] using hh⟩
   have hc₂ : ∀ y,0 ≤ q*β y ∧ q*β y ≤ C₂ := fun y =>
     ⟨mul_nonneg hq.le (hβ y).1,by have hh := (le_div_iff₀ hq).mp (hβ y).2; simpa only [mul_comm] using hh⟩
-  have hh := Lax342547Proofs.BilinearWalsh.density_bound (bitMatrix (coefficient C t) N)
+  have hh := Lax342547.BilinearWalsh.density_bound (bitMatrix (coefficient C t) N)
     (fun x => p*α x) f (fun y => q*β y) g C₁ C₂ hc₁ hc₂ hf hg
-  rw [Lax342547Proofs.SlotWalsh.bit_rank] at hh
+  rw [Lax342547.SlotWalsh.bit_rank] at hh
   have hr : N ≤ N*(coefficient C t).rank := Nat.le_mul_of_pos_right N
     (Lax342547Proofs.SlotWalsh.rank_pos_of_ne_zero _ hC)
   have he : Lax342547.BilinearWalsh.average (bitMatrix (coefficient C t) N)
@@ -142,13 +146,13 @@ theorem cross_batch_comparison {I J S : Type} [Fintype I] [Fintype J] [Fintype S
     exact div_nonneg (mul_nonneg ha hb) (Real.sqrt_nonneg _)
   have htotal : ∑ xy,ρ xy = 1 := by
     simp only [ρ,Fintype.sum_prod_type,← Finset.mul_sum,hβ.2,mul_one,hα.2]
-  have hc (t : S → Binary) (ht : t ≠ 0) := weighted_character_bound C N α f β g target t C₁ C₂
+  have hc (t : S → Binary) (ht : t ≠ 0) := Lax342547.CrossBatchMixing.weighted_character_bound C N α f β g target t C₁ C₂
     (fun x => ⟨hα.1 x,hcapA x⟩) (fun y => ⟨hβ.1 y,hcapB y⟩) hf hg (hC t ht)
   have hc0 (t : S → Binary) (ht : t ≠ 0) : |characterMean ρ (crossBits C N) target t| ≤ ε := by
-    simpa only [mul_one,ρ] using weighted_character_bound C N α (fun _ => 1) β (fun _ => 1) target t C₁ C₂
+    simpa only [mul_one,ρ] using Lax342547.CrossBatchMixing.weighted_character_bound C N α (fun _ => 1) β (fun _ => 1) target t C₁ C₂
       (fun x => ⟨hα.1 x,hcapA x⟩) (fun y => ⟨hβ.1 y,hcapB y⟩) (by norm_num) (by norm_num) (hC t ht)
   have hq : 1/(2 : ℝ)^(Fintype.card S+1) ≤ patternMass ρ (crossBits C N) target :=
-    Lax342547Proofs.FourierTests.scalar_agreement_half ρ (crossBits C N) target ε heps htotal
+    Lax342547.FourierTests.scalar_agreement_half ρ (crossBits C N) target ε heps htotal
       (fun t ht => (abs_le.mp (hc0 t ht)).1) hsmall
   have hqpos : 0 < patternMass ρ (crossBits C N) target := lt_of_lt_of_le (by positivity) hq
   have he : (∑ xy,ρ xy*(f xy.1*g xy.2)) = (∑ x,α x*f x)*(∑ y,β y*g y) := by
@@ -163,7 +167,7 @@ theorem cross_batch_comparison {I J S : Type} [Fintype I] [Fintype J] [Fintype S
   have hm : |∑ xy,ρ xy*(f xy.1*g xy.2)| ≤ 1 := by
     rw [he,abs_mul]
     exact (mul_le_mul (bounded_mean α f hα hf) (bounded_mean β g hβ hg) (abs_nonneg _) (by norm_num)).trans_eq (one_mul 1)
-  have hh := Lax342547Proofs.ConditionedMixing.conditional_test_comparison ρ
+  have hh := Lax342547.ConditionedMixing.conditional_test_comparison ρ
     (fun xy => f xy.1*g xy.2) (crossBits C N) target ε heps htotal hm hc0 hc hqpos
   rw [he] at hh
   refine hh.trans ?_

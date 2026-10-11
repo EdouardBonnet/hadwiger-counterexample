@@ -1,5 +1,5 @@
 import Lax342547.JoinedGramOrbits
-import Lax342547Proofs.GramOrbitDensity
+import Lax342547Proofs.FiniteUniform
 
 namespace Lax342547Proofs.JoinedGramOrbits
 noncomputable section
@@ -77,7 +77,7 @@ def equiv (G : Matrix I J Binary) (H : Matrix K L Binary)
       have hh := congrArg (fun M => M (Sum.inr k) (Sum.inl j)) z.property.2.2
       simpa [split,Matrix.mul_apply,Matrix.transpose_apply,Matrix.submatrix,Matrix.fromBlocks] using hh⟩
   invFun z := ⟨joined z.val,z.property.1,z.property.2.1,by
-    rw [joined_gram,z.property.2.2.1,z.property.2.2.2]⟩
+    rw [Lax342547.JoinedGramOrbits.joined_gram,z.property.2.2.1,z.property.2.2.2]⟩
   left_inv z := Subtype.ext (joined_split G H A B z)
   right_inv z := by
     apply Subtype.ext
@@ -120,7 +120,7 @@ theorem compatible_filter (G : Matrix I J Binary) (H : Matrix K L Binary)
   let : Nonempty ↑{z : Orbit N G × Orbit N H | Compatible G H A B z} :=
     inferInstanceAs (Nonempty {z : Orbit N G × Orbit N H // Compatible G H A B z})
   rw [Lax342547Proofs.FiniteUniform.filter_uniform,PMF.map_comp]
-  exact (union_uniform G H A B).symm
+  exact (Lax342547.JoinedGramOrbits.union_uniform G H A B).symm
 
 end
 end Lax342547Proofs.JoinedGramOrbits

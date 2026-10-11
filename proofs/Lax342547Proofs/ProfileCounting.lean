@@ -1,6 +1,6 @@
 import Lax342547.ProfileCounting
-import Lax342547Proofs.SymmetricFactorization
 import Mathlib.Algebra.Order.BigOperators.Group.Finset
+import Lax342547.SymmetricFactorization
 
 namespace Lax342547Proofs.ProfileCounting
 
@@ -62,7 +62,7 @@ theorem card_symmetric_profiles {I E : Type} [Fintype I] [Fintype E] (K : ℕ) :
           apply Finset.prod_le_prod'
           intro e _
           simpa only [Nat.card_eq_fintype_card] using
-            SymmetricFactorization.card_symmetric_rank (I := I) (q e).val
+            Lax342547.SymmetricFactorization.card_symmetric_rank (I := I) (q e).val
         _ = 2 ^ (∑ e, (Fintype.card I * (q e).val + (q e).val * (q e).val)) :=
           Finset.prod_pow_eq_pow_sum _ _ _
         _ ≤ _ := Nat.pow_le_pow_right (by decide) (rank_tuple_exponent _ _ _ hsum)
@@ -126,6 +126,6 @@ theorem card_concrete_profiles (k n b degree K : ℕ) :
     _ ≤ Nat.card {x : Component (Tag k) → Moment k n b degree //
         (∀ e, (x e).transpose = x e) ∧ ∑ e, (x e).rank ≤ K} :=
       Nat.card_le_card_of_injective f hf
-    _ ≤ _ := card_symmetric_profiles K
+    _ ≤ _ := Lax342547.ProfileCounting.card_symmetric_profiles K
 
 end Lax342547Proofs.ProfileCounting

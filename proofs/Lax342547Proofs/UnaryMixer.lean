@@ -1,10 +1,15 @@
 import Lax342547.UnaryMixer
 import Lax342547Proofs.FormalQuadratic
-import Lax342547Proofs.RestrictionRank
 import Lax342547Proofs.Atoms
-import Lax342547Proofs.AtomDirections
 import Mathlib.Tactic.Ring
 import Lean.Elab.Tactic.Omega
+import Lax342547.AtomDirections
+import Lax342547.Atoms
+import Lax342547.FormalQuadratic
+import Lax342547.RestrictionRank
+import Lax342547Proofs.ConcreteCut
+import Lax342547Proofs.ConcreteGeometry
+import Lax342547Proofs.GradientForm
 
 namespace Lax342547Proofs.UnaryMixer
 
@@ -76,12 +81,12 @@ theorem substitution_rank {r : E → ℕ} (inc : Finset E) (J : ℕ)
     4 * J * inc.card * ∑ e, r e ≤
       Module.finrank Binary (LinearMap.range (LinearMap.compl₁₂
         (formalQuadratic inc J H).polarBilin A A)) + 2 * s := by
-  have h := RestrictionRank.bilinear_pullback_rank (formalQuadratic inc J H).polarBilin A
+  have h := Lax342547.RestrictionRank.bilinear_pullback_rank (formalQuadratic inc J H).polarBilin A
   change Module.finrank Binary (LinearMap.range (formalQuadratic inc J H).polarBilin) ≤
     Module.finrank Binary (LinearMap.range (LinearMap.compl₁₂
       (formalQuadratic inc J H).polarBilin A A)) +
       2 * (Module.finrank Binary (Rows r inc J) - Module.finrank Binary (LinearMap.range A)) at h
-  rw [formal_rank inc J H hH] at h
+  rw [Lax342547.UnaryMixer.formal_rank inc J H hH] at h
   omega
 
 open Lax342547.ConcreteGeometry
@@ -216,10 +221,10 @@ theorem mixer_atom_expansion {k n b degree J : ℕ}
     apply Finset.sum_congr rfl
     intro f _
     by_cases hf : l ∈ f.val
-    · simp only [Atoms.atom_component, hf, if_pos]
+    · simp only [Lax342547.Atoms.atom_component, hf, if_pos]
       simp only [incident, Finset.mem_filter, Finset.mem_univ, true_and, hf, if_pos, hfactor]
       rfl
-    · simp [Atoms.atom_component, hf, incident]
+    · simp [Lax342547.Atoms.atom_component, hf, incident]
   · apply Finset.sum_congr rfl
     intro j _
     rw [← Finset.sum_subtype (F := Finset.Subtype.fintype (incident l))
@@ -233,9 +238,9 @@ theorem mixer_atom_expansion {k n b degree J : ℕ}
     · simp only [incident, Finset.mem_filter, Finset.mem_univ, true_and, he, if_pos]
       apply Finset.sum_congr rfl
       intro f _
-      simp only [Atoms.atom_component, he, if_pos, hfactor]
+      simp only [Lax342547.Atoms.atom_component, he, if_pos, hfactor]
       rfl
-    · simp [Atoms.atom_component, he, incident, matrixPair, matrixEntry]
+    · simp [Lax342547.Atoms.atom_component, he, incident, matrixPair, matrixEntry]
 
 theorem atomAlongZ_aTag {k n b degree r₀ : ℕ} {hr : 2 * r₀ ≤ n}
     (D : Testers (k := k) (b := b) (degree := degree) hr)
@@ -299,7 +304,7 @@ theorem unary_affine_quadratic {k n b degree r₀ J : ℕ} {hr : 2 * r₀ ≤ n}
   rw [gradient_eq, testerTerm_atomAlongZ]
   congr 1
   unfold atomAlongZ
-  rw [mixer_atom_expansion x Z H hfactor, AtomDirections.point_varyBlock, map_add]
+  rw [Lax342547.UnaryMixer.mixer_atom_expansion x Z H hfactor, Lax342547.AtomDirections.point_varyBlock, map_add]
   rfl
 
 /--
@@ -322,12 +327,12 @@ theorem unary_polar {k n b degree r₀ J : ℕ} {hr : 2 * r₀ ≤ n}
     (hz : ∀ i, i ∉ allowedBase k n l → z i = 0) (u v : Fin n → Binary) :
     Lax342547.FormalQuadratic.affinePolar (fun w => gradient D L R x (atomAlongZ l s z hz w)) u v =
       (formalQuadratic (incident l) J H).polarBilin (zRows Z L R l s u) (zRows Z L R l s v) := by
-  simp_rw [unary_affine_quadratic D x Z H hfactor L R l s z hz]
+  simp_rw [Lax342547.UnaryMixer.unary_affine_quadratic D x Z H hfactor L R l s z hz]
   change Lax342547.FormalQuadratic.affinePolar (fun w => testerTerm D x (atom l s z hz) +
     Lax342547.FormalQuadratic.cross (middle H)
       (rowMap (incident l) Z L R (point selectorEval s z) + zRows Z L R l s w)
       (rowMap (incident l) Z L R (point selectorEval s z) + zRows Z L R l s w)) u v = _
-  rw [FormalQuadratic.affine_polar]
+  rw [Lax342547.FormalQuadratic.affine_polar]
   rw [formalQuadratic, Lax342547.FormalQuadratic.quadratic,
     LinearMap.BilinMap.polarBilin_toQuadraticMap]
   rfl
@@ -355,14 +360,14 @@ theorem unary_rank_bound {k n b degree r₀ J : ℕ} {hr : 2 * r₀ ≤ n}
     4 * J * (incident l).card * ∑ e, r e ≤
       (Lax342547.FormalQuadratic.polarMatrix
         (fun w => gradient D L R x (atomAlongZ l s z hz w))).rank + 2 * s₀ := by
-  simp_rw [unary_affine_quadratic D x Z H hfactor L R l s z hz]
+  simp_rw [Lax342547.UnaryMixer.unary_affine_quadratic D x Z H hfactor L R l s z hz]
   change 4 * J * (incident l).card * ∑ e, r e ≤
     (Lax342547.FormalQuadratic.polarMatrix (fun w => testerTerm D x (atom l s z hz) +
       Lax342547.FormalQuadratic.cross (middle H)
         (rowMap (incident l) Z L R (point selectorEval s z) + zRows Z L R l s w)
         (rowMap (incident l) Z L R (point selectorEval s z) + zRows Z L R l s w))).rank + 2 * s₀
-  rw [FormalQuadratic.affine_polar_matrix_rank]
-  have h := substitution_rank (incident l) J H hH (zRows Z L R l s) s₀ hA
+  rw [Lax342547.FormalQuadratic.affine_polar_matrix_rank]
+  have h := Lax342547.UnaryMixer.substitution_rank (incident l) J H hH (zRows Z L R l s) s₀ hA
   have hpolar : (formalQuadratic (incident l) J H).polarBilin =
       Lax342547.FormalQuadratic.cross (middle H) +
         (Lax342547.FormalQuadratic.cross (middle H)).flip :=
@@ -419,14 +424,14 @@ theorem unary_rank_lower {k n b degree r₀ J : ℕ} {hr : 2 * r₀ ≤ n} (hk :
       (Lax342547.FormalQuadratic.polarMatrix
         (fun w => gradient D L R x (atomAlongZ l s z hz w))).rank := by
   have hrpos := total_rank_pos_of_factor_nonzero x hx Z H hfactor
-  have hinc : 0 < (incident l).card := by rw [incident_card]; omega
+  have hinc : 0 < (incident l).card := by rw [Lax342547.UnaryMixer.incident_card]; omega
   have hm : 1 ≤ (incident l).card * ∑ e, r e := Nat.mul_pos hinc hrpos
   have hlower : 2 * J ≤ 4 * J * (incident l).card * ∑ e, r e := calc
     _ ≤ 4 * J := by omega
     _ = 4 * J * 1 := by simp
     _ ≤ 4 * J * ((incident l).card * ∑ e, r e) := Nat.mul_le_mul_left _ hm
     _ = _ := by ring
-  have h := unary_rank_bound D x Z H hfactor hH L R l s z hz s₀ hA
+  have h := Lax342547.UnaryMixer.unary_rank_bound D x Z H hfactor hH L R l s z hz s₀ hA
   omega
 
 /--
@@ -443,7 +448,7 @@ theorem row_space_dimension {k n b degree J K : ℕ} {r : Component (Tag k) → 
     (l : Tag k) (s : Fin b → Binary) (hrank : ∑ e, r e ≤ K) :
     Module.finrank Binary (zRowSpace Z L R l s) ≤ 4 * J * (2 * k) * K := by
   have h := (zRows Z L R l s).dualMap.finrank_range_add_finrank_ker
-  rw [Subspace.dual_finrank_eq, rows_dimension, incident_card] at h
+  rw [Subspace.dual_finrank_eq, rows_dimension, Lax342547.UnaryMixer.incident_card] at h
   change Module.finrank Binary (LinearMap.range (zRows Z L R l s).dualMap) ≤ _
   exact (Nat.le.intro h).trans (Nat.mul_le_mul_left _ hrank)
 
@@ -471,6 +476,6 @@ theorem unary_depends_on_rows {k n b degree r₀ J : ℕ} {hr : 2 * r₀ ≤ n}
     apply LinearMap.ext
     intro a
     exact hrows ((zRows Z L R l s).dualMap a) ⟨a, rfl⟩
-  rw [unary_affine_quadratic D x Z H hfactor, unary_affine_quadratic D x Z H hfactor, heq]
+  rw [Lax342547.UnaryMixer.unary_affine_quadratic D x Z H hfactor, Lax342547.UnaryMixer.unary_affine_quadratic D x Z H hfactor, heq]
 
 end Lax342547Proofs.UnaryMixer

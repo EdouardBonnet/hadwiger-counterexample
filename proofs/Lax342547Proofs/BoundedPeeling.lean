@@ -1,8 +1,9 @@
 import Lax342547.BoundedPeeling
-import Lax342547Proofs.LeafPartition
-import Lax342547Proofs.PeelingBudget
 import Lax342547Proofs.Conditioning
 import Lax342547Proofs.FiniteProbability
+import Lax342547.Conditioning
+import Lax342547.LeafPartition
+import Lax342547.PeelingBudget
 
 namespace Lax342547Proofs.BoundedPeeling
 
@@ -57,7 +58,7 @@ theorem bounded_partition {Ω Axis I N : Type}
       ∀ z ∈ L, z.2.rank - P₀.rank ≤ K ∧
         LawBound p μ A z.2 z.1 ((2 : ℝ≥0∞) ^ (-((1 - ζ) * n)))
           ((2 : ℝ≥0∞) ^ ((D + K + 1) * n)) := by
-  obtain ⟨L, hL⟩ := LeafPartition.exists_partition p A P₀ R hR
+  obtain ⟨L, hL⟩ := Lax342547.LeafPartition.exists_partition p A P₀ R hR
     ((2 : ℝ≥0∞) ^ (-(ζ * n))) ((2 : ℝ≥0∞) ^ (-((1 - ζ) * n)))
     (ne_of_gt (ENNReal.rpow_pos (by norm_num) (by norm_num)))
     (ENNReal.rpow_ne_top_of_ne_zero (by norm_num) (by norm_num))
@@ -65,18 +66,18 @@ theorem bounded_partition {Ω Axis I N : Type}
   obtain ⟨_, _, hpin, hmass, hgood⟩ := hL.1 z hz
   have hupper := event_upper p μ A D ε n (by linarith) hdensity hreference z.2 z.1 hpin
     (z.2.rank - P₀.rank) (Nat.sub_le _ _)
-  have hcompare := PeelingBudget.rank_comparison D ζ ε n (z.2.rank - P₀.rank) hn _ hmass hupper
-  have hrank := PeelingBudget.conservative_rank_bound D ζ ε (z.2.rank - P₀.rank) hζ hζ₁ hε hcompare
+  have hcompare := Lax342547.PeelingBudget.rank_comparison D ζ ε n (z.2.rank - P₀.rank) hn _ hmass hupper
+  have hrank := Lax342547.PeelingBudget.conservative_rank_bound D ζ ε (z.2.rank - P₀.rank) hζ hζ₁ hε hcompare
   have hu : z.2.rank - P₀.rank ≤ K := by exact_mod_cast (le_of_lt (hrank.trans_le hK))
   have hs : ∃ o ∈ (z.1 : Set Ω), o ∈ p.support :=
     Conditioning.support_of_positive p z.1 (lt_of_le_of_lt zero_le hmass)
-  have hcost := PeelingBudget.density_cost D ζ n (z.2.rank - P₀.rank) K hζ.le hζ₁ hu _ hmass.le
+  have hcost := Lax342547.PeelingBudget.density_cost D ζ n (z.2.rank - P₀.rank) K hζ.le hζ₁ hu _ hmass.le
   refine ⟨hu, hs, ?_, ?_, ?_⟩
   · intro Q hQ
-    exact Conditioning.filter_event_bound p z.1 (Q.event A) hs _ (hgood Q hQ)
+    exact Lax342547.Conditioning.filter_event_bound p z.1 (Q.event A) hs _ (hgood Q hQ)
   · intro o
-    exact (Conditioning.filter_density p μ z.1 hs _ hdensity o).trans
+    exact (Lax342547.Conditioning.filter_density p μ z.1 hs _ hdensity o).trans
       (mul_le_mul_of_nonneg_right hcost zero_le)
-  · exact Conditioning.weighted_filter p z.1 hs
+  · exact Lax342547.Conditioning.weighted_filter p z.1 hs
 
 end Lax342547Proofs.BoundedPeeling

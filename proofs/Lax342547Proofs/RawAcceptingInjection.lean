@@ -1,7 +1,9 @@
 import Lax342547.RawAcceptingInjection
-import Lax342547Proofs.AcceptingInjection
-import Lax342547Proofs.InjectionBudgets
-import Lax342547Proofs.InjectiveDensity
+import Lax342547.AcceptingInjection
+import Lax342547.ChannelColumns
+import Lax342547.InjectionBudgets
+import Lax342547.InjectiveDensity
+import Lax342547.PhaseAverages
 
 namespace Lax342547Proofs.RawAcceptingInjection
 open Lax342547.RawAcceptingInjection
@@ -27,8 +29,8 @@ theorem capped_frame_channel {B P N H : Type} [Fintype B] [Fintype P] [Fintype N
     ∀ y,push β (fun b => channel (image b)) y ≤
       (2*M)*weights (PMF.uniformOfFintype (Matrix N H Binary)) y := by
   intro y
-  have he := Lax342547Proofs.ChannelColumns.push_cell_mass β image (fun f => channel f = y)
-  have hh := Lax342547Proofs.PhaseAverages.finite_event_density
+  have he := Lax342547.ChannelColumns.push_cell_mass β image (fun f => channel f = y)
+  have hh := Lax342547.PhaseAverages.finite_event_density
     (weights (PMF.uniformOfFintype (Frame P H N E))) (push β image) M hcap (fun f => channel f = y)
   change cellMass β (fun b => channel (image b) = y) ≤ _
   rw [← he]
@@ -64,9 +66,9 @@ theorem raw_minus_accepting_injection {A B I P N H : Type}
         (η-(M/τ)*(2*((2 : ℝ)^(Fintype.card P+Fintype.card H+K*ℓ)/(2 : ℝ)^Fintype.card N)))^ℓ) := by
   let f : Frame P H N E := Classical.choice inferInstance
   letI : Nonempty (Injection H N) := ⟨minusChannel f⟩
-  have hy := capped_frame_channel E β imageB (fun f => f.Y) MB hMB hBcap
-    (Lax342547Proofs.InjectiveDensity.raw_minus_channel_point_cap E (by omega))
-  exact Lax342547Proofs.AcceptingInjection.primal_accepting_family_injection E α β C key imageA V
+  have hy := Lax342547.RawAcceptingInjection.capped_frame_channel E β imageB (fun f => f.Y) MB hMB hBcap
+    (Lax342547.InjectiveDensity.raw_minus_channel_point_cap E (by omega))
+  exact Lax342547.AcceptingInjection.primal_accepting_family_injection E α β C key imageA V
     (fun b => (imageB b).Y) S K ℓ M (2*MB) η τ hα hβ hM (by positivity) hη hτ
     hN hV hdV hS hAcap hy hgap
 
@@ -104,14 +106,14 @@ theorem exponential_accepting_injection {A B I P N H : Type}
   let ℓ := Fintype.card N/(10*(K+1))
   let τ := 1/(2 : ℝ)^(Fintype.card N/100)
   let δ := (M/τ)*(2*((2 : ℝ)^(Fintype.card P+Fintype.card H+K*ℓ)/(2 : ℝ)^Fintype.card N))
-  have hd : δ ≤ η/2 := (Lax342547Proofs.InjectionBudgets.conditioned_avoidance_budget K
+  have hd : δ ≤ η/2 := (Lax342547.InjectionBudgets.conditioned_avoidance_budget K
     (Fintype.card P) (Fintype.card H) m (Fintype.card N) M hM hMcap hb hm).trans hsmall
   have hp : 0 < η/2 := lt_of_lt_of_le (by positivity) hηt
   have hgap : δ < η := by linarith
   have hgapdy : 1/(2 : ℝ)^t ≤ η-δ := by linarith
-  have hf := raw_minus_accepting_injection E α β C key imageA imageB V S K ℓ M MB η τ
+  have hf := Lax342547.RawAcceptingInjection.raw_minus_accepting_injection E α β C key imageA imageB V S K ℓ M MB η τ
     hα hβ hM hMB hη (by positivity) hN hV hdV hS hAcap hBcap hgap
-  have hu := Lax342547Proofs.InjectionBudgets.accepting_family_exponential_budget K t Cs m
+  have hu := Lax342547.InjectionBudgets.accepting_family_exponential_budget K t Cs m
     (Fintype.card H) (Fintype.card N) (2*MB) (η-δ) (Fintype.card I)
     (by positivity) (by positivity) hgapdy hMBcap hcount hearly hlength hconstant
   exact hf.trans (add_le_add_right hu _)

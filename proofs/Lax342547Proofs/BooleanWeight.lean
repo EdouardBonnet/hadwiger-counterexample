@@ -1,7 +1,5 @@
 import Lax342547.BooleanWeight
 import Lax342547Proofs.SelectorInterpolation
-import Lax342547Proofs.Walsh
-import Lax342547Proofs.FiniteSampling
 
 namespace Lax342547Proofs.BooleanWeight
 open Lax342547.BooleanWeight
@@ -65,7 +63,7 @@ theorem derivative_degree {b d : ℕ} (i : Fin b) (f : (Fin b → Binary) → Bi
   induction hf using Submodule.span_induction with
   | mem f hf =>
     obtain ⟨S,hS,rfl⟩ := hf
-    rw [derivative_monomial]
+    rw [Lax342547.BooleanWeight.derivative_monomial]
     split_ifs with hi
     · exact Lax342547Proofs.SelectorInterpolation.monomial_mem _ (by
         have he := Finset.card_erase_of_mem hi
@@ -132,8 +130,8 @@ theorem derivative_weight {b : ℕ} (i : Fin b) (f : (Fin b → Binary) → Bina
   let e : (Fin b → Binary) ≃ (Fin b → Binary) := {
     toFun := Lax342547.BooleanWeight.flip i
     invFun := Lax342547.BooleanWeight.flip i
-    left_inv := flip_twice i
-    right_inv := flip_twice i }
+    left_inv := Lax342547.BooleanWeight.flip_twice i
+    right_inv := Lax342547.BooleanWeight.flip_twice i }
   have hs : weight f = ∑ x : Fin b → Binary, if f x ≠ 0 then 1 else 0 := by
     simp [weight,Finset.card_filter]
   have hd : weight (derivative i f) ≤
@@ -185,12 +183,12 @@ theorem nonzero_weight {b d : ℕ} (f : (Fin b → Binary) → Binary)
         exact ⟨c*e,rfl⟩
     obtain ⟨c,rfl⟩ := hconst
     have hc : c ≠ 0 := by intro hc; exact hne (by rw [hc]; rfl)
-    simp [constant_weight c hc]
+    simp [Lax342547.BooleanWeight.constant_weight c hc]
   | succ d ih =>
     by_cases hd : ∃ i, derivative i f ≠ 0
     · obtain ⟨i,hi⟩ := hd
-      have hh := ih (derivative i f) (derivative_degree i f hf) hi
-      have hw := derivative_weight i f
+      have hh := ih (derivative i f) (Lax342547.BooleanWeight.derivative_degree i f hf) hi
+      have hw := Lax342547.BooleanWeight.derivative_weight i f
       calc
         _ ≤ 2^d*weight (derivative i f) := hh
         _ ≤ 2^d*(2*weight f) := Nat.mul_le_mul_left _ hw
@@ -202,10 +200,10 @@ theorem nonzero_weight {b d : ℕ} (f : (Fin b → Binary) → Binary)
         change f x+f (Lax342547.BooleanWeight.flip i x) = 0 at he
         have hs : f x+f x = 0 := ZModModule.add_self _
         exact add_left_cancel (he.trans hs.symm)
-      have he : f = fun _ => f 0 := funext (fun x => invariant_constant f hsame x 0)
+      have he : f = fun _ => f 0 := funext (fun x => Lax342547.BooleanWeight.invariant_constant f hsame x 0)
       rw [he] at hne ⊢
       have hc : f 0 ≠ 0 := by intro hc; exact hne (by rw [hc]; rfl)
-      rw [constant_weight _ hc]
+      rw [Lax342547.BooleanWeight.constant_weight _ hc]
       exact Nat.le_mul_of_pos_left _ (by positivity)
 
 /--
@@ -232,7 +230,7 @@ theorem uniform_nonzero_mass {b d : ℕ} (f : (Fin b → Binary) → Binary)
   rw [he]
   apply (div_le_div_iff₀ (by positivity) (by positivity)).mpr
   simpa only [one_mul,Nat.cast_mul,Nat.cast_pow,Nat.cast_ofNat,mul_comm] using
-    (show ((2^b : ℕ) : ℝ) ≤ ((2^d*weight f : ℕ) : ℝ) from by exact_mod_cast nonzero_weight f hf hne)
+    (show ((2^b : ℕ) : ℝ) ≤ ((2^d*weight f : ℕ) : ℝ) from by exact_mod_cast Lax342547.BooleanWeight.nonzero_weight f hf hne)
 
 /--
 ---
@@ -244,7 +242,7 @@ theorem uniform_error_exactification {b d : ℕ} (f : (Fin b → Binary) → Bin
     (herr : Lax342547.RetainedImages.cellMass (fun _ : Fin b → Binary => 1/(2 : ℝ)^b)
       (fun x => f x ≠ 0) < 1/(2 : ℝ)^d) : f = 0 := by
   by_contra hn
-  exact (not_lt_of_ge (uniform_nonzero_mass f hf hn)) herr
+  exact (not_lt_of_ge (Lax342547.BooleanWeight.uniform_nonzero_mass f hf hn)) herr
 
 /--
 ---
@@ -261,7 +259,7 @@ theorem excluded_labels_exactification {b d : ℕ} (f : (Fin b → Binary) → B
     intro x hx
     simp only [Finset.mem_filter,Finset.mem_univ,true_and] at hx
     exact not_not.mp (fun he => hx (hzero x he))
-  have hh := nonzero_weight f hf hn
+  have hh := Lax342547.BooleanWeight.nonzero_weight f hf hn
   have hm := Nat.mul_le_mul_left (2^d) hw
   omega
 

@@ -1,5 +1,4 @@
 import Lax342547.SpanDeficits
-import Lax342547Proofs.RestrictionRank
 import Mathlib.LinearAlgebra.Pi
 
 namespace Lax342547Proofs.SpanDeficits
@@ -34,7 +33,7 @@ theorem addition_range {K V ι : Type} [Field K] [Fintype ι]
     simpa only [addition,LinearMap.lsum_apply,LinearMap.sum_apply,LinearMap.comp_apply,LinearMap.proj_apply,Submodule.subtype_apply] using hh
   · apply iSup_le
     intro i v hv
-    exact ⟨Pi.single i ⟨v,hv⟩,addition_single S i ⟨v,hv⟩⟩
+    exact ⟨Pi.single i ⟨v,hv⟩,Lax342547.SpanDeficits.addition_single S i ⟨v,hv⟩⟩
 
 /--
 ---
@@ -46,7 +45,7 @@ theorem addition_kernel_deficit {K V ι : Type} [Field K] [Fintype ι]
     Module.finrank K (LinearMap.ker (addition S)) =
       (∑ i, Module.finrank K (S i))-Module.finrank K (⨆ i, S i : Submodule K V) := by
   have hh := (addition S).finrank_range_add_finrank_ker
-  rw [addition_range,Module.finrank_pi_fintype] at hh
+  rw [Lax342547.SpanDeficits.addition_range,Module.finrank_pi_fintype] at hh
   omega
 
 end Lax342547Proofs.SpanDeficits

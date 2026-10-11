@@ -1,5 +1,5 @@
 import Lax342547.TableContractions
-import Lax342547Proofs.TensorContractions
+import Lax342547.TensorContractions
 
 namespace Lax342547Proofs.TableContractions
 
@@ -38,7 +38,7 @@ theorem star_extension {Comp B H N : Type} [Fintype Comp] [Fintype B] [Fintype H
     LinearMap.proj_apply, Submodule.subtype_apply]
   apply Finset.sum_congr rfl
   intro e _
-  exact TensorContractions.extension_agreement (plus T e i z) (minus T e i z)
+  exact Lax342547.TensorContractions.extension_agreement (plus T e i z) (minus T e i z)
     (fullPlus F e i z) (fullMinus F e i z) (plus_extension T F hF e i z)
     (minus_extension T F hF e i z) (component X P i e x)
 

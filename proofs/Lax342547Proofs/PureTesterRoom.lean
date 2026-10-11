@@ -1,5 +1,5 @@
 import Lax342547.PureTesterRoom
-import Lax342547Proofs.FixedSelectorGram
+import Lax342547.FixedSelectorGram
 
 namespace Lax342547Proofs.PureTesterRoom
 noncomputable section
@@ -55,7 +55,7 @@ theorem pure_pairs_card {k r : ℕ} (l : Tag k) (T₀ : Finset (Tag k)) :
   classical
   have hb : Fintype.card {q : TesterBlock k // blockRetained l (pureOutside T₀) q} =
       k*(2*k+1-T₀.card) := by
-    rw [Fintype.card_congr (retainedBlocksEquiv l T₀),Fintype.card_prod,allowed_drivers_card]
+    rw [Fintype.card_congr (retainedBlocksEquiv l T₀),Fintype.card_prod,Lax342547.PureTesterRoom.allowed_drivers_card]
     congr 1
     rw [Fintype.card_subtype]
     have he : Finset.univ.filter (fun t : Tag k => t ∉ T₀) = T₀ᶜ := by ext t; simp
@@ -80,8 +80,8 @@ theorem pure_gram_cell_mass {k n b degree r : ℕ} {D : Type} [Fintype D]
     massFloor l (pureOutside T₀) r D ≤ cellMass
       (weights (PMF.uniformOfFintype (Coefficients n l (pureOutside T₀) D)))
       (fun V => (pointColumns s (value V)).transpose*selfGram hr hd M*pointColumns s (value V) = G) := by
-  apply FixedSelectorGram.gram_cell_mass hr hd M s l (pureOutside T₀) _ G
-  simpa only [pure_pairs_card] using hroom
+  apply Lax342547.FixedSelectorGram.gram_cell_mass hr hd M s l (pureOutside T₀) _ G
+  simpa only [Lax342547.PureTesterRoom.pure_pairs_card] using hroom
 
 /--
 ---
@@ -113,7 +113,7 @@ conclusion: Lax342547.PureTesterRoom.uniform_floor_bound
 theorem uniform_floor_bound {k r : ℕ} (l : Tag k) (T₀ : Finset (Tag k))
     (D : Type) [Fintype D] : uniformFloor k r D ≤ massFloor l (pureOutside T₀) r D := by
   unfold uniformFloor massFloor
-  rw [slots_card,pure_pairs_card]
+  rw [Lax342547.PureTesterRoom.slots_card,Lax342547.PureTesterRoom.pure_pairs_card]
   have he : (2*(k*(2*k+1-T₀.card)*r))*Fintype.card (Option D) ≤
       2*k*(2*k+1)*r*Fintype.card (Option D) := by
     calc
@@ -136,7 +136,7 @@ theorem uniform_pure_gram_mass {k n b degree r : ℕ} {D : Type} [Fintype D]
     uniformFloor k r D ≤ cellMass
       (weights (PMF.uniformOfFintype (Coefficients n l (pureOutside T₀) D)))
       (fun V => (pointColumns s (value V)).transpose*selfGram hr hd M*pointColumns s (value V) = G) :=
-  (uniform_floor_bound l T₀ D).trans (pure_gram_cell_mass hr hd M s l T₀ hroom G)
+  (Lax342547.PureTesterRoom.uniform_floor_bound l T₀ D).trans (Lax342547.PureTesterRoom.pure_gram_cell_mass hr hd M s l T₀ hroom G)
 
 end
 end Lax342547Proofs.PureTesterRoom

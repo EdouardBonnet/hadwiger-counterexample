@@ -1,5 +1,8 @@
 import Lax342547.GroupTensorComparison
-import Lax342547Proofs.RawFrameComparison
+import Lax342547.ChannelColumns
+import Lax342547.PushforwardWalsh
+import Lax342547.RealCellLaws
+import Lax342547Proofs.FiniteUniform
 
 namespace Lax342547Proofs.GroupTensorComparison
 noncomputable section
@@ -189,7 +192,7 @@ theorem reference_product_comparison (ρ : ∀ i,X i × Y i → ℝ)
       ring
     rw [he]
     exact hc i f g hf hg
-  have ht := product_comparison ρ σ hρ hp ε hh f g hf hg
+  have ht := Lax342547.GroupTensorComparison.product_comparison ρ σ hρ hp ε hh f g hf hg
   rw [mean_product] at ht
   exact ht
 
@@ -209,9 +212,9 @@ theorem pi_uniform_integral [∀ i,Fintype (X i)] (x : ∀ i,Ω i → X i) (test
         ∏ i,weights ((PMF.uniformOfFintype (Ω i)).map (x i)) (z i) := by
     rw [weights,FiniteUniform.map_pi_apply,ENNReal.toReal_prod]
     rfl
-  have hh := PushforwardWalsh.push_integral (weights (PMF.uniformOfFintype (∀ i,Ω i)))
+  have hh := Lax342547.PushforwardWalsh.push_integral (weights (PMF.uniformOfFintype (∀ i,Ω i)))
     (fun o i => x i (o i)) test
-  simp_rw [← ChannelColumns.pmf_weights_map,hp] at hh
+  simp_rw [← Lax342547.ChannelColumns.pmf_weights_map,hp] at hh
   exact hh
 
 /--
@@ -235,18 +238,18 @@ theorem uniform_group_comparison [∀ i,Fintype (X i)] [∀ i,Fintype (Y i)] (x 
     weights ((PMF.uniformOfFintype (Ω i)).map (fun o => (x i o,y i o)))
   let α : ∀ i,X i → ℝ := fun i => weights ((PMF.uniformOfFintype (Ω i)).map (x i))
   let β : ∀ i,Y i → ℝ := fun i => weights ((PMF.uniformOfFintype (Ω i)).map (y i))
-  have hρ : ∀ i,Probability (ρ i) := fun _ => ⟨RealCellLaws.weights_nonneg _,RealCellLaws.weights_total _⟩
-  have hα : ∀ i,Probability (α i) := fun _ => ⟨RealCellLaws.weights_nonneg _,RealCellLaws.weights_total _⟩
-  have hβ : ∀ i,Probability (β i) := fun _ => ⟨RealCellLaws.weights_nonneg _,RealCellLaws.weights_total _⟩
+  have hρ : ∀ i,Probability (ρ i) := fun _ => ⟨Lax342547.RealCellLaws.weights_nonneg _,Lax342547.RealCellLaws.weights_total _⟩
+  have hα : ∀ i,Probability (α i) := fun _ => ⟨Lax342547.RealCellLaws.weights_nonneg _,Lax342547.RealCellLaws.weights_total _⟩
+  have hβ : ∀ i,Probability (β i) := fun _ => ⟨Lax342547.RealCellLaws.weights_nonneg _,Lax342547.RealCellLaws.weights_total _⟩
   have hh : ∀ i,∀ f : X i → ℝ,∀ g : Y i → ℝ,(∀ x,|f x| ≤ 1) → (∀ y,|g y| ≤ 1) →
       |(∑ z : X i × Y i,ρ i z*f z.1*g z.2)-
         (∑ z,α i z*f z)*(∑ z,β i z*g z)| ≤ ε i := by
     intro i f g hf hg
     dsimp [ρ,α,β]
-    simp_rw [mul_assoc,ChannelColumns.pmf_weights_map]
-    rw [PushforwardWalsh.push_integral,PushforwardWalsh.push_integral,PushforwardWalsh.push_integral]
+    simp_rw [mul_assoc,Lax342547.ChannelColumns.pmf_weights_map]
+    rw [Lax342547.PushforwardWalsh.push_integral,Lax342547.PushforwardWalsh.push_integral,Lax342547.PushforwardWalsh.push_integral]
     exact hc i f g hf hg
-  have ht := reference_product_comparison ρ α β hρ hα hβ ε hh f g hf hg
+  have ht := Lax342547.GroupTensorComparison.reference_product_comparison ρ α β hρ hα hβ ε hh f g hf hg
   have hj := pi_uniform_integral (fun i o => (x i o,y i o))
     (fun z : ∀ i,X i × Y i => f (fun i => (z i).1)*g (fun i => (z i).2))
   have hx := pi_uniform_integral x f

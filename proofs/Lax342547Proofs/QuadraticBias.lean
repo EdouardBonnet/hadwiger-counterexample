@@ -1,8 +1,8 @@
 import Lax342547.QuadraticBias
 import Lax342547Proofs.Walsh
 import Lax342547Proofs.FiniteLinearLaw
-import Lax342547Proofs.RestrictionRank
-import Lax342547Proofs.FormalQuadratic
+import Lax342547.RestrictionRank
+import Lax342547.Walsh
 
 namespace Lax342547Proofs.QuadraticBias
 open Lax342547.QuadraticBias
@@ -57,14 +57,14 @@ theorem quadratic_sign_square {V : Type} [AddCommGroup V] [Module Binary V] [Fin
       exact (∑ x, sign (Q x))^2 = (Fintype.card V : ℝ)*
       ∑ h ∈ Finset.univ.filter (fun h => B h = 0),sign (Q h+Q 0) := by
   classical
-  rw [square_translation]
-  simp only [polar_sign_product Q B hpolar,← Finset.mul_sum]
+  rw [Lax342547.QuadraticBias.square_translation]
+  simp only [Lax342547.QuadraticBias.polar_sign_product Q B hpolar,← Finset.mul_sum]
   have hh (h : V) : (∑ x, sign (B h x)) =
       if B h = 0 then (Fintype.card V : ℝ) else 0 := by
     by_cases hz : B h = 0
     · simp [hz,Lax342547Proofs.Walsh.sign_zero]
     · simp only [if_neg hz]
-      exact Lax342547Proofs.Walsh.linear_orthogonality (B h) hz
+      exact Lax342547.Walsh.linear_orthogonality (B h) hz
   simp only [hh]
   rw [Finset.mul_sum,Finset.sum_filter]
   apply Finset.sum_congr rfl
@@ -95,7 +95,7 @@ theorem quadratic_bias_square_bound {V : Type} [AddCommGroup V] [Module Binary V
   have hk : (Finset.univ.filter (fun h => B h = 0)).card = Fintype.card (LinearMap.ker B) := by
     simp only [Fintype.card_subtype,LinearMap.mem_ker]
   have hmain : (∑ x, sign (Q x))^2 ≤ (Fintype.card V : ℝ)*(Fintype.card (LinearMap.ker B) : ℝ) := by
-    rw [quadratic_sign_square Q B hpolar]
+    rw [Lax342547.QuadraticBias.quadratic_sign_square Q B hpolar]
     rw [hk] at hs
     exact mul_le_mul_of_nonneg_left hs (Nat.cast_nonneg _)
   have hd := B.finrank_range_add_finrank_ker
@@ -127,7 +127,7 @@ theorem quadratic_bias_rank_bound {V : Type} [AddCommGroup V] [Module Binary V]
     (hpolar : ∀ x h, Q (x+h)+Q x+Q h+Q 0 = B h x)
     (hrank : 2*r ≤ Module.finrank Binary (LinearMap.range B)) :
     |(∑ x, sign (Q x))/(Fintype.card V : ℝ)| ≤ 1/(2 : ℝ)^r := by
-  have hs := quadratic_bias_square_bound Q B hpolar
+  have hs := Lax342547.QuadraticBias.quadratic_bias_square_bound Q B hpolar
   have hp : 1/(2 : ℝ)^Module.finrank Binary (LinearMap.range B) ≤ (1/(2 : ℝ)^r)^2 := by
     rw [div_pow,one_pow,← pow_mul]
     exact one_div_le_one_div_of_le (by positivity)
@@ -176,10 +176,10 @@ theorem affine_subspace_bias {V : Type} [AddCommGroup V] [Module Binary V]
     (hrank : 2*r ≤ Module.finrank Binary (LinearMap.range B))
     (hcodim : Module.finrank Binary V ≤ Module.finrank Binary S+c) :
     |(∑ x : S, sign (Q (w+x.val)))/(Fintype.card S : ℝ)| ≤ 1/(2 : ℝ)^(r-c) := by
-  apply quadratic_bias_rank_bound (fun x : S => Q (w+x.val)) (B.restrict S) (r-c)
+  apply Lax342547.QuadraticBias.quadratic_bias_rank_bound (fun x : S => Q (w+x.val)) (B.restrict S) (r-c)
   · intro x h
-    simpa only [Submodule.coe_zero,add_zero] using affine_restricted_polar Q B hpolar S w x h
-  · have hl := Lax342547Proofs.RestrictionRank.bilinear_restriction_rank B S
+    simpa only [Submodule.coe_zero,add_zero] using Lax342547.QuadraticBias.affine_restricted_polar Q B hpolar S w x h
+  · have hl := Lax342547.RestrictionRank.bilinear_restriction_rank B S
     have hd := Submodule.finrank_le S
     omega
 

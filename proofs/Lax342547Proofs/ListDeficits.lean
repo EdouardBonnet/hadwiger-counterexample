@@ -1,6 +1,4 @@
 import Lax342547.ListDeficits
-import Lax342547Proofs.SumEnvelope
-import Lax342547Proofs.MappedSpans
 
 namespace Lax342547Proofs.ListDeficits
 open Lax342547.ListDeficits
@@ -32,6 +30,6 @@ theorem list_mapped_deficit {K V U ι : Type} [Field K] [DecidableEq ι]
     dimensionDeficit (fun i : l.toFinset => (S i.val).map f) = mappedDeficit S f l := by
   unfold dimensionDeficit mappedDeficit
   dsimp only
-  rw [finset_span_eq (fun i => (S i).map f) l.toFinset,Finset.sum_coe_sort l.toFinset (fun i => (Module.finrank K ((S i).map f) : ℝ)),List.sum_toFinset _ hl]
+  rw [Lax342547.ListDeficits.finset_span_eq (fun i => (S i).map f) l.toFinset,Finset.sum_coe_sort l.toFinset (fun i => (Module.finrank K ((S i).map f) : ℝ)),List.sum_toFinset _ hl]
 
 end Lax342547Proofs.ListDeficits

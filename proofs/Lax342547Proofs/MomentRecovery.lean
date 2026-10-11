@@ -157,7 +157,7 @@ theorem eq_of_agree_low {Base : Type} [Fintype Base] {b degree r₁ r₂ : ℕ}
     congrArg₂ (· + ·) (hw S T U V i j he) (hv S T U V i j he)
   have hr : (w + v).rank ≤ r₁ + r₂ :=
     (rank_add_le w v).trans (Nat.add_le_add hrw hrv)
-  have hz := eq_zero_of_rank_le (w + v) hH hr (fun S T i j hc => by
+  have hz := Lax342547.MomentRecovery.eq_zero_of_rank_le (w + v) hH hr (fun S T i j hc => by
     change w (S, i) (T, j) + v (S, i) (T, j) = 0
     rw [hlow S T i j hc, ZModModule.add_self])
   have he : w + v = v + v := hz.trans (ZModModule.add_self v).symm

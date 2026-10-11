@@ -4,7 +4,7 @@ import Lax342547.SparseRepresentatives
 /-!
 ---
 title: Sparse profiles from raw intersections (Lemma 4.4)
-type: theorem
+type: lemma
 ---
 The explicit exceptional-set estimate and the deterministic shared-tensor
 argument combine on the actual concrete moment profiles. The normalized

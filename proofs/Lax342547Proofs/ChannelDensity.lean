@@ -1,6 +1,9 @@
 import Lax342547.ChannelDensity
 import Lax342547Proofs.FrameSymmetry
-import Lax342547Proofs.GramNormalization
+import Lax342547.GramNormalization
+import Lax342547.PairedFrames
+import Lax342547Proofs.FiniteProbability
+import Lax342547Proofs.FiniteUniform
 
 namespace Lax342547Proofs.ChannelDensity
 
@@ -24,7 +27,7 @@ theorem same_gram_mass [DecidableEq N] (E : Matrix B B Binary)
     (hG : A.transpose * B = A'.transpose * B') :
     jointLaw E (A, B) = jointLaw E (A', B') := by
   obtain ⟨C, D, hCD, hDC, hplus, hminus⟩ :=
-    PairedFrames.paired_matrix_orbit A A' B B' hA hA' hB hB' hG
+    Lax342547.PairedFrames.paired_matrix_orbit A A' B B' hA hA' hB hB' hG
   let c : Change N := ⟨C, D, hCD, hDC⟩
   apply FiniteUniform.map_apply_eq_of_transport channels (A, B) (A', B') (frameEquiv c)
   intro F
@@ -69,8 +72,8 @@ theorem point_density [DecidableEq H] [DecidableEq N]
         x.1.transpose * x.2 = z.1.transpose * z.2}
     apply FiniteProbability.point_density_of_constant (jointLaw E) z S
     · intro x hx
-      exact same_gram_mass E x.1 z.1 x.2 z.2 hx.1 hz.1 hx.2.1 hz.2 hx.2.2
-    · have hg := GramNormalization.normalization_quarter (N := N) (z.1.transpose * z.2) hN
+      exact Lax342547.ChannelDensity.same_gram_mass E x.1 z.1 x.2 z.2 hx.1 hz.1 hx.2.1 hz.2 hx.2.2
+    · have hg := Lax342547.GramNormalization.normalization_quarter (N := N) (z.1.transpose * z.2) hN
       change 1 / (2 : ℝ≥0∞) ^ (Fintype.card H * Fintype.card H + 2) ≤
         (PMF.uniformOfFintype (Matrix N H Binary × Matrix N H Binary)).toOuterMeasure S at hg
       calc
@@ -99,7 +102,7 @@ theorem event_density [DecidableEq H] [DecidableEq N]
   apply Finset.sum_le_sum
   intro z _
   by_cases hz : z ∈ S
-  · simpa [hz] using point_density E hN z
+  · simpa [hz] using Lax342547.ChannelDensity.point_density E hN z
   · simp [hz]
 
 /--
@@ -124,7 +127,7 @@ theorem all_components_density {Comp : Type} [Fintype Comp] [DecidableEq Comp]
         PMF.uniformOfFintype (Matrix N H Binary × Matrix N H Binary) (z e)) := by
       apply Finset.prod_le_prod'
       intro e _
-      exact point_density E hN (z e)
+      exact Lax342547.ChannelDensity.point_density E hN (z e)
     _ = _ := by
       rw [Finset.prod_mul_distrib]
       simp [PMF.uniformOfFintype_apply, ← pow_mul, Nat.mul_comm, ENNReal.inv_pow]

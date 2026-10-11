@@ -1,5 +1,5 @@
 import Lax342547.DuplicatedMoments
-import Lax342547Proofs.NoCoverMoments
+import Lax342547.ComponentMoments
 
 namespace Lax342547Proofs.DuplicatedMoments
 open Lax342547.DuplicatedMoments
@@ -35,7 +35,7 @@ theorem duplicated_even_moment_bound {e d I J Ω : Type}
       |∑ x, μ x*ψ x*tensorCharacter h (fun i : e × d => A x i.1) c|^(2*t)) ≤
       ∑ sample : Fin (2*t) → Ω, productLaw (fun _ : Fin (2*t) => μ) sample/
         (2 : ℝ)^((Fintype.card d*h)*∑ a : e, (∑ i, A (sample i) a).rank) := by
-  have hh := Lax342547Proofs.ComponentMoments.component_even_moment_bound μ
+  have hh := Lax342547.ComponentMoments.component_even_moment_bound μ
     (fun x (i : e × d) => A x i.1) ψ h t hμ hψ
   have he (sample : Fin (2*t) → Ω) :
       h*(∑ a : e × d, (∑ i, A (sample i) a.1).rank) =

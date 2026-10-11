@@ -1,6 +1,6 @@
 import Lax342547.RawPeeling
-import Lax342547Proofs.BoundedPeeling
-import Lax342547Proofs.ReferencePins
+import Lax342547.BoundedPeeling
+import Lax342547.ReferencePins
 
 namespace Lax342547Proofs.RawPeeling
 
@@ -39,9 +39,9 @@ theorem raw_peeling {Comp B H N : Type}
         LawBound σ (PMF.uniformOfFintype _) observation z.2 z.1
           ((2 : ℝ≥0∞) ^ (-((1 - ζ) * Fintype.card N)))
           ((2 : ℝ≥0∞) ^ ((D + K + 1) * Fintype.card N)) := by
-  obtain ⟨L, hL, hbound⟩ := BoundedPeeling.bounded_partition σ (PMF.uniformOfFintype _)
+  obtain ⟨L, hL, hbound⟩ := Lax342547.BoundedPeeling.bounded_partition σ (PMF.uniformOfFintype _)
     observation P₀ R hR D ζ ε (Fintype.card N) K (by omega) hζ hζ₁ hεζ hK hσ
-    (ReferencePins.reference_pin_cap ε hε hN hp hc)
+    (Lax342547.ReferencePins.reference_pin_cap ε hε hN hp hc)
   refine ⟨L, hL, fun z hz => ?_⟩
   obtain ⟨hrank, hlaw⟩ := hbound z hz
   exact ⟨by omega, hlaw⟩

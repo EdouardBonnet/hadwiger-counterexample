@@ -54,7 +54,7 @@ theorem parameterValue_allowed {l : Tag k} {f : Flavor k} (p : Parameters n l f)
     ∀ i, i ∉ allowedBase k n l → parameterValue p i = 0 := by
   classical
   intro i hi
-  have hn : i ∉ retained l f := fun h => hi ((flavor_coordinates l f).1 h)
+  have hn : i ∉ retained l f := fun h => hi ((Lax342547.Atoms.flavor_coordinates l f).1 h)
   simp [parameterValue, hn]
 
 theorem atom_role {hr : 2 * r ≤ n} (D : Testers (k := k) (b := b) (degree := degree) hr)

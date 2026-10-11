@@ -1,5 +1,7 @@
 import Lax342547.GoodSamples
-import Lax342547Proofs.DisjointSampling
+import Lax342547.CellAveraging
+import Lax342547.DisjointSampling
+import Lax342547.FiniteSampling
 
 namespace Lax342547Proofs.GoodSamples
 open Lax342547.GoodSamples
@@ -34,17 +36,17 @@ theorem bad_sample_bound {Ω : Type} [Fintype Ω] (μ : Ω → ℝ) (S : Ω → 
     cellMass (productLaw (fun _ : Fin m => μ)) (Bad S E k) ≤
       (m.choose k : ℝ)*(1/M)^k+(m : ℝ)^(2*k)*(1/κ)^k := by
   classical
-  have hp := Lax342547Proofs.FiniteSampling.product_probability (fun _ : Fin m => μ) (fun _ => hμ)
-  have h₁ := Lax342547Proofs.FiniteSampling.exceptional_positions_bound (ι := Fin m) μ S k hμ
-  have h₂ := Lax342547Proofs.DisjointSampling.disjoint_pair_exception_bound (ι := Fin m) μ E k hμ
+  have hp := Lax342547.FiniteSampling.product_probability (fun _ : Fin m => μ) (fun _ => hμ)
+  have h₁ := Lax342547.FiniteSampling.exceptional_positions_bound (ι := Fin m) μ S k hμ
+  have h₂ := Lax342547.DisjointSampling.disjoint_pair_exception_bound (ι := Fin m) μ E k hμ
   simp only [Fintype.card_fin] at h₁ h₂
   have hSn : 0 ≤ cellMass μ S := by
     unfold cellMass
     exact Finset.sum_nonneg (fun x _ => by split_ifs; exact hμ.1 x; exact le_rfl)
-  have hEn := Lax342547Proofs.CellAveraging.pair_event_mass_nonneg μ μ E hμ.1 hμ.1
+  have hEn := Lax342547.CellAveraging.pair_event_mass_nonneg μ μ E hμ.1 hμ.1
   have hS' := pow_le_pow_left₀ hSn hS.le k
   have hE' := pow_le_pow_left₀ hEn hE.le k
-  have hu := cell_mass_or (productLaw (fun _ : Fin m => μ))
+  have hu := Lax342547.GoodSamples.cell_mass_or (productLaw (fun _ : Fin m => μ))
     (fun sample => k ≤ (Finset.univ.filter (fun i => S (sample i))).card)
     (fun sample => ∃ a : Fin k × Bool ↪ Fin m, ∀ j, E (sample (a (j,false))) (sample (a (j,true)))) hp.1
   exact hu.trans (add_le_add
@@ -78,16 +80,16 @@ theorem exists_good_sample {Ω J : Type} [Fintype Ω]
     (hbudget : (C.card : ℝ)*((m.choose k : ℝ)*(1/M)^k+(m : ℝ)^(2*k)*(1/κ)^k) < 1) :
     ∃ sample : Fin m → Ω, ∀ c ∈ C, ¬ Bad (S c) (E c) k sample := by
   classical
-  have hp := Lax342547Proofs.FiniteSampling.product_probability (fun _ : Fin m => μ) (fun _ => hμ)
-  have hh := Lax342547Proofs.FiniteSampling.cell_mass_union_bound
+  have hp := Lax342547.FiniteSampling.product_probability (fun _ : Fin m => μ) (fun _ => hμ)
+  have hh := Lax342547.FiniteSampling.cell_mass_union_bound
     (productLaw (fun _ : Fin m => μ)) (fun c => Bad (S c) (E c) k) C hp.1
   have hloc : (∑ c ∈ C, cellMass (productLaw (fun _ : Fin m => μ)) (Bad (S c) (E c) k)) ≤
       (C.card : ℝ)*((m.choose k : ℝ)*(1/M)^k+(m : ℝ)^(2*k)*(1/κ)^k) := by
     calc
       _ ≤ ∑ c ∈ C, ((m.choose k : ℝ)*(1/M)^k+(m : ℝ)^(2*k)*(1/κ)^k) :=
-        Finset.sum_le_sum (fun c hc => bad_sample_bound μ (S c) (E c) m k M κ hμ hM hκ (hS c hc) (hE c hc))
+        Finset.sum_le_sum (fun c hc => Lax342547.GoodSamples.bad_sample_bound μ (S c) (E c) m k M κ hμ hM hκ (hS c hc) (hE c hc))
       _ = _ := by simp only [Finset.sum_const,nsmul_eq_mul]
-  obtain ⟨sample,hgood⟩ := mass_less_one_exists_complement _ _ hp (hh.trans hloc |>.trans_lt hbudget)
+  obtain ⟨sample,hgood⟩ := Lax342547.GoodSamples.mass_less_one_exists_complement _ _ hp (hh.trans hloc |>.trans_lt hbudget)
   refine ⟨sample,?_⟩
   intro c hc hb
   exact hgood ⟨c,hc,hb⟩

@@ -113,7 +113,7 @@ theorem exists_majority [Fintype Tag] (w : Tag → V)
   have hs := Finset.sum_le_sum (s := Finset.univ) (fun i _ => hi i)
   simp only [Finset.sum_const, Finset.card_univ, smul_eq_mul,
     ← Finset.mul_sum, ← unequal_card_sum] at hs
-  have hu := unequal_card_le w
+  have hu := Lax342547.CutSparsity.unequal_card_le w
   omega
 
 theorem minority_product_le [Fintype Tag] (w : Tag → V) (c : V) :
@@ -201,7 +201,7 @@ theorem exists_unique_normalized [Fintype Tag] [Nonempty Tag]
       Fintype.card Tag < 2 * valueCount v 0 ∧
       Fintype.card Tag * supportSize v ≤ 2 * cutSize w := by
   classical
-  obtain ⟨c, hc⟩ := exists_majority w h
+  obtain ⟨c, hc⟩ := Lax342547.CutSparsity.exists_majority w h
   let S := Finset.univ.filter (fun t => w t = c)
   have hs : S.card = valueCount w c := by
     simp [S, valueCount, Nat.card_eq_fintype_card, Fintype.card_subtype]
@@ -229,9 +229,9 @@ theorem exists_unique_normalized [Fintype Tag] [Nonempty Tag]
     exact (W t).add_mem (hw t) (hcWt t)
   · rwa [hvcount]
   · rw [hvsupport]
-    exact minority_bound w c hc
+    exact Lax342547.CutSparsity.minority_bound w c hc
   · intro u hu
-    exact majority_unique u v (hu.2.1.trans hvcut.symm) hu.2.2.1 (by rwa [hvcount])
+    exact Lax342547.CutSparsity.majority_unique u v (hu.2.1.trans hvcut.symm) hu.2.2.1 (by rwa [hvcount])
 
 end
 

@@ -1,5 +1,5 @@
 import Lax342547.EffectiveBounds
-import Lax342547Proofs.ProjectedPins
+import Lax342547.ProjectedPins
 
 namespace Lax342547Proofs.EffectiveBounds
 
@@ -79,7 +79,7 @@ theorem tensor_rank {B : Type} [Fintype B] (S T : Submodule Binary (B → Binary
 theorem sign_rank {Comp B H N : Type} [Fintype Comp] [Fintype B] [Fintype H]
     (P : Pin (Comp × Bool) (Fin 2 × (B ⊕ H)) N) (i : Fin 2) (s : Bool) :
     (∑ e, Module.finrank Binary (projected P i (e, s))) ≤ P.rank := by
-  have h := ProjectedPins.projected_rank P i
+  have h := Lax342547.ProjectedPins.projected_rank P i
   simp only [Fintype.sum_prod_type, Fintype.sum_bool, Finset.sum_add_distrib] at h
   cases s <;> omega
 
@@ -129,7 +129,7 @@ theorem effective_bounds {Comp B H N : Type} [Fintype Comp] [Fintype B] [Fintype
         Module.finrank_pi_fintype _
       _ ≤ ∑ e, Module.finrank Binary (projected P i (e, true)) *
           Module.finrank Binary (projected P i (e, false)) :=
-        Finset.sum_le_sum (fun e _ => tensor_dimension _ _)
+        Finset.sum_le_sum (fun e _ => Lax342547.EffectiveBounds.tensor_dimension _ _)
       _ ≤ ∑ e, Module.finrank Binary (projected P i (e, true)) * K := by
         apply Finset.sum_le_sum
         intro e _

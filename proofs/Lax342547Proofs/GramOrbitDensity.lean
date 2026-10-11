@@ -1,7 +1,10 @@
 import Lax342547.GramOrbitDensity
-import Lax342547Proofs.GramNormalization
-import Lax342547Proofs.RealCellLaws
-import Lax342547Proofs.CrossGramBasis
+import Lax342547.CrossBatchMixing
+import Lax342547.CrossGramBasis
+import Lax342547.GramNormalization
+import Lax342547.RealCellLaws
+import Lax342547Proofs.FiniteProbability
+import Lax342547Proofs.FiniteUniform
 
 namespace Lax342547Proofs.GramOrbitDensity
 noncomputable section
@@ -20,7 +23,7 @@ theorem batch_probability {I J N : Type} [Fintype I] [Fintype J] [Fintype N]
     [DecidableEq I] [DecidableEq J] [DecidableEq N] (G : Matrix I J Binary)
     [Nonempty (Orbit N G)] : Probability (batchLaw (N := N) G) := by
   classical
-  exact ⟨Lax342547Proofs.RealCellLaws.weights_nonneg _,Lax342547Proofs.RealCellLaws.weights_total _⟩
+  exact ⟨Lax342547.RealCellLaws.weights_nonneg _,Lax342547.RealCellLaws.weights_total _⟩
 
 /--
 ---
@@ -36,7 +39,7 @@ theorem batch_point_cap {I J N : Type} [Fintype I] [Fintype J] [Fintype N]
   classical
   let c : ℝ≥0∞ := 2^(Fintype.card I*Fintype.card J+2)
   have hq : 1 ≤ c*Lax342547.GramNormalization.probability (N := N) G := by
-    have hg := Lax342547Proofs.GramNormalization.normalization_quarter (N := N) G hN
+    have hg := Lax342547.GramNormalization.normalization_quarter (N := N) G hN
     change 1/c ≤ Lax342547.GramNormalization.probability (N := N) G at hg
     calc
       1 = c*(1/c) := by simp [c,ENNReal.mul_inv_cancel]
@@ -87,17 +90,17 @@ theorem mutual_gram_comparison {I J K L : Type} [Fintype I] [Fintype J]
       (2 : ℝ)^(Fintype.card (Lax342547.CrossGramBasis.Slots I J K L)+2)*
         (((2 : ℝ)^(Fintype.card I*Fintype.card J+2))*
           ((2 : ℝ)^(Fintype.card K*Fintype.card L+2))/Real.sqrt ((2 : ℝ)^N)) := by
-  apply Lax342547Proofs.CrossBatchMixing.cross_batch_comparison
+  apply Lax342547.CrossBatchMixing.cross_batch_comparison
     Lax342547.CrossGramBasis.tests N (batchLaw G) f (batchLaw H) g target
     ((2 : ℝ)^(Fintype.card I*Fintype.card J+2)) ((2 : ℝ)^(Fintype.card K*Fintype.card L+2))
-    (batch_probability (N := Fin N) G) (batch_probability (N := Fin N) H)
+    (Lax342547.GramOrbitDensity.batch_probability (N := Fin N) G) (Lax342547.GramOrbitDensity.batch_probability (N := Fin N) H)
   · intro x
-    simpa using batch_point_cap G (by simpa using hN₁) x
+    simpa using Lax342547.GramOrbitDensity.batch_point_cap G (by simpa using hN₁) x
   · intro x
-    simpa using batch_point_cap H (by simpa using hN₂) x
+    simpa using Lax342547.GramOrbitDensity.batch_point_cap H (by simpa using hN₂) x
   · exact hf
   · exact hg
-  · exact Lax342547Proofs.CrossGramBasis.nonzero_coefficient
+  · exact Lax342547.CrossGramBasis.nonzero_coefficient
   · exact hsmall
 
 end

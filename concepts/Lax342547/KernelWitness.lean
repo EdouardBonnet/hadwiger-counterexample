@@ -5,7 +5,7 @@ import Mathlib.Probability.ProbabilityMassFunction.Basic
 /-!
 ---
 title: Bounded descriptions of large matrix kernels
-type: theorem
+type: lemma
 ---
 A large sum of kernel dimensions has a certificate using a bounded
 number of coefficient columns per component. Enumerating these matrices

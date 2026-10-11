@@ -1,6 +1,6 @@
 import Lax342547.SyntheticRankTransfer
-import Lax342547Proofs.SmallSliceRank
-import Lax342547Proofs.CommonTestTransfer
+import Lax342547.CommonTestTransfer
+import Lax342547.SmallSliceRank
 
 namespace Lax342547Proofs.SyntheticRankTransfer
 noncomputable section
@@ -48,10 +48,10 @@ theorem transferred_incompatible_events {J Ω : Type} [Fintype J] [Fintype Ω]
     (hvar : ∀ j,(∑ o,ρ j o*(F j o-eventMean μ (C j))^2) ≤ ε j)
     (hsuccess : ∀ j,1-η j ≤ ∑ o,σ j o*F j o) :
     1 ≤ ∑ j : J,(η j+Real.sqrt (L j*ε j)) := by
-  apply (incompatible_events μ hμ C hincompatible).trans
+  apply (Lax342547.SyntheticRankTransfer.incompatible_events μ hμ C hincompatible).trans
   apply Finset.sum_le_sum
   intro j _
-  have hh := CommonTestTransfer.success_transfer (ρ j) (σ j) (F j) (hσ j)
+  have hh := Lax342547.CommonTestTransfer.success_transfer (ρ j) (σ j) (F j) (hσ j)
     (L j) (ε j) (eventMean μ (C j)) (η j) (hL j) (hcap j) (hvar j) (hsuccess j)
   linarith
 
@@ -64,7 +64,7 @@ theorem rank_tests_incompatible {T : Type} [Fintype T] (s m : ℕ)
     (F : T → Points m → Points m → Binary) (hm : 2*s*Fintype.card T < m) :
     ¬∀ j,testCondition s m F j := by
   intro hh
-  apply SmallSliceRank.parity_rank_contradiction s m F
+  apply Lax342547.SmallSliceRank.parity_rank_contradiction s m F
   · intro x y
     exact hh (Sum.inl (x,y))
   · intro l r c hr hc
@@ -87,9 +87,9 @@ theorem prediction_error_budget {T Ω : Type} [Fintype T] [Fintype Ω]
     (hvar : ∀ j,(∑ o,ρ j o*(F j o-eventMean μ (fun ω => testCondition s m (pred ω) j))^2) ≤ ε j)
     (hsuccess : ∀ j,1-η j ≤ ∑ o,σ j o*F j o) :
     1 ≤ ∑ j : Tests T s m,(η j+Real.sqrt (L j*ε j)) := by
-  exact transferred_incompatible_events A μ hμ
+  exact Lax342547.SyntheticRankTransfer.transferred_incompatible_events A μ hμ
     (fun j ω => testCondition s m (pred ω) j)
-    (fun ω => rank_tests_incompatible s m (pred ω) hm)
+    (fun ω => Lax342547.SyntheticRankTransfer.rank_tests_incompatible s m (pred ω) hm)
     ρ σ F hσ L ε η hL hcap hvar hsuccess
 
 /--
@@ -108,7 +108,7 @@ theorem uniform_prediction_error {T Ω : Type} [Fintype T] [Fintype Ω]
     (hvar : ∀ j,(∑ o,ρ j o*(F j o-eventMean μ (fun ω => testCondition s m (pred ω) j))^2) ≤ ε)
     (hsuccess : ∀ j,1-η ≤ ∑ o,σ j o*F j o) :
     1 ≤ (Fintype.card (Tests T s m) : ℝ)*(η+Real.sqrt (L*ε)) := by
-  have hh := prediction_error_budget s m hm μ hμ pred A ρ σ F hσ
+  have hh := Lax342547.SyntheticRankTransfer.prediction_error_budget s m hm μ hμ pred A ρ σ F hσ
     (fun _ => L) (fun _ => ε) (fun _ => η) (fun _ => hL) hcap hvar hsuccess
   simpa only [Finset.sum_const,Finset.card_univ,nsmul_eq_mul] using hh
 

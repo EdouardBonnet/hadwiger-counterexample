@@ -3,7 +3,7 @@ import Lax342547.DerivativeResponses
 /-!
 ---
 title: Full response obstructions are effective profiles plus selected atoms
-type: theorem
+type: lemma
 ---
 The actual two derivative tests force both residual contractions to zero.
 Double annihilation gives row and column membership in pin-plus-key spaces.

@@ -1,5 +1,5 @@
 import Lax342547.NominalPrimal
-import Lax342547Proofs.TableSpaces
+import Lax342547.ProjectedPins
 
 namespace Lax342547Proofs.NominalPrimal
 
@@ -55,7 +55,7 @@ theorem table_primal_dimension [Fintype Comp] [Fintype B] [Fintype H]
     Module.finrank Binary ↥(tableSpace P a ⊓ primal) ≤ 2 * P.rank := by
   have hd (i : Fin 2) : Module.finrank Binary (projected P i a) ≤ P.rank :=
     (Finset.single_le_sum (fun _ _ => Nat.zero_le _) (Finset.mem_univ a)).trans
-      (ProjectedPins.projected_rank P i)
+      (Lax342547.ProjectedPins.projected_rank P i)
   calc
     _ ≤ Module.finrank Binary (∀ i : Fin 2, projected P i a) :=
       LinearMap.finrank_le_finrank_of_injective (primalCoordinates_injective P a)

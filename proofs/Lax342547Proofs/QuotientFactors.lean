@@ -1,6 +1,5 @@
 import Lax342547.QuotientFactors
-import Lax342547Proofs.ProjectedCoefficients
-import Lax342547Proofs.RankFactors
+import Lax342547.RankFactors
 
 namespace Lax342547Proofs.QuotientFactors
 open Lax342547.QuotientFactors
@@ -75,11 +74,11 @@ theorem quotient_independent_factors {I : Type} [Fintype I]
           Function.Injective (E.mkQ.comp B.mulVecLin) := by
   classical
   let Z := p.toMatrix' * C * q.toMatrix'.transpose
-  obtain ⟨A, B, hAB, hA, hB⟩ := Lax342547Proofs.RankFactors.independent_rank_factors Z
-  have hArange := factor_range Z A B hAB hA (Fintype.card_fin _)
+  obtain ⟨A, B, hAB, hA, hB⟩ := Lax342547.RankFactors.independent_rank_factors Z
+  have hArange := Lax342547.QuotientFactors.factor_range Z A B hAB hA (Fintype.card_fin _)
   have hBprod : B * A.transpose = Z.transpose := by
     simpa only [Matrix.transpose_mul, Matrix.transpose_transpose] using congrArg Matrix.transpose hAB
-  have hBrange := factor_range Z.transpose B A hBprod hB
+  have hBrange := Lax342547.QuotientFactors.factor_range Z.transpose B A hBprod hB
     (by rw [Matrix.rank_transpose, Fintype.card_fin])
   have hprange : LinearMap.range Z.mulVecLin ≤ LinearMap.range p := by
     have he : Z.mulVecLin = p.comp (C * q.toMatrix'.transpose).mulVecLin := by
@@ -102,9 +101,9 @@ theorem quotient_independent_factors {I : Type} [Fintype I]
     rw [he]
     exact LinearMap.range_comp_le_range _ _
   refine ⟨A, B, hAB, ?_, ?_⟩
-  · exact projection_range_quotient_injective D p hp hpid A.mulVecLin hA
+  · exact Lax342547.QuotientFactors.projection_range_quotient_injective D p hp hpid A.mulVecLin hA
       (hArange.le.trans hprange)
-  · exact projection_range_quotient_injective E q hq hqid B.mulVecLin hB
+  · exact Lax342547.QuotientFactors.projection_range_quotient_injective E q hq hqid B.mulVecLin hB
       (hBrange.le.trans hqrange)
 
 end Lax342547Proofs.QuotientFactors

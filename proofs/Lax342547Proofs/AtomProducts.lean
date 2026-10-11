@@ -1,5 +1,8 @@
 import Lax342547.AtomProducts
-import Lax342547Proofs.WitnessAtoms
+import Lax342547.Atoms
+import Lax342547.WitnessAtoms
+import Lax342547Proofs.ConcreteCut
+import Lax342547Proofs.GradientForm
 
 namespace Lax342547Proofs.AtomProducts
 
@@ -49,7 +52,7 @@ theorem mixing_atoms {k n b degree J : ℕ}
   intro e _
   apply Finset.sum_congr rfl
   intro f _
-  simp only [PointAtom.profile, Atoms.atom_component]
+  simp only [PointAtom.profile, Lax342547.Atoms.atom_component]
   by_cases hx : x.tag ∈ e.val <;> by_cases hy : y.tag ∈ f.val
   · simp only [hx, hy, if_pos]
     rw [show pointMoment selectorEval x.label x.base = Matrix.vecMulVec x.vector x.vector from rfl,
@@ -75,10 +78,10 @@ theorem gradient_atoms {k n b degree r J : ℕ} {hr : 2 * r ≤ n}
     gradient D L R x.profile y.profile = testerEntry (x.numerical hr) (y.numerical hr) +
       productSum (evaluatedBits L) (evaluatedBits R) x y +
       productSum (evaluatedBits L) (evaluatedBits R) y x := by
-  obtain ⟨hx, hxa, hxb⟩ := WitnessAtoms.atom_testers D x
-  obtain ⟨hy, hya, hyb⟩ := WitnessAtoms.atom_testers D y
+  obtain ⟨hx, hxa, hxb⟩ := Lax342547.WitnessAtoms.atom_testers D x
+  obtain ⟨hy, hya, hyb⟩ := Lax342547.WitnessAtoms.atom_testers D y
   simp [gradient, Lax342547.GradientForm.form, GradientForm.rankOne_apply, LinearMap.sum_apply,
-    mixing_atoms, testerEntry, hx, hy, hxa, hxb, hya, hyb]
+    Lax342547.AtomProducts.mixing_atoms, testerEntry, hx, hy, hxa, hxb, hya, hyb]
 
 /--
 ---
@@ -114,7 +117,7 @@ theorem gradient_of_prescriptions {I : Type} {k n b degree r J : ℕ} {hr : 2 * 
       simp only [allowedIndex, PointAtom.numerical] at ht
       simp [evaluatedBits, ht, hb.1, hb.2]
   intro x y
-  rw [gradient_atoms]
+  rw [Lax342547.AtomProducts.gradient_atoms]
   by_cases hxy : x = y
   · subst y
     simp only [add_assoc, ZModModule.add_self, add_zero]

@@ -1,8 +1,6 @@
 import Lax342547.QueryIndependence
-import Lax342547Proofs.QueryReference
-import Lax342547Proofs.PairedKeys
-import Lax342547Proofs.KeySpans
-import Lax342547Proofs.TableSpaces
+import Lax342547.KeySpans
+import Lax342547.TableSpaces
 
 namespace Lax342547Proofs.QueryIndependence
 open Lax342547.QueryIndependence
@@ -29,7 +27,7 @@ theorem actual_key_independence {k n b degree r : ℕ} {hr : 2 * r ≤ n} {H N :
   apply le_antisymm
   · intro c hc
     have hp : keyMap W a.1 c ∈ P.space a := (Submodule.Quotient.mk_eq_zero _).mp hc
-    have ht : keyMap W a.1 c ∈ tableSpace P a := Lax342547Proofs.TableSpaces.pin_le_table P a hp
+    have ht : keyMap W a.1 c ∈ tableSpace P a := Lax342547.TableSpaces.pin_le_table P a hp
     let all : Positions W → Binary := fun p =>
       if h : (W.left p.1 p.2.1 p.2.2).tag ∈ a.1.val then c ⟨p,h⟩ else 0
     have hs : (∑ p : Positions W, all p • ray (H := H) (degree := degree) (labels W) (bases W) p) = keyMap W a.1 c := by
@@ -59,7 +57,7 @@ theorem actual_key_independence {k n b degree r : ℕ} {hr : 2 * r ≤ n} {H N :
       have h0 := W.short i 0
       have h1 := W.short i 1
       omega
-    have hall := Lax342547Proofs.KeySpans.independent_sum P A hA (labels W) (bases W)
+    have hall := Lax342547.KeySpans.independent_sum P A hA (labels W) (bases W)
       W.left_fresh hcard (fun i x => hfresh i x.1 x.2) a all (by rw [hs]; exact ht)
     have hc0 : c = 0 := by
       funext p

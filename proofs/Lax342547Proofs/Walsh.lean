@@ -1,5 +1,4 @@
 import Lax342547.Walsh
-import Lax342547Proofs.FiniteLinearLaw
 import Mathlib.Algebra.Group.AddChar
 import Mathlib.Algebra.Order.BigOperators.Ring.Finset
 
@@ -61,7 +60,7 @@ theorem sum_phase {I : Type} [Fintype I] [DecidableEq I] (x : I → Binary) :
       { toFun := fun y => dotProduct x y
         map_add' := fun _ _ => dotProduct_add _ _ _
         map_smul' := fun _ _ => dotProduct_smul _ _ _ }
-    apply linear_orthogonality f
+    apply Lax342547.Walsh.linear_orthogonality f
     intro hf
     apply hx
     exact dotProduct_eq_zero x (fun y => congrArg (fun g : (I → Binary) →ₗ[Binary] Binary => g y) hf)
@@ -118,7 +117,7 @@ theorem transform_energy {I : Type} [Fintype I] [DecidableEq I]
   classical
   unfold transform
   rw [sum_square_expand]
-  simp_rw [phase_comm, orthogonality]
+  simp_rw [phase_comm, Lax342547.Walsh.orthogonality]
   simp [mul_ite, Finset.mul_sum, pow_two, mul_comm]
 
 /--
@@ -133,7 +132,7 @@ theorem dot_correlation_sq {I : Type} [Fintype I] [DecidableEq I]
     (∑ x, ∑ y, f x * g y * phase x y) ^ 2 ≤
       (2 : ℝ) ^ Fintype.card I * (∑ x, (f x) ^ 2) * ∑ y, (g y) ^ 2 := by
   have h := Finset.sum_mul_sq_le_sq_mul_sq Finset.univ f (transform g)
-  rw [transform_energy] at h
+  rw [Lax342547.Walsh.transform_energy] at h
   calc
     _ = (∑ x, f x * transform g x) ^ 2 := by
       congr 1
@@ -182,7 +181,7 @@ theorem subprobability_dot_bound {I : Type} [Fintype I] [DecidableEq I]
     (hf : ∀ x, |f x| ≤ 1) (hg : ∀ y, |g y| ≤ 1) :
     |∑ x, ∑ y, α x * β y * f x * g y * phase x y| ≤
       Real.sqrt ((2 : ℝ) ^ Fintype.card I * p₁ * p₂) := by
-  have h := dot_correlation_sq (fun x => α x * f x) (fun y => β y * g y)
+  have h := Lax342547.Walsh.dot_correlation_sq (fun x => α x * f x) (fun y => β y * g y)
   have hαE := weight_energy_bound α f p₁ hα hαsum hf
   have hβE := weight_energy_bound β g p₂ hβ hβsum hg
   have hp₁ : 0 ≤ p₁ := (hα 0).1.trans (hα 0).2

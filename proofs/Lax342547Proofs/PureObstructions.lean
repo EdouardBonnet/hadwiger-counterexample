@@ -1,7 +1,7 @@
 import Lax342547.PureObstructions
-import Lax342547Proofs.BarredSpaces
-import Lax342547Proofs.LabelDecomposition
 import Lax342547Proofs.SparseRepresentatives
+import Lax342547.BarredSpaces
+import Lax342547.LabelDecomposition
 
 namespace Lax342547Proofs.PureObstructions
 
@@ -55,8 +55,8 @@ theorem component_rank [Fintype H] {K : ℕ} (W : Lists k n b degree r hr)
     (x : Fin 2 → Profile k n b degree) (h : Annihilates W P U V x) :
     ∀ i e, ((x i).val e).rank ≤ 2 * K + 28 := by
   intro i e
-  exact BarredSpaces.annihilator_component_rank W P hK (U e) (V e) e
-    (endpointComponent e x) (component_annihilation W P U V x h e) i
+  exact Lax342547.BarredSpaces.annihilator_component_rank W P hK (U e) (V e) e
+    (endpointComponent e x) (Lax342547.PureObstructions.component_annihilation W P U V x h e) i
 
 /--
 ---
@@ -81,7 +81,7 @@ theorem component_labels [Fintype H] {K : ℕ} (W : Lists k n b degree r hr)
   have hm : (x i).val e ∈ momentSpace selectorEval Set.univ := by
     rw [← hw]
     exact SparseRepresentatives.cut_full_moment w e
-  exact LabelDecomposition.low_rank_label_decomposition ((x i).val e) hm
-    (component_rank W P hK U V x h i e) hdegree
+  exact Lax342547.LabelDecomposition.low_rank_label_decomposition ((x i).val e) hm
+    (Lax342547.PureObstructions.component_rank W P hK U V x h i e) hdegree
 
 end Lax342547Proofs.PureObstructions

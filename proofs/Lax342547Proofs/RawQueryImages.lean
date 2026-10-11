@@ -1,7 +1,8 @@
 import Lax342547.RawQueryImages
-import Lax342547Proofs.QueryIndependence
-import Lax342547Proofs.ReferencePins
-import Lax342547Proofs.LeafImages
+import Lax342547.LeafImages
+import Lax342547.QueryIndependence
+import Lax342547.QueryReference
+import Lax342547Proofs.PairedFrames
 
 namespace Lax342547Proofs.RawQueryImages
 open Lax342547.RawQueryImages
@@ -70,11 +71,11 @@ theorem key_observations_left {k n b degree r : ℕ} {hr : 2 * r ≤ n} {H N : T
         if mode then (leftTuple W o e).1 else (leftTuple W o e).2 := by
   classical
   ext n p
-  simp only [LinearMap.toMatrix'_apply, LinearMap.comp_apply, key_map_coordinate]
+  simp only [LinearMap.toMatrix'_apply, LinearMap.comp_apply, Lax342547.RawQueryImages.key_map_coordinate]
   cases mode
-  · rw [observation_primal_minus]
+  · rw [Lax342547.RawQueryImages.observation_primal_minus]
     rfl
-  · rw [observation_primal_plus]
+  · rw [Lax342547.RawQueryImages.observation_primal_plus]
     rfl
 
 /--
@@ -92,17 +93,17 @@ theorem left_tuple_event {k n b degree r : ℕ} {hr : 2 * r ≤ n} {H N : Type}
   constructor
   · intro h a
     apply LinearMap.toMatrix'.injective
-    rw [key_observations_left, h]
+    rw [Lax342547.RawQueryImages.key_observations_left, h]
     unfold tupleMaps
     exact (Lax342547Proofs.PairedFrames.toMatrix_mulVecLin _).symm
   · intro h
     funext e
     apply Prod.ext
     · have ht := congrArg LinearMap.toMatrix' (h (e,true))
-      rw [key_observations_left] at ht
+      rw [Lax342547.RawQueryImages.key_observations_left] at ht
       simpa [tupleMaps, Lax342547Proofs.PairedFrames.toMatrix_mulVecLin] using ht
     · have ht := congrArg LinearMap.toMatrix' (h (e,false))
-      rw [key_observations_left] at ht
+      rw [Lax342547.RawQueryImages.key_observations_left] at ht
       simpa [tupleMaps, Lax342547Proofs.PairedFrames.toMatrix_mulVecLin] using ht
 
 /--
@@ -117,7 +118,7 @@ theorem key_dimension {k n b degree r : ℕ} {hr : 2 * r ≤ n}
         Module.finrank Binary (ComponentPosition W a.1 → Binary)) =
         Fintype.card (Lax342547.QuerySlots.Slot W) := by
   classical
-  rw [Lax342547Proofs.QueryReference.grouped_slot_count]
+  rw [Lax342547.QueryReference.grouped_slot_count]
   simp only [Fintype.sum_prod_type, Fintype.sum_bool, Module.finrank_pi_fintype,
     Module.finrank_self, Finset.sum_const, Finset.card_univ, nsmul_eq_mul, mul_one]
   rw [Finset.sum_add_distrib]
@@ -151,12 +152,12 @@ theorem actual_left_key_cap {k n b degree r : ℕ} {hr : 2 * r ≤ n} {H N : Typ
       {o : Unit (H := H) (N := N) (E := E) | ∀ a,
         (observation o a).comp (keyMap (H := H) W a.1) = tupleMaps W q a} := by
     ext o
-    exact left_tuple_event W q o
+    exact Lax342547.RawQueryImages.left_tuple_event W q o
   rw [he]
-  have h := Lax342547Proofs.LeafImages.leaf_tuple_image_cap p observation P
+  have h := Lax342547.LeafImages.leaf_tuple_image_cap p observation P
     (fun a => keyMap (H := H) W a.1)
-    (Lax342547Proofs.QueryIndependence.actual_key_independence W P A hA hfresh)
-    (tupleMaps W q) α hcap (by rw [key_dimension]; exact hr)
-  simpa only [key_dimension] using h
+    (Lax342547.QueryIndependence.actual_key_independence W P A hA hfresh)
+    (tupleMaps W q) α hcap (by rw [Lax342547.RawQueryImages.key_dimension]; exact hr)
+  simpa only [Lax342547.RawQueryImages.key_dimension] using h
 
 end Lax342547Proofs.RawQueryImages

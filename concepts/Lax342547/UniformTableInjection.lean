@@ -3,7 +3,7 @@ import Lax342547.PreparedInjectionScale
 /-!
 ---
 title: Uniform early channel choice for actual accepting tables
-type: theorem
+type: lemma
 ---
 The channel dimension is fixed before the polynomial accepting-mass
 exponent, the ambient dimension, the unit law, and the adaptive marks.

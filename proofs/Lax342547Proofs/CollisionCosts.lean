@@ -1,6 +1,4 @@
 import Lax342547.CollisionCosts
-import Lax342547Proofs.CollisionExponents
-import Lax342547Proofs.PairRecovery
 
 namespace Lax342547Proofs.CollisionCosts
 open Lax342547.CollisionCosts
@@ -38,7 +36,7 @@ theorem collision_exponential_lower (k η N keys overlap error agreement holes :
     (hholes : agreement*(overlap-error)/keys ≤ holes) :
     (2:ℝ)^(-((k+1/50+η)*N)-1) ≤ holes := by
   have ht : (2:ℝ)^(-η*N)/2 ≤ overlap-error := by
-    have hp := pruning_half_overlap η N ((2:ℝ)^(-η*N)) hscale le_rfl
+    have hp := Lax342547.CollisionCosts.pruning_half_overlap η N ((2:ℝ)^(-η*N)) hscale le_rfl
     linarith
   have hg : 0 ≤ overlap-error := le_trans (by positivity) ht
   have hp : (2:ℝ)^(-N/50)*((2:ℝ)^(-η*N)/2) ≤ agreement*(overlap-error) :=

@@ -49,7 +49,7 @@ theorem effective_mono {Comp B H N : Type} (X : Submodule Binary (Comp → Matri
     (P Q : Pin (Comp × Bool) (Fin 2 × (B ⊕ H)) N) (h : P.Extends Q) (i : Fin 2) :
     effective X P i ≤ effective X Q i := by
   intro x hx e
-  exact tensorSpace_mono (projected_mono P Q h i (e, true))
-    (projected_mono P Q h i (e, false)) (hx e)
+  exact tensorSpace_mono (Lax342547.ProjectedPins.projected_mono P Q h i (e, true))
+    (Lax342547.ProjectedPins.projected_mono P Q h i (e, false)) (hx e)
 
 end Lax342547Proofs.ProjectedPins

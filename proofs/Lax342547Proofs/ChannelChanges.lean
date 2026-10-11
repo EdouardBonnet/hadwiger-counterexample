@@ -1,7 +1,7 @@
 import Lax342547.ChannelChanges
-import Lax342547Proofs.PrimalContractions
 import Lax342547.TableContractions
 import Mathlib.LinearAlgebra.BilinearForm.Orthogonal
+import Lax342547Proofs.TensorAnnihilators
 
 namespace Lax342547Proofs.ChannelChanges
 
@@ -48,7 +48,7 @@ theorem opposite_primal {B H : Type} [Fintype H]
     (δ : (Nominal B H ⧸ D) →ₗ[Binary] perpendicular S) (z j : Fin 2)
     (v : Nominal B H) (w : B → Binary) :
     channelChange D S δ z v (primalEmbedding j w) = 0 := by
-  apply frozen D S δ z v _
+  apply Lax342547.ChannelChanges.frozen D S δ z v _
   right
   have hz : channelProjection z (primalEmbedding (H := H) j w) = 0 := by
     ext h
@@ -69,7 +69,7 @@ theorem pin_frozen {Comp B H N : Type} [Fintype H]
     (δ : (Nominal B H ⧸ D) →ₗ[Binary] perpendicular (protectedChannel P z a))
     (v w : Nominal B H) (hw : w ∈ P.space a) :
     channelChange D (protectedChannel P z a) δ z v w = 0 :=
-  frozen D _ δ z v w (Or.inr (Submodule.mem_map.mpr ⟨w, hw, rfl⟩))
+  Lax342547.ChannelChanges.frozen D _ δ z v w (Or.inr (Submodule.mem_map.mpr ⟨w, hw, rfl⟩))
 
 /--
 ---
@@ -117,7 +117,7 @@ theorem row_injection_zero {Comp B H N : Type} [Fintype H]
     ext a
     exact hF.1 e (tablePinnedPrimal P (e, true) i d)
       (tableChannel Q (e, false) z (Pi.single a 1))
-  have hmem := perpendicular_detects (protectedChannel Q z (e, true)) _ h
+  have hmem := Lax342547.ChannelChanges.perpendicular_detects (protectedChannel Q z (e, true)) _ h
   rw [he] at hmem
   have hz : (protectedChannel Q z (e, true)).mkQ
       (rowChannels P Q (e, true) (e, false) (T.forward e) i z d) = 0 :=
@@ -145,7 +145,7 @@ theorem column_injection_zero {Comp B H N : Type} [Fintype H]
     ext a
     exact hF.2 e (tableChannel Q (e, true) z (Pi.single a 1))
       (tablePinnedPrimal P (e, false) i d)
-  have hmem := perpendicular_detects (protectedChannel Q z (e, false)) _ h
+  have hmem := Lax342547.ChannelChanges.perpendicular_detects (protectedChannel Q z (e, false)) _ h
   rw [he] at hmem
   have hz : (protectedChannel Q z (e, false)).mkQ
       (columnChannels Q P (e, true) (e, false) (T.reverse e) z i d) = 0 :=

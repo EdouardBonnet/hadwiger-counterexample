@@ -1,6 +1,4 @@
 import Lax342547.LeafImages
-import Lax342547Proofs.ExactPins
-import Lax342547Proofs.LeafExtraction
 
 namespace Lax342547Proofs.LeafImages
 open Lax342547.LeafImages
@@ -73,10 +71,10 @@ theorem leaf_tuple_image_cap {Ω Axis I N : Type} {R : Axis → Type}
   · obtain ⟨o, ho⟩ := he
     have hs : {ω | ∀ a, (A ω a).comp (f a) = y a} =
         (imagePin A (fun a => LinearMap.range (f a)) o).event A := by
-      rw [image_pin_event]
+      rw [Lax342547.LeafImages.image_pin_event]
       simp only [ho]
     rw [hs]
-    have hrank := image_pin_relative_rank A P f hf o
+    have hrank := Lax342547.LeafImages.image_pin_relative_rank A P f hf o
     have h := hcap (imagePin A (fun a => LinearMap.range (f a)) o) (by rw [hrank]; exact hr)
     rwa [hrank] at h
   · have hs : {ω | ∀ a, (A ω a).comp (f a) = y a} = ∅ := by

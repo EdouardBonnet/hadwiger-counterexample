@@ -1,5 +1,4 @@
 import Lax342547.KeyMeasures
-import Lax342547Proofs.PrimalRecords
 
 namespace Lax342547Proofs.KeyMeasures
 open Lax342547.KeyMeasures
@@ -49,7 +48,7 @@ theorem key_mass_subprobability {Ω Q : Type} [Fintype Ω] [Fintype Q]
     (hρ : ∀ ω, 0 ≤ ρ ω) (hsum : ∑ ω, ρ ω ≤ 1) :
     (∑ q, keyMass ρ key accepted q) ≤ 1 := by
   classical
-  rw [key_mass_total]
+  rw [Lax342547.KeyMeasures.key_mass_total]
   apply le_trans _ hsum
   apply Finset.sum_le_sum
   intro ω _

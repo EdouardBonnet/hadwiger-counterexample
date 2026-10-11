@@ -1,6 +1,8 @@
 import Lax342547.AtomParameters
-import Lax342547Proofs.AtomFunctionals
-import Lax342547Proofs.PolynomialTensors
+import Lax342547.AtomFunctionals
+import Lax342547.PolynomialTensors
+import Lax342547.QuadraticDegree
+import Lax342547Proofs.SelectorInterpolation
 
 namespace Lax342547Proofs.AtomParameters
 open Lax342547.AtomParameters
@@ -55,8 +57,8 @@ theorem parameter_atom_degree {k n b degree : ℕ} (l : Tag k) (s : Fin b → Bi
     (φ : Module.Dual Binary (Profile k n b degree)) :
     (fun x => φ (parameterAtom (degree := degree) l s f x)) ∈ selectorSpan (ParameterSize n l f) 2 := by
   unfold parameterAtom
-  apply Lax342547Proofs.AtomFunctionals.atom_base_degree
-  exact parameter_coordinate_degree l f
+  apply Lax342547.AtomFunctionals.atom_base_degree
+  exact Lax342547.AtomParameters.parameter_coordinate_degree l f
 
 /--
 ---
@@ -66,11 +68,11 @@ conclusion: Lax342547.AtomParameters.atom_selector_degree
 theorem atom_selector_degree {k n b degree : ℕ} (l : Tag k) (φ : Module.Dual Binary (Profile k n b degree))
     (z : Base k n → Binary) (hz : ∀ i,i ∉ allowedBase k n l → z i = 0) :
     (fun s => φ (atom (degree := degree) l s z hz)) ∈ selectorSpan b (degree+degree) := by
-  obtain ⟨ψ,hψ⟩ := Lax342547Proofs.AtomFunctionals.atom_local_functional l φ
+  obtain ⟨ψ,hψ⟩ := Lax342547.AtomFunctionals.atom_local_functional l φ
   have he : (fun s => φ (atom (degree := degree) l s z hz)) =
       (fun s => ψ (pointMoment selectorEval s z)) := funext (fun s => hψ s z hz)
   rw [he]
-  exact Lax342547Proofs.PolynomialTensors.selector_tensor_degree ψ z
+  exact Lax342547.PolynomialTensors.selector_tensor_degree ψ z
 
 /--
 ---
@@ -85,8 +87,8 @@ theorem parameter_tensor_degree {k n b degree : ℕ} (l : Tag k) (s : Fin b → 
     apply (selectorSpan (ParameterSize n l f) 1).smul_mem (selectorEval s i.1)
     cases i.2 with
     | none => exact Lax342547Proofs.SelectorInterpolation.constant_mem 1 1
-    | some j => exact parameter_coordinate_degree l f j
-  exact Lax342547Proofs.QuadraticDegree.linear_outer_product_degree ψ
+    | some j => exact Lax342547.AtomParameters.parameter_coordinate_degree l f j
+  exact Lax342547.QuadraticDegree.linear_outer_product_degree ψ
     (fun i x => point selectorEval s (parameterBase l f x) i) hf
 
 end Lax342547Proofs.AtomParameters

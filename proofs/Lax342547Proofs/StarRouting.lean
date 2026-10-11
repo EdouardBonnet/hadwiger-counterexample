@@ -1,5 +1,8 @@
 import Lax342547.StarRouting
-import Lax342547Proofs.ChannelFactorization
+import Lax342547.RankedProjection
+import Lax342547Proofs.ConcreteCut
+import Lax342547Proofs.ConcreteGeometry
+import Lax342547Proofs.MomentSpace
 
 namespace Lax342547Proofs.StarRouting
 
@@ -20,7 +23,7 @@ theorem matrix_sum_rank {I B : Type} [Fintype I] [Fintype B]
   classical
   change Module.finrank Binary (LinearMap.range (Matrix.toLin' (∑ i, M i))) ≤ _
   rw [map_sum]
-  exact Lax342547Proofs.RankedProjection.linear_sum_rank (fun i => Matrix.toLin' (M i))
+  exact Lax342547.RankedProjection.linear_sum_rank (fun i => Matrix.toLin' (M i))
 
 /--
 ---
@@ -31,7 +34,7 @@ theorem ordered_tester_rank {k n b degree r : ℕ}
     (hr : 2 * r ≤ n) (c : Fin n → Lax342547.TagGeometry.Base k n) :
     (orderedTesterMatrix (b := b) (degree := degree) hr c).rank ≤ r := by
   classical
-  have h := matrix_sum_rank (fun ρ : Fin r => Matrix.vecMulVec
+  have h := Lax342547.StarRouting.matrix_sum_rank (fun ρ : Fin r => Matrix.vecMulVec
     (Pi.single (emptySelector b degree, some (c (pairLeft hr ρ))) (1 : Binary))
     (Pi.single (emptySelector b degree, some (c (pairRight hr ρ))) (1 : Binary)))
   have hh := h.trans (Finset.sum_le_sum (fun _ _ => Matrix.rank_vecMulVec_le _ _))
@@ -145,7 +148,7 @@ theorem star_matrix_representation {k n b degree r : ℕ} (hr : 2 * r ≤ n)
     ∑ d, coeff d * ∑ l : {l : Tag k // l ≠ d}, blockTester hr (c d) (w.val l.val) := by
   classical
   have hrep (d : Tag k) : matrixPairing (orderedTesterMatrix (b := b) (degree := degree) hr (c d)) = blockTester hr (c d) :=
-    tester_matrix_representation hr (c d)
+    Lax342547.StarRouting.tester_matrix_representation hr (c d)
   simp only [starMatrix]
   have he (e : Component (Tag k)) :
       matrixPair (∑ d ∈ e.val, coeff d • orderedTesterMatrix (b := b) (degree := degree) hr (c d))
@@ -155,14 +158,14 @@ theorem star_matrix_representation {k n b degree r : ℕ} (hr : 2 * r ≤ n)
     simp only [map_sum, map_smul, LinearMap.sum_apply, LinearMap.smul_apply,
       hrep, smul_eq_mul]
   simp only [he]
-  rw [incidence_sum]
+  rw [Lax342547.StarRouting.incidence_sum]
   apply Finset.sum_congr rfl
   intro d _
   rw [← Finset.mul_sum, ← map_sum]
   congr 1
   change blockTester hr (c d) (∑ e : {e : Component (Tag k) // d ∈ e.val},
     ∑ t ∈ e.val.val, w.val t) = _
-  rw [star_cut_sum, map_sum]
+  rw [Lax342547.StarRouting.star_cut_sum, map_sum]
 
 
 
@@ -182,7 +185,7 @@ conclusion: Lax342547.StarRouting.matrix_add_rank
 -/
 theorem matrix_add_rank {B : Type} [Fintype B] (M Q : Matrix B B Binary) :
     (M + Q).rank ≤ M.rank + Q.rank := by
-  have h := matrix_sum_rank (fun i : Fin 2 => if i = 0 then M else Q)
+  have h := Lax342547.StarRouting.matrix_sum_rank (fun i : Fin 2 => if i = 0 then M else Q)
   simpa [Fin.sum_univ_two] using h
 
 /--
@@ -196,7 +199,7 @@ theorem matrix_finset_sum_rank {I B : Type} [Fintype B] (s : Finset I)
   classical
   let := Finset.Subtype.fintype s
   rw [Finset.sum_subtype (F := Finset.Subtype.fintype s) s (by intro i; rfl)]
-  have h := matrix_sum_rank (fun i : {i // i ∈ s} => M i.val)
+  have h := Lax342547.StarRouting.matrix_sum_rank (fun i : {i // i ∈ s} => M i.val)
   have h' : (∑ i : {i // i ∈ s}, (M i.val).rank) ≤ ∑ _ : {i // i ∈ s}, R :=
     Finset.sum_le_sum (fun i _ => hM i.val i.property)
   simpa using h.trans h'
@@ -210,9 +213,9 @@ theorem star_matrix_rank {k n b degree r : ℕ} (hr : 2 * r ≤ n)
     (c : Tag k → Fin n → Base k n) (coeff : Tag k → Binary) (e : Component (Tag k)) :
     (starMatrix (b := b) (degree := degree) hr c coeff e).rank ≤ 2 * r := by
   classical
-  have h := matrix_finset_sum_rank e.val (fun d => coeff d •
+  have h := Lax342547.StarRouting.matrix_finset_sum_rank e.val (fun d => coeff d •
     orderedTesterMatrix (b := b) (degree := degree) hr (c d)) r
-    (fun d _ => (matrix_smul_rank _ _).trans (ordered_tester_rank hr (c d)))
+    (fun d _ => (Lax342547.StarRouting.matrix_smul_rank _ _).trans (Lax342547.StarRouting.ordered_tester_rank hr (c d)))
   simpa only [starMatrix, e.property] using h
 
 end Lax342547Proofs.StarRouting

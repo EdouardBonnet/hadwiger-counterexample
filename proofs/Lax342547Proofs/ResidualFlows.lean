@@ -1,5 +1,4 @@
 import Lax342547.ResidualFlows
-import Lax342547Proofs.RealFlows
 import Mathlib.Logic.Relation
 
 namespace Lax342547Proofs.ResidualFlows
@@ -47,7 +46,7 @@ theorem residual_walk_direction {V : Type} [Fintype V] (c f : V → V → ℝ) (
       simp [divergence]
   | @tail b v hpath hbv ih =>
       obtain ⟨d,hskew,hdiv,hsupport⟩ := ih
-      obtain ⟨heskew,hediv,hesupport⟩ := edge_direction c f b v hbv
+      obtain ⟨heskew,hediv,hesupport⟩ := Lax342547.ResidualFlows.edge_direction c f b v hbv
       refine ⟨fun a b' => d a b'+edgeDirection b v a b', ?_,?_,?_⟩
       · intro a b'
         change d a b'+edgeDirection b v a b' = -(d b' a+edgeDirection b v b' a)
@@ -105,8 +104,8 @@ theorem maximal_no_residual_path {V : Type} [Fintype V]
     ¬ Relation.ReflTransGen (Residual c f) s t := by
   classical
   intro hpath
-  obtain ⟨d,hdir⟩ := residual_walk_direction c f s t hpath
-  obtain ⟨δ,hδ,hg⟩ := feasible_augmentation c f d s t hf hdir
+  obtain ⟨d,hdir⟩ := Lax342547.ResidualFlows.residual_walk_direction c f s t hpath
+  obtain ⟨δ,hδ,hg⟩ := Lax342547.ResidualFlows.feasible_augmentation c f d s t hf hdir
   have hm := hmax _ hg
   simp only [divergence, Finset.sum_add_distrib, ← Finset.mul_sum] at hm
   change divergence f s+δ*divergence d s ≤ divergence f s at hm

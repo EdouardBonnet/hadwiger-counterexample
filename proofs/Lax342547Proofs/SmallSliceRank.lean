@@ -1,6 +1,6 @@
 import Lax342547.SmallSliceRank
-import Lax342547Proofs.RankedProjection
 import Mathlib.LinearAlgebra.Dimension.StrongRankCondition
+import Lax342547.RankedProjection
 
 namespace Lax342547Proofs.SmallSliceRank
 open Lax342547.SmallSliceRank
@@ -42,8 +42,8 @@ theorem rank_witness {I J : Type} [Fintype I] [Fintype J]
     (A : Matrix I J Binary) (t : ℕ) (ht : t ≤ A.rank) :
     ∃ r : Fin t → I,∃ c : Fin t → J,
       Function.Injective r ∧ Function.Injective c ∧ (A.submatrix r c).rank = t := by
-  obtain ⟨c,hc,hr⟩ := independent_column_selection A t ht
-  obtain ⟨r,hi,hh⟩ := independent_column_selection (A.submatrix id c).transpose t (by rw [Matrix.rank_transpose,hr])
+  obtain ⟨c,hc,hr⟩ := Lax342547.SmallSliceRank.independent_column_selection A t ht
+  obtain ⟨r,hi,hh⟩ := Lax342547.SmallSliceRank.independent_column_selection (A.submatrix id c).transpose t (by rw [Matrix.rank_transpose,hr])
   refine ⟨r,c,hi,hc,?_⟩
   have he : (A.submatrix r c).transpose = (A.submatrix id c).transpose.submatrix id r := rfl
   rw [← Matrix.rank_transpose,he,hh]
@@ -58,7 +58,7 @@ theorem rank_le_of_small_slices {I J : Type} [Fintype I] [Fintype J]
     (h : ∀ i : Fin (r+1) → I,∀ j : Fin (r+1) → J,
       Function.Injective i → Function.Injective j → (A.submatrix i j).rank ≤ r) : A.rank ≤ r := by
   by_contra hh
-  obtain ⟨i,j,hi,hj,hr⟩ := rank_witness A (r+1) (by omega)
+  obtain ⟨i,j,hi,hj,hr⟩ := Lax342547.SmallSliceRank.rank_witness A (r+1) (by omega)
   have := h i j hi hj
   omega
 
@@ -81,7 +81,7 @@ theorem cross_affine_product {I J : Type} [Fintype I] [Fintype J] [DecidableEq I
 
  theorem matrix_sum_rank {P I J : Type} [Fintype P] [Fintype I] [Fintype J]
     (M : P → Matrix I J Binary) : (∑ p,M p).rank ≤ ∑ p,(M p).rank := by
-  have hh := RankedProjection.linear_sum_rank (fun p => (M p).mulVecLin)
+  have hh := Lax342547.RankedProjection.linear_sum_rank (fun p => (M p).mulVecLin)
   have he : (∑ p,M p).mulVecLin = ∑ p,(M p).mulVecLin := by
     ext x i
     simp only [Matrix.mulVecLin_apply,LinearMap.sum_apply,Matrix.sum_apply,Matrix.mulVec,dotProduct,Finset.sum_mul,Finset.sum_apply]
@@ -112,8 +112,8 @@ theorem cross_products_rank {P I J : Type} [Fintype P] [Fintype I] [Fintype J]
       affineValue (d p) (u p) (v p) x y)).rank) ≤ ∑ p,2 := by
       apply Finset.sum_le_sum
       intro p _
-      rw [cross_affine_product]
-      have hh := RankedProjection.linear_add_rank (Matrix.vecMulVec (a p) (v p)).mulVecLin
+      rw [Lax342547.SmallSliceRank.cross_affine_product]
+      have hh := Lax342547.RankedProjection.linear_add_rank (Matrix.vecMulVec (a p) (v p)).mulVecLin
         (Matrix.vecMulVec (u p) (b p)).mulVecLin
       rw [← Matrix.mulVecLin_add] at hh
       have ha := Matrix.rank_vecMulVec_le (a p) (v p)
@@ -156,7 +156,7 @@ theorem cross_rank_of_products {I J : Type} [Fintype I] [Fintype J]
   have hf : F = (fun x y => ∑ p,affineValue (c p) (a p) (b p) x y*affineValue (d p) (u p) (v p) x y) :=
     funext (fun x => funext (he x))
   rw [hf]
-  simpa only [Fintype.card_fin] using cross_products_rank c d a u b v
+  simpa only [Fintype.card_fin] using Lax342547.SmallSliceRank.cross_products_rank c d a u b v
 
 /--
 ---
@@ -169,10 +169,10 @@ theorem rank_from_local_products {I J : Type} [Fintype I] [Fintype J]
       Function.Injective r → Function.Injective c →
       HasProducts s (fun x y => F (liftCoordinates r x) (liftCoordinates c y))) :
     (crossCoefficients F).rank ≤ 2*s := by
-  apply rank_le_of_small_slices
+  apply Lax342547.SmallSliceRank.rank_le_of_small_slices
   intro r c hr hc
   rw [← cross_slice]
-  exact cross_rank_of_products s _ (h r c hr hc)
+  exact Lax342547.SmallSliceRank.cross_rank_of_products s _ (h r c hr hc)
 
  theorem cross_dotProduct {I : Type} [Fintype I] [DecidableEq I] :
     crossCoefficients (fun x y : I → Binary => dotProduct x y) = 1 := by
@@ -199,7 +199,7 @@ theorem parity_rank_contradiction {T : Type} [Fintype T] (s m : ℕ)
   rw [he,Matrix.rank_one,Fintype.card_fin] at hh
   have hb : (∑ l,(crossCoefficients (F l)).rank) ≤ 2*s*Fintype.card T := by
     calc
-      _ ≤ ∑ _ : T,2*s := Finset.sum_le_sum (fun l _ => rank_from_local_products s (F l) (hloc l))
+      _ ≤ ∑ _ : T,2*s := Finset.sum_le_sum (fun l _ => Lax342547.SmallSliceRank.rank_from_local_products s (F l) (hloc l))
       _ = _ := by simp [Nat.mul_comm]
   omega
 

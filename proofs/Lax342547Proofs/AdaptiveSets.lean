@@ -1,5 +1,6 @@
 import Lax342547.AdaptiveSets
-import Lax342547Proofs.AdaptiveSampling
+import Lax342547.AdaptiveSampling
+import Lax342547.CoordinateRestrictions
 
 namespace Lax342547Proofs.AdaptiveSets
 open Lax342547.AdaptiveSets
@@ -20,10 +21,10 @@ theorem embedding_adaptive_bound {E J ι Ω : Type} [Fintype E] [Fintype J] [Fin
     cellMass (productLaw (fun _ : ι => μ))
       (fun sample => ∀ j, A (fun e => sample (a (.inl e))) (sample (a (.inr j)))) ≤ p^Fintype.card J := by
   classical
-  have hh := Lax342547Proofs.CoordinateRestrictions.embedding_restriction μ a
+  have hh := Lax342547.CoordinateRestrictions.embedding_restriction μ a
     (fun t : E ⊕ J → Ω => ∀ j, A (fun e => t (.inl e)) (t (.inr j))) hμ
   rw [hh]
-  exact Lax342547Proofs.AdaptiveSampling.adaptive_cylinder_bound μ A p hμ hA
+  exact Lax342547.AdaptiveSampling.adaptive_cylinder_bound μ A p hμ hA
 
 /--
 ---
@@ -37,7 +38,7 @@ theorem disjoint_adaptive_bound {ι Ω : Type} [Fintype ι] [Fintype Ω] [Decida
     cellMass (productLaw (fun _ : ι => μ))
       (fun sample => ∀ j ∈ J, A (fun e => sample e.val) (sample j)) ≤ p^J.card := by
   classical
-  have hh := embedding_adaptive_bound μ (disjointEmbedding E J h) A p hμ hA
+  have hh := Lax342547.AdaptiveSets.embedding_adaptive_bound μ (disjointEmbedding E J h) A p hμ hA
   have he : (fun sample : ι → Ω => ∀ j : J, A (fun e => sample e.val) (sample j.val)) =
       (fun sample : ι → Ω => ∀ j ∈ J, A (fun e => sample e.val) (sample j)) := by
     funext sample

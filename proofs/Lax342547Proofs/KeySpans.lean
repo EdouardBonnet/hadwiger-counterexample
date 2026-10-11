@@ -1,5 +1,5 @@
 import Lax342547.KeySpans
-import Lax342547Proofs.FreshKeys
+import Lax342547.FreshKeys
 
 namespace Lax342547Proofs.KeySpans
 
@@ -19,7 +19,7 @@ theorem exclusions_exists [Fintype Base] [Fintype Comp] [Fintype H] {K R : ℕ}
     (hK : P.rank ≤ K) (hdegree : (K + 1) * (R + 14) ≤ degree + 1) :
     ∃ A : Fin 2 → Finset (Fin b → Binary),
       (∀ i, (A i).card ≤ 2 * Fintype.card Comp * K * (R + 14)) ∧ Excludes P A := by
-  obtain ⟨A, hcard, h⟩ := FreshKeys.fresh_keys P hK hdegree
+  obtain ⟨A, hcard, h⟩ := Lax342547.FreshKeys.fresh_keys P hK hdegree
   refine ⟨A, hcard, ?_⟩
   intro a L c z hsize hfresh hmem
   exact h a L c z (fun i => (hsize i).trans (by omega)) hfresh hmem
@@ -89,7 +89,7 @@ theorem span_disjoint {I : Fin 2 → Type} [∀ i, Fintype (I i)]
   rw [Submodule.disjoint_def]
   intro v hv hspan
   obtain ⟨c, hc⟩ := (Submodule.mem_span_range_iff_exists_fun Binary).mp hspan
-  have hz := independent_sum P A hA label base hlabel hcard hfresh a c (hc ▸ hv)
+  have hz := Lax342547.KeySpans.independent_sum P A hA label base hlabel hcard hfresh a c (hc ▸ hv)
   rw [← hc]
   simp only [hz, zero_smul, Finset.sum_const_zero]
 

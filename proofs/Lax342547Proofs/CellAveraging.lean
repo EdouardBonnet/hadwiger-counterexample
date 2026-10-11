@@ -1,7 +1,4 @@
 import Lax342547.CellAveraging
-import Lax342547Proofs.RealCellLaws
-import Lax342547Proofs.KeyMeasures
-import Lax342547Proofs.CollisionPruning
 
 namespace Lax342547Proofs.CellAveraging
 open Lax342547.CellAveraging
@@ -44,7 +41,7 @@ theorem conditional_rectangle_lower {ΩA ΩB : Type} [Fintype ΩA] [Fintype ΩB]
     (hC : 0 < cellMass α C) (hD : 0 < cellMass β D)
     (h : ε ≤ pairEventMass (conditionalLaw α C) (conditionalLaw β D) H) :
     ε * (cellMass α C * cellMass β D) ≤ rectangleMass α β C D H := by
-  rw [conditional_rectangle_mass] at h
+  rw [Lax342547.CellAveraging.conditional_rectangle_mass] at h
   exact (le_div_iff₀ (mul_pos hC hD)).mp h
 
 /--
@@ -169,13 +166,13 @@ theorem retained_cell_pair_lower {ΩA ΩB C D : Type}
     intro d _
     by_cases hc : valid c d ∧ τ ≤ recordMass α recordA acceptA c ∧ τ ≤ recordMass β recordB acceptB d
     · rw [if_pos hc, if_pos hc.1]
-      exact conditional_rectangle_lower α β _ _ H ε
+      exact Lax342547.CellAveraging.conditional_rectangle_lower α β _ _ H ε
         (lt_of_lt_of_le hτ hc.2.1) (lt_of_lt_of_le hτ hc.2.2) (hloc c d hc.1 hc.2.1 hc.2.2)
     · rw [if_neg hc, mul_zero]
       split_ifs
-      · exact pair_event_mass_nonneg α β _ hα hβ
+      · exact Lax342547.CellAveraging.pair_event_mass_nonneg α β _ hα hβ
       · exact le_rfl
-  rw [partition_rectangle_mass] at hrect
+  rw [Lax342547.CellAveraging.partition_rectangle_mass] at hrect
   apply hrect.trans
   unfold pairEventMass
   apply Finset.sum_le_sum

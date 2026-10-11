@@ -71,7 +71,7 @@ theorem exists_family_witness {Comp I N : Type} [Fintype Comp] [Fintype I] [Fint
     (A : Comp → Matrix N I Binary) (q : ℕ)
     (hq : q ≤ ∑ e, Module.finrank Binary (LinearMap.ker (A e).mulVecLin)) :
     ∃ C : Comp → Matrix I (Fin q) Binary, (∀ e, A e * C e = 0) ∧ q ≤ ∑ e, (C e).rank := by
-  choose C hC hrank using fun e => exists_kernel_witness (A e) q
+  choose C hC hrank using fun e => Lax342547.KernelWitness.exists_kernel_witness (A e) q
   exact ⟨C, hC, (le_sum_min _ q hq).trans (Finset.sum_le_sum (fun e _ => hrank e))⟩
 
 /--
@@ -107,7 +107,7 @@ theorem kernel_event_bound {Ω Comp I N : Type}
   let S (C : T) : Set Ω := {o | q ≤ (∑ e, (C e).rank) ∧ ∀ e, A o e * C e = 0}
   have hcover : {o | q ≤ ∑ e, Module.finrank Binary (LinearMap.ker (A o e).mulVecLin)} ⊆ ⋃ C : T, S C := by
     intro o ho
-    obtain ⟨C, hC, hrank⟩ := exists_family_witness (A o) q ho
+    obtain ⟨C, hC, hrank⟩ := Lax342547.KernelWitness.exists_family_witness (A o) q ho
     exact Set.mem_iUnion.mpr ⟨C, hrank, hC⟩
   have hb (C : T) : p.toOuterMeasure (S C) ≤ cap := by
     by_cases hrank : q ≤ ∑ e, (C e).rank
@@ -121,7 +121,7 @@ theorem kernel_event_bound {Ω Comp I N : Type}
     _ = _ := by
       rw [Finset.sum_const, Finset.card_univ, nsmul_eq_mul, ← Nat.card_eq_fintype_card]
       change (Nat.card (Comp → Matrix I (Fin q) Binary) : ℝ≥0∞) * cap = _
-      rw [coefficient_count]
+      rw [Lax342547.KernelWitness.coefficient_count]
       simp
 
 end Lax342547Proofs.KernelWitness

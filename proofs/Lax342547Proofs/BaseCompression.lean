@@ -1,7 +1,7 @@
 import Lax342547.BaseCompression
-import Lax342547Proofs.ResponseMatrices
 import Mathlib.LinearAlgebra.Matrix.Bilinear
 import Mathlib.LinearAlgebra.Matrix.Trace
+import Lax342547Proofs.PrimalRetractions
 
 namespace Lax342547Proofs.BaseCompression
 
@@ -84,7 +84,7 @@ theorem tensorMap_point {Label Coord Base : Type} [Fintype Coord] [Fintype Base]
   change LinearMap.toMatrix' (liftBase f) * Matrix.vecMulVec (point p s z) (point p s z) *
     (LinearMap.toMatrix' (liftBase f)).transpose = _
   rw [Matrix.mul_vecMulVec, Matrix.vecMulVec_mul]
-  simp only [Matrix.vecMul_transpose, LinearMap.toMatrix'_mulVec, liftBase_point]
+  simp only [Matrix.vecMul_transpose, LinearMap.toMatrix'_mulVec, Lax342547.BaseCompression.liftBase_point]
   rfl
 
 /--
@@ -101,7 +101,7 @@ theorem tensorMap_moments {Label Coord Base : Type} [Fintype Coord] [Fintype Bas
   induction hw using Submodule.span_induction with
   | mem w hw =>
     obtain ⟨s, z, hz, rfl⟩ := hw
-    rw [tensorMap_point]
+    rw [Lax342547.BaseCompression.tensorMap_point]
     exact Submodule.subset_span ⟨s, f z, hA z hz, rfl⟩
   | zero => simp
   | add u v _ _ hu hv => simpa using (momentSpace p A).add_mem hu hv
@@ -136,7 +136,7 @@ conclusion: Lax342547.BaseCompression.blockMap_tagSpace
 theorem blockMap_tagSpace {k n b degree : ℕ}
     (A : Block k → (Fin n → Binary) →ₗ[Binary] (Fin n → Binary)) (l : Tag k) :
     (tagSpace k n b degree l).map (tensorMap (liftBase (blockMap A))) ≤ tagSpace k n b degree l :=
-  tensorMap_moments _ _ _ (blockMap_allowed A l)
+  Lax342547.BaseCompression.tensorMap_moments _ _ _ (Lax342547.BaseCompression.blockMap_allowed A l)
 
 /--
 ---
@@ -162,10 +162,10 @@ theorem blockMap_profile {k n b degree : ℕ}
   let f := tensorMap (liftBase (Coord := SelectorCoordinates b degree) (blockMap A))
   have hw : ∀ t, f (w.val t) ∈ tagSpace k n b degree t := by
     intro t
-    exact blockMap_tagSpace A t ⟨w.val t, w.property t trivial, rfl⟩
+    exact Lax342547.BaseCompression.blockMap_tagSpace A t ⟨w.val t, w.property t trivial, rfl⟩
   let v : Representation k n b degree := ⟨fun t => f (w.val t), by intro t _; exact hw t⟩
   refine ⟨v, ?_⟩
-  exact (componentMap_cut f w.val).symm
+  exact (Lax342547.BaseCompression.componentMap_cut f w.val).symm
 
 /--
 ---
@@ -216,7 +216,7 @@ theorem matrixPair_tensorMap {B : Type} [Fintype B]
           ((LinearMap.toMatrix' f).transpose * M * LinearMap.toMatrix' f) W := by
   classical
   simp only [tensorMap, LinearMap.comp_apply, mulRightLinearMap_apply, mulLeftLinearMap_apply,
-    matrixPair_trace, Matrix.transpose_mul, Matrix.transpose_transpose]
+    Lax342547.BaseCompression.matrixPair_trace, Matrix.transpose_mul, Matrix.transpose_transpose]
   rw [← Matrix.mul_assoc, Matrix.trace_mul_cycle]
   simp only [Matrix.mul_assoc]
 
@@ -232,7 +232,7 @@ theorem tensorMap_target {B : Type} [Fintype B]
       Lax342547.ConcreteGeometry.matrixPair M := by
   apply LinearMap.ext
   intro W
-  exact (matrixPair_tensorMap f M W).trans (congrArg (fun M => Lax342547.ConcreteGeometry.matrixPair M W) hM)
+  exact (Lax342547.BaseCompression.matrixPair_tensorMap f M W).trans (congrArg (fun M => Lax342547.ConcreteGeometry.matrixPair M W) hM)
 
 /--
 ---
@@ -271,9 +271,9 @@ theorem concrete_compression_rank {k n b degree D : ℕ}
     Module.finrank Binary (LinearMap.range
       (liftBase (Coord := SelectorCoordinates b degree) (blockMap A))) ≤
       Fintype.card (SelectorCoordinates b degree) * (1 + ((2 * k + 1)^2 + 3) * D) := by
-  have hb := (blockMap_rank A).trans (Finset.sum_le_sum (fun q _ => hA q))
+  have hb := (Lax342547.BaseCompression.blockMap_rank A).trans (Finset.sum_le_sum (fun q _ => hA q))
   have hh : Module.finrank Binary (LinearMap.range (blockMap A)) ≤ ((2 * k + 1)^2 + 3) * D := by
     simpa [Block, Tag, Fintype.card_sum, Fintype.card_prod, ZMod.card, pow_two] using hb
-  exact (liftBase_rank (blockMap A)).trans (Nat.mul_le_mul_left _ (Nat.add_le_add_left hh 1))
+  exact (Lax342547.BaseCompression.liftBase_rank (blockMap A)).trans (Nat.mul_le_mul_left _ (Nat.add_le_add_left hh 1))
 
 end Lax342547Proofs.BaseCompression

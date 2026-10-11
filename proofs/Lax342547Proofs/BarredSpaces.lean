@@ -1,7 +1,7 @@
 import Lax342547.BarredSpaces
-import Lax342547Proofs.PairedAnnihilators
-import Lax342547Proofs.PairedKeys
-import Lax342547Proofs.ProjectedPins
+import Lax342547.PairedAnnihilators
+import Lax342547.PairedWitnesses
+import Lax342547.ProjectedPins
 
 namespace Lax342547Proofs.BarredSpaces
 
@@ -22,7 +22,7 @@ Restricting to incident atoms cannot enlarge their fourteen-vector span.
 theorem individual_key_dimension (W : Lists k n b degree r hr) (i : Fin 2)
     (e : Component (Tag k)) : Module.finrank Binary (individualKeys W i e) ≤ 14 := by
   exact (finrank_range_le_card (R := Binary) (individualDirection W i e)).trans
-    ((PairedWitnesses.list_budgets W).1 i)
+    ((Lax342547.PairedWitnesses.list_budgets W).1 i)
 
 theorem projected_keys (W : Lists k n b degree r hr) (i : Fin 2)
     (e : Component (Tag k)) :
@@ -95,18 +95,18 @@ theorem annihilator_component_rank [Fintype H] {K : ℕ}
       Module.finrank Binary ↥(projected P i a ⊔ individualKeys W i a.1) ≤ K + 14 := by
     have hp : Module.finrank Binary (projected P i a) ≤ K :=
       ((Finset.single_le_sum (fun _ _ => Nat.zero_le _) (Finset.mem_univ a)).trans
-        (ProjectedPins.projected_rank P i)).trans hK
-    have hk := individual_key_dimension W i a.1
+        (Lax342547.ProjectedPins.projected_rank P i)).trans hK
+    have hk := Lax342547.BarredSpaces.individual_key_dimension W i a.1
     have hs := Submodule.finrank_sup_add_finrank_inf_eq (projected P i a) (individualKeys W i a.1)
     calc
       _ ≤ Module.finrank Binary ↥(projected P i a ⊔ individualKeys W i a.1) +
           Module.finrank Binary ↥(projected P i a ⊓ individualKeys W i a.1) := Nat.le_add_right _ _
       _ = Module.finrank Binary (projected P i a) + Module.finrank Binary (individualKeys W i a.1) := hs
       _ ≤ K + 14 := Nat.add_le_add hp hk
-  have hr := PairedAnnihilators.endpoint_rank M _ _ h i
+  have hr := Lax342547.PairedAnnihilators.endpoint_rank M _ _ h i
     (projected P i (e, true) ⊔ individualKeys W i e)
     (projected P i (e, false) ⊔ individualKeys W i e)
-    (barred_projection W P U (e, true) i) (barred_projection W P V (e, false) i)
+    (Lax342547.BarredSpaces.barred_projection W P U (e, true) i) (Lax342547.BarredSpaces.barred_projection W P V (e, false) i)
   calc
     _ ≤ _ := hr
     _ ≤ (K + 14) + (K + 14) := Nat.add_le_add (hd (e, true)) (hd (e, false))

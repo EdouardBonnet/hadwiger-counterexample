@@ -5,7 +5,7 @@ import Mathlib.Combinatorics.SimpleGraph.Coloring.Vertex
 /-!
 ---
 title: A counterexample to Hadwiger's conjecture
-type: theorem
+type: lemma
 ---
 Theorem 1.1 asserts that graphs of arbitrarily large order $m$ have
 independence number at most two and connected-matching number less than

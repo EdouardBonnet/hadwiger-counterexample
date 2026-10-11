@@ -4,7 +4,7 @@ import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
 /-!
 ---
 title: Quantitative trimming after restrictions of a leaf mixture
-type: theorem
+type: lemma
 ---
 Small retained fractions are discarded with their actual mixture weights.
 The normalized surviving leaves preserve image bounds with an explicit

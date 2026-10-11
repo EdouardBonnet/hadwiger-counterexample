@@ -1,6 +1,8 @@
 import Lax342547.ComponentRankGrowth
-import Lax342547Proofs.NoCoverRank
-import Lax342547Proofs.ComponentDuals
+import Lax342547.ComponentDuals
+import Lax342547.ComponentSpaces
+import Lax342547.DirectRanks
+import Lax342547.NoCoverRank
 
 namespace Lax342547Proofs.ComponentRankGrowth
 open Lax342547.ComponentRankGrowth
@@ -35,22 +37,22 @@ theorem component_no_cover_rank {K e Ω : Type} [Field K] [Fintype e] [Decidable
   classical
   have hC : ∀ x, Componentwise (LinearMap.range (LinearMap.piMap (M x))) := by
     intro x
-    exact ⟨fun i => LinearMap.range (M x i),Lax342547Proofs.ComponentSpaces.diagonal_range _⟩
+    exact ⟨fun i => LinearMap.range (M x i),Lax342547.ComponentSpaces.diagonal_range _⟩
   have hR : ∀ x, DualComponentwise (LinearMap.range (LinearMap.piMap (M x)).dualMap) := by
     intro x
     unfold DualComponentwise
-    rw [Lax342547Proofs.ComponentDuals.diagonal_dual_range]
+    rw [Lax342547.ComponentDuals.diagonal_dual_range]
     exact ⟨_,rfl⟩
   have hsum (sample : Fin (2^k) → Ω) : (∑ j, LinearMap.piMap (M (sample j))) =
       LinearMap.piMap (fun i => ∑ j, M (sample j) i) := by
     ext v i
     simp
-  have h := Lax342547Proofs.NoCoverRank.no_cover_rank_probability (ι := Fin (2^k)) μ
+  have h := Lax342547.NoCoverRank.no_cover_rank_probability (ι := Fin (2^k)) μ
     (fun x => LinearMap.piMap (M x)) Componentwise DualComponentwise (r : ℝ) p k (100*r+10)
     hμ hp0 hp1 (by positivity)
-    (fun x => by rw [Lax342547Proofs.DirectRanks.diagonal_rank_sum]; exact_mod_cast hM x)
-    Lax342547Proofs.ComponentSpaces.componentwise_join_closed
-    Lax342547Proofs.ComponentDuals.dual_componentwise_join_closed hC hR
+    (fun x => by rw [Lax342547.DirectRanks.diagonal_rank_sum]; exact_mod_cast hM x)
+    Lax342547.ComponentSpaces.componentwise_join_closed
+    Lax342547.ComponentDuals.dual_componentwise_join_closed hC hR
     (by simp) hk (by push_cast; linarith)
     (by
       intro S T hS hT hdS hdT
@@ -59,7 +61,7 @@ theorem component_no_cover_rank {K e Ω : Type} [Field K] [Fintype e] [Decidable
         (by simpa only [Fintype.card_fin,Nat.cast_pow,Nat.cast_ofNat] using hdT))
   have he (sample : Fin (2^k) → Ω) : Module.finrank K (LinearMap.range (∑ j, LinearMap.piMap (M (sample j)))) =
       ∑ i, Module.finrank K (LinearMap.range (∑ j, M (sample j) i)) := by
-    rw [hsum,Lax342547Proofs.DirectRanks.diagonal_rank_sum]
+    rw [hsum,Lax342547.DirectRanks.diagonal_rank_sum]
   simpa only [he,Fintype.card_fin,Nat.cast_sum] using h
 
 end Lax342547Proofs.ComponentRankGrowth

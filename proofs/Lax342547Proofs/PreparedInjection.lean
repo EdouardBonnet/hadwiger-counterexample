@@ -1,9 +1,12 @@
 import Lax342547.PreparedInjection
-import Lax342547Proofs.TableInjection
-import Lax342547Proofs.RawAcceptingInjection
-import Lax342547Proofs.FrameTranspose
-import Lax342547Proofs.InjectionUnion
-import Lax342547Proofs.InjectionThresholds
+import Lax342547.FiniteSampling
+import Lax342547.FrameTranspose
+import Lax342547.InjectionAsymptotics
+import Lax342547.InjectionUnion
+import Lax342547.ProjectedPins
+import Lax342547.RawAcceptingInjection
+import Lax342547.TableInjection
+import Lax342547.TableSpaces
 
 namespace Lax342547Proofs.PreparedInjection
 
@@ -31,13 +34,13 @@ theorem primalImage_budget (P : Pin (Comp × Bool) (Fin 2 × (B ⊕ H)) N)
     simp [Lax342547.ProjectedPins.primalProjection,primalEmbedding]
   exact (Submodule.finrank_map_le _ _).trans ((Submodule.finrank_mono hp).trans
     ((Finset.single_le_sum (fun _ _ => Nat.zero_le _) (Finset.mem_univ (e,s))).trans
-      (Lax342547Proofs.ProjectedPins.projected_rank P i)))
+      (Lax342547.ProjectedPins.projected_rank P i)))
 
 theorem protected_budget (P : Pin (Comp × Bool) (Fin 2 × (B ⊕ H)) N)
     (e : Comp) (i : Fin 2) (s : Bool) :
     Module.finrank Binary (protectedChannel P i (e,s)) ≤ P.rank :=
   (Finset.single_le_sum (fun _ _ => Nat.zero_le _) (Finset.mem_univ (e,s))).trans
-    (Lax342547Proofs.TableSpaces.protected_rank P i)
+    (Lax342547.TableSpaces.protected_rank P i)
 
 theorem signed_accepting_injection (ρ : U → ℝ)
     (P : U → Pin (Comp × Bool) (Fin 2 × (B ⊕ H)) N)
@@ -68,15 +71,15 @@ theorem signed_accepting_injection (ρ : U → ℝ)
     exact ⟨w,hw⟩
   cases s
   · letI : Nonempty (Frame B H N E.transpose) := ⟨transposeFrame (Classical.choice inferInstance)⟩
-    exact Lax342547Proofs.RawAcceptingInjection.exponential_accepting_injection E.transpose ρ ρ C key
+    exact Lax342547.RawAcceptingInjection.exponential_accepting_injection E.transpose ρ ρ C key
       (fun a => transposeFrame (A a i e)) (fun b => transposeFrame (A b z e))
       (fun a => primalImage (P a) (A a) e i false) (fun b => protectedChannel (P b) z (e,false))
       K m t Cs M M η hρ hρ hM hM hη hbudget.gap hbudget.ambient hbudget.primal
       hbudget.density hcapM hcapMB hcount hbudget.channel hbudget.probes hbudget.constant hbudget.small
       hrange hV hS
-      (Lax342547Proofs.FrameTranspose.capped_transpose_frame E ρ (fun a => A a i e) M (hcap i e))
-      (Lax342547Proofs.FrameTranspose.capped_transpose_frame E ρ (fun b => A b z e) M (hcap z e))
-  · exact Lax342547Proofs.RawAcceptingInjection.exponential_accepting_injection E ρ ρ C key
+      (Lax342547.FrameTranspose.capped_transpose_frame E ρ (fun a => A a i e) M (hcap i e))
+      (Lax342547.FrameTranspose.capped_transpose_frame E ρ (fun b => A b z e) M (hcap z e))
+  · exact Lax342547.RawAcceptingInjection.exponential_accepting_injection E ρ ρ C key
       (fun a => A a i e) (fun b => A b z e)
       (fun a => primalImage (P a) (A a) e i true) (fun b => protectedChannel (P b) z (e,true))
       K m t Cs M M η hρ hρ hM hM hη hbudget.gap hbudget.ambient hbudget.primal
@@ -145,27 +148,27 @@ theorem actual_accepting_table_loss (ρ : U → ℝ)
     · have hh := signed_accepting_injection ρ P A CR keyR e i z s K m t Cs M η
         hρ hM hbudget hcapM hcapMB hcount hP hcap
       simp_rw [hlawR] at hh
-      rw [← Lax342547Proofs.InjectionUnion.pair_event_mass,
-        ← Lax342547Proofs.InjectionUnion.pair_event_mass] at hh
+      rw [← Lax342547.InjectionUnion.pair_event_mass,
+        ← Lax342547.InjectionUnion.pair_event_mass] at hh
       rw [pair_swap ρ (fun a b => accept b a ∧ Lax342547.FiniteInjection.pinFailure
         (primalImage (P a) (A a) e i s) (oppositeChannel (A b) e z s) (protectedChannel (P b) z (e,s))),
         pair_swap ρ (fun a b => accept b a)] at hh
-      rw [Lax342547Proofs.InjectionUnion.pair_event_mass ρ ρ
+      rw [Lax342547.InjectionUnion.pair_event_mass ρ ρ
         (fun a b => accept a b ∧ Lax342547.FiniteInjection.pinFailure
           (primalImage (P b) (A b) e i s) (oppositeChannel (A a) e z s) (protectedChannel (P a) z (e,s))),
-        Lax342547Proofs.InjectionUnion.pair_event_mass ρ ρ accept] at hh
+        Lax342547.InjectionUnion.pair_event_mass ρ ρ accept] at hh
       simpa [testFailure,Failed,add_assoc] using hh
-  have hu := Lax342547Proofs.InjectionUnion.finite_injection_union ρ ρ accept (testFailure P A)
+  have hu := Lax342547.InjectionUnion.finite_injection_union ρ ρ accept (testFailure P A)
     η (1/(2 : ℝ)^(Fintype.card N/100)+1/(2 : ℝ)^Fintype.card N) hρ.1 hρ.1 htests
   rw [test_count] at hu
   apply le_trans _ hu
-  apply Lax342547Proofs.FiniteSampling.cell_mass_mono (fun ab : U × U => ρ ab.1*ρ ab.2) _ _
+  apply Lax342547.FiniteSampling.cell_mass_mono (fun ab : U × U => ρ ab.1*ρ ab.2) _ _
     (fun ab => mul_nonneg (hρ.1 ab.1) (hρ.1 ab.2))
   rintro ⟨a,b⟩ ⟨hab,hbad⟩
   refine ⟨hab,?_⟩
   have hi : ¬ Injecting (rawTable (P a) (P b) (A a) (A b)) := fun hh =>
-    hbad ((Lax342547Proofs.TableInjection.admissible_injection_iff _ _ _ _ _ (hT a b hab)).mpr hh)
-  rw [Lax342547Proofs.TableInjection.actual_table_injecting_iff] at hi
+    hbad ((Lax342547.TableInjection.admissible_injection_iff _ _ _ _ _ (hT a b hab)).mpr hh)
+  rw [Lax342547.TableInjection.actual_table_injecting_iff] at hi
   push Not at hi
   obtain ⟨e,i,z,s,role,hh⟩ := hi
   exact ⟨⟨e,⟨i,z⟩,s,role⟩,hh⟩
@@ -205,10 +208,10 @@ theorem actual_relative_table_injection (ρ : U → ℝ)
     classical
     unfold cellMass
     exact Finset.sum_nonneg (fun ab _ => by split_ifs; exact mul_nonneg (hρ.1 ab.1) (hρ.1 ab.2); exact le_rfl)
-  have hh := actual_accepting_table_loss ρ P A accept CL CR keyL keyR T K m t Cs M η
+  have hh := Lax342547.PreparedInjection.actual_accepting_table_loss ρ P A accept CL CR keyL keyR T K m t Cs M η
     hρ hM hbudget hcapM hcapMB hcount hP hcap hleft hright hT
   rw [hη] at hh
-  apply Lax342547Proofs.InjectionAsymptotics.relative_union_budget (16*Fintype.card Comp) ε _ _ _ hJ hε ha hh
+  apply Lax342547.InjectionAsymptotics.relative_union_budget (16*Fintype.card Comp) ε _ _ _ hJ hε ha hh
   exact htail.trans (by simpa only [div_eq_mul_inv,one_div,one_mul] using
     mul_le_mul_of_nonneg_left haccept (by positivity : (0 : ℝ) ≤ ε/2))
 

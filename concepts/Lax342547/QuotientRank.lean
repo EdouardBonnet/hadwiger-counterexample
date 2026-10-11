@@ -5,7 +5,7 @@ import Mathlib.LinearAlgebra.Dual.Lemmas
 /-!
 ---
 title: Rank of a tensor killed in two quotient spaces
-type: theorem
+type: lemma
 ---
 The component-rank step in the annihilator argument of §6. Killing a
 matrix after projecting both factors loses at most the sum of the two

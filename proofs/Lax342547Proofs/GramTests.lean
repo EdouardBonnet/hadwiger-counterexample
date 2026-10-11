@@ -1,6 +1,6 @@
 import Lax342547.GramTests
-import Lax342547Proofs.RetainedImages
-import Lax342547Proofs.FourierTests
+import Lax342547.FourierTests
+import Lax342547.PushforwardWalsh
 
 namespace Lax342547Proofs.GramTests
 open Lax342547.GramTests
@@ -42,9 +42,9 @@ theorem paper_image_walsh {ΩA ΩB I : Type} [Fintype ΩA] [Fintype ΩB]
     (hf : ∀ a, |f a| ≤ 1) (hg : ∀ b, |g b| ≤ 1) :
     |∑ a, ∑ b, α a * β b * f a * g b * phase (imageA a) (imageB b)| ≤
       (2 : ℝ)^(-(45/100 : ℝ)*Fintype.card I) := by
-  have h := Lax342547Proofs.PushforwardWalsh.image_walsh_bound α β imageA imageB f g _ _
+  have h := Lax342547.PushforwardWalsh.image_walsh_bound α β imageA imageB f g _ _
     hα hβ hαsum hβsum hcapA hcapB hf hg
-  rw [← Real.rpow_natCast, paper_walsh_factor] at h
+  rw [← Real.rpow_natCast, Lax342547.GramTests.paper_walsh_factor] at h
   exact h
 
 /--
@@ -59,7 +59,7 @@ theorem zero_or_biased_agreement {Ω I : Type} [Fintype Ω] [Fintype I] [Decidab
       characterMean ρ bits target t = 1 ∨ |characterMean ρ bits target t| ≤ ε)
     (hsmall : ε ≤ 1 / (2 : ℝ) ^ (Fintype.card I + 1)) :
     1 / (2 : ℝ) ^ (Fintype.card I + 1) ≤ patternMass ρ bits target := by
-  apply Lax342547Proofs.FourierTests.scalar_agreement_half ρ bits target ε hε hρ _ hsmall
+  apply Lax342547.FourierTests.scalar_agreement_half ρ bits target ε hε hρ _ hsmall
   intro t ht
   rcases hchar t ht with he | hb
   · rw [he]

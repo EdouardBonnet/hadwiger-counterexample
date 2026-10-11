@@ -1,6 +1,7 @@
 import Lax342547.RetainedEmptyPredictions
-import Lax342547Proofs.EmptyPredictions
-import Lax342547Proofs.MomentTails
+import Lax342547.EmptyPredictions
+import Lax342547.FiniteSampling
+import Lax342547.MomentTails
 
 namespace Lax342547Proofs.RetainedEmptyPredictions
 open Lax342547.RetainedEmptyPredictions
@@ -38,7 +39,7 @@ theorem prediction_error_le_total {k n b degree r : ℕ} (hr : 2*r ≤ n)
   have hn (l : Tag k) (s : Fin b → Binary) : 0 ≤ if s ∈ E then (0 : ℝ) else predictionError hr φ γ l s := by
     split_ifs
     · exact le_rfl
-    · exact prediction_error_nonneg hr φ γ l s
+    · exact Lax342547.RetainedEmptyPredictions.prediction_error_nonneg hr φ γ l s
   have h₁ := Finset.single_le_sum (fun t (_ : t ∈ Finset.univ) => hn l t) (Finset.mem_univ s)
   have h₂ := Finset.single_le_sum (fun j (_ : j ∈ Finset.univ) => Finset.sum_nonneg (s := Finset.univ) (fun t _ => hn j t))
     (Finset.mem_univ l)
@@ -66,8 +67,8 @@ theorem retained_vanishing_predictions {U : Type} [Fintype U] {k n b degree r : 
     intro s _
     split_ifs
     · exact le_rfl
-    · exact prediction_error_nonneg hr (φ u) (γ u) l s
-  have hm := Lax342547Proofs.MomentTails.finite_moment_markov β err (1/4) 1 hβ.1 (by norm_num)
+    · exact Lax342547.RetainedEmptyPredictions.prediction_error_nonneg hr (φ u) (γ u) l s
+  have hm := Lax342547.MomentTails.finite_moment_markov β err (1/4) 1 hβ.1 (by norm_num)
   simp only [abs_of_nonneg (hn _),pow_one] at hm
   have ht : cellMass β (fun u => 1/4 ≤ err u) ≤ 4*ε := by
     have hh := hm.trans (div_le_div_of_nonneg_right herr (by norm_num : (0 : ℝ) ≤ 1/4))
@@ -86,10 +87,10 @@ theorem retained_vanishing_predictions {U : Type} [Fintype U] {k n b degree r : 
       _ = 1 := hβ.2
   have hgood : 1-4*ε ≤ cellMass β (fun u => err u < 1/4) := by linarith
   apply hgood.trans
-  apply Lax342547Proofs.FiniteSampling.cell_mass_mono _ _ _ hβ.1
+  apply Lax342547.FiniteSampling.cell_mass_mono _ _ _ hβ.1
   intro u hu
-  apply Lax342547Proofs.EmptyPredictions.vanishing_prediction_exact hr hr0 (φ u) (γ u) (E u) (hE u)
+  apply Lax342547.EmptyPredictions.vanishing_prediction_exact hr hr0 (φ u) (γ u) (E u) (hE u)
   intro l s hs
-  exact (prediction_error_le_total hr (φ u) (γ u) (E u) l s hs).trans_lt hu
+  exact (Lax342547.RetainedEmptyPredictions.prediction_error_le_total hr (φ u) (γ u) (E u) l s hs).trans_lt hu
 
 end Lax342547Proofs.RetainedEmptyPredictions

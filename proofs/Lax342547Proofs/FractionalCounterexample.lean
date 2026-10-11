@@ -1,9 +1,8 @@
 import Lax342547.Counterexample
-import Lax342547Proofs.Construction
 import Lax342547.FractionalCounterexample
-import Lax342547Proofs.HadwigerMatching.MinorBound
-import Lax342547Proofs.FractionalColoring
 import Mathlib.Tactic.NormNum
+import Lax342547.FractionalColoring
+import Lax342547.MatchingMinorBound
 
 namespace Lax342547Proofs.FractionalCounterexample
 
@@ -12,6 +11,11 @@ open Lax342547.ConnectedMatching Lax342547.CliqueMinor Lax342547.FractionalColor
 /--
 ---
 conclusion: Lax342547.FractionalCounterexample.arbitrarily_large_fractional_counterexample
+assumptions:
+  - Lax342547.Counterexample.arbitrarily_large_small_connected_matching
+  - Lax342547.MatchingMinorBound.hadwiger_matching_bound
+  - Lax342547.FractionalColoring.fractional_chromatic_lower_bound
+  - Lax342547.FractionalColoring.fractional_chromatic_le_chromatic
 ---
 The proved construction supplies the graph. Apply the matching-minor bound
 and the two proved fractional-coloring inequalities.
@@ -24,19 +28,19 @@ theorem arbitrarily_large_fractional_counterexample (lowerBound : ℕ) :
       (m : ℝ) / 2 ≤ fractionalChromaticNumber G ∧
       fractionalChromaticNumber G ≤ (G.chromaticNumber.toNat : ℝ) := by
   obtain ⟨m, hm, G, hα, hc⟩ :=
-    Construction.arbitrarily_large_small_connected_matching (max lowerBound 5)
+    Lax342547.Counterexample.arbitrarily_large_small_connected_matching (max lowerBound 5)
   have hm5 : 5 ≤ m := (le_max_right _ _).trans hm
   have hmR : (5 : ℝ) ≤ m := by exact_mod_cast hm5
   have hcR : 100 * (connectedMatchingNumber G : ℝ) < m := by exact_mod_cast hc
   have hminor : 3 * (hadwigerNumber G : ℝ) ≤
       (m : ℝ) + 4 * (connectedMatchingNumber G : ℝ) + 2 := by
-    have h := HadwigerMatching.hadwiger_matching_bound G
+    have h := Lax342547.MatchingMinorBound.hadwiger_matching_bound G
     simp only [Fintype.card_fin] at h
     exact_mod_cast h
   refine ⟨m, (le_max_left _ _).trans hm, hm5, G, hα, ?_, ?_, ?_, ?_⟩
   · linarith
   · linarith
-  · simpa using FractionalColoring.fractional_chromatic_lower_bound G hα
-  · exact FractionalColoring.fractional_chromatic_le_chromatic G
+  · simpa using Lax342547.FractionalColoring.fractional_chromatic_lower_bound G hα
+  · exact Lax342547.FractionalColoring.fractional_chromatic_le_chromatic G
 
 end Lax342547Proofs.FractionalCounterexample

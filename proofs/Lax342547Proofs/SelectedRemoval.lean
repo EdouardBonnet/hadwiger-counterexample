@@ -1,8 +1,7 @@
 import Lax342547.SelectedRemoval
-import Lax342547Proofs.SelectedScalars
 import Lax342547Proofs.FrozenValues
-import Lax342547Proofs.Atoms
 import Lax342547Proofs.UnaryMixer
+import Lax342547.Atoms
 
 namespace Lax342547Proofs.SelectedRemoval
 
@@ -55,7 +54,7 @@ theorem atom_annihilates (W : Lists k n b degree r hr)
     by_cases hji : j = i <;> simp [endpointComponent, hji]
   rw [he, pureResponse_single]
   by_cases htag : (W.left i u.1 u.2).tag ∈ e.val
-  · simp only [Lax342547.WitnessAtoms.PointAtom.profile, Atoms.atom_component, htag, if_pos]
+  · simp only [Lax342547.WitnessAtoms.PointAtom.profile, Lax342547.Atoms.atom_component, htag, if_pos]
     change matrixPair (LinearMap.BilinForm.toMatrix' _)
       (Matrix.vecMulVec (W.left i u.1 u.2).vector (W.left i u.1 u.2).vector) = 0
     rw [UnaryMixer.matrixPair_vecMulVec, Matrix.toBilin'_toMatrix']
@@ -73,7 +72,7 @@ theorem atom_annihilates (W : Lists k n b degree r hr)
       (Submodule.Quotient.mk_eq_zero _).mpr hmem
     rw [hz]
     simp
-  · simp [Lax342547.WitnessAtoms.PointAtom.profile, Atoms.atom_component, htag]
+  · simp [Lax342547.WitnessAtoms.PointAtom.profile, Lax342547.Atoms.atom_component, htag]
 
 /--
 ---
@@ -98,7 +97,7 @@ theorem selected_part_annihilates (W : Lists k n b degree r hr)
   apply Finset.sum_eq_zero
   intro u _
   change c i u • response W P U V β (Pi.single i (W.left i u.1 u.2).profile) = 0
-  rw [atom_annihilates W P U V i u β, smul_zero]
+  rw [Lax342547.SelectedRemoval.atom_annihilates W P U V i u β, smul_zero]
 
 /--
 ---
@@ -114,6 +113,6 @@ theorem subtract_annihilates (W : Lists k n b degree r hr)
     (c : ∀ i : Fin 2, (Σ z, Fin (W.length i z)) → Binary) :
     Annihilates W P U V (x - selectedPart W c) := by
   intro β
-  rw [map_sub, h β, selected_part_annihilates W P U V c β, sub_self]
+  rw [map_sub, h β, Lax342547.SelectedRemoval.selected_part_annihilates W P U V c β, sub_self]
 
 end Lax342547Proofs.SelectedRemoval

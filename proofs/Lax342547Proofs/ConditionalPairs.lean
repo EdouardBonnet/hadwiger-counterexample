@@ -1,7 +1,5 @@
 import Lax342547.ConditionalPairs
-import Lax342547Proofs.RealCellLaws
-import Lax342547Proofs.PairRecovery
-import Lax342547Proofs.CellAveraging
+import Lax342547.RealCellLaws
 
 namespace Lax342547Proofs.ConditionalPairs
 open Lax342547.ConditionalPairs
@@ -31,10 +29,10 @@ theorem subtype_pair_event {ΩA ΩB : Type} [Fintype ΩA] [Fintype ΩB]
       apply Finset.sum_congr rfl
       intro a _
       congr 1
-      exact Lax342547Proofs.RealCellLaws.subtype_integral β D (fun b => if H a.val b then 1 else 0)
+      exact Lax342547.RealCellLaws.subtype_integral β D (fun b => if H a.val b then 1 else 0)
     _ = ∑ a, conditionalLaw α C a *
           (∑ b, conditionalLaw β D b * (if H a b then 1 else 0)) :=
-      Lax342547Proofs.RealCellLaws.subtype_integral α C (fun a => ∑ b, conditionalLaw β D b * (if H a b then 1 else 0))
+      Lax342547.RealCellLaws.subtype_integral α C (fun a => ∑ b, conditionalLaw β D b * (if H a b then 1 else 0))
     _ = _ := by simp [Finset.mul_sum, mul_ite]
 
 end Lax342547Proofs.ConditionalPairs

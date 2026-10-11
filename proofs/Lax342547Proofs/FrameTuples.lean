@@ -1,5 +1,7 @@
 import Lax342547.FrameTuples
 import Lax342547Proofs.FrameSymmetry
+import Lax342547.PairedFrames
+import Lax342547Proofs.FiniteUniform
 
 namespace Lax342547Proofs.FrameTuples
 
@@ -17,7 +19,7 @@ theorem uniform_of_paired_action {α : Type} [Fintype α] [Nonempty α] [Decidab
   apply FiniteUniform.map_eq_of_transport
   intro z z'
   obtain ⟨C, D, hCD, hDC, hplus, hminus⟩ :=
-    PairedFrames.paired_matrix_orbit z.val.1 z'.val.1 z.val.2 z'.val.2
+    Lax342547.PairedFrames.paired_matrix_orbit z.val.1 z'.val.1 z.val.2 z'.val.2
       z.property.1 z'.property.1 z.property.2.1 z'.property.2.1
       (z.property.2.2.trans z'.property.2.2.symm)
   let c : Change N := ⟨C, D, hCD, hDC⟩
@@ -113,7 +115,7 @@ theorem raw_full_conditioning [DecidableEq N] {E : Matrix B B Binary} {G : Matri
     obtain ⟨F, hF, _⟩ := h
     exact ⟨⟨F, hF⟩⟩
   rw [FiniteUniform.filter_uniform (α := Frame B H N E) {F | F.X.transpose * F.Y = G} h]
-  rw [← full_uniform C D hC hD, PMF.map_comp, PMF.map_comp]
+  rw [← Lax342547.FrameTuples.full_uniform C D hC hD, PMF.map_comp, PMF.map_comp]
   rfl
 
 /--
@@ -136,7 +138,7 @@ theorem primal_product {Draw : Type} [Fintype Draw] [DecidableEq Draw] [Decidabl
   rw [FiniteUniform.map_fun_apply (fun s (F : Frame B H N E) => (F.P * C s, F.Q * D s))]
   apply Finset.prod_congr rfl
   intro s _
-  rw [← primal_uniform (H := H) (C s) (D s) (hC s) (hD s), PMF.map_comp]
+  rw [← Lax342547.FrameTuples.primal_uniform (H := H) (C s) (D s) (hC s) (hD s), PMF.map_comp]
   rfl
 
 omit [Fintype I] [Fintype J] in
@@ -160,7 +162,7 @@ theorem primal_family {Draw : Type} [Fintype Draw] [DecidableEq Draw] [Decidable
   rw [FiniteUniform.map_pi_apply (fun s (F : Frame B H N E) => (F.P * C s, F.Q * D s))]
   apply Finset.prod_congr rfl
   intro s _
-  rw [← primal_uniform (H := H) (C s) (D s) (hC s) (hD s), PMF.map_comp]
+  rw [← Lax342547.FrameTuples.primal_uniform (H := H) (C s) (D s) (hC s) (hD s), PMF.map_comp]
   rfl
 
 omit [Fintype I] [Fintype J] in
@@ -188,7 +190,7 @@ theorem full_product {Draw : Type} [Fintype Draw] [DecidableEq Draw] [DecidableE
     ((plus F.val).val * C s, (minus F.val).val * D s))]
   apply Finset.prod_congr rfl
   intro s _
-  rw [← full_uniform (C s) (D s) (hC s) (hD s), PMF.map_comp]
+  rw [← Lax342547.FrameTuples.full_uniform (C s) (D s) (hC s) (hD s), PMF.map_comp]
   rfl
 
 end Lax342547Proofs.FrameTuples

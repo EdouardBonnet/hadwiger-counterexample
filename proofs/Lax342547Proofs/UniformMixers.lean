@@ -1,6 +1,6 @@
 import Lax342547.UniformMixers
-import Lax342547Proofs.UnaryMixers
-import Lax342547Proofs.BinaryMixers
+import Lax342547.BinaryMixers
+import Lax342547.UnaryMixers
 
 namespace Lax342547Proofs.UniformMixers
 
@@ -56,9 +56,9 @@ theorem exists_uniform_mixers (k b degree J K s₀ : ℕ) (hk : 0 < k) (hd : 1 �
     have h := (le_max_right _ _).trans hn
     change C + B + 2 ^ (2 * b + 2) ≤ n at h
     exact (Nat.le_add_left _ _).trans h
-  have hu := (UnaryMixers.simultaneous_failure_bound (J := J) (K := K) hk D s₀).trans
-    (UnaryMixers.failureBound_le_geometric k n b degree J K s₀ hmargin)
-  have hb := BinaryMixers.mixer_failure_bound (k := k) (b := b) (F := F) hd hn50
+  have hu := (Lax342547.UnaryMixers.simultaneous_failure_bound (J := J) (K := K) hk D s₀).trans
+    (Lax342547.UnaryMixers.failureBound_le_geometric k n b degree J K s₀ hmargin)
+  have hb := Lax342547.BinaryMixers.mixer_failure_bound (k := k) (b := b) (F := F) hd hn50
   have hjoint : p.toOuterMeasure {L | ¬ (Lax342547.UnaryMixers.Good D K s₀ L ∧
       Lax342547.BinaryMixers.MixerGood L)} < 1 := by
     have heq : {L : F → Moment k n b degree | ¬ (Lax342547.UnaryMixers.Good D K s₀ L ∧
@@ -78,15 +78,15 @@ theorem exists_uniform_mixers (k b degree J K s₀ : ℕ) (hk : 0 < k) (hd : 1 �
       _ = ((C + B : ℕ) : ℝ≥0∞) / 2 ^ n := by rw [Nat.cast_add, ENNReal.add_div]
       _ < 1 := constant_ratio_lt_one _ _ hCB
   obtain ⟨L, hLu, hLb⟩ := exists_of_bad_lt_one p _ hjoint
-  have hs := BinaryMixers.sharp_failure_bound (b := b) hn50
+  have hs := Lax342547.BinaryMixers.sharp_failure_bound (b := b) hn50
   have hslt : (PMF.uniformOfFintype (Fin b → Matrix (Fin n) (Fin n) Binary)).toOuterMeasure
       {M | ¬ Lax342547.BinaryMixers.SharpGood M} < 1 := by
     apply hs.trans_lt
     simpa only [Lax342547.BinaryMixers.failureBound, mul_one, Nat.cast_pow, Nat.cast_ofNat] using
       constant_ratio_lt_one _ _ hsharp
   obtain ⟨M, hM⟩ := exists_of_bad_lt_one _ _ hslt
-  exact ⟨L, M, UnaryMixers.uniform_of_good D L hLu,
-    BinaryMixers.uniform_of_restrictions hr hd L M hLb hM⟩
+  exact ⟨L, M, Lax342547.UnaryMixers.uniform_of_good D L hLu,
+    Lax342547.BinaryMixers.uniform_of_restrictions hr hd L M hLb hM⟩
 
 /--
 ---
@@ -129,7 +129,7 @@ theorem exists_paper_mixers (k b degree K : ℕ) (hk : 0 < k) (hd : 1 ≤ degree
             Lax342547.BinaryMixers.UniformBinary hr hd L M := by
   refine ⟨threshold k b degree (paperJ k b degree K) K (paperS₀ k b degree K), ?_⟩
   intro n hn r₀ hr D
-  exact exists_uniform_mixers k b degree (paperJ k b degree K) K (paperS₀ k b degree K)
-    hk hd (paper_parameters k b degree K).1 n hn r₀ hr D
+  exact Lax342547.UniformMixers.exists_uniform_mixers k b degree (paperJ k b degree K) K (paperS₀ k b degree K)
+    hk hd (Lax342547.UniformMixers.paper_parameters k b degree K).1 n hn r₀ hr D
 
 end Lax342547Proofs.UniformMixers

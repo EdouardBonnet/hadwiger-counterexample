@@ -1,6 +1,7 @@
 import Lax342547.LeafExtraction
 import Lax342547Proofs.ExactPins
 import Mathlib.Data.Finset.Max
+import Lax342547.ExactPins
 
 namespace Lax342547Proofs.LeafExtraction
 
@@ -42,9 +43,9 @@ theorem exists_leaf {Ω Axis I N : Type}
     rw [hz, MeasureTheory.measure_empty] at hbad
     exact not_lt_of_ge zero_le hbad
   obtain ⟨o, ho⟩ := hnonempty
-  have hrefine := ExactPins.event_refinement A P Q o ⟨ho.1.2, ho.2⟩
-  have hrank := ExactPins.rank_refinement A P Q o
-  have hmono := ExactPins.rank_mono P₀ P hext
+  have hrefine := Lax342547.ExactPins.event_refinement A P Q o ⟨ho.1.2, ho.2⟩
+  have hrank := Lax342547.ExactPins.rank_refinement A P Q o
+  have hmono := Lax342547.ExactPins.rank_mono P₀ P hext
   have hdifference : (P.joinAt A Q o).rank - P₀.rank =
       (P.rank - P₀.rank) + P.relativeRank Q := by omega
   have hnewmass : δ * α ^ ((P.joinAt A Q o).rank - P₀.rank) <

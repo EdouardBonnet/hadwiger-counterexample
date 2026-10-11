@@ -1,5 +1,4 @@
 import Lax342547.CommonTestTransfer
-import Lax342547Proofs.EmpiricalVariance
 
 namespace Lax342547Proofs.CommonTestTransfer
 open Lax342547.RelativeEntropy
@@ -48,7 +47,7 @@ theorem success_transfer {Ω : Type} [Fintype Ω] (ρ σ F : Ω → ℝ)
     (hvar : (∑ o,ρ o*(F o-m)^2) ≤ ε)
     (hsuccess : 1-η ≤ ∑ o,σ o*F o) :
     1-η-Real.sqrt (L*ε) ≤ m := by
-  have hh := (le_abs_self _).trans (mean_comparison ρ σ F hσ L ε m hL hcap hvar)
+  have hh := (le_abs_self _).trans (Lax342547.CommonTestTransfer.mean_comparison ρ σ F hσ L ε m hL hcap hvar)
   linarith
 
 end Lax342547Proofs.CommonTestTransfer

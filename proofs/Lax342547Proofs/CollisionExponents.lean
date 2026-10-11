@@ -1,5 +1,4 @@
 import Lax342547.CollisionExponents
-import Lax342547Proofs.RetainedImages
 
 namespace Lax342547Proofs.CollisionExponents
 open Lax342547.CollisionExponents
@@ -38,7 +37,7 @@ theorem pruning_overlap_bound (keyCount cellCount k Cn N : ℝ)
   calc
     _ ≤ (2 * (2 : ℝ)^(k*N) * (2 : ℝ)^Cn) * (2 : ℝ)^(-(k+1/100)*N) :=
       mul_le_mul_of_nonneg_right hprod (by positivity)
-    _ = (2 : ℝ)^(1+Cn-N/100) := pruning_power_identity k Cn N
+    _ = (2 : ℝ)^(1+Cn-N/100) := Lax342547.CollisionExponents.pruning_power_identity k Cn N
     _ ≤ (2 : ℝ)^(-N/200) := by
       apply Real.rpow_le_rpow_of_exponent_le (by norm_num : (1 : ℝ) ≤ 2)
       linarith
@@ -60,7 +59,7 @@ conclusion: Lax342547.CollisionExponents.paper_scalar_smallness
 -/
 theorem paper_scalar_smallness (s : ℕ) (N : ℝ) (hs : (s : ℝ) ≤ N/100) (hN : 100 ≤ N) :
     (2 : ℝ)^(-(45/100 : ℝ)*N) ≤ 1/(2 : ℝ)^(s+1) := by
-  rw [scalar_agreement_power]
+  rw [Lax342547.CollisionExponents.scalar_agreement_power]
   apply Real.rpow_le_rpow_of_exponent_le (by norm_num : (1 : ℝ) ≤ 2)
   linarith
 
@@ -71,7 +70,7 @@ conclusion: Lax342547.CollisionExponents.paper_scalar_cost
 -/
 theorem paper_scalar_cost (s : ℕ) (N : ℝ) (hs : (s : ℝ) ≤ N/100) (hN : 100 ≤ N) :
     (2 : ℝ)^(-N/50) ≤ 1/(2 : ℝ)^(s+1) := by
-  rw [scalar_agreement_power]
+  rw [Lax342547.CollisionExponents.scalar_agreement_power]
   apply Real.rpow_le_rpow_of_exponent_le (by norm_num : (1 : ℝ) ≤ 2)
   linarith
 

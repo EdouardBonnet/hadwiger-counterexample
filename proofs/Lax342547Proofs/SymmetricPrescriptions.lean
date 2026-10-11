@@ -91,9 +91,9 @@ theorem two_lists {I J : Type} [Fintype I] [Fintype J] [Nonempty I] [Nonempty J]
     ∃ M : Matrix (I ⊕ J) (I ⊕ J) Binary, (∀ x y, M x y = M y x) ∧
       (∀ x, M x x = a x) ∧ (∀ x, ∑ i : I, M x (Sum.inl i) = c₁ x) ∧
       ∀ x, ∑ j : J, M x (Sum.inr j) = c₂ x := by
-  obtain ⟨M₁, hs₁, hd₁, hr₁⟩ := diagonal_rows (fun i => a (Sum.inl i)) (fun i => c₁ (Sum.inl i)) h₁
-  obtain ⟨M₂, hs₂, hd₂, hr₂⟩ := diagonal_rows (fun j => a (Sum.inr j)) (fun j => c₂ (Sum.inr j)) h₂
-  obtain ⟨B, hBr, hBc⟩ := rectangular_sums (fun i => c₂ (Sum.inl i)) (fun j => c₁ (Sum.inr j)) hcross
+  obtain ⟨M₁, hs₁, hd₁, hr₁⟩ := Lax342547.SymmetricPrescriptions.diagonal_rows (fun i => a (Sum.inl i)) (fun i => c₁ (Sum.inl i)) h₁
+  obtain ⟨M₂, hs₂, hd₂, hr₂⟩ := Lax342547.SymmetricPrescriptions.diagonal_rows (fun j => a (Sum.inr j)) (fun j => c₂ (Sum.inr j)) h₂
+  obtain ⟨B, hBr, hBc⟩ := Lax342547.SymmetricPrescriptions.rectangular_sums (fun i => c₂ (Sum.inl i)) (fun j => c₁ (Sum.inr j)) hcross
   refine ⟨Matrix.fromBlocks M₁ B B.transpose M₂, ?_, ?_, ?_, ?_⟩
   · intro x y
     cases x with

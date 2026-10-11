@@ -1,9 +1,10 @@
 import Lax342547.RawPrimalAvoidance
-import Lax342547Proofs.InjectiveDensity
-import Lax342547Proofs.PrimalAvoidance
-import Lax342547Proofs.InjectiveFrames
-import Lax342547Proofs.ChannelColumns
-import Lax342547Proofs.PhaseAverages
+import Lax342547.ChannelColumns
+import Lax342547.FiniteSampling
+import Lax342547.FrameSymmetry
+import Lax342547.InjectiveDensity
+import Lax342547.PrimalAvoidance
+import Lax342547.RealCellLaws
 
 namespace Lax342547Proofs.RawPrimalAvoidance
 open Lax342547.RawPrimalAvoidance
@@ -26,13 +27,13 @@ theorem plus_matrix_point_cap {B H N : Type} [Fintype B] [Fintype H] [Fintype N]
       2*weights (PMF.uniformOfFintype (Matrix N (B ⊕ H) Binary)) Z := by
   haveI : Nonempty (Injection (B ⊕ H) N) := Nonempty.map (plus (E := E)) (inferInstance : Nonempty (Frame B H N E))
   have ht := congrArg (PMF.map (Subtype.val : Injection (B ⊕ H) N → Matrix N (B ⊕ H) Binary))
-    (Lax342547Proofs.FrameSymmetry.plus_uniform (E := E))
+    (Lax342547.FrameSymmetry.plus_uniform (E := E))
   rw [PMF.map_comp] at ht
   have he : (PMF.uniformOfFintype (Frame B H N E)).map (fun F => (plus F).val) =
       (PMF.uniformOfFintype (Injection (B ⊕ H) N)).map Subtype.val := ht
-  rw [← Lax342547Proofs.ChannelColumns.pmf_weights_map,he,
-    Lax342547Proofs.ChannelColumns.pmf_weights_map]
-  exact Lax342547Proofs.InjectiveDensity.injective_matrix_point_cap (by simpa only [Fintype.card_sum] using hN) Z
+  rw [← Lax342547.ChannelColumns.pmf_weights_map,he,
+    Lax342547.ChannelColumns.pmf_weights_map]
+  exact Lax342547.InjectiveDensity.injective_matrix_point_cap (by simpa only [Fintype.card_sum] using hN) Z
 
 /--
 ---
@@ -51,7 +52,7 @@ theorem raw_primal_span_hit_mass {B H N : Type} [Fintype B] [Fintype H] [Fintype
   let f := fun F : Frame B H N E => (plus F).val
   have hm : cellMass ρ (fun F => ∃ c : B → Binary,c ≠ 0 ∧ F.P.mulVec c ∈ W) ≤
       cellMass ρ (fun F => ∃ c : (B ⊕ H) → Binary,c ≠ 0 ∧ (f F).mulVec c ∈ W) := by
-    apply Lax342547Proofs.FiniteSampling.cell_mass_mono _ _ _ (Lax342547Proofs.RealCellLaws.weights_nonneg _)
+    apply Lax342547.FiniteSampling.cell_mass_mono _ _ _ (Lax342547.RealCellLaws.weights_nonneg _)
     rintro F ⟨c,hc,hW⟩
     refine ⟨Sum.elim c 0,?_,?_⟩
     · intro hz
@@ -60,11 +61,11 @@ theorem raw_primal_span_hit_mass {B H N : Type} [Fintype B] [Fintype H] [Fintype
       exact congrFun hz (.inl b)
     · simpa only [f,plus,Matrix.fromCols_mulVec,Function.comp_def,Sum.elim_inl,Sum.elim_inr,
         Matrix.mulVec_zero,add_zero] using hW
-  have hp := Lax342547Proofs.ChannelColumns.push_cell_mass ρ f
+  have hp := Lax342547.ChannelColumns.push_cell_mass ρ f
     (fun A : Matrix N (B ⊕ H) Binary => ∃ c : (B ⊕ H) → Binary,c ≠ 0 ∧ A.mulVec c ∈ W)
   have hm' := hm.trans_eq hp.symm
-  have hh := Lax342547Proofs.PrimalAvoidance.capped_matrix_span_hit (push ρ f) 2 (by norm_num)
-    (fun Z => plus_matrix_point_cap E hN Z) W
+  have hh := Lax342547.PrimalAvoidance.capped_matrix_span_hit (push ρ f) 2 (by norm_num)
+    (fun Z => Lax342547.RawPrimalAvoidance.plus_matrix_point_cap E hN Z) W
   exact hm'.trans (by simpa only [Fintype.card_sum] using hh)
 
 end Lax342547Proofs.RawPrimalAvoidance

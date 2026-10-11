@@ -4,7 +4,7 @@ import Lax342547.ReferencePins
 /-!
 ---
 title: Exact-pin peeling for the actual raw frame law
-type: theorem
+type: lemma
 ---
 Apply the finite bounded peeling procedure to both endpoints and both
 signs of the concrete raw frames. The absolute density bound is always

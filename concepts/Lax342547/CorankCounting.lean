@@ -3,7 +3,7 @@ import Lax342547.LowRankCounting
 /-!
 ---
 title: The row-corank bound for a uniform binary matrix
-type: theorem
+type: lemma
 ---
 A matrix with row corank at least s admits s independent row relations.
 Count the relation matrix first, then require every column to lie in its

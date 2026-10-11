@@ -1,7 +1,9 @@
 import Lax342547.FiniteCollision
-import Lax342547Proofs.RecordCollision
-import Lax342547Proofs.ParameterCellAveraging
-import Lax342547Proofs.CollisionExponents
+import Lax342547.CollisionExponents
+import Lax342547.CollisionPruning
+import Lax342547.KeyMeasures
+import Lax342547.ParameterCellAveraging
+import Lax342547.RecordCollision
 
 namespace Lax342547Proofs.FiniteCollision
 open Lax342547.FiniteCollision
@@ -34,7 +36,7 @@ theorem independent_key_overlap {A B ΩA ΩB Q : Type} [Fintype A] [Fintype B]
     uniformOverlap (acceptedDensity p α keyA acceptA) (acceptedDensity q β keyB acceptB) =
     Fintype.card Q * average p q (fun x y => ∑ z,
       keyMass α (keyA x) (acceptA x) z * keyMass β (keyB y) (acceptB y) z) := by
-  rw [Lax342547Proofs.KeyMeasures.uniform_overlap_collision]
+  rw [Lax342547.KeyMeasures.uniform_overlap_collision]
   congr 1
   unfold acceptedDensity average
   simp_rw [Finset.sum_mul, Finset.mul_sum]
@@ -70,19 +72,19 @@ theorem averaged_record_pruning {A B ΩA ΩB Q C D : Type}
         (fun zd : Q × D => keyRecordMass β (keyB y) (recordB y x) (acceptB y) zd.1 zd.2)
         (fun zc zd => zc.1 = zd.1) τ) ≤
       Fintype.card Q * (Fintype.card C + Fintype.card D : ℝ) * τ := by
-  have h := Lax342547Proofs.CollisionPruning.averaged_pruning p q
+  have h := Lax342547.CollisionPruning.averaged_pruning p q
     (fun x y z c => keyRecordMass α (keyA x) (recordA x y) (acceptA x) z c)
     (fun y x z d => keyRecordMass β (keyB y) (recordB y x) (acceptB y) z d)
     τ hτ hp hq hpsum hqsum
-    (fun x y z c => Lax342547Proofs.RecordCollision.key_record_mass_nonneg α (keyA x) (recordA x y) (acceptA x) hα z c)
-    (fun y x z d => Lax342547Proofs.RecordCollision.key_record_mass_nonneg β (keyB y) (recordB y x) (acceptB y) hβ z d)
-    (fun x y => Lax342547Proofs.RecordCollision.key_record_mass_subprobability α (keyA x) (recordA x y) (acceptA x) hα hαsum)
-    (fun y x => Lax342547Proofs.RecordCollision.key_record_mass_subprobability β (keyB y) (recordB y x) (acceptB y) hβ hβsum)
-  simp_rw [Lax342547Proofs.RecordCollision.key_record_mass_total] at h
+    (fun x y z c => Lax342547.RecordCollision.key_record_mass_nonneg α (keyA x) (recordA x y) (acceptA x) hα z c)
+    (fun y x z d => Lax342547.RecordCollision.key_record_mass_nonneg β (keyB y) (recordB y x) (acceptB y) hβ z d)
+    (fun x y => Lax342547.RecordCollision.key_record_mass_subprobability α (keyA x) (recordA x y) (acceptA x) hα hαsum)
+    (fun y x => Lax342547.RecordCollision.key_record_mass_subprobability β (keyB y) (recordB y x) (acceptB y) hβ hβsum)
+  simp_rw [Lax342547.RecordCollision.key_record_mass_total] at h
   change average p q (fun x y => _ - _) ≤ _ at h
-  rw [average_sub] at h
-  rw [independent_key_overlap]
-  simp_rw [Lax342547Proofs.RecordCollision.retained_key_record_identity]
+  rw [Lax342547.FiniteCollision.average_sub] at h
+  rw [Lax342547.FiniteCollision.independent_key_overlap]
+  simp_rw [Lax342547.RecordCollision.retained_key_record_identity]
   have hm := mul_le_mul_of_nonneg_left h (Nat.cast_nonneg (Fintype.card Q) : (0:ℝ) ≤ _)
   nlinarith
 
@@ -111,14 +113,14 @@ theorem finite_collision_lower {A B ΩA ΩB Q C D : Type}
     ε * (uniformOverlap (acceptedDensity p α keyA acceptA) (acceptedDensity q β keyB acceptB) -
       Fintype.card Q * (Fintype.card C + Fintype.card D : ℝ) * τ) / Fintype.card Q ≤
         pairEventMass α β H := by
-  have hprune := averaged_record_pruning p q α β keyA keyB recordA recordB acceptA acceptB τ
+  have hprune := Lax342547.FiniteCollision.averaged_record_pruning p q α β keyA keyB recordA recordB acceptA acceptB τ
     hp hq hpsum hqsum hα hβ hαsum hβsum hτ.le
-  have hholes := Lax342547Proofs.ParameterCellAveraging.average_cell_pair_lower p q α β
+  have hholes := Lax342547.ParameterCellAveraging.average_cell_pair_lower p q α β
     (fun x y a => (keyA x a, recordA x y a)) (fun y x b => (keyB y b, recordB y x b))
     acceptA acceptB (fun _ _ zc zd => zc.1 = zd.1) H τ ε
     hp hq hpsum hqsum hα hβ hτ hloc
   have hkeys : (0 : ℝ) < Fintype.card Q := by exact_mod_cast Fintype.card_pos
-  exact Lax342547Proofs.CollisionExponents.collision_lower_from_overlap _ _ _ _ _ _
+  exact Lax342547.CollisionExponents.collision_lower_from_overlap _ _ _ _ _ _
     hkeys hε hprune hholes
 
 end Lax342547Proofs.FiniteCollision

@@ -1,6 +1,8 @@
 import Lax342547.GradientRealization
-import Lax342547Proofs.FrozenGradients
-import Lax342547Proofs.RawBaselines
+import Lax342547.FrozenGradients
+import Lax342547.PinLabelExclusions
+import Lax342547.RawBaselines
+import Lax342547.TableSpaces
 
 namespace Lax342547Proofs.GradientRealization
 open Lax342547.GradientRealization
@@ -52,14 +54,14 @@ theorem gradient_realization {k n b degree r : ℕ} {hr : 2 * r ≤ n}
       (∀ i z x, fullContraction G.flip (Profile k n b degree) z i x =
         (D.role + gradient D L R (rightWitness W i z)) x) := by
   classical
-  obtain ⟨F, hF, hfrozen, hbounded⟩ := Lax342547Proofs.RawBaselines.raw_baselines W P Q A B
-    (Lax342547Proofs.PinLabelExclusions.keys_exclusion P A hA)
-    (Lax342547Proofs.PinLabelExclusions.keys_exclusion Q B hB) hrecipe.fresh K hK hQ oA oB T hadmissible
-  choose U hU using (fun e z => Lax342547Proofs.TableSpaces.private_complement P z (e, true))
-  choose V hV using (fun e z => Lax342547Proofs.TableSpaces.private_complement P z (e, false))
-  choose U' hU' using (fun e z => Lax342547Proofs.TableSpaces.private_complement Q z (e, true))
-  choose V' hV' using (fun e z => Lax342547Proofs.TableSpaces.private_complement Q z (e, false))
-  exact Lax342547Proofs.FrozenGradients.frozen_gradients hk W D L R oA oB P Q hK hQ A B hA hfresh hB
+  obtain ⟨F, hF, hfrozen, hbounded⟩ := Lax342547.RawBaselines.raw_baselines W P Q A B
+    (Lax342547.PinLabelExclusions.keys_exclusion P A hA)
+    (Lax342547.PinLabelExclusions.keys_exclusion Q B hB) hrecipe.fresh K hK hQ oA oB T hadmissible
+  choose U hU using (fun e z => Lax342547.TableSpaces.private_complement P z (e, true))
+  choose V hV using (fun e z => Lax342547.TableSpaces.private_complement P z (e, false))
+  choose U' hU' using (fun e z => Lax342547.TableSpaces.private_complement Q z (e, true))
+  choose V' hV' using (fun e z => Lax342547.TableSpaces.private_complement Q z (e, false))
+  exact Lax342547.FrozenGradients.frozen_gradients hk W D L R oA oB P Q hK hQ A B hA hfresh hB
     U V hU hV U' V' hU' hV' T hT F hF hbounded hrecipe hfrozen hkeys hgradients hgradients'
     hdegree hmargin hchannels
 

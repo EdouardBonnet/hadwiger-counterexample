@@ -1,5 +1,7 @@
 import Lax342547.BilinearWalsh
 import Lax342547Proofs.Walsh
+import Lax342547.Walsh
+import Lax342547Proofs.FiniteLinearLaw
 
 namespace Lax342547Proofs.BilinearWalsh
 
@@ -82,7 +84,7 @@ theorem correlation_sq {I J : Type} [Fintype I] [Fintype J]
   have hw := pushWeight_energy A.mulVec g (2 ^ (Fintype.card J - A.rank)) (matrix_fiber_card A)
   calc
     _ ≤ (2 : ℝ) ^ Fintype.card I * (∑ x, (f x) ^ 2) * ∑ z, (w z) ^ 2 :=
-      Walsh.dot_correlation_sq f w
+      Lax342547.Walsh.dot_correlation_sq f w
     _ ≤ (2 : ℝ) ^ Fintype.card I * (∑ x, (f x) ^ 2) *
         ((2 : ℝ) ^ (Fintype.card J - A.rank) * ∑ y, (g y) ^ 2) := by
       apply mul_le_mul_of_nonneg_left
@@ -117,7 +119,7 @@ theorem uniform_bound {I J : Type} [Fintype I] [Fintype J]
   let C : ℝ := 2 ^ Fintype.card I * 2 ^ Fintype.card J
   have hC : 0 < C := by dsimp [C]; positivity
   have hr : A.rank ≤ Fintype.card J := Matrix.rank_le_card_width A
-  have hbound := (correlation_sq A f g).trans
+  have hbound := (Lax342547.BilinearWalsh.correlation_sq A f g).trans
     (show (2 : ℝ) ^ (Fintype.card I + (Fintype.card J - A.rank)) *
       (∑ x, (f x) ^ 2) * ∑ y, (g y) ^ 2 ≤
         (2 : ℝ) ^ (Fintype.card I + (Fintype.card J - A.rank)) *
@@ -190,7 +192,7 @@ theorem bounded_weight_bound {I J : Type} [Fintype I] [Fintype J]
   rw [he, abs_mul, abs_of_nonneg (mul_nonneg hC₁ hC₂)]
   calc
     _ ≤ C₁ * C₂ * (1 / Real.sqrt ((2 : ℝ) ^ A.rank)) :=
-      mul_le_mul_of_nonneg_left (uniform_bound A _ _ hf' hg') (mul_nonneg hC₁ hC₂)
+      mul_le_mul_of_nonneg_left (Lax342547.BilinearWalsh.uniform_bound A _ _ hf' hg') (mul_nonneg hC₁ hC₂)
     _ = _ := by ring
 
 /--
@@ -208,7 +210,7 @@ theorem density_bound {I J : Type} [Fintype I] [Fintype J]
     (hf : ∀ x, |f x| ≤ 1) (hg : ∀ y, |g y| ≤ 1) :
     |average A (fun x => α x * f x) (fun y => β y * g y)| ≤
       C₁ * C₂ / Real.sqrt ((2 : ℝ) ^ A.rank) := by
-  apply bounded_weight_bound A _ _ C₁ C₂ ((hα 0).1.trans (hα 0).2) ((hβ 0).1.trans (hβ 0).2)
+  apply Lax342547.BilinearWalsh.bounded_weight_bound A _ _ C₁ C₂ ((hα 0).1.trans (hα 0).2) ((hβ 0).1.trans (hβ 0).2)
   · intro x
     rw [abs_mul, abs_of_nonneg (hα x).1]
     exact (mul_le_mul_of_nonneg_left (hf x) (hα x).1).trans (by simpa using (hα x).2)
@@ -234,7 +236,7 @@ theorem separate_phase_bound {I J : Type} [Fintype I] [Fintype J]
     (hf : ∀ x, |f x| ≤ 1) (hg : ∀ y, |g y| ≤ 1) :
     |(∑ x, ∑ y, f x * g y * sign (dotProduct x (A.mulVec y) + u x + v y + c)) /
       ((2 : ℝ) ^ Fintype.card I * 2 ^ Fintype.card J)| ≤ 1 / Real.sqrt ((2 : ℝ) ^ A.rank) := by
-  have h := uniform_bound A (fun x => f x * sign (u x + c)) (fun y => g y * sign (v y))
+  have h := Lax342547.BilinearWalsh.uniform_bound A (fun x => f x * sign (u x + c)) (fun y => g y * sign (v y))
     (fun x => by simpa only [abs_mul, abs_sign, mul_one] using hf x)
     (fun y => by simpa only [abs_mul, abs_sign, mul_one] using hg y)
   have heq : (∑ x, ∑ y, f x * g y * sign (dotProduct x (A.mulVec y) + u x + v y + c)) =
@@ -275,7 +277,7 @@ theorem conditional_mixture_bound {T : Type} [Fintype T] {I J : T → Type}
       intro t _
       rw [abs_mul, abs_of_nonneg (hw t)]
       apply mul_le_mul_of_nonneg_left _ (hw t)
-      refine (bounded_weight_bound (A t) (f t) (g t) (C₁ t) (C₂ t)
+      refine (Lax342547.BilinearWalsh.bounded_weight_bound (A t) (f t) (g t) (C₁ t) (C₂ t)
         (hC₁ t) (hC₂ t) (hf t) (hg t)).trans ?_
       have hpos := mul_nonneg (hC₁ t) (hC₂ t)
       have hr := hR t

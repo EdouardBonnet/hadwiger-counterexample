@@ -1,5 +1,5 @@
 import Lax342547.PairedAnnihilators
-import Lax342547Proofs.TensorAnnihilators
+import Lax342547.TensorAnnihilators
 
 namespace Lax342547Proofs.PairedAnnihilators
 
@@ -72,6 +72,6 @@ theorem endpoint_rank {B H : Type} [Fintype B] [DecidableEq B]
     (S T : Submodule Binary (B → Binary))
     (hD : D.map (primalProjection i) ≤ S) (hE : E.map (primalProjection i) ≤ T) :
     (M i).rank ≤ Module.finrank Binary S + Module.finrank Binary T :=
-  TensorAnnihilators.pure_rank (M i) S T (endpoint_projection M D E h i S T hD hE)
+  Lax342547.TensorAnnihilators.pure_rank (M i) S T (Lax342547.PairedAnnihilators.endpoint_projection M D E h i S T hD hE)
 
 end Lax342547Proofs.PairedAnnihilators

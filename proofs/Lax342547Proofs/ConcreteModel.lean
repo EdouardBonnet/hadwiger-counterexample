@@ -1,8 +1,10 @@
 import Lax342547.ConcreteModel
-import Lax342547Proofs.ConcreteCut
-import Lax342547Proofs.FrameExistence
 import Lax342547Proofs.RawFrames
 import Lax342547Proofs.RawLaw
+import Lax342547.ConcreteCut
+import Lax342547.FrameExistence
+import Lax342547.SampledGraph
+import Lax342547Proofs.HoleTriangleFree
 
 namespace Lax342547Proofs.ConcreteModel
 
@@ -27,12 +29,12 @@ theorem exists_model {k n b degree r J h N : ℕ} (hr : 2 * r ≤ n) (hd : 1 ≤
     (hN : 2 * (Fintype.card (Coordinate k n b degree) + h) ≤ N) :
     Nonempty (Model (h := h) (N := N) hr hd M L R) := by
   classical
-  obtain ⟨D⟩ := ConcreteCut.exists_testers (k := k) (b := b) (degree := degree) hr
+  obtain ⟨D⟩ := Lax342547.ConcreteCut.exists_testers (k := k) (b := b) (degree := degree) hr
   have hframe : Nonempty (Frame (Coordinate k n b degree) (Fin h) (Fin N) (selfGram hr hd M)) :=
-    FrameExistence.frame_nonempty_of_card_le _ (by simpa only [Fintype.card_fin] using hN)
+    Lax342547.FrameExistence.frame_nonempty_of_card_le _ (by simpa only [Fintype.card_fin] using hN)
   let : Nonempty (Frame (Coordinate k n b degree) (Fin h) (Fin N) (selfGram hr hd M)) := hframe
   let H := RawFrames.frameHoleData (Profile k n b degree) D.role (gradient D L R)
-    (ConcreteCut.gradient_properties D L R).1 (fun o : RawVertex (k := k) hr hd M h N => o)
+    (Lax342547.ConcreteCut.gradient_properties D L R).1 (fun o : RawVertex (k := k) hr hd M h N => o)
   exact ⟨{
     testers := D
     frame := Classical.choice hframe
@@ -57,7 +59,7 @@ theorem graph_indepNum_le_two {k n b degree r J h N m : ℕ} {hr : 2 * r ≤ n} 
     {L R : Fin J → Component (Tag k) → Component (Tag k) → Moment k n b degree}
     (D : Model (h := h) (N := N) hr hd M L R) (sample : Fin m → RawVertex (k := k) hr hd M h N) :
     (graph D sample).indepNum ≤ 2 :=
-  SampledGraph.sampleGraph_indepNum_le_two _ (fun {_ _} hij => D.hole_symmetric hij)
+  Lax342547.SampledGraph.sampleGraph_indepNum_le_two _ (fun {_ _} hij => D.hole_symmetric hij)
     (HoleTriangleFree.hole_triangle_free D.holes) sample
 
 end Lax342547Proofs.ConcreteModel

@@ -1,6 +1,6 @@
 import Lax342547.PointQuadratics
-import Lax342547Proofs.QuadraticDegree
-import Lax342547Proofs.BaseMoments
+import Lax342547.QuadraticDegree
+import Lax342547Proofs.SelectorInterpolation
 
 namespace Lax342547Proofs.PointQuadratics
 open Lax342547.PointQuadratics
@@ -35,12 +35,12 @@ theorem point_tensor_evaluation_degree {b : ℕ} {Label Coord : Type} [Fintype C
     (fun x : Fin b → Binary => φ (pointMoment p s x)) ∈ selectorSpan b 2 := by
   have hz (i : Coord × Option (Fin b)) :
       (fun x : Fin b → Binary => point p s x i) ∈ selectorSpan b 1 := by
-    have hh := (selectorSpan b 1).smul_mem (p s i.1) (base_evaluation_degree i.2)
+    have hh := (selectorSpan b 1).smul_mem (p s i.1) (Lax342547.PointQuadratics.base_evaluation_degree i.2)
     have he : p s i.1 • (fun x : Fin b → Binary => baseEval x i.2) =
         (fun x : Fin b → Binary => point p s x i) := by ext x; rfl
     rw [he] at hh
     exact hh
-  exact Lax342547Proofs.QuadraticDegree.linear_outer_product_degree φ
+  exact Lax342547.QuadraticDegree.linear_outer_product_degree φ
     (fun i x => point p s x i) hz
 
 end Lax342547Proofs.PointQuadratics

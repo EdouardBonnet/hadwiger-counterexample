@@ -1,5 +1,4 @@
 import Lax342547.FiniteSampling
-import Lax342547Proofs.ContainerLaws
 import Mathlib.Algebra.BigOperators.Ring.Finset
 
 namespace Lax342547Proofs.FiniteSampling
@@ -55,7 +54,7 @@ theorem coordinate_set_probability {ι Ω : Type} [Fintype ι] [Fintype Ω] [Dec
     cellMass (productLaw (fun _ : ι => μ)) (fun sample => ∀ i ∈ T, S (sample i)) =
       (cellMass μ S)^T.card := by
   classical
-  have h := cylinder_probability (fun _ : ι => μ) (fun i x => i ∈ T → S x)
+  have h := Lax342547.FiniteSampling.cylinder_probability (fun _ : ι => μ) (fun i x => i ∈ T → S x)
   have hc (i : ι) : cellMass μ (fun x => i ∈ T → S x) = if i ∈ T then cellMass μ S else 1 := by
     by_cases hi : i ∈ T
     · simp [hi]
@@ -125,18 +124,18 @@ theorem exceptional_positions_bound {ι Ω : Type} [Fintype ι] [Fintype Ω] [De
     refine ⟨T,Finset.mem_powersetCard.mpr ⟨Finset.subset_univ _,hcard⟩,?_⟩
     intro i hi
     exact (Finset.mem_filter.mp (hT hi)).2
-  have hprob := product_probability (fun _ : ι => μ) (fun _ => hμ)
+  have hprob := Lax342547.FiniteSampling.product_probability (fun _ : ι => μ) (fun _ => hμ)
   calc
     _ ≤ cellMass (productLaw (fun _ : ι => μ))
         (fun sample => ∃ T ∈ candidates, ∀ i ∈ T, S (sample i)) :=
-      cell_mass_mono _ _ _ hprob.1 hcover
+      Lax342547.FiniteSampling.cell_mass_mono _ _ _ hprob.1 hcover
     _ ≤ ∑ T ∈ candidates, cellMass (productLaw (fun _ : ι => μ)) (fun sample => ∀ i ∈ T, S (sample i)) :=
-      cell_mass_union_bound _ _ candidates hprob.1
+      Lax342547.FiniteSampling.cell_mass_union_bound _ _ candidates hprob.1
     _ = (Fintype.card ι).choose k*(cellMass μ S)^k := by
       have ht : ∀ T ∈ candidates, cellMass (productLaw (fun _ : ι => μ))
           (fun sample => ∀ i ∈ T, S (sample i)) = (cellMass μ S)^k := by
         intro T hT
-        rw [coordinate_set_probability μ T S hμ,(Finset.mem_powersetCard.mp hT).2]
+        rw [Lax342547.FiniteSampling.coordinate_set_probability μ T S hμ,(Finset.mem_powersetCard.mp hT).2]
       rw [Finset.sum_congr rfl ht,Finset.sum_const,Finset.card_powersetCard,Finset.card_univ]
       simp [nsmul_eq_mul]
 

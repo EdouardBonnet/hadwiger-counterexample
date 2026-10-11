@@ -1,7 +1,6 @@
 import Lax342547.RealCellLaws
-import Lax342547Proofs.RetainedImages
-import Lax342547Proofs.Conditioning
 import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
+import Lax342547.RetainedImages
 
 namespace Lax342547Proofs.RealCellLaws
 open Lax342547.RealCellLaws
@@ -76,10 +75,10 @@ theorem subtype_weights_total {Ω : Type} [Fintype Ω]
       classical
       exact (∑ ω : {ω // C ω}, subtypeWeights ρ C ω) = 1 := by
   classical
-  have h := subtype_integral ρ C (fun _ => 1)
+  have h := Lax342547.RealCellLaws.subtype_integral ρ C (fun _ => 1)
   simp only [mul_one] at h
   rw [h]
-  exact Lax342547Proofs.RetainedImages.conditional_law_total ρ C hC
+  exact Lax342547.RetainedImages.conditional_law_total ρ C hC
 
 /--
 ---
@@ -101,7 +100,7 @@ theorem subtype_image_push {Ω X : Type} [Fintype Ω]
       classical
       exact push (subtypeWeights ρ C) (fun ω => image ω.val) x = push (conditionalLaw ρ C) image x := by
   classical
-  have h := subtype_integral ρ C (fun ω => if image ω = x then 1 else 0)
+  have h := Lax342547.RealCellLaws.subtype_integral ρ C (fun ω => if image ω = x then 1 else 0)
   unfold push
   simpa only [mul_ite, mul_one, mul_zero] using h
 
@@ -118,8 +117,8 @@ theorem subtype_conditional_cap {Ω X : Type} [Fintype Ω]
       classical
       exact push (subtypeWeights ρ C) (fun ω => image ω.val) x ≤ cap / τ := by
   classical
-  rw [subtype_image_push]
-  exact Lax342547Proofs.RetainedImages.conditional_image_cap ρ C image joint τ cap hρ hτ hC hCJ hcap x
+  rw [Lax342547.RealCellLaws.subtype_image_push]
+  exact Lax342547.RetainedImages.conditional_image_cap ρ C image joint τ cap hρ hτ hC hCJ hcap x
 
 /--
 ---
@@ -134,11 +133,11 @@ theorem pmf_subtype_conditional_cap {Ω X : Type} [Fintype Ω]
       classical
       exact push (subtypeWeights (weights p) C) (fun ω => image ω.val) x ≤ cap.toReal / τ := by
   classical
-  apply subtype_conditional_cap (weights p) C image joint τ cap.toReal (weights_nonneg p) hτ
-  · rwa [event_mass]
+  apply Lax342547.RealCellLaws.subtype_conditional_cap (weights p) C image joint τ cap.toReal (Lax342547.RealCellLaws.weights_nonneg p) hτ
+  · rwa [Lax342547.RealCellLaws.event_mass]
   · exact hCJ
   · intro y
-    rw [event_mass]
+    rw [Lax342547.RealCellLaws.event_mass]
     exact ENNReal.toReal_mono hcapTop (hcap y)
 
 /--
@@ -158,12 +157,12 @@ theorem pmf_paper_subtype_cap {Ω X : Type} [Fintype Ω]
       exact push (subtypeWeights (weights p) C) (fun ω => image ω.val) x ≤
         (2 : ℝ) ^ (-(95 / 100 : ℝ) * t * N) := by
   classical
-  have hp := pmf_subtype_conditional_cap p C image joint
+  have hp := Lax342547.RealCellLaws.pmf_subtype_conditional_cap p C image joint
     ((2 : ℝ) ^ (-(k + 1 / 100) * N))
     ((2 : ℝ≥0∞) ^ (-(1 - 2 * ζ) * (k + t) * N))
     (by simp) (Real.rpow_pos_of_pos (by norm_num) _) hC hCJ hcap x
   rw [← ENNReal.toReal_rpow] at hp
   norm_num only [ENNReal.toReal_ofNat] at hp
-  exact hp.trans (Lax342547Proofs.RetainedImages.paper_conditional_cap ζ k t N hζ hζsmall hk ht hN)
+  exact hp.trans (Lax342547.RetainedImages.paper_conditional_cap ζ k t N hζ hζsmall hk ht hN)
 
 end Lax342547Proofs.RealCellLaws

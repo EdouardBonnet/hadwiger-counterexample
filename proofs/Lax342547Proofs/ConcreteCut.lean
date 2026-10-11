@@ -2,6 +2,8 @@ import Lax342547.ConcreteCut
 import Lax342547Proofs.ConcreteGeometry
 import Lax342547Proofs.TagGeometry
 import Lax342547Proofs.CutFunctionals
+import Lax342547.CutFunctionals
+import Lax342547.GradientForm
 
 namespace Lax342547Proofs.ConcreteCut
 
@@ -48,7 +50,7 @@ theorem representative_testers_eq (hr : 2 * r ≤ n) (t : Tag k)
   have hodd : Odd (Fintype.card (Tag k)) := by
     rw [ZMod.card]
     exact ⟨k, rfl⟩
-  have he := CutFunctionals.representative_sums_eq (tagSpace k n b degree)
+  have he := Lax342547.CutFunctionals.representative_sums_eq (tagSpace k n b degree)
     (∑ d : Tag k, blockTester hr (ordinary d t)) (blockTester hr shared) hO hodd
     w.val v.val (representative_mem w) (representative_mem v) heq
   exact ⟨by simpa [ordinarySum_apply, LinearMap.sum_apply] using he.1,
@@ -109,6 +111,6 @@ theorem gradient_properties {J : ℕ} {hr : 2 * r ≤ n}
     (L R : Fin J → Component (Tag k) → Component (Tag k) → Moment k n b degree) :
     (∀ x y, gradient D L R x y = gradient D L R y x) ∧
       ∀ x, gradient D L R x x = D.role x :=
-  GradientForm.form_properties D.role D.aTag D.bTag (mixingForm L R)
+  Lax342547.GradientForm.form_properties D.role D.aTag D.bTag (mixingForm L R)
 
 end Lax342547Proofs.ConcreteCut

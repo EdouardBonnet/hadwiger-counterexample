@@ -1,6 +1,5 @@
 import Lax342547.DerivativeContractions
-import Lax342547Proofs.ChannelChanges
-import Lax342547Proofs.TensorContractions
+import Lax342547Proofs.PrimalContractions
 
 namespace Lax342547Proofs.DerivativeContractions
 
@@ -68,7 +67,7 @@ theorem left_rank_one {B H : Type} [Fintype B] [Fintype H]
     (M : Matrix B B Binary) (g : (B → Binary) →ₗ[Binary] (H → Binary))
     (φ : Module.Dual Binary (B → Binary)) (c : H → Binary) :
     ambient (φ.smulRight c) g M = dotProduct c (g (M.transpose.mulVecLin (coordinates φ))) := by
-  rw [transpose_contraction, right_rank_one, dotProduct_comm]
+  rw [Lax342547.DerivativeContractions.transpose_contraction, Lax342547.DerivativeContractions.right_rank_one, dotProduct_comm]
 
 theorem ambient_zero_left {B H : Type} [Fintype B] [Fintype H]
     (g : (B → Binary) →ₗ[Binary] (H → Binary)) : ambient 0 g = 0 := by

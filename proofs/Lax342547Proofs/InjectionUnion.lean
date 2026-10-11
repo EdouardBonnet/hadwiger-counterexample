@@ -1,6 +1,6 @@
 import Lax342547.InjectionUnion
-import Lax342547Proofs.InjectionAsymptotics
-import Lax342547Proofs.FiniteSampling
+import Lax342547.FiniteSampling
+import Lax342547.InjectionAsymptotics
 
 namespace Lax342547Proofs.InjectionUnion
 open Lax342547.InjectionUnion
@@ -41,7 +41,7 @@ theorem finite_injection_union {A B J : Type} [Fintype A] [Fintype B] [Fintype J
     cellMass (fun p : A × B => α p.1*β p.2) (fun p => accept p.1 p.2 ∧ ∃ j,F j p.1 p.2) ≤
       Fintype.card J*(η*cellMass (fun p : A × B => α p.1*β p.2) (fun p => accept p.1 p.2)+τ) := by
   classical
-  have hu := Lax342547Proofs.FiniteSampling.cell_mass_union_bound
+  have hu := Lax342547.FiniteSampling.cell_mass_union_bound
     (fun p : A × B => α p.1*β p.2)
     (fun j p => accept p.1 p.2 ∧ F j p.1 p.2) Finset.univ (fun p => mul_nonneg (hα p.1) (hβ p.2))
   have he : (fun p : A × B => ∃ j ∈ (Finset.univ : Finset J),accept p.1 p.2 ∧ F j p.1 p.2) =
@@ -50,7 +50,7 @@ theorem finite_injection_union {A B J : Type} [Fintype A] [Fintype B] [Fintype J
     simp only [Finset.mem_univ,true_and,exists_and_left]
   rw [he] at hu
   have hs := Finset.sum_le_sum (fun j (_ : j ∈ Finset.univ) => hF j)
-  simp_rw [← pair_event_mass] at hs
+  simp_rw [← Lax342547.InjectionUnion.pair_event_mass] at hs
   exact hu.trans (by simpa [mul_add] using hs)
 
 /--
@@ -73,8 +73,8 @@ theorem inverse_polynomial_relative_union {A B J : Type} [Fintype A] [Fintype B]
     classical
     unfold cellMass
     exact Finset.sum_nonneg (fun p _ => by split_ifs; exact mul_nonneg (hα p.1) (hβ p.2); exact le_rfl)
-  apply Lax342547Proofs.InjectionAsymptotics.relative_union_budget (Fintype.card J) ε _ _ _ hJ hε ha
-    (finite_injection_union α β accept F _ _ hα hβ hF)
+  apply Lax342547.InjectionAsymptotics.relative_union_budget (Fintype.card J) ε _ _ _ hJ hε ha
+    (Lax342547.InjectionUnion.finite_injection_union α β accept F _ _ hα hβ hF)
   exact htail.trans (by simpa only [div_eq_mul_inv,one_div,one_mul] using
     mul_le_mul_of_nonneg_left haccept (by positivity : (0 : ℝ) ≤ ε/2))
 

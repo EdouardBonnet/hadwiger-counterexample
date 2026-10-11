@@ -1,6 +1,6 @@
 import Lax342547.RightQueryImages
-import Lax342547Proofs.RawQueryImages
-import Lax342547Proofs.PairedRecipes
+import Lax342547.QueryReference
+import Lax342547.RawQueryImages
 
 namespace Lax342547Proofs.RightQueryImages
 open Lax342547.RightQueryImages
@@ -47,8 +47,8 @@ theorem right_tuple_event {k n b degree r : ℕ} {hr : 2 * r ≤ n} {H N : Type}
     (W : Lists k n b degree r hr) (o : Unit (H := H) (N := N) (E := E))
     (q : Tuples (Lax342547.CutProfiles.Component (Tag k)) (ComponentPosition W) N) :
     rightTuple W o = q ↔ leftTuple (flip W) o = reindexTuple W q := by
-  rw [left_flip_right_tuple]
-  exact (reindex_injective W).eq_iff.symm
+  rw [Lax342547.RightQueryImages.left_flip_right_tuple]
+  exact (Lax342547.RightQueryImages.reindex_injective W).eq_iff.symm
 
 /--
 ---
@@ -61,8 +61,8 @@ theorem flipped_slot_count {k n b degree r : ℕ} {hr : 2 * r ≤ n}
       exact Fintype.card (Lax342547.QuerySlots.Slot (flip W)) =
         Fintype.card (Lax342547.QuerySlots.Slot W) := by
   classical
-  rw [Lax342547Proofs.QueryReference.grouped_slot_count,
-    Lax342547Proofs.QueryReference.grouped_slot_count]
+  rw [Lax342547.QueryReference.grouped_slot_count,
+    Lax342547.QueryReference.grouped_slot_count]
   congr 1
   apply Finset.sum_congr rfl
   intro e _
@@ -92,11 +92,11 @@ theorem actual_right_key_cap {k n b degree r : ℕ} {hr : 2 * r ≤ n} {H N : Ty
   have he : {o : Unit (H := H) (N := N) (E := E) | rightTuple W o = q} =
       {o : Unit (H := H) (N := N) (E := E) | leftTuple (flip W) o = reindexTuple W q} := by
     ext o
-    exact right_tuple_event W o q
+    exact Lax342547.RightQueryImages.right_tuple_event W o q
   rw [he]
-  have h := Lax342547Proofs.RawQueryImages.actual_left_key_cap (flip W) p P B hB
+  have h := Lax342547.RawQueryImages.actual_left_key_cap (flip W) p P B hB
     (fun i z t => hfresh z i t) (reindexTuple W q) α hcap
-    (by rw [flipped_slot_count]; exact hrank)
-  simpa only [flipped_slot_count] using h
+    (by rw [Lax342547.RightQueryImages.flipped_slot_count]; exact hrank)
+  simpa only [Lax342547.RightQueryImages.flipped_slot_count] using h
 
 end Lax342547Proofs.RightQueryImages

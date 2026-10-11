@@ -4,7 +4,7 @@ import Mathlib.LinearAlgebra.Matrix.Rank
 /-!
 ---
 title: Low-rank Boolean moments have bounded label support
-type: theorem
+type: lemma
 ---
 Lemma 5.2, with the sufficient selector-degree hypothesis used in its proof.
 Every rank-at-most-R moment matrix splits over at most R labels. The base

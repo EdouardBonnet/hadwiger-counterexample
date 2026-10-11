@@ -1,5 +1,6 @@
 import Lax342547.TesterProductRouting
-import Lax342547Proofs.FixedSelectorGram
+import Lax342547.FixedSelectorGram
+import Lax342547.RealCellLaws
 
 namespace Lax342547Proofs.TesterProductRouting
 noncomputable section
@@ -47,7 +48,7 @@ theorem routed_product_gram {k r : ℕ} {l : Tag k} {f : Flavor k} {D I : Type}
   unfold restrictedGram
   rw [← Fintype.sum_prod_type (fun p : Pairs l f r => productRouting c a b (p.1,p.2,false) x*productRouting c a b (p.1,p.2,true) y)]
   simp only [productRouting,Bool.false_eq_true,↓reduceIte]
-  exact sum_extended_product c hc _ _
+  exact Lax342547.TesterProductRouting.sum_extended_product c hc _ _
 
 /--
 ---
@@ -68,12 +69,12 @@ theorem product_gram_cell_mass {k n b degree r : ℕ} {D I : Type} [Fintype D] [
       (PMF.uniformOfFintype (Coefficients n l f D)).toOuterMeasure
       {V | (pointColumns s (value V)).transpose*selfGram hr hd M*pointColumns s (value V) =
         fun x y => ∑ i,a i x*b' i y} := by
-    rw [← FixedSelectorGram.prescription_mass hr l f (productRouting c a b')]
+    rw [← Lax342547.FixedSelectorGram.prescription_mass hr l f (productRouting c a b')]
     apply (PMF.uniformOfFintype (Coefficients n l f D)).toOuterMeasure.mono
     intro V hV
     change restrictTesters hr l f V = productRouting c a b' at hV
     change (pointColumns s (value V)).transpose*selfGram hr hd M*pointColumns s (value V) = _
-    rw [FixedSelectorGram.gram_restriction,hV,routed_product_gram c hc]
+    rw [Lax342547.FixedSelectorGram.gram_restriction,hV,Lax342547.TesterProductRouting.routed_product_gram c hc]
   have ht : (PMF.uniformOfFintype (Coefficients n l f D)).toOuterMeasure
       {V | (pointColumns s (value V)).transpose*selfGram hr hd M*pointColumns s (value V) =
         fun x y => ∑ i,a i x*b' i y} ≠ ⊤ := by
@@ -81,7 +82,7 @@ theorem product_gram_cell_mass {k n b degree r : ℕ} {D I : Type} [Fintype D] [
     apply ((PMF.uniformOfFintype (Coefficients n l f D)).toOuterMeasure.mono (Set.subset_univ _)).trans_eq
     simpa [PMF.toOuterMeasure_apply] using (PMF.uniformOfFintype (Coefficients n l f D)).tsum_coe
   have ht' := ENNReal.toReal_mono ht hh
-  rw [← RealCellLaws.event_mass] at ht'
+  rw [← Lax342547.RealCellLaws.event_mass] at ht'
   simpa only [massFloor,ENNReal.toReal_div,ENNReal.toReal_one,ENNReal.toReal_pow,
     ENNReal.toReal_ofNat] using ht'
 

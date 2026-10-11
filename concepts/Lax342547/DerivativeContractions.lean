@@ -4,7 +4,7 @@ import Lax342547.PrimalContractions
 /-!
 ---
 title: Rank-one derivative tests are scalar pairings of residual contractions
-type: theorem
+type: lemma
 ---
 A rank-one change in either channel map contracts to the baseline
 evaluation of the corresponding matrix contraction. Transposition

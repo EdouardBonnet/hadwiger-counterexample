@@ -1,6 +1,6 @@
 import Lax342547.PreparedInjectionScale
-import Lax342547Proofs.InjectionThresholds
-import Lax342547Proofs.InjectionAsymptotics
+import Lax342547.InjectionAsymptotics
+import Lax342547.InjectionThresholds
 
 namespace Lax342547Proofs.PreparedInjectionScale
 
@@ -17,11 +17,11 @@ theorem exists_prepared_parameters (K Cs J : ℕ) (ε : ℝ) (hJ : 0 < J) (hε :
       Budget K m t Cs p h N (ε/(2*J)) ∧
       (J : ℝ)*(1/(2 : ℝ)^(N/100)+1/(2 : ℝ)^N) ≤ (ε/2)/(N : ℝ)^c := by
   have hJr : (0 : ℝ) < J := Nat.cast_pos.mpr hJ
-  obtain ⟨t,h,hgap,hchannel,hrest⟩ := Lax342547Proofs.InjectionThresholds.exists_early_parameters
+  obtain ⟨t,h,hgap,hchannel,hrest⟩ := Lax342547.InjectionThresholds.exists_early_parameters
     K Cs (ε/(2*J)) (by positivity)
   refine ⟨t,h,?_⟩
   intro c
-  have htail := Lax342547Proofs.InjectionAsymptotics.eventually_relative_exception
+  have htail := Lax342547.InjectionAsymptotics.eventually_relative_exception
     c 100 (by norm_num) (J : ℝ) (ε/2) (by positivity) (by positivity)
   obtain ⟨N₁,hN₁⟩ := eventually_atTop.mp htail
   obtain ⟨N₂,hN₂⟩ := hrest 0

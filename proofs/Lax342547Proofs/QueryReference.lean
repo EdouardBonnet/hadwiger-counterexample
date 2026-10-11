@@ -1,7 +1,6 @@
 import Lax342547.QueryReference
-import Lax342547Proofs.QuerySlots
-import Lax342547Proofs.ReferenceKeys
-import Lax342547Proofs.PairedWitnesses
+import Lax342547.QuerySlots
+import Lax342547.ReferenceKeys
 
 namespace Lax342547Proofs.QueryReference
 open Lax342547.QueryReference
@@ -39,7 +38,7 @@ theorem component_position_budget {k n b degree r : ℕ} {hr : 2 * r ≤ n}
       classical
       exact Fintype.card (ComponentPosition W e) ≤ 28 := by
   classical
-  exact (Fintype.card_subtype_le _).trans (Lax342547Proofs.QuerySlots.position_budget W)
+  exact (Fintype.card_subtype_le _).trans (Lax342547.QuerySlots.position_budget W)
 
 /--
 ---
@@ -68,7 +67,7 @@ theorem key_space_size {k n b degree r : ℕ} {hr : 2 * r ≤ n} {N : Type} [Fin
       exact Fintype.card (space (ComponentPosition W) N (gram W)) ≤
         2 ^ (Fintype.card (Slot W) * Fintype.card N) := by
   classical
-  rw [grouped_slot_count]
+  rw [Lax342547.QueryReference.grouped_slot_count]
   calc
     _ ≤ Fintype.card (Tuples (Component (Tag k)) (ComponentPosition W) N) := Fintype.card_subtype_le _
     _ = _ := by
@@ -99,9 +98,9 @@ theorem key_space_density {k n b degree r : ℕ} {hr : 2 * r ≤ n} {N : Type} [
         (PMF.uniformOfFintype (Tuples (Component (Tag k)) (ComponentPosition W) N)).toOuterMeasure
           (space (ComponentPosition W) N (gram W)) := by
   classical
-  apply Lax342547Proofs.ReferenceKeys.reference_density_lower
+  apply Lax342547.ReferenceKeys.reference_density_lower
   intro e
-  have h := component_position_budget W e
+  have h := Lax342547.QueryReference.component_position_budget W e
   omega
 
 end Lax342547Proofs.QueryReference

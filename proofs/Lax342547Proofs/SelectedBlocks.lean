@@ -1,7 +1,11 @@
 import Lax342547.SelectedBlocks
-import Lax342547Proofs.TensorBlocks
-import Lax342547Proofs.QuotientExtractors
-import Lax342547Proofs.PureObstructions
+import Lax342547.BarredSpaces
+import Lax342547.PairedAnnihilators
+import Lax342547.PairedWitnesses
+import Lax342547.PureObstructions
+import Lax342547.QuotientExtractors
+import Lax342547.TensorAnnihilators
+import Lax342547.TensorBlocks
 
 namespace Lax342547Proofs.SelectedBlocks
 
@@ -56,7 +60,7 @@ theorem individual_extractor {R : ℕ} (W : Lists k n b degree r hr)
   let labels : (Σ z, Fin (W.length i z)) → Fin b → Binary := fun t => (W.left i t.1 t.2).label
   let J := Finset.univ.image labels
   have hJ : J.card ≤ 14 :=
-    (Finset.card_image_le).trans (by simpa using (PairedWitnesses.list_budgets W).1 i)
+    (Finset.card_image_le).trans (by simpa using (Lax342547.PairedWitnesses.list_budgets W).1 i)
   have hUnion : (L ∪ J).card ≤ R + 14 :=
     (Finset.card_union_le _ _).trans (Nat.add_le_add hL hJ)
   have hlabels (t : Σ z, Fin (W.length i z)) : labels t ∈ L ∪ J :=
@@ -69,7 +73,7 @@ theorem individual_extractor {R : ℕ} (W : Lists k n b degree r hr)
     · simp only [keyBase, individualRay, he, if_pos]
       exact Submodule.subset_span (Set.mem_singleton _)
     · simp [keyBase, individualRay, he]
-  have hex := QuotientExtractors.key_extractor P A hA i a (L ∪ J) hUnion
+  have hex := Lax342547.QuotientExtractors.key_extractor P A hA i a (L ∪ J) hUnion
     (W.left i u.1 u.2).label (Finset.mem_union_left _ hs) hfresh labels (keyBase W i a.1)
     hlabels (individualRay W i a.1 u) hmatch
   have hkeys := keys_as_labels W i a.1
@@ -104,25 +108,25 @@ theorem selected_component {R : ℕ} (W : Lists k n b degree r hr)
       if (W.left i u.1 u.2).tag ∈ e.val then
         Z (W.left i u.1 u.2).label none none • baseMoment (W.left i u.1 u.2).base else 0 := by
   classical
-  obtain ⟨q, hq⟩ := individual_extractor W P A hA i (e, true) L hL u hs hfresh
-  obtain ⟨v, hv⟩ := individual_extractor W P A hA i (e, false) L hL u hs hfresh
-  have hi := PairedAnnihilators.endpoint_projection M _ _ h i
+  obtain ⟨q, hq⟩ := Lax342547.SelectedBlocks.individual_extractor W P A hA i (e, true) L hL u hs hfresh
+  obtain ⟨v, hv⟩ := Lax342547.SelectedBlocks.individual_extractor W P A hA i (e, false) L hL u hs hfresh
+  have hi := Lax342547.PairedAnnihilators.endpoint_projection M _ _ h i
     (projected P i (e, true) ⊔ individualKeys W i e)
     (projected P i (e, false) ⊔ individualKeys W i e)
-    (BarredSpaces.barred_projection W P U (e, true) i)
-    (BarredSpaces.barred_projection W P V (e, false) i)
+    (Lax342547.BarredSpaces.barred_projection W P U (e, true) i)
+    (Lax342547.BarredSpaces.barred_projection W P V (e, false) i)
   rw [hM] at hi
-  have hb := TensorBlocks.quotient_isolation selectorEval L (W.left i u.1 u.2).label hs Z
+  have hb := Lax342547.TensorBlocks.quotient_isolation selectorEval L (W.left i u.1 u.2).label hs Z
     _ _ (individualRay W i e u) (individualRay W i e u) q v hq hv hi
   by_cases he : (W.left i u.1 u.2).tag ∈ e.val
   · rw [if_pos he]
-    apply TensorAnnihilators.selected_block _ _ hZ
+    apply Lax342547.TensorAnnihilators.selected_block _ _ hZ
     simpa only [individualRay, he, if_pos] using hb
   · rw [if_neg he]
     have hz : Lax342547.TensorAnnihilators.PureAnnihilates
         (Z (W.left i u.1 u.2).label) ⊥ ⊥ := by
       simpa only [individualRay, he, if_false] using hb
-    have hzero := TensorAnnihilators.pure_sandwich _ _ _ hz
+    have hzero := Lax342547.TensorAnnihilators.pure_sandwich _ _ _ hz
       (1 : Matrix (Option (Base k n)) (Option (Base k n)) Binary)
       (1 : Matrix (Option (Base k n)) (Option (Base k n)) Binary) bot_le bot_le
     simpa using hzero
@@ -149,9 +153,9 @@ theorem selected_obstruction {R : ℕ} (W : Lists k n b degree r hr)
     Z (W.left i u.1 u.2).label =
       if (W.left i u.1 u.2).tag ∈ e.val then
         Z (W.left i u.1 u.2).label none none • baseMoment (W.left i u.1 u.2).base else 0 := by
-  apply selected_component W P A hA (U e) (V e) e
+  apply Lax342547.SelectedBlocks.selected_component W P A hA (U e) (V e) e
     (Lax342547.PureObstructions.endpointComponent e x)
-    (PureObstructions.component_annihilation W P U V x h e) i L hL Z _ u hs hfresh hZ
+    (Lax342547.PureObstructions.component_annihilation W P U V x h e) i L hL Z _ u hs hfresh hZ
   ext a c
   simpa [Lax342547.PureObstructions.endpointComponent, Lax342547.TensorBlocks.block,
     LinearMap.sum_apply, Matrix.sum_apply] using hM a c

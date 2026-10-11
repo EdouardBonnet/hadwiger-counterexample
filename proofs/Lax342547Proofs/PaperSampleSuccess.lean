@@ -1,6 +1,8 @@
 import Lax342547.PaperSampleSuccess
-import Lax342547Proofs.PaperGraphProbability
-import Lax342547Proofs.SampledGraph
+import Lax342547.ContainerLaws
+import Lax342547.FiniteSampling
+import Lax342547.PaperGraphProbability
+import Lax342547.SampledGraph
 
 namespace Lax342547Proofs.PaperSampleSuccess
 open Lax342547.PaperSampleSuccess
@@ -31,20 +33,20 @@ theorem paper_sample_success {Ω : ℕ → Type} [∀ N, Fintype (Ω N)] [∀ N,
         cellMass (productLaw (fun _ : Fin (sampleSize g N) => μ N))
           (fun sample => (sampleGraph (hole N) (hsymm N) sample).indepNum ≤ 2 ∧
             100*connectedMatchingNumber (sampleGraph (hole N) (hsymm N) sample) < sampleSize g N) := by
-  filter_upwards [Lax342547Proofs.PaperGraphProbability.paper_graph_failure_probability μ hole A g hg
+  filter_upwards [Lax342547.PaperGraphProbability.paper_graph_failure_probability μ hole A g hg
     hsymm hloop hμ hμpos hcard hsuper] with N hf
   let ν := productLaw (fun _ : Fin (sampleSize g N) => μ N)
   let Bad := fun sample : Fin (sampleSize g N) → Ω N =>
     sampleSize g N ≤ 100*connectedMatchingNumber (sampleGraph (hole N) (hsymm N) sample)
-  have hprob := Lax342547Proofs.FiniteSampling.product_probability
+  have hprob := Lax342547.FiniteSampling.product_probability
     (fun _ : Fin (sampleSize g N) => μ N) (fun _ => hμ N)
-  have hcomp := Lax342547Proofs.ContainerLaws.mass_complement ν Bad hprob
+  have hcomp := Lax342547.ContainerLaws.mass_complement ν Bad hprob
   have he : (fun sample : Fin (sampleSize g N) → Ω N => ¬ Bad sample) =
       (fun sample => (sampleGraph (hole N) (hsymm N) sample).indepNum ≤ 2 ∧
         100*connectedMatchingNumber (sampleGraph (hole N) (hsymm N) sample) < sampleSize g N) := by
     funext sample
     apply propext
-    have hi := Lax342547Proofs.SampledGraph.sampleGraph_indepNum_le_two (hole N) (hsymm N) (htriangle N) sample
+    have hi := Lax342547.SampledGraph.sampleGraph_indepNum_le_two (hole N) (hsymm N) (htriangle N) sample
     simp only [Bad,not_le]
     exact ⟨fun hh => ⟨hi,hh⟩,fun hh => hh.2⟩
   rw [← he]

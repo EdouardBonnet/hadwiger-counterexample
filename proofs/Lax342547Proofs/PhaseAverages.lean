@@ -1,5 +1,4 @@
 import Lax342547.PhaseAverages
-import Lax342547Proofs.UniformPhaseTails
 
 namespace Lax342547Proofs.PhaseAverages
 open Lax342547.PhaseAverages
@@ -39,7 +38,7 @@ theorem conditional_phase_abs_le_one {e I J Ω : Type} [Fintype e] [Fintype I] [
     _ ≤ ∑ x, μ x := by
       apply Finset.sum_le_sum
       intro x _
-      rw [abs_mul,abs_mul,abs_of_nonneg (hμ.1 x),tensor_character_abs,mul_one]
+      rw [abs_mul,abs_mul,abs_of_nonneg (hμ.1 x),Lax342547.PhaseAverages.tensor_character_abs,mul_one]
       exact mul_le_of_le_one_right (hμ.1 x) (hψ x)
     _ = 1 := hμ.2
 

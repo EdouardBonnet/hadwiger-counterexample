@@ -23,7 +23,7 @@ conclusion: Lax342547.FingerprintCounts.pad_injective
 theorem pad_injective {U : Type} (L : ℕ) : Function.Injective (pad (U := U) L) := by
   intro a b h
   have hh := congrArg (List.filterMap id) h
-  simpa only [pad_recovers] using hh
+  simpa only [Lax342547.FingerprintCounts.pad_recovers] using hh
 
 /--
 ---
@@ -46,10 +46,10 @@ theorem bounded_list_count {U : Type} [Fintype U] (T : Finset (List U)) (L : ℕ
     apply Finset.filter_eq_self.mpr
     intro l hl
     obtain ⟨a,ha,rfl⟩ := Finset.mem_image.mp hl
-    exact pad_length L a (hL a ha)
+    exact Lax342547.FingerprintCounts.pad_length L a (hL a ha)
   have hh := Finset.card_filter_length_eq_le (T := W) (s := L)
   rw [hw] at hh
-  have hc : W.card = T.card := Finset.card_image_of_injective T (pad_injective L)
+  have hc : W.card = T.card := Finset.card_image_of_injective T (Lax342547.FingerprintCounts.pad_injective L)
   simpa only [hc,Fintype.card_option] using hh
 
 end Lax342547Proofs.FingerprintCounts

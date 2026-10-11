@@ -1,6 +1,6 @@
 import Lax342547.RawBaselines
-import Lax342547Proofs.PairedKeys
-import Lax342547Proofs.NominalBaselines
+import Lax342547.NominalBaselines
+import Lax342547.PairedKeys
 
 namespace Lax342547Proofs.RawBaselines
 
@@ -32,17 +32,17 @@ theorem raw_baselines (W : Lists k n b degree r hr)
     (hadmissible : Admissible T observation observation oA oB) :
     ∃ F : CrossForms (Component (Tag k)) (Coordinate k n b degree) H,
       Extends F T ∧ Frozen F W P Q oA oB ∧ Bounded F K := by
-  have hfreshKeys := PairedKeys.fresh_spans W P Q A B hA hB hfresh
-  have hforward (e : Component (Tag k)) := NominalBaselines.nominal_baseline
+  have hfreshKeys := Lax342547.PairedKeys.fresh_spans W P Q A B hA hB hfresh
+  have hforward (e : Component (Tag k)) := Lax342547.NominalBaselines.nominal_baseline
     P Q (e, true) (e, false) (keys W e) (keys (flip W) e) K hP hQ
-    (PairedKeys.key_bounds W e).1 (PairedKeys.key_bounds (flip W) e).1
-    (PairedKeys.key_bounds W e).2 (PairedKeys.key_bounds (flip W) e).2
+    (Lax342547.PairedKeys.key_bounds W e).1 (Lax342547.PairedKeys.key_bounds (flip W) e).1
+    (Lax342547.PairedKeys.key_bounds W e).2 (Lax342547.PairedKeys.key_bounds (flip W) e).2
     (hfreshKeys.1 (e, true)) (hfreshKeys.2 (e, false))
     ((rawForms oA oB).forward e) (T.forward e) (hadmissible.1 e)
-  have hreverse (e : Component (Tag k)) := NominalBaselines.nominal_baseline
+  have hreverse (e : Component (Tag k)) := Lax342547.NominalBaselines.nominal_baseline
     Q P (e, true) (e, false) (keys (flip W) e) (keys W e) K hQ hP
-    (PairedKeys.key_bounds (flip W) e).1 (PairedKeys.key_bounds W e).1
-    (PairedKeys.key_bounds (flip W) e).2 (PairedKeys.key_bounds W e).2
+    (Lax342547.PairedKeys.key_bounds (flip W) e).1 (Lax342547.PairedKeys.key_bounds W e).1
+    (Lax342547.PairedKeys.key_bounds (flip W) e).2 (Lax342547.PairedKeys.key_bounds W e).2
     (hfreshKeys.2 (e, true)) (hfreshKeys.1 (e, false))
     ((rawForms oA oB).reverse e) (T.reverse e) (hadmissible.2 e)
   choose F hFF hFT hFR using hforward

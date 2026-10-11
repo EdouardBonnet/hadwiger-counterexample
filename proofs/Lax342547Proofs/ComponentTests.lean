@@ -1,6 +1,8 @@
 import Lax342547.ComponentTests
-import Lax342547Proofs.ComponentCharacters
-import Lax342547Proofs.ScalarGramAgreement
+import Lax342547.ComponentCharacters
+import Lax342547.GramTests
+import Lax342547.RetainedCharacters
+import Lax342547Proofs.Walsh
 
 namespace Lax342547Proofs.ComponentTests
 open Lax342547.ComponentTests
@@ -27,10 +29,10 @@ theorem coefficient_character {Axis S N : Type} {I : Axis → Type}
   classical
   have ha : dotProduct t (actualBits tests X Y) =
       ∑ a, coefficientPair (coefficient tests t a) (X a) (Y a) := by
-    simp only [Lax342547Proofs.RetainedCharacters.coefficient_pair_form,
+    simp only [Lax342547.RetainedCharacters.coefficient_pair_form,
       coefficient, map_sum, map_smul, smul_eq_mul]
     unfold dotProduct actualBits
-    simp only [Finset.mul_sum, Lax342547Proofs.RetainedCharacters.coefficient_pair_form]
+    simp only [Finset.mul_sum, Lax342547.RetainedCharacters.coefficient_pair_form]
     rw [Finset.sum_comm]
   have hb : dotProduct t (targetBits tests T) =
       ∑ a, matrixPair (LinearMap.BilinForm.toMatrix' (T a)) (coefficient tests t a) := by
@@ -69,11 +71,11 @@ theorem component_scalar_agreement {ΩA ΩB Axis N : Type} {I : Axis → Type} {
       patternMass (fun ab : ΩA × ΩB => α ab.1 * β ab.2)
         (fun ab => actualBits tests (X ab.1) (Y ab.2)) (targetBits tests T) := by
   classical
-  apply Lax342547Proofs.GramTests.zero_or_biased_agreement _ _ _ _
+  apply Lax342547.GramTests.zero_or_biased_agreement _ _ _ _
     (Real.rpow_pos_of_pos (by norm_num) _).le _ _ hsmall
   · simp only [Fintype.sum_prod_type, ← Finset.mul_sum, hβsum, mul_one, hαsum]
   · intro t _
-    have h := Lax342547Proofs.ComponentCharacters.retained_component_character_dichotomy
+    have h := Lax342547.ComponentCharacters.retained_component_character_dichotomy
       α β X Y D E T hα hβ hαsum hβsum hD hE hcapA hcapB (coefficient tests t)
     have he : characterMean (fun ab : ΩA × ΩB => α ab.1 * β ab.2)
         (fun ab => actualBits tests (X ab.1) (Y ab.2)) (targetBits tests T) t =
@@ -86,7 +88,7 @@ theorem component_scalar_agreement {ΩA ΩB Axis N : Type} {I : Axis → Type} {
       intro x _
       apply Finset.sum_congr rfl
       intro y _
-      rw [mul_assoc, coefficient_character]
+      rw [mul_assoc, Lax342547.ComponentTests.coefficient_character]
     rw [he]
     exact h
 

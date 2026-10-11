@@ -1,6 +1,6 @@
 import Lax342547.QueryRecordBounds
-import Lax342547Proofs.JoinedRecords
-import Lax342547Proofs.RawQueryImages
+import Lax342547.JoinedRecords
+import Lax342547.RawQueryImages
 
 namespace Lax342547Proofs.QueryRecordBounds
 open Lax342547.QueryRecordBounds
@@ -33,7 +33,7 @@ theorem key_map_range {k n b degree r : ℕ} {hr : 2 * r ≤ n} {H : Type}
     rintro v ⟨p,rfl⟩
     by_cases hp : (W.left p.1 p.2.1 p.2.2).tag ∈ e.val
     · refine ⟨Pi.single ⟨p,hp⟩ 1, ?_⟩
-      rw [Lax342547Proofs.RawQueryImages.key_map_coordinate]
+      rw [Lax342547.RawQueryImages.key_map_coordinate]
       simp only [direction, if_pos hp]
       rfl
     · simp only [direction, if_neg hp]
@@ -52,7 +52,7 @@ theorem record_linear_bound {Axis I Status : Type}
       classical
       exact Fintype.card (RecordType Axis I dims Status) ≤ 2^((columnCoef*(K+k)+s)*n) := by
   classical
-  rw [Lax342547Proofs.JoinedRecords.joined_record_count]
+  rw [Lax342547.JoinedRecords.joined_record_count]
   have h := Nat.mul_le_mul (Nat.pow_le_pow_right (by omega : 0 < 2)
     (Nat.mul_le_mul hcolumns hdims)) hstatus
   apply h.trans
@@ -69,8 +69,8 @@ theorem actual_nominal_column_linear_bound {H : Type} [Fintype H]
     (k n b degree hcoef : ℕ) (hn : 1 ≤ n) (hH : Fintype.card H ≤ hcoef*n) :
     Fintype.card (Fin 2 × (Coordinate k n b degree ⊕ H)) ≤
       (2 * (Fintype.card (SelectorCoordinates b degree) * (Fintype.card (Tag k)^2+4) + hcoef)) * n := by
-  rw [Lax342547Proofs.JoinedRecords.nominal_column_count]
-  have hcoord := Lax342547Proofs.JoinedRecords.coordinate_linear_budget k n b degree hn
+  rw [Lax342547.JoinedRecords.nominal_column_count]
+  have hcoord := Lax342547.JoinedRecords.coordinate_linear_budget k n b degree hn
   nlinarith
 
 /--
@@ -87,7 +87,7 @@ theorem actual_joined_rank_budget {k n b degree r : ℕ} {hr : 2 * r ≤ n} {H N
         Module.finrank Binary (joined P (fun a => keyMap (H := H) W a.1) a)) ≤
           P.rank + Fintype.card (Lax342547.QuerySlots.Slot W) := by
   classical
-  have h := Lax342547Proofs.JoinedRecords.joined_rank_budget P (fun a => keyMap (H := H) W a.1)
-  rwa [Lax342547Proofs.RawQueryImages.key_dimension] at h
+  have h := Lax342547.JoinedRecords.joined_rank_budget P (fun a => keyMap (H := H) W a.1)
+  rwa [Lax342547.RawQueryImages.key_dimension] at h
 
 end Lax342547Proofs.QueryRecordBounds

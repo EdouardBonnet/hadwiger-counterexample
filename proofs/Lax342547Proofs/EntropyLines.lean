@@ -1,5 +1,4 @@
 import Lax342547.EntropyLines
-import Lax342547Proofs.RelativeEntropy
 import Mathlib.Analysis.Calculus.Deriv.Slope
 
 namespace Lax342547Proofs.EntropyLines
@@ -35,7 +34,7 @@ theorem old_entropy_derivative {Ω : Type} [Fintype Ω] (ρ ρ' q : Ω → ℝ) 
   · simp only [hx, if_true]
     exact hasDerivAt_const 0 0
   · simp only [hx, if_false]
-    have hl := mix_derivative ρ ρ' x
+    have hl := Lax342547.EntropyLines.mix_derivative ρ ρ' x
     have he : mix ρ ρ' 0 x = ρ x := by simp [mix]
     have hm := (Real.hasDerivAt_mul_log (by rw [he]; exact hx)).comp 0 hl
     have hd := hm.sub (hl.mul_const (Real.log (q x)))
@@ -87,7 +86,7 @@ conclusion: Lax342547.EntropyLines.entropy_new_support_slope
 theorem entropy_new_support_slope {Ω : Type} [Fintype Ω] (ρ ρ' q : Ω → ℝ)
     (hρ' : ∀ x, 0 ≤ ρ' x) (hnew : 0 < newMass ρ ρ') :
     Tendsto (fun t => (entropy (mix ρ ρ' t) q-entropy ρ q)/t) (𝓝[>] 0) atBot := by
-  have hold := (old_entropy_derivative ρ ρ' q).tendsto_slope_zero_right
+  have hold := (Lax342547.EntropyLines.old_entropy_derivative ρ ρ' q).tendsto_slope_zero_right
   have hold' : Tendsto (fun t => (oldEntropy ρ ρ' q t-oldEntropy ρ ρ' q 0)/t)
       (𝓝[>] 0) (𝓝 (oldDerivative ρ ρ' q)) := by
     simpa only [zero_add, smul_eq_mul, div_eq_mul_inv, mul_comm] using hold
@@ -96,7 +95,7 @@ theorem entropy_new_support_slope {Ω : Type} [Fintype Ω] (ρ ρ' q : Ω → �
   apply h.congr'
   filter_upwards [self_mem_nhdsWithin] with t ht
   rw [Set.mem_Ioi] at ht
-  rw [entropy_mix_identity ρ ρ' q hρ' t ht, old_entropy_zero]
+  rw [Lax342547.EntropyLines.entropy_mix_identity ρ ρ' q hρ' t ht, Lax342547.EntropyLines.old_entropy_zero]
   field_simp
   ring
 

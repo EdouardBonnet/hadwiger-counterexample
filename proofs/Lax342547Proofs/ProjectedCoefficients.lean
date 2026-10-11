@@ -1,6 +1,5 @@
 import Lax342547.ProjectedCoefficients
-import Lax342547Proofs.FrozenCharacters
-import Lax342547Proofs.TargetMatrices
+import Lax342547.TargetMatrices
 
 namespace Lax342547Proofs.ProjectedCoefficients
 open Lax342547.ProjectedCoefficients
@@ -68,6 +67,6 @@ theorem projection_preserves_quotient_pairing {I : Type} [Fintype I]
     rw [hF] at hm
     exact hm.symm
   unfold pureContraction
-  rw [map_sub, Lax342547Proofs.TargetMatrices.sandwich_adjoint, hm, sub_self]
+  rw [map_sub, Lax342547.TargetMatrices.sandwich_adjoint, hm, sub_self]
 
 end Lax342547Proofs.ProjectedCoefficients

@@ -1,5 +1,5 @@
 import Lax342547.RetainedImages
-import Lax342547Proofs.PushforwardWalsh
+import Mathlib.Algebra.BigOperators.Field
 import Mathlib.Analysis.SpecialFunctions.Pow.Real
 
 namespace Lax342547Proofs.RetainedImages
@@ -94,7 +94,7 @@ theorem paper_conditional_cap (ζ k t N : ℝ) (hζ : 0 ≤ ζ)
         (2 : ℝ) ^ (-(k + 1 / 100) * N) ≤ (2 : ℝ) ^ (-(95 / 100 : ℝ) * t * N) := by
   rw [← Real.rpow_sub (by norm_num : (0 : ℝ) < 2)]
   apply Real.rpow_le_rpow_of_exponent_le (by norm_num : (1 : ℝ) ≤ 2)
-  have h := mul_le_mul_of_nonneg_right (paper_cell_exponent ζ k t hζ hζsmall hk ht) hN
+  have h := mul_le_mul_of_nonneg_right (Lax342547.RetainedImages.paper_cell_exponent ζ k t hζ hζsmall hk ht) hN
   linarith
 
 end Lax342547Proofs.RetainedImages

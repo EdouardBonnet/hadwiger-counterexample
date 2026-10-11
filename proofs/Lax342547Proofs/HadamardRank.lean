@@ -1,7 +1,7 @@
 import Lax342547.HadamardRank
-import Lax342547Proofs.RankFactors
-import Lax342547Proofs.RankedProjection
 import Mathlib.LinearAlgebra.Matrix.Hadamard
+import Lax342547.RankFactors
+import Lax342547.RankedProjection
 
 namespace Lax342547Proofs.HadamardRank
 open Lax342547.HadamardRank
@@ -18,8 +18,8 @@ conclusion: Lax342547.HadamardRank.hadamard_rank
 theorem hadamard_rank {I J : Type} [Fintype I] [Fintype J]
     (A B : Matrix I J Binary) : (A ⊙ B).rank ≤ A.rank*B.rank := by
   classical
-  obtain ⟨U,V,hA,_,_⟩ := Lax342547Proofs.RankFactors.independent_rank_factors A
-  obtain ⟨X,Y,hB,_,_⟩ := Lax342547Proofs.RankFactors.independent_rank_factors B
+  obtain ⟨U,V,hA,_,_⟩ := Lax342547.RankFactors.independent_rank_factors A
+  obtain ⟨X,Y,hB,_,_⟩ := Lax342547.RankFactors.independent_rank_factors B
   let P : Matrix I (Fin A.rank × Fin B.rank) Binary := fun i uv => U i uv.1*X i uv.2
   let Q : Matrix J (Fin A.rank × Fin B.rank) Binary := fun j uv => V j uv.1*Y j uv.2
   have he : A ⊙ B = P*Q.transpose := by
@@ -60,9 +60,9 @@ conclusion: Lax342547.HadamardRank.one_add_rank
 theorem one_add_rank {I J : Type} [Fintype I] [Fintype J] (A : Matrix I J Binary) :
     ((Matrix.of (fun _ : I => fun _ : J => (1 : Binary)))+A).rank ≤ 1+A.rank := by
   let O : Matrix I J Binary := fun _ _ => 1
-  have hh := Lax342547Proofs.RankedProjection.linear_add_rank O.mulVecLin A.mulVecLin
+  have hh := Lax342547.RankedProjection.linear_add_rank O.mulVecLin A.mulVecLin
   rw [← Matrix.mulVecLin_add] at hh
-  exact hh.trans (Nat.add_le_add_right all_one_rank A.rank)
+  exact hh.trans (Nat.add_le_add_right Lax342547.HadamardRank.all_one_rank A.rank)
 
 /--
 ---
@@ -86,10 +86,10 @@ theorem incompatible_tuple_bound {Ω ι : Type} [Fintype Ω] [Fintype ι] [Decid
         generalize F (x j) (x i) = b at hx ⊢
         fin_cases a <;> fin_cases b <;> simp_all [show (1+1 : Binary) = 0 from rfl]
       simpa [Matrix.hadamard_apply,A,O,Matrix.one_apply,hij] using hh
-  have hr := hadamard_rank (O+A) (O+A).transpose
+  have hr := Lax342547.HadamardRank.hadamard_rank (O+A) (O+A).transpose
   rw [he,Matrix.rank_one,Matrix.rank_transpose] at hr
   have ha : (O+A).rank ≤ 1+F.rank :=
-    (one_add_rank A).trans (Nat.add_le_add_left (Matrix.rank_submatrix_le F x x) 1)
+    (Lax342547.HadamardRank.one_add_rank A).trans (Nat.add_le_add_left (Matrix.rank_submatrix_le F x x) 1)
   exact hr.trans (by simpa only [pow_two] using Nat.mul_self_le_mul_self ha)
 
 /--
@@ -105,7 +105,7 @@ theorem compatible_pair_in_tuple {Ω ι : Type} [Fintype Ω] [Fintype ι] [Decid
   have hinc : ∀ i j, i ≠ j → ¬ (F (x i) (x j) = 0 ∧ F (x j) (x i) = 0) := by
     intro i j hij hh
     exact hn ⟨i,j,hij,hh⟩
-  have hc := incompatible_tuple_bound F x hdiag hinc
+  have hc := Lax342547.HadamardRank.incompatible_tuple_bound F x hdiag hinc
   omega
 
 end Lax342547Proofs.HadamardRank

@@ -1,6 +1,6 @@
 import Lax342547.BaselineRank
-import Lax342547Proofs.PrimalRetractions
-import Lax342547Proofs.FrozenBaselines
+import Lax342547.FrozenBaselines
+import Lax342547.PrimalRetractions
 
 namespace Lax342547Proofs.BaselineRank
 
@@ -81,18 +81,18 @@ theorem bounded_baseline [FiniteDimensional Binary V] [FiniteDimensional Binary 
       ∀ q : C →ₗ[Binary] J,
         Module.finrank Binary (LinearMap.range (B.flip.compl₁₂ U'.subtype (J.subtype.comp q))) ≤
           Module.finrank Binary ↥(J' ⊓ U') + Module.finrank Binary Keys' + Module.finrank Binary D := by
-  obtain ⟨S⟩ := FrozenBaselines.splitting_exists J D Keys hD hKeys
-  obtain ⟨S'⟩ := FrozenBaselines.splitting_exists J' D' Keys' hD' hKeys'
-  obtain ⟨p, _hp, hfix, _hU, hrank⟩ := PrimalRetractions.bounded_retraction J Keys U hspan hKeyPrimal
-  obtain ⟨p', _hp', hfix', _hU', hrank'⟩ := PrimalRetractions.bounded_retraction J' Keys' U' hspan' hKeyPrimal'
+  obtain ⟨S⟩ := Lax342547.FrozenBaselines.splitting_exists J D Keys hD hKeys
+  obtain ⟨S'⟩ := Lax342547.FrozenBaselines.splitting_exists J' D' Keys' hD' hKeys'
+  obtain ⟨p, _hp, hfix, _hU, hrank⟩ := Lax342547.PrimalRetractions.bounded_retraction J Keys U hspan hKeyPrimal
+  obtain ⟨p', _hp', hfix', _hU', hrank'⟩ := Lax342547.PrimalRetractions.bounded_retraction J' Keys' U' hspan' hKeyPrimal'
   let RS := retracted S hD p hfix
   let RS' := retracted S' hD' p' hfix'
   let B := baseline RS RS' A T
-  have hB := FrozenBaselines.baseline_properties J D Keys J' D' Keys' hD hD'
+  have hB := Lax342547.FrozenBaselines.baseline_properties J D Keys J' D' Keys' hD hD'
     RS RS' A T h
   refine ⟨B, hB.1, hB.2, ?_, ?_⟩
   · intro q
-    exact (channel_rank J D Keys U J' D' Keys' hD S RS' p hfix A T q).trans
+    exact (Lax342547.BaselineRank.channel_rank J D Keys U J' D' Keys' hD S RS' p hfix A T q).trans
       (Nat.add_le_add_right hrank _)
   · intro q
     have hflip : B.flip = baseline RS' RS A.flip T.flip := by
@@ -106,7 +106,7 @@ theorem bounded_baseline [FiniteDimensional Binary V] [FiniteDimensional Binary 
           T (RS.table v) (RS'.table w)
       abel
     rw [hflip]
-    exact (channel_rank J' D' Keys' U' J D Keys hD' S' RS p' hfix' A.flip T.flip q).trans
+    exact (Lax342547.BaselineRank.channel_rank J' D' Keys' U' J D Keys hD' S' RS p' hfix' A.flip T.flip q).trans
       (Nat.add_le_add_right hrank' _)
 
 end Lax342547Proofs.BaselineRank

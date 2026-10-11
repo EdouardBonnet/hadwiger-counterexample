@@ -1,5 +1,10 @@
 import Lax342547.CompressedResidual
-import Lax342547Proofs.ConstrainedCompression
+import Lax342547.BaseCompression
+import Lax342547.ConstrainedCompression
+import Lax342547.QuotientCompression
+import Lax342547.RankedProjection
+import Lax342547.ResidualRealization
+import Lax342547Proofs.ResponseSolvability
 
 namespace Lax342547Proofs.CompressedResidual
 
@@ -40,7 +45,7 @@ theorem compressed_pure_solution {k n b degree r K R : ℕ} {hr : 2 * r ≤ n}
       ∀ e, (LinearMap.toMatrix' (liftBase (Coord := SelectorCoordinates b degree) (blockMap A))).transpose *
         M i e * LinearMap.toMatrix' (liftBase (blockMap A)) = M i e := by
     intro i
-    exact Lax342547Proofs.ConstrainedCompression.actual_block_compression W P hK i (M i) (hM i)
+    exact Lax342547.ConstrainedCompression.actual_block_compression W P hK i (M i) (hM i)
   choose A hr hfix htarget using hc
   let f : Fin 2 → Vector k n b degree →ₗ[Binary] Vector k n b degree :=
     fun i => liftBase (blockMap (A i))
@@ -50,7 +55,7 @@ theorem compressed_pure_solution {k n b degree r K R : ℕ} {hr : 2 * r ≤ n}
         (barred W P (U e) (e, true)).mkQ (nominalLift f v)) ∧
       Module.finrank Binary (LinearMap.range q) ≤ quotientBound k b degree K R := by
     intro e
-    exact Lax342547Proofs.QuotientCompression.barred_compression W P hK (e, true)
+    exact Lax342547.QuotientCompression.barred_compression W P hK (e, true)
       (U e) (hU e) A hr (fun i v hv => hfix i (e, true) v hv)
   have hminus : ∀ e, ∃ q : (Nominal (Coordinate k n b degree) H ⧸ barred W P (V e) (e, false)) →ₗ[Binary]
       (Nominal (Coordinate k n b degree) H ⧸ barred W P (V e) (e, false)),
@@ -58,25 +63,25 @@ theorem compressed_pure_solution {k n b degree r K R : ℕ} {hr : 2 * r ≤ n}
         (barred W P (V e) (e, false)).mkQ (nominalLift f v)) ∧
       Module.finrank Binary (LinearMap.range q) ≤ quotientBound k b degree K R := by
     intro e
-    exact Lax342547Proofs.QuotientCompression.barred_compression W P hK (e, false)
+    exact Lax342547.QuotientCompression.barred_compression W P hK (e, false)
       (V e) (hV e) A hr (fun i v hv => hfix i (e, false) v hv)
   choose qplus hqplus rqplus using hplus
   choose qminus hqminus rqminus using hminus
   let γ : Lax342547.PureObstructions.Parameters W P U V :=
     fun e => (β e).compl₁₂ (qplus e) (qminus e)
-  refine ⟨γ, ?_, fun e => (Lax342547Proofs.QuotientCompression.compressed_bilinear_rank
+  refine ⟨γ, ?_, fun e => (Lax342547.QuotientCompression.compressed_bilinear_rank
     (β e) (qplus e) (qminus e)).trans (rqplus e)⟩
   apply LinearMap.ext
   intro x
   have hy (i : Fin 2) : (fun e => tensorMap (f i) ((x i).val e)) ∈ Profile k n b degree :=
-    Lax342547Proofs.BaseCompression.blockMap_profile (A i) ⟨(x i).val, (x i).property, rfl⟩
+    Lax342547.BaseCompression.blockMap_profile (A i) ⟨(x i).val, (x i).property, rfl⟩
   let y : Fin 2 → Profile k n b degree := fun i => ⟨_, hy i⟩
   have hresponse : Lax342547.PureObstructions.response W P U V γ x =
       Lax342547.PureObstructions.response W P U V β y := by
     simp only [Lax342547.PureObstructions.response, LinearMap.sum_apply, LinearMap.comp_apply]
     apply Finset.sum_congr rfl
     intro e _
-    exact Lax342547Proofs.QuotientCompression.pure_compressed _ _ (β e) f
+    exact Lax342547.QuotientCompression.pure_compressed _ _ (β e) f
       (qplus e) (qminus e) (hqplus e) (hqminus e) _
   rw [hresponse, hβ]
   simp only [matrixResponse, LinearMap.sum_apply, LinearMap.comp_apply,
@@ -85,7 +90,7 @@ theorem compressed_pure_solution {k n b degree r K R : ℕ} {hr : 2 * r ≤ n}
   intro i _
   apply Finset.sum_congr rfl
   intro e _
-  exact (Lax342547Proofs.BaseCompression.matrixPair_tensorMap (f i) (M i e) _).trans
+  exact (Lax342547.BaseCompression.matrixPair_tensorMap (f i) (M i e) _).trans
     (congrArg (fun M => matrixPair M ((x i).val e)) (htarget i e))
 
 /--
@@ -134,12 +139,12 @@ theorem compressed_recipe {k n b degree r : ℕ} {hr : 2 * r ≤ n}
       fullResponse W P Q U V F z (β0 + γ + extraFamily W P Q U V z δ ε) δ ε =
         ∑ i, (Lax342547.RecipeResiduals.residual W D L R F i z).comp (LinearMap.proj i) := by
   obtain ⟨M0, R0, β0, β1, δ, ε, h0, hrβ0, hr0, h1, hr1, hd, hfull⟩ :=
-    Lax342547Proofs.ResidualRealization.recipe_remainder hk W D L R oA oB P Q hK A B hA hfresh
+    Lax342547.ResidualRealization.recipe_remainder hk W D L R oA oB P Q hK A B hA hfresh
       U V hU hV T hT F hF hbounded hrecipe hfrozen hkeys hgradients hdegree z M hM
-  obtain ⟨γ, hγ, hrγ⟩ := compressed_pure_solution W P hK U V hU hV R0 hr1 β1 h1
+  obtain ⟨γ, hγ, hrγ⟩ := Lax342547.CompressedResidual.compressed_pure_solution W P hK U V hU hV R0 hr1 β1 h1
   refine ⟨M0, R0, β0, γ, δ, ε, h0, hrβ0, hr0, hγ, hr1, hrγ, ?_, hd, ?_⟩
   · intro e
-    exact (Lax342547Proofs.RankedProjection.linear_add_rank _ _).trans
+    exact (Lax342547.RankedProjection.linear_add_rank _ _).trans
       (Nat.add_le_add (hrβ0 e) (hrγ e))
   · simpa only [fullResponse, Lax342547Proofs.ResponseSolvability.pure_family_add, hγ, h1]
       using hfull

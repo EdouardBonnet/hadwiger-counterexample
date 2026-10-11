@@ -1,6 +1,8 @@
 import Lax342547.QuotientCompression
-import Lax342547Proofs.BaseCompression
-import Lax342547Proofs.ResidualRealization
+import Lax342547.BarredSpaces
+import Lax342547.BaseCompression
+import Lax342547.ResponseMatrices
+import Lax342547.TableSpaces
 
 namespace Lax342547Proofs.QuotientCompression
 
@@ -73,10 +75,10 @@ theorem barred_fixed {k n b degree r : ℕ} {hr : 2 * r ≤ n} {H N : Type}
     (hfix : ∀ i v, v ∈ projected P i a ⊔ individualKeys W i a.1 → f i v = v) :
     ∀ v ∈ barred W P U a, nominalLift f v = v := by
   intro v hv
-  apply nominalLift_fix
+  apply Lax342547.QuotientCompression.nominalLift_fix
   intro i
   apply hfix
-  exact Lax342547Proofs.BarredSpaces.barred_projection W P U a i ⟨v, hv, rfl⟩
+  exact Lax342547.BarredSpaces.barred_projection W P U a i ⟨v, hv, rfl⟩
 
 /--
 ---
@@ -124,7 +126,7 @@ theorem quotient_lift_rank {B H : Type} [Fintype B] [Fintype H]
     have hn : nominalLift f v =
         (∑ i, (primalEmbedding i (f i (primalProjection i v)) + channelEmbedding i (s i))) +
         ∑ i, channelEmbedding i (u i) := by
-      rw [nominalLift_sum]
+      rw [Lax342547.QuotientCompression.nominalLift_sum]
       simp only [he, map_add, ← add_assoc, Finset.sum_add_distrib]
     refine ⟨w, ?_⟩
     change D.mkQ _ = D.mkQ (nominalLift f v)
@@ -164,20 +166,20 @@ theorem barred_compression {k n b degree r K Dblk : ℕ} {hr : 2 * r ≤ n}
   have hD : D ≤ D.comap (nominalLift f) := by
     intro v hv
     change nominalLift f v ∈ D
-    rw [barred_fixed W P U a f hfix v hv]
+    rw [Lax342547.QuotientCompression.barred_fixed W P U a f hfix v hv]
     exact hv
   refine ⟨D.mapQ D (nominalLift f) hD, fun v => rfl, ?_⟩
   have hprivate : ∀ i, (U i).map (channelEmbedding (B := Coordinate k n b degree) i) ≤ D := by
     intro i
     exact (le_iSup (fun j => (U j).map (channelEmbedding j)) i).trans le_sup_right
-  have hr := quotient_lift_rank D f hD (fun i => protectedChannel P i a) U hcompl hprivate
+  have hr := Lax342547.QuotientCompression.quotient_lift_rank D f hD (fun i => protectedChannel P i a) U hcompl hprivate
   have hbound : ∀ i, Module.finrank Binary (LinearMap.range (f i)) +
       Module.finrank Binary (protectedChannel P i a) ≤
         Fintype.card (SelectorCoordinates b degree) * (1 + ((2 * k + 1)^2 + 3) * Dblk) + K := by
     intro i
-    exact Nat.add_le_add (Lax342547Proofs.BaseCompression.concrete_compression_rank (A i) (hA i))
+    exact Nat.add_le_add (Lax342547.BaseCompression.concrete_compression_rank (A i) (hA i))
       (((Finset.single_le_sum (fun _ _ => Nat.zero_le _) (Finset.mem_univ a)).trans
-        (Lax342547Proofs.TableSpaces.protected_rank P i)).trans hK)
+        (Lax342547.TableSpaces.protected_rank P i)).trans hK)
   have hh := hr.trans (Finset.sum_le_sum (fun i _ => hbound i))
   simpa [mul_add, mul_assoc] using hh
 
@@ -192,7 +194,7 @@ theorem compressed_bilinear_rank {A B : Type} [AddCommGroup A] [Module Binary A]
     Module.finrank Binary (LinearMap.range (β.compl₁₂ q p)) ≤
       Module.finrank Binary (LinearMap.range q) := by
   change Module.finrank Binary (LinearMap.range ((β.compl₂ p).comp q)) ≤ _
-  exact Lax342547Proofs.ResponseMatrices.comp_right_rank _ _
+  exact Lax342547.ResponseMatrices.comp_right_rank _ _
 
 /--
 ---
@@ -221,7 +223,7 @@ theorem pure_compressed {B H : Type} [Fintype B]
     apply LinearMap.ext
     intro w
     change β (qD (D.mkQ (primalEmbedding i v))) (qE (E.mkQ (primalEmbedding i w))) = _
-    rw [hD, hE, nominalLift_primal, nominalLift_primal]
+    rw [hD, hE, Lax342547.QuotientCompression.nominalLift_primal, Lax342547.QuotientCompression.nominalLift_primal]
     rfl
   simp only [pureResponse, LinearMap.sum_apply, LinearMap.comp_apply, LinearMap.proj_apply]
   apply Finset.sum_congr rfl
@@ -233,7 +235,7 @@ theorem pure_compressed {B H : Type} [Fintype B]
     change LinearMap.BilinForm.toMatrix' (LinearMap.BilinForm.comp (C i) (f i) (f i)) = _
     rw [LinearMap.BilinForm.toMatrix'_comp]
   rw [hm]
-  exact (Lax342547Proofs.BaseCompression.matrixPair_tensorMap (f i)
+  exact (Lax342547.BaseCompression.matrixPair_tensorMap (f i)
     (LinearMap.BilinForm.toMatrix' (C i)) (x i)).symm
 
 end Lax342547Proofs.QuotientCompression

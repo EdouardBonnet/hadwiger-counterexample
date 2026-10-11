@@ -3,7 +3,7 @@ import Mathlib.Combinatorics.SimpleGraph.Coloring.Vertex
 /-!
 ---
 title: The chromatic lower bound for independence number two
-type: theorem
+type: lemma
 ---
 A finite graph of independence number at most two satisfies
 $|V(G)|\le 2\chi(G)$, since every color class has at most two vertices.

@@ -1,6 +1,6 @@
 import Lax342547.ReferenceKeys
-import Lax342547Proofs.GramNormalization
 import Lax342547Proofs.FiniteUniform
+import Lax342547.GramNormalization
 
 namespace Lax342547Proofs.ReferenceKeys
 open Lax342547.ReferenceKeys
@@ -48,7 +48,7 @@ theorem block_reference_lower {I N : Type} [Fintype I] [Fintype N]
     1 / (2 : ℝ≥0∞) ^ (Fintype.card I * Fintype.card I + 2) ≤
       ((PMF.uniformOfFintype (Matrix N I Binary × Matrix N I Binary)).map
         (fun x => x.1.transpose * x.2)) G := by
-  have h := Lax342547Proofs.GramNormalization.normalization_quarter G
+  have h := Lax342547.GramNormalization.normalization_quarter G
     (by simpa only [two_mul] using hN)
   apply le_trans h
   have hmono := (PMF.uniformOfFintype (Matrix N I Binary × Matrix N I Binary)).toOuterMeasure.mono
@@ -88,6 +88,6 @@ theorem reference_density_lower {Comp N : Type} [Fintype Comp] [Fintype N]
   have hm := Lax342547Proofs.FiniteUniform.map_pi_apply
     (fun e (x : Matrix N (Pos e) Binary × Matrix N (Pos e) Binary) => x.1.transpose * x.2) G
   rw [hm]
-  exact Finset.prod_le_prod' (fun e _ => block_reference_lower (G e) (hN e))
+  exact Finset.prod_le_prod' (fun e _ => Lax342547.ReferenceKeys.block_reference_lower (G e) (hN e))
 
 end Lax342547Proofs.ReferenceKeys

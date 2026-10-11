@@ -1,8 +1,8 @@
 import Lax342547.GreedyTails
-import Lax342547Proofs.GreedySpans
-import Lax342547Proofs.ListTails
-import Lax342547Proofs.DyadicScale
 import Mathlib.Algebra.Order.BigOperators.Group.List
+import Lax342547.DyadicScale
+import Lax342547.GreedySpans
+import Lax342547.ListTails
 
 namespace Lax342547Proofs.GreedyTails
 open Lax342547.GreedyTails
@@ -47,12 +47,12 @@ theorem greedy_tail_bound {K V ι : Type} [Field K] [AddCommGroup V] [Module K V
   let t := l.length-b
   have hlen : (l.drop t).length = b := by simp [t,List.length_drop,Nat.sub_sub_self hbl]
   have hne : l.drop t ≠ [] := by intro hh; rw [hh] at hlen; simp at hlen; omega
-  have hh := greedy_deficit_bound S (spanAfter S W (l.take t)) (l.drop t)
-    (Lax342547Proofs.GreedySpans.greedy_drop S W l hg t) hne
-  rw [← Lax342547Proofs.GreedySpans.increments_drop,hlen,
-    Lax342547Proofs.ListTails.value_drop] at hh
-  have hil := Lax342547Proofs.GreedySpans.increments_length S W l
-  have hsum := Lax342547Proofs.ListTails.tail_sum_list (increments S W l) b (by omega)
+  have hh := Lax342547.GreedyTails.greedy_deficit_bound S (spanAfter S W (l.take t)) (l.drop t)
+    (Lax342547.GreedySpans.greedy_drop S W l hg t) hne
+  rw [← Lax342547.GreedySpans.increments_drop,hlen,
+    Lax342547.ListTails.value_drop] at hh
+  have hil := Lax342547.GreedySpans.increments_length S W l
+  have hsum := Lax342547.ListTails.tail_sum_list (increments S W l) b (by omega)
   rw [hil] at hsum
   rw [← hsum] at hh
   have hb' : (b : ℝ) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hb)
@@ -75,25 +75,25 @@ theorem small_greedy_tail {K V ι : Type} [Field K] [AddCommGroup V] [Module K V
     ∃ j < n, deficit S (spanAfter S W (l.take (l.length-2^(k-j))))
       (l.drop (l.length-2^(k-j))) < (2^(k-j) : ℝ)/4 := by
   let a := value (increments S W l)
-  have ha := Lax342547Proofs.ListTails.value_antitone (increments S W l)
-    (Lax342547Proofs.GreedySpans.greedy_decreasing S W l hg)
-    (Lax342547Proofs.GreedySpans.increments_nonneg S W l)
-  have h0 := fun t => Lax342547Proofs.ListTails.value_nonneg (increments S W l)
-    (Lax342547Proofs.GreedySpans.increments_nonneg S W l) t
-  have hbnd := Lax342547Proofs.GreedySpans.increments_le S W l r
-    (fun i hi => (Lax342547Proofs.GreedySpans.gain_le_rank W (S i)).trans (hr i hi))
-  have hlen' := Lax342547Proofs.GreedySpans.increments_length S W l
+  have ha := Lax342547.ListTails.value_antitone (increments S W l)
+    (Lax342547.GreedySpans.greedy_decreasing S W l hg)
+    (Lax342547.GreedySpans.increments_nonneg S W l)
+  have h0 := fun t => Lax342547.ListTails.value_nonneg (increments S W l)
+    (Lax342547.GreedySpans.increments_nonneg S W l) t
+  have hbnd := Lax342547.GreedySpans.increments_le S W l r
+    (fun i hi => (Lax342547.GreedySpans.gain_le_rank W (S i)).trans (hr i hi))
+  have hlen' := Lax342547.GreedySpans.increments_length S W l
   have hz : 0 < (increments S W l).length := by rw [hlen',hlen]; positivity
   have har : a 0 ≤ r := by
     dsimp [a]
-    rw [Lax342547Proofs.ListTails.value_in_range _ 0 hz]
+    rw [Lax342547.ListTails.value_in_range _ 0 hz]
     exact hbnd _ (List.getElem_mem hz)
-  obtain ⟨j,hj,hd⟩ := Lax342547Proofs.DyadicScale.dyadic_small_tail a ha h0 k n r hnk har hn
+  obtain ⟨j,hj,hd⟩ := Lax342547.DyadicScale.dyadic_small_tail a ha h0 k n r hnk har hn
   refine ⟨j,hj,?_⟩
   have hbl : (2 : ℕ)^(k-j) ≤ l.length := by
     rw [hlen]
     exact Nat.pow_le_pow_right (by omega) (Nat.sub_le _ _)
-  have hh := greedy_tail_bound S W l hg (2^(k-j)) (by positivity) hbl
+  have hh := Lax342547.GreedyTails.greedy_tail_bound S W l hg (2^(k-j)) (by positivity) hbl
   rw [hlen] at hh
   have hp : (0 : ℝ) < 2^(k-j) := by positivity
   have hmul := mul_lt_mul_of_pos_left hd hp

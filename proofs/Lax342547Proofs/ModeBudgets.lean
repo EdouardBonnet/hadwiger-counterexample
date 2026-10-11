@@ -1,5 +1,6 @@
 import Lax342547.ModeBudgets
-import Lax342547Proofs.ListDeficits
+import Lax342547.ListDeficits
+import Lax342547.SumEnvelope
 
 namespace Lax342547Proofs.ModeBudgets
 open Lax342547.ModeBudgets
@@ -17,8 +18,8 @@ theorem mode_span_budget {K V ι : Type} [Field K] [Fintype ι] [DecidableEq ι]
     (S : ι → Submodule K V) (r : ℝ) (hr : 0 ≤ r)
     (hS : ∀ i, (Module.finrank K (S i) : ℝ) ≤ r) (I : Finset ι) :
     (Module.finrank K (I.sup S : Submodule K V) : ℝ) ≤ r*Fintype.card ι := by
-  have hh := Lax342547Proofs.SumEnvelope.span_dimension_sum_bound (fun i : I => S i.val)
-  rw [Lax342547Proofs.ListDeficits.finset_span_eq,Finset.sum_coe_sort I (fun i => Module.finrank K (S i))] at hh
+  have hh := Lax342547.SumEnvelope.span_dimension_sum_bound (fun i : I => S i.val)
+  rw [Lax342547.ListDeficits.finset_span_eq,Finset.sum_coe_sort I (fun i => Module.finrank K (S i))] at hh
   have hh' : (Module.finrank K (I.sup S : Submodule K V) : ℝ) ≤ ∑ i ∈ I, (Module.finrank K (S i) : ℝ) := by exact_mod_cast hh
   calc
     _ ≤ _ := hh'

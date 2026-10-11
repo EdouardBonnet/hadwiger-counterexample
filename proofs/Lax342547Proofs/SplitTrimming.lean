@@ -1,6 +1,6 @@
 import Lax342547.SplitTrimming
-import Lax342547Proofs.LeafTrimming
-import Lax342547Proofs.MetadataPins
+import Lax342547.LeafTrimming
+import Lax342547.MetadataPins
 
 namespace Lax342547Proofs.SplitTrimming
 
@@ -49,12 +49,12 @@ theorem metadata_discard {Ω J Axis I N : Type}
       (2 : ℝ≥0∞) ^ ((a * n : ℕ) - (Fintype.card N : ℝ)) := by
   have hc : Fintype.card (Key N S) ≤ 2 ^ (a * n + u * Fintype.card N) := by
     rw [← Nat.card_eq_fintype_card, pow_add]
-    exact (MetadataPins.key_count S u hu).trans (Nat.mul_le_mul_right _ hchoices)
+    exact (Lax342547.MetadataPins.key_count S u hu).trans (Nat.mul_le_mul_right _ hchoices)
   have hc' : (Fintype.card (Key N S) : ℝ≥0∞) ≤ (2 : ℝ≥0∞) ^ (a * n + u * Fintype.card N) := by
     exact_mod_cast hc
   calc
     _ ≤ Fintype.card (Key N S) * (2 : ℝ≥0∞) ^ (-(((u : ℝ) + 1) * Fintype.card N)) :=
-      small_fibers p (record A choice S) _
+      Lax342547.SplitTrimming.small_fibers p (record A choice S) _
     _ ≤ (2 : ℝ≥0∞) ^ (a * n + u * Fintype.card N) *
         (2 : ℝ≥0∞) ^ (-(((u : ℝ) + 1) * Fintype.card N)) :=
       mul_le_mul_of_nonneg_right hc' zero_le
@@ -81,7 +81,7 @@ theorem exponential_discard {Ω J Axis I N : Type}
     p.toOuterMeasure {o | p.toOuterMeasure {x | record A choice S x = record A choice S o} <
         (2 : ℝ≥0∞) ^ (-(((u : ℝ) + 1) * Fintype.card N))} ≤
       (2 : ℝ≥0∞) ^ (-(Fintype.card N : ℝ) / 2) := by
-  apply (metadata_discard p A choice S a n u hchoices hu).trans
+  apply (Lax342547.SplitTrimming.metadata_discard p A choice S a n u hchoices hu).trans
   apply ENNReal.rpow_le_rpow_of_exponent_le (by norm_num)
   have hscale' : 2 * (a : ℝ) * n ≤ Fintype.card N := by exact_mod_cast hscale
   push_cast
@@ -103,8 +103,8 @@ theorem repinning_density {Ω : Type} (p μ : PMF Ω) (S T : Set Ω)
     (hp : ∀ o, p o ≤ (2 : ℝ≥0∞) ^ ((D + K₁ + 1) * N) * μ o) :
     ∀ o, ((p.filter S hS).filter T hT) o ≤
       (2 : ℝ≥0∞) ^ ((D + K₁ + u + 5) * N) * μ o := by
-  have hfirst := LeafTrimming.density_after_restriction p μ S hS (D + K₁ + 1) ζ N hSbound hp
-  have hsecond := LeafTrimming.density_after_restriction (p.filter S hS) μ T hT
+  have hfirst := Lax342547.LeafTrimming.density_after_restriction p μ S hS (D + K₁ + 1) ζ N hSbound hp
+  have hsecond := Lax342547.LeafTrimming.density_after_restriction (p.filter S hS) μ T hT
     (D + K₁ + 1 + ζ) ((u : ℝ) + 1) N hTbound hfirst
   intro o
   apply (hsecond o).trans

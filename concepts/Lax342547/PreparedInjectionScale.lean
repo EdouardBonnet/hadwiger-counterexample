@@ -3,7 +3,7 @@ import Lax342547.PreparedInjection
 /-!
 ---
 title: Early channel choice for prepared accepting-pair injection
-type: theorem
+type: lemma
 ---
 Choose channel size before the ambient dimension, density law, or accepting
 mass exponent. The later onset pays every fixed polynomial loss; a density

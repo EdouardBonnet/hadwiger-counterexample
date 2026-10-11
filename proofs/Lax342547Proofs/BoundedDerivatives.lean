@@ -1,6 +1,6 @@
 import Lax342547.BoundedDerivatives
 import Mathlib.LinearAlgebra.Dimension.LinearMap
-import Lax342547Proofs.ResponseSolvability
+import Lax342547.ResponseSolvability
 
 namespace Lax342547Proofs.BoundedDerivatives
 
@@ -45,7 +45,7 @@ theorem allowed_projection {H X : Type} [Fintype H]
       (∀ c x, dotProduct (p c).val (G x) = dotProduct c.val (G x)) ∧
       Module.finrank Binary (LinearMap.range p) ≤ Module.finrank Binary (LinearMap.range G) := by
   let L := G.dualMap.comp ((dotProductBilin Binary Binary).comp (perpendicular S).subtype)
-  obtain ⟨p, hp, hr⟩ := observed_projection L
+  obtain ⟨p, hp, hr⟩ := Lax342547.BoundedDerivatives.observed_projection L
   refine ⟨p, ?_, ?_⟩
   · intro c x
     have he := DFunLike.congr_fun hp c
@@ -72,7 +72,7 @@ theorem bounded_derivative {D H X : Type} [AddCommGroup D] [Module Binary D]
     ∃ δ' : D →ₗ[Binary] perpendicular S,
       (∀ v x, dotProduct (δ' v).val (G x) = dotProduct (δ v).val (G x)) ∧
       Module.finrank Binary (LinearMap.range δ') ≤ Module.finrank Binary (LinearMap.range G) := by
-  obtain ⟨p, hp, hr⟩ := allowed_projection S G
+  obtain ⟨p, hp, hr⟩ := Lax342547.BoundedDerivatives.allowed_projection S G
   refine ⟨p.comp δ, ?_, ?_⟩
   · intro v x
     exact hp (δ v) x
@@ -96,7 +96,7 @@ theorem bounded_derivative_covectors {D H X : Type} [AddCommGroup D] [Module Bin
         dotProduct (δ v).val (Lax342547.TensorAnnihilators.dualCoordinates (C x))) ∧
       Module.finrank Binary (LinearMap.range δ') ≤ Module.finrank Binary (LinearMap.range C) := by
   let G := Lax342547.TensorAnnihilators.dualCoordinates.comp C
-  obtain ⟨δ', hp, hr⟩ := bounded_derivative S G δ
+  obtain ⟨δ', hp, hr⟩ := Lax342547.BoundedDerivatives.bounded_derivative S G δ
   refine ⟨δ', hp, hr.trans ?_⟩
   rw [LinearMap.range_comp]
   exact Submodule.finrank_map_le _ _
@@ -130,8 +130,8 @@ theorem bounded_component {Comp B H : Type} [Fintype B] [Fintype H]
   classical
   let Cplus := (F.forward e).compl₁₂ (primal (B := B) (H := H)).subtype (channelEmbedding z)
   let Cminus := (F.reverse e).flip.compl₁₂ (primal (B := B) (H := H)).subtype (channelEmbedding z)
-  obtain ⟨δ', hδ, hrδ⟩ := bounded_derivative_covectors S Cminus δ
-  obtain ⟨ε', hε, hrε⟩ := bounded_derivative_covectors T Cplus ε
+  obtain ⟨δ', hδ, hrδ⟩ := Lax342547.BoundedDerivatives.bounded_derivative_covectors S Cminus δ
+  obtain ⟨ε', hε, hrε⟩ := Lax342547.BoundedDerivatives.bounded_derivative_covectors T Cplus ε
   refine ⟨δ', ε', ?_, hrδ.trans hminus, hrε.trans hplus⟩
   have hG : ∀ i, Lax342547.TensorContractions.ambient (fullPlus F e i z) (restriction E T ε' i) =
       Lax342547.TensorContractions.ambient (fullPlus F e i z) (restriction E T ε i) := by
@@ -189,7 +189,7 @@ theorem bounded_response {k n b degree r K : ℕ} {hr : 2 * r ≤ n} {H N : Type
       Module.finrank Binary (LinearMap.range δ') ≤ 3 * K + 28 ∧
       Module.finrank Binary (LinearMap.range ε') ≤ 3 * K + 28 := by
     intro e
-    exact bounded_component F e z _ _ _ _ (3 * K + 28) (hF e z).1 (hF e z).2.2.2 (δ e) (ε e)
+    exact Lax342547.BoundedDerivatives.bounded_component F e z _ _ _ _ (3 * K + 28) (hF e z).1 (hF e z).2.2.2 (δ e) (ε e)
   choose δ' ε' heq hrδ hrε using h
   refine ⟨δ', ε', ?_, fun e => ⟨hrδ e, hrε e⟩⟩
   simp only [response, heq]
@@ -224,9 +224,9 @@ theorem bounded_recipe_solution {H N : Type} [Fintype H] [Fintype N] {k n b degr
       ∑ i, (Lax342547.RecipeResiduals.residual W D L R F i z).comp (LinearMap.proj i) ∧
       ∀ e, Module.finrank Binary (LinearMap.range (δ e)) ≤ 3 * K + 28 ∧
         Module.finrank Binary (LinearMap.range (ε e)) ≤ 3 * K + 28 := by
-  obtain ⟨β, δ, ε, hsol⟩ := Lax342547Proofs.ResponseSolvability.recipe_solution hk W D L R oA oB P Q
+  obtain ⟨β, δ, ε, hsol⟩ := Lax342547.ResponseSolvability.recipe_solution hk W D L R oA oB P Q
     hK A B hA hfresh U V hU hV T hT F hF hrecipe hfrozen hkeys hgradients hdegree z
-  obtain ⟨δ', ε', heq, hr⟩ := bounded_response W P Q U V F hbounded z δ ε
+  obtain ⟨δ', ε', heq, hr⟩ := Lax342547.BoundedDerivatives.bounded_response W P Q U V F hbounded z δ ε
   refine ⟨β, δ', ε', ?_, hr⟩
   rw [fullResponse, heq]
   exact hsol

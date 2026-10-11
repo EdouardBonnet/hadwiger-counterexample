@@ -1,5 +1,5 @@
 import Lax342547.ChannelAssembly
-import Lax342547Proofs.RecipeChannels
+import Lax342547.ChannelChanges
 
 namespace Lax342547Proofs.ChannelAssembly
 open Lax342547.ChannelAssembly
@@ -27,7 +27,7 @@ theorem channel_change_coordinate {B H : Type} [Fintype H]
   by_cases hz : z = j
   · subst j
     rw [if_pos rfl]
-    exact Lax342547Proofs.ChannelChanges.channel_entry D S δ z v h
+    exact Lax342547.ChannelChanges.channel_entry D S δ z v h
   · rw [if_neg hz]
     have hp : channelProjection (B := B) z (channelEmbedding j (Pi.single h 1)) = 0 := by
       ext a
@@ -59,7 +59,7 @@ theorem assembled_plus {k n b degree r : ℕ} {hr : 2 * r ≤ n} {H N : Type} [F
       (protectedChannel Q j (e, false)) (δ j e) j (primalEmbedding i v) (channelEmbedding z (Pi.single h 1))) +
     (∑ j, channelChange (barred (Lax342547.PairedRecipes.flip W) Q (V' e) (e, false))
       (protectedChannel P j (e, true)) (ε' j e) j (channelEmbedding z (Pi.single h 1)) (primalEmbedding i v)) = _
-  simp only [channel_change_coordinate, Lax342547Proofs.ChannelChanges.opposite_primal,
+  simp only [Lax342547.ChannelAssembly.channel_change_coordinate, Lax342547.ChannelChanges.opposite_primal,
     Finset.sum_const_zero, add_zero]
   rw [Finset.sum_eq_single z]
   · simp only
@@ -89,8 +89,8 @@ theorem assembled_minus {k n b degree r : ℕ} {hr : 2 * r ≤ n} {H N : Type} [
   intro v
   funext h
   simp [fullMinus, assemble, restriction, LinearMap.BilinForm.flip,
-    LinearMap.BilinForm.flipHom, channel_change_coordinate,
-    Lax342547Proofs.ChannelChanges.opposite_primal]
+    LinearMap.BilinForm.flipHom, Lax342547.ChannelAssembly.channel_change_coordinate,
+    Lax342547.ChannelChanges.opposite_primal]
   fin_cases z <;> simp
 
 
@@ -114,8 +114,8 @@ theorem reciprocal_plus {k n b degree r : ℕ} {hr : 2 * r ≤ n} {H N : Type} [
   intro v
   funext h
   simp [fullPlus, CrossForms.flip, assemble, restriction, LinearMap.BilinForm.flip,
-    LinearMap.BilinForm.flipHom, channel_change_coordinate,
-    Lax342547Proofs.ChannelChanges.opposite_primal]
+    LinearMap.BilinForm.flipHom, Lax342547.ChannelAssembly.channel_change_coordinate,
+    Lax342547.ChannelChanges.opposite_primal]
   fin_cases i <;> simp
 
 /--
@@ -138,8 +138,8 @@ theorem reciprocal_minus {k n b degree r : ℕ} {hr : 2 * r ≤ n} {H N : Type} 
   intro v
   funext h
   simp [fullMinus, CrossForms.flip, assemble, restriction, LinearMap.BilinForm.flip,
-    LinearMap.BilinForm.flipHom, channel_change_coordinate,
-    Lax342547Proofs.ChannelChanges.opposite_primal]
+    LinearMap.BilinForm.flipHom, Lax342547.ChannelAssembly.channel_change_coordinate,
+    Lax342547.ChannelChanges.opposite_primal]
   fin_cases i <;> simp
 
 end Lax342547Proofs.ChannelAssembly

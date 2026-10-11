@@ -4,7 +4,7 @@ import Lax342547.BinaryPrescriptions
 /-!
 ---
 title: Coupled scalar recipes give consistent atom gradients
-type: theorem
+type: lemma
 ---
 At one endpoint, a and the opposite matched a-values satisfy the two
 role equations. The opposite p-values satisfy the coupled equation.

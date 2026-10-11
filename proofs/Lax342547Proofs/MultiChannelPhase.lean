@@ -1,8 +1,10 @@
-import Lax342547Proofs.ChannelColumns
 import Lax342547.MultiChannelPhase
-import Lax342547Proofs.DuplicatedNoCover
-import Lax342547Proofs.PhaseAverages
-import Lax342547Proofs.TotalRankCount
+import Lax342547.ChannelColumns
+import Lax342547.DuplicatedNoCover
+import Lax342547.FiniteSampling
+import Lax342547.PhaseAverages
+import Lax342547.RealCellLaws
+import Lax342547.TotalRankCount
 namespace Lax342547Proofs.MultiChannelPhase
 open Lax342547.MultiChannelPhase
 
@@ -35,10 +37,10 @@ theorem no_cover_raw_phase_tail {e d B N Ω : Type} [Fintype e] [Fintype d] [Fin
       (fun o => θ ≤ |∑ x, μ x*ψ x*tensorCharacter h (fun i : e × d => A x i.1) (columnsEquiv h (fun a => channels (o a)))|) ≤
       (2 : ℝ)^(Fintype.card (e × d)*(h*h+2))*
         (((4 : ℝ)^(2*t)*p^(2^(k-(100*r+10)))+1/(2 : ℝ)^((Fintype.card d*h)*2^(k-(100*r+12))))/θ^(2*t)) := by
-  have hh := Lax342547Proofs.ChannelColumns.raw_channel_event_cap h E hN
+  have hh := Lax342547.ChannelColumns.raw_channel_event_cap h E hN
     (fun c => θ ≤ |∑ x, μ x*ψ x*tensorCharacter h (fun i : e × d => A x i.1) c|)
   exact hh.trans (mul_le_mul_of_nonneg_left
-    (Lax342547Proofs.DuplicatedNoCover.no_cover_phase_tail (d := d) μ A ψ r h t k p θ hμ hp0 hp1 hr hA hψ hsize hk hcover hθ)
+    (Lax342547.DuplicatedNoCover.no_cover_phase_tail (d := d) μ A ψ r h t k p θ hμ hp0 hp1 hr hA hψ hsize hk hcover hθ)
     (by positivity))
 
 /--
@@ -66,11 +68,11 @@ theorem no_cover_raw_family_tail {e d B N Ω C : Type} [Fintype e] [Fintype d] [
   classical
   let P := fun c : C => fun o : (e × d) → Frame B (Fin h) N E =>
     θ ≤ |∑ x, μ x*ψ c x*tensorCharacter h (fun i : e × d => A x i.1) (columnsEquiv h (fun a => channels (o a)))|
-  have hu := Lax342547Proofs.FiniteSampling.cell_mass_union_bound
+  have hu := Lax342547.FiniteSampling.cell_mass_union_bound
     (weights (Lax342547.RawLaw.uniformLaw E)) P Finset.univ
-    (Lax342547Proofs.RealCellLaws.weights_nonneg _)
+    (Lax342547.RealCellLaws.weights_nonneg _)
   simp only [Finset.mem_univ,true_and] at hu
-  have hloc (c : C) := no_cover_raw_phase_tail (d := d) E μ A (ψ c)
+  have hloc (c : C) := Lax342547.MultiChannelPhase.no_cover_raw_phase_tail (d := d) E μ A (ψ c)
     r h t k p θ hN hμ hp0 hp1 hr hA (hψ c) hsize hk hθ hcover
   calc
     _ ≤ ∑ c, cellMass (weights (Lax342547.RawLaw.uniformLaw E)) (P c) := hu
@@ -105,10 +107,10 @@ theorem no_cover_uniform_target_tail {e d B N Ω : Type} [Fintype e] [Fintype d]
         (((4 : ℝ)^(2*t)*p^(2^(k-(100*r+10)))+1/(2 : ℝ)^((Fintype.card d*h)*2^(k-(100*r+12))))/θ^(2*t)) := by
   classical
   let C := {S : e → Matrix N N Binary // (∑ i, (S i).rank) ≤ r}
-  have hh := no_cover_raw_family_tail (d := d) (C := C) E μ A (fun c => ψ c.val)
+  have hh := Lax342547.MultiChannelPhase.no_cover_raw_family_tail (d := d) (C := C) E μ A (fun c => ψ c.val)
     r h t k p θ hN hμ hp0 hp1 hr hA (fun c => hψ c.val c.property) hsize hk hθ hcover
   have hc : (Fintype.card C : ℝ) ≤ (r+1 : ℝ)^Fintype.card e*(2 : ℝ)^(2*Fintype.card N*r) := by
-    have ht := Lax342547Proofs.TotalRankCount.total_rank_card (e := e) (I := N) (J := N) r
+    have ht := Lax342547.TotalRankCount.total_rank_card (e := e) (I := N) (J := N) r
     have he : (Fintype.card N+Fintype.card N)*r = 2*Fintype.card N*r := by ring
     rw [he] at ht
     exact_mod_cast ht
@@ -161,14 +163,14 @@ theorem no_cover_marked_unit_phase {e d B N Ω U : Type} [Fintype e] [Fintype d]
   let bad := fun o : (e × d) → Frame B (Fin h) N E => ∃ T : e → Matrix N N Binary,
     (∑ i, (T i).rank) ≤ r ∧
       θ ≤ |∑ x, μ x*ψ T x*tensorCharacter h (fun i : e × d => A x i.1) (columnsEquiv h (fun a => channels (o a)))|
-  have hh := Lax342547Proofs.PhaseAverages.average_from_phase_tail β f θ hβ
-    (fun o => Lax342547Proofs.PhaseAverages.conditional_phase_abs_le_one μ (fun x (i : e × d) => A x i.1) (ψ (S o)) h _ hμ (hψ (S o) (hS o))) hθ.le
-  have hbad := Lax342547Proofs.FiniteSampling.cell_mass_mono β (fun o => θ ≤ |f o|)
+  have hh := Lax342547.PhaseAverages.average_from_phase_tail β f θ hβ
+    (fun o => Lax342547.PhaseAverages.conditional_phase_abs_le_one μ (fun x (i : e × d) => A x i.1) (ψ (S o)) h _ hμ (hψ (S o) (hS o))) hθ.le
+  have hbad := Lax342547.FiniteSampling.cell_mass_mono β (fun o => θ ≤ |f o|)
     (fun o => bad (image o)) hβ.1 (fun o ho => ⟨S o,hS o,ho⟩)
-  rw [← Lax342547Proofs.ChannelColumns.push_cell_mass β image bad] at hbad
-  have hd := Lax342547Proofs.PhaseAverages.finite_event_density
+  rw [← Lax342547.ChannelColumns.push_cell_mass β image bad] at hbad
+  have hd := Lax342547.PhaseAverages.finite_event_density
     (weights (Lax342547.RawLaw.uniformLaw E)) (push β image) L hβcap bad
-  have ht := no_cover_uniform_target_tail (d := d) E μ A ψ
+  have ht := Lax342547.MultiChannelPhase.no_cover_uniform_target_tail (d := d) E μ A ψ
     r h t k p θ hN hμ hp0 hp1 hr hA hψ hsize hk hθ hcover
   exact hh.trans (add_le_add le_rfl (hbad.trans (hd.trans (mul_le_mul_of_nonneg_left ht hL))))
 

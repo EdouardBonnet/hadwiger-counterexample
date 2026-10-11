@@ -1,5 +1,11 @@
 import Lax342547.ProductImages
-import Lax342547Proofs.InjectiveFrames
+import Lax342547.FiniteLinearLaw
+import Lax342547.FrameSymmetry
+import Lax342547.InjectiveFrames
+import Lax342547Proofs.FiniteProbability
+import Lax342547Proofs.FiniteUniform
+import Lax342547Proofs.MixerCompatibility
+import Lax342547Proofs.PairedFrames
 
 namespace Lax342547Proofs.ProductImages
 
@@ -53,7 +59,7 @@ theorem right_uniform {I T N : Type} [Fintype I] [Fintype T] [Fintype N]
     (C : Matrix I T Binary) (hC : Function.Injective C.mulVec) :
     (PMF.uniformOfFintype (Matrix N I Binary)).map (fun A => A * C) =
       PMF.uniformOfFintype (Matrix N T Binary) := by
-  apply FiniteLinearLaw.uniform_image_of_surjective (rightMap C)
+  apply Lax342547.FiniteLinearLaw.uniform_image_of_surjective (rightMap C)
   obtain ⟨U, hU⟩ := MixerCompatibility.exists_left_inverse C hC
   intro y
   exact ⟨y * U, by simp only [rightMap, LinearMap.coe_mk, AddHom.coe_mk,
@@ -72,7 +78,7 @@ theorem joint_uniform {Draw I T N : Type} [Fintype Draw] [Fintype I] [Fintype T]
     (C : Matrix (Draw × I) T Binary) (hC : Function.Injective C.mulVec) :
     (PMF.uniformOfFintype (Draw → Matrix N I Binary)).map (fun A => jointMatrix A * C) =
       PMF.uniformOfFintype (Matrix N T Binary) := by
-  rw [← right_uniform C hC, ← FiniteUniform.map_equiv (jointEquiv (Draw := Draw) (I := I) (N := N)),
+  rw [← Lax342547.ProductImages.right_uniform C hC, ← FiniteUniform.map_equiv (jointEquiv (Draw := Draw) (I := I) (N := N)),
     PMF.map_comp]
   rfl
 
@@ -97,7 +103,7 @@ theorem injective_image_bound {Draw I T N : Type}
       2 * PMF.uniformOfFintype (Matrix N I Binary) M := by
     rw [← PMF.toOuterMeasure_apply_singleton, PMF.toOuterMeasure_map_apply,
       ← PMF.toOuterMeasure_apply_singleton]
-    exact InjectiveFrames.injection_event_bound hN {M}
+    exact Lax342547.InjectiveFrames.injection_event_bound hN {M}
   let p := (PMF.uniformOfFintype (Draw → Injection I N)).map (fun A i => (A i).val)
   let q := PMF.uniformOfFintype (Draw → Matrix N I Binary)
   have hp (A : Draw → Matrix N I Binary) : p A ≤ (2 : ℝ≥0∞) ^ Fintype.card Draw * q A := by
@@ -109,7 +115,7 @@ theorem injective_image_bound {Draw I T N : Type}
   rw [PMF.map_comp] at hb
   change _ ≤ (2 : ℝ≥0∞) ^ Fintype.card Draw *
     (PMF.uniformOfFintype (Draw → Matrix N I Binary)).map (fun A => jointMatrix A * C) y at hb
-  rw [joint_uniform C hC, PMF.uniformOfFintype_apply] at hb
+  rw [Lax342547.ProductImages.joint_uniform C hC, PMF.uniformOfFintype_apply] at hb
   have hc : Fintype.card (Matrix N T Binary) = 2 ^ (Fintype.card N * Fintype.card T) := by
     rw [← Nat.card_eq_fintype_card]
     change Nat.card (N → T → Binary) = _
@@ -142,8 +148,8 @@ theorem raw_plus_image_bound {Draw B H T N : Type}
     rw [FiniteUniform.map_fun_apply, FiniteUniform.uniform_pi_apply]
     apply Finset.prod_congr rfl
     intro i _
-    rw [FrameSymmetry.plus_uniform]
-  have hb := injective_image_bound (by simpa only [Fintype.card_sum] using hN) C hC y
+    rw [Lax342547.FrameSymmetry.plus_uniform]
+  have hb := Lax342547.ProductImages.injective_image_bound (by simpa only [Fintype.card_sum] using hN) C hC y
   rw [← hm, PMF.map_comp] at hb
   exact hb
 

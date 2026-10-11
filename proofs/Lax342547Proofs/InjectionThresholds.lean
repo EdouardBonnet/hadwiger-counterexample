@@ -1,5 +1,4 @@
 import Lax342547.InjectionThresholds
-import Lax342547Proofs.InjectionAsymptotics
 
 namespace Lax342547Proofs.InjectionThresholds
 open Lax342547.InjectionThresholds
@@ -30,7 +29,7 @@ theorem exists_early_parameters (K Cs : ℕ) (η : ℝ) (hη : 0 < η) :
       ∀ m : ℕ,∃ N₀ : ℕ,∀ N : ℕ,N₀ ≤ N →
         20*(K+1) ≤ N ∧ m+h*K ≤ N ∧ m+h+1 ≤ N/10 ∧
         1/(2 : ℝ)^(N/2) ≤ η/2 := by
-  obtain ⟨t,ht⟩ := exists_dyadic_gap η hη
+  obtain ⟨t,ht⟩ := Lax342547.InjectionThresholds.exists_dyadic_gap η hη
   let h := 2*K+t+20*(K+1)*(Cs+3)
   refine ⟨t,h,ht,le_rfl,?_⟩
   intro m

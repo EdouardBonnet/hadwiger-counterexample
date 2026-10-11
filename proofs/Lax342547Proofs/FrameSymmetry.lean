@@ -1,6 +1,8 @@
 import Lax342547.FrameSymmetry
 import Lax342547Proofs.PairedFrames
 import Lax342547Proofs.FiniteUniform
+import Lax342547.PairedFrames
+import Lax342547Proofs.LinearExtension
 
 namespace Lax342547Proofs.FrameSymmetry
 
@@ -141,7 +143,7 @@ theorem full_frame_orbit {E : Matrix B B Binary} (F G : Frame B H N E)
     simp only [plus, minus, Matrix.transpose_fromCols, Matrix.fromRows_mul_fromCols,
       F.gram, G.gram, F.plus_annihilator, G.plus_annihilator,
       F.minus_annihilator, G.minus_annihilator, hchannel]
-  obtain ⟨C, D, hCD, hDC, hplus, hminus⟩ := PairedFrames.paired_matrix_orbit
+  obtain ⟨C, D, hCD, hDC, hplus, hminus⟩ := Lax342547.PairedFrames.paired_matrix_orbit
     (plus F).val (plus G).val (minus F).val (minus G).val
     (plus F).property (plus G).property (minus F).property (minus G).property hgram
   change C * Matrix.fromCols F.P F.X = Matrix.fromCols G.P G.X at hplus

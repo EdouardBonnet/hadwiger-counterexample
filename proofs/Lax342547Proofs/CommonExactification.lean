@@ -1,7 +1,7 @@
 import Lax342547.CommonExactification
-import Lax342547Proofs.BooleanWeight
-import Lax342547Proofs.MomentTails
-import Lax342547Proofs.FiniteSampling
+import Lax342547.BooleanWeight
+import Lax342547.FiniteSampling
+import Lax342547.MomentTails
 
 namespace Lax342547Proofs.CommonExactification
 open Lax342547.CommonExactification
@@ -37,9 +37,9 @@ theorem common_prediction_exact {b d : ℕ}
     (hp : p ∈ selectorSpan b d) (hq : q ∈ selectorSpan b d)
     (herr : cellMass (fun _ : Fin b → Binary => 1/(2 : ℝ)^b) (fun x => p x ≠ f x)+
       cellMass (fun _ : Fin b → Binary => 1/(2 : ℝ)^b) (fun x => q x ≠ f x) < 1/(2 : ℝ)^d) : p = q := by
-  have hsmall := (discrepancy_mass_union (fun _ : Fin b → Binary => 1/(2 : ℝ)^b) f p q (fun _ => by positivity)).trans_lt herr
+  have hsmall := (Lax342547.CommonExactification.discrepancy_mass_union (fun _ : Fin b → Binary => 1/(2 : ℝ)^b) f p q (fun _ => by positivity)).trans_lt herr
   have he : (fun x => p x-q x) = 0 :=
-    Lax342547Proofs.BooleanWeight.uniform_error_exactification (fun x => p x-q x)
+    Lax342547.BooleanWeight.uniform_error_exactification (fun x => p x-q x)
       ((selectorSpan b d).sub_mem hp hq) (by simpa only [sub_ne_zero] using hsmall)
   exact sub_eq_zero.mp he
 
@@ -60,7 +60,7 @@ theorem prediction_good_mass {U X : Type} [Fintype U] [Fintype X]
     apply Finset.sum_nonneg
     intro x _
     split_ifs <;> simp [hα x]
-  have hm := Lax342547Proofs.MomentTails.finite_moment_markov β err a 1 hβ.1 ha
+  have hm := Lax342547.MomentTails.finite_moment_markov β err a 1 hβ.1 ha
   simp only [abs_of_nonneg (hn _),pow_one] at hm
   have hb : cellMass β (fun u => a ≤ err u) ≤ ε/a := hm.trans (div_le_div_of_nonneg_right herror ha.le)
   have hs : cellMass β (fun u => err u < a)+cellMass β (fun u => a ≤ err u) = 1 := by
@@ -92,7 +92,7 @@ theorem retained_common_prediction {U : Type} [Fintype U] {b d : ℕ}
     ∃ u₀ : U, 1-ε/a ≤ cellMass β (fun u => p u = p u₀) := by
   classical
   let err := fun u => cellMass (fun _ : Fin b → Binary => 1/(2 : ℝ)^b) (fun x => p u x ≠ f x)
-  have hm := prediction_good_mass β (fun _ : Fin b → Binary => 1/(2 : ℝ)^b) f p ε a hβ
+  have hm := Lax342547.CommonExactification.prediction_good_mass β (fun _ : Fin b → Binary => 1/(2 : ℝ)^b) f p ε a hβ
     (fun _ => by positivity) ha herror
   have hpos : 0 < 1-ε/a := by
     have ht := (div_lt_one ha).mpr hε
@@ -110,9 +110,9 @@ theorem retained_common_prediction {U : Type} [Fintype U] {b d : ℕ}
     linarith
   obtain ⟨u₀,hu₀⟩ := hex
   refine ⟨u₀,hm.trans ?_⟩
-  apply Lax342547Proofs.FiniteSampling.cell_mass_mono _ _ _ hβ.1
+  apply Lax342547.FiniteSampling.cell_mass_mono _ _ _ hβ.1
   intro u hu
-  apply common_prediction_exact f (p u) (p u₀) (hp u) (hp u₀)
+  apply Lax342547.CommonExactification.common_prediction_exact f (p u) (p u₀) (hp u) (hp u₀)
   exact (add_lt_add hu hu₀).trans_le (by simpa only [two_mul] using hdegree)
 
 end Lax342547Proofs.CommonExactification

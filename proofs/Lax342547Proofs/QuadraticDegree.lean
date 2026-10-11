@@ -1,6 +1,7 @@
 import Lax342547.QuadraticDegree
-import Lax342547Proofs.BooleanWeight
 import Mathlib.Data.Matrix.Basis
+import Lax342547.BooleanWeight
+import Lax342547Proofs.SelectorInterpolation
 
 namespace Lax342547Proofs.QuadraticDegree
 set_option maxHeartbeats 200000
@@ -54,7 +55,7 @@ theorem linear_outer_product_degree {b : ℕ} {I : Type} [Fintype I]
     simp only [smul_eq_mul,A]
     ring
   simp_rw [he]
-  exact quadratic_function_degree A z hz
+  exact Lax342547.QuadraticDegree.quadratic_function_degree A z hz
 
 /--
 ---
@@ -65,7 +66,7 @@ theorem quadratic_error_exactification {b : ℕ} (f : (Fin b → Binary) → Bin
     (hf : f ∈ selectorSpan b 2)
     (herr : Lax342547.RetainedImages.cellMass (fun _ : Fin b → Binary => 1/(2 : ℝ)^b)
       (fun x => f x ≠ 0) < 1/4) : f = 0 := by
-  apply Lax342547Proofs.BooleanWeight.uniform_error_exactification f hf
+  apply Lax342547.BooleanWeight.uniform_error_exactification f hf
   simpa only [show (2 : ℝ)^2 = 4 from by norm_num] using herr
 
 end Lax342547Proofs.QuadraticDegree

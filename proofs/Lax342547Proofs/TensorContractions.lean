@@ -36,7 +36,7 @@ theorem contraction_outer {S T : Submodule Binary (B → Binary)}
     (f : S →ₗ[Binary] (H → Binary)) (g : T →ₗ[Binary] (H → Binary)) (v : S) (w : T) :
     contraction f g (tensor v w) = dotProduct (f v) (g w) := by
   change ambient (extend f) (extend g) (Matrix.vecMulVec v.val w.val) = _
-  rw [ambient_outer, extend_apply, extend_apply]
+  rw [Lax342547.TensorContractions.ambient_outer, extend_apply, extend_apply]
 
 omit [Fintype B] in
 theorem ambient_ext {S T : Submodule Binary (B → Binary)}
@@ -68,7 +68,7 @@ theorem extension_agreement {S T : Submodule Binary (B → Binary)}
   have hf' := congrArg (fun l : S →ₗ[Binary] (H → Binary) => l v) hf
   have hg' := congrArg (fun l : T →ₗ[Binary] (H → Binary) => l w) hg
   simp only [LinearMap.comp_apply, Submodule.subtype_apply] at hf' hg'
-  rw [ambient_outer, ambient_outer, extend_apply, extend_apply, hf', hg']
+  rw [Lax342547.TensorContractions.ambient_outer, Lax342547.TensorContractions.ambient_outer, extend_apply, extend_apply, hf', hg']
 
 /--
 ---
@@ -92,6 +92,6 @@ theorem contraction_unique {S T : Submodule Binary (B → Binary)}
   intro v w
   have hvw := congrArg (fun l : tensorSpace S T →ₗ[Binary] Binary => l (tensor v w)) hc'
   change c' (Matrix.vecMulVec v.val w.val) = c (tensor v w) at hvw
-  rw [hvw, hc, ambient_outer, extend_apply, extend_apply]
+  rw [hvw, hc, Lax342547.TensorContractions.ambient_outer, extend_apply, extend_apply]
 
 end Lax342547Proofs.TensorContractions

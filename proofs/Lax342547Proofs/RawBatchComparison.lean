@@ -1,7 +1,16 @@
 import Lax342547.RawBatchComparison
 import Lax342547Proofs.JoinedGramOrbits
-import Lax342547Proofs.JointGramInjection
-import Lax342547Proofs.ConditionedMixing
+import Lax342547.ChannelColumns
+import Lax342547.ConditionedMixing
+import Lax342547.CrossGramBasis
+import Lax342547.FiniteSampling
+import Lax342547.GramOrbitDensity
+import Lax342547.JoinedGramOrbits
+import Lax342547.JointGramInjection
+import Lax342547.PushforwardWalsh
+import Lax342547.RealCellLaws
+import Lax342547.RetainedImages
+import Lax342547Proofs.FiniteLinearLaw
 
 namespace Lax342547Proofs.RawBatchComparison
 noncomputable section
@@ -31,7 +40,7 @@ theorem weights_filter {Ω : Type} [Fintype Ω] (p : PMF Ω) (C : Ω → Prop)
     weights (p.filter {x | C x} h) x = conditionalLaw (weights p) C x := by
   classical
   rw [weights,PMF.filter_apply,← PMF.toOuterMeasure_apply,ENNReal.toReal_mul,
-    ENNReal.toReal_inv,← RealCellLaws.event_mass]
+    ENNReal.toReal_inv,← Lax342547.RealCellLaws.event_mass]
   by_cases hx : C x <;> simp [hx,Set.indicator,conditionalLaw,weights,div_eq_mul_inv]
 
 theorem conditional_integral_push {Ω X : Type} [Fintype Ω] [Fintype X]
@@ -39,8 +48,8 @@ theorem conditional_integral_push {Ω X : Type} [Fintype Ω] [Fintype X]
     (∑ x,conditionalLaw (push ρ f) C x*test x) =
       ∑ ω,conditionalLaw ρ (fun ω => C (f ω)) ω*test (f ω) := by
   classical
-  have hm := ChannelColumns.push_cell_mass ρ f C
-  have hi := PushforwardWalsh.push_integral ρ f (fun x => if C x then test x else 0)
+  have hm := Lax342547.ChannelColumns.push_cell_mass ρ f C
+  have hi := Lax342547.PushforwardWalsh.push_integral ρ f (fun x => if C x then test x else 0)
   simp only [mul_ite,mul_zero] at hi
   simp only [conditionalLaw,ite_mul,zero_mul,div_mul_eq_mul_div]
   simp only [← Finset.sum_div]
@@ -72,11 +81,11 @@ theorem nested_deletion {Ω : Type} [Fintype Ω] (ρ test : Ω → ℝ) (C D : �
         2*(cellMass ρ (fun x => C x ∧ ¬ D x)/cellMass ρ C) := by
   classical
   have hC : 0 < cellMass ρ C := hCD.trans_le
-    (FiniteSampling.cell_mass_mono ρ _ C hρ.1 (fun _ h => h.1))
+    (Lax342547.FiniteSampling.cell_mass_mono ρ _ C hρ.1 (fun _ h => h.1))
   have hp : Lax342547.RelativeEntropy.Probability (conditionalLaw ρ C) :=
-    ⟨RetainedImages.conditional_law_nonneg ρ C hρ.1,RetainedImages.conditional_law_total ρ C hC⟩
+    ⟨Lax342547.RetainedImages.conditional_law_nonneg ρ C hρ.1,Lax342547.RetainedImages.conditional_law_total ρ C hC⟩
   have hD : 0 < cellMass (conditionalLaw ρ C) D := by rw [cell_nested]; positivity
-  have hh := ConditionedMixing.bounded_integral_deletion (conditionalLaw ρ C) test D hp htest hD
+  have hh := Lax342547.ConditionedMixing.bounded_integral_deletion (conditionalLaw ρ C) test D hp htest hD
   have hs : cellMass (conditionalLaw ρ C) D+cellMass (conditionalLaw ρ C) (fun x => ¬ D x) = 1 := by
     unfold cellMass
     rw [← Finset.sum_add_distrib]
@@ -113,7 +122,7 @@ theorem flat_compatible (n : ℕ) (G : Matrix I J Binary) (H : Matrix K L Binary
     Lax342547.JoinedGramOrbits.Compatible G H A B z ↔
       Lax342547.CrossBatchMixing.crossBits Lax342547.CrossGramBasis.tests n (flat G H z) = target A B ∧
         Lax342547.JointGramInjection.Good (flat G H z) := by
-  have hb := CrossGramBasis.mutual_gram_bits n (flat G H z)
+  have hb := Lax342547.CrossGramBasis.mutual_gram_bits n (flat G H z)
   have he : Lax342547.CrossBatchMixing.crossBits Lax342547.CrossGramBasis.tests n (flat G H z) = target A B ↔
       z.1.val.1.transpose*z.2.val.2 = A ∧ z.2.val.1.transpose*z.1.val.2 = B := by
     constructor
@@ -163,14 +172,14 @@ theorem union_conditional_integral (n : ℕ) (G : Matrix I J Binary) (H : Matrix
   have hc : ∃ z ∈ {z : Orbit (Fin n) G × Orbit (Fin n) H | C z},z ∈ p.support := by
     obtain ⟨z,hz⟩ := Classical.choice (inferInstance : Nonempty {z : Orbit (Fin n) G × Orbit (Fin n) H // C z})
     exact ⟨z,hz,by simp [p]⟩
-  have hu := JoinedGramOrbits.compatible_filter G H A B hc
+  have hu := Lax342547.JoinedGramOrbits.compatible_filter G H A B hc
   have hi := congrArg (fun q => ∑ x,weights q x*test (Lax342547.JointGramInjection.ambientEquiv.symm x)) hu
-  simp_rw [ChannelColumns.pmf_weights_map] at hi
-  rw [PushforwardWalsh.push_integral,PushforwardWalsh.push_integral] at hi
+  simp_rw [Lax342547.ChannelColumns.pmf_weights_map] at hi
+  rw [Lax342547.PushforwardWalsh.push_integral,Lax342547.PushforwardWalsh.push_integral] at hi
   simp only [weights_filter] at hi
   have he : (fun x => batchLaw G x.1*batchLaw H x.2) = push (weights p) (flat G H) := by
     funext x
-    rw [← ChannelColumns.pmf_weights_map]
+    rw [← Lax342547.ChannelColumns.pmf_weights_map]
     exact (reference_weights G H x).symm
   rw [he,conditional_integral_push]
   have hC : (fun ω : Orbit (Fin n) G × Orbit (Fin n) H =>
@@ -217,16 +226,16 @@ theorem union_test_comparison (n : ℕ) (G : Matrix I J Binary) (H : Matrix K L 
   let D := fun x : (Fin n × (I ⊕ J) → Binary) × (Fin n × (K ⊕ L) → Binary) =>
     Lax342547.JointGramInjection.Good x
   let test := fun x : (Fin n × (I ⊕ J) → Binary) × (Fin n × (K ⊕ L) → Binary) => f x.1*g x.2
-  have hG := GramOrbitDensity.batch_probability (N := Fin n) G
-  have hH := GramOrbitDensity.batch_probability (N := Fin n) H
+  have hG := Lax342547.GramOrbitDensity.batch_probability (N := Fin n) G
+  have hH := Lax342547.GramOrbitDensity.batch_probability (N := Fin n) H
   have hρ : Lax342547.RelativeEntropy.Probability ρ := by
     refine ⟨fun x => mul_nonneg (hG.1 _) (hH.1 _),?_⟩
     simp only [ρ,Fintype.sum_prod_type,← Finset.mul_sum,hH.2,mul_one,hG.2]
   have ht : ∀ x,|test x| ≤ 1 := by
     intro x
     exact (by dsimp [test]; rw [abs_mul]; exact (mul_le_mul (hf _) (hg _) (abs_nonneg _) zero_le_one).trans_eq (mul_one _))
-  have htotal := union_conditional_integral n G H A B (fun _ => 1)
-  simp only [mul_one,RealCellLaws.weights_total] at htotal
+  have htotal := Lax342547.RawBatchComparison.union_conditional_integral n G H A B (fun _ => 1)
+  simp only [mul_one,Lax342547.RealCellLaws.weights_total] at htotal
   have hm : 0 < cellMass ρ (fun x => C x ∧ D x) := by
     have hn : 0 ≤ cellMass ρ (fun x => C x ∧ D x) := by
       unfold cellMass
@@ -239,8 +248,8 @@ theorem union_test_comparison (n : ℕ) (G : Matrix I J Binary) (H : Matrix K L 
     rw [he] at htotal
     norm_num at htotal
   have hdel := nested_deletion ρ test C D hρ ht hm
-  have hbad := JointGramInjection.conditioned_reference_failure n G H (target A B) hN₁ hN₂ hsmall
-  have hmix := GramOrbitDensity.mutual_gram_comparison n G H f g (target A B) hN₁ hN₂ hf hg hsmall
+  have hbad := Lax342547.JointGramInjection.conditioned_reference_failure n G H (target A B) hN₁ hN₂ hsmall
+  have hmix := Lax342547.GramOrbitDensity.mutual_gram_comparison n G H f g (target A B) hN₁ hN₂ hf hg hsmall
   have he : Lax342547.FourierTests.patternMass (fun x => ρ x*test x)
       (Lax342547.CrossBatchMixing.crossBits Lax342547.CrossGramBasis.tests n) (target A B)/
       Lax342547.FourierTests.patternMass ρ (Lax342547.CrossBatchMixing.crossBits Lax342547.CrossGramBasis.tests n) (target A B) =
@@ -262,7 +271,7 @@ theorem union_test_comparison (n : ℕ) (G : Matrix I J Binary) (H : Matrix K L 
           ((2 : ℝ)^(Fintype.card K*Fintype.card L+2))*
           (((2 : ℝ)^(Fintype.card I+Fintype.card K)+(2 : ℝ)^(Fintype.card J+Fintype.card L))/(2 : ℝ)^n)) := by
     simpa only [ρ,C,D,Lax342547.FourierTests.patternMass,cellMass] using hbad
-  rw [union_conditional_integral n G H A B test]
+  rw [Lax342547.RawBatchComparison.union_conditional_integral n G H A B test]
   have hh := (abs_sub_le (∑ x,conditionalLaw ρ (fun x => C x ∧ D x) x*test x)
     (∑ x,conditionalLaw ρ C x*test x) ((∑ x,batchLaw G x*f x)*(∑ y,batchLaw H y*g y))).trans
       (add_le_add (hdel.trans (mul_le_mul_of_nonneg_left hb (by norm_num))) hmix)

@@ -4,7 +4,7 @@ import Lax342547.SparsePins
 /-!
 ---
 title: Fresh key directions are independent modulo table spaces
-type: theorem
+type: lemma
 ---
 One bounded exclusion set per endpoint works for all components and both
 signs. Any short linear combination of distinct fresh point rays that

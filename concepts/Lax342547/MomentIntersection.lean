@@ -3,7 +3,7 @@ import Lax342547.MomentSpace
 /-!
 ---
 title: Intersections of restricted moment spaces
-type: theorem
+type: lemma
 ---
 Intersecting coordinate restrictions commutes with taking the span of
 Boolean point moments. This supplies the coordinate-projection step in

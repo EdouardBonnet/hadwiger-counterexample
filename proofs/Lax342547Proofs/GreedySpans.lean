@@ -1,5 +1,4 @@
 import Lax342547.GreedySpans
-import Lax342547Proofs.SpanDeficits
 import Mathlib.Data.Finset.Max
 import Mathlib.Data.Real.Basic
 
@@ -124,7 +123,7 @@ theorem increments_le {K V ι : Type} [Field K] [AddCommGroup V] [Module K V]
     simp only [increments,List.mem_cons] at hx
     rcases hx with rfl | hx
     · exact h i (by simp)
-    · apply ih (W ⊔ S i) (fun j hj => (gain_antitone le_sup_left (S j)).trans (h j (by simp [hj]))) x hx
+    · apply ih (W ⊔ S i) (fun j hj => (Lax342547.GreedySpans.gain_antitone le_sup_left (S j)).trans (h j (by simp [hj]))) x hx
 
 /--
 ---
@@ -140,7 +139,7 @@ theorem increments_nonneg {K V ι : Type} [Field K] [AddCommGroup V] [Module K V
     intro x hx
     simp only [increments,List.mem_cons] at hx
     rcases hx with rfl | hx
-    · exact gain_nonneg _ _
+    · exact Lax342547.GreedySpans.gain_nonneg _ _
     · exact ih _ x hx
 
 /--
@@ -155,8 +154,8 @@ theorem greedy_decreasing {K V ι : Type} [Field K] [AddCommGroup V] [Module K V
   | nil => simp [increments]
   | cons i l ih =>
     rw [increments,List.pairwise_cons]
-    exact ⟨increments_le S (W ⊔ S i) l _
-      (fun j hj => (gain_antitone le_sup_left (S j)).trans (h.1 j hj)),ih _ h.2⟩
+    exact ⟨Lax342547.GreedySpans.increments_le S (W ⊔ S i) l _
+      (fun j hj => (Lax342547.GreedySpans.gain_antitone le_sup_left (S j)).trans (h.1 j hj)),ih _ h.2⟩
 
 /--
 ---

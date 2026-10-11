@@ -1,6 +1,7 @@
 import Lax342547Proofs.MomentForm
 import Lax342547Proofs.FlatMap
-import Lax342547Proofs.JointProjectors
+import Lax342547.FlatRank
+import Lax342547Proofs.FlatRank
 
 namespace Lax342547Proofs.FlatSelector
 
@@ -66,7 +67,7 @@ theorem exists_flat_level (c : PointDomain Base b → Binary) (J R : ℕ)
     (hr : (momentMatrix c J).rank ≤ R) (hroom : 6 * R + 4 ≤ J) :
     ∃ j, 4 * R + 2 ≤ j ∧ j + 2 ≤ J ∧
       (momentMatrix c j).rank = (momentMatrix c (j + 2)).rank := by
-  obtain ⟨j, hj, hJ, h₀, h₁⟩ := FlatRank.exists_flat_level
+  obtain ⟨j, hj, hJ, h₀, h₁⟩ := Lax342547.FlatRank.exists_flat_level
     (fun d => (momentMatrix c d).rank) (4 * R + 2) R J
     (moment_rank_monotone c) (fun d hd => ((moment_rank_monotone c) hd).trans hr) (by omega)
   exact ⟨j, hj, hJ, h₀.trans h₁⟩

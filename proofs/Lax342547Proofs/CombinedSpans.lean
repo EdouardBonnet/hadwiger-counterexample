@@ -1,6 +1,6 @@
 import Lax342547.CombinedSpans
-import Lax342547Proofs.ActualDeficits
 import Mathlib.LinearAlgebra.Prod
+import Lax342547.GreedySpans
 
 namespace Lax342547Proofs.CombinedSpans
 open Lax342547.CombinedSpans
@@ -30,7 +30,7 @@ theorem gain_product {K V W : Type} [Field K] [AddCommGroup V] [Module K V]
     (U C : Submodule K V) (Z R : Submodule K W) :
     gain (U.prod Z) (C.prod R) = gain U C+gain Z R := by
   unfold gain
-  rw [Submodule.prod_sup_prod,product_space_dimension,product_space_dimension]
+  rw [Submodule.prod_sup_prod,Lax342547.CombinedSpans.product_space_dimension,Lax342547.CombinedSpans.product_space_dimension]
   push_cast
   ring
 
@@ -64,7 +64,7 @@ theorem sum_gain_product {K V W ι : Type} [Field K] [AddCommGroup V] [Module K 
   | nil => simp
   | cons i l ih =>
     simp only [List.map_cons,List.sum_cons]
-    rw [gain_product,ih]
+    rw [Lax342547.CombinedSpans.gain_product,ih]
     ring
 
 /--
@@ -78,9 +78,9 @@ theorem deficit_product {K V W ι : Type} [Field K] [AddCommGroup V] [Module K V
     (U : Submodule K V) (Z : Submodule K W) (l : List ι) :
     deficit (fun i => (C i).prod (R i)) (U.prod Z) l = deficit C U l+deficit R Z l := by
   unfold deficit
-  rw [sum_gain_product]
-  simp only [Lax342547Proofs.GreedySpans.increments_sum]
-  rw [span_after_product,product_space_dimension,product_space_dimension]
+  rw [Lax342547.CombinedSpans.sum_gain_product]
+  simp only [Lax342547.GreedySpans.increments_sum]
+  rw [Lax342547.CombinedSpans.span_after_product,Lax342547.CombinedSpans.product_space_dimension,Lax342547.CombinedSpans.product_space_dimension]
   push_cast
   ring
 

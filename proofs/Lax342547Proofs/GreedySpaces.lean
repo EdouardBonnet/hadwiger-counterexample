@@ -1,5 +1,4 @@
 import Lax342547.GreedySpaces
-import Lax342547Proofs.FiniteSampling
 import Mathlib.LinearAlgebra.DFinsupp
 import Mathlib.Data.Fin.Tuple.Basic
 
@@ -69,7 +68,7 @@ theorem accumulated_dimension {K V Ω : Type} [Field K] [AddCommGroup V] [Module
     [FiniteDimensional K V] (U : Ω → Submodule K V) (r n : ℕ) (s : Fin n → Ω)
     (hU : ∀ x,Module.finrank K (U x) ≤ r) :
     Module.finrank K ↥(⨆ i : Fin n,U (s i)) ≤ r*n := by
-  have hh := finite_span_dimension (fun i : Fin n => U (s i)) Finset.univ
+  have hh := Lax342547.GreedySpaces.finite_span_dimension (fun i : Fin n => U (s i)) Finset.univ
   have hs := Finset.sum_le_sum (s := Finset.univ) (fun i _ => hU (s i))
   have hm := hh.trans hs
   have hspan : Finset.univ.sup (fun i : Fin n => U (s i)) = ⨆ i : Fin n,U (s i) := by

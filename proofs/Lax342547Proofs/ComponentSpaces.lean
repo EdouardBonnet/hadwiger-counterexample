@@ -1,6 +1,4 @@
 import Lax342547.ComponentSpaces
-import Lax342547Proofs.CoverClasses
-import Lax342547Proofs.DirectRanks
 
 namespace Lax342547Proofs.ComponentSpaces
 open Lax342547.ComponentSpaces
@@ -51,9 +49,9 @@ conclusion: Lax342547.ComponentSpaces.componentwise_join_closed
 theorem componentwise_join_closed {K e : Type} [Field K] {V : e → Type}
     [∀ i, AddCommGroup (V i)] [∀ i, Module K (V i)] : JoinClosed (Componentwise (K := K) (V := V)) := by
   constructor
-  · exact ⟨fun i => ⊥,coordinate_space_bot.symm⟩
+  · exact ⟨fun i => ⊥,Lax342547.ComponentSpaces.coordinate_space_bot.symm⟩
   · rintro S T ⟨A,rfl⟩ ⟨B,rfl⟩
-    exact ⟨fun i => A i ⊔ B i,coordinate_space_sup A B⟩
+    exact ⟨fun i => A i ⊔ B i,Lax342547.ComponentSpaces.coordinate_space_sup A B⟩
 
 /--
 ---

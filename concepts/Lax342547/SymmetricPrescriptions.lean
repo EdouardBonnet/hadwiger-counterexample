@@ -4,7 +4,7 @@ import Mathlib.Data.Matrix.Block
 /-!
 ---
 title: Consistent symmetric binary prescriptions on two witness lists
-type: theorem
+type: lemma
 ---
 The two lists are nonempty and disjoint, represented by a sum type.
 Prescribed list sums of every row of a symmetric binary matrix are

@@ -1,6 +1,9 @@
 import Lax342547.IndependentWitnesses
-import Lax342547Proofs.AdaptiveProtection
 import Mathlib.LinearAlgebra.DFinsupp
+import Lax342547.AdaptiveProtection
+import Lax342547.FiniteSampling
+import Lax342547.RealCellLaws
+import Lax342547Proofs.FiniteLinearLaw
 
 namespace Lax342547Proofs.IndependentWitnesses
 open Lax342547.IndependentWitnesses
@@ -65,21 +68,21 @@ theorem adaptive_independent_witness_probability {I H N : Type}
   let P := fun c : C => fun Y : Matrix N H Binary => ∀ i,(fun h => (Y.transpose*D c) h i) ∈ S Y
   have hm : cellMass ρ (fun Y => ∀ i,∃ v : V i,v.val ≠ 0 ∧ Y.transpose.mulVec v.val ∈ S Y) ≤
       cellMass ρ (fun Y => ∃ c : C,P c Y) := by
-    apply Lax342547Proofs.FiniteSampling.cell_mass_mono _ _ _ (Lax342547Proofs.RealCellLaws.weights_nonneg _)
+    apply Lax342547.FiniteSampling.cell_mass_mono _ _ _ (Lax342547.RealCellLaws.weights_nonneg _)
     intro Y hY
     choose v hv hvS using hY
     refine ⟨fun i => ⟨v i,hv i⟩,?_⟩
     intro i
     exact hvS i
-  have hu := Lax342547Proofs.FiniteSampling.cell_mass_union_bound ρ P Finset.univ
-    (Lax342547Proofs.RealCellLaws.weights_nonneg _)
+  have hu := Lax342547.FiniteSampling.cell_mass_union_bound ρ P Finset.univ
+    (Lax342547.RealCellLaws.weights_nonneg _)
   simp only [Finset.mem_univ,true_and] at hu
   have hp (c : C) : cellMass ρ (P c) ≤
       (2 : ℝ)^(Fintype.card H*K+K*Fintype.card I)/(2 : ℝ)^(Fintype.card H*Fintype.card I) :=
-    Lax342547Proofs.AdaptiveProtection.adaptive_protected_probability (D c)
-      (independent_witness_matrix V hV (fun i => (c i).val) (fun i => (c i).property)) S K hS
+    Lax342547.AdaptiveProtection.adaptive_protected_probability (D c)
+      (Lax342547.IndependentWitnesses.independent_witness_matrix V hV (fun i => (c i).val) (fun i => (c i).property)) S K hS
   have hc : (Fintype.card C : ℝ) ≤ (2 : ℝ)^(K*Fintype.card I) := by
-    have hh := nonzero_witness_card V K hK
+    have hh := Lax342547.IndependentWitnesses.nonzero_witness_card V K hK
     rw [Nat.card_eq_fintype_card] at hh
     exact_mod_cast hh
   calc

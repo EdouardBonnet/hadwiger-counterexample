@@ -1,6 +1,6 @@
 import Lax342547.PairRecovery
-import Lax342547Proofs.RealCellLaws
-import Lax342547Proofs.Conditioning
+import Lax342547.Conditioning
+import Lax342547.RealCellLaws
 
 namespace Lax342547Proofs.PairRecovery
 open Lax342547.PairRecovery
@@ -44,7 +44,7 @@ theorem real_filter_domination {Ω : Type} [Fintype Ω] (p : PMF Ω) (S : Set Ω
     (hS : ∃ o ∈ S, o ∈ p.support) (ω : Ω) :
     (p.toOuterMeasure S).toReal * weights (p.filter S hS) ω ≤ weights p ω := by
   classical
-  have h := congrArg ENNReal.toReal (Lax342547Proofs.Conditioning.weighted_filter p S hS ω)
+  have h := congrArg ENNReal.toReal (Lax342547.Conditioning.weighted_filter p S hS ω)
   rw [ENNReal.toReal_mul] at h
   unfold weights
   rw [h]
@@ -61,11 +61,11 @@ theorem restriction_pair_recovery {Ω : Type} [Fintype Ω] (p : PMF Ω) (S : Set
     (hS : ∃ o ∈ S, o ∈ p.support) (H : Ω → Ω → Prop) :
     ((p.toOuterMeasure S).toReal)^2 * pairMass (weights (p.filter S hS)) (weights (p.filter S hS)) H ≤
       pairMass (weights p) (weights p) H := by
-  simpa only [pow_two] using pair_mass_domination (weights p) (weights (p.filter S hS))
+  simpa only [pow_two] using Lax342547.PairRecovery.pair_mass_domination (weights p) (weights (p.filter S hS))
     (weights p) (weights (p.filter S hS)) (p.toOuterMeasure S).toReal (p.toOuterMeasure S).toReal H
     ENNReal.toReal_nonneg ENNReal.toReal_nonneg
-    (Lax342547Proofs.RealCellLaws.weights_nonneg _) (Lax342547Proofs.RealCellLaws.weights_nonneg _)
-    (real_filter_domination p S hS) (real_filter_domination p S hS)
+    (Lax342547.RealCellLaws.weights_nonneg _) (Lax342547.RealCellLaws.weights_nonneg _)
+    (Lax342547.PairRecovery.real_filter_domination p S hS) (Lax342547.PairRecovery.real_filter_domination p S hS)
 
 /--
 ---
@@ -91,10 +91,10 @@ theorem pair_mass_pmf_event {ΩA ΩB : Type} [Fintype ΩA] [Fintype ΩB]
     pairMass (weights p) (weights q) H =
       ((independentPair p q).toOuterMeasure {ab | H ab.1 ab.2}).toReal := by
   classical
-  rw [← Lax342547Proofs.RealCellLaws.event_mass]
+  rw [← Lax342547.RealCellLaws.event_mass]
   unfold Lax342547.RetainedImages.cellMass pairMass weights
   rw [Fintype.sum_prod_type]
-  simp only [independent_pair_apply, ENNReal.toReal_mul]
+  simp only [Lax342547.PairRecovery.independent_pair_apply, ENNReal.toReal_mul]
 
 /--
 ---
@@ -106,7 +106,7 @@ theorem restriction_pair_event_recovery {Ω : Type} [Fintype Ω]
     ((p.toOuterMeasure S).toReal)^2 *
       ((independentPair (p.filter S hS) (p.filter S hS)).toOuterMeasure {ab | H ab.1 ab.2}).toReal ≤
         ((independentPair p p).toOuterMeasure {ab | H ab.1 ab.2}).toReal := by
-  rw [← pair_mass_pmf_event, ← pair_mass_pmf_event]
-  exact restriction_pair_recovery p S hS H
+  rw [← Lax342547.PairRecovery.pair_mass_pmf_event, ← Lax342547.PairRecovery.pair_mass_pmf_event]
+  exact Lax342547.PairRecovery.restriction_pair_recovery p S hS H
 
 end Lax342547Proofs.PairRecovery

@@ -103,7 +103,7 @@ theorem affine_polar_matrix_rank {I W : Type} [Fintype I] [DecidableEq I]
       GramRank.gram B (Pi.basisFun Binary I) := by
     ext i j
     simpa only [polarMatrix, GramRank.gram, Pi.basisFun_apply, B, LinearMap.BilinForm.comp_apply] using
-      affine_polar C A w c (Pi.single i 1) (Pi.single j 1)
+      Lax342547.FormalQuadratic.affine_polar C A w c (Pi.single i 1) (Pi.single j 1)
   rw [heq]
   exact GramRank.rank_gram_eq B hB _ (Pi.basisFun Binary I).span_eq
 

@@ -1,6 +1,14 @@
 import Lax342547.FlavorAffineSlices
 import Lax342547Proofs.AffineSliceVariance
-import Lax342547Proofs.Atoms
+import Lax342547.AffineSliceIndependence
+import Lax342547.AffineSliceVariance
+import Lax342547.ConditionedAffineColumns
+import Lax342547.FiniteLinearLaw
+import Lax342547.FiniteSampling
+import Lax342547.GramNormalization
+import Lax342547.RealCellLaws
+import Lax342547.RetainedImages
+import Lax342547Proofs.ConditionedAffineColumns
 
 namespace Lax342547Proofs.FlavorAffineSlices
 noncomputable section
@@ -36,7 +44,7 @@ theorem free_pair_uniform {k n : ℕ} (l : Tag k) (f : Flavor k) {D : Type}
     (PMF.uniformOfFintype (Coefficients n l f D × Coefficients n l f D)).map freePairMap =
       PMF.uniformOfFintype (Matrix (Fin n) (Option D) Binary × Matrix (Fin n) (Option D) Binary) := by
   classical
-  apply FiniteLinearLaw.uniform_image_of_surjective
+  apply Lax342547.FiniteLinearLaw.uniform_image_of_surjective
   intro Z
   let c (W : Matrix (Fin n) (Option D) Binary) : Coefficients n l f D :=
     fun a j => (setFree (k := k) (n := n) 0 W) a.val j
@@ -57,8 +65,8 @@ theorem nominal_pair_failure {k n b degree : ℕ} (l : Tag k) (f : Flavor k)
       (2 : ℝ≥0∞)^(2*Fintype.card D+1)/(2 : ℝ≥0∞)^n := by
   classical
   let p := PMF.uniformOfFintype (Coefficients n l f D × Coefficients n l f D)
-  have hu := congrArg (fun q => q.map joinedFree) (free_pair_uniform (n := n) (D := D) l f)
-  rw [PMF.map_comp,AffineSliceIndependence.joinedFree_uniform] at hu
+  have hu := congrArg (fun q => q.map joinedFree) (Lax342547.FlavorAffineSlices.free_pair_uniform (n := n) (D := D) l f)
+  rw [PMF.map_comp,Lax342547.AffineSliceIndependence.joinedFree_uniform] at hu
   have he : p.toOuterMeasure {V | ¬ Function.Injective (joinedFree (freePart (value V.1),freePart (value V.2))).mulVec} =
       (PMF.uniformOfFintype (Matrix (Fin n) (Option (D ⊕ D)) Binary)).toOuterMeasure
         {Z | ¬ Function.Injective Z.mulVec} := by
@@ -73,7 +81,7 @@ theorem nominal_pair_failure {k n b degree : ℕ} (l : Tag k) (f : Flavor k)
           (pointColumns (degree := degree) s (value V.2)).mulVec uv.2)} ⊆
       {V | ¬ Function.Injective (joinedFree (freePart (value V.1),freePart (value V.2))).mulVec} := by
     intro V hV hZ
-    exact hV (AffineSliceIndependence.point_pair_independent s (value V.1) (value V.2) hZ)
+    exact hV (Lax342547.AffineSliceIndependence.point_pair_independent s (value V.1) (value V.2) hZ)
   have hh := p.toOuterMeasure.mono hsub
   change p.toOuterMeasure {V | ¬ Function.Injective (fun uv : (Option D → Binary) × (Option D → Binary) =>
       (pointColumns (degree := degree) s (value V.1)).mulVec uv.1+
@@ -81,7 +89,7 @@ theorem nominal_pair_failure {k n b degree : ℕ} (l : Tag k) (f : Flavor k)
     p.toOuterMeasure {V | ¬ Function.Injective (joinedFree (freePart (value V.1),freePart (value V.2))).mulVec} at hh
   rw [he] at hh
   exact hh.trans (by simpa only [Fintype.card_option,Fintype.card_sum,Fintype.card_fin,two_mul,add_assoc,add_comm,add_left_comm]
-    using (GramNormalization.column_failure (J := Option (D ⊕ D)) (N := Fin n)))
+    using (Lax342547.GramNormalization.column_failure (J := Option (D ⊕ D)) (N := Fin n)))
 
 /--
 ---
@@ -102,15 +110,15 @@ theorem conditioned_pair_failure {k n b degree : ℕ} (l : Tag k) (f : Flavor k)
   classical
   have hf := ENNReal.toReal_mono (by apply ENNReal.div_ne_top <;> simp :
       (2 : ℝ≥0∞)^(2*Fintype.card D+1)/(2 : ℝ≥0∞)^n ≠ ⊤)
-      (nominal_pair_failure (n := n) (degree := degree) (D := D) l f s)
-  rw [← RealCellLaws.event_mass] at hf
+      (Lax342547.FlavorAffineSlices.nominal_pair_failure (n := n) (degree := degree) (D := D) l f s)
+  rw [← Lax342547.RealCellLaws.event_mass] at hf
   simp only [ENNReal.toReal_div,ENNReal.toReal_pow,ENNReal.toReal_ofNat] at hf
   have he : weights (PMF.uniformOfFintype (Coefficients n l f D × Coefficients n l f D)) =
       (fun V => weights (PMF.uniformOfFintype (Coefficients n l f D)) V.1*
         weights (PMF.uniformOfFintype (Coefficients n l f D)) V.2) :=
     funext ConditionedAffineColumns.uniform_pair_weights
   rw [he] at hf
-  exact ConditionedAffineColumns.conditioning_pair_bound _ C _ β _ (RealCellLaws.weights_nonneg _) hβ hC hf
+  exact Lax342547.ConditionedAffineColumns.conditioning_pair_bound _ C _ β _ (Lax342547.RealCellLaws.weights_nonneg _) hβ hC hf
 
 /--
 ---
@@ -146,8 +154,8 @@ theorem flavor_slice_variance {S H D : Type} [Fintype S] [DecidableEq S]
   let κ := conditionalLaw ρ C
   have hC : 0 < cellMass ρ C := hβ.trans_le hGram
   have hκ : Probability κ :=
-    ⟨RetainedImages.conditional_law_nonneg ρ C (RealCellLaws.weights_nonneg _),
-      RetainedImages.conditional_law_total ρ C hC⟩
+    ⟨Lax342547.RetainedImages.conditional_law_nonneg ρ C (Lax342547.RealCellLaws.weights_nonneg _),
+      Lax342547.RetainedImages.conditional_law_total ρ C hC⟩
   have hfixed : ∀ V,κ V ≠ 0 → ∀ i,(pointColumns (k := k) (n := n) (b := b) (degree := degree) sel (value V)).transpose*E i*pointColumns (k := k) (n := n) (b := b) (degree := degree) sel (value V) = G i := by
     intro V hV
     have hCV : C V := by
@@ -155,14 +163,14 @@ theorem flavor_slice_variance {S H D : Type} [Fintype S] [DecidableEq S]
       apply hV
       simp [κ,conditionalLaw,hh]
     exact hCV
-  have hbad := conditioned_pair_failure (n := n) (degree := degree) (D := D) l f sel C β hβ hGram
+  have hbad := Lax342547.FlavorAffineSlices.conditioned_pair_failure (n := n) (degree := degree) (D := D) l f sel C β hβ hGram
   have hmass : cellMass (fun ab : Coefficients n l f D × Coefficients n l f D =>
       κ ab.1*κ ab.2) (fun ab => ¬ Function.Injective (Matrix.fromCols (pointColumns (k := k) (n := n) (b := b) (degree := degree) sel (value ab.1))
         (pointColumns (k := k) (n := n) (b := b) (degree := degree) sel (value ab.2))).mulVec) ≤ ((2 : ℝ)^(2*Fintype.card D+1)/(2 : ℝ)^n)/β^2 := by
-    apply LE.le.trans (FiniteSampling.cell_mass_mono _ _ _ (fun ab => mul_nonneg (hκ.1 _) (hκ.1 _)) ?_) hbad
+    apply LE.le.trans (Lax342547.FiniteSampling.cell_mass_mono _ _ _ (fun ab => mul_nonneg (hκ.1 _) (hκ.1 _)) ?_) hbad
     intro ab hAB hpair
     exact hAB (AffineSliceVariance.concatenation_injective _ _ hpair)
-  exact AffineSliceVariance.coefficient_variance (S := S) (B := Coordinate k n b degree)
+  exact Lax342547.AffineSliceVariance.coefficient_variance (S := S) (B := Coordinate k n b degree)
     (H := H) (D := Option D) (A := Coefficients n l f D) N E G
     (fun V : Coefficients n l f D => pointColumns (k := k) (n := n) (b := b) (degree := degree) sel (value V)) κ hκ hfixed test htest
     _ hmass hN hsmall

@@ -1,6 +1,4 @@
 import Lax342547.ChannelGroups
-import Lax342547Proofs.TensorCharacters
-import Lax342547Proofs.ChannelColumns
 import Lax342547Proofs.Walsh
 
 namespace Lax342547Proofs.ChannelGroups
@@ -48,6 +46,6 @@ theorem tensor_character_value {e N : Type} [Fintype e] [Fintype N] (h : ℕ)
     (z : e → Matrix N (Fin h) Binary × Matrix N (Fin h) Binary) :
     tensorCharacter h A (columnsEquiv h z) = sign (∑ i,channelValue h (A i) (z i).1 (z i).2) := by
   unfold tensorCharacter channelValue
-  simp only [Fintype.prod_prod_type,sign_sum,character,phase,columnsEquiv,Equiv.coe_fn_mk]
+  simp only [Fintype.prod_prod_type,Lax342547.ChannelGroups.sign_sum,character,phase,columnsEquiv,Equiv.coe_fn_mk]
 
 end Lax342547Proofs.ChannelGroups

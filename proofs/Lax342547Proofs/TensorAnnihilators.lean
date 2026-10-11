@@ -1,6 +1,6 @@
 import Lax342547.TensorAnnihilators
-import Lax342547Proofs.QuotientRank
-import Lax342547Proofs.SelectedMoments
+import Lax342547.QuotientRank
+import Lax342547.SelectedMoments
 
 namespace Lax342547Proofs.TensorAnnihilators
 
@@ -82,7 +82,7 @@ theorem pure_rank (M : Matrix I I Binary) (S T : Submodule Binary (I → Binary)
       change ψ (T.mkQ v) = 0
       have hvzero : T.mkQ v = 0 := (Submodule.Quotient.mk_eq_zero T).mpr hv
       rw [hvzero, map_zero]
-  have hr := QuotientRank.killed_quotients_rank f S T hc
+  have hr := Lax342547.QuotientRank.killed_quotients_rank f S T hc
   have heq : LinearMap.range f = LinearMap.range M.mulVecLin := by
     rw [LinearMap.range_comp, LinearMap.range_eq_top.mpr coordinates_surjective,
       Submodule.map_top]
@@ -138,8 +138,8 @@ theorem selected_block {Base : Type} [Fintype Base] [DecidableEq Base]
       (Submodule.span Binary {baseEval z})) :
     Z = Z none none • baseMoment z := by
   have hk : Submodule.span Binary {baseEval z} ≤ LinearMap.ker (rayProjection z).mulVecLin :=
-    (SelectedMoments.projection_kernel z).ge
-  exact SelectedMoments.moment_ray z Z hZ
-    (pure_sandwich Z _ _ h (rayProjection z) (rayProjection z) hk hk)
+    (Lax342547.SelectedMoments.projection_kernel z).ge
+  exact Lax342547.SelectedMoments.moment_ray z Z hZ
+    (Lax342547.TensorAnnihilators.pure_sandwich Z _ _ h (rayProjection z) (rayProjection z) hk hk)
 
 end Lax342547Proofs.TensorAnnihilators

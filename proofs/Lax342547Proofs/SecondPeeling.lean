@@ -1,7 +1,10 @@
 import Lax342547.SecondPeeling
-import Lax342547Proofs.SplitTrimming
-import Lax342547Proofs.BoundedPeeling
-import Lax342547Proofs.MixtureRecovery
+import Lax342547.BoundedPeeling
+import Lax342547.ExactPins
+import Lax342547.MetadataPins
+import Lax342547.MixtureRecovery
+import Lax342547.SplitTrimming
+import Lax342547Proofs.Conditioning
 
 namespace Lax342547Proofs.SecondPeeling
 
@@ -87,7 +90,7 @@ theorem second_part {Ω J Axis I N : Type}
     intro x hx
     exact hP ((PMF.mem_support_filter_iff hS).mp hx).2
   obtain ⟨P, hP₀, hPk, hdim, hwhole⟩ :=
-    MetadataPins.refined_fiber A choice U u hu P₀ q.support hq o hoq
+    Lax342547.MetadataPins.refined_fiber A choice U u hu P₀ q.support hq o hoq
   have hkey : record A choice U o = k := hoT
   rw [hkey] at hPk hwhole
   have hinit : P.rank ≤ K₁ + u := hdim.trans (Nat.add_le_add_right hPbudget u)
@@ -96,9 +99,9 @@ theorem second_part {Ω J Axis I N : Type}
     have hx' := (PMF.mem_support_filter_iff hkSupport).mp hx
     exact hwhole ⟨hx'.2, hx'.1⟩
   have hdensity : ∀ x, Q x ≤ (2 : ℝ≥0∞) ^ (startCost D K₁ u * Fintype.card N) * μ x :=
-    SplitTrimming.repinning_density p μ S T hS hkSupport D ζ (Fintype.card N) K₁ u
+    Lax342547.SplitTrimming.repinning_density p μ S T hS hkSupport D ζ (Fintype.card N) K₁ u
       hζ₁ hSbound hk hp
-  obtain ⟨L, hL, hbounds⟩ := BoundedPeeling.bounded_partition Q μ A P (supportFinset Q)
+  obtain ⟨L, hL, hbounds⟩ := Lax342547.BoundedPeeling.bounded_partition Q μ A P (supportFinset Q)
     (by rw [supportFinset_coe]; exact hQP) (startCost D K₁ u) ζ ε (Fintype.card N)
     (newBudget D ζ K₁ u) hN hζ hζ₁ hε (Nat.le_ceil _) hdensity hreference
   have hresSubset : ((supportFinset Q : Set Ω) \ (L.biUnion Prod.fst : Set Ω)) ⊆ T := by
@@ -107,13 +110,13 @@ theorem second_part {Ω J Axis I N : Type}
       rw [← supportFinset_coe]
       exact hx.1
     exact ((PMF.mem_support_filter_iff hkSupport).mp hxQ).1
-  have hres := MixtureRecovery.conditional_event_mass q T
+  have hres := Lax342547.MixtureRecovery.conditional_event_mass q T
     (supportFinset Q \ L.biUnion Prod.fst) hkSupport hresSubset _
     (by simpa only [Finset.coe_sdiff] using hL.2.2)
   refine ⟨P, L, hP₀, hPk, hinit, hL, hres, fun z hz => ?_⟩
   obtain ⟨hzdim, hzlaw⟩ := hbounds z hz
-  have hmono : P.rank ≤ z.2.rank := ExactPins.rank_mono P z.2 (hL.1 z hz).2.1
-  have hbudget := final_rank_budget D ζ K₁ u hD hζ hζ₁
+  have hmono : P.rank ≤ z.2.rank := Lax342547.ExactPins.rank_mono P z.2 (hL.1 z hz).2.1
+  have hbudget := Lax342547.SecondPeeling.final_rank_budget D ζ K₁ u hD hζ hζ₁
   exact ⟨by omega, hzlaw⟩
 
 end Lax342547Proofs.SecondPeeling

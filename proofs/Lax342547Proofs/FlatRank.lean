@@ -100,7 +100,7 @@ theorem radical_restrict_of_flat (B : LinearMap.BilinForm K V) (hB : B.IsSymm)
       Module.finrank K (LinearMap.range B)) (x : U)
     (hx : ∀ y : U, B x y = 0) : ∀ y : V, B x y = 0 := by
   intro y
-  obtain ⟨z, hz⟩ := quotient_restriction_surjective B hB U hflat (B.ker.mkQ y)
+  obtain ⟨z, hz⟩ := Lax342547.FlatRank.quotient_restriction_surjective B hB U hflat (B.ker.mkQ y)
   change B.ker.mkQ (z : V) = B.ker.mkQ y at hz
   calc
     B x y = quotientPairing B hB (B.ker.mkQ x) (B.ker.mkQ y) := rfl
@@ -115,11 +115,11 @@ theorem exists_descended_shift (B : LinearMap.BilinForm K V) (hB : B.IsSymm)
     ∃ M : (V ⧸ B.ker) →ₗ[K] (V ⧸ B.ker),
       ∀ x : U, M (B.ker.mkQ x) = B.ker.mkQ (shift x) := by
   let q := B.ker.mkQ.comp U.subtype
-  have hsurj : Function.Surjective q := quotient_restriction_surjective B hB U hflat
+  have hsurj : Function.Surjective q := Lax342547.FlatRank.quotient_restriction_surjective B hB U hflat
   have hker : q.ker ≤ (B.ker.mkQ.comp shift).ker := by
     intro x hx
     change B.ker.mkQ (shift x) = 0
-    apply (quotientPairing_nondegenerate B hB).1
+    apply (Lax342547.FlatRank.quotientPairing_nondegenerate B hB).1
     intro y
     obtain ⟨z, rfl⟩ := hsurj y
     change B (shift x) z = 0
@@ -165,7 +165,7 @@ theorem exists_commuting_idempotents {ι : Type}
       (∀ a x y, quotientPairing B hB (M a x) y = quotientPairing B hB x (M a y)) ∧
       (∀ a, M a * M a = M a) ∧ ∀ a c, M a * M c = M c * M a := by
   choose M hM using fun a => exists_descended_shift B hB U hflat (shift a) (hadj a)
-  have hsurj := quotient_restriction_surjective B hB U hflat
+  have hsurj := Lax342547.FlatRank.quotient_restriction_surjective B hB U hflat
   have hsym a x y : quotientPairing B hB (M a x) y = quotientPairing B hB x (M a y) := by
     obtain ⟨x, rfl⟩ := hsurj x
     obtain ⟨y, rfl⟩ := hsurj y
@@ -177,7 +177,7 @@ theorem exists_commuting_idempotents {ι : Type}
   · intro a
     apply LinearMap.ext
     intro x
-    apply pairing_ext _ (quotientPairing_nondegenerate B hB)
+    apply pairing_ext _ (Lax342547.FlatRank.quotientPairing_nondegenerate B hB)
     intro y
     change quotientPairing B hB (M a (M a x)) y = quotientPairing B hB (M a x) y
     rw [hsym]
@@ -190,7 +190,7 @@ theorem exists_commuting_idempotents {ι : Type}
   · intro a c
     apply LinearMap.ext
     intro x
-    apply pairing_ext _ (quotientPairing_nondegenerate B hB)
+    apply pairing_ext _ (Lax342547.FlatRank.quotientPairing_nondegenerate B hB)
     intro y
     change quotientPairing B hB (M a (M c x)) y = quotientPairing B hB (M c (M a x)) y
     rw [hsym a (M c x) y, hsym c (M a x) y]

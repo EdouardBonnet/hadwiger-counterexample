@@ -1,5 +1,5 @@
 import Lax342547.LiftedSum
-import Lax342547Proofs.BlockDeficits
+import Lax342547.SpanDeficits
 
 namespace Lax342547Proofs.LiftedSum
 open Lax342547.LiftedSum
@@ -26,6 +26,6 @@ theorem lifted_sum_apply {K V W ι : Type} [Field K] [Fintype ι]
   apply congrArg (fun g : Module.Dual K (T i) => (M i g).val)
   ext v
   change f ((addition T) (Pi.single i v)) = f v.val
-  rw [Lax342547Proofs.SpanDeficits.addition_single]
+  rw [Lax342547.SpanDeficits.addition_single]
 
 end Lax342547Proofs.LiftedSum

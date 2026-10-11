@@ -1,5 +1,5 @@
 import Lax342547.HistogramGram
-import Lax342547Proofs.GramNormalization
+import Lax342547.GramNormalization
 
 namespace Lax342547Proofs.HistogramGram
 
@@ -9,7 +9,7 @@ open scoped BigOperators ENNReal
 theorem probability_finite {I J N : Type} [Fintype I] [Fintype J] [Fintype N]
     [DecidableEq I] [DecidableEq J] [DecidableEq N] (G : Matrix I J Binary) :
     Lax342547.GramNormalization.probability (N := N) G ≠ ⊤ :=
-  ne_top_of_le_ne_top (by simp) (Lax342547Proofs.GramNormalization.normalization_upper G)
+  ne_top_of_le_ne_top (by simp) (Lax342547.GramNormalization.normalization_upper G)
 
 /--
 ---
@@ -22,10 +22,10 @@ theorem normalized_bounds {I J N : Type} [Fintype I] [Fintype J] [Fintype N]
     0 ≤ normalized (N := N) G ∧ normalized (N := N) G ≤ 1 ∧
       1-2*((2 : ℝ)^(Fintype.card I+Fintype.card J)/(2 : ℝ)^Fintype.card N) ≤ normalized (N := N) G := by
   have hupper := ENNReal.toReal_mono (by simp)
-    (Lax342547Proofs.GramNormalization.normalization_upper (N := N) G)
+    (Lax342547.GramNormalization.normalization_upper (N := N) G)
   simp only [ENNReal.toReal_div,ENNReal.toReal_one,ENNReal.toReal_pow,ENNReal.toReal_ofNat] at hupper
   have hlower := ENNReal.toReal_mono (probability_finite (N := N) G)
-    (Lax342547Proofs.GramNormalization.normalization_lower (N := N) G)
+    (Lax342547.GramNormalization.normalization_lower (N := N) G)
   have h₁ : (2 : ℝ≥0∞)^Fintype.card I/(2 : ℝ≥0∞)^Fintype.card N ≤ 1 := by
     apply (ENNReal.div_le_iff (by simp) (by simp)).mpr
     simpa only [one_mul] using pow_le_pow_right₀ (by norm_num : (1 : ℝ≥0∞) ≤ 2) (by omega : Fintype.card I ≤ Fintype.card N)
@@ -61,7 +61,7 @@ theorem normalized_error {I J N : Type} [Fintype I] [Fintype J] [Fintype N]
     (hN : Fintype.card I+Fintype.card J ≤ Fintype.card N) :
     |normalized (N := N) G-1| ≤
       2*((2 : ℝ)^(Fintype.card I+Fintype.card J)/(2 : ℝ)^Fintype.card N) := by
-  obtain ⟨_,hu,hl⟩ := normalized_bounds (N := N) G hN
+  obtain ⟨_,hu,hl⟩ := Lax342547.HistogramGram.normalized_bounds (N := N) G hN
   rw [abs_of_nonpos (by linarith : normalized (N := N) G-1 ≤ 0)]
   linarith
 
@@ -106,12 +106,12 @@ theorem independent_groups_error {S N : Type} [Fintype S] [Fintype N] [Decidable
     (hN : ∀ s,Fintype.card (I s)+Fintype.card (J s) ≤ Fintype.card N) :
     |(∏ s,normalized (N := N) (G s))-1| ≤
       ∑ s,2*((2 : ℝ)^(Fintype.card (I s)+Fintype.card (J s))/(2 : ℝ)^Fintype.card N) := by
-  apply product_error
+  apply Lax342547.HistogramGram.product_error
   · intro s _
-    exact ⟨(normalized_bounds (G s) (hN s)).1,(normalized_bounds (G s) (hN s)).2.1⟩
+    exact ⟨(Lax342547.HistogramGram.normalized_bounds (G s) (hN s)).1,(Lax342547.HistogramGram.normalized_bounds (G s) (hN s)).2.1⟩
   · intro s _; positivity
   · intro s _
-    exact (normalized_bounds (G s) (hN s)).2.2
+    exact (Lax342547.HistogramGram.normalized_bounds (G s) (hN s)).2.2
 
 /--
 ---
@@ -122,7 +122,7 @@ theorem half_ambient_error {I J N : Type} [Fintype I] [Fintype J] [Fintype N]
     [DecidableEq I] [DecidableEq J] [DecidableEq N] (G : Matrix I J Binary)
     (hN : Fintype.card I+Fintype.card J ≤ Fintype.card N/2) :
     |normalized (N := N) G-1| ≤ 2/(2 : ℝ)^(Fintype.card N/2) := by
-  have hh := normalized_error G (by omega : Fintype.card I+Fintype.card J ≤ Fintype.card N)
+  have hh := Lax342547.HistogramGram.normalized_error G (by omega : Fintype.card I+Fintype.card J ≤ Fintype.card N)
   refine hh.trans ?_
   have hp : (2 : ℝ)^(Fintype.card I+Fintype.card J)*(2 : ℝ)^(Fintype.card N/2) ≤
       (2 : ℝ)^Fintype.card N := by

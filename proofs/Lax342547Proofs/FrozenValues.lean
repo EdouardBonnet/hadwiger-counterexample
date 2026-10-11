@@ -1,7 +1,9 @@
 import Lax342547.FrozenValues
-import Lax342547Proofs.RawContractions
 import Lax342547Proofs.RawFrames
 import Lax342547Proofs.PairedWitnesses
+import Lax342547.Atoms
+import Lax342547.RawContractions
+import Lax342547.TensorContractions
 
 namespace Lax342547Proofs.FrozenValues
 
@@ -57,15 +59,15 @@ theorem frozen_atom (W : Lists k n b degree r hr)
       funext h
       exact (hfrozen e).2 _ _ (Or.inr
         ((show keys W e ≤ P.space (e, false) ⊔ keys W e from le_sup_right) hmem))
-    simp only [PointAtom.profile, Atoms.atom_component, he, if_pos]
+    simp only [PointAtom.profile, Lax342547.Atoms.atom_component, he, if_pos]
     change Lax342547.TensorContractions.ambient (fullPlus F e i z) (fullMinus F e i z)
       (Matrix.vecMulVec (W.left i z' t).vector (W.left i z' t).vector) =
       Lax342547.TensorContractions.ambient (fullPlus (rawForms oA oB) e i z)
         (fullMinus (rawForms oA oB) e i z)
         (Matrix.vecMulVec (W.left i z' t).vector (W.left i z' t).vector)
-    rw [TensorContractions.ambient_outer, TensorContractions.ambient_outer]
+    rw [Lax342547.TensorContractions.ambient_outer, Lax342547.TensorContractions.ambient_outer]
     rw [hp, hm]
-  · simp [PointAtom.profile, Atoms.atom_component, he]
+  · simp [PointAtom.profile, Lax342547.Atoms.atom_component, he]
 
 /--
 ---
@@ -85,8 +87,8 @@ theorem selected_values (W : Lists k n b degree r hr)
     fullContraction F (Profile k n b degree) i z (W.left i z' t).profile =
       if z = z' then 0 else ownContraction oB z' (W.right i z' t).profile := by
   classical
-  rw [frozen_atom W P Q oA oB F hfrozen i z z' t,
-    RawContractions.raw_contraction]
+  rw [Lax342547.FrozenValues.frozen_atom W P Q oA oB F hfrozen i z z' t,
+    Lax342547.RawContractions.raw_contraction]
   have he := PairedWitnesses.atom_sharing (oA i) (oB z') (W.left i z' t) (W.right i z' t)
     (W.same_tag i z' t) (hkeys i z' t)
   rw [he]

@@ -1,7 +1,6 @@
 import Lax342547.SumRank
-import Lax342547Proofs.SpanDeficits
 import Lax342547Proofs.RestrictionRank
-import Lax342547Proofs.BlockDeficits
+import Lax342547.SpanDeficits
 
 namespace Lax342547Proofs.SumRank
 open Lax342547.SumRank
@@ -56,15 +55,15 @@ theorem sum_rank_deficit {K V W ι : Type} [Field K] [Fintype ι]
   classical
   let B := LinearMap.pi (fun i => (M i).codRestrict (S i) (fun v => hS i (LinearMap.mem_range_self _ v)))
   have hh := Lax342547Proofs.RestrictionRank.finrank_le_map_add_ker (addition S) (LinearMap.range B)
-  rw [← LinearMap.range_comp,Lax342547Proofs.SpanDeficits.addition_kernel_deficit] at hh
+  rw [← LinearMap.range_comp,Lax342547.SpanDeficits.addition_kernel_deficit] at hh
   have hsum : (addition S).comp B = ∑ i, M i := by
     ext v
     simp [addition,B,LinearMap.lsum_apply]
-  rw [hsum,stacked_rank M S hS] at hh
+  rw [hsum,Lax342547.SumRank.stacked_rank M S hS] at hh
   have hle : Module.finrank K (⨆ i, LinearMap.range (M i).dualMap : Submodule K (Module.Dual K V)) ≤
       ∑ i, Module.finrank K (LinearMap.range (M i).dualMap) := by
     have hker := (addition (fun i => LinearMap.range (M i).dualMap)).finrank_range_add_finrank_ker
-    rw [Lax342547Proofs.SpanDeficits.addition_range,Module.finrank_pi_fintype] at hker
+    rw [Lax342547.SpanDeficits.addition_range,Module.finrank_pi_fintype] at hker
     omega
   simp only [LinearMap.finrank_range_dualMap_eq_finrank_range] at *
   omega

@@ -52,7 +52,7 @@ theorem card_low_rank {I J : Type} [Fintype I] [Fintype J] (r : ℕ) :
     Nat.card {M : Matrix I J Binary // M.rank ≤ r} ≤ 2 ^ ((Fintype.card I + Fintype.card J) * r) := by
   classical
   let T := {M : Matrix I J Binary // M.rank ≤ r}
-  have hf (M : T) := factorization M.val r M.property
+  have hf (M : T) := Lax342547.LowRankCounting.factorization M.val r M.property
   choose X Y hXY using hf
   have hi : Function.Injective (fun M : T => (X M, Y M)) := by
     intro M N he
@@ -84,7 +84,7 @@ theorem uniform_low_rank_bound {I J : Type} [Fintype I] [Fintype J] [DecidableEq
   have h : (Fintype.card {M : Matrix I J Binary // M.rank ≤ r} : ℝ≥0∞) ≤
       2 ^ ((Fintype.card I + Fintype.card J) * r) := by
     exact_mod_cast (show Fintype.card {M : Matrix I J Binary // M.rank ≤ r} ≤ _ from
-      by simpa only [Nat.card_eq_fintype_card] using card_low_rank (I := I) (J := J) r)
+      by simpa only [Nat.card_eq_fintype_card] using Lax342547.LowRankCounting.card_low_rank (I := I) (J := J) r)
   have hcard : (Fintype.card (Matrix I J Binary) : ℝ≥0∞) = 2 ^ (Fintype.card I * Fintype.card J) := by
     change (Fintype.card (I → J → Binary) : ℝ≥0∞) = _
     simp [Binary, ZMod.card, ← pow_mul, Nat.mul_comm]

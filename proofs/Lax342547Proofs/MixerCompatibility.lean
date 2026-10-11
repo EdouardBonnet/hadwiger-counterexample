@@ -58,7 +58,7 @@ theorem range_restrictions (Z : Matrix I E K) (W : Matrix I F K)
   ext ⟨A, B⟩
   change (∃ L, (Z.transpose * L, L * W) = (A, B)) ↔ A * W - Z.transpose * B = 0
   simp only [Prod.mk.injEq, sub_eq_zero]
-  exact compatible_extensions Z W hZ hW A B
+  exact Lax342547.MixerCompatibility.compatible_extensions Z W hZ hW A B
 
 omit [Fintype E] in
 theorem compatibility_surjective (Z : Matrix I E K) (W : Matrix I F K)

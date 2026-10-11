@@ -1,5 +1,5 @@
 import Lax342547.CrossGramBasis
-import Lax342547Proofs.CrossBatchMixing
+import Lax342547.SlotWalsh
 
 namespace Lax342547Proofs.CrossGramBasis
 
@@ -34,10 +34,10 @@ theorem nonzero_coefficient (t : Slots I J K L → Binary) (ht : t ≠ 0) : coef
   cases s with
   | inl p =>
     have h := congrArg (fun M : Matrix (I ⊕ J) (K ⊕ L) Binary => M (Sum.inl p.1) (Sum.inr p.2)) hz
-    simpa [coefficient_blocks,Matrix.fromBlocks] using h
+    simpa [Lax342547.CrossGramBasis.coefficient_blocks,Matrix.fromBlocks] using h
   | inr p =>
     have h := congrArg (fun M : Matrix (I ⊕ J) (K ⊕ L) Binary => M (Sum.inr p.1) (Sum.inl p.2)) hz
-    simpa [coefficient_blocks,Matrix.fromBlocks] using h
+    simpa [Lax342547.CrossGramBasis.coefficient_blocks,Matrix.fromBlocks] using h
 
 /--
 ---
@@ -50,10 +50,10 @@ theorem mutual_gram_bits (N : ℕ)
     (∀ j k,crossBits tests N xy (Sum.inr (j,k)) = ∑ a,xy.1 (a,Sum.inr j)*xy.2 (a,Sum.inl k)) := by
   constructor
   · intro i l
-    rw [crossBits,Lax342547Proofs.SlotWalsh.bit_evaluation]
+    rw [crossBits,Lax342547.SlotWalsh.bit_evaluation]
     simp [tests,Fintype.sum_sum_type,ite_and,ite_mul,Finset.sum_ite_irrel]
   · intro j k
-    rw [crossBits,Lax342547Proofs.SlotWalsh.bit_evaluation]
+    rw [crossBits,Lax342547.SlotWalsh.bit_evaluation]
     simp [tests,Fintype.sum_sum_type,ite_and,ite_mul,Finset.sum_ite_irrel]
 
 end Lax342547Proofs.CrossGramBasis

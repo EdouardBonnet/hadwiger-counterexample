@@ -3,7 +3,7 @@ import Lax342547.FiniteSampling
 /-!
 ---
 title: Finite empirical variance from a two-coefficient comparison
-type: theorem
+type: lemma
 ---
 The affine-slice second-moment step keeps the independent coefficient draws
 and the actual bad-pair probability. This finite estimate is also valid for

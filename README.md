@@ -16,7 +16,7 @@ G.indepNum ≤ 2 ∧ 100 * connectedMatchingNumber G < m
 
 It uses the complete binary-frame construction in `openai/math@fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb`, vendored under [Upstream/OAI](proofs/Lax342547Proofs/Upstream/OAI). All 288 upstream OAI modules in the construction's import closure are included as Lean source. The archive and upstream touching-matching numbers are definitionally equal, proved by `rfl`; the adapter converts the strict rational inequality into the integral inequality above.
 
-The [ordinary consequence](proofs/Lax342547Proofs/Counterexample.lean) and [fractional consequence](proofs/Lax342547Proofs/FractionalCounterexample.lean) call this construction proof directly. For `m ≥ 5`, the matching-minor bound and fractional-coloring bounds give
+The [ordinary consequence](proofs/Lax342547Proofs/Counterexample.lean) and [fractional consequence](proofs/Lax342547Proofs/FractionalCounterexample.lean) use the construction's concept statement. For `m ≥ 5`, the matching-minor bound and fractional-coloring bounds give
 
 ```text
 h(G) < 26m/75 + 2/3 < m/2 ≤ χ_f(G) ≤ χ(G).
@@ -39,7 +39,11 @@ For the explicit transitive axiom audit, run from `proofs/`:
 lake build Lax342547Proofs Lax342547Proofs.AxiomAudit
 ```
 
-`lax build . --replay` passes with 372 concepts and 1,260 closed annotated proofs. Kernel replay took 19 minutes 19 seconds. `scripts/check_completion.py` exits successfully with all three targets closed. The transitive axiom audit confirms that all three target proof terms use only `propext`, `Classical.choice`, and `Quot.sound`. The completion checker rejects missing replay and stale build output. The vendored construction has no `sorry`, `admit`, implementation axioms, or `native_decide`. The archive reports 208 unused-helper warnings from the retained local and upstream developments.
+The submission contains 372 concepts and 1,260 annotated proofs. Proofs import and use concept statements for intermediate results; Lax computes those statement dependencies from their kernel axiom sets. The completion checker verifies recursive closure of the proof network, including every intermediate statement, and rejects missing replay or stale build output. The construction itself uses only `propext`, `Classical.choice`, and `Quot.sound`; the consequence proofs additionally use concept statements that are discharged elsewhere in the network. The vendored construction has no `sorry`, `admit`, implementation axioms, or `native_decide`.
+
+The final fractional counterexample and the central matching-minor bound are labelled `theorem`. Other statement packages are labelled `lemma`; the four packages containing only definitions retain `definition`.
+
+The corrected network passed local kernel replay and inspection on October 11, 2026. Replay took 21 minutes 16 seconds. All 1,260 statements and proofs are recursively closed, with 1,696 statement dependencies across 769 proofs. The compiled-term audit and Lax inspector agree on every dependency set, and the website projection preserves all of these links. The 208 intentional unused-helper warnings are unchanged.
 
 ## Provenance and development history
 

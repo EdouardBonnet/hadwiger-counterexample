@@ -58,6 +58,6 @@ theorem raw_admissible_iff_filters [Fintype B] [Fintype H] {E : Matrix B B Binar
     Admissible T Lax342547.ReferencePins.observation Lax342547.ReferencePins.observation oA oB ↔
       oA ∈ leftFilter T Lax342547.ReferencePins.observation ∧
       oB ∈ rightFilter T Lax342547.ReferencePins.observation :=
-  admissible_iff_filters T _ _ oA oB hA hB
+  Lax342547.SmallTables.admissible_iff_filters T _ _ oA oB hA hB
 
 end Lax342547Proofs.SmallTables

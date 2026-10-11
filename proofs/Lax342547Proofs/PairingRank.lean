@@ -1,7 +1,7 @@
 import Lax342547.PairingRank
-import Lax342547Proofs.CoverSpace
 import Mathlib.LinearAlgebra.Matrix.Rank
 import Mathlib.LinearAlgebra.Finsupp.LSum
+import Lax342547.CoverSpace
 
 namespace Lax342547Proofs.PairingRank
 open Lax342547.PairingRank
@@ -47,7 +47,7 @@ theorem covered_pairing_rank {K V W Ω : Type} [Field K] [Fintype Ω]
     (hΔ : ∀ a, projection (Δ a) S T = 0) :
     (Matrix.of (fun a b => φ b (Δ a))).rank ≤
       Module.finrank K V*Module.finrank K S+Module.finrank K T*Module.finrank K W := by
-  exact (pairing_matrix_rank_le (LinearMap.ker (Lax342547.CoverSpace.coverOperator S T)) Δ hΔ φ).trans
-    (Lax342547Proofs.CoverSpace.cover_space_dimension S T)
+  exact (Lax342547.PairingRank.pairing_matrix_rank_le (LinearMap.ker (Lax342547.CoverSpace.coverOperator S T)) Δ hΔ φ).trans
+    (Lax342547.CoverSpace.cover_space_dimension S T)
 
 end Lax342547Proofs.PairingRank

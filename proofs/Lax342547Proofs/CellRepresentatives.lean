@@ -1,5 +1,4 @@
 import Lax342547.CellRepresentatives
-import Lax342547Proofs.RealCellLaws
 
 namespace Lax342547Proofs.CellRepresentatives
 open Lax342547.CellRepresentatives
@@ -35,8 +34,8 @@ theorem retained_cell_representatives {ΩA ΩB : Type} [Fintype ΩA] [Fintype Ω
     (α : ΩA → ℝ) (β : ΩB → ℝ) (C : ΩA → Prop) (D : ΩB → Prop)
     (τ : ℝ) (hτ : 0 < τ) (hC : τ ≤ cellMass α C) (hD : τ ≤ cellMass β D) :
     ∃ a b, C a ∧ D b ∧ 0 < α a ∧ 0 < β b := by
-  obtain ⟨a,ha,hα⟩ := positive_cell_member α C (lt_of_lt_of_le hτ hC)
-  obtain ⟨b,hb,hβ⟩ := positive_cell_member β D (lt_of_lt_of_le hτ hD)
+  obtain ⟨a,ha,hα⟩ := Lax342547.CellRepresentatives.positive_cell_member α C (lt_of_lt_of_le hτ hC)
+  obtain ⟨b,hb,hβ⟩ := Lax342547.CellRepresentatives.positive_cell_member β D (lt_of_lt_of_le hτ hD)
   exact ⟨a,b,ha,hb,hα,hβ⟩
 
 end Lax342547Proofs.CellRepresentatives

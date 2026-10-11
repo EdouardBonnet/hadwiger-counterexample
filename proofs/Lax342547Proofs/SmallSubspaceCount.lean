@@ -1,5 +1,4 @@
 import Lax342547.SmallSubspaceCount
-import Lax342547Proofs.FiniteLinearLaw
 import Mathlib.LinearAlgebra.Basis.VectorSpace
 
 namespace Lax342547Proofs.SmallSubspaceCount
@@ -56,7 +55,7 @@ theorem small_subspace_card {H : Type} [Fintype H] (r : ℕ) :
     fun f => ⟨F f,hrank f⟩
   have hg : Function.Surjective g := by
     intro S
-    obtain ⟨f,hf⟩ := padded_generators S.val r S.property
+    obtain ⟨f,hf⟩ := Lax342547.SmallSubspaceCount.padded_generators S.val r S.property
     exact ⟨f,Subtype.ext hf⟩
   have hc := Nat.card_le_card_of_surjective g hg
   have he : Nat.card (Fin r → (H → Binary)) = 2^(Fintype.card H*r) := by

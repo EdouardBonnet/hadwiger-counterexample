@@ -1,6 +1,5 @@
 import Lax342547.RankLoss
 import Lax342547Proofs.RestrictionRank
-import Lax342547Proofs.QuotientRank
 
 namespace Lax342547Proofs.RankLoss
 open Lax342547.RankLoss
@@ -40,7 +39,7 @@ theorem matrix_sandwich_rank_loss {K I J P Q : Type} [Field K]
     M.rank ≤ (A*M*B.transpose).rank +
       Module.finrank K (LinearMap.ker A.mulVecLin) +
       Module.finrank K (LinearMap.ker B.mulVecLin) := by
-  have hr := composition_rank_loss A.mulVecLin M.mulVecLin B.transpose.mulVecLin
+  have hr := Lax342547.RankLoss.composition_rank_loss A.mulVecLin M.mulVecLin B.transpose.mulVecLin
   have hn := B.mulVecLin.finrank_range_add_finrank_ker
   have ht : Module.finrank K (LinearMap.range B.transpose.mulVecLin) =
       Module.finrank K (LinearMap.range B.mulVecLin) := Matrix.rank_transpose B
@@ -63,7 +62,7 @@ theorem quotient_tensor_rank_loss {K V W : Type} [Field K]
     Module.finrank K (LinearMap.range M) ≤
       Module.finrank K (LinearMap.range (S.mkQ.comp (M.comp T.mkQ.dualMap))) +
       Module.finrank K S+Module.finrank K T := by
-  have hr := composition_rank_loss S.mkQ M T.mkQ.dualMap
+  have hr := Lax342547.RankLoss.composition_rank_loss S.mkQ M T.mkQ.dualMap
   rw [Submodule.ker_mkQ,T.range_dualMap_mkQ_eq,Subspace.dual_finrank_eq] at hr
   have ht := Subspace.finrank_add_finrank_dualAnnihilator_eq T
   omega

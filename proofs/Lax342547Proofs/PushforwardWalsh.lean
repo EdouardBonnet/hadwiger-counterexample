@@ -1,5 +1,5 @@
 import Lax342547.PushforwardWalsh
-import Lax342547Proofs.Walsh
+import Lax342547.Walsh
 
 namespace Lax342547Proofs.PushforwardWalsh
 open Lax342547.PushforwardWalsh
@@ -73,8 +73,8 @@ conclusion: Lax342547.PushforwardWalsh.conditional_weight_bound
 theorem conditional_weight_bound {Ω X : Type} [Fintype Ω]
     (ρ w : Ω → ℝ) (image : Ω → X) (hρ : ∀ ω, 0 ≤ ρ ω)
     (hw : ∀ ω, |w ω| ≤ 1) (x : X) : |conditionalWeight ρ w image x| ≤ 1 := by
-  have hb := signed_push_bound ρ w image hρ hw x
-  have hn := push_nonneg ρ image hρ x
+  have hb := Lax342547.PushforwardWalsh.signed_push_bound ρ w image hρ hw x
+  have hn := Lax342547.PushforwardWalsh.push_nonneg ρ image hρ x
   unfold conditionalWeight
   by_cases h : push ρ image x = 0
   · simp [h]
@@ -93,7 +93,7 @@ theorem conditional_weight_reconstruction {Ω X : Type} [Fintype Ω]
       push (fun ω => ρ ω * w ω) image x := by
   unfold conditionalWeight
   by_cases h : push ρ image x = 0
-  · have hb := signed_push_bound ρ w image hρ hw x
+  · have hb := Lax342547.PushforwardWalsh.signed_push_bound ρ w image hρ hw x
     rw [h] at hb
     have hz := abs_eq_zero.mp (le_antisymm hb (abs_nonneg _))
     simp [h, hz]
@@ -115,13 +115,13 @@ theorem image_walsh_bound {ΩA ΩB I : Type} [Fintype ΩA] [Fintype ΩB]
     |∑ a, ∑ b, α a * β b * f a * g b * phase (imageA a) (imageB b)| ≤
       Real.sqrt ((2 : ℝ) ^ Fintype.card I * pA * pB) := by
   classical
-  have h := Lax342547Proofs.Walsh.subprobability_dot_bound
+  have h := Lax342547.Walsh.subprobability_dot_bound
     (push α imageA) (push β imageB)
     (conditionalWeight α f imageA) (conditionalWeight β g imageB) pA pB
-    (fun x => ⟨push_nonneg α imageA hα x, hcapA x⟩)
-    (fun y => ⟨push_nonneg β imageB hβ y, hcapB y⟩)
-    (by simpa only [push_total] using hαsum) (by simpa only [push_total] using hβsum)
-    (conditional_weight_bound α f imageA hα hf) (conditional_weight_bound β g imageB hβ hg)
+    (fun x => ⟨Lax342547.PushforwardWalsh.push_nonneg α imageA hα x, hcapA x⟩)
+    (fun y => ⟨Lax342547.PushforwardWalsh.push_nonneg β imageB hβ y, hcapB y⟩)
+    (by simpa only [Lax342547.PushforwardWalsh.push_total] using hαsum) (by simpa only [Lax342547.PushforwardWalsh.push_total] using hβsum)
+    (Lax342547.PushforwardWalsh.conditional_weight_bound α f imageA hα hf) (Lax342547.PushforwardWalsh.conditional_weight_bound β g imageB hβ hg)
   have he : (∑ x, ∑ y, push α imageA x * push β imageB y * conditionalWeight α f imageA x *
       conditionalWeight β g imageB y * phase x y) =
       ∑ a, ∑ b, α a * β b * f a * g b * phase (imageA a) (imageB b) := by
@@ -129,15 +129,15 @@ theorem image_walsh_bound {ΩA ΩB I : Type} [Fintype ΩA] [Fintype ΩB]
         push α imageA x * push β imageB y * conditionalWeight α f imageA x *
           conditionalWeight β g imageB y * phase x y =
         push (fun a => α a * f a) imageA x * push (fun b => β b * g b) imageB y * phase x y := by
-      rw [← conditional_weight_reconstruction α f imageA hα hf x,
-        ← conditional_weight_reconstruction β g imageB hβ hg y]
+      rw [← Lax342547.PushforwardWalsh.conditional_weight_reconstruction α f imageA hα hf x,
+        ← Lax342547.PushforwardWalsh.conditional_weight_reconstruction β g imageB hβ hg y]
       ring
     simp only [hh]
     have hinner (x : I → Binary) :
         (∑ y, push (fun a => α a * f a) imageA x * push (fun b => β b * g b) imageB y * phase x y) =
         ∑ b, push (fun a => α a * f a) imageA x * (β b * g b) * phase x (imageB b) := by
       simp only [mul_assoc, ← Finset.mul_sum]
-      rw [push_integral]
+      rw [Lax342547.PushforwardWalsh.push_integral]
       simp only [mul_assoc]
     simp only [hinner]
     rw [Finset.sum_comm]
@@ -145,7 +145,7 @@ theorem image_walsh_bound {ΩA ΩB I : Type} [Fintype ΩA] [Fintype ΩB]
         (∑ x, push (fun a => α a * f a) imageA x * (β b * g b) * phase x (imageB b)) =
         ∑ a, α a * f a * (β b * g b) * phase (imageA a) (imageB b) := by
       simp only [mul_assoc]
-      rw [push_integral]
+      rw [Lax342547.PushforwardWalsh.push_integral]
       simp only [mul_assoc]
     simp only [houter]
     rw [Finset.sum_comm]

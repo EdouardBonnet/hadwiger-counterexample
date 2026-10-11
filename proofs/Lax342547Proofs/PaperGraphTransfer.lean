@@ -1,5 +1,7 @@
 import Lax342547.PaperGraphTransfer
-import Lax342547Proofs.SampleScales
+import Lax342547.FingerprintScales
+import Lax342547.RawToGraph
+import Lax342547.SampleScales
 
 namespace Lax342547Proofs.PaperGraphTransfer
 open Lax342547.PaperGraphTransfer
@@ -28,19 +30,19 @@ theorem paper_graph_transfer {Ω : ℕ → Type} [∀ N, Fintype (Ω N)] [∀ N,
     ∀ᶠ N : ℕ in atTop, ∃ sample : Fin (sampleSize g N) → Ω N,
       (sampleGraph (hole N) (hsymm N) sample).indepNum ≤ 2 ∧
       100*connectedMatchingNumber (sampleGraph (hole N) (hsymm N) sample) < sampleSize g N := by
-  filter_upwards [hcard,hsuper,Lax342547Proofs.SampleScales.eventually_paper_sampling_budget A g hg,
+  filter_upwards [hcard,hsuper,Lax342547.SampleScales.eventually_paper_sampling_budget A g hg,
     eventually_ge_atTop 1] with N hc hs hb hN
   have hn : 0 < N := by omega
   have he1 : 1/(2 : ℝ)^(100*g*N) < 1 := by
     apply (div_lt_one (by positivity)).mpr
     exact one_lt_pow₀ (by norm_num) (by positivity)
   have hm : sampleSize g N ≠ 0 := by unfold sampleSize; positivity
-  have hscale := Lax342547Proofs.FingerprintScales.paper_sample_ceiling (sampleSize g N)
-  apply Lax342547Proofs.RawToGraph.supersaturation_to_sample (μ N) (hole N)
+  have hscale := Lax342547.FingerprintScales.paper_sample_ceiling (sampleSize g N)
+  apply Lax342547.RawToGraph.supersaturation_to_sample (μ N) (hole N)
     (hsymm N) (hloop N) (htriangle N) ((2 : ℝ)^1000) ((2 : ℝ)^(4000*g*N))
     (1/(2 : ℝ)^(100*g*N)) (sampleSize g N) ((sampleSize g N+199)/200) (fingerprintLength g N)
     (hμ N) (hμpos N) (by positivity) (by positivity) (by positivity) he1
-    (Lax342547Proofs.FingerprintScales.paper_fingerprint_length g N hg hn)
+    (Lax342547.FingerprintScales.paper_fingerprint_length g N hg hn)
     (hscale.resolve_right hm) (hb _ hc) hs
 
 end Lax342547Proofs.PaperGraphTransfer

@@ -1,5 +1,4 @@
 import Lax342547.ChannelFactorization
-import Lax342547Proofs.CompressedResidual
 import Mathlib.LinearAlgebra.Dual.Lemmas
 import Mathlib.LinearAlgebra.Dimension.Free
 import Mathlib.Algebra.Module.Projective
@@ -59,7 +58,7 @@ theorem factor_in_channel_spaces {X Y H : Type} [Fintype H]
       (LinearMap.range ((dotProductBilin Binary Binary).compl₁₂ S.subtype T.subtype))) :
     ∃ f : X →ₗ[Binary] S, ∃ g : Y →ₗ[Binary] T,
       (dotProductBilin Binary Binary).compl₁₂ (S.subtype.comp f) (T.subtype.comp g) = β := by
-  exact factor_through_pairing β ((dotProductBilin Binary Binary).compl₁₂ S.subtype T.subtype) hr
+  exact Lax342547.ChannelFactorization.factor_through_pairing β ((dotProductBilin Binary Binary).compl₁₂ S.subtype T.subtype) hr
 
 /--
 ---
@@ -110,7 +109,7 @@ theorem channel_pairing_rank {H : Type} [Fintype H]
     exact congrArg (fun z : perpendicular T => z.val) h
   have hr := LinearMap.finrank_le_finrank_of_injective hf
   have hn := π.finrank_range_add_finrank_ker
-  have hp := perpendicular_dimension T
+  have hp := Lax342547.ChannelFactorization.perpendicular_dimension T
   dsimp only [π] at hn hr
   omega
 
@@ -130,7 +129,7 @@ theorem remaining_values_dimension {A B H : Type} [Fintype H]
   have hsup := (Submodule.finrank_add_le_finrank_add_finrank (S ⊔ LinearMap.range G)
     (LinearMap.range D)).trans (Nat.add_le_add_right
       (Submodule.finrank_add_le_finrank_add_finrank S (LinearMap.range G)) _)
-  have hp := perpendicular_dimension (S ⊔ LinearMap.range G ⊔ LinearMap.range D)
+  have hp := Lax342547.ChannelFactorization.perpendicular_dimension (S ⊔ LinearMap.range G ⊔ LinearMap.range D)
   change Fintype.card H ≤ Module.finrank Binary
     (perpendicular (S ⊔ LinearMap.range G ⊔ LinearMap.range D)) + (K + 2 * R)
   omega
@@ -194,10 +193,10 @@ theorem remaining_values_factor {X Y A B C D H : Type} [Fintype H]
     ∃ g : Y →ₗ[Binary] remainingValues T F dF,
       (dotProductBilin Binary Binary).compl₁₂
         ((remainingValues S G dG).subtype.comp f) ((remainingValues T F dF).subtype.comp g) = β := by
-  have hleft := remaining_values_dimension S G dG hS hG hdG
-  have hright := remaining_values_dimension T F dF hT hF hdF
-  have hr := channel_pairing_rank _ _ hleft hright
-  apply factor_in_channel_spaces
+  have hleft := Lax342547.ChannelFactorization.remaining_values_dimension S G dG hS hG hdG
+  have hright := Lax342547.ChannelFactorization.remaining_values_dimension T F dF hT hF hdF
+  have hr := Lax342547.ChannelFactorization.channel_pairing_rank _ _ hleft hright
+  apply Lax342547.ChannelFactorization.factor_in_channel_spaces
   omega
 
 open Lax342547.PairedAnnihilators Lax342547.ResponseMatrices
@@ -227,17 +226,17 @@ theorem allowed_pure_factor {B H A C E F : Type} [Fintype B] [Fintype H]
       (∀ x c, dotProduct (δ x).val (dG c) = 0) ∧
       (∀ y e, dotProduct (ε y).val (G' e) = 0) ∧
       (∀ y f, dotProduct (ε y).val (dG' f) = 0) := by
-  obtain ⟨f, g, he⟩ := remaining_values_factor S T G dG G' dG' β hS hT hG hdG hG' hdG' hcapacity
-  let δ := ((remainingValues S G dG).inclusion (remaining_values_allowed S G dG)).comp f
-  let ε := ((remainingValues T G' dG').inclusion (remaining_values_allowed T G' dG')).comp g
+  obtain ⟨f, g, he⟩ := Lax342547.ChannelFactorization.remaining_values_factor S T G dG G' dG' β hS hT hG hdG hG' hdG' hcapacity
+  let δ := ((remainingValues S G dG).inclusion (Lax342547.ChannelFactorization.remaining_values_allowed S G dG)).comp f
+  let ε := ((remainingValues T G' dG').inclusion (Lax342547.ChannelFactorization.remaining_values_allowed T G' dG')).comp g
   refine ⟨δ, ε, he, ?_, ?_, ?_, ?_⟩
   · intro x a
-    exact (remaining_values_orthogonal S G dG (f x)).1 a
+    exact (Lax342547.ChannelFactorization.remaining_values_orthogonal S G dG (f x)).1 a
   · intro x c
-    exact (remaining_values_orthogonal S G dG (f x)).2 c
+    exact (Lax342547.ChannelFactorization.remaining_values_orthogonal S G dG (f x)).2 c
   · intro y e
-    exact (remaining_values_orthogonal T G' dG' (g y)).1 e
+    exact (Lax342547.ChannelFactorization.remaining_values_orthogonal T G' dG' (g y)).1 e
   · intro y z
-    exact (remaining_values_orthogonal T G' dG' (g y)).2 z
+    exact (Lax342547.ChannelFactorization.remaining_values_orthogonal T G' dG' (g y)).2 z
 
 end Lax342547Proofs.ChannelFactorization

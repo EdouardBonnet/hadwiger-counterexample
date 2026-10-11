@@ -3,7 +3,7 @@ import Lax342547.ConcreteGeometry
 /-!
 ---
 title: Dimensions of the concrete coefficient space
-type: theorem
+type: lemma
 ---
 The selector dimension counts squarefree monomials by cardinality.
 The base coordinates comprise g² ordinary blocks and three common blocks,

@@ -1,5 +1,5 @@
 import Lax342547.CoverAvoidance
-import Lax342547Proofs.CoverProjection
+import Lax342547.CoverProjection
 
 namespace Lax342547Proofs.CoverAvoidance
 open Lax342547.CoverAvoidance
@@ -32,7 +32,7 @@ theorem quotient_rank_of_avoidance {K V W : Type} [Field K]
     (M : V →ₗ[K] W) (S : Submodule K W) (h : Disjoint (LinearMap.range M) S) :
     Module.finrank K (LinearMap.range (S.mkQ.comp M)) = Module.finrank K (LinearMap.range M) := by
   rw [LinearMap.range_comp]
-  apply finrank_map_of_disjoint_kernel
+  apply Lax342547.CoverAvoidance.finrank_map_of_disjoint_kernel
   simpa only [Submodule.ker_mkQ] using h
 
 /--
@@ -50,8 +50,8 @@ theorem restriction_rank_of_avoidance {K V W : Type} [Field K]
   rw [← LinearMap.finrank_range_dualMap_eq_finrank_range,← LinearMap.dualMap_comp_dualMap,
     LinearMap.range_comp]
   rw [← LinearMap.finrank_range_dualMap_eq_finrank_range (f := M)]
-  apply finrank_map_of_disjoint_kernel
-  simpa only [Lax342547Proofs.CoverProjection.cover_restriction_kernel] using h
+  apply Lax342547.CoverAvoidance.finrank_map_of_disjoint_kernel
+  simpa only [Lax342547.CoverProjection.cover_restriction_kernel] using h
 
 /--
 ---
@@ -65,8 +65,8 @@ theorem projection_rank_of_avoidance {K V W : Type} [Field K]
     (hS : Disjoint (LinearMap.range M) S) (hT : Disjoint (LinearMap.range M.dualMap) T) :
     Module.finrank K (LinearMap.range (projection M S T)) = Module.finrank K (LinearMap.range M) := by
   unfold projection
-  rw [quotient_rank_of_avoidance]
-  · exact restriction_rank_of_avoidance M T hT
+  rw [Lax342547.CoverAvoidance.quotient_rank_of_avoidance]
+  · exact Lax342547.CoverAvoidance.restriction_rank_of_avoidance M T hT
   · apply hS.mono_left
     rw [LinearMap.range_comp]
     exact LinearMap.map_le_range

@@ -4,7 +4,7 @@ import Lax342547.BoundedPeeling
 /-!
 ---
 title: Trimming a restricted family of exact-pin leaves
-type: theorem
+type: lemma
 ---
 Retained fractions are weighted by the actual original leaf masses.
 A bound on their combined cost suffices to keep every surviving leaf's

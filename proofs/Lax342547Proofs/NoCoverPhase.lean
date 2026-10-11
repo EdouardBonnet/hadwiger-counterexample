@@ -1,5 +1,7 @@
 import Lax342547.NoCoverPhase
-import Lax342547Proofs.PhaseAverages
+import Lax342547.FiniteSampling
+import Lax342547.PhaseAverages
+import Lax342547.UniformPhaseTails
 
 namespace Lax342547Proofs.NoCoverPhase
 open Lax342547.NoCoverPhase
@@ -44,13 +46,13 @@ theorem no_cover_phase_average {e B N Ω : Type} [Fintype e] [Fintype B] [Fintyp
   let bad := fun o : e → Frame B (Fin h) N E => ∃ T : e → Matrix N N Binary,
     (∑ i, (T i).rank) ≤ r ∧
       θ ≤ |∑ x, μ x*ψ T x*tensorCharacter h (A x) (columnsEquiv h (fun a => channels (o a)))|
-  have hh := Lax342547Proofs.PhaseAverages.average_from_phase_tail β f θ hβ
-    (fun o => Lax342547Proofs.PhaseAverages.conditional_phase_abs_le_one μ A (ψ (S o)) h _ hμ (hψ (S o) (hS o))) hθ.le
-  have hbad := Lax342547Proofs.FiniteSampling.cell_mass_mono β (fun o => θ ≤ |f o|) bad hβ.1
+  have hh := Lax342547.PhaseAverages.average_from_phase_tail β f θ hβ
+    (fun o => Lax342547.PhaseAverages.conditional_phase_abs_le_one μ A (ψ (S o)) h _ hμ (hψ (S o) (hS o))) hθ.le
+  have hbad := Lax342547.FiniteSampling.cell_mass_mono β (fun o => θ ≤ |f o|) bad hβ.1
     (fun o ho => ⟨S o,hS o,ho⟩)
-  have hd := Lax342547Proofs.PhaseAverages.finite_event_density
+  have hd := Lax342547.PhaseAverages.finite_event_density
     (weights (Lax342547.RawLaw.uniformLaw E)) β L hβcap bad
-  have ht := Lax342547Proofs.UniformPhaseTails.no_cover_uniform_target_tail E μ A ψ
+  have ht := Lax342547.UniformPhaseTails.no_cover_uniform_target_tail E μ A ψ
     r h t k p θ hN hμ hp0 hp1 hr hA hψ hsize hk hθ hcover
   exact hh.trans (add_le_add le_rfl (hbad.trans (hd.trans (mul_le_mul_of_nonneg_left ht hL))))
 

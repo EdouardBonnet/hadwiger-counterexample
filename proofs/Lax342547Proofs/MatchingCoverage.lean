@@ -1,6 +1,6 @@
 import Lax342547.MatchingCoverage
-import Lax342547Proofs.MatchingSamples
-import Lax342547Proofs.DisjointSampling
+import Lax342547.MatchingSamples
+import Lax342547Proofs.HadwigerMatching.BasicMatching
 
 namespace Lax342547Proofs.MatchingCoverage
 open Lax342547.MatchingCoverage
@@ -52,7 +52,7 @@ theorem matching_pair_embedding {Ω : Type} (hole : Ω → Ω → Prop)
     ∃ a : Fin k × Bool ↪ Fin m, ∀ j, E (sample (a (j,false))) (sample (a (j,true))) := by
   classical
   let edge : Fin k ↪ M := (Fin.castLEEmb hk).trans M.equivFin.symm.toEmbedding
-  let orient : M × Bool ↪ Fin m := ⟨_,Lax342547Proofs.MatchingSamples.matching_orientation_injective _ M hM⟩
+  let orient : M × Bool ↪ Fin m := ⟨_,Lax342547.MatchingSamples.matching_orientation_injective _ M hM⟩
   let a : Fin k × Bool ↪ Fin m := (Function.Embedding.prodMap edge (Function.Embedding.refl Bool)).trans orient
   refine ⟨a,?_⟩
   intro j
@@ -77,7 +77,7 @@ theorem matching_exception_bound {Ω : Type} (hole : Ω → Ω → Prop)
   classical
   let A := M.filter (meets sample S)
   let B := M.filter (fun e => ¬ meets sample S e)
-  have hA : A.card < k := (matching_meets_bound hole hsymm sample S M hM).trans_lt hS
+  have hA : A.card < k := (Lax342547.MatchingCoverage.matching_meets_bound hole hsymm sample S M hM).trans_lt hS
   have hB : B.card < k := by
     by_contra hn
     have hk : k ≤ B.card := Nat.le_of_not_gt hn
@@ -90,14 +90,14 @@ theorem matching_exception_bound {Ω : Type} (hole : Ω → Ω → Prop)
       · intro e he f hf hne
         exact hM.2.2 e (Finset.mem_filter.mp he).1 f (Finset.mem_filter.mp hf).1 hne
     apply hE
-    apply matching_pair_embedding hole hsymm sample E B hBM _ k hk
+    apply Lax342547.MatchingCoverage.matching_pair_embedding hole hsymm sample E B hBM _ k hk
     intro e
     let em : M := ⟨e.val,(Finset.mem_filter.mp e.property).1⟩
     have hc := hcover em
     have hnS := (Finset.mem_filter.mp e.property).2
     rcases hc with h₁|h₂|h₃
-    · exact (hnS ⟨oriented e.val _ false,Lax342547Proofs.MatchingSamples.oriented_mem e.val _ false,h₁⟩).elim
-    · exact (hnS ⟨oriented e.val _ true,Lax342547Proofs.MatchingSamples.oriented_mem e.val _ true,h₂⟩).elim
+    · exact (hnS ⟨oriented e.val _ false,Lax342547.MatchingSamples.oriented_mem e.val _ false,h₁⟩).elim
+    · exact (hnS ⟨oriented e.val _ true,Lax342547.MatchingSamples.oriented_mem e.val _ true,h₂⟩).elim
     · exact h₃
   have hsum : A.card+B.card = M.card := Finset.card_filter_add_card_filter_not _
   omega

@@ -1,6 +1,4 @@
 import Lax342547.CollisionPruning
-import Lax342547Proofs.PrimalRecords
-import Lax342547Proofs.Walsh
 
 namespace Lax342547Proofs.CollisionPruning
 open Lax342547.CollisionPruning
@@ -70,12 +68,12 @@ theorem paired_pruning {Q C D : Type} [Fintype Q] [Fintype C] [Fintype D]
   classical
   have hpoint (q : Q) : (∑ c, a q c) * (∑ d, b q d) - retained (a q) τ * retained (b q) τ ≤
       (Fintype.card C : ℝ) * τ * (∑ d, b q d) + (Fintype.card D : ℝ) * τ * (∑ c, a q c) := by
-    have hA := retained_nonneg (a q) τ (ha q)
-    have hB := retained_nonneg (b q) τ (hb q)
-    have hA' := retained_le (a q) τ (ha q)
-    have hB' := retained_le (b q) τ (hb q)
-    have hlossA := retained_loss (a q) τ hτ
-    have hlossB := retained_loss (b q) τ hτ
+    have hA := Lax342547.CollisionPruning.retained_nonneg (a q) τ (ha q)
+    have hB := Lax342547.CollisionPruning.retained_nonneg (b q) τ (hb q)
+    have hA' := Lax342547.CollisionPruning.retained_le (a q) τ (ha q)
+    have hB' := Lax342547.CollisionPruning.retained_le (b q) τ (hb q)
+    have hlossA := Lax342547.CollisionPruning.retained_loss (a q) τ hτ
+    have hlossB := Lax342547.CollisionPruning.retained_loss (b q) τ hτ
     have htotB : 0 ≤ ∑ d, b q d := Finset.sum_nonneg (fun d _ => hb q d)
     have hcD : 0 ≤ (Fintype.card D : ℝ) * τ := mul_nonneg (Nat.cast_nonneg _) hτ
     have hmulA := mul_le_mul_of_nonneg_right hlossA htotB
@@ -113,7 +111,7 @@ theorem averaged_pruning {A B Q C D : Type} [Fintype A] [Fintype B]
       ((∑ q, (∑ c, a x y q c) * (∑ d, b y x q d)) -
         (∑ q, retained (a x y q) τ * retained (b y x q) τ))) ≤
       (Fintype.card C + Fintype.card D : ℝ) * τ := by
-  have hpair (x : A) (y : B) := paired_pruning (a x y) (b y x) τ hτ
+  have hpair (x : A) (y : B) := Lax342547.CollisionPruning.paired_pruning (a x y) (b y x) τ hτ
     (ha x y) (hb y x) (haSum x y) (hbSum y x)
   calc
     _ ≤ ∑ x, ∑ y, pA x * pB y * ((Fintype.card C + Fintype.card D : ℝ) * τ) := by

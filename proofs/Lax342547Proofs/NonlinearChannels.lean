@@ -1,5 +1,6 @@
 import Lax342547.NonlinearChannels
-import Lax342547Proofs.TargetMatrices
+import Lax342547.ChannelFactorization
+import Lax342547.ResponseMatrices
 
 namespace Lax342547Proofs.NonlinearChannels
 open Lax342547.NonlinearChannels
@@ -20,7 +21,7 @@ theorem primal_values_rank {B H : Type} [Fintype B] [Fintype H]
     Module.finrank Binary (LinearMap.range (primalValues F z)) ≤
       Module.finrank Binary (LinearMap.range (F.compl₁₂ primal.subtype (channelEmbedding z))) := by
   classical
-  exact Lax342547Proofs.ResponseMatrices.comp_right_rank _ _
+  exact Lax342547.ResponseMatrices.comp_right_rank _ _
 
 /--
 ---
@@ -153,16 +154,16 @@ theorem component_response_unchanged {Comp B H : Type} [Fintype B] [Fintype H]
   classical
   have hplus (i : Fin 2) : Lax342547.TensorContractions.ambient
       (restriction D S f i) (fullMinus F e i z) = 0 := by
-    apply ambient_orthogonal_zero
+    apply Lax342547.NonlinearChannels.ambient_orthogonal_zero
     intro v w
-    exact (primal_minus_values F e i z w) ▸ hf (D.mkQ (primalEmbedding i v)) (liftPrimal i w)
+    exact (Lax342547.NonlinearChannels.primal_minus_values F e i z w) ▸ hf (D.mkQ (primalEmbedding i v)) (liftPrimal i w)
   have hminus (i : Fin 2) : Lax342547.TensorContractions.ambient
       (fullPlus F e i z) (restriction E T g i) = 0 := by
-    apply ambient_orthogonal_zero
+    apply Lax342547.NonlinearChannels.ambient_orthogonal_zero
     intro v w
     rw [dotProduct_comm]
-    exact (primal_plus_values F e i z v) ▸ hg (E.mkQ (primalEmbedding i w)) (liftPrimal i v)
-  simp only [componentResponse, restriction_add, ambient_add_left, ambient_add_right,
+    exact (Lax342547.NonlinearChannels.primal_plus_values F e i z v) ▸ hg (E.mkQ (primalEmbedding i w)) (liftPrimal i v)
+  simp only [componentResponse, Lax342547.NonlinearChannels.restriction_add, Lax342547.NonlinearChannels.ambient_add_left, Lax342547.NonlinearChannels.ambient_add_right,
     hplus, hminus, add_zero]
 
 
@@ -189,16 +190,16 @@ theorem nonlinear_component_correction {Comp B H : Type} [Fintype B] [Fintype H]
     ∃ δ' ε', componentResponse F e z D E S T δ' ε' = componentResponse F e z D E S T δ ε ∧
       extraProduct D E S T δ' ε' = β + extraProduct D E S T δ ε := by
   classical
-  have hG := (primal_values_rank (F.reverse e).flip z).trans hminus
-  have hG' := (primal_values_rank (F.forward e) z).trans hplus
-  have hdG := (Lax342547Proofs.ResponseMatrices.comp_right_rank (perpendicular T).subtype ε).trans hε
-  have hdG' := (Lax342547Proofs.ResponseMatrices.comp_right_rank (perpendicular S).subtype δ).trans hδ
-  obtain ⟨f, g, hfg, hf, hfε, hg, hgδ⟩ := Lax342547Proofs.ChannelFactorization.allowed_pure_factor
+  have hG := (Lax342547.NonlinearChannels.primal_values_rank (F.reverse e).flip z).trans hminus
+  have hG' := (Lax342547.NonlinearChannels.primal_values_rank (F.forward e) z).trans hplus
+  have hdG := (Lax342547.ResponseMatrices.comp_right_rank (perpendicular T).subtype ε).trans hε
+  have hdG' := (Lax342547.ResponseMatrices.comp_right_rank (perpendicular S).subtype δ).trans hδ
+  obtain ⟨f, g, hfg, hf, hfε, hg, hgδ⟩ := Lax342547.ChannelFactorization.allowed_pure_factor
     D E S T (primalValues (F.reverse e).flip z) ((perpendicular T).subtype.comp ε)
     (primalValues (F.forward e) z) ((perpendicular S).subtype.comp δ)
     β hS hT hG hdG hG' hdG' hcapacity
-  refine ⟨δ + f, ε + g, component_response_unchanged F e z D E S T δ f ε g hf hg, ?_⟩
-  rw [extra_product_add D E S T δ f ε g hfε (fun x y => hgδ y x), hfg, add_comm]
+  refine ⟨δ + f, ε + g, Lax342547.NonlinearChannels.component_response_unchanged F e z D E S T δ f ε g hf hg, ?_⟩
+  rw [Lax342547.NonlinearChannels.extra_product_add D E S T δ f ε g hfε (fun x y => hgδ y x), hfg, add_comm]
 
 /--
 ---
@@ -221,7 +222,7 @@ theorem ambient_add_expansion {B H : Type} [Fintype B] [Fintype H]
     Lax342547.TensorContractions.ambient (f + df) (g + dg) =
       Lax342547.TensorContractions.ambient f g + Lax342547.TensorContractions.ambient f dg +
       Lax342547.TensorContractions.ambient df g + Lax342547.TensorContractions.ambient df dg := by
-  rw [ambient_add_left, ambient_add_right, ambient_add_right]
+  rw [Lax342547.NonlinearChannels.ambient_add_left, Lax342547.NonlinearChannels.ambient_add_right, Lax342547.NonlinearChannels.ambient_add_right]
   abel
 
 end Lax342547Proofs.NonlinearChannels

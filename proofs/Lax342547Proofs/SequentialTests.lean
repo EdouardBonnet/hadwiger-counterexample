@@ -1,6 +1,6 @@
 import Lax342547.SequentialTests
-import Lax342547Proofs.FiniteSampling
 import Mathlib.Data.Fin.Tuple.Basic
+import Lax342547.FiniteSampling
 
 namespace Lax342547Proofs.SequentialTests
 open Lax342547.SequentialTests
@@ -57,8 +57,8 @@ theorem sequential_lower_probability {Ω : Type} [Fintype Ω] (μ : Ω → ℝ)
   induction n with
   | zero => simp [accepts,cellMass,productLaw]
   | succ n ih =>
-    rw [step_probability]
-    have hρ := Lax342547Proofs.FiniteSampling.product_probability (fun _ : Fin n => μ) (fun _ => hμ)
+    rw [Lax342547.SequentialTests.step_probability]
+    have hρ := Lax342547.FiniteSampling.product_probability (fun _ : Fin n => μ) (fun _ => hμ)
     have hs : c*cellMass (productLaw (fun _ : Fin n => μ)) (accepts P n) ≤
         ∑ s : Fin n → Ω,productLaw (fun _ : Fin n => μ) s*
           (if accepts P n s then cellMass μ (P n s) else 0) := by
@@ -90,8 +90,8 @@ theorem bounded_sequential_lower_probability {Ω : Type} [Fintype Ω] (μ : Ω �
   | succ n ih =>
     intro hstep
     have ih' := ih (fun j hj s hs => hstep j (by omega) s hs)
-    rw [step_probability]
-    have hρ := Lax342547Proofs.FiniteSampling.product_probability (fun _ : Fin n => μ) (fun _ => hμ)
+    rw [Lax342547.SequentialTests.step_probability]
+    have hρ := Lax342547.FiniteSampling.product_probability (fun _ : Fin n => μ) (fun _ => hμ)
     have hs : c*cellMass (productLaw (fun _ : Fin n => μ)) (accepts P n) ≤
         ∑ s : Fin n → Ω,productLaw (fun _ : Fin n => μ) s*
           (if accepts P n s then cellMass μ (P n s) else 0) := by
@@ -135,9 +135,9 @@ theorem sequential_failure_lower {Ω : Type} [Fintype Ω] (μ : Ω → ℝ)
       cellMass μ (fun x => ¬ S j s x) ≤ δ) (n : ℕ) :
     (η-δ)^n ≤ cellMass (productLaw (fun _ : Fin n => μ))
       (accepts (fun j s x => F x ∧ S j s x) n) := by
-  apply sequential_lower_probability μ _ (η-δ) hμ (sub_nonneg.mpr hgap)
+  apply Lax342547.SequentialTests.sequential_lower_probability μ _ (η-δ) hμ (sub_nonneg.mpr hgap)
   intro j s hs
-  have hh := safe_failure_mass μ F (S j s) hμ.1
+  have hh := Lax342547.SequentialTests.safe_failure_mass μ F (S j s) hμ.1
   have hb := havoid j s hs
   linarith
 
@@ -153,9 +153,9 @@ theorem bounded_sequential_failure_lower {Ω : Type} [Fintype Ω] (μ : Ω → �
       cellMass μ (fun x => ¬ S j s x) ≤ δ) :
     (η-δ)^n ≤ cellMass (productLaw (fun _ : Fin n => μ))
       (accepts (fun j s x => F x ∧ S j s x) n) := by
-  apply bounded_sequential_lower_probability μ _ (η-δ) hμ (sub_nonneg.mpr hgap) n
+  apply Lax342547.SequentialTests.bounded_sequential_lower_probability μ _ (η-δ) hμ (sub_nonneg.mpr hgap) n
   intro j hj s hs
-  have hh := safe_failure_mass μ F (S j s) hμ.1
+  have hh := Lax342547.SequentialTests.safe_failure_mass μ F (S j s) hμ.1
   have hb := havoid j hj s hs
   linarith
 

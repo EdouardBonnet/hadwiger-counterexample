@@ -88,7 +88,7 @@ theorem card_corank {I J : Type} [Fintype I] [Fintype J] (s : ℕ) :
   classical
   let T := {M : Matrix I J Binary // M.rank + s ≤ Fintype.card I}
   let Q := {C : Matrix (Fin s) I Binary // Function.Surjective C.mulVec}
-  have he (M : T) := exists_row_relations M.val s M.property
+  have he (M : T) := Lax342547.CorankCounting.exists_row_relations M.val s M.property
   choose C hC hCM using he
   let q : T → Q := fun M => ⟨C M, hC M⟩
   have hf (A : Q) : Fintype.card {M : T // q M = A} ≤
@@ -132,7 +132,7 @@ theorem uniform_corank_bound_raw {I J : Type} [Fintype I] [Fintype J] [Decidable
   have h : (Fintype.card {M : Matrix I J Binary // M.rank + s ≤ Fintype.card I} : ℝ≥0∞) ≤
       2 ^ (s * Fintype.card I + (Fintype.card I - s) * Fintype.card J) := by
     exact_mod_cast (show Fintype.card {M : Matrix I J Binary // M.rank + s ≤ Fintype.card I} ≤ _ from
-      by simpa only [Nat.card_eq_fintype_card] using card_corank (I := I) (J := J) s)
+      by simpa only [Nat.card_eq_fintype_card] using Lax342547.CorankCounting.card_corank (I := I) (J := J) s)
   have hcard : (Fintype.card (Matrix I J Binary) : ℝ≥0∞) = 2 ^ (Fintype.card I * Fintype.card J) := by
     change (Fintype.card (I → J → Binary) : ℝ≥0∞) = _
     simp [Binary, ZMod.card, ← pow_mul, Nat.mul_comm]

@@ -1,5 +1,6 @@
 import Lax342547.PairedRecipes
-import Lax342547Proofs.ConcreteRecipes
+import Lax342547.ConcreteRecipes
+import Lax342547.WitnessAtoms
 
 namespace Lax342547Proofs.PairedRecipes
 
@@ -94,7 +95,7 @@ theorem endpoint_prescriptions (W : Lists k n b degree r hr)
   let opposite : Position W i → Binary := Sum.elim
     (fun t => D.role (W.right i 0 t).profile) (fun t => D.role (W.right i 1 t).profile)
   have ha (x : Position W i) : (data x).role = D.role (endpointAtoms W i x).profile :=
-    (WitnessAtoms.atom_testers D (endpointAtoms W i x)).1.symm
+    (Lax342547.WitnessAtoms.atom_testers D (endpointAtoms W i x)).1.symm
   have hrole₁ : (∑ t : Fin (W.length i 0), (data (.inl t)).role) +
       (∑ t : Fin (W.length i 0), opposite (.inl t)) = 1 := by
     simpa only [ha, opposite, endpointAtoms, Sum.elim_inl, leftWitness, rightWitness, map_sum]
@@ -111,7 +112,7 @@ theorem endpoint_prescriptions (W : Lists k n b degree r hr)
       (ownContraction oB 1 + D.role) (rightWitness W i 1) at hc
     simpa only [oppositeP, opposite, Sum.elim_inl, Sum.elim_inr, rightWitness,
       map_sum, LinearMap.add_apply] using hc
-  obtain ⟨lbits, rbits, hzero, hbits⟩ := ConcreteRecipes.prescribe hk hcopies data opposite
+  obtain ⟨lbits, rbits, hzero, hbits⟩ := Lax342547.ConcreteRecipes.prescribe hk hcopies data opposite
     (oppositeP W oB i) hrole₁ hrole₂ hcoupled
   refine ⟨lbits, rbits, hzero, ?_⟩
   intro L' R' htest
@@ -137,6 +138,6 @@ theorem paired_prescriptions (W : Lists k n b degree r hr)
     Prescriptions W D oB copies ∧ Prescriptions (flip W) D oA copies := by
   exact ⟨endpoint_prescriptions W D hk hcopies L R oA oB T A B h,
     endpoint_prescriptions (flip W) D hk hcopies L R oB oA (flipTable T) B A
-      (flip_recipe W D L R oA oB T A B h)⟩
+      (Lax342547.PairedRecipes.flip_recipe W D L R oA oB T A B h)⟩
 
 end Lax342547Proofs.PairedRecipes

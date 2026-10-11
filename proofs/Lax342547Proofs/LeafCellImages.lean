@@ -1,6 +1,6 @@
 import Lax342547.LeafCellImages
-import Lax342547Proofs.JointKeyCap
-import Lax342547Proofs.RealCellLaws
+import Lax342547.JointKeyCap
+import Lax342547.RealCellLaws
 
 namespace Lax342547Proofs.LeafCellImages
 open Lax342547.LeafCellImages
@@ -39,12 +39,12 @@ theorem original_leaf_cell_image_cap {Ω Axis I N : Type} {U V : Axis → Type}
       exact push (subtypeWeights (weights p) C) (fun ω => freshImage A fresh ω.val) y ≤
         (2 : ℝ)^(-(95/100 : ℝ)*(∑ a, Module.finrank Binary (V a))*Fintype.card N) := by
   classical
-  apply Lax342547Proofs.RealCellLaws.pmf_paper_subtype_cap p C (freshImage A fresh)
+  apply Lax342547.RealCellLaws.pmf_paper_subtype_cap p C (freshImage A fresh)
     (fun ω => ∀ a, (A ω a).comp (keys a) = yk a) ζ
     ((∑ a, Module.finrank Binary (U a) : ℕ) : ℝ) ((∑ a, Module.finrank Binary (V a) : ℕ) : ℝ) (Fintype.card N)
     hζ hζsmall hk (by exact_mod_cast ht) (by positivity) hC hCkey
   intro z
-  have h := Lax342547Proofs.JointKeyCap.leaf_key_fresh_image_cap p A P keys fresh hkeys hfresh yk z
+  have h := Lax342547.JointKeyCap.leaf_key_fresh_image_cap p A P keys fresh hkeys hfresh yk z
     ((2 : ℝ≥0∞)^(-(1 - 2 * ζ) * Fintype.card N)) hcap (by omega)
   have hm : p.toOuterMeasure {ω | (∀ a, (A ω a).comp (keys a) = yk a) ∧ freshImage A fresh ω = z} ≤
       p.toOuterMeasure {ω | ∀ a, (A ω a).comp (keys a) = yk a ∧ (A ω a).comp (fresh a) = z a} := by

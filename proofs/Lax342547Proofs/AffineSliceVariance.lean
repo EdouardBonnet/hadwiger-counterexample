@@ -1,7 +1,16 @@
 import Lax342547.AffineSliceVariance
 import Lax342547Proofs.ConditionedAffineColumns
-import Lax342547Proofs.RawGroupedComparison
-import Lax342547Proofs.EmpiricalVariance
+import Lax342547.AffineSliceIndependence
+import Lax342547.ConditionedAffineColumns
+import Lax342547.EmpiricalVariance
+import Lax342547.FiniteSampling
+import Lax342547.FrameTuples
+import Lax342547.RawGroupedComparison
+import Lax342547.RealCellLaws
+import Lax342547.RetainedImages
+import Lax342547Proofs.GroupTensorComparison
+import Lax342547Proofs.JoinedGramOrbits
+import Lax342547Proofs.RawFrameComparison
 
 namespace Lax342547Proofs.AffineSliceVariance
 noncomputable section
@@ -50,7 +59,7 @@ theorem reference_mean {S B H D : Type} [Fintype S] [DecidableEq S]
     let : Nonempty (Orbit (Fin n) (C.transpose*E s*C)) :=
       ⟨primalTuple (H := H) (E := E s) C C hC hC (Classical.choice inferInstance)⟩
     have hp := congrArg (fun p => p.map Subtype.val)
-      (FrameTuples.primal_uniform (H := H) (N := Fin n) (E := E s) C C hC hC)
+      (Lax342547.FrameTuples.primal_uniform (H := H) (N := Fin n) (E := E s) C C hC hC)
     rw [PMF.map_comp] at hp
     simp only [Function.comp_def,primalTuple] at hp
     have hp' := hp.trans (RawFrameComparison.orbit_uniform_congr (N := Fin n) (hG s))
@@ -99,9 +108,9 @@ theorem coefficient_variance {S B H D A : Type} [Fintype S] [DecidableEq S]
     test (fun s => batchEquiv ((o s).P*C a,(o s).Q*C a))
   let m := referenceMean n G test
   let good := fun a b : A => κ a ≠ 0 ∧ κ b ≠ 0 ∧ Function.Injective (Matrix.fromCols (C a) (C b)).mulVec
-  have hρ : Probability ρ := ⟨RealCellLaws.weights_nonneg _,RealCellLaws.weights_total _⟩
+  have hρ : Probability ρ := ⟨Lax342547.RealCellLaws.weights_nonneg _,Lax342547.RealCellLaws.weights_total _⟩
   have hm : |m| ≤ 1 := probability_test_bound _
-    ⟨RealCellLaws.weights_nonneg _,RealCellLaws.weights_total _⟩ _ (fun _ => htest _)
+    ⟨Lax342547.RealCellLaws.weights_nonneg _,Lax342547.RealCellLaws.weights_total _⟩ _ (fun _ => htest _)
   have hmean : ∀ a b,good a b → (∑ o,ρ o*F o a) = m ∧ (∑ o,ρ o*F o b) = m := by
     intro a b hgood
     have hCa : Function.Injective (C a).mulVec := by
@@ -112,12 +121,12 @@ theorem coefficient_variance {S B H D A : Type} [Fintype S] [DecidableEq S]
       have he : (Matrix.fromCols (C a) (C b)).submatrix id Sum.inr = C b := rfl
       rw [← he]
       exact JoinedGramOrbits.right_injective _ hgood.2.2
-    exact ⟨reference_mean (H := H) n E G (C a) hCa (hGram a hgood.1) test,
-      reference_mean (H := H) n E G (C b) hCb (hGram b hgood.2.1) test⟩
+    exact ⟨Lax342547.AffineSliceVariance.reference_mean (H := H) n E G (C a) hCa (hGram a hgood.1) test,
+      Lax342547.AffineSliceVariance.reference_mean (H := H) n E G (C b) hCb (hGram b hgood.2.1) test⟩
   have hpair : ∀ a b,good a b → |(∑ o,ρ o*F o a*F o b)-m^2| ≤
       (Fintype.card S : ℝ)*Lax342547.RawFrameComparison.errorBound n D D D D := by
     intro a b hgood
-    have hh := RawGroupedComparison.primal_groups (H := H) n E
+    have hh := Lax342547.RawGroupedComparison.primal_groups (H := H) n E
       (fun _ => C a) (fun _ => C a) (fun _ => C b) (fun _ => C b)
       (fun _ => hgood.2.2) (fun _ => hgood.2.2) test test (fun _ => hN) (fun _ => hN) htest htest (fun _ => hsmall)
     have ha := (hmean a b hgood).1
@@ -137,7 +146,7 @@ theorem coefficient_variance {S B H D A : Type} [Fintype S] [DecidableEq S]
       by_cases ha : κ ab.1 = 0 <;> by_cases hb : κ ab.2 = 0 <;> simp [good,ha,hb]
     rw [he]
     exact hbad
-  exact EmpiricalVariance.empirical_variance ρ κ F good m
+  exact Lax342547.EmpiricalVariance.empirical_variance ρ κ F good m
     ((Fintype.card S : ℝ)*Lax342547.RawFrameComparison.errorBound n D D D D) δ hρ hκ
     (fun _ _ => htest _) hm (by unfold Lax342547.RawFrameComparison.errorBound; positivity) hmean hpair hb
 
@@ -177,8 +186,8 @@ theorem affine_slice_variance {S H D : Type} [Fintype S] [DecidableEq S]
   let κ := conditionalLaw ρ C
   have hC : 0 < cellMass ρ C := hβ.trans_le hGram
   have hκ : Probability κ :=
-    ⟨RetainedImages.conditional_law_nonneg ρ C (RealCellLaws.weights_nonneg _),
-      RetainedImages.conditional_law_total ρ C hC⟩
+    ⟨Lax342547.RetainedImages.conditional_law_nonneg ρ C (Lax342547.RealCellLaws.weights_nonneg _),
+      Lax342547.RetainedImages.conditional_law_total ρ C hC⟩
   have hfixed : ∀ V,κ V ≠ 0 → ∀ i,(pointColumns sel V).transpose*E i*pointColumns sel V = G i := by
     intro V hV
     have hCV : C V := by
@@ -186,14 +195,14 @@ theorem affine_slice_variance {S H D : Type} [Fintype S] [DecidableEq S]
       apply hV
       simp [κ,conditionalLaw,hh]
     exact hCV
-  have hbad := ConditionedAffineColumns.conditioned_nominal_pair_failure (degree := degree) sel C β hβ hGram
+  have hbad := Lax342547.ConditionedAffineColumns.conditioned_nominal_pair_failure (degree := degree) sel C β hβ hGram
   have hmass : cellMass (fun ab : Matrix (Base k n) (Option D) Binary × Matrix (Base k n) (Option D) Binary =>
       κ ab.1*κ ab.2) (fun ab => ¬ Function.Injective (Matrix.fromCols (pointColumns (degree := degree) sel ab.1)
         (pointColumns sel ab.2)).mulVec) ≤ ((2 : ℝ)^(2*Fintype.card D+1)/(2 : ℝ)^n)/β^2 := by
-    apply LE.le.trans (FiniteSampling.cell_mass_mono _ _ _ (fun ab => mul_nonneg (hκ.1 _) (hκ.1 _)) ?_) hbad
+    apply LE.le.trans (Lax342547.FiniteSampling.cell_mass_mono _ _ _ (fun ab => mul_nonneg (hκ.1 _) (hκ.1 _)) ?_) hbad
     intro ab hAB hpair
     exact hAB (concatenation_injective _ _ hpair)
-  exact coefficient_variance (H := H) N E G (pointColumns sel) κ hκ hfixed test htest
+  exact Lax342547.AffineSliceVariance.coefficient_variance (H := H) N E G (pointColumns sel) κ hκ hfixed test htest
     _ hmass hN hsmall
 
 /--
@@ -267,13 +276,13 @@ theorem flavored_slice_variance {S H D A : Type} [Fintype S] [DecidableEq S]
   let C := fun a : A × Matrix (Fin n) (Option D) Binary => GramEvent (k := k) (n := n) (b := b) (degree := degree) sel E G (setFree (k := k) (n := n) (D := D) (V a.1) a.2)
   let κ := conditionalLaw ρ C
   let freeWeights := weights (PMF.uniformOfFintype (Matrix (Fin n) (Option D) Binary))
-  have hb : Probability freeWeights := ⟨RealCellLaws.weights_nonneg _,RealCellLaws.weights_total _⟩
+  have hb : Probability freeWeights := ⟨Lax342547.RealCellLaws.weights_nonneg _,Lax342547.RealCellLaws.weights_total _⟩
   have hρ : Probability ρ := by
     refine ⟨fun a => mul_nonneg (hμ.1 _) (hb.1 _),?_⟩
-    simp only [ρ,flavoredLaw,Fintype.sum_prod_type,← Finset.mul_sum,RealCellLaws.weights_total,mul_one,hμ.2]
+    simp only [ρ,flavoredLaw,Fintype.sum_prod_type,← Finset.mul_sum,Lax342547.RealCellLaws.weights_total,mul_one,hμ.2]
   have hC : 0 < cellMass ρ C := hβ.trans_le hGram
   have hκ : Probability κ :=
-    ⟨RetainedImages.conditional_law_nonneg ρ C hρ.1,RetainedImages.conditional_law_total ρ C hC⟩
+    ⟨Lax342547.RetainedImages.conditional_law_nonneg ρ C hρ.1,Lax342547.RetainedImages.conditional_law_total ρ C hC⟩
   have hfixed : ∀ a,κ a ≠ 0 → ∀ i,
       (pointColumns (k := k) (n := n) (b := b) (degree := degree) (D := D) sel (setFree (k := k) (n := n) (D := D) (V a.1) a.2)).transpose*E i*pointColumns (k := k) (n := n) (b := b) (degree := degree) (D := D) sel (setFree (k := k) (n := n) (D := D) (V a.1) a.2) = G i := by
     intro a ha
@@ -291,25 +300,25 @@ theorem flavored_slice_variance {S H D A : Type} [Fintype S] [DecidableEq S]
     intro a
     have hh := ENNReal.toReal_mono (by apply ENNReal.div_ne_top <;> simp :
         (2 : ENNReal)^(2*Fintype.card D+1)/(2 : ENNReal)^n ≠ ⊤)
-      (AffineSliceIndependence.point_pair_failure (k := k) (n := n) (b := b) (degree := degree) (D := D) sel (V a.1) (V a.2))
-    rw [← RealCellLaws.event_mass] at hh
+      (Lax342547.AffineSliceIndependence.point_pair_failure (k := k) (n := n) (b := b) (degree := degree) (D := D) sel (V a.1) (V a.2))
+    rw [← Lax342547.RealCellLaws.event_mass] at hh
     simp only [ENNReal.toReal_div,ENNReal.toReal_pow,ENNReal.toReal_ofNat] at hh
     have he : weights (PMF.uniformOfFintype
         (Matrix (Fin n) (Option D) Binary × Matrix (Fin n) (Option D) Binary)) =
         (fun z => freeWeights z.1*freeWeights z.2) := funext ConditionedAffineColumns.uniform_pair_weights
     rw [he] at hh
     exact hh
-  have hf := independent_free_pair_bound μ freeWeights hμ hb bad _ hlocal
-  have hf' := ConditionedAffineColumns.conditioning_pair_bound ρ C bad β _ hρ.1 hβ hGram hf
+  have hf := Lax342547.AffineSliceVariance.independent_free_pair_bound μ freeWeights hμ hb bad _ hlocal
+  have hf' := Lax342547.ConditionedAffineColumns.conditioning_pair_bound ρ C bad β _ hρ.1 hβ hGram hf
   have hbad : cellMass (fun ab : (A × Matrix (Fin n) (Option D) Binary) × (A × Matrix (Fin n) (Option D) Binary) =>
       κ ab.1*κ ab.2) (fun ab => ¬ Function.Injective (Matrix.fromCols
         (pointColumns (k := k) (n := n) (b := b) (degree := degree) (D := D) sel (setFree (k := k) (n := n) (D := D) (V ab.1.1) ab.1.2))
         (pointColumns (k := k) (n := n) (b := b) (degree := degree) (D := D) sel (setFree (k := k) (n := n) (D := D) (V ab.2.1) ab.2.2))).mulVec) ≤
         ((2 : ℝ)^(2*Fintype.card D+1)/(2 : ℝ)^n)/β^2 := by
-    apply LE.le.trans (FiniteSampling.cell_mass_mono _ _ bad (fun ab => mul_nonneg (hκ.1 _) (hκ.1 _)) ?_) hf'
+    apply LE.le.trans (Lax342547.FiniteSampling.cell_mass_mono _ _ bad (fun ab => mul_nonneg (hκ.1 _) (hκ.1 _)) ?_) hf'
     intro ab hab hpair
     exact hab (concatenation_injective _ _ hpair)
-  exact coefficient_variance (S := S) (B := Coordinate k n b degree) (H := H) (D := Option D)
+  exact Lax342547.AffineSliceVariance.coefficient_variance (S := S) (B := Coordinate k n b degree) (H := H) (D := Option D)
     (A := A × Matrix (Fin n) (Option D) Binary) N E G (fun a : A × Matrix (Fin n) (Option D) Binary => pointColumns (k := k) (n := n) (b := b) (degree := degree) (D := D) sel (setFree (k := k) (n := n) (D := D) (V a.1) a.2))
     κ hκ hfixed test htest _ hbad hN hsmall
 

@@ -1,5 +1,4 @@
 import Lax342547.InjectionAsymptotics
-import Lax342547Proofs.InjectionBudgets
 import Mathlib.Analysis.SpecificLimits.Normed
 
 namespace Lax342547Proofs.InjectionAsymptotics
@@ -45,7 +44,7 @@ conclusion: Lax342547.InjectionAsymptotics.eventually_relative_exception
 theorem eventually_relative_exception (c d : ℕ) (hd : 0 < d) (J ε : ℝ)
     (hJ : 0 ≤ J) (hε : 0 < ε) :
     ∀ᶠ N : ℕ in atTop,J*(1/(2 : ℝ)^(N/d)+1/(2 : ℝ)^N) ≤ ε/(N : ℝ)^c := by
-  have ht := (polynomial_dyadic_floor_tends_zero c d hd).const_mul (2*J)
+  have ht := (Lax342547.InjectionAsymptotics.polynomial_dyadic_floor_tends_zero c d hd).const_mul (2*J)
   have he : ∀ᶠ N : ℕ in atTop, (2*J)*((N : ℝ)^c/(2 : ℝ)^(N/d)) < ε := by
     apply (tendsto_order.1 (by simpa using ht)).2 ε hε
   filter_upwards [he,eventually_ge_atTop 1] with N he hN

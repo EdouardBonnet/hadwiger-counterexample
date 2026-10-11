@@ -45,7 +45,7 @@ theorem deficit_ratio_sum (f v : ℕ → ℝ) (n : ℕ) (r : ℝ)
     (hf0 : f 0 ≤ r) (hfn : 0 ≤ f n) (hv0 : 0 ≤ v 0) (hvn : v n ≤ f n) :
     (∑ j ∈ Finset.range n, v j) ≤ 2*r := by
   have hh := Finset.sum_le_sum (s := Finset.range n) (fun j hj => hrec j (Finset.mem_range.mp hj))
-  rw [Finset.sum_add_distrib,← Finset.mul_sum,← Finset.mul_sum,sum_differences,sum_shift] at hh
+  rw [Finset.sum_add_distrib,← Finset.mul_sum,← Finset.mul_sum,Lax342547.DyadicDeficits.sum_differences,Lax342547.DyadicDeficits.sum_shift] at hh
   linarith
 
 /--
@@ -61,8 +61,8 @@ theorem two_mode_scale (fC fR vC vR : ℕ → ℝ) (n : ℕ) (r : ℝ)
     (hvC0 : 0 ≤ vC 0) (hvR0 : 0 ≤ vR 0)
     (hvCn : vC n ≤ fC n) (hvRn : vR n ≤ fR n) (hn : 16*r < n) :
     ∃ j < n, vC j+vR j < 1/4 := by
-  have hc := deficit_ratio_sum fC vC n r hC hfC0 hfCn hvC0 hvCn
-  have hr := deficit_ratio_sum fR vR n r hR hfR0 hfRn hvR0 hvRn
+  have hc := Lax342547.DyadicDeficits.deficit_ratio_sum fC vC n r hC hfC0 hfCn hvC0 hvCn
+  have hr := Lax342547.DyadicDeficits.deficit_ratio_sum fR vR n r hR hfR0 hfRn hvR0 hvRn
   by_contra hh
   push Not at hh
   have hsum : (n : ℝ)*(1/4) ≤ ∑ j ∈ Finset.range n, (vC j+vR j) := by

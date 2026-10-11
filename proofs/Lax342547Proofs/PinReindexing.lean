@@ -1,5 +1,4 @@
 import Lax342547.PinReindexing
-import Lax342547Proofs.LeafBlockCaps
 
 namespace Lax342547Proofs.PinReindexing
 open Lax342547.PinReindexing
@@ -59,8 +58,8 @@ theorem leaf_cap_reindex {Ω Axis Axis' I N : Type} [Fintype Axis] [Fintype Axis
       p.toOuterMeasure (Q.event A) ≤ α ^ (P.relativeRank Q))
     (Q : Pin Axis' I N) (hr : 1 ≤ (pull e P).relativeRank Q) :
     p.toOuterMeasure (Q.event (fun ω a => A ω (e a))) ≤ α ^ ((pull e P).relativeRank Q) := by
-  rw [event_reindex, relative_rank_reindex]
+  rw [Lax342547.PinReindexing.event_reindex, Lax342547.PinReindexing.relative_rank_reindex]
   apply hcap
-  rwa [relative_rank_reindex] at hr
+  rwa [Lax342547.PinReindexing.relative_rank_reindex] at hr
 
 end Lax342547Proofs.PinReindexing

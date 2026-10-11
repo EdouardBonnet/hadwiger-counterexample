@@ -1,5 +1,8 @@
 import Lax342547.TargetTesters
-import Lax342547Proofs.StarRouting
+import Lax342547.PairedWitnesses
+import Lax342547.StarRouting
+import Lax342547Proofs.ConcreteCut
+import Lax342547Proofs.GradientForm
 
 namespace Lax342547Proofs.TargetTesters
 open Lax342547.TargetTesters
@@ -22,7 +25,7 @@ theorem ordinary_star_representation {k n b degree r : ℕ} (hr : 2 * r ≤ n)
   obtain ⟨w, hw⟩ := x.property
   have hx : (representationCut k n b degree).rangeRestrict w = x := Subtype.ext hw
   subst x
-  have h := Lax342547Proofs.StarRouting.star_matrix_representation hr (fun d => ordinary d t) (fun _ => 1) w
+  have h := Lax342547.StarRouting.star_matrix_representation hr (fun d => ordinary d t) (fun _ => 1) w
   simp only [one_mul] at h
   change (∑ e, matrixPair (starMatrix hr (fun d => ordinary d t) (fun _ => 1) e)
     ((representationCut k n b degree w) e)) = _
@@ -30,8 +33,8 @@ theorem ordinary_star_representation {k n b degree r : ℕ} (hr : 2 * r ≤ n)
   rw [D.ordinary_formula, Lax342547Proofs.ConcreteCut.ordinarySum_apply, Finset.sum_comm]
   apply Finset.sum_congr rfl
   intro d _
-  have hz := Lax342547Proofs.StarRouting.ordinary_tester_disallowed_zero hr d t d
-    (Lax342547Proofs.StarRouting.interval_center_excluded d) w
+  have hz := Lax342547.StarRouting.ordinary_tester_disallowed_zero hr d t d
+    (Lax342547.StarRouting.interval_center_excluded d) w
   have hsub := Finset.sum_subtype (F := inferInstance) (p := fun l : Tag k => l ≠ d)
     (Finset.univ.erase d) (by simp) (fun l => blockTester hr (ordinary d t) (w.val l))
   rw [← hsub]
@@ -46,8 +49,8 @@ conclusion: Lax342547.TargetTesters.shared_matrix_rank
 theorem shared_matrix_rank {k n b degree r : ℕ} (hr : 2 * r ≤ n)
     (coeff : Tag k → Binary) (e : Component (Tag k)) :
     (sharedMatrix (b := b) (degree := degree) hr coeff e).rank ≤ r := by
-  exact (Lax342547Proofs.StarRouting.matrix_smul_rank _ _).trans
-    (Lax342547Proofs.StarRouting.ordered_tester_rank hr shared)
+  exact (Lax342547.StarRouting.matrix_smul_rank _ _).trans
+    (Lax342547.StarRouting.ordered_tester_rank hr shared)
 
 /--
 ---
@@ -69,7 +72,7 @@ theorem shared_matrix_representation {k n b degree r : ℕ} (hr : 2 * r ≤ n)
   simp only [he]
   change (∑ e, matrixPair (starMatrix hr (fun _ => shared) coeff e)
     ((representationCut k n b degree w) e)) = _
-  rw [Lax342547Proofs.StarRouting.star_matrix_representation]
+  rw [Lax342547.StarRouting.star_matrix_representation]
   apply Finset.sum_congr rfl
   intro t _
   congr 1
@@ -130,7 +133,7 @@ theorem tester_target_formula {k n b degree r : ℕ} {hr : 2 * r ≤ n}
   have hc (t : Tag k) : (1 + D.role y) * D.aTag t x + D.bTag t y * D.aTag t x =
       blockTester hr shared (v.val t) * D.aTag t x := by
     rw [← add_mul]
-    exact congrArg (fun a => a * D.aTag t x) (tester_coefficient hr D v hv t)
+    exact congrArg (fun a => a * D.aTag t x) (Lax342547.TargetTesters.tester_coefficient hr D v hv t)
   have hs : (∑ t, (1 + D.role y) * D.aTag t x) + (∑ t, D.bTag t y * D.aTag t x) =
       ∑ t, blockTester hr shared (v.val t) * D.aTag t x := by
     rw [← Finset.sum_add_distrib]
@@ -188,7 +191,7 @@ theorem witness_tester_rank {k n b degree r : ℕ} {hr : 2 * r ≤ n}
   have hsum : (∑ j : Fin (W.length i z), ((W.left i z j).numerical hr).summary none •
       starMatrix (b := b) (degree := degree) hr
         (fun d => ordinary d (W.left i z j).tag) (fun _ => 1) e).rank ≤ 14 * r := by
-    have h := Lax342547Proofs.StarRouting.matrix_sum_rank (fun j : Fin (W.length i z) =>
+    have h := Lax342547.StarRouting.matrix_sum_rank (fun j : Fin (W.length i z) =>
       ((W.left i z j).numerical hr).summary none • starMatrix (b := b) (degree := degree) hr
         (fun d => ordinary d (W.left i z j).tag) (fun _ => 1) e)
     have h' : (∑ j : Fin (W.length i z),
@@ -198,16 +201,16 @@ theorem witness_tester_rank {k n b degree r : ℕ} {hr : 2 * r ≤ n}
           (((W.left i z j).numerical hr).summary none • starMatrix (b := b) (degree := degree) hr
             (fun d => ordinary d (W.left i z j).tag) (fun _ => 1) e).rank) ≤ ∑ _ : Fin (W.length i z), 2 * r :=
         Finset.sum_le_sum (fun j _ =>
-        (Lax342547Proofs.StarRouting.matrix_smul_rank _ _).trans
-          (Lax342547Proofs.StarRouting.star_matrix_rank (b := b) (degree := degree) hr
+        (Lax342547.StarRouting.matrix_smul_rank _ _).trans
+          (Lax342547.StarRouting.star_matrix_rank (b := b) (degree := degree) hr
             (fun d => ordinary d (W.left i z j).tag) (fun _ => 1) e))
       simpa using hh
     exact (h.trans h').trans (by nlinarith [W.short i z])
-  have h := Lax342547Proofs.StarRouting.matrix_add_rank (B := Coordinate k n b degree)
+  have h := Lax342547.StarRouting.matrix_add_rank (B := Coordinate k n b degree)
     (∑ j, ((W.left i z j).numerical hr).summary none •
       starMatrix hr (fun d => ordinary d (W.left i z j).tag) (fun _ => 1) e)
     (sharedMatrix hr (fun t => D.aTag t (leftWitness W i z)) e)
-  have hs := shared_matrix_rank (b := b) (degree := degree) hr (fun t => D.aTag t (leftWitness W i z)) e
+  have hs := Lax342547.TargetTesters.shared_matrix_rank (b := b) (degree := degree) hr (fun t => D.aTag t (leftWitness W i z)) e
   exact h.trans (by omega)
 
 
@@ -225,9 +228,9 @@ theorem witness_tester_representation {k n b degree r : ℕ} {hr : 2 * r ≤ n}
       testerTarget D (leftWitness W i z) x := by
   classical
   have hv : chiStar hr (leftRepresentation W i z) = 1 :=
-    (Lax342547Proofs.PairedWitnesses.diagonal_sums W i z).1.trans hodd
-  have ht := tester_target_formula D (leftRepresentation W i z) hv x
-  rw [left_witness_cut, left_shared_sum] at ht
+    (Lax342547.PairedWitnesses.diagonal_sums W i z).1.trans hodd
+  have ht := Lax342547.TargetTesters.tester_target_formula D (leftRepresentation W i z) hv x
+  rw [Lax342547.TargetTesters.left_witness_cut, Lax342547.TargetTesters.left_shared_sum] at ht
   rw [ht]
   change (∑ e, matrixPairing (witnessTesterMatrix W D i z e) (x.val e)) = _
   simp only [witnessTesterMatrix, map_add, map_sum, map_smul, LinearMap.add_apply,
@@ -239,9 +242,9 @@ theorem witness_tester_representation {k n b degree r : ℕ} {hr : 2 * r ≤ n}
       ((W.left i z j).numerical hr).summary none * D.aTag (W.left i z j).tag x := by
     rw [← Finset.mul_sum]
     congr 1
-    exact ordinary_star_representation hr D (W.left i z j).tag x
+    exact Lax342547.TargetTesters.ordinary_star_representation hr D (W.left i z j).tag x
   simp only [he]
   congr 1
-  exact shared_matrix_representation hr D (fun t => D.aTag t (leftWitness W i z)) x
+  exact Lax342547.TargetTesters.shared_matrix_representation hr D (fun t => D.aTag t (leftWitness W i z)) x
 
 end Lax342547Proofs.TargetTesters

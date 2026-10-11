@@ -4,7 +4,7 @@ import Lax342547.ReferencePins
 /-!
 ---
 title: Second exact-pin peeling for the actual raw frame law
-type: theorem
+type: lemma
 ---
 After a retained restriction of an old leaf, split by bounded coefficient
 metadata and exact images. Discard exponentially small mass and apply a

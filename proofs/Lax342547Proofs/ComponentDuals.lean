@@ -1,5 +1,5 @@
 import Lax342547.ComponentDuals
-import Lax342547Proofs.ComponentSpaces
+import Lax342547.ComponentSpaces
 
 namespace Lax342547Proofs.ComponentDuals
 open Lax342547.ComponentDuals
@@ -19,11 +19,11 @@ theorem dual_componentwise_join_closed {K e : Type} [Field K] [Fintype e] [Decid
   constructor
   · unfold DualComponentwise
     rw [Submodule.map_bot]
-    exact Lax342547Proofs.ComponentSpaces.componentwise_join_closed.1
+    exact Lax342547.ComponentSpaces.componentwise_join_closed.1
   · intro S T hS hT
     unfold DualComponentwise at *
     rw [Submodule.map_sup]
-    exact Lax342547Proofs.ComponentSpaces.componentwise_join_closed.2 _ _ hS hT
+    exact Lax342547.ComponentSpaces.componentwise_join_closed.2 _ _ hS hT
 
 /--
 ---
@@ -53,8 +53,8 @@ theorem diagonal_dual_range {K e : Type} [Field K] [Fintype e] [DecidableEq e]
   have hA : LinearMap.range ((LinearMap.piMap M).dualMap.comp A.toLinearMap) =
       LinearMap.range (LinearMap.piMap M).dualMap := by
     rw [LinearMap.range_comp,A.range,Submodule.map_top]
-  rw [← hA,diagonal_dual_identity,LinearMap.range_comp,← Submodule.map_comp]
+  rw [← hA,Lax342547.ComponentDuals.diagonal_dual_identity,LinearMap.range_comp,← Submodule.map_comp]
   have hb : B.symm.toLinearMap.comp B.toLinearMap = LinearMap.id := by apply LinearMap.ext; intro v; exact B.symm_apply_apply v
-  rw [hb,Submodule.map_id,Lax342547Proofs.ComponentSpaces.diagonal_range]
+  rw [hb,Submodule.map_id,Lax342547.ComponentSpaces.diagonal_range]
 
 end Lax342547Proofs.ComponentDuals

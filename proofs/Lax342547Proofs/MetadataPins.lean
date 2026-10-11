@@ -1,6 +1,6 @@
 import Lax342547.MetadataPins
-import Lax342547Proofs.ExactPins
 import Lax342547Proofs.FiniteLinearLaw
+import Lax342547.ExactPins
 
 namespace Lax342547Proofs.MetadataPins
 
@@ -48,7 +48,7 @@ theorem key_count {J Axis I N : Type}
     _ ≤ ∑ _j : J, 2 ^ (u * Fintype.card N) := by
       apply Finset.sum_le_sum
       intro j _
-      rw [image_count]
+      rw [Lax342547.MetadataPins.image_count]
       exact Nat.pow_le_pow_right (by norm_num) (Nat.mul_le_mul_right _ (hu j))
     _ = _ := by simp
 
@@ -84,9 +84,9 @@ theorem refined_fiber {Ω J Axis I N : Type} [Fintype Axis] [Fintype I]
       P.rank ≤ P₀.rank + u ∧
       R ∩ {x | record A choice S x = record A choice S o} ⊆ P.event A := by
   let Q := pin (record A choice S o)
-  have he := ExactPins.event_refinement A P₀ Q o ⟨hR ho, mem_record_event A choice S o⟩
+  have he := Lax342547.ExactPins.event_refinement A P₀ Q o ⟨hR ho, mem_record_event A choice S o⟩
   refine ⟨P₀.joinAt A Q o, he.1, he.2.1, ?_, ?_⟩
-  · rw [ExactPins.rank_refinement]
+  · rw [Lax342547.ExactPins.rank_refinement]
     apply Nat.add_le_add_left
     calc
       P₀.relativeRank Q ≤ Q.rank := by

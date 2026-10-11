@@ -1,6 +1,6 @@
 import Lax342547.AffineImages
 import Lax342547Proofs.MixerCompatibility
-import Lax342547Proofs.FiniteLinearLaw
+import Lax342547.FiniteLinearLaw
 
 namespace Lax342547Proofs.AffineImages
 
@@ -63,8 +63,8 @@ theorem image_bound [DecidableEq J] [FiniteDimensional Binary V]
     (S₀ : Submodule Binary V) (hS : ∀ j, S₀ ≤ S j)
     (C : Matrix J T Binary) (hC : Function.Injective C.mulVec) (a : J → V) (y : T → V) :
     law S C a y ≤ 1 / (2 : ℝ≥0∞) ^ (Fintype.card T * Module.finrank Binary S₀) := by
-  exact FiniteLinearLaw.uniform_affine_image_bound (evaluation S C) _ y _
-    (evaluation_rank S S₀ hS C hC)
+  exact Lax342547.FiniteLinearLaw.uniform_affine_image_bound (evaluation S C) _ y _
+    (Lax342547.AffineImages.evaluation_rank S S₀ hS C hC)
 
 omit [Fintype T] in
 theorem coefficient_target_bound [DecidableEq J] [FiniteDimensional Binary V]
@@ -87,7 +87,7 @@ theorem coefficient_target_bound [DecidableEq J] [FiniteDimensional Binary V]
     funext u
     cases u
     exact mul_left_cancel₀ hj he
-  have h := image_bound S S₀ hS C hC a (fun _ : Unit => y)
+  have h := Lax342547.AffineImages.image_bound S S₀ hS C hC a (fun _ : Unit => y)
   rw [← PMF.toOuterMeasure_apply_singleton] at h
   change ((PMF.uniformOfFintype (∀ j, S j)).map _).toOuterMeasure _ ≤ _ at h
   rw [PMF.toOuterMeasure_map_apply] at h

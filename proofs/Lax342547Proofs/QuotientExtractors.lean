@@ -1,5 +1,5 @@
 import Lax342547.QuotientExtractors
-import Lax342547Proofs.PinLabelExclusions
+import Lax342547.PinLabelExclusions
 
 namespace Lax342547Proofs.QuotientExtractors
 
@@ -68,9 +68,9 @@ theorem pin_extractor {Base Comp H N : Type} {b degree R : ℕ}
         (selectorEval (degree := degree)) t (v t)) ∈ projected P i a := by
       rw [← Finset.sum_coe_sort L]
       simpa only [f, LinearMap.sum_apply, LinearMap.comp_apply, LinearMap.proj_apply, hv] using hc
-    have hz := PinLabelExclusions.fresh_coefficient P A hA i a L v hL hm s hs hfresh
+    have hz := Lax342547.PinLabelExclusions.fresh_coefficient P A hA i a L v hL hm s hs hfresh
     simpa only [hv ⟨s, hs⟩] using hz
-  obtain ⟨q, hq⟩ := quotient_factor (projected P i a) f (LinearMap.proj (⟨s, hs⟩ : L)) hker
+  obtain ⟨q, hq⟩ := Lax342547.QuotientExtractors.quotient_factor (projected P i a) f (LinearMap.proj (⟨s, hs⟩ : L)) hker
   refine ⟨q, ?_⟩
   intro t ht v
   have he : f (Pi.single ⟨t, ht⟩ v) =
@@ -110,7 +110,7 @@ theorem key_extractor {Base Comp H N I : Type} {b degree R : ℕ}
         q (Submodule.Quotient.mk (Lax342547.SparsePins.labelTensor
           (selectorEval (degree := degree)) t v)) = if t = s then Ray.mkQ v else 0 := by
   classical
-  obtain ⟨qpin, hqpin⟩ := pin_extractor P A hA i a L hL s hs hfresh
+  obtain ⟨qpin, hqpin⟩ := Lax342547.QuotientExtractors.pin_extractor P A hA i a L hL s hs hfresh
   let f := (Ray.mkQ.comp qpin).comp (projected P i a).mkQ
   have hker : projected P i a ⊔ Submodule.span Binary
       (Set.range (fun j => Lax342547.SparsePins.labelTensor

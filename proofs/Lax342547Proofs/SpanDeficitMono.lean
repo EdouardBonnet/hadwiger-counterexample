@@ -1,5 +1,5 @@
 import Lax342547.SpanDeficitMono
-import Lax342547Proofs.SpanDeficits
+import Lax342547.SpanDeficits
 
 namespace Lax342547Proofs.SpanDeficitMono
 open Lax342547.SpanDeficitMono
@@ -32,7 +32,7 @@ theorem deficit_monotone {K V ι : Type} [Field K] [Fintype ι]
     funext i
     exact Subtype.ext (congrArg (fun z : LinearMap.ker (addition T) => (z.val i).val) hxy)
   have hh := LinearMap.finrank_le_finrank_of_injective hf
-  rwa [Lax342547Proofs.SpanDeficits.addition_kernel_deficit,
-    Lax342547Proofs.SpanDeficits.addition_kernel_deficit] at hh
+  rwa [Lax342547.SpanDeficits.addition_kernel_deficit,
+    Lax342547.SpanDeficits.addition_kernel_deficit] at hh
 
 end Lax342547Proofs.SpanDeficitMono

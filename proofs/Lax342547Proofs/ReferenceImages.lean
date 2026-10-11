@@ -1,5 +1,9 @@
 import Lax342547.ReferenceImages
-import Lax342547Proofs.ProductMinusImages
+import Lax342547.ProductImages
+import Lax342547.ProductMinusImages
+import Lax342547Proofs.FiniteProbability
+import Lax342547Proofs.FiniteUniform
+import Lax342547Proofs.FrameSymmetry
 
 namespace Lax342547Proofs.ReferenceImages
 
@@ -111,14 +115,14 @@ theorem joint_cap [DecidableEq Draw] [DecidableEq B] [DecidableEq H]
         ⟨(Classical.choice (inferInstance : Nonempty (∀ i, Lax342547.ConditionalMinus.Completion E (P i) (X i)))) i⟩
       let : ∀ i, Nonempty (Lax342547.ConditionalMinus.ColumnProduct E (P i) (X i)) := fun i =>
         ⟨(Classical.choice (inferInstance : Nonempty (Lax342547.ConditionalMinus.Completion E (P i) (X i)))).val⟩
-      have hb := ProductMinusImages.completion_image_bound E P X (fun i => parts_injective (A i)) hN D hD z
+      have hb := Lax342547.ProductMinusImages.completion_image_bound E P X (fun i => parts_injective (A i)) hN D hD z
       rw [← FiniteUniform.map_equiv e, PMF.map_comp] at hb
       change (PMF.uniformOfFintype {o : Draw → Frame B H N E // f o = A}).map
         (fun o => minusImages D o.val) z ≤ b at hb
       rw [← PMF.toOuterMeasure_apply_singleton, PMF.toOuterMeasure_map_apply] at hb
       exact le_trans ((PMF.uniformOfFintype {o : Draw → Frame B H N E // f o = A}).toOuterMeasure.mono
         (fun _ ho => ho.2)) hb
-  have hp := ProductImages.raw_plus_image_bound (E := E) (by omega) C hC y
+  have hp := Lax342547.ProductImages.raw_plus_image_bound (E := E) (by omega) C hC y
   rw [← PMF.toOuterMeasure_apply_singleton, PMF.toOuterMeasure_map_apply] at hp
   have hplus : ((PMF.uniformOfFintype (Draw → Frame B H N E)).map f).toOuterMeasure W ≤
       (2 : ℝ≥0∞) ^ Fintype.card Draw / 2 ^ (Fintype.card N * Fintype.card T) := by
@@ -154,9 +158,9 @@ theorem joint_rank_cap [DecidableEq Draw] [DecidableEq B] [DecidableEq H]
       (4 : ℝ≥0∞) ^ Fintype.card Draw /
         2 ^ (Fintype.card N * C.rank + D.rank *
           (Fintype.card N - Fintype.card Draw * (Fintype.card B + Fintype.card H))) := by
-  obtain ⟨C', hC'⟩ := ProductImages.rank_restriction C
-  obtain ⟨D', hD'⟩ := ProductImages.rank_restriction D
-  have hb := joint_cap (E := E) hN (C * C') (D * D') hC' hD' (y * C') (z * D')
+  obtain ⟨C', hC'⟩ := Lax342547.ProductImages.rank_restriction C
+  obtain ⟨D', hD'⟩ := Lax342547.ProductImages.rank_restriction D
+  have hb := Lax342547.ReferenceImages.joint_cap (E := E) hN (C * C') (D * D') hC' hD' (y * C') (z * D')
   simp only [Fintype.card_fin] at hb
   apply le_trans ((PMF.uniformOfFintype (Draw → Frame B H N E)).toOuterMeasure.mono ?_) hb
   intro o ho
@@ -224,7 +228,7 @@ theorem all_components_cap {Comp : Type} [Fintype Comp] [DecidableEq Comp]
     _ ≤ ∏ e, ((4 : ℝ≥0∞) ^ Fintype.card Draw /
         2 ^ (Fintype.card N * (C e).rank + (D e).rank *
           (Fintype.card N - Fintype.card Draw * (Fintype.card B + Fintype.card H)))) :=
-      Finset.prod_le_prod' (fun e _ => joint_rank_cap hN (C e) (D e) (y e) (z e))
+      Finset.prod_le_prod' (fun e _ => Lax342547.ReferenceImages.joint_rank_cap hN (C e) (D e) (y e) (z e))
     _ = _ := by
       rw [ENNReal.prod_div_distrib_of_ne_top (by intro e _; simp),
         Finset.prod_const, Finset.card_univ, ← pow_mul, Finset.prod_pow_eq_pow_sum]

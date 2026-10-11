@@ -1,7 +1,8 @@
 import Lax342547.SharpMixerLaw
 import Lax342547Proofs.AtomDirections
-import Lax342547Proofs.FiniteLinearLaw
-import Lax342547Proofs.LowRankCounting
+import Lax342547.FiniteLinearLaw
+import Lax342547.LowRankCounting
+import Lax342547Proofs.ConcreteGeometry
 
 namespace Lax342547Proofs.SharpMixerLaw
 
@@ -30,7 +31,7 @@ is nonzero in the binary field. The weighted matrix map is surjective.
 theorem label_weighted_uniform {b n : ℕ} (s t : Fin b → Binary) (hst : s ≠ t) :
     (PMF.uniformOfFintype (Fin b → Matrix (Fin n) (Fin n) Binary)).map
       (weighted (fun a => s a + t a)) = PMF.uniformOfFintype (Matrix (Fin n) (Fin n) Binary) := by
-  apply FiniteLinearLaw.uniform_image_of_surjective
+  apply Lax342547.FiniteLinearLaw.uniform_image_of_surjective
   apply weighted_surjective
   obtain ⟨a, ha⟩ : ∃ a, s a ≠ t a := Function.ne_iff.mp hst
   refine ⟨a, ?_⟩
@@ -152,7 +153,7 @@ theorem alternating_block_uniform {I N P : Type} [Fintype I] [Fintype N] [Fintyp
     (hcd : ∀ i j, c i ≠ d j) :
     (PMF.uniformOfFintype (Matrix I I Binary)).map (alternatingBlock c d) =
       PMF.uniformOfFintype (Matrix N P Binary) :=
-  FiniteLinearLaw.uniform_image_of_surjective _ (alternatingBlock_surjective c d hc hd hcd)
+  Lax342547.FiniteLinearLaw.uniform_image_of_surjective _ (alternatingBlock_surjective c d hc hd hcd)
 
 theorem alternating_rank_bound {I N P : Type} [Fintype I] [Fintype N] [Fintype P]
     [DecidableEq I] [DecidableEq N] [DecidableEq P]
@@ -169,8 +170,8 @@ theorem alternating_rank_bound {I N P : Type} [Fintype I] [Fintype N] [Fintype P
     _ = ((PMF.uniformOfFintype (Matrix I I Binary)).map (alternatingBlock c d)).toOuterMeasure
         {B | B.rank ≤ r} := (PMF.toOuterMeasure_map_apply _ _ _).symm
     _ = (PMF.uniformOfFintype (Matrix N P Binary)).toOuterMeasure {B | B.rank ≤ r} := by
-      rw [alternating_block_uniform c d hc hd hcd]
-    _ ≤ _ := LowRankCounting.uniform_low_rank_bound r
+      rw [Lax342547.SharpMixerLaw.alternating_block_uniform c d hc hd hcd]
+    _ ≤ _ := Lax342547.LowRankCounting.uniform_low_rank_bound r
 
 /--
 ---
@@ -220,13 +221,13 @@ theorem label_parity_low_rank_bounds {b n : ℕ} (s t : Fin b → Binary) (hst :
     μ.toOuterMeasure {M | (A M + (A M).transpose).rank ≤ r} ≤
       (2 : ℝ≥0∞) ^ ((n / 2 + n / 2) * r) / 2 ^ ((n / 2) * (n / 2)) := by
   dsimp only
-  have hu := label_weighted_uniform (n := n) s t hst
-  have hforward := LowRankCounting.uniform_low_rank_bound (I := Fin n) (J := Fin n) r
+  have hu := Lax342547.SharpMixerLaw.label_weighted_uniform (n := n) s t hst
+  have hforward := Lax342547.LowRankCounting.uniform_low_rank_bound (I := Fin n) (J := Fin n) r
   rw [← hu, PMF.toOuterMeasure_map_apply] at hforward
   simp only [Fintype.card_fin, Set.preimage_ofPred_eq] at hforward
   refine ⟨hforward, ?_, ?_⟩
   · simpa only [Matrix.rank_transpose] using hforward
-  · have h := alternating_low_rank_bound n r
+  · have h := Lax342547.SharpMixerLaw.alternating_low_rank_bound n r
     rw [← hu, PMF.toOuterMeasure_map_apply] at h
     exact h
 

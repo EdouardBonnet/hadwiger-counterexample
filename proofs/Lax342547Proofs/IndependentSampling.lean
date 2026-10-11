@@ -1,9 +1,8 @@
 import Lax342547.IndependentSampling
-import Lax342547Proofs.SequentialTests
-import Lax342547Proofs.GreedySpaces
-import Lax342547Proofs.FiniteSampling
 import Mathlib.LinearAlgebra.DFinsupp
 import Mathlib.Data.Fin.Tuple.Basic
+import Lax342547.GreedySpaces
+import Lax342547.SequentialTests
 
 namespace Lax342547Proofs.IndependentSampling
 open Lax342547.IndependentSampling
@@ -30,7 +29,7 @@ theorem accepted_spaces_independent {K V Ω : Type} [Field K] [AddCommGroup V] [
       (F (s (Fin.last n)) ∧ Disjoint (U (s (Fin.last n)))
         (⨆ i : Fin n,U (Fin.init s i))) at hs
     have hi := ih (Fin.init s) hs.1
-    have hh := Lax342547Proofs.GreedySpaces.independent_snoc (fun i => U (Fin.init s i))
+    have hh := Lax342547.GreedySpaces.independent_snoc (fun i => U (Fin.init s i))
       (U (s (Fin.last n))) hi hs.2.2
     have he : (fun i : Fin (n+1) => U (s i)) =
         Fin.snoc (fun i : Fin n => U (Fin.init s i)) (U (s (Fin.last n))) := by
@@ -55,7 +54,7 @@ theorem greedy_failure_lower_probability {K V Ω : Type} [Field K] [AddCommGroup
     (η-δ)^n ≤ cellMass (productLaw (fun _ : Fin n => μ))
       (fun s => Lax342547.SequentialTests.accepts
         (fun j t x => F x ∧ Disjoint (U x) (⨆ i : Fin j,U (t i))) n s) := by
-  exact Lax342547Proofs.SequentialTests.bounded_sequential_failure_lower μ F
+  exact Lax342547.SequentialTests.bounded_sequential_failure_lower μ F
     (fun j t x => Disjoint (U x) (⨆ i : Fin j,U (t i))) η δ hμ hgap hF n
     (fun j hj t _ => havoid j hj t)
 

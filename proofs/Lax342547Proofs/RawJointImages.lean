@@ -1,6 +1,7 @@
 import Lax342547.RawJointImages
-import Lax342547Proofs.RawQueryImages
-import Lax342547Proofs.JointKeyCap
+import Lax342547.JointKeyCap
+import Lax342547.QueryIndependence
+import Lax342547.RawQueryImages
 
 namespace Lax342547Proofs.RawJointImages
 open Lax342547.RawJointImages
@@ -46,13 +47,13 @@ theorem actual_left_key_fresh_cap {k n b degree r : ℕ} {hr : 2 * r ≤ n} {H N
           (observation o a).comp (fresh a) = yf a} := by
     ext o
     simp only [Set.mem_ofPred_eq]
-    rw [Lax342547Proofs.RawQueryImages.left_tuple_event]
+    rw [Lax342547.RawQueryImages.left_tuple_event]
     exact forall_and.symm
   rw [he]
-  have h := Lax342547Proofs.JointKeyCap.leaf_key_fresh_image_cap p observation P
+  have h := Lax342547.JointKeyCap.leaf_key_fresh_image_cap p observation P
     (fun a => keyMap (H := H) W a.1) fresh
-    (Lax342547Proofs.QueryIndependence.actual_key_independence W P A hA hfresh) hf
-    (tupleMaps W q) yf α hcap (by rw [Lax342547Proofs.RawQueryImages.key_dimension]; exact hrank)
-  simpa only [Lax342547Proofs.RawQueryImages.key_dimension] using h
+    (Lax342547.QueryIndependence.actual_key_independence W P A hA hfresh) hf
+    (tupleMaps W q) yf α hcap (by rw [Lax342547.RawQueryImages.key_dimension]; exact hrank)
+  simpa only [Lax342547.RawQueryImages.key_dimension] using h
 
 end Lax342547Proofs.RawJointImages

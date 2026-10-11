@@ -1,5 +1,7 @@
 import Lax342547.ScalarGramAgreement
-import Lax342547Proofs.RetainedCharacters
+import Lax342547.GramTests
+import Lax342547.RetainedCharacters
+import Lax342547Proofs.Walsh
 
 namespace Lax342547Proofs.ScalarGramAgreement
 open Lax342547.ScalarGramAgreement
@@ -23,12 +25,12 @@ theorem coefficient_character {I S N : Type} [Fintype I] [Fintype S] [Fintype N]
           matrixPair (LinearMap.BilinForm.toMatrix' T) (coefficient tests t)) := by
   classical
   have ha : dotProduct t (actualBits tests X Y) = coefficientPair (coefficient tests t) X Y := by
-    rw [Lax342547Proofs.RetainedCharacters.coefficient_pair_form]
+    rw [Lax342547.RetainedCharacters.coefficient_pair_form]
     simp only [coefficient, map_sum, map_smul, smul_eq_mul]
     unfold dotProduct actualBits
     apply Finset.sum_congr rfl
     intro s _
-    rw [Lax342547Proofs.RetainedCharacters.coefficient_pair_form]
+    rw [Lax342547.RetainedCharacters.coefficient_pair_form]
   have hb : dotProduct t (targetBits tests T) =
       matrixPair (LinearMap.BilinForm.toMatrix' T) (coefficient tests t) := by
     simp only [coefficient, map_sum, map_smul, smul_eq_mul, dotProduct, targetBits]
@@ -62,11 +64,11 @@ theorem scalar_gram_agreement {ΩA ΩB I S N : Type}
       patternMass (fun ab : ΩA × ΩB => α ab.1 * β ab.2)
         (fun ab => actualBits tests (X ab.1) (Y ab.2)) (targetBits tests T) := by
   classical
-  apply Lax342547Proofs.GramTests.zero_or_biased_agreement _ _ _ _
+  apply Lax342547.GramTests.zero_or_biased_agreement _ _ _ _
     (Real.rpow_pos_of_pos (by norm_num) _).le _ _ hsmall
   · simp only [Fintype.sum_prod_type, ← Finset.mul_sum, hβsum, mul_one, hαsum]
   · intro t _
-    have h := Lax342547Proofs.RetainedCharacters.retained_character_dichotomy
+    have h := Lax342547.RetainedCharacters.retained_character_dichotomy
       α β X Y D E T hα hβ hαsum hβsum hD hE hcapA hcapB (coefficient tests t)
     have he : characterMean (fun ab : ΩA × ΩB => α ab.1 * β ab.2)
         (fun ab => actualBits tests (X ab.1) (Y ab.2)) (targetBits tests T) t =
@@ -78,7 +80,7 @@ theorem scalar_gram_agreement {ΩA ΩB I S N : Type}
       intro a _
       apply Finset.sum_congr rfl
       intro b _
-      rw [mul_assoc, coefficient_character]
+      rw [mul_assoc, Lax342547.ScalarGramAgreement.coefficient_character]
     rw [he]
     exact h
 

@@ -1,6 +1,6 @@
 import Lax342547.CutProfiles
-import Lax342547Proofs.MomentSpace
 import Mathlib.Tactic.Abel
+import Lax342547.MomentIntersection
 
 namespace Lax342547Proofs.CutProfiles
 
@@ -65,7 +65,7 @@ theorem same_moment_cut_iff {Label Coord Base : Type} [Nonempty Tag]
     (w v : Tag → Matrix (Coord × Option Base) (Coord × Option Base) Binary)
     (hw : ∀ t, w t ∈ momentSpace p (A t)) (hv : ∀ t, v t ∈ momentSpace p (A t)) :
     cutMap w = cutMap v ↔ ∃ c ∈ momentSpace p (⋂ t, A t), ∀ t, w t + v t = c := by
-  rw [MomentSpace.momentSpace_iInter]
-  exact same_cut_iff _ w v hw hv
+  rw [Lax342547.MomentIntersection.momentSpace_iInter]
+  exact Lax342547.CutProfiles.same_cut_iff _ w v hw hv
 
 end Lax342547Proofs.CutProfiles

@@ -1,8 +1,7 @@
 import Lax342547.PrimalGramTests
-import Lax342547Proofs.ComponentTests
-import Lax342547Proofs.PrimalRecords
-import Lax342547Proofs.PairedFrames
-import Lax342547Proofs.PairRecovery
+import Lax342547.ComponentTests
+import Lax342547.PrimalRecords
+import Lax342547.RetainedCharacters
 
 namespace Lax342547Proofs.PrimalGramTests
 open Lax342547.PrimalGramTests
@@ -40,7 +39,7 @@ theorem raw_oriented_forms {Comp B H N : Type} [Fintype B] [Fintype H] [Fintype 
   intro u
   apply LinearMap.ext
   intro v
-  rw [gram_form_evaluation]
+  rw [Lax342547.PrimalGramTests.gram_form_evaluation]
   rcases a with ⟨e,s⟩
   cases s
   · change dotProduct _ _ = dotProduct _ _
@@ -80,7 +79,7 @@ theorem entry_target_bits {Comp B H : Type} [Fintype Comp] [Fintype B] [Fintype 
   unfold targetBits
   simp only [entryTests, apply_ite, map_zero]
   rw [Finset.sum_ite_eq']
-  simp only [Finset.mem_univ, if_true, matrix_pair_outer]
+  simp only [Finset.mem_univ, if_true, Lax342547.PrimalGramTests.matrix_pair_outer]
   rcases t with ⟨dir,mode,e,i,z,b,h⟩
   fin_cases dir <;> fin_cases mode <;>
     simp [entryAxis, entryLeft, entryRight, orientedForms, entries, CrossForms.flip, fullPlus, fullMinus]
@@ -94,10 +93,10 @@ theorem entry_actual_bits {Comp B H N : Type} [Fintype Comp] [Fintype B] [Fintyp
     {E : Matrix B B Binary} (oA oB : Fin 2 → Comp → Frame B H N E) :
     actualBits entryTests (leftMatrices oA) (rightMatrices oB) = entries (rawForms oA oB) := by
   classical
-  rw [← entry_target_bits]
+  rw [← Lax342547.PrimalGramTests.entry_target_bits]
   funext t
   unfold actualBits targetBits
-  simp only [Lax342547Proofs.RetainedCharacters.coefficient_pair_form, raw_oriented_forms]
+  simp only [Lax342547.RetainedCharacters.coefficient_pair_form, Lax342547.PrimalGramTests.raw_oriented_forms]
 
 /--
 ---
@@ -136,11 +135,11 @@ theorem primal_entry_agreement {ΩA ΩB Comp B H N : Type}
       Lax342547.FourierTests.patternMass (fun ab : ΩA × ΩB => α ab.1 * β ab.2)
         (fun ab => entries (rawForms (unitA ab.1) (unitB ab.2))) (entries F) := by
   classical
-  have h := Lax342547Proofs.ComponentTests.component_scalar_agreement α β
+  have h := Lax342547.ComponentTests.component_scalar_agreement α β
     (fun x => leftMatrices (unitA x)) (fun y => rightMatrices (unitB y))
     D E (orientedForms F) hα hβ hαsum hβsum hD hE hcapA hcapB entryTests
-    (by simpa only [Lax342547Proofs.PrimalRecords.entry_count] using hsmall)
-  simpa only [entry_actual_bits, entry_target_bits, Lax342547Proofs.PrimalRecords.entry_count] using h
+    (by simpa only [Lax342547.PrimalRecords.entry_count] using hsmall)
+  simpa only [Lax342547.PrimalGramTests.entry_actual_bits, Lax342547.PrimalGramTests.entry_target_bits, Lax342547.PrimalRecords.entry_count] using h
 
 /--
 ---
@@ -197,7 +196,7 @@ theorem primal_cell_four_holes {ΩA ΩB H N : Type} {k n b degree r J : ℕ} {hr
       Lax342547.PairRecovery.pairMass α β (fun x y => ∀ i z,
         Lax342547.HoleRelation.Hole holes (unitA x i) (unitB y z)) := by
   classical
-  have h := primal_entry_agreement α β unitA unitB D E F hα hβ hαsum hβsum
+  have h := Lax342547.PrimalGramTests.primal_entry_agreement α β unitA unitB D E F hα hβ hαsum hβsum
     hD hE hcapA hcapB hsmall
   apply h.trans
   unfold Lax342547.FourierTests.patternMass Lax342547.PairRecovery.pairMass
@@ -207,7 +206,7 @@ theorem primal_cell_four_holes {ΩA ΩB H N : Type} {k n b degree r J : ℕ} {hr
   apply Finset.sum_le_sum
   intro y _
   by_cases he : entries (rawForms (unitA x) (unitB y)) = entries F
-  · have hh := Lax342547Proofs.PrimalRecords.entries_give_four_holes W testers L R
+  · have hh := Lax342547.PrimalRecords.entries_give_four_holes W testers L R
       (unitA x) (unitB y) holes hrole hgradient hU hu (hkeys x y) hroles F he hleft hright
     simp only [if_pos he, if_pos hh]
     exact le_rfl

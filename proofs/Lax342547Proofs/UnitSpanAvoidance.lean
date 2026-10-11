@@ -1,9 +1,10 @@
 import Lax342547.UnitSpanAvoidance
-import Lax342547Proofs.RawPrimalAvoidance
-import Lax342547Proofs.RetainedImages
-import Lax342547Proofs.FiniteSampling
-import Lax342547Proofs.PhaseAverages
-import Lax342547Proofs.ChannelColumns
+import Lax342547.ChannelColumns
+import Lax342547.FiniteSampling
+import Lax342547.PhaseAverages
+import Lax342547.RawPrimalAvoidance
+import Lax342547.RealCellLaws
+import Lax342547.RetainedImages
 
 namespace Lax342547Proofs.UnitSpanAvoidance
 open Lax342547.UnitSpanAvoidance
@@ -51,12 +52,12 @@ theorem capped_unit_span_avoidance {A B H N : Type}
       M*(2*((2 : ℝ)^(Fintype.card B+Fintype.card H+Module.finrank Binary W)/(2 : ℝ)^Fintype.card N)) := by
   let P := fun F : Frame B H N E => ∃ c : B → Binary,c ≠ 0 ∧ F.P.mulVec c ∈ W
   have hm : cellMass α (fun a => ¬ Disjoint (V a) W) ≤ cellMass α (fun a => P (image a)) :=
-    Lax342547Proofs.FiniteSampling.cell_mass_mono _ _ _ hα
-      (fun a ha => pin_intersection_is_primal_hit (image a) (V a) W (hV a) ha)
-  have hp := Lax342547Proofs.ChannelColumns.push_cell_mass α image P
-  have hd := Lax342547Proofs.PhaseAverages.finite_event_density
+    Lax342547.FiniteSampling.cell_mass_mono _ _ _ hα
+      (fun a ha => Lax342547.UnitSpanAvoidance.pin_intersection_is_primal_hit (image a) (V a) W (hV a) ha)
+  have hp := Lax342547.ChannelColumns.push_cell_mass α image P
+  have hd := Lax342547.PhaseAverages.finite_event_density
     (weights (PMF.uniformOfFintype (Frame B H N E))) (push α image) M hcap P
-  have ht := Lax342547Proofs.RawPrimalAvoidance.raw_primal_span_hit_mass E hN W
+  have ht := Lax342547.RawPrimalAvoidance.raw_primal_span_hit_mass E hN W
   exact (hm.trans_eq hp.symm).trans (hd.trans (mul_le_mul_of_nonneg_left ht hM))
 
 /--
@@ -87,13 +88,13 @@ theorem conditioned_unit_span_avoidance {A B H N : Type}
       by_cases hc : C a <;> by_cases hf : image a = F <;> simp [hc,hf]
     have hm : cellMass α (fun a => C a ∧ image a = F) ≤ push α image F := by
       change cellMass α (fun a => C a ∧ image a = F) ≤ cellMass α (fun a => image a = F)
-      exact Lax342547Proofs.FiniteSampling.cell_mass_mono _ _ _ hα (fun _ h => h.2)
+      exact Lax342547.FiniteSampling.cell_mass_mono _ _ _ hα (fun _ h => h.2)
     rw [he]
     have ht : 0 < cellMass α C := lt_of_lt_of_le hτ hC
     have hb := (div_le_div_of_nonneg_right (hm.trans (hcap F)) ht.le).trans
-      (div_le_div_of_nonneg_left (mul_nonneg hM (Lax342547Proofs.RealCellLaws.weights_nonneg _ _)) hτ hC)
+      (div_le_div_of_nonneg_left (mul_nonneg hM (Lax342547.RealCellLaws.weights_nonneg _ _)) hτ hC)
     simpa only [mul_div_right_comm] using hb
-  exact capped_unit_span_avoidance E (conditionalLaw α C) image V W (M/τ)
-    (Lax342547Proofs.RetainedImages.conditional_law_nonneg α C hα) (div_nonneg hM hτ.le) hN hV hcc
+  exact Lax342547.UnitSpanAvoidance.capped_unit_span_avoidance E (conditionalLaw α C) image V W (M/τ)
+    (Lax342547.RetainedImages.conditional_law_nonneg α C hα) (div_nonneg hM hτ.le) hN hV hcc
 
 end Lax342547Proofs.UnitSpanAvoidance

@@ -1,5 +1,9 @@
 import Lax342547.BinaryMixers
-import Lax342547Proofs.BinaryMixer
+import Lax342547.AtomDirections
+import Lax342547.Atoms
+import Lax342547.BinaryMixer
+import Lax342547.OrderedMixerLaw
+import Lax342547.SharpMixerLaw
 
 namespace Lax342547Proofs.BinaryMixers
 
@@ -25,15 +29,15 @@ theorem uniform_of_restrictions {k n b degree r : ℕ} {F : Type} [Fintype F]
   classical
   intro s t hst l m f g a b' c d habcd
   by_cases hab : ∃ j, a j ≠ 0 ∨ b' j ≠ 0
-  · have h := BinaryMixer.block_rank_le (ambientParity L a b' (selfGram hr hd M) c d)
-      s t l m f g free (Atoms.flavor_coordinates l f).2.2 (Atoms.flavor_coordinates m g).2.2
-    rw [BinaryMixer.parity_free_block] at h
+  · have h := Lax342547.BinaryMixer.block_rank_le (ambientParity L a b' (selfGram hr hd M) c d)
+      s t l m f g free (Lax342547.Atoms.flavor_coordinates l f).2.2 (Lax342547.Atoms.flavor_coordinates m g).2.2
+    rw [Lax342547.BinaryMixer.parity_free_block] at h
     exact (hL s t hst a b' hab).trans (Nat.mul_le_mul_left 5 h)
   · have ha (j : F) : a j = 0 := by simpa using fun h => hab ⟨j, Or.inl h⟩
     have hb (j : F) : b' j = 0 := by simpa using fun h => hab ⟨j, Or.inr h⟩
-    have h := BinaryMixer.block_rank_le (c • selfGram hr hd M + d • (selfGram hr hd M).transpose)
-      s t l m f g sharp (Atoms.flavor_coordinates l f).2.1 (Atoms.flavor_coordinates m g).2.1
-    rw [BinaryMixer.selfGram_parity_sharp_block] at h
+    have h := Lax342547.BinaryMixer.block_rank_le (c • selfGram hr hd M + d • (selfGram hr hd M).transpose)
+      s t l m f g sharp (Lax342547.Atoms.flavor_coordinates l f).2.1 (Lax342547.Atoms.flavor_coordinates m g).2.1
+    rw [Lax342547.BinaryMixer.selfGram_parity_sharp_block] at h
     simpa only [ambientParity, ha, hb, zero_smul, add_zero, Finset.sum_const_zero, zero_add] using
       (hM s t hst c d (habcd.resolve_left hab)).trans (Nat.mul_le_mul_left 5 h)
 
@@ -65,7 +69,7 @@ theorem mixer_test_bound {k n b degree : ℕ} {F : Type} [Fintype F] [DecidableE
     (PMF.uniformOfFintype (F → Moment k n b degree)).toOuterMeasure
       {L | 5 * (Lax342547.OrderedMixerLaw.familyParity (blockDirections s free)
         (blockDirections t free) a b' L).rank < n} ≤ 1 / (2 : ℝ≥0∞) ^ n := by
-  have hdir := AtomDirections.distinct_directions_injective (k := k) (n := n) hd s t hst free
+  have hdir := Lax342547.AtomDirections.distinct_directions_injective (k := k) (n := n) hd s t hst free
     (by intro i j h; simpa [free] using h)
   calc
     _ ≤ (PMF.uniformOfFintype (F → Moment k n b degree)).toOuterMeasure
@@ -80,7 +84,7 @@ theorem mixer_test_bound {k n b degree : ℕ} {F : Type} [Fintype F] [DecidableE
       omega
     _ ≤ (2 : ℝ≥0∞) ^ ((n + n) * (n / 5)) / 2 ^ (n * n) := by
       simpa only [Fintype.card_fin] using
-        OrderedMixerLaw.family_parity_low_rank_bound _ _ hdir a b' hab (n / 5)
+        Lax342547.OrderedMixerLaw.family_parity_low_rank_bound _ _ hdir a b' hab (n / 5)
     _ ≤ _ := ratio_le_inverse _ _ _ (square_exponent_gap n hn)
 
 theorem sharp_test_bound {n b : ℕ} (hn : 50 ≤ n)
@@ -89,7 +93,7 @@ theorem sharp_test_bound {n b : ℕ} (hn : 50 ≤ n)
       {M | 5 * (c • Lax342547.SharpMixerLaw.weighted (fun a => s a + t a) M +
         d • (Lax342547.SharpMixerLaw.weighted (fun a => s a + t a) M).transpose).rank < n} ≤
       1 / (2 : ℝ≥0∞) ^ n := by
-  have h := SharpMixerLaw.label_parity_low_rank_bounds (n := n) s t hst (n / 5)
+  have h := Lax342547.SharpMixerLaw.label_parity_low_rank_bounds (n := n) s t hst (n / 5)
   have hf := h.1.trans (ratio_le_inverse _ _ _ (square_exponent_gap n hn))
   have hr := h.2.1.trans (ratio_le_inverse _ _ _ (square_exponent_gap n hn))
   have ha := h.2.2.trans (ratio_le_inverse _ _ _ (half_exponent_gap n hn))

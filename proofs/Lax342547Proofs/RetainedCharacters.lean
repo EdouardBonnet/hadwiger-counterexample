@@ -1,7 +1,10 @@
 import Lax342547.RetainedCharacters
-import Lax342547Proofs.QuotientFactors
-import Lax342547Proofs.CoefficientPhase
-import Lax342547Proofs.FrozenRecords
+import Lax342547.CoefficientPhase
+import Lax342547.FrozenCharacters
+import Lax342547.GramTests
+import Lax342547.ProjectedCoefficients
+import Lax342547.QuotientFactors
+import Lax342547Proofs.Walsh
 
 namespace Lax342547Proofs.RetainedCharacters
 open Lax342547.RetainedCharacters
@@ -57,13 +60,13 @@ theorem disagreement_projection {I N : Type} [Fintype I] [Fintype N]
         coefficientPair Z X Y + matrixPair (LinearMap.BilinForm.toMatrix' T) Z := by
   classical
   let Z := p.toMatrix' * C * q.toMatrix'.transpose
-  have hz := Lax342547Proofs.ProjectedCoefficients.projection_preserves_quotient_pairing C D E p q hp hq
-  have ha := Lax342547Proofs.FrozenCharacters.zero_quotient_frozen_agreement
+  have hz := Lax342547.ProjectedCoefficients.projection_preserves_quotient_pairing C D E p q hp hq
+  have ha := Lax342547.FrozenCharacters.zero_quotient_frozen_agreement
     (C - Z) D E (actualForm X Y) T hz hD hE
   rw [map_sub, map_sub] at ha
   change coefficientPair C X Y + matrixPair (LinearMap.BilinForm.toMatrix' T) C =
     coefficientPair Z X Y + matrixPair (LinearMap.BilinForm.toMatrix' T) Z
-  rw [coefficient_pair_form C, coefficient_pair_form Z]
+  rw [Lax342547.RetainedCharacters.coefficient_pair_form C, Lax342547.RetainedCharacters.coefficient_pair_form Z]
   have h0 : (matrixPair (LinearMap.BilinForm.toMatrix' (actualForm X Y)) C -
       matrixPair (LinearMap.BilinForm.toMatrix' (actualForm X Y)) Z) -
       (matrixPair (LinearMap.BilinForm.toMatrix' T) C - matrixPair (LinearMap.BilinForm.toMatrix' T) Z) = 0 :=
@@ -125,13 +128,13 @@ theorem retained_character_dichotomy {ΩA ΩB I N : Type}
         sign (coefficientPair C (X a) (Y b) + matrixPair (LinearMap.BilinForm.toMatrix' T) C)
       exact mean = 1 ∨ |mean| ≤ (2 : ℝ)^(-(45/100 : ℝ)*Fintype.card N) := by
   classical
-  obtain ⟨p, hp, hpk, hpid⟩ := Lax342547Proofs.ProjectedCoefficients.exists_quotient_projection D
-  obtain ⟨q, hq, hqk, hqid⟩ := Lax342547Proofs.ProjectedCoefficients.exists_quotient_projection E
+  obtain ⟨p, hp, hpk, hpid⟩ := Lax342547.ProjectedCoefficients.exists_quotient_projection D
+  obtain ⟨q, hq, hqk, hqid⟩ := Lax342547.ProjectedCoefficients.exists_quotient_projection E
   let Z := p.toMatrix' * C * q.toMatrix'.transpose
   have hd (a : ΩA) (b : ΩB) :
       coefficientPair C (X a) (Y b) + matrixPair (LinearMap.BilinForm.toMatrix' T) C =
         coefficientPair Z (X a) (Y b) + matrixPair (LinearMap.BilinForm.toMatrix' T) Z :=
-    disagreement_projection C D E p q hp hq (X a) (Y b) T
+    Lax342547.RetainedCharacters.disagreement_projection C D E p q hp hq (X a) (Y b) T
       (fun v hv w => hD a b v hv w) (hE a b)
   by_cases hz : Z = 0
   · left
@@ -142,23 +145,23 @@ theorem retained_character_dichotomy {ΩA ΩB I N : Type}
     simp only [hzero, mul_one, ← Finset.mul_sum, hβsum, hαsum]
   · right
     obtain ⟨A, B, hAB, hA, hB⟩ :=
-      Lax342547Proofs.QuotientFactors.quotient_independent_factors C D E p q hpk hqk hpid hqid
+      Lax342547.QuotientFactors.quotient_independent_factors C D E p q hpk hqk hpid hqid
     have hc (a : ΩA) (b : ΩB) :
         sign (coefficientPair C (X a) (Y b) + matrixPair (LinearMap.BilinForm.toMatrix' T) C) =
         sign (matrixPair (LinearMap.BilinForm.toMatrix' T) Z) *
           phase (factorImage A (X a)) (factorImage B (Y b)) := by
-      have hf := Lax342547Proofs.CoefficientPhase.independent_factor_phase A B (X a) (Y b)
+      have hf := Lax342547.CoefficientPhase.independent_factor_phase A B (X a) (Y b)
       rw [hAB] at hf
       rw [hd a b, hf, Lax342547Proofs.Walsh.sign_add]
       change phase _ _ * _ = _ * phase _ _
       ring
-    have h := Lax342547Proofs.GramTests.paper_image_walsh α β
+    have h := Lax342547.GramTests.paper_image_walsh α β
       (fun a => factorImage A (X a)) (fun b => factorImage B (Y b))
       (fun _ => sign (matrixPair (LinearMap.BilinForm.toMatrix' T) Z)) (fun _ => 1)
       hα hβ hαsum.le hβsum.le
       (by simpa only [Fintype.card_prod, Fintype.card_fin, Nat.cast_mul] using hcapA Z.rank A hA)
       (by simpa only [Fintype.card_prod, Fintype.card_fin, Nat.cast_mul] using hcapB Z.rank B hB)
-      (fun _ => (sign_abs _).le) (fun _ => by norm_num)
+      (fun _ => (Lax342547.RetainedCharacters.sign_abs _).le) (fun _ => by norm_num)
     have he : (∑ a, ∑ b, α a * β b *
         sign (coefficientPair C (X a) (Y b) + matrixPair (LinearMap.BilinForm.toMatrix' T) C)) =
         ∑ a, ∑ b, α a * β b * sign (matrixPair (LinearMap.BilinForm.toMatrix' T) Z) * 1 *
@@ -166,7 +169,7 @@ theorem retained_character_dichotomy {ΩA ΩB I N : Type}
       simp only [hc, mul_one, mul_assoc]
     rw [← he] at h
     apply h.trans
-    have hr : 1 ≤ Z.rank := Nat.one_le_iff_ne_zero.mpr (fun h => hz (rank_zero_matrix Z h))
+    have hr : 1 ≤ Z.rank := Nat.one_le_iff_ne_zero.mpr (fun h => hz (Lax342547.RetainedCharacters.rank_zero_matrix Z h))
     apply Real.rpow_le_rpow_of_exponent_le (by norm_num : (1 : ℝ) ≤ 2)
     simp only [Fintype.card_prod, Fintype.card_fin, Nat.cast_mul]
     have hdim : (Fintype.card N : ℝ) ≤ Z.rank * Fintype.card N := by

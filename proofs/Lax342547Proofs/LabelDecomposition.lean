@@ -1,5 +1,14 @@
 import Lax342547Proofs.LabelBlocks
 import Lax342547.LabelDecomposition
+import Lax342547.JointProjectors
+import Lax342547.MomentRecovery
+import Lax342547Proofs.FlatRank
+import Lax342547Proofs.FlatSelector
+import Lax342547Proofs.GramRank
+import Lax342547Proofs.JointProjectors
+import Lax342547Proofs.MomentForm
+import Lax342547Proofs.MomentRecovery
+import Lax342547Proofs.SelectorInterpolation
 
 namespace Lax342547Proofs.LabelDecomposition
 
@@ -26,7 +35,7 @@ noncomputable def flatData (c : PointDomain Base b → Binary) (j : ℕ)
     (hflat : (momentMatrix c j).rank = (momentMatrix c (j + 2)).rank) : FlatData c j := Classical.choice (by
   obtain ⟨M, hM, hadj, hid, hcomm⟩ := exists_operators c j hflat
   obtain ⟨P, hsum, hidP, horth, heigen, hdim, hcard⟩ :=
-    JointProjectors.exists_joint_decomposition M hid hcomm
+    Lax342547.JointProjectors.exists_joint_decomposition M hid hcomm
   exact ⟨⟨M, hM, hadj, P, hsum, hidP, horth, heigen, hdim, hcard⟩⟩)
 
 theorem FlatData.right_eigen {c : PointDomain Base b → Binary} {j : ℕ} (D : FlatData c j)
@@ -139,7 +148,7 @@ theorem low_rank_label_decomposition {Base : Type} [Fintype Base] {b degree R : 
   have hcard : Nat.card {s // D.P s ≠ 0} ≤ j + 1 := D.active_count.trans (hdim.trans (by omega))
   let L : Finset (Fin b → Binary) := Finset.univ.filter (fun s => D.P s ≠ 0)
   have heq : momentMatrix c degree = extendedMatrix c j D degree := by
-    apply MomentRecovery.eq_of_agree_low _ _
+    apply Lax342547.MomentRecovery.eq_of_agree_low _ _
       (MomentRecovery.mem_momentSpace_hankel Set.univ hw)
       (extendedMatrix_hankel c j D degree) hrank ((extendedMatrix_rank_le c j D degree).trans hrj)
     intro S T i k hST

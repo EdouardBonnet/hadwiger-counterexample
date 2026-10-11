@@ -1,7 +1,7 @@
 import Lax342547.SymmetricFactorization
-import Lax342547Proofs.LowRankCounting
 import Lax342547Proofs.MixerCompatibility
 import Lean.Elab.Tactic.Omega
+import Lax342547.LowRankCounting
 
 namespace Lax342547Proofs.SymmetricFactorization
 
@@ -33,7 +33,7 @@ theorem symmetric_factorization (M : Matrix I I K) (hM : M.transpose = M) :
       Function.Injective Z.mulVec ∧ H.transpose = H ∧ Function.Bijective H.mulVec ∧
       Z * H * Z.transpose = M := by
   classical
-  obtain ⟨Z, Y, hZY⟩ := LowRankCounting.factorization M M.rank le_rfl
+  obtain ⟨Z, Y, hZY⟩ := Lax342547.LowRankCounting.factorization M M.rank le_rfl
   have hZrank : Z.rank = M.rank := by
     apply le_antisymm
     · simpa using Z.rank_le_card_width
@@ -81,7 +81,7 @@ theorem card_symmetric_rank {I : Type} [Fintype I] (r : ℕ) :
     change ∃ Z : Matrix I (Fin r) Binary, ∃ H : Matrix (Fin r) (Fin r) Binary,
       Z * H * Z.transpose = M
     subst r
-    obtain ⟨Z, H, _, _, _, h⟩ := symmetric_factorization M hM
+    obtain ⟨Z, H, _, _, _, h⟩ := Lax342547.SymmetricFactorization.symmetric_factorization M hM
     exact ⟨Z, H, h⟩
   choose Z H hZH using hf
   have hi : Function.Injective (fun M : T => (Z M, H M)) := by

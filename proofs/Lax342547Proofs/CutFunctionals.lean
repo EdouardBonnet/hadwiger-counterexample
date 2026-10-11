@@ -1,7 +1,7 @@
 import Lax342547.CutFunctionals
-import Lax342547Proofs.CutProfiles
 import Mathlib.LinearAlgebra.Isomorphisms
 import Lean.Elab.Tactic.Omega
+import Lax342547.CutProfiles
 
 namespace Lax342547Proofs.CutFunctionals
 
@@ -30,7 +30,7 @@ theorem representative_sums_eq
     (∑ t, ηO (w t)) = (∑ t, ηO (v t)) ∧
       ∀ t, (∑ l ∈ Finset.univ.erase t, ηS (w l)) =
         ∑ l ∈ Finset.univ.erase t, ηS (v l) := by
-  obtain ⟨c, hc, hconst⟩ := (CutProfiles.same_cut_iff W w v hw hv).mp heq
+  obtain ⟨c, hc, hconst⟩ := (Lax342547.CutProfiles.same_cut_iff W w v hw hv).mp heq
   constructor
   · apply Finset.sum_congr rfl
     intro t _

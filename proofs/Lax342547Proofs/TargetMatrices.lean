@@ -1,5 +1,10 @@
 import Lax342547.TargetMatrices
-import Lax342547Proofs.TargetTesters
+import Lax342547.Atoms
+import Lax342547.BaseCompression
+import Lax342547.StarRouting
+import Lax342547.TargetTesters
+import Lax342547Proofs.ConcreteCut
+import Lax342547Proofs.UnaryMixer
 
 namespace Lax342547Proofs.TargetMatrices
 open Lax342547.TargetMatrices
@@ -17,7 +22,7 @@ conclusion: Lax342547.TargetMatrices.sandwich_adjoint
 theorem sandwich_adjoint {B : Type} [Fintype B] (M W L R : Matrix B B Binary) :
     matrixPair M (L * W * R.transpose) = matrixPair (L.transpose * M * R) W := by
   classical
-  simp only [Lax342547Proofs.BaseCompression.matrixPair_trace, Matrix.transpose_mul,
+  simp only [Lax342547.BaseCompression.matrixPair_trace, Matrix.transpose_mul,
     Matrix.transpose_transpose]
   rw [← Matrix.mul_assoc, Matrix.trace_mul_cycle]
   simp only [Matrix.mul_assoc]
@@ -45,7 +50,7 @@ theorem mixer_matrix_representation {k n b degree J : ℕ}
     intro f _
     apply Finset.sum_congr rfl
     intro e _
-    exact (sandwich_adjoint _ _ _ _).symm
+    exact (Lax342547.TargetMatrices.sandwich_adjoint _ _ _ _).symm
   · rw [Finset.sum_comm]
     apply Finset.sum_congr rfl
     intro j _
@@ -67,10 +72,10 @@ theorem witness_component_rank {k n b degree r : ℕ} {hr : 2 * r ≤ n}
   have he : (leftWitness W i z).val e = ∑ j, (W.left i z j).profile.val e := by
     simp only [leftWitness, Submodule.coe_sum, Finset.sum_apply]
   rw [he]
-  have h := Lax342547Proofs.StarRouting.matrix_sum_rank (fun j : Fin (W.length i z) =>
+  have h := Lax342547.StarRouting.matrix_sum_rank (fun j : Fin (W.length i z) =>
     (W.left i z j).profile.val e)
   have hj (j : Fin (W.length i z)) : ((W.left i z j).profile.val e).rank ≤ 1 := by
-    rw [PointAtom.profile, Lax342547Proofs.Atoms.atom_component]
+    rw [PointAtom.profile, Lax342547.Atoms.atom_component]
     split_ifs
     · exact Matrix.rank_vecMulVec_le _ _
     · simp
@@ -99,15 +104,15 @@ theorem mixer_matrix_rank {k n b degree J : ℕ}
   have hs (M : Fin J → Component (Tag k) → Moment k n b degree)
       (hM : ∀ j f, (M j f).rank ≤ S) :
       (∑ j, ∑ f, M j f).rank ≤ J * Fintype.card (Component (Tag k)) * S := by
-    have h := Lax342547Proofs.StarRouting.matrix_sum_rank (fun j => ∑ f, M j f)
+    have h := Lax342547.StarRouting.matrix_sum_rank (fun j => ∑ f, M j f)
     have h' : (∑ j : Fin J, (∑ f, M j f).rank) ≤
         ∑ _ : Fin J, Fintype.card (Component (Tag k)) * S := by
       apply Finset.sum_le_sum
       intro j _
-      exact Lax342547Proofs.StarRouting.matrix_finset_sum_rank Finset.univ (M j) S (fun f _ => hM j f)
+      exact Lax342547.StarRouting.matrix_finset_sum_rank Finset.univ (M j) S (fun f _ => hM j f)
     simpa only [Finset.sum_const, Finset.card_univ, Fintype.card_fin, smul_eq_mul,
       Nat.mul_assoc] using h.trans h'
-  have h := Lax342547Proofs.StarRouting.matrix_add_rank
+  have h := Lax342547.StarRouting.matrix_add_rank
     (∑ j, ∑ f, (L j f e).transpose * v.val f * R j f e)
     (∑ j, ∑ f, L j e f * v.val f * (R j e f).transpose)
   have h₁ := hs _ hf
@@ -128,9 +133,9 @@ theorem target_matrix_rank {k n b degree r J : ℕ} {hr : 2 * r ≤ n}
     (L R : Fin J → Component (Tag k) → Component (Tag k) → Moment k n b degree)
     (i z : Fin 2) (e : Component (Tag k)) :
     (targetMatrix W D L R i z e).rank ≤ 15 * r + 14 * J * Fintype.card (Component (Tag k)) := by
-  have ht := Lax342547Proofs.TargetTesters.witness_tester_rank W D i z e
-  have hm := mixer_matrix_rank L R (leftWitness W i z) 7 (witness_component_rank W i z) e
-  have ha := Lax342547Proofs.StarRouting.matrix_add_rank
+  have ht := Lax342547.TargetTesters.witness_tester_rank W D i z e
+  have hm := Lax342547.TargetMatrices.mixer_matrix_rank L R (leftWitness W i z) 7 (Lax342547.TargetMatrices.witness_component_rank W i z) e
+  have ha := Lax342547.StarRouting.matrix_add_rank
     (witnessTesterMatrix W D i z e) (mixerMatrix L R (leftWitness W i z) e)
   exact ha.trans (by nlinarith)
 
@@ -150,9 +155,9 @@ theorem target_matrix_representation {k n b degree r J : ℕ} {hr : 2 * r ≤ n}
   classical
   change (∑ e, matrixPairing (targetMatrix W D L R i z e) (x.val e)) = _
   simp only [targetMatrix, map_add, LinearMap.add_apply, Finset.sum_add_distrib]
-  have ht := Lax342547Proofs.TargetTesters.witness_tester_representation W D i z hodd x
+  have ht := Lax342547.TargetTesters.witness_tester_representation W D i z hodd x
   change (∑ e, matrixPairing (witnessTesterMatrix W D i z e) (x.val e)) = _ at ht
-  have hm := mixer_matrix_representation L R (leftWitness W i z) x
+  have hm := Lax342547.TargetMatrices.mixer_matrix_representation L R (leftWitness W i z) x
   change (∑ e, matrixPairing (mixerMatrix L R (leftWitness W i z) e) (x.val e)) = _ at hm
   rw [ht, hm]
   simp only [testerTarget, gradient, Lax342547.GradientForm.form, LinearMap.add_apply,
@@ -178,6 +183,6 @@ theorem target_family_representation {k n b degree r J : ℕ} {hr : 2 * r ≤ n}
     LinearMap.comp_apply, LinearMap.proj_apply, Submodule.subtype_apply]
   apply Finset.sum_congr rfl
   intro i _
-  exact target_matrix_representation W D L R i z (hodd i) (x i)
+  exact Lax342547.TargetMatrices.target_matrix_representation W D L R i z (hodd i) (x i)
 
 end Lax342547Proofs.TargetMatrices

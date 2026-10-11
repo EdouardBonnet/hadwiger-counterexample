@@ -3,7 +3,7 @@ import Lax342547.LowRankCounting
 /-!
 ---
 title: Symmetric low-rank factorization, including characteristic two
-type: theorem
+type: lemma
 ---
 A symmetric rank-r matrix has a factorization Z H Zᵀ with Z injective
 and H symmetric and nonsingular. No assumption on the diagonal is made.

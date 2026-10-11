@@ -4,7 +4,7 @@ import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
 /-!
 ---
 title: Rank loss under restriction of a bilinear form
-type: theorem
+type: lemma
 ---
 Restricting both arguments to a subspace of codimension c loses at
 most 2c in rank. No symmetry, positivity, or characteristic assumption

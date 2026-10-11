@@ -1,8 +1,11 @@
 import Lax342547.PrimalAvoidance
 import Lax342547Proofs.FiniteLinearLaw
-import Lax342547Proofs.ChannelColumns
-import Lax342547Proofs.InjectiveFrames
-import Lax342547Proofs.PhaseAverages
+import Lax342547.ChannelColumns
+import Lax342547.FiniteLinearLaw
+import Lax342547.FiniteSampling
+import Lax342547.PhaseAverages
+import Lax342547.RealCellLaws
+import Lax342547Proofs.Walsh
 
 namespace Lax342547Proofs.PrimalAvoidance
 open Lax342547.PrimalAvoidance
@@ -39,7 +42,7 @@ theorem matrix_vector_uniform {B N : Type} [Fintype B] [Fintype N]
     [DecidableEq B] [DecidableEq N] (c : B → Binary) (hc : c ≠ 0) :
     (PMF.uniformOfFintype (Matrix N B Binary)).map (fun A : Matrix N B Binary => A.mulVec c) =
       PMF.uniformOfFintype (N → Binary) := by
-  exact Lax342547Proofs.FiniteLinearLaw.uniform_image_of_surjective (evalMatrix c) (evalMatrix_surjective c hc)
+  exact Lax342547.FiniteLinearLaw.uniform_image_of_surjective (evalMatrix c) (Lax342547.PrimalAvoidance.evalMatrix_surjective c hc)
 
 /--
 ---
@@ -50,7 +53,7 @@ theorem uniform_subspace_mass {N : Type} [Fintype N] [DecidableEq N] (W : Submod
     cellMass (weights (PMF.uniformOfFintype (N → Binary))) (fun v => v ∈ W) =
       (2 : ℝ)^Module.finrank Binary W/(2 : ℝ)^Fintype.card N := by
   classical
-  rw [Lax342547Proofs.RealCellLaws.event_mass,PMF.toOuterMeasure_uniformOfFintype_apply]
+  rw [Lax342547.RealCellLaws.event_mass,PMF.toOuterMeasure_uniformOfFintype_apply]
   change ((Fintype.card W : ℝ≥0∞)/(Fintype.card (N → Binary) : ℝ≥0∞)).toReal = _
   rw [Lax342547Proofs.FiniteLinearLaw.binary_card W]
   have hn : Fintype.card (N → Binary) = 2^Fintype.card N := by simp [ZMod.card]
@@ -66,15 +69,15 @@ theorem fixed_vector_subspace_mass {B N : Type} [Fintype B] [Fintype N]
     [DecidableEq B] [DecidableEq N] (c : B → Binary) (hc : c ≠ 0) (W : Submodule Binary (N → Binary)) :
     cellMass (weights (PMF.uniformOfFintype (Matrix N B Binary))) (fun A => A.mulVec c ∈ W) =
       (2 : ℝ)^Module.finrank Binary W/(2 : ℝ)^Fintype.card N := by
-  have ht := matrix_vector_uniform (N := N) c hc
+  have ht := Lax342547.PrimalAvoidance.matrix_vector_uniform (N := N) c hc
   have he : push (weights (PMF.uniformOfFintype (Matrix N B Binary))) (fun A : Matrix N B Binary => A.mulVec c) =
       weights (PMF.uniformOfFintype (N → Binary)) := by
     funext v
-    rw [← Lax342547Proofs.ChannelColumns.pmf_weights_map,ht]
+    rw [← Lax342547.ChannelColumns.pmf_weights_map,ht]
   calc
     _ = cellMass (push (weights (PMF.uniformOfFintype (Matrix N B Binary))) (fun A : Matrix N B Binary => A.mulVec c)) (fun v => v ∈ W) :=
-      (Lax342547Proofs.ChannelColumns.push_cell_mass _ (fun A : Matrix N B Binary => A.mulVec c) (fun v => v ∈ W)).symm
-    _ = _ := by rw [he];exact uniform_subspace_mass W
+      (Lax342547.ChannelColumns.push_cell_mass _ (fun A : Matrix N B Binary => A.mulVec c) (fun v => v ∈ W)).symm
+    _ = _ := by rw [he];exact Lax342547.PrimalAvoidance.uniform_subspace_mass W
 
 /--
 ---
@@ -97,8 +100,8 @@ theorem matrix_span_hit_mass {B N : Type} [Fintype B] [Fintype N]
     constructor
     · rintro ⟨c,hc,hW⟩;exact ⟨⟨c,hc⟩,hW⟩
     · rintro ⟨c,hW⟩;exact ⟨c.val,c.property,hW⟩
-  have hu := Lax342547Proofs.FiniteSampling.cell_mass_union_bound ρ P Finset.univ
-    (Lax342547Proofs.RealCellLaws.weights_nonneg _)
+  have hu := Lax342547.FiniteSampling.cell_mass_union_bound ρ P Finset.univ
+    (Lax342547.RealCellLaws.weights_nonneg _)
   simp only [Finset.mem_univ,true_and] at hu
   have hc : (Fintype.card C : ℝ) ≤ (2 : ℝ)^Fintype.card B := by
     have hh := Fintype.card_le_of_injective (fun c : C => c.val) Subtype.val_injective
@@ -111,7 +114,7 @@ theorem matrix_span_hit_mass {B N : Type} [Fintype B] [Fintype N]
     _ = ∑ _c : C,(2 : ℝ)^Module.finrank Binary W/(2 : ℝ)^Fintype.card N := by
       apply Finset.sum_congr rfl
       intro c _
-      exact fixed_vector_subspace_mass c.val c.property W
+      exact Lax342547.PrimalAvoidance.fixed_vector_subspace_mass c.val c.property W
     _ = (Fintype.card C : ℝ)*((2 : ℝ)^Module.finrank Binary W/(2 : ℝ)^Fintype.card N) := by simp
     _ ≤ (2 : ℝ)^Fintype.card B*((2 : ℝ)^Module.finrank Binary W/(2 : ℝ)^Fintype.card N) :=
       mul_le_mul_of_nonneg_right hc (by positivity)
@@ -128,9 +131,9 @@ theorem capped_matrix_span_hit {B N : Type} [Fintype B] [Fintype N]
     (W : Submodule Binary (N → Binary)) :
     cellMass μ (fun A => ∃ c : B → Binary,c ≠ 0 ∧ A.mulVec c ∈ W) ≤
       L*((2 : ℝ)^(Fintype.card B+Module.finrank Binary W)/(2 : ℝ)^Fintype.card N) := by
-  have hd := Lax342547Proofs.PhaseAverages.finite_event_density
+  have hd := Lax342547.PhaseAverages.finite_event_density
     (weights (PMF.uniformOfFintype (Matrix N B Binary))) μ L hcap
     (fun A => ∃ c : B → Binary,c ≠ 0 ∧ A.mulVec c ∈ W)
-  exact hd.trans (mul_le_mul_of_nonneg_left (matrix_span_hit_mass W) hL)
+  exact hd.trans (mul_le_mul_of_nonneg_left (Lax342547.PrimalAvoidance.matrix_span_hit_mass W) hL)
 
 end Lax342547Proofs.PrimalAvoidance

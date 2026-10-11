@@ -1,5 +1,5 @@
 import Lax342547.ImageScale
-import Lax342547Proofs.ReferenceImages
+import Lax342547.ReferenceImages
 
 namespace Lax342547Proofs.ImageScale
 
@@ -98,7 +98,7 @@ theorem exists_paper_scale (pStar g h c : ℕ) (ε : ℝ) (hε : 0 < ε) :
       2 * (pStar * (1 + (g * g + 3) * n) + h) + 1 ≤ M * n ∧
       (4 : ℝ) * (pStar * (1 + (g * g + 3) * n) + h : ℕ) ≤ ε * (M * n : ℕ) ∧
       (8 : ℝ) * c ≤ ε * (M * n : ℕ) := by
-  obtain ⟨M, hM⟩ := exists_scale (pStar * (g * g + 3)) (pStar + h) c ε hε
+  obtain ⟨M, hM⟩ := Lax342547.ImageScale.exists_scale (pStar * (g * g + 3)) (pStar + h) c ε hε
   refine ⟨M, fun n hn => ?_⟩
   have he : pStar * (g * g + 3) * n + (pStar + h) = pStar * (1 + (g * g + 3) * n) + h := by ring
   simpa only [he] using hM n hn
@@ -128,9 +128,9 @@ theorem reference_image_cap {Comp B H N : Type}
     (PMF.uniformOfFintype (Fin 2 → Comp → Frame B H N E)).toOuterMeasure
       {o | ∀ e, plusImages (C e) (fun i => o i e) = y e ∧ minusImages (D e) (fun i => o i e) = z e} ≤
       (2 : ℝ≥0∞) ^ (-((1 - ε) * ((∑ e, (C e).rank) + ∑ e, (D e).rank : ℕ) * Fintype.card N)) := by
-  have hb := ReferenceImages.all_components_cap (E := E) hN C D y z
+  have hb := Lax342547.ReferenceImages.all_components_cap (E := E) hN C D y z
   simp only [Fintype.card_fin] at hb
-  exact hb.trans (cost_bound (Fintype.card Comp) (Fintype.card B + Fintype.card H)
+  exact hb.trans (Lax342547.ImageScale.cost_bound (Fintype.card Comp) (Fintype.card B + Fintype.card H)
     (Fintype.card N) (∑ e, (C e).rank) (∑ e, (D e).rank) ε hε (by omega) ht hp hc)
 
 end Lax342547Proofs.ImageScale

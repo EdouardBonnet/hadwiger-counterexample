@@ -1,5 +1,5 @@
 import Lax342547.ContainerLaws
-import Lax342547Proofs.UnitLaws
+import Lax342547.EntropyProjection
 
 namespace Lax342547Proofs.ContainerLaws
 open Lax342547.ContainerLaws
@@ -105,7 +105,7 @@ theorem support_mass_positive {U : Type} [Fintype U]
     (hs : ∀ x, ¬ S x → σ x = 0) (hfull : ∀ x, 0 < σ x → 0 < ρ x) :
     0 < cellMass ρ S := by
   classical
-  obtain ⟨x,hx⟩ := positive_support σ hσ
+  obtain ⟨x,hx⟩ := Lax342547.ContainerLaws.positive_support σ hσ
   have hS : S x := by
     by_contra hn
     rw [hs x hn] at hx
@@ -138,7 +138,7 @@ theorem heavy_neighbor {U : Type} [Fintype U] (ρ : U → ℝ) (H : U → U → 
       by_cases hv : v ∈ R
       · exact mul_le_mul_of_nonneg_left (hn v hv).le (hρ.1 v)
       · simp [hs v hv]
-    · obtain ⟨v,hv⟩ := positive_support ρ hρ
+    · obtain ⟨v,hv⟩ := Lax342547.ContainerLaws.positive_support ρ hρ
       have hvR : v ∈ R := by
         by_contra hnR
         rw [hs v hnR] at hv
@@ -155,7 +155,7 @@ conclusion: Lax342547.ContainerLaws.minimum_mono
 theorem minimum_mono {U : Type} [Fintype U] (P : Set (U → ℝ)) (q ρ σ : U → ℝ)
     (R T : Finset U) (hTR : T ⊆ R) (hσ : σ ∈ residual P T)
     (hmin : ∀ τ ∈ residual P R, entropy ρ q ≤ entropy τ q) : entropy ρ q ≤ entropy σ q := by
-  exact hmin σ (residual_mono P R T hTR hσ)
+  exact hmin σ (Lax342547.ContainerLaws.residual_mono P R T hTR hσ)
 
 /--
 ---
@@ -170,16 +170,16 @@ theorem recording_entropy_increment {U : Type} [Fintype U]
     (_hε : ε < 1) (hheavy : ε ≤ neighborMass ρ H v) :
     -Real.log (1-ε) ≤ entropy σ q-entropy ρ q := by
   have hpr : ∀ τ ∈ residual P R, Probability τ := fun τ hτ => hprob τ hτ.1
-  have hc := residual_convex P R hconv
-  have hfull := Lax342547Proofs.EntropyProjection.minimizer_full_support
+  have hc := Lax342547.ContainerLaws.residual_convex P R hconv
+  have hfull := Lax342547.EntropyProjection.minimizer_full_support
     (residual P R) q ρ hpr hc hρ hmin σ hσ.1
-  have hpos := support_mass_positive ρ σ (fun x => ¬ H v x) (hprob ρ hρ.1)
+  have hpos := Lax342547.ContainerLaws.support_mass_positive ρ σ (fun x => ¬ H v x) (hprob ρ hρ.1)
     (hprob σ hσ.1.1) (by simpa using hσ.2) hfull
-  have hcost := Lax342547Proofs.EntropyProjection.projection_support_cost
+  have hcost := Lax342547.EntropyProjection.projection_support_cost
     (residual P R) q ρ hpr hc hρ hmin σ hσ.1 (fun x => ¬ H v x)
     (by simpa using hσ.2) hpos
   have hmass : cellMass ρ (fun x => ¬ H v x) ≤ 1-ε := by
-    rw [mass_complement ρ (H v) (hprob ρ hρ.1)]
+    rw [Lax342547.ContainerLaws.mass_complement ρ (H v) (hprob ρ hρ.1)]
     exact sub_le_sub_left hheavy 1
   have hlog := Real.log_le_log hpos hmass
   linarith

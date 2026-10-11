@@ -1,6 +1,8 @@
 import Lax342547.FrozenGradients
-import Lax342547Proofs.FrozenAssembly
-import Lax342547Proofs.PairedRecipes
+import Lax342547.FrozenAssembly
+import Lax342547.GradientAssembly
+import Lax342547.PairedRecipes
+import Lax342547.RecipeChannels
 
 namespace Lax342547Proofs.FrozenGradients
 open Lax342547.FrozenGradients
@@ -68,7 +70,7 @@ theorem frozen_gradients {k n b degree r : ℕ} {hr : 2 * r ≤ n}
     exact ⟨(hbounded e z).2.2.1, (hbounded e z).2.2.2, (hbounded e z).1, (hbounded e z).2.1⟩
   have hflipFrozen : Frozen F.flip (Lax342547.PairedRecipes.flip W) Q P oB oA := by
     intro e
-    simpa only [Lax342547Proofs.FrozenAssembly.flip_lists_twice] using ⟨(hfrozen e).2, (hfrozen e).1⟩
+    simpa only [Lax342547.FrozenAssembly.flip_lists_twice] using ⟨(hfrozen e).2, (hfrozen e).1⟩
   have hflipKeys : MatchedKeys (Lax342547.PairedRecipes.flip W) oB oA := by
     intro z i t e htag
     have ht : (W.left i z t).tag ∈ e.val := by
@@ -77,18 +79,18 @@ theorem frozen_gradients {k n b degree r : ℕ} {hr : 2 * r ≤ n}
       exact htag
     have h := hkeys i z t e ht
     exact ⟨h.1.symm, h.2.symm⟩
-  have hflipRecipe := Lax342547Proofs.PairedRecipes.flip_recipe W D L R oA oB T A B hrecipe
-  have hleft (z : Fin 2) := Lax342547Proofs.RecipeChannels.nonlinear_recipe hk W D L R oA oB
+  have hflipRecipe := Lax342547.PairedRecipes.flip_recipe W D L R oA oB T A B hrecipe
+  have hleft (z : Fin 2) := Lax342547.RecipeChannels.nonlinear_recipe hk W D L R oA oB
     P Q hK hQ A B hA hfresh U V hU hV T hT F hF hbounded hrecipe hfrozen hkeys
     hgradients hdegree z hmargin hchannels
-  have hright (i : Fin 2) := Lax342547Proofs.RecipeChannels.nonlinear_recipe hk
+  have hright (i : Fin 2) := Lax342547.RecipeChannels.nonlinear_recipe hk
     (Lax342547.PairedRecipes.flip W) D L R oB oA Q P hQ hK B A hB
     (fun z i t => hrecipe.fresh.2 i z t) U' V' hU' hV' (flipTable T) hflipT F.flip
     hflipF hflipBound hflipRecipe hflipFrozen hflipKeys hgradients' hdegree i hmargin hchannels
   choose δ ε hδ using hleft
   choose δ' ε' hδ' using hright
   refine ⟨Lax342547.ChannelAssembly.assemble W P Q U V U' V' F δ ε δ' ε',
-    Lax342547Proofs.FrozenAssembly.assembled_frozen W P Q U V U' V' F δ ε δ' ε' oA oB hfrozen, ?_⟩
-  exact Lax342547Proofs.GradientAssembly.simultaneous_gradients W P Q U V U' V' F δ ε δ' ε' D L R hδ hδ'
+    Lax342547.FrozenAssembly.assembled_frozen W P Q U V U' V' F δ ε δ' ε' oA oB hfrozen, ?_⟩
+  exact Lax342547.GradientAssembly.simultaneous_gradients W P Q U V U' V' F δ ε δ' ε' D L R hδ hδ'
 
 end Lax342547Proofs.FrozenGradients

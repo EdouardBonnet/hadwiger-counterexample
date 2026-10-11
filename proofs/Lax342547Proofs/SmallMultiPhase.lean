@@ -1,8 +1,7 @@
 import Lax342547.SmallMultiPhase
-import Lax342547Proofs.FixedMultiPhase
-import Lax342547Proofs.GroupPhaseScale
-import Lax342547Proofs.PhaseScales
-import Lax342547Proofs.PhaseScales
+import Lax342547.FixedMultiPhase
+import Lax342547.GroupPhaseScale
+import Lax342547.PhaseScales
 
 namespace Lax342547Proofs.SmallMultiPhase
 
@@ -44,11 +43,11 @@ theorem no_cover_marked_unit_phase_small {e d B N Ω U : Type} [Fintype e] [Fint
       (Module.finrank Binary T : ℝ) ≤ (r : ℝ)*(Fintype.card N/c) →
       cellMass μ (fun x => projection (LinearMap.piMap (fun i => (A x i).mulVecLin)) S T = 0) ≤ 1/(2 : ℝ)^P) :
     |∑ o, β o*(∑ x, μ x*ψ (S o) x*tensorCharacter h (fun i : e × d => A x i.1) (columnsEquiv h (fun a => channels (image o a))))| < 1/200 := by
-  have hh' := Lax342547Proofs.FixedMultiPhase.fixed_parameter_marked_unit_phase (d := d) E μ A ψ r h a c (2*r+10) P
+  have hh' := Lax342547.FixedMultiPhase.fixed_parameter_marked_unit_phase (d := d) E μ A ψ r h a c (2*r+10) P
     hN hμ hr hA hψ hc hscale hP hh β image L S hβ hL hβcap hS hcover
-  have hbudget := Lax342547Proofs.GroupPhaseScale.group_phase_density_budget r h m (Fintype.card N) (2*r+10)
+  have hbudget := Lax342547.GroupPhaseScale.group_phase_density_budget r h m (Fintype.card N) (2*r+10)
     (Fintype.card e) (Fintype.card (e × d)) L hL hLcap le_rfl hbig
   exact (hh'.trans (add_le_add le_rfl hbudget)).trans_lt
-    (Lax342547Proofs.PhaseScales.phase_numerical_margin a (Fintype.card N) ha hpos)
+    (Lax342547.PhaseScales.phase_numerical_margin a (Fintype.card N) ha hpos)
 
 end Lax342547Proofs.SmallMultiPhase

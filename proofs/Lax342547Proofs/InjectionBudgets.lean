@@ -1,5 +1,5 @@
 import Lax342547.InjectionBudgets
-import Lax342547Proofs.MomentBudgets
+import Lax342547.MomentBudgets
 
 namespace Lax342547Proofs.InjectionBudgets
 open Lax342547.InjectionBudgets
@@ -34,7 +34,7 @@ theorem amplified_ratio_budget (h K ℓ t m c N : ℕ) (L gap count : ℝ)
     simp only [← pow_add]
     congr 1
     ring
-  exact (h₂.trans h₃).trans (he ▸ Lax342547Proofs.MomentBudgets.power_ratio_bound _ _ _ hb)
+  exact (h₂.trans h₃).trans (he ▸ Lax342547.MomentBudgets.power_ratio_bound _ _ _ hb)
 
 /--
 ---
@@ -58,7 +58,7 @@ theorem early_channel_margin (K t Cs m h N : ℕ)
     (hh : 2*K+t+20*(K+1)*(Cs+3) ≤ h)
     (hN : 20*(K+1) ≤ N) (hm : m+h*K ≤ N) :
     (m+N)+Cs*N+h*K+(2*K+t)*(N/(10*(K+1)))+N ≤ h*(N/(10*(K+1))) := by
-  have hlen := quotient_probe_length K N hN
+  have hlen := Lax342547.InjectionBudgets.quotient_probe_length K N hN
   have hmul := Nat.mul_le_mul_right (N/(10*(K+1))) hh
   have hp := Nat.mul_le_mul_left (Cs+3) hlen
   nlinarith
@@ -75,8 +75,8 @@ theorem accepting_family_exponential_budget (K t Cs m h N : ℕ) (L gap count : 
     (hN : 20*(K+1) ≤ N) (hm : m+h*K ≤ N) :
     count*((L*((2 : ℝ)^(h*K+2*K*(N/(10*(K+1))))/(2 : ℝ)^(h*(N/(10*(K+1))))))/gap^(N/(10*(K+1)))) ≤
       1/(2 : ℝ)^N := by
-  exact amplified_ratio_budget h K (N/(10*(K+1))) t (m+N) (Cs*N) N L gap count
-    hL hg hLc hc hcount (early_channel_margin K t Cs m h N hh hN hm)
+  exact Lax342547.InjectionBudgets.amplified_ratio_budget h K (N/(10*(K+1))) t (m+N) (Cs*N) N L gap count
+    hL hg hLc hc hcount (Lax342547.InjectionBudgets.early_channel_margin K t Cs m h N hh hN hm)
 
 /--
 ---
@@ -113,7 +113,7 @@ theorem conditioned_avoidance_budget (K b h m N : ℕ) (M : ℝ)
     rw [pow_succ]
     simp only [← pow_add]
     ring
-  exact hmono.trans (he ▸ Lax342547Proofs.MomentBudgets.power_ratio_bound _ _ _
-    (primal_avoidance_exponent K b h m N hb hm))
+  exact hmono.trans (he ▸ Lax342547.MomentBudgets.power_ratio_bound _ _ _
+    (Lax342547.InjectionBudgets.primal_avoidance_exponent K b h m N hb hm))
 
 end Lax342547Proofs.InjectionBudgets

@@ -1,7 +1,9 @@
 import Lax342547.GramColumns
-import Lax342547Proofs.AffineImages
 import Lax342547Proofs.PairedFrames
 import Lax342547Proofs.FiniteUniform
+import Lax342547.AffineImages
+import Lax342547.FiniteLinearLaw
+import Lax342547Proofs.MixerCompatibility
 
 namespace Lax342547Proofs.GramColumns
 open Lax342547.MomentSpace Lax342547.GramColumns
@@ -26,7 +28,7 @@ A left inverse of the plus frame makes its transpose surjective. Left multiplica
 theorem gram_uniform [DecidableEq I] [DecidableEq J] [DecidableEq N] (A : Matrix N I Binary) (hA : Function.Injective A.mulVec) :
     (PMF.uniformOfFintype (Matrix N J Binary)).map (gramMap A) =
       PMF.uniformOfFintype (Matrix I J Binary) :=
-  Lax342547Proofs.FiniteLinearLaw.uniform_image_of_surjective _ (gram_surjective A hA)
+  Lax342547.FiniteLinearLaw.uniform_image_of_surjective _ (gram_surjective A hA)
 
 /--
 ---
@@ -38,7 +40,7 @@ theorem gram_probability [DecidableEq I] [DecidableEq J] [DecidableEq N] (A : Ma
     (G : Matrix I J Binary) :
     (PMF.uniformOfFintype (Matrix N J Binary)).toOuterMeasure {B | A.transpose * B = G} =
       1 / (2 : ℝ≥0∞) ^ (Fintype.card I * Fintype.card J) := by
-  have h := congrArg (fun p : PMF (Matrix I J Binary) => p.toOuterMeasure {G}) (gram_uniform A hA)
+  have h := congrArg (fun p : PMF (Matrix I J Binary) => p.toOuterMeasure {G}) (Lax342547.GramColumns.gram_uniform A hA)
   rw [PMF.toOuterMeasure_map_apply, PMF.toOuterMeasure_apply_singleton,
     PMF.uniformOfFintype_apply] at h
   change (PMF.uniformOfFintype (Matrix N J Binary)).toOuterMeasure {B | A.transpose * B = G} = _ at h
@@ -98,7 +100,7 @@ theorem conditional_failure [DecidableEq I] [DecidableEq J] [DecidableEq N]
     rw [Set.mem_preimage, Set.mem_ofPred_eq, Set.mem_ofPred_eq, he]
     rfl
   rw [hset]
-  have hb := Lax342547Proofs.AffineImages.dependence_bound (fun _ : J => S) S (fun _ => le_rfl) a
+  have hb := Lax342547.AffineImages.dependence_bound (fun _ : J => S) S (fun _ => le_rfl) a
   have hd := A.transpose.mulVecLin.finrank_range_add_finrank_ker
   rw [LinearMap.range_eq_top.mpr (Lax342547Proofs.PairedFrames.transpose_surjective A hA),
     finrank_top, Module.finrank_fintype_fun_eq_card, Module.finrank_fintype_fun_eq_card] at hd
@@ -149,7 +151,7 @@ theorem extension_failure {K : Type} [Fintype K]
     rw [Set.mem_preimage, Set.mem_ofPred_eq, Set.mem_ofPred_eq, he]
     rfl
   rw [hset]
-  have hb := AffineImages.extension_dependence_bound P.mulVecLin hP
+  have hb := Lax342547.AffineImages.extension_dependence_bound P.mulVecLin hP
     (fun _ : J => S) S (fun _ => le_rfl) a
   have hd := A.transpose.mulVecLin.finrank_range_add_finrank_ker
   rw [LinearMap.range_eq_top.mpr (PairedFrames.transpose_surjective A hA),

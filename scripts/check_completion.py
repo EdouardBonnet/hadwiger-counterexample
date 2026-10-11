@@ -17,6 +17,20 @@ TARGETS = (
     "Lax342547.Counterexample.arbitrarily_large_hadwiger_counterexample",
     "Lax342547.FractionalCounterexample.arbitrarily_large_fractional_counterexample",
 )
+EXPECTED_ENDPOINT_DEPENDENCIES = {
+    TARGETS[0]: set(),
+    TARGETS[1]: {
+        TARGETS[0],
+        "Lax342547.MatchingMinorBound.hadwiger_matching_bound",
+        "Lax342547.ChromaticBound.card_le_twice_chromaticNumber_of_indepNum",
+    },
+    TARGETS[2]: {
+        TARGETS[0],
+        "Lax342547.MatchingMinorBound.hadwiger_matching_bound",
+        "Lax342547.FractionalColoring.fractional_chromatic_lower_bound",
+        "Lax342547.FractionalColoring.fractional_chromatic_le_chromatic",
+    },
+}
 
 
 def closed_statements(proofs):
@@ -58,9 +72,35 @@ def main():
         return 2
     closed = closed_statements(data["proofs"])
     missing = [target for target in TARGETS if target not in closed]
+    statements = {statement["id"] for concept in data["concepts"]
+                  for statement in concept["statements"]}
+    unresolved = sorted(statements - closed)
+    incomplete_proofs = [proof["id"] for proof in data["proofs"]
+                         if not set(proof["assumptions"]) <= closed]
     by_conclusion = {}
     for proof in data["proofs"]:
         by_conclusion.setdefault(proof["conclusion"], []).append(proof)
+    network_errors = []
+    for target, expected in EXPECTED_ENDPOINT_DEPENDENCIES.items():
+        for proof in by_conclusion.get(target, []):
+            if set(proof["assumptions"]) != expected:
+                network_errors.append(f"{proof['id']}: unexpected endpoint dependencies")
+    # Resolved Lean references catch qualified and unqualified implementation
+    # calls. Using concept statements is what makes the displayed network faithful.
+    implementation_ids = {proof["id"] for proof in data["proofs"]}
+    for artifact in (ROOT / "proofs" / ".lake" / "build" / "lib" / "lean").rglob("*.ilean"):
+        refs = json.loads(artifact.read_text())
+        if refs["module"].endswith(".AxiomAudit"):
+            continue  # The audit deliberately prints implementation axiom sets.
+        for key, reference in refs["references"].items():
+            name = json.loads(key).get("c", {}).get("n")
+            if name in implementation_ids and reference["usages"]:
+                network_errors.append(f"{refs['module']}: calls implementation {name}")
+    theorem_concepts = {concept["id"] for concept in data["concepts"]
+                        if concept["type"] == "theorem"}
+    if theorem_concepts != {"Lax342547.FractionalCounterexample",
+                            "Lax342547.MatchingMinorBound"}:
+        network_errors.append("Unexpected theorem labels")
     for target in TARGETS:
         print(f"{'CLOSED' if target in closed else 'OPEN'}: {target}")
         if target not in closed:
@@ -68,12 +108,21 @@ def main():
             if not proofs:
                 print("  No annotated proof of this statement.")
             for proof in proofs:
-                unresolved = sorted(set(proof["assumptions"]) - closed)
-                print(f"  {proof['id']} still depends on: {', '.join(unresolved)}")
-    if missing:
+                unresolved_dependencies = sorted(set(proof["assumptions"]) - closed)
+                print(f"  {proof['id']} still depends on: {', '.join(unresolved_dependencies)}")
+    if missing or unresolved or incomplete_proofs or network_errors:
+        for statement in unresolved:
+            print(f"OPEN: {statement}")
+        for proof in incomplete_proofs:
+            print(f"UNRESOLVED PROOF: {proof}")
+        for error in network_errors:
+            print(f"NETWORK ERROR: {error}")
         print("Incomplete: do not submit this as a full proof of the counterexample.")
         return 1
-    print("All three targets have closed Lax proof networks. Review their semantics before submission.")
+    edges = sum(len(proof["assumptions"]) for proof in data["proofs"])
+    print(f"All {len(statements)} statements and {len(data['proofs'])} proofs are recursively closed "
+          f"({edges} statement dependencies).")
+    print("All three targets have the expected Lax dependencies. Review their semantics before submission.")
     return 0
 
 

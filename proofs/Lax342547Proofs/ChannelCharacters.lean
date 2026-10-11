@@ -1,7 +1,7 @@
 import Lax342547.ChannelCharacters
-import Lax342547Proofs.BilinearMean
-import Lax342547Proofs.FiniteMoments
 import Mathlib.Algebra.BigOperators.Field
+import Lax342547.BilinearMean
+import Lax342547Proofs.Walsh
 
 namespace Lax342547Proofs.ChannelCharacters
 open Lax342547.ChannelCharacters
@@ -42,7 +42,7 @@ theorem character_average {I J : Type} [Fintype I] [Fintype J]
       apply Finset.sum_congr rfl
       intro x _
       rw [Finset.sum_div]
-    _ = _ := Lax342547Proofs.BilinearMean.bilinear_character_average A
+    _ = _ := Lax342547.BilinearMean.bilinear_character_average A
 
 /--
 ---
@@ -67,7 +67,7 @@ theorem character_sum {I J ι : Type} [Fintype I] [Fintype J] [Fintype ι]
   have hh (T : Finset ι) : character (∑ i ∈ T, A i) c = ∏ i ∈ T, character (A i) c := by
     induction T using Finset.induction_on with
     | empty => simp [character,phase,Lax342547Proofs.Walsh.sign_zero]
-    | @insert i T hi ih => rw [Finset.sum_insert hi,Finset.prod_insert hi,character_add,ih]
+    | @insert i T hi ih => rw [Finset.sum_insert hi,Finset.prod_insert hi,Lax342547.ChannelCharacters.character_add,ih]
   exact hh Finset.univ
 
 /--
@@ -85,7 +85,7 @@ theorem repeated_character_average {I J : Type} [Fintype I] [Fintype J]
     _ = ∏ _i : Fin h, ∑ c : (I → Binary) × (J → Binary), channelLaw c*character A c :=
       (Fintype.prod_sum (fun _i : Fin h => fun c : (I → Binary) × (J → Binary) => channelLaw c*character A c)).symm
     _ = _ := by
-      simp_rw [character_average]
+      simp_rw [Lax342547.ChannelCharacters.character_average]
       rw [Finset.prod_const,Finset.card_univ,Fintype.card_fin,one_div_pow,← pow_mul,Nat.mul_comm]
 
 /--
@@ -101,6 +101,6 @@ theorem product_channel_characters {I J ι : Type} [Fintype I] [Fintype J] [Fint
   rw [Finset.prod_comm]
   apply Finset.prod_congr rfl
   intro j _
-  exact (character_sum A (c j)).symm
+  exact (Lax342547.ChannelCharacters.character_sum A (c j)).symm
 
 end Lax342547Proofs.ChannelCharacters

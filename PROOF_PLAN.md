@@ -6,8 +6,8 @@ The complete construction is integrated from the pinned upstream Lean developmen
 2. `Upstream.OAI.HadwigerCounterexample.ParameterExistence` proves the parameter choices. `FinalContradiction` closes the status/limit argument, including the rare-overlap case. `ExponentialGraphTransfer` produces sampled finite graphs from the actual raw law.
 3. `Upstream.OAI.HadwigerCounterexample.Main.exists_graphs` combines these proved components, with no supersaturation or graph-existence assumption.
 4. `Lax342547Proofs.Construction.arbitrarily_large_small_connected_matching` identifies matching numbers by definitional equality and proves the local Theorem 1.1 statement.
-5. The ordinary and fractional counterexample proofs call that actual construction theorem. Their annotations have no unresolved construction assumption.
-6. `AxiomAudit.lean`, `lax build . --replay`, and `scripts/check_completion.py` check the actual theorem axioms, replay the kernel, and verify closure of all three targets.
+5. The ordinary and fractional counterexample proofs use the construction's concept statement and the concept statements of their counting and coloring bounds. These dependencies are discharged by their respective proofs in the Lax network.
+6. `AxiomAudit.lean`, `lax build . --replay`, and `scripts/check_completion.py` check the theorem axioms, replay the kernel, and verify recursive closure of every statement and all three targets. The complete construction has only the standard background axioms; modular consequence proofs also list their proved concept dependencies.
 
 The original detailed plan is retained below as a historical record of the independently developed local route. Its references to open tasks and percentage checkpoints describe that route before upstream integration; they are not dependencies left in the complete proof.
 

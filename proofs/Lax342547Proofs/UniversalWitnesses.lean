@@ -1,6 +1,9 @@
 import Lax342547.UniversalWitnesses
-import Lax342547Proofs.IndependentWitnesses
-import Lax342547Proofs.PhaseAverages
+import Lax342547.ChannelColumns
+import Lax342547.FiniteSampling
+import Lax342547.IndependentWitnesses
+import Lax342547.PhaseAverages
+import Lax342547.RealCellLaws
 
 namespace Lax342547Proofs.UniversalWitnesses
 open Lax342547.UniversalWitnesses
@@ -37,10 +40,10 @@ theorem some_protected_witness_probability {I H N : Type}
   have hm : cellMass (weights (PMF.uniformOfFintype (Matrix N H Binary))) P ≤
       cellMass (weights (PMF.uniformOfFintype (Matrix N H Binary)))
         (fun Y => ∀ i,∃ v : V i,v.val ≠ 0 ∧ Y.transpose.mulVec v.val ∈ S Y) := by
-    apply Lax342547Proofs.FiniteSampling.cell_mass_mono _ _ _ (Lax342547Proofs.RealCellLaws.weights_nonneg _)
+    apply Lax342547.FiniteSampling.cell_mass_mono _ _ _ (Lax342547.RealCellLaws.weights_nonneg _)
     intro Y hY
     simpa only [S,dif_pos hY] using hY.choose_spec.2
-  exact hm.trans (Lax342547Proofs.IndependentWitnesses.adaptive_independent_witness_probability V hV S K hK hS)
+  exact hm.trans (Lax342547.IndependentWitnesses.adaptive_independent_witness_probability V hV S K hK hS)
 
 /--
 ---
@@ -61,13 +64,13 @@ theorem marked_unit_witness_probability {I H N B : Type}
     ∀ i,∃ v : V i,v.val ≠ 0 ∧ y.transpose.mulVec v.val ∈ T
   have hm : cellMass β (fun b => ∀ i,∃ v : V i,v.val ≠ 0 ∧ (Y b).transpose.mulVec v.val ∈ S b) ≤
       cellMass β (fun b => P (Y b)) := by
-    apply Lax342547Proofs.FiniteSampling.cell_mass_mono _ _ _ hβ
+    apply Lax342547.FiniteSampling.cell_mass_mono _ _ _ hβ
     intro b hb
     exact ⟨S b,hS b,hb⟩
-  have hp := Lax342547Proofs.ChannelColumns.push_cell_mass β Y P
-  have hd := Lax342547Proofs.PhaseAverages.finite_event_density
+  have hp := Lax342547.ChannelColumns.push_cell_mass β Y P
+  have hd := Lax342547.PhaseAverages.finite_event_density
     (weights (PMF.uniformOfFintype (Matrix N H Binary))) (push β Y) L hcap P
-  have hu := some_protected_witness_probability (H := H) V hV K hK
+  have hu := Lax342547.UniversalWitnesses.some_protected_witness_probability (H := H) V hV K hK
   exact (hm.trans_eq hp.symm).trans (hd.trans (mul_le_mul_of_nonneg_left hu hL))
 
 end Lax342547Proofs.UniversalWitnesses

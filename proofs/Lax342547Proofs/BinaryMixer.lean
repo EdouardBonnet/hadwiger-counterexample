@@ -1,7 +1,5 @@
 import Lax342547.BinaryMixer
-import Lax342547Proofs.Atoms
-import Lax342547Proofs.OrderedMixerLaw
-import Lax342547Proofs.SharpMixerLaw
+import Lax342547.SharpMixerLaw
 
 namespace Lax342547Proofs.BinaryMixer
 
@@ -98,7 +96,7 @@ theorem bilinearPart_eq (A : Moment k n b degree) (s t : Fin b → Binary)
   classical
   ext i j
   dsimp [bilinearPart, mixedMatrix]
-  rw [pointInput_affine s (Pi.single i 1), pointInput_affine t (Pi.single j 1)]
+  rw [Lax342547.BinaryMixer.pointInput_affine s (Pi.single i 1), Lax342547.BinaryMixer.pointInput_affine t (Pi.single j 1)]
   rw [affine_mixed]
   exact restriction_entry A _ _ i j
 
@@ -120,7 +118,7 @@ theorem block_rank_le (A : Moment k n b degree) (s t : Fin b → Binary)
     ((blockDirections s c).transpose * A * blockDirections t c).rank ≤
       (bilinearPart A s t l m f g).rank := by
   classical
-  rw [bilinearPart_eq]
+  rw [Lax342547.BinaryMixer.bilinearPart_eq]
   have heq : ((directions (degree := degree) s l f).transpose * A * directions t m g).submatrix
       (fun i => ⟨c i, hc i⟩) (fun i => ⟨c i, hd i⟩) =
       (blockDirections s c).transpose * A * blockDirections t c := by
@@ -152,7 +150,7 @@ theorem parity_free_block {r : ℕ} {F : Type} [Fintype F]
     Matrix.mul_smul, Matrix.smul_mul, Lax342547.OrderedMixerLaw.familyParity, LinearMap.sum_apply,
     LinearMap.comp_apply, LinearMap.proj_apply, Lax342547.OrderedMixerLaw.parity,
     Lax342547.OrderedMixerLaw.orders, LinearMap.coe_mk, AddHom.coe_mk]
-  simp only [restrict_transpose, SharpMixerLaw.selfGram_free_block, Matrix.transpose_zero,
+  simp only [restrict_transpose, Lax342547.SharpMixerLaw.selfGram_free_block, Matrix.transpose_zero,
     smul_zero, add_zero]
 
 /--
@@ -170,7 +168,7 @@ theorem selfGram_parity_sharp_block {r : ℕ} (hr : 2 * r ≤ n) (hd : 1 ≤ deg
       c • Lax342547.SharpMixerLaw.weighted (fun a => s a + t a) M +
         d • (Lax342547.SharpMixerLaw.weighted (fun a => s a + t a) M).transpose := by
   simp only [Matrix.mul_add, Matrix.add_mul, Matrix.mul_smul, Matrix.smul_mul,
-    restrict_transpose, SharpMixerLaw.selfGram_sharp_block]
+    restrict_transpose, Lax342547.SharpMixerLaw.selfGram_sharp_block]
   simp only [add_comm]
 
 end Lax342547Proofs.BinaryMixer

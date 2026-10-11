@@ -4,7 +4,7 @@ import Mathlib.Algebra.Ring.Parity
 /-!
 ---
 title: Well-defined cut functionals
-type: theorem
+type: lemma
 ---
 A tester vanishing on the common kernel gives a well-defined sum over
 all representative values. For an odd number of tags, summing any

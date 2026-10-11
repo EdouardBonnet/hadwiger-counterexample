@@ -1,7 +1,7 @@
 import Lax342547.TerminalCuts
-import Lax342547Proofs.BipartiteFlows
-import Lax342547Proofs.UnitLaws
-import Lax342547Proofs.CellAveraging
+import Lax342547.BipartiteFlows
+import Lax342547.CellAveraging
+import Lax342547.FlowCuts
 
 namespace Lax342547Proofs.TerminalCuts
 open Lax342547.TerminalCuts
@@ -57,7 +57,7 @@ theorem bipartite_cut_capacity {A B : Type} [Fintype A] [Fintype B]
         (∑ x, if left x ∉ Z then a x else 0)+(∑ y, if right y ∈ Z then b y else 0)+
         (∑ x, ∑ y, if left x ∈ Z ∧ right y ∉ Z then p x y else 0) := by
   classical
-  rw [Lax342547Proofs.FlowCuts.cut_indicator]
+  rw [Lax342547.FlowCuts.cut_indicator]
   simp only [Fintype.sum_sum_type,Fintype.sum_bool]
   change Sum.inl false ∈ Z at hs
   change Sum.inl true ∉ Z at ht
@@ -86,8 +86,8 @@ theorem terminal_cut {Ω : Type} [Fintype Ω]
     · exact le_rfl
   have hn' : ¬ ∃ ρ, Law (fun x => M*μ x) (fun y => M*μ y) (pairCapacity μ R κ) ρ := by
     rintro ⟨ρ,hρ⟩
-    exact hn ⟨fun xy => ρ xy.1 xy.2, (law_iff_masked μ R M κ ρ hμ hκ.le).mp hρ⟩
-  obtain ⟨Z,hs,ht,hcut⟩ := Lax342547Proofs.BipartiteFlows.infeasible_cut
+    exact hn ⟨fun xy => ρ xy.1 xy.2, (Lax342547.TerminalCuts.law_iff_masked μ R M κ ρ hμ hκ.le).mp hρ⟩
+  obtain ⟨Z,hs,ht,hcut⟩ := Lax342547.BipartiteFlows.infeasible_cut
     (fun x => M*μ x) (fun y => M*μ y) (pairCapacity μ R κ)
     (fun x => mul_nonneg hM.le (hμ x)) (fun y => mul_nonneg hM.le (hμ y)) hpair hn'
   let L : Ω → Prop := fun x => left x ∉ Z
@@ -96,7 +96,7 @@ theorem terminal_cut {Ω : Type} [Fintype Ω]
   let E : Ω → Ω → Prop := fun x y => R x y ∧ left x ∈ Z ∧ right y ∉ Z
   have heq : cutCapacity (capacity (fun x => M*μ x) (fun y => M*μ y) (pairCapacity μ R κ)) Z =
       M*cellMass μ L+M*cellMass μ T+κ*pairEventMass μ μ E := by
-    rw [bipartite_cut_capacity _ _ _ Z hs ht]
+    rw [Lax342547.TerminalCuts.bipartite_cut_capacity _ _ _ Z hs ht]
     unfold cellMass pairEventMass
     simp only [Finset.mul_sum]
     apply congrArg₂ (· + ·)
@@ -122,7 +122,7 @@ theorem terminal_cut {Ω : Type} [Fintype Ω]
     unfold cellMass
     exact Finset.sum_nonneg (fun x _ => by split_ifs; exact hμ x; exact le_rfl)
   have hE : 0 ≤ pairEventMass μ μ E :=
-    Lax342547Proofs.CellAveraging.pair_event_mass_nonneg μ μ E hμ hμ
+    Lax342547.CellAveraging.pair_event_mass_nonneg μ μ E hμ hμ
   have hS : cellMass μ S ≤ cellMass μ L+cellMass μ T := by
     unfold cellMass
     rw [← Finset.sum_add_distrib]

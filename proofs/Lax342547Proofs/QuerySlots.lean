@@ -1,6 +1,4 @@
 import Lax342547.QuerySlots
-import Lax342547Proofs.StarRouting
-import Lax342547Proofs.PairedWitnesses
 
 namespace Lax342547Proofs.QuerySlots
 open Lax342547.QuerySlots
@@ -40,7 +38,7 @@ conclusion: Lax342547.QuerySlots.position_budget
 -/
 theorem position_budget {k n b degree r : ℕ} {hr : 2 * r ≤ n} (W : Lists k n b degree r hr) :
     Fintype.card (Position W) ≤ 28 := by
-  rw [position_count]
+  rw [Lax342547.QuerySlots.position_count]
   calc
     _ ≤ ∑ _ : Fin 2, ∑ _ : Fin 2, 7 := by
       apply Finset.sum_le_sum
@@ -56,7 +54,7 @@ conclusion: Lax342547.QuerySlots.slot_count
 theorem slot_count {k n b degree r : ℕ} {hr : 2 * r ≤ n} (W : Lists k n b degree r hr) :
     Fintype.card (Slot W) = Fintype.card (Position W) * (4 * k) := by
   classical
-  simp [Slot, Position, Fintype.card_sigma, incident_count, Nat.mul_assoc]
+  simp [Slot, Position, Fintype.card_sigma, Lax342547.QuerySlots.incident_count, Nat.mul_assoc]
   omega
 
 /--
@@ -66,8 +64,8 @@ conclusion: Lax342547.QuerySlots.slot_budget
 -/
 theorem slot_budget {k n b degree r : ℕ} {hr : 2 * r ≤ n} (W : Lists k n b degree r hr) :
     Fintype.card (Slot W) ≤ 56 * (Fintype.card (Tag k) - 1) := by
-  rw [slot_count]
-  have h := Nat.mul_le_mul_right (4 * k) (position_budget W)
+  rw [Lax342547.QuerySlots.slot_count]
+  have h := Nat.mul_le_mul_right (4 * k) (Lax342547.QuerySlots.position_budget W)
   simp only [Tag, ZMod.card, Nat.add_sub_cancel] 
   nlinarith [h]
 

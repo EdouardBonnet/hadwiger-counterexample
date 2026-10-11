@@ -1,6 +1,6 @@
 import Lax342547.FourHoles
-import Lax342547Proofs.GradientRealization
-import Lax342547Proofs.RawContractions
+import Lax342547.PairedWitnesses
+import Lax342547.RawContractions
 
 namespace Lax342547Proofs.FourHoles
 open Lax342547.FourHoles
@@ -37,16 +37,16 @@ theorem four_holes {k n b degree r J : ℕ} {hr : 2 * r ≤ n}
   intro i z
   refine ⟨leftWitness W i z, rightWitness W i z, ?_, ?_, ?_, ?_⟩
   · rw [hU, hU]
-    exact Lax342547Proofs.PairedWitnesses.tensor_sharing W oA oB hkeys i z
+    exact Lax342547.PairedWitnesses.tensor_sharing W oA oB hkeys i z
   · intro x
     rw [hu, hU, hrole, hgradient]
     change profileContraction (oB z) (profileMap (oA i) x.val) = _
-    rw [← Lax342547Proofs.RawContractions.raw_contraction oA oB]
+    rw [← Lax342547.RawContractions.raw_contraction oA oB]
     exact hleft i z x
   · intro x
     rw [hu, hU, hrole, hgradient]
     change profileContraction (oA i) (profileMap (oB z) x.val) = _
-    rw [← Lax342547Proofs.RawContractions.raw_contraction oB oA]
+    rw [← Lax342547.RawContractions.raw_contraction oB oA]
     exact hright i z x
   · rw [hrole]
     exact hroles i z

@@ -1,5 +1,6 @@
 import Lax342547.ConstrainedCompression
-import Lax342547Proofs.QuotientCompression
+import Lax342547.BaseCompression
+import Lax342547.ResponseMatrices
 
 namespace Lax342547Proofs.ConstrainedCompression
 
@@ -103,11 +104,11 @@ theorem observations_rank {I X : Type} [Fintype I] [AddCommGroup X] [Module Bina
     (hT : ∀ i, Module.finrank Binary (LinearMap.range (T i)) ≤ R) (q : Block k) :
     Module.finrank Binary (LinearMap.range (observations T q)) ≤
       Fintype.card I * Fintype.card (SelectorCoordinates b degree) * R := by
-  have h := pi_range_rank (fun j : I × SelectorCoordinates b degree => (T j.1).comp (blockEmbed j.2 q))
+  have h := Lax342547.ConstrainedCompression.pi_range_rank (fun j : I × SelectorCoordinates b degree => (T j.1).comp (blockEmbed j.2 q))
   have hle : ∀ j : I × SelectorCoordinates b degree,
       Module.finrank Binary (LinearMap.range ((T j.1).comp (blockEmbed j.2 q))) ≤ R := by
     intro j
-    exact (Lax342547Proofs.ResponseMatrices.comp_left_rank _ _).trans (hT j.1)
+    exact (Lax342547.ResponseMatrices.comp_left_rank _ _).trans (hT j.1)
   have hh := h.trans (Finset.sum_le_sum (fun j _ => hle j))
   simpa [observations, Fintype.card_prod, mul_assoc] using hh
 
@@ -134,17 +135,17 @@ theorem exists_block_compression {I X : Type} [Fintype I] [AddCommGroup X] [Modu
       Module.finrank Binary (LinearMap.range p) ≤
         Fintype.card I * Fintype.card (SelectorCoordinates b degree) * (B + R) := by
     intro q
-    obtain ⟨p, hfix, hobs, hr⟩ := Lax342547Proofs.BaseCompression.fixing_observed_projection
+    obtain ⟨p, hfix, hobs, hr⟩ := Lax342547.BaseCompression.fixing_observed_projection
       (LinearMap.range (fixedSlices S q)) (observations T q)
     refine ⟨p, hfix, hobs, ?_⟩
-    have hh := hr.trans (Nat.add_le_add (fixedSlices_rank S hS q) (observations_rank T hT q))
+    have hh := hr.trans (Nat.add_le_add (Lax342547.ConstrainedCompression.fixedSlices_rank S hS q) (Lax342547.ConstrainedCompression.observations_rank T hT q))
     simpa only [Nat.mul_add] using hh
   choose A hfix hobs hr using h
   refine ⟨A, hr, ?_, ?_⟩
   · intro i v hv
     have hh (s : SelectorCoordinates b degree) (q : Block k) :
         A q (blockSlice s q v) = blockSlice s q v :=
-      hfix q _ (fixedSlices_mem S q i s v hv)
+      hfix q _ (Lax342547.ConstrainedCompression.fixedSlices_mem S q i s v hv)
     ext ⟨s, c⟩
     cases c with
     | none => rfl
@@ -161,12 +162,12 @@ theorem exists_block_compression {I X : Type} [Fintype I] [AddCommGroup X] [Modu
     change T i (liftBase (blockMap A) v) = T i v
     calc
       _ = T i (constantPart v) + ∑ s, ∑ q, T i (blockEmbed s q (A q (blockSlice s q v))) := by
-        rw [lifted_decomposition]
+        rw [Lax342547.ConstrainedCompression.lifted_decomposition]
         simp only [map_add, map_sum]
       _ = T i (constantPart v) + ∑ s, ∑ q, T i (blockEmbed s q (blockSlice s q v)) := by
         simp only [hb]
       _ = T i v := by
-        conv_rhs => rw [vector_decomposition v]
+        conv_rhs => rw [Lax342547.ConstrainedCompression.vector_decomposition v]
         simp only [map_add, map_sum]
 
 open Lax342547.PairedWitnesses Lax342547.TableSpaces Lax342547.ProjectedPins
@@ -217,19 +218,19 @@ theorem actual_block_compression {k n b degree r K R : ℕ} {hr : 2 * r ≤ n}
   let T (a : Component (Tag k) × Bool) : Vector k n b degree →ₗ[Binary] Vector k n b degree :=
     if a.2 then (M a.1).mulVecLin else (M a.1).transpose.mulVecLin
   have hS : ∀ a, Module.finrank Binary (S a) ≤ K + 14 :=
-    fun a => Lax342547Proofs.ResponseMatrices.projected_pin_key_dimension W P hK i a
+    fun a => Lax342547.ResponseMatrices.projected_pin_key_dimension W P hK i a
   have hT : ∀ a, Module.finrank Binary (LinearMap.range (T a)) ≤ R := by
     rintro ⟨e, c⟩
     cases c
     · change (M e).transpose.rank ≤ R
       simpa only [Matrix.rank_transpose] using hM e
     · exact hM e
-  obtain ⟨A, hr, hfix, hobs⟩ := exists_block_compression S hS T hT
+  obtain ⟨A, hr, hfix, hobs⟩ := Lax342547.ConstrainedCompression.exists_block_compression S hS T hT
   refine ⟨A, ?_, hfix, ?_⟩
   · intro q
     simpa [Fintype.card_prod, mul_comm, mul_left_comm, mul_assoc] using hr q
   · intro e
-    exact preserved_matrix _ _ (by simpa [T] using hobs (e, true))
+    exact Lax342547.ConstrainedCompression.preserved_matrix _ _ (by simpa [T] using hobs (e, true))
       (by simpa [T] using hobs (e, false))
 
 end Lax342547Proofs.ConstrainedCompression

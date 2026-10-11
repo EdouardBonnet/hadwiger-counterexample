@@ -1,5 +1,6 @@
 import Lax342547.RawGroupedComparison
-import Lax342547Proofs.GroupTensorComparison
+import Lax342547.GroupTensorComparison
+import Lax342547.RawFrameComparison
 
 namespace Lax342547Proofs.RawGroupedComparison
 noncomputable section
@@ -40,12 +41,12 @@ theorem primal_groups [∀ s,DecidableEq (I s)] [∀ s,DecidableEq (J s)]
       (∑ o : ∀ s,Frame B H (Fin n) (E s),weights (PMF.uniformOfFintype _) o*
         g (fun s => batchEquiv ((o s).P*C₂ s,(o s).Q*D₂ s)))| ≤
       ∑ s,errorBound n (I s) (J s) (K s) (L s) := by
-  apply GroupTensorComparison.uniform_group_comparison
+  apply Lax342547.GroupTensorComparison.uniform_group_comparison
     (fun s (F : Frame B H (Fin n) (E s)) => batchEquiv (F.P*C₁ s,F.Q*D₁ s))
     (fun s (F : Frame B H (Fin n) (E s)) => batchEquiv (F.P*C₂ s,F.Q*D₂ s))
     (fun s => errorBound n (I s) (J s) (K s) (L s)) _ f g hf hg
   intro s f g hf hg
-  exact RawFrameComparison.primal_test_comparison (H := H) n (E s) (C₁ s) (D₁ s) (C₂ s) (D₂ s)
+  exact Lax342547.RawFrameComparison.primal_test_comparison (H := H) n (E s) (C₁ s) (D₁ s) (C₂ s) (D₂ s)
     (hC s) (hD s) f g (hN₁ s) (hN₂ s) hf hg (hsmall s)
 /--
 ---
@@ -75,12 +76,12 @@ theorem full_groups [∀ s,DecidableEq (I s)] [∀ s,DecidableEq (J s)]
       (∑ o : ∀ s,ChannelFiber (N := Fin n) (E s) (T s),weights (PMF.uniformOfFintype _) o*
         g (fun s => batchEquiv ((Lax342547.FrameSymmetry.plus (o s).val).val*C₂ s,(Lax342547.FrameSymmetry.minus (o s).val).val*D₂ s)))| ≤
       ∑ s,errorBound n (I s) (J s) (K s) (L s) := by
-  apply GroupTensorComparison.uniform_group_comparison
+  apply Lax342547.GroupTensorComparison.uniform_group_comparison
     (fun s (F : ChannelFiber (N := Fin n) (E s) (T s)) => batchEquiv ((Lax342547.FrameSymmetry.plus F.val).val*C₁ s,(Lax342547.FrameSymmetry.minus F.val).val*D₁ s))
     (fun s (F : ChannelFiber (N := Fin n) (E s) (T s)) => batchEquiv ((Lax342547.FrameSymmetry.plus F.val).val*C₂ s,(Lax342547.FrameSymmetry.minus F.val).val*D₂ s))
     (fun s => errorBound n (I s) (J s) (K s) (L s)) _ f g hf hg
   intro s f g hf hg
-  exact RawFrameComparison.full_test_comparison n (E s) (T s) (C₁ s) (D₁ s) (C₂ s) (D₂ s)
+  exact Lax342547.RawFrameComparison.full_test_comparison n (E s) (T s) (C₁ s) (D₁ s) (C₂ s) (D₂ s)
     (hC s) (hD s) f g (hN₁ s) (hN₂ s) hf hg (hsmall s)
 
 end

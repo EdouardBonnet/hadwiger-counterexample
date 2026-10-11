@@ -1,7 +1,7 @@
 import Lax342547.LeafBlockCaps
-import Lax342547Proofs.LeafCellImages
-import Lax342547Proofs.ComponentCharacters
 import Lax342547Proofs.PairedFrames
+import Lax342547.LeafCellImages
+import Lax342547.RealCellLaws
 
 namespace Lax342547Proofs.LeafBlockCaps
 open Lax342547.LeafBlockCaps
@@ -59,7 +59,7 @@ theorem block_image_push {Ω Axis I N : Type} {R : Axis → Type}
   intro ω _
   have he : blockImage F (X ω) = y ↔
       freshImage (fun ω a => (X ω a).mulVecLin) (fun a => (F a).mulVecLin) ω = decodedImages y := by
-    rw [block_image_fiber]
+    rw [Lax342547.LeafBlockCaps.block_image_fiber]
     exact funext_iff.symm
   simp only [he]
 
@@ -91,12 +91,12 @@ theorem original_leaf_block_cap {Ω Axis I N : Type} {U : Axis → Type}
       exact push (subtypeWeights (weights p) C) (fun ω => blockImage F (X ω.val)) y ≤
         (2 : ℝ)^(-(95/100 : ℝ)*(∑ a, r a)*Fintype.card N) := by
   classical
-  rw [block_image_push]
+  rw [Lax342547.LeafBlockCaps.block_image_push]
   have hrank : ∀ a, Module.finrank Binary (Fin (r a) → Binary) = r a := by
     intro a
     simp only [Module.finrank_pi_fintype, Module.finrank_self, Finset.sum_const,
       Finset.card_univ, Fintype.card_fin, nsmul_eq_mul, mul_one, Nat.cast_id]
-  have h := Lax342547Proofs.LeafCellImages.original_leaf_cell_image_cap p
+  have h := Lax342547.LeafCellImages.original_leaf_cell_image_cap p
     (fun ω a => (X ω a).mulVecLin) P keys (fun a => (F a).mulVecLin)
     hkeys hfresh yk C hCkey ζ hζ hζsmall hk
     (by simpa only [hrank] using ht) hC hcap (decodedImages y)
@@ -133,7 +133,7 @@ theorem original_leaf_all_rank_block_cap {Ω Axis I N : Type} {U : Axis → Type
   classical
   by_cases hz : (∑ a, r a) = 0
   · have hm : 0 < Lax342547.RetainedImages.cellMass (weights p) C := by
-      rw [Lax342547Proofs.RealCellLaws.event_mass]
+      rw [Lax342547.RealCellLaws.event_mass]
       exact lt_of_lt_of_le (Real.rpow_pos_of_pos (by norm_num) _) hC
     have h : push (subtypeWeights (weights p) C) (fun ω => blockImage F (X ω.val)) y ≤
         ∑ ω, subtypeWeights (weights p) C ω := by
@@ -142,11 +142,11 @@ theorem original_leaf_all_rank_block_cap {Ω Axis I N : Type} {U : Axis → Type
       intro ω _
       split_ifs
       · exact le_rfl
-      · exact Lax342547Proofs.RealCellLaws.subtype_weights_nonneg (weights p) C
-          (Lax342547Proofs.RealCellLaws.weights_nonneg p) hm ω
-    rw [Lax342547Proofs.RealCellLaws.subtype_weights_total (weights p) C hm] at h
+      · exact Lax342547.RealCellLaws.subtype_weights_nonneg (weights p) C
+          (Lax342547.RealCellLaws.weights_nonneg p) hm ω
+    rw [Lax342547.RealCellLaws.subtype_weights_total (weights p) C hm] at h
     simpa only [hz, Nat.cast_zero, mul_zero, zero_mul, Real.rpow_zero] using h
-  · exact original_leaf_block_cap p X P keys r F hkeys hfresh yk C hCkey ζ hζ hζsmall hk
+  · exact Lax342547.LeafBlockCaps.original_leaf_block_cap p X P keys r F hkeys hfresh yk C hCkey ζ hζ hζsmall hk
       (Nat.one_le_iff_ne_zero.mpr hz) hC hcap y
 
 end Lax342547Proofs.LeafBlockCaps

@@ -1,6 +1,6 @@
 import Lax342547.ConditionedMixing
-import Lax342547Proofs.FourierTests
-import Lax342547Proofs.FiniteSampling
+import Lax342547.FiniteSampling
+import Lax342547.FourierTests
 
 namespace Lax342547Proofs.ConditionedMixing
 
@@ -23,13 +23,13 @@ theorem signed_pattern_error {Ω S : Type} [Fintype Ω] [Fintype S] [DecidableEq
       |characterMean w bits target t-(if t = 0 then m else 0)| ≤ ε := by
     by_cases hz : t = 0
     · subst t
-      simpa [m,Lax342547Proofs.FourierTests.character_zero] using hε
+      simpa [m,Lax342547.FourierTests.character_zero] using hε
     · simpa only [if_neg hz,sub_zero] using hchar t hz
   have hs := (Finset.abs_sum_le_sum_abs (s := Finset.univ)
     (f := fun t => characterMean w bits target t-(if t = 0 then m else 0))).trans
     (Finset.sum_le_sum (fun t _ => ht t))
   have hc : (Fintype.card (S → Binary) : ℝ) = (2 : ℝ)^Fintype.card S := by simp [ZMod.card]
-  simp only [Finset.sum_sub_distrib,Lax342547Proofs.FourierTests.pattern_inversion,
+  simp only [Finset.sum_sub_distrib,Lax342547.FourierTests.pattern_inversion,
     Finset.sum_ite_eq',Finset.mem_univ,if_true,Finset.sum_const,Finset.card_univ,nsmul_eq_mul,hc] at hs
   have hp : 0 < (2 : ℝ)^Fintype.card S := by positivity
   have he : patternMass w bits target-(∑ ω,w ω)/(2 : ℝ)^Fintype.card S =
@@ -57,9 +57,9 @@ theorem conditional_test_comparison {Ω S : Type} [Fintype Ω] [Fintype S] [Deci
   let a := patternMass (fun ω => ρ ω*f ω) bits target
   let b := 1/(2 : ℝ)^Fintype.card S
   have h₁ : |a-m*b| ≤ ε := by
-    simpa only [a,m,b,div_eq_mul_inv,one_div,one_mul] using signed_pattern_error (fun ω => ρ ω*f ω) bits target ε hε htest
+    simpa only [a,m,b,div_eq_mul_inv,one_div,one_mul] using Lax342547.ConditionedMixing.signed_pattern_error (fun ω => ρ ω*f ω) bits target ε hε htest
   have h₂ : |q-b| ≤ ε := by
-    simpa only [htotal] using signed_pattern_error ρ bits target ε hε hraw
+    simpa only [htotal] using Lax342547.ConditionedMixing.signed_pattern_error ρ bits target ε hε hraw
   have he : a-m*q = (a-m*b)-m*(q-b) := by ring
   have hprod : |m*(q-b)| ≤ ε := by
     rw [abs_mul]
@@ -91,7 +91,7 @@ theorem bounded_integral_deletion {Ω : Type} [Fintype Ω] (ρ f : Ω → ℝ)
   let a := ∑ x,if C x then ρ x*f x else 0
   let b := ∑ x,ρ x*f x
   have hq : q ≤ 1 := by
-    have hh := Lax342547Proofs.FiniteSampling.cell_mass_mono ρ C (fun _ => True) hρ.1 (by simp)
+    have hh := Lax342547.FiniteSampling.cell_mass_mono ρ C (fun _ => True) hρ.1 (by simp)
     simpa [Lax342547.RetainedImages.cellMass,hρ.2,q] using hh
   have hint (D : Ω → Prop) : |∑ x,if D x then ρ x*f x else 0| ≤
       Lax342547.RetainedImages.cellMass ρ D := by

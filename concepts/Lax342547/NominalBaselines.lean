@@ -4,7 +4,7 @@ import Lax342547.SmallTables
 /-!
 ---
 title: The 3K+28 baseline bound in the actual nominal coordinates
-type: theorem
+type: lemma
 ---
 For the two stored pin spaces and independent primal key spaces, complete
 one cross form while retaining all frozen entries and the whole table.

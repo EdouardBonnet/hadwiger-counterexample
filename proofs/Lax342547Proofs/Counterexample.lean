@@ -1,8 +1,7 @@
 import Lax342547.Counterexample
-import Lax342547Proofs.Construction
-import Lax342547Proofs.HadwigerMatching.MinorBound
-import Lax342547Proofs.HadwigerMatching.ChromaticBound
 import Lean.Elab.Tactic.Omega
+import Lax342547.ChromaticBound
+import Lax342547.MatchingMinorBound
 
 namespace Lax342547Proofs.Counterexample
 
@@ -14,13 +13,17 @@ theorem hadwiger_lt_chromatic_of_small_connected_matching
     (hα : G.indepNum ≤ 2) (hc : 100 * connectedMatchingNumber G < Fintype.card V)
     (hm : 5 ≤ Fintype.card V) :
     hadwigerNumber G < G.chromaticNumber.toNat := by
-  have hminor := HadwigerMatching.hadwiger_matching_bound G
-  have hchrom := HadwigerMatching.card_le_twice_chromaticNumber_of_indepNum G hα
+  have hminor := Lax342547.MatchingMinorBound.hadwiger_matching_bound G
+  have hchrom := Lax342547.ChromaticBound.card_le_twice_chromaticNumber_of_indepNum G hα
   omega
 
 /--
 ---
 conclusion: Lax342547.Counterexample.arbitrarily_large_hadwiger_counterexample
+assumptions:
+  - Lax342547.Counterexample.arbitrarily_large_small_connected_matching
+  - Lax342547.MatchingMinorBound.hadwiger_matching_bound
+  - Lax342547.ChromaticBound.card_le_twice_chromaticNumber_of_indepNum
 ---
 Theorem 1.1 supplies the graph. The proved matching-minor bound and
 chromatic lower bound then contradict Hadwiger's inequality.
@@ -29,7 +32,7 @@ theorem arbitrarily_large_hadwiger_counterexample (lowerBound : ℕ) :
     ∃ m : ℕ, lowerBound ≤ m ∧ 5 ≤ m ∧ ∃ G : SimpleGraph (Fin m),
       G.indepNum ≤ 2 ∧ hadwigerNumber G < G.chromaticNumber.toNat := by
   obtain ⟨m, hm, G, hα, hc⟩ :=
-    Construction.arbitrarily_large_small_connected_matching (max lowerBound 5)
+    Lax342547.Counterexample.arbitrarily_large_small_connected_matching (max lowerBound 5)
   refine ⟨m, (le_max_left _ _).trans hm, (le_max_right _ _).trans hm, G, hα, ?_⟩
   apply hadwiger_lt_chromatic_of_small_connected_matching G hα
   · simpa using hc

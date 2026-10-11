@@ -1,7 +1,9 @@
 import Lax342547.RawToGraph
-import Lax342547Proofs.UnitContainers
-import Lax342547Proofs.GoodSamples
-import Lax342547Proofs.MatchingCoverage
+import Lax342547.GoodSamples
+import Lax342547.MatchingCoverage
+import Lax342547.MatchingSamples
+import Lax342547.SampledGraph
+import Lax342547.UnitContainers
 
 namespace Lax342547Proofs.RawToGraph
 open Lax342547.RawToGraph
@@ -42,7 +44,7 @@ theorem supersaturation_to_sample {Ω : Type} [Fintype Ω] [Nonempty Ω]
       (sampleGraph hole hsymm sample).indepNum ≤ 2 ∧
       100*connectedMatchingNumber (sampleGraph hole hsymm sample) < m := by
   classical
-  obtain ⟨C,hcount,hterminal,hcover⟩ := Lax342547Proofs.UnitContainers.unit_container_family
+  obtain ⟨C,hcount,hterminal,hcover⟩ := Lax342547.UnitContainers.unit_container_family
     μ (fun x y => ¬ hole x y) (fourConflict hole) M κ ε L
     hμ hμpos hM hκ hε hε1 hL hsuper
   have hex : ∀ R : Finset (Ω × Ω), ∃ S : Ω → Prop, ∃ E : Ω → Ω → Prop,
@@ -56,14 +58,14 @@ theorem supersaturation_to_sample {Ω : Type} [Fintype Ω] [Nonempty Ω]
   choose S E hcuts using hex
   have hCbudget : (C.card : ℝ)*exceptionBudget m k M κ < 1 := by
     have hc : (C.card : ℝ) ≤ ((Fintype.card Ω^2+1)^L : ℕ) := by exact_mod_cast hcount
-    exact (mul_le_mul_of_nonneg_right hc (exception_budget_nonneg m k M κ hM hκ)).trans_lt hbudget
-  obtain ⟨sample,hgood⟩ := Lax342547Proofs.GoodSamples.exists_good_sample μ C S E m k M κ hμ hM hκ
+    exact (mul_le_mul_of_nonneg_right hc (Lax342547.RawToGraph.exception_budget_nonneg m k M κ hM hκ)).trans_lt hbudget
+  obtain ⟨sample,hgood⟩ := Lax342547.GoodSamples.exists_good_sample μ C S E m k M κ hμ hM hκ
     (fun R hr => (hcuts R hr).1) (fun R hr => (hcuts R hr).2.1) hCbudget
-  refine ⟨sample,Lax342547Proofs.SampledGraph.sampleGraph_indepNum_le_two hole hsymm htriangle sample,?_⟩
-  apply Lax342547Proofs.MatchingCoverage.connected_matching_exception_bound hole hsymm sample k _ hscale
+  refine ⟨sample,Lax342547.SampledGraph.sampleGraph_indepNum_le_two hole hsymm htriangle sample,?_⟩
+  apply Lax342547.MatchingCoverage.connected_matching_exception_bound hole hsymm sample k _ hscale
   intro matching hm
   let I := Finset.univ.image (fun e : matching => unitType sample e.val (hm.1 _ e.property).1)
-  have hi := Lax342547Proofs.MatchingSamples.unit_types_independent hole hsymm hloop sample matching hm
+  have hi := Lax342547.MatchingSamples.unit_types_independent hole hsymm hloop sample matching hm
   obtain ⟨R,hr,hIR⟩ := hcover I hi.2
   have hbad := hgood R hr
   have hS : (Finset.univ.filter (fun v => S R (sample v))).card < k := by
@@ -73,7 +75,7 @@ theorem supersaturation_to_sample {Ω : Type} [Fintype Ω] [Nonempty Ω]
   have hE : ¬ ∃ a : Fin k × Bool ↪ Fin m, ∀ j, E R (sample (a (j,false))) (sample (a (j,true))) := by
     intro hh
     exact hbad (Or.inr hh)
-  apply Lax342547Proofs.MatchingCoverage.matching_exception_bound hole hsymm sample (S R) (E R)
+  apply Lax342547.MatchingCoverage.matching_exception_bound hole hsymm sample (S R) (E R)
     matching hm k _ hS hE
   intro e
   have he : unitType sample e.val (hm.1 _ e.property).1 ∈ I := Finset.mem_image.mpr ⟨e,Finset.mem_univ e,rfl⟩

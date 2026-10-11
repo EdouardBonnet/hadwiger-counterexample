@@ -1,5 +1,5 @@
 import Lax342547.LeafPartition
-import Lax342547Proofs.LeafExtraction
+import Lax342547.LeafExtraction
 
 namespace Lax342547Proofs.LeafPartition
 
@@ -27,7 +27,7 @@ theorem exists_partition {Ω Axis I N : Type}
     by_cases hmass : p.toOuterMeasure (R : Set Ω) ≤ δ
     · refine ⟨∅, ?_⟩
       simpa [Partition] using hmass
-    · obtain ⟨P, hext, hmassP, hgood⟩ := LeafExtraction.exists_leaf p A P₀ R hR δ α
+    · obtain ⟨P, hext, hmassP, hgood⟩ := Lax342547.LeafExtraction.exists_leaf p A P₀ R hR δ α
         hα₀ hαtop (lt_of_not_ge hmass)
       let S := R.filter (fun o => o ∈ P.event A)
       have hS : (S : Set Ω) = (R : Set Ω) ∩ P.event A := by ext o; simp [S]

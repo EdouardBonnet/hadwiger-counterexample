@@ -1,6 +1,6 @@
 import Lax342547.BipartiteFlows
-import Lax342547Proofs.FlowCuts
 import Mathlib.Algebra.BigOperators.Field
+import Lax342547.FlowCuts
 
 namespace Lax342547Proofs.BipartiteFlows
 open Lax342547.BipartiteFlows
@@ -60,8 +60,8 @@ theorem left_conservation {A B : Type} [Fintype A] [Fintype B]
     (hf : Feasible (capacity a b p) f source sink) (x : A) :
     (∑ y, f (left x) (right y)) = f source (left x) := by
   have h := hf.2.2 (left x) (by simp [left,source]) (by simp [left,sink])
-  have ht : f (left x) sink = 0 := zero_capacity_flow _ f source sink _ _ hf rfl rfl
-  have hl (z : A) : f (left x) (left z) = 0 := zero_capacity_flow _ f source sink _ _ hf rfl rfl
+  have ht : f (left x) sink = 0 := Lax342547.BipartiteFlows.zero_capacity_flow _ f source sink _ _ hf rfl rfl
+  have hl (z : A) : f (left x) (left z) = 0 := Lax342547.BipartiteFlows.zero_capacity_flow _ f source sink _ _ hf rfl rfl
   unfold divergence at h
   rw [Fintype.sum_sum_type,Fintype.sum_bool,Fintype.sum_sum_type] at h
   change f (left x) sink+f (left x) source+
@@ -81,8 +81,8 @@ theorem right_conservation {A B : Type} [Fintype A] [Fintype B]
     (hf : Feasible (capacity a b p) f source sink) (y : B) :
     (∑ x, f (left x) (right y)) = f (right y) sink := by
   have h := hf.2.2 (right y) (by simp [right,source]) (by simp [right,sink])
-  have hs : f (right y) source = 0 := zero_capacity_flow _ f source sink _ _ hf rfl rfl
-  have hr (z : B) : f (right y) (right z) = 0 := zero_capacity_flow _ f source sink _ _ hf rfl rfl
+  have hs : f (right y) source = 0 := Lax342547.BipartiteFlows.zero_capacity_flow _ f source sink _ _ hf rfl rfl
+  have hr (z : B) : f (right y) (right z) = 0 := Lax342547.BipartiteFlows.zero_capacity_flow _ f source sink _ _ hf rfl rfl
   unfold divergence at h
   rw [Fintype.sum_sum_type,Fintype.sum_bool,Fintype.sum_sum_type] at h
   change f (right y) sink+f (right y) source+
@@ -106,8 +106,8 @@ theorem source_flow_total {A B : Type} [Fintype A] [Fintype B]
     (hf : Feasible (capacity a b p) f source sink) :
     divergence f source = ∑ x, ∑ y, f (left x) (right y) := by
   have hss : f source source = 0 := by have h := hf.1 source source; linarith
-  have hst : f source sink = 0 := zero_capacity_flow _ f source sink _ _ hf rfl rfl
-  have hr (y : B) : f source (right y) = 0 := zero_capacity_flow _ f source sink _ _ hf rfl rfl
+  have hst : f source sink = 0 := Lax342547.BipartiteFlows.zero_capacity_flow _ f source sink _ _ hf rfl rfl
+  have hr (y : B) : f source (right y) = 0 := Lax342547.BipartiteFlows.zero_capacity_flow _ f source sink _ _ hf rfl rfl
   unfold divergence
   rw [Fintype.sum_sum_type,Fintype.sum_bool,Fintype.sum_sum_type]
   change f source sink+f source source+((∑ x, f source (left x))+(∑ y, f source (right y))) = _
@@ -115,7 +115,7 @@ theorem source_flow_total {A B : Type} [Fintype A] [Fintype B]
   simp only [Finset.sum_const_zero,zero_add,add_zero]
   apply Finset.sum_congr rfl
   intro x _
-  exact (left_conservation a b p f hf x).symm
+  exact (Lax342547.BipartiteFlows.left_conservation a b p f hf x).symm
 
 /--
 ---
@@ -130,19 +130,19 @@ theorem normalized_flow_law {A B : Type} [Fintype A] [Fintype B]
   have hv0 : 0 < divergence f source := lt_of_lt_of_le zero_lt_one hv
   refine ⟨fun x y => f (left x) (right y)/divergence f source, ?_,?_,?_,?_,?_⟩
   · intro x y
-    exact div_nonneg (forward_flow_nonneg a b p f hf x y) hv0.le
+    exact div_nonneg (Lax342547.BipartiteFlows.forward_flow_nonneg a b p f hf x y) hv0.le
   · change (∑ x, ∑ y, f (left x) (right y)/divergence f source) = 1
     simp_rw [← Finset.sum_div]
-    rw [← source_flow_total a b p f hf]
+    rw [← Lax342547.BipartiteFlows.source_flow_total a b p f hf]
     exact div_self hv0.ne'
   · intro x
-    rw [← Finset.sum_div,left_conservation a b p f hf]
+    rw [← Finset.sum_div,Lax342547.BipartiteFlows.left_conservation a b p f hf]
     apply (div_le_iff₀ hv0).mpr
     have h := hf.2.1 source (left x)
     change f source (left x) ≤ a x at h
     nlinarith [mul_nonneg (ha x) (sub_nonneg.mpr hv)]
   · intro y
-    rw [← Finset.sum_div,right_conservation a b p f hf]
+    rw [← Finset.sum_div,Lax342547.BipartiteFlows.right_conservation a b p f hf]
     apply (div_le_iff₀ hv0).mpr
     have h := hf.2.1 (right y) sink
     change f (right y) sink ≤ b y at h
@@ -164,11 +164,11 @@ theorem infeasible_cut {A B : Type} [Fintype A] [Fintype B]
     (hn : ¬ ∃ ρ, Law a b p ρ) :
     ∃ Z : Finset (Vertex A B), source ∈ Z ∧ sink ∉ Z ∧
       Lax342547.FlowCuts.cutCapacity (capacity a b p) Z < 1 := by
-  obtain ⟨f,Z,hf,hs,ht,hval,_⟩ := Lax342547Proofs.FlowCuts.real_max_flow_min_cut
-    (capacity a b p) source sink (by simp [source,sink]) (capacity_nonneg a b p ha hb hp)
+  obtain ⟨f,Z,hf,hs,ht,hval,_⟩ := Lax342547.FlowCuts.real_max_flow_min_cut
+    (capacity a b p) source sink (by simp [source,sink]) (Lax342547.BipartiteFlows.capacity_nonneg a b p ha hb hp)
   refine ⟨Z,hs,ht,?_⟩
   rw [← hval]
   by_contra h
-  exact hn (normalized_flow_law a b p f hf ha hb hp (not_lt.mp h))
+  exact hn (Lax342547.BipartiteFlows.normalized_flow_law a b p f hf ha hb hp (not_lt.mp h))
 
 end Lax342547Proofs.BipartiteFlows

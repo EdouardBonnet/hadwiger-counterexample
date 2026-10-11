@@ -4,7 +4,7 @@ import Lax342547.ConcreteCut
 /-!
 ---
 title: Counting tuples of symmetric matrices with bounded total rank
-type: theorem
+type: lemma
 ---
 Separate the component rank tuple from the symmetric factorizations.
 There are at most (K+1)^|E| rank tuples, and each permitted tuple uses

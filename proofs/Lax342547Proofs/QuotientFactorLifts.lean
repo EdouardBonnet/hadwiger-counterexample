@@ -1,6 +1,6 @@
 import Lax342547.QuotientFactorLifts
-import Lax342547Proofs.CoverAvoidance
 import Mathlib.LinearAlgebra.Basis.VectorSpace
+import Lax342547.CoverAvoidance
 
 namespace Lax342547Proofs.QuotientFactorLifts
 open Lax342547.QuotientFactorLifts
@@ -86,7 +86,7 @@ theorem restriction_range_of_avoidance {K V W : Type} [Field K]
   apply Submodule.eq_of_le_of_finrank_eq
   · rw [LinearMap.range_comp]
     exact LinearMap.map_le_range
-  · exact Lax342547Proofs.CoverAvoidance.restriction_rank_of_avoidance M T hT
+  · exact Lax342547.CoverAvoidance.restriction_rank_of_avoidance M T hT
 
 /--
 ---
@@ -103,9 +103,9 @@ theorem lift_quotient_factor {K U V W : Type} [Field K]
     (hfactor : Lax342547.CoverProjection.projection M S T = C.comp R) :
     ∃ P : U →ₗ[K] W, ∃ Q : V →ₗ[K] U,
       P.comp Q = M ∧ S.mkQ.comp P = C ∧ Q.comp T.dualCoannihilator.subtype = R := by
-  exact lift_common_factor S.mkQ C M T.dualCoannihilator.subtype R hC hR
+  exact Lax342547.QuotientFactorLifts.lift_common_factor S.mkQ C M T.dualCoannihilator.subtype R hC hR
     (by simpa only [Submodule.ker_mkQ] using hS)
-    (restriction_range_of_avoidance M T hT) hfactor
+    (Lax342547.QuotientFactorLifts.restriction_range_of_avoidance M T hT) hfactor
 
 /--
 ---
@@ -257,12 +257,12 @@ theorem common_quotient_offsets {K U V W : Type} [Field K]
       M₁-M₂ = (P₁-P₂).comp Q₂+P₁.comp (Q₁-Q₂) ∧
       Module.finrank K (LinearMap.range (P₁-P₂))+
         Module.finrank K (LinearMap.range (Q₁-Q₂).dualMap) ≤ 2*Module.finrank K U := by
-  obtain ⟨P₁,Q₁,hPQ₁,hP₁,hQ₁⟩ := lift_quotient_factor S T C M₁ R hC hR hS₁ hT₁ h₁
-  obtain ⟨P₂,Q₂,hPQ₂,hP₂,hQ₂⟩ := lift_quotient_factor S T C M₂ R hC hR hS₂ hT₂ h₂
-  refine ⟨P₁,P₂,Q₁,Q₂,hPQ₁,hPQ₂,column_difference_in_cover S C P₁ P₂ hP₁ hP₂,
-    row_difference_in_cover T R Q₁ Q₂ hQ₁ hQ₂,lifted_column_avoids_cover S C P₁ hC hP₁,
-    lifted_row_avoids_cover T R Q₂ hR hQ₂,?_,offset_dimension_budget (P₁-P₂) (Q₁-Q₂)⟩
+  obtain ⟨P₁,Q₁,hPQ₁,hP₁,hQ₁⟩ := Lax342547.QuotientFactorLifts.lift_quotient_factor S T C M₁ R hC hR hS₁ hT₁ h₁
+  obtain ⟨P₂,Q₂,hPQ₂,hP₂,hQ₂⟩ := Lax342547.QuotientFactorLifts.lift_quotient_factor S T C M₂ R hC hR hS₂ hT₂ h₂
+  refine ⟨P₁,P₂,Q₁,Q₂,hPQ₁,hPQ₂,Lax342547.QuotientFactorLifts.column_difference_in_cover S C P₁ P₂ hP₁ hP₂,
+    Lax342547.QuotientFactorLifts.row_difference_in_cover T R Q₁ Q₂ hQ₁ hQ₂,Lax342547.QuotientFactorLifts.lifted_column_avoids_cover S C P₁ hC hP₁,
+    Lax342547.QuotientFactorLifts.lifted_row_avoids_cover T R Q₂ hR hQ₂,?_,Lax342547.QuotientFactorLifts.offset_dimension_budget (P₁-P₂) (Q₁-Q₂)⟩
   rw [← hPQ₁,← hPQ₂]
-  exact factor_difference_identity P₁ P₂ Q₁ Q₂
+  exact Lax342547.QuotientFactorLifts.factor_difference_identity P₁ P₂ Q₁ Q₂
 
 end Lax342547Proofs.QuotientFactorLifts

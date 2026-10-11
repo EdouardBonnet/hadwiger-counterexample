@@ -4,7 +4,7 @@ import Lax342547.MetadataPins
 /-!
 ---
 title: Mass and density costs of splitting by metadata and images
-type: theorem
+type: lemma
 ---
 Discarding small fibers costs at most the number of split records times
 the threshold. The remaining fibers have an absolute joint density cap

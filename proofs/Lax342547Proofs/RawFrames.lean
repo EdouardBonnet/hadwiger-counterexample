@@ -1,6 +1,6 @@
 import Lax342547.RawFrames
 import Lax342547Proofs.HoleTriangleFree
-import Lax342547Proofs.SampledGraph
+import Lax342547.SampledGraph
 
 namespace Lax342547Proofs.RawFrames
 
@@ -91,7 +91,7 @@ theorem frame_sample_indepNum_le_two {Ω : Type} [Fintype Comp]
     let D := frameHoleData X a T hT F
     (sampleGraph (Hole D) (HoleTriangleFree.hole_symmetric D) sample).indepNum ≤ 2 := by
   dsimp only
-  exact SampledGraph.sampleGraph_indepNum_le_two _ _
+  exact Lax342547.SampledGraph.sampleGraph_indepNum_le_two _ _
     (HoleTriangleFree.hole_triangle_free _) sample
 
 end Lax342547Proofs.RawFrames

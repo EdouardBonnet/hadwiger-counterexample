@@ -1,5 +1,7 @@
 import Lax342547.GradientAssembly
-import Lax342547Proofs.ChannelAssembly
+import Lax342547.ChannelAssembly
+import Lax342547.NonlinearChannels
+import Lax342547.ResponseMatrices
 
 namespace Lax342547Proofs.GradientAssembly
 open Lax342547.GradientAssembly
@@ -32,12 +34,12 @@ theorem contraction_expansion {k n b degree r : ℕ} {hr : 2 * r ≤ n} {H N : T
       (∑ i, fullContraction F (Profile k n b degree) i z (x i)) +
         fullResponse W P Q U V F z (extraFamily W P Q U V z δ ε) δ ε x := by
   classical
-  have hextra (e : Component (Tag k)) := Lax342547Proofs.ResponseMatrices.extra_product_response
+  have hextra (e : Component (Tag k)) := Lax342547.ResponseMatrices.extra_product_response
     (barred W P (U e) (e, true)) (barred W P (V e) (e, false))
     (protectedChannel Q z (e, false)) (protectedChannel Q z (e, true)) (δ e) (ε e)
   simp only [fullContraction, LinearMap.sum_apply, LinearMap.comp_apply,
     LinearMap.proj_apply, Submodule.subtype_apply, hplus, hminus,
-    Lax342547Proofs.NonlinearChannels.ambient_add_expansion]
+    Lax342547.NonlinearChannels.ambient_add_expansion]
   simp only [fullResponse, Lax342547.PureObstructions.response, extraFamily, response,
     LinearMap.add_apply, LinearMap.sum_apply, LinearMap.comp_apply, hextra, componentResponse,
     Lax342547.PureObstructions.endpointComponent, LinearMap.proj_apply,
@@ -74,7 +76,7 @@ theorem corrected_gradients {k n b degree r : ℕ} {hr : 2 * r ≤ n} {H N : Typ
       (D.role + gradient D L R (leftWitness W i z)) x := by
   classical
   intro i x
-  have he := contraction_expansion W P Q U V F G z δ ε hplus hminus (Pi.single i x)
+  have he := Lax342547.GradientAssembly.contraction_expansion W P Q U V F G z δ ε hplus hminus (Pi.single i x)
   rw [hsolution] at he
   simp only [LinearMap.sum_apply, LinearMap.comp_apply, LinearMap.proj_apply] at he
   have hsingle (M : CrossForms (Component (Tag k)) (Coordinate k n b degree) H) :
@@ -116,14 +118,14 @@ theorem simultaneous_gradients {k n b degree r : ℕ} {hr : 2 * r ≤ n} {H N : 
       (Profile k n b degree) z i x = (D.role + gradient D L R (rightWitness W i z)) x) := by
   constructor
   · intro i z x
-    exact corrected_gradients W P Q U V F _ z (δ z) (ε z)
-      (fun e i => Lax342547Proofs.ChannelAssembly.assembled_plus W P Q U V U' V' F δ ε δ' ε' e i z)
-      (fun e i => Lax342547Proofs.ChannelAssembly.assembled_minus W P Q U V U' V' F δ ε δ' ε' e i z)
+    exact Lax342547.GradientAssembly.corrected_gradients W P Q U V F _ z (δ z) (ε z)
+      (fun e i => Lax342547.ChannelAssembly.assembled_plus W P Q U V U' V' F δ ε δ' ε' e i z)
+      (fun e i => Lax342547.ChannelAssembly.assembled_minus W P Q U V U' V' F δ ε δ' ε' e i z)
       D L R (hA z) i x
   · intro i z x
-    exact corrected_gradients (Lax342547.PairedRecipes.flip W) Q P U' V' F.flip _ i (δ' i) (ε' i)
-      (fun e z => Lax342547Proofs.ChannelAssembly.reciprocal_plus W P Q U V U' V' F δ ε δ' ε' e i z)
-      (fun e z => Lax342547Proofs.ChannelAssembly.reciprocal_minus W P Q U V U' V' F δ ε δ' ε' e i z)
+    exact Lax342547.GradientAssembly.corrected_gradients (Lax342547.PairedRecipes.flip W) Q P U' V' F.flip _ i (δ' i) (ε' i)
+      (fun e z => Lax342547.ChannelAssembly.reciprocal_plus W P Q U V U' V' F δ ε δ' ε' e i z)
+      (fun e z => Lax342547.ChannelAssembly.reciprocal_minus W P Q U V U' V' F δ ε δ' ε' e i z)
       D L R (hB i) z x
 
 end Lax342547Proofs.GradientAssembly

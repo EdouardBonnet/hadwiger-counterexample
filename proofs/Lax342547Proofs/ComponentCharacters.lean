@@ -1,5 +1,10 @@
 import Lax342547.ComponentCharacters
-import Lax342547Proofs.RetainedCharacters
+import Lax342547.CoefficientPhase
+import Lax342547.GramTests
+import Lax342547.ProjectedCoefficients
+import Lax342547.QuotientFactors
+import Lax342547.RetainedCharacters
+import Lax342547Proofs.Walsh
 
 namespace Lax342547Proofs.ComponentCharacters
 open Lax342547.ComponentCharacters
@@ -20,7 +25,7 @@ theorem block_factor_pair {Axis N : Type} {I R : Axis → Type}
     (∑ a, coefficientPair (A a * (B a).transpose) (X a) (Y a)) =
       dotProduct (blockImage A X) (blockImage B Y) := by
   classical
-  simp only [Lax342547Proofs.CoefficientPhase.independent_factor_phase]
+  simp only [Lax342547.CoefficientPhase.independent_factor_phase]
   unfold dotProduct blockImage
   simp only [Fintype.sum_prod_type, Fintype.sum_sigma]
 
@@ -34,7 +39,7 @@ theorem block_factor_phase {Axis N : Type} {I R : Axis → Type}
     (A B : ∀ a, Matrix (I a) (R a) Binary) (X Y : ∀ a, Matrix N (I a) Binary) :
     sign (∑ a, coefficientPair (A a * (B a).transpose) (X a) (Y a)) =
       phase (blockImage A X) (blockImage B Y) := by
-  rw [block_factor_pair]
+  rw [Lax342547.ComponentCharacters.block_factor_pair]
   rfl
 
 /--
@@ -68,14 +73,14 @@ theorem component_character_bound {ΩA ΩB Axis N : Type} {I R : Axis → Type}
       coefficientPair (A a * (B a).transpose) (X x a) (Y y a)) + c)| ≤
       (2 : ℝ)^(-(45/100 : ℝ)*((∑ a, Fintype.card (R a))*Fintype.card N)) := by
   classical
-  have h := Lax342547Proofs.GramTests.paper_image_walsh α β
+  have h := Lax342547.GramTests.paper_image_walsh α β
     (fun ω => blockImage A (X ω)) (fun ω => blockImage B (Y ω))
     (fun _ => sign c) (fun _ => 1) hα hβ hαsum hβsum
-    (by simpa only [block_image_dimension, Nat.cast_mul] using hcapA)
-    (by simpa only [block_image_dimension, Nat.cast_mul] using hcapB)
-    (fun _ => (Lax342547Proofs.RetainedCharacters.sign_abs c).le) (fun _ => by norm_num)
-  simp only [← block_factor_phase, Lax342547Proofs.Walsh.sign_add, mul_one,
-    block_image_dimension, Nat.cast_mul] at h ⊢
+    (by simpa only [Lax342547.ComponentCharacters.block_image_dimension, Nat.cast_mul] using hcapA)
+    (by simpa only [Lax342547.ComponentCharacters.block_image_dimension, Nat.cast_mul] using hcapB)
+    (fun _ => (Lax342547.RetainedCharacters.sign_abs c).le) (fun _ => by norm_num)
+  simp only [← Lax342547.ComponentCharacters.block_factor_phase, Lax342547Proofs.Walsh.sign_add, mul_one,
+    Lax342547.ComponentCharacters.block_image_dimension, Nat.cast_mul] at h ⊢
   convert h using 1
   congr 1
   apply Finset.sum_congr rfl
@@ -115,14 +120,14 @@ theorem retained_component_character_dichotomy {ΩA ΩB Axis N : Type} {I : Axis
       exact mean = 1 ∨ |mean| ≤ (2 : ℝ)^(-(45/100 : ℝ)*Fintype.card N) := by
   classical
   choose p hp hpk hpid using (fun a =>
-    Lax342547Proofs.ProjectedCoefficients.exists_quotient_projection (D a))
+    Lax342547.ProjectedCoefficients.exists_quotient_projection (D a))
   choose q hq hqk hqid using (fun a =>
-    Lax342547Proofs.ProjectedCoefficients.exists_quotient_projection (E a))
+    Lax342547.ProjectedCoefficients.exists_quotient_projection (E a))
   let Z (a : Axis) := (p a).toMatrix' * C a * (q a).toMatrix'.transpose
   have hd (x : ΩA) (y : ΩB) (a : Axis) :
       coefficientPair (C a) (X x a) (Y y a) + matrixPair (LinearMap.BilinForm.toMatrix' (T a)) (C a) =
         coefficientPair (Z a) (X x a) (Y y a) + matrixPair (LinearMap.BilinForm.toMatrix' (T a)) (Z a) :=
-    Lax342547Proofs.RetainedCharacters.disagreement_projection (C a) (D a) (E a)
+    Lax342547.RetainedCharacters.disagreement_projection (C a) (D a) (E a)
       (p a) (q a) (hp a) (hq a) (X x a) (Y y a) (T a)
       (fun v hv w => hD x y a v hv w) (hE x y a)
   by_cases hz : ∀ a, Z a = 0
@@ -135,7 +140,7 @@ theorem retained_component_character_dichotomy {ΩA ΩB Axis N : Type} {I : Axis
     simp only [hzero, mul_one, ← Finset.mul_sum, hβsum, hαsum]
   · right
     choose A B hAB hA hB using (fun a =>
-      Lax342547Proofs.QuotientFactors.quotient_independent_factors (C a) (D a) (E a)
+      Lax342547.QuotientFactors.quotient_independent_factors (C a) (D a) (E a)
         (p a) (q a) (hpk a) (hqk a) (hpid a) (hqid a))
     let c := ∑ a, matrixPair (LinearMap.BilinForm.toMatrix' (T a)) (Z a)
     have he (x : ΩA) (y : ΩB) : (∑ a,
@@ -144,7 +149,7 @@ theorem retained_component_character_dichotomy {ΩA ΩB Axis N : Type} {I : Axis
         (∑ a, coefficientPair (A a * (B a).transpose) (X x a) (Y y a)) + c := by
       simp only [hd, hAB]
       exact Finset.sum_add_distrib
-    have h := component_character_bound α β X Y A B c hα hβ hαsum.le hβsum.le
+    have h := Lax342547.ComponentCharacters.component_character_bound α β X Y A B c hα hβ hαsum.le hβsum.le
       (by simpa only [Fintype.card_fin] using hcapA (fun a => (Z a).rank) A hA)
       (by simpa only [Fintype.card_fin] using hcapB (fun a => (Z a).rank) B hB)
     simp only [← he] at h
@@ -153,7 +158,7 @@ theorem retained_component_character_dichotomy {ΩA ΩB Axis N : Type} {I : Axis
       push Not at hz
       obtain ⟨a, ha⟩ := hz
       have hpos : 1 ≤ (Z a).rank := Nat.one_le_iff_ne_zero.mpr
-        (fun h => ha (Lax342547Proofs.RetainedCharacters.rank_zero_matrix (Z a) h))
+        (fun h => ha (Lax342547.RetainedCharacters.rank_zero_matrix (Z a) h))
       exact hpos.trans (Finset.single_le_sum (fun b _ => Nat.zero_le (Z b).rank) (Finset.mem_univ a))
     apply Real.rpow_le_rpow_of_exponent_le (by norm_num : (1 : ℝ) ≤ 2)
     simp only [Fintype.card_fin]

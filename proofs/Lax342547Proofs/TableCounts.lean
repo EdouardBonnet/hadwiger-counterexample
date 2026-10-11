@@ -1,6 +1,6 @@
 import Lax342547.TableCounts
-import Lax342547Proofs.TableSpaces
 import Lax342547Proofs.FiniteLinearLaw
+import Lax342547.TableSpaces
 
 namespace Lax342547Proofs.TableCounts
 
@@ -48,10 +48,10 @@ theorem table_count {Comp B H N : Type} [Fintype Comp] [Fintype B] [Fintype H]
   apply Nat.pow_le_pow_right (by decide)
   have hdP (a : Comp × Bool) : Module.finrank Binary (tableSpace P a) ≤
       2 * K + 2 * Fintype.card H :=
-    (TableSpaces.table_dimension P a).trans (by omega)
+    (Lax342547.TableSpaces.table_dimension P a).trans (by omega)
   have hdQ (a : Comp × Bool) : Module.finrank Binary (tableSpace Q a) ≤
       2 * K + 2 * Fintype.card H :=
-    (TableSpaces.table_dimension Q a).trans (by omega)
+    (Lax342547.TableSpaces.table_dimension Q a).trans (by omega)
   have hsum₁ : (∑ e, Module.finrank Binary (tableSpace P (e, true)) *
       Module.finrank Binary (tableSpace Q (e, false))) ≤
       Fintype.card Comp * (2 * K + 2 * Fintype.card H) ^ 2 := by

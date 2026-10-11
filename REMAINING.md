@@ -1,14 +1,16 @@
 # Remaining work
 
-No proof obligations remain for Theorem 1.1 or the ordinary and fractional counterexample endpoints. The complete construction compiles and passes Lax kernel replay in the pinned archive environment. All 1,260 annotated proofs are closed, and the freshness-enforcing completion checker reports all three targets CLOSED. The three actual endpoint proofs use only `propext`, `Classical.choice`, and `Quot.sound`. The Lax submission is tracked in [control issue #191](https://github.com/lax-archive/lax/issues/191).
+The complete construction proves Theorem 1.1, and the ordinary and fractional consequences follow from it. Intermediate results are now used through their concept statements so that the Lax proof network records the actual mathematical dependencies. Run the kernel replay and completion checker below after changing this network. The construction has only the standard background axioms; modular consequence proofs additionally use proved concept statements. The Lax submission is tracked in [control issue #191](https://github.com/lax-archive/lax/issues/191).
 
 The proof route is documented in [PROOF_PLAN.md](PROOF_PLAN.md), and its immutable source pin is in [upstream-construction.json](references/upstream-construction.json).
 
-## Completed checks
+## Completed checks for the corrected network
 
 - The entire proof package and `AxiomAudit.lean` compile in the archive's pinned Lean environment.
-- The transitive axiom audit reports only Lean's three standard background axioms for the construction and both consequences.
-- `lax build . --replay` passes with 372 concepts and 1,260 closed annotated proofs; `python3 scripts/check_completion.py` exits with status 0.
+- The construction has only the three standard background axioms, and both consequence proofs have their declared concept dependencies.
+- `lax build . --replay --profile` passed, with 21 minutes 16 seconds of kernel replay. `python3 scripts/check_completion.py` confirms recursive closure of all 1,260 statements and proofs, including all three targets.
+- The compiled-term audit and Lax inspector agree on all 1,696 statement dependencies. The website's projection retains every dependency; no proof bypasses an annotated concept statement.
+- The labels are 366 lemmas, two theorems (the final fractional consequence and the central matching-minor bound), and four definition packages. The concept statements and 1,495 theorem signatures in changed proof files are unchanged.
 - The adapter proves the exact local statement. The touching-matching numbers are definitionally equal (`rfl`), and its proof has no graph-existence or supersaturation assumption.
 
 ## Optional future integration

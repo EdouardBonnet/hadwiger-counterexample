@@ -1,6 +1,7 @@
 import Lax342547.ConcreteRecipes
-import Lax342547Proofs.AtomProducts
-import Lax342547Proofs.RecipeRows
+import Lax342547.AtomProducts
+import Lax342547.RecipeRows
+import Lax342547.WitnessAtoms
 
 namespace Lax342547Proofs.ConcreteRecipes
 
@@ -38,22 +39,22 @@ theorem prescribe {I J : Type} [Fintype I] [Fintype J] [Nonempty I] [Nonempty J]
           (L t.1 t.2.1 t.2.2).toBilin' (atoms x).vector (atoms y).vector = lbits x y t ∧
           (R t.1 t.2.1 t.2.2).toBilin' (atoms x).vector (atoms y).vector = rbits x y t) →
         RecipeGradients D L R atoms p := by
-  obtain ⟨lbits, rbits, hzero, hrecipe⟩ := RecipeRows.recipe_bits
+  obtain ⟨lbits, rbits, hzero, hrecipe⟩ := Lax342547.RecipeRows.recipe_bits
     (fun x => (data x).role) opposite p hrole₁ hrole₂ hcoupled
     (fun x y t => allowedIndex (data x) (data y) t)
-    (fun x y => WitnessAtoms.allowed_index hk hcopies (data x) (data y))
+    (fun x y => Lax342547.WitnessAtoms.allowed_index hk hcopies (data x) (data y))
     (fun x y => testerEntry (data x) (data y))
-    (fun x y => WitnessAtoms.tester_properties.1 (data x) (data y))
-    (fun x => WitnessAtoms.tester_properties.2 (data x))
+    (fun x y => Lax342547.WitnessAtoms.tester_properties.1 (data x) (data y))
+    (fun x => Lax342547.WitnessAtoms.tester_properties.2 (data x))
   refine ⟨lbits, rbits, hzero, ?_⟩
   intro n b degree r hr D L R atoms hdata hbits
-  have hentry := AtomProducts.gradient_of_prescriptions D L R atoms lbits rbits
+  have hentry := Lax342547.AtomProducts.gradient_of_prescriptions D L R atoms lbits rbits
     (by simpa only [hdata] using hzero) (by simpa only [hdata] using hbits)
   have he (x y : I ⊕ J) : gradient D L R (atoms x).profile (atoms y).profile =
       testerEntry (data x) (data y) + productSum lbits rbits x y + productSum lbits rbits y x := by
     simpa only [hdata] using hentry x y
   have ha (x : I ⊕ J) : D.role (atoms x).profile = (data x).role := by
-    simpa only [hdata] using (WitnessAtoms.atom_testers D (atoms x)).1
+    simpa only [hdata] using (Lax342547.WitnessAtoms.atom_testers D (atoms x)).1
   simpa only [RecipeGradients, map_sum, LinearMap.sum_apply, he, ha] using hrecipe
 
 end Lax342547Proofs.ConcreteRecipes

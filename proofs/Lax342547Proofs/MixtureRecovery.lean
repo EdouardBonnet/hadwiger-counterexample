@@ -1,5 +1,6 @@
 import Lax342547.MixtureRecovery
 import Lax342547Proofs.Conditioning
+import Lax342547.Conditioning
 
 namespace Lax342547Proofs.MixtureRecovery
 
@@ -38,9 +39,9 @@ theorem nested_weighted_filter {Ω : Type} (p : PMF Ω) (S T : Set Ω)
     p.toOuterMeasure S * (p.filter S hS).toOuterMeasure T * ((p.filter S hS).filter T hT) o =
       (S ∩ T).indicator p o := by
   classical
-  rw [mul_assoc, Conditioning.weighted_filter]
+  rw [mul_assoc, Lax342547.Conditioning.weighted_filter]
   by_cases ht : o ∈ T
-  · rw [Set.indicator_of_mem ht, Conditioning.weighted_filter]
+  · rw [Set.indicator_of_mem ht, Lax342547.Conditioning.weighted_filter]
     by_cases hs : o ∈ S <;> simp [hs, ht]
   · simp [ht]
 
@@ -55,7 +56,7 @@ theorem conditional_event_mass {Ω : Type} [Fintype Ω] (p : PMF Ω)
     (S T : Set Ω) (hS : ∃ o ∈ S, o ∈ p.support) (hT : T ⊆ S)
     (δ : ℝ≥0∞) (hb : (p.filter S hS).toOuterMeasure T ≤ δ) :
     p.toOuterMeasure T ≤ δ * p.toOuterMeasure S := by
-  rw [Conditioning.filter_event, Set.inter_eq_right.mpr hT] at hb
+  rw [Lax342547.Conditioning.filter_event, Set.inter_eq_right.mpr hT] at hb
   exact (ENNReal.div_le_iff (Conditioning.mass_ne_zero p S hS) (Conditioning.mass_ne_top p S)).mp hb
 
 theorem fiber_mass_sum {Ω K : Type} [Fintype K] (p : PMF Ω) (f : Ω → K) :

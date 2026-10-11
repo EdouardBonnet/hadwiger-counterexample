@@ -99,7 +99,7 @@ theorem run_replay {U : Type} (active : Finset U → Prop) (pick : Finset U → 
             | cons a l =>
               have heq : a = pick R := by simpa [he] using hh
               simp [heq]
-          exact hv (recorded_subset active pick H I _ n _ hm)
+          exact hv (Lax342547.ContainerRun.recorded_subset active pick H I _ n _ hm)
         have hhead' : (run active pick H I n (R.erase (pick R))).2.head? ≠ some (pick R) := by
           simpa [next,hv] using hhead
         simpa [run,replay,ha,hv,next,hhead'] using ih (next H I R (pick R))
@@ -119,9 +119,9 @@ theorem run_preserves {U : Type} (active : Finset U → Prop) (pick : Finset U �
   | zero => exact ⟨hI,Finset.Subset.refl _⟩
   | succ n ih =>
     by_cases ha : active R
-    · have hh := ih (next H I R (pick R)) (next_preserves H I R (pick R) hI hind)
+    · have hh := ih (next H I R (pick R)) (Lax342547.ContainerRun.next_preserves H I R (pick R) hI hind)
       simp only [run,ha,ite_true]
-      exact ⟨hh.1,Finset.Subset.trans hh.2 (next_subset H I R (pick R))⟩
+      exact ⟨hh.1,Finset.Subset.trans hh.2 (Lax342547.ContainerRun.next_subset H I R (pick R))⟩
     · simpa [run,ha] using And.intro hI (Finset.Subset.refl R)
 
 /--
@@ -138,7 +138,7 @@ theorem run_terminal {U : Type} (active : Finset U → Prop) (pick : Finset U �
   | zero => omega
   | succ n ih =>
     by_cases ha : active R
-    · have hc := next_card_lt H I R (pick R) (hpick R ha).1 (hpick R ha).2
+    · have hc := Lax342547.ContainerRun.next_card_lt H I R (pick R) (hpick R ha).1 (hpick R ha).2
       have hh := ih (next H I R (pick R)) (by omega)
       simpa [run,ha] using hh
     · simp [run,ha]

@@ -3,7 +3,7 @@ import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
 /-!
 ---
 title: Rank and density budgets for exact-image peeling
-type: theorem
+type: lemma
 ---
 Compare the retained leaf mass with its absolute reference-image cap.
 The comparison bounds the cumulative new rank, including a single large

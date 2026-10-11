@@ -1,7 +1,9 @@
 import Lax342547.GramNormalization
 import Lax342547Proofs.GramColumns
 import Lax342547Proofs.FiniteProbability
-import Lax342547Proofs.CorankCounting
+import Lax342547.CorankCounting
+import Lax342547.GramColumns
+import Lax342547Proofs.FiniteUniform
 
 namespace Lax342547Proofs.GramNormalization
 
@@ -33,7 +35,7 @@ theorem column_failure {J N : Type} [Fintype J] [Fintype N] [DecidableEq J] [Dec
       (2 : ℝ≥0∞) ^ Fintype.card J / 2 ^ Fintype.card N := by
   let e : Matrix N J Binary ≃ Matrix J N Binary :=
     ⟨Matrix.transpose, Matrix.transpose, Matrix.transpose_transpose, Matrix.transpose_transpose⟩
-  have h := CorankCounting.uniform_corank_bound (I := J) (J := N) 1
+  have h := Lax342547.CorankCounting.uniform_corank_bound (I := J) (J := N) 1
   rw [← FiniteUniform.map_equiv e, PMF.toOuterMeasure_map_apply] at h
   have hs : e ⁻¹' {M | M.rank + 1 ≤ Fintype.card J} =
       {M | ¬ Function.Injective M.mulVec} := by
@@ -57,12 +59,12 @@ theorem slice_lower (A : Matrix N I Binary) (hA : Function.Injective A.mulVec)
   let p := PMF.uniformOfFintype (GramFiber A G)
   have hb : p.toOuterMeasure {B | Function.Injective B.val.mulVec}ᶜ ≤
       (2 : ℝ≥0∞) ^ (Fintype.card I + Fintype.card J) / 2 ^ Fintype.card N :=
-    GramColumns.conditional_failure A hA G
+    Lax342547.GramColumns.conditional_failure A hA G
   have hl := FiniteProbability.event_ge_of_compl_le p {B | Function.Injective B.val.mulVec} _ hb
   have he := @FiniteProbability.uniform_subtype_event (Matrix N J Binary) inferInstance inferInstance
     {B | A.transpose * B = G} {B | Function.Injective B.mulVec}
     (inferInstance : Fintype (GramFiber A G)) (inferInstance : Nonempty (GramFiber A G))
-  rw [GramColumns.gram_probability A hA G] at he
+  rw [Lax342547.GramColumns.gram_probability A hA G] at he
   have hs : {B : Matrix N J Binary | Function.Injective B.mulVec ∧ A.transpose * B = G} =
       {B | A.transpose * B = G} ∩ {B | Function.Injective B.mulVec} := by
     ext B
@@ -97,7 +99,7 @@ theorem normalization_upper (G : Matrix I J Binary) :
             _ ≤ (PMF.uniformOfFintype (Matrix N J Binary)).toOuterMeasure
                 {B | A.transpose * B = G} :=
               (PMF.uniformOfFintype _).toOuterMeasure.mono (fun _ h => h.2.2)
-            _ = c := GramColumns.gram_probability A hA G
+            _ = c := Lax342547.GramColumns.gram_probability A hA G
         · simp [hA]
       exact mul_le_mul_of_nonneg_left hs zero_le
     _ = c := by rw [← Finset.sum_mul, hsum, one_mul]
@@ -123,7 +125,7 @@ theorem normalization_lower (G : Matrix I J Binary) :
   let p := PMF.uniformOfFintype (Matrix N I Binary)
   let good := {A : Matrix N I Binary | Function.Injective A.mulVec}
   have hp : 1 - ε₁ ≤ p.toOuterMeasure good :=
-    FiniteProbability.event_ge_of_compl_le p good ε₁ (column_failure (J := I) (N := N))
+    FiniteProbability.event_ge_of_compl_le p good ε₁ (Lax342547.GramNormalization.column_failure (J := I) (N := N))
   have hl : p.toOuterMeasure good * (c * (1 - ε₂)) ≤ probability (N := N) G := by
     rw [PMF.toOuterMeasure_apply_fintype, Finset.sum_mul, probability,
       FiniteProbability.uniform_product_event]
@@ -190,6 +192,6 @@ theorem normalization_quarter (G : Matrix I J Binary)
         (1 - (2 : ℝ≥0∞) ^ Fintype.card I / 2 ^ Fintype.card N) *
         (1 - (2 : ℝ≥0∞) ^ (Fintype.card I + Fintype.card J) / 2 ^ Fintype.card N) := by
       gcongr
-    _ ≤ _ := normalization_lower G
+    _ ≤ _ := Lax342547.GramNormalization.normalization_lower G
 
 end Lax342547Proofs.GramNormalization

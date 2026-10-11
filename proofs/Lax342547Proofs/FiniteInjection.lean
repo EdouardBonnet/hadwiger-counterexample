@@ -1,11 +1,10 @@
 import Lax342547.FiniteInjection
-import Lax342547Proofs.SequentialTests
-import Lax342547Proofs.IndependentSampling
-import Lax342547Proofs.AmplifiedTests
-import Lax342547Proofs.UniversalWitnesses
-import Lax342547Proofs.IndependentWitnesses
-import Lax342547Proofs.FiniteSampling
 import Mathlib.LinearAlgebra.DFinsupp
+import Lax342547.AmplifiedTests
+import Lax342547.FiniteSampling
+import Lax342547.IndependentSampling
+import Lax342547.SequentialTests
+import Lax342547.UniversalWitnesses
 
 namespace Lax342547Proofs.FiniteInjection
 open Lax342547.FiniteInjection
@@ -37,28 +36,28 @@ theorem finite_injection_exception {A B N H : Type}
   let P := fun b => fun j (t : Fin j → A) a => F b a ∧ Disjoint (V a) (⨆ i : Fin j,V (t i))
   let T := fun t : Fin ℓ → A => fun b => Lax342547.SequentialTests.accepts (P b) ℓ t
   let bad := fun b => η ≤ cellMass α (F b)
-  have hprob := Lax342547Proofs.FiniteSampling.product_probability (fun _ : Fin ℓ => α) (fun _ => hα)
+  have hprob := Lax342547.FiniteSampling.product_probability (fun _ : Fin ℓ => α) (fun _ => hα)
   have hlow (b : B) (hb : bad b) : (η-δ)^ℓ ≤ cellMass (productLaw (fun _ : Fin ℓ => α)) (fun t => T t b) := by
-    exact Lax342547Proofs.IndependentSampling.greedy_failure_lower_probability V α (F b) η δ ℓ hα hgap.le hb havoid
+    exact Lax342547.IndependentSampling.greedy_failure_lower_probability V α (F b) η δ ℓ hα hgap.le hb havoid
   have hu (t : Fin ℓ → A) : cellMass β (T t) ≤
       L*((2 : ℝ)^(Fintype.card H*K+2*K*ℓ)/(2 : ℝ)^(Fintype.card H*ℓ)) := by
     by_cases hi : iSupIndep (fun i => V (t i))
     · have hm : cellMass β (T t) ≤ cellMass β (fun b => ∀ i,pinFailure (V (t i)) (Y b) (S b)) := by
-        apply Lax342547Proofs.FiniteSampling.cell_mass_mono _ _ _ hβ.1
+        apply Lax342547.FiniteSampling.cell_mass_mono _ _ _ hβ.1
         intro b hb
-        exact Lax342547Proofs.SequentialTests.accepts_pointwise (P b) (F b) (fun _ _ _ h => h.1) ℓ t hb
-      have hw := Lax342547Proofs.UniversalWitnesses.marked_unit_witness_probability (fun i => V (t i)) hi β Y S
+        exact Lax342547.SequentialTests.accepts_pointwise (P b) (F b) (fun _ _ _ h => h.1) ℓ t hb
+      have hw := Lax342547.UniversalWitnesses.marked_unit_witness_probability (fun i => V (t i)) hi β Y S
         K L hβ.1 hL (fun i => hV (t i)) hS hcap
       exact hm.trans (by simpa only [Fintype.card_fin,pinFailure] using hw)
     · have hz : cellMass β (T t) = 0 := by
         unfold cellMass
         apply Finset.sum_eq_zero
         intro b _
-        have hb : ¬ T t b := fun h => hi (Lax342547Proofs.IndependentSampling.accepted_spaces_independent V (F b) ℓ t h)
+        have hb : ¬ T t b := fun h => hi (Lax342547.IndependentSampling.accepted_spaces_independent V (F b) ℓ t h)
         exact if_neg hb
       rw [hz]
       positivity
-  exact Lax342547Proofs.AmplifiedTests.amplified_bad_mass _ _ T bad ((η-δ)^ℓ) _ hprob hβ.1
+  exact Lax342547.AmplifiedTests.amplified_bad_mass _ _ T bad ((η-δ)^ℓ) _ hprob hβ.1
     (pow_pos (sub_pos.mpr hgap) _) hlow hu
 
 end Lax342547Proofs.FiniteInjection

@@ -1,5 +1,6 @@
 import Lax342547.PairedWitnesses
 import Lax342547Proofs.Atoms
+import Lax342547.Atoms
 
 namespace Lax342547Proofs.PairedWitnesses
 
@@ -63,7 +64,7 @@ theorem atom_sharing (F G : Component (Tag k) → Frame (Coordinate k n b degree
   ext e a b
   change (sandwich (F e).P (F e).Q (x.profile.val e)) a b =
     (sandwich (G e).P (G e).Q (y.profile.val e)) a b
-  simp only [PointAtom.profile, Atoms.atom_component]
+  simp only [PointAtom.profile, Lax342547.Atoms.atom_component]
   by_cases he : x.tag ∈ e.val
   · have hey : y.tag ∈ e.val := htag ▸ he
     simp only [he, hey, if_pos]

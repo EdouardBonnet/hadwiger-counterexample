@@ -1,5 +1,7 @@
 import Lax342547.FixedSelectorGram
-import Lax342547Proofs.FlavorAffineSlices
+import Lax342547.FiniteLinearLaw
+import Lax342547.RealCellLaws
+import Lax342547Proofs.ConcreteGeometry
 
 namespace Lax342547Proofs.FixedSelectorGram
 noncomputable section
@@ -115,7 +117,7 @@ theorem restriction_uniform {k n r : ℕ} {D : Type} [Fintype D]
     (PMF.uniformOfFintype (Coefficients n l f D)).map (restrictTesters hr l f) =
       PMF.uniformOfFintype (Matrix (Slots l f r) (Option D) Binary) := by
   classical
-  apply FiniteLinearLaw.uniform_image_of_surjective
+  apply Lax342547.FiniteLinearLaw.uniform_image_of_surjective
   intro X
   refine ⟨fun a j => Function.extend (slotIndex hr l f) (fun u => X u j) 0 a,?_⟩
   funext u j
@@ -134,7 +136,7 @@ theorem prescription_mass {k n r : ℕ} {D : Type} [Fintype D]
       {V | restrictTesters hr l f V = X} =
         1/(2 : ℝ≥0∞)^(Fintype.card (Slots l f r)*Fintype.card (Option D)) := by
   classical
-  have hh := congrArg (fun p => p.toOuterMeasure {X}) (restriction_uniform (D := D) hr l f)
+  have hh := congrArg (fun p => p.toOuterMeasure {X}) (Lax342547.FixedSelectorGram.restriction_uniform (D := D) hr l f)
   rw [PMF.toOuterMeasure_map_apply,PMF.toOuterMeasure_apply_singleton,
     PMF.uniformOfFintype_apply] at hh
   have hc : Fintype.card (Matrix (Slots l f r) (Option D) Binary) =
@@ -160,7 +162,7 @@ theorem gram_restriction {k n b degree r : ℕ} {D : Type}
       restrictedGram (restrictTesters hr l f V) := by
   classical
   ext i j
-  rw [same_selector_gram]
+  rw [Lax342547.FixedSelectorGram.same_selector_gram]
   let h : TesterBlock k → Binary := fun q => ∑ ρ : Fin r,
     value V (testerCoordinate hr (q,ρ,false)) i*value V (testerCoordinate hr (q,ρ,true)) j
   have hall : (∑ d : Tag k,∑ t : Tag k,∑ ρ : Fin r,
@@ -227,12 +229,12 @@ theorem gram_mass_bound {k n b degree r : ℕ} {D : Type} [Fintype D]
       (PMF.uniformOfFintype (Coefficients n l f D)).toOuterMeasure
         {V | (pointColumns s (value V)).transpose*selfGram hr hd M*pointColumns s (value V) = G} := by
   classical
-  rw [← prescription_mass hr l f (routing c G)]
+  rw [← Lax342547.FixedSelectorGram.prescription_mass hr l f (routing c G)]
   apply (PMF.uniformOfFintype (Coefficients n l f D)).toOuterMeasure.mono
   intro V hV
   change restrictTesters hr l f V = routing c G at hV
   change (pointColumns s (value V)).transpose*selfGram hr hd M*pointColumns s (value V) = G
-  rw [gram_restriction, hV, routed_gram c hc]
+  rw [Lax342547.FixedSelectorGram.gram_restriction, hV, Lax342547.FixedSelectorGram.routed_gram c hc]
 
 /--
 ---
@@ -253,7 +255,7 @@ theorem positive_gram_mass {k n b degree r : ℕ} {D : Type} [Fintype D]
     (Fintype.equivFin (Pairs l f r)).symm (Fin.castLE hroom ((Fintype.equivFin (Option D)) j))
   have hc : Function.Injective c := (Fintype.equivFin (Pairs l f r)).symm.injective.comp
     ((Fin.castLE_injective hroom).comp (Fintype.equivFin (Option D)).injective)
-  exact gram_mass_bound hr hd M s l f c hc G
+  exact Lax342547.FixedSelectorGram.gram_mass_bound hr hd M s l f c hc G
 
 /--
 ---
@@ -285,8 +287,8 @@ theorem gram_cell_mass {k n b degree r : ℕ} {D : Type} [Fintype D]
     apply ne_top_of_le_ne_top (by simp : (1 : ℝ≥0∞) ≠ ⊤)
     apply (p.toOuterMeasure.mono (Set.subset_univ _)).trans_eq
     simpa [PMF.toOuterMeasure_apply] using p.tsum_coe
-  have hh := ENNReal.toReal_mono ht (positive_gram_mass hr hd M s l f hroom G)
-  rw [← RealCellLaws.event_mass] at hh
+  have hh := ENNReal.toReal_mono ht (Lax342547.FixedSelectorGram.positive_gram_mass hr hd M s l f hroom G)
+  rw [← Lax342547.RealCellLaws.event_mass] at hh
   simpa only [massFloor,ENNReal.toReal_div,ENNReal.toReal_one,ENNReal.toReal_pow,
     ENNReal.toReal_ofNat] using hh
 

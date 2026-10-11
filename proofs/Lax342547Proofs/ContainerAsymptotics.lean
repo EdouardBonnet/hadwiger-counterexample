@@ -37,7 +37,7 @@ conclusion: Lax342547.ContainerAsymptotics.eventually_container_exponent
 -/
 theorem eventually_container_exponent (A g : ℕ) (hg : 0 < g) :
     ∀ᶠ N : ℕ in atTop, exponentBudget A g N+2 < 2^(1000*g*N) := by
-  have hbound := (container_exponent_little_o A g hg).bound (show (0 : ℝ) < 1/4 by norm_num)
+  have hbound := (Lax342547.ContainerAsymptotics.container_exponent_little_o A g hg).bound (show (0 : ℝ) < 1/4 by norm_num)
   filter_upwards [hbound,eventually_ge_atTop 1] with N hb hN
   have hn : (0 : ℝ) ≤ exponentBudget A g N := Nat.cast_nonneg _
   have hp : (0 : ℝ) ≤ (2 : ℝ)^(1000*g*N) := by positivity

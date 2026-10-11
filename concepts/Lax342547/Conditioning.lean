@@ -4,7 +4,7 @@ import Mathlib.Data.Finset.Union
 /-!
 ---
 title: Exact conditioning costs and recovery of finite probability masses
-type: theorem
+type: lemma
 ---
 Conditioning divides event probabilities and point densities by the
 retained mass. Multiplying a conditional law by that actual mass recovers

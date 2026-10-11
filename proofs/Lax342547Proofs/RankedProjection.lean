@@ -1,5 +1,7 @@
 import Lax342547.RankedProjection
-import Lax342547Proofs.ResponseMatrices
+import Lax342547.BarredSpaces
+import Lax342547.ResponseMatrices
+import Lax342547Proofs.ResponseSolvability
 
 namespace Lax342547Proofs.RankedProjection
 
@@ -25,8 +27,8 @@ theorem bilinear_comp_rank {A B V X : Type} [AddCommGroup A] [Module Binary A]
       Module.finrank Binary (LinearMap.range β) := by
   have he : β.compl₁₂ f g = (LinearMap.lcomp Binary Binary g).comp (β.comp f) := rfl
   rw [he]
-  exact (Lax342547Proofs.ResponseMatrices.comp_right_rank _ _).trans
-    (Lax342547Proofs.ResponseMatrices.comp_left_rank _ _)
+  exact (Lax342547.ResponseMatrices.comp_right_rank _ _).trans
+    (Lax342547.ResponseMatrices.comp_left_rank _ _)
 
 /--
 ---
@@ -47,7 +49,7 @@ theorem matrix_bilinear_rank {B : Type} [Fintype B] (M : Matrix B B Binary) :
     change dotProduct v (M.mulVec w) = dotProduct (M.transpose.mulVec v) w
     rw [Matrix.dotProduct_mulVec, Matrix.mulVec_transpose]
   rw [he]
-  exact (Lax342547Proofs.ResponseMatrices.comp_right_rank _ _).trans_eq (Matrix.rank_transpose M)
+  exact (Lax342547.ResponseMatrices.comp_right_rank _ _).trans_eq (Matrix.rank_transpose M)
 
 /--
 ---
@@ -109,7 +111,7 @@ theorem projected_endpoint_response {B H : Type} [Fintype B]
   let g := E.liftQ (C.mulVecLin.comp (primalProjection i)) hEker
   let γ := Matrix.toBilin' M
   let β := γ.compl₁₂ f g
-  refine ⟨β, ?_, (bilinear_comp_rank γ f g).trans (matrix_bilinear_rank M)⟩
+  refine ⟨β, ?_, (Lax342547.RankedProjection.bilinear_comp_rank γ f g).trans (Lax342547.RankedProjection.matrix_bilinear_rank M)⟩
   have hproj (j : Fin 2) (v : B → Binary) :
       primalProjection (H := H) i (primalEmbedding j v) = if j = i then v else 0 := by
     ext b
@@ -155,14 +157,14 @@ theorem projected_paired_response {B H : Type} [Fintype B] [Fintype H]
       pureResponse D E β = (matrixPair ((A i).transpose * M i * C i)).comp (LinearMap.proj i) ∧
         Module.finrank Binary (LinearMap.range β) ≤ (M i).rank := by
     intro i
-    exact projected_endpoint_response D E i (M i) (A i) (C i) (hD i) (hE i)
+    exact Lax342547.RankedProjection.projected_endpoint_response D E i (M i) (A i) (C i) (hD i) (hE i)
   choose β hβ hrβ using he
   let L : ((Nominal B H ⧸ D) →ₗ[Binary] (Nominal B H ⧸ E) →ₗ[Binary] Binary) →ₗ[Binary]
       Module.Dual Binary (Fin 2 → Matrix B B Binary) :=
     { toFun := pureResponse D E
       map_add' := Lax342547Proofs.ResponseSolvability.pure_add D E
       map_smul' := Lax342547Proofs.ResponseSolvability.pure_smul D E }
-  refine ⟨∑ i, β i, ?_, (linear_sum_rank β).trans (Finset.sum_le_sum (fun i _ => hrβ i))⟩
+  refine ⟨∑ i, β i, ?_, (Lax342547.RankedProjection.linear_sum_rank β).trans (Finset.sum_le_sum (fun i _ => hrβ i))⟩
   change L (∑ i, β i) = _
   rw [map_sum]
   simp only [L, LinearMap.coe_mk, AddHom.coe_mk, hβ]
@@ -193,27 +195,27 @@ theorem actual_pure_projection {k n b degree r K : ℕ} {hr : 2 * r ≤ n}
       projected P i (e, true) ⊔ individualKeys W i e ≤ LinearMap.ker A.mulVecLin ∧
       (1 - A).rank ≤ Module.finrank Binary ↥(projected P i (e, true) ⊔ individualKeys W i e) := by
     intro i
-    exact Lax342547Proofs.ResponseMatrices.quotient_projection _
+    exact Lax342547.ResponseMatrices.quotient_projection _
   have hCp : ∀ i, ∃ C : Moment k n b degree,
       projected P i (e, false) ⊔ individualKeys W i e ≤ LinearMap.ker C.mulVecLin ∧
       (1 - C).rank ≤ Module.finrank Binary ↥(projected P i (e, false) ⊔ individualKeys W i e) := by
     intro i
-    exact Lax342547Proofs.ResponseMatrices.quotient_projection _
+    exact Lax342547.ResponseMatrices.quotient_projection _
   choose A hA hrA using hAp
   choose C hC hrC using hCp
   have hD : ∀ i, (barred W P U (e, true)).map (primalProjection i) ≤ LinearMap.ker (A i).mulVecLin := by
     intro i
-    exact (Lax342547Proofs.BarredSpaces.barred_projection W P U (e, true) i).trans (hA i)
+    exact (Lax342547.BarredSpaces.barred_projection W P U (e, true) i).trans (hA i)
   have hE : ∀ i, (barred W P V (e, false)).map (primalProjection i) ≤ LinearMap.ker (C i).mulVecLin := by
     intro i
-    exact (Lax342547Proofs.BarredSpaces.barred_projection W P V (e, false) i).trans (hC i)
-  obtain ⟨β, hβ, hrβ⟩ := projected_paired_response _ _ M A C hD hE
+    exact (Lax342547.BarredSpaces.barred_projection W P V (e, false) i).trans (hC i)
+  obtain ⟨β, hβ, hrβ⟩ := Lax342547.RankedProjection.projected_paired_response _ _ M A C hD hE
   refine ⟨A, C, β, hβ, hrβ, ?_⟩
   intro i
   constructor
-  · have ha := (hrA i).trans (Lax342547Proofs.ResponseMatrices.projected_pin_key_dimension W P hK i (e, true))
-    have hc := (hrC i).trans (Lax342547Proofs.ResponseMatrices.projected_pin_key_dimension W P hK i (e, false))
-    have hh := (Lax342547Proofs.ResponseMatrices.projection_difference_rank (A i) (M i) (C i)).trans (Nat.add_le_add ha hc)
+  · have ha := (hrA i).trans (Lax342547.ResponseMatrices.projected_pin_key_dimension W P hK i (e, true))
+    have hc := (hrC i).trans (Lax342547.ResponseMatrices.projected_pin_key_dimension W P hK i (e, false))
+    have hh := (Lax342547.ResponseMatrices.projection_difference_rank (A i) (M i) (C i)).trans (Nat.add_le_add ha hc)
     omega
   · exact (Matrix.rank_mul_le_left _ _).trans (Matrix.rank_mul_le_right _ _)
 

@@ -4,7 +4,7 @@ import Mathlib.LinearAlgebra.Basis.VectorSpace
 /-!
 ---
 title: Extracting fresh label coefficients through pin quotients
-type: theorem
+type: lemma
 ---
 The stronger sparse exclusion permits a selected coefficient to be read
 from the quotient by a projected pin. This is a first ingredient for

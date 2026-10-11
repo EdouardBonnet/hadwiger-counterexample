@@ -1,11 +1,14 @@
 import Lax342547.UnaryRowLaw
 import Lax342547Proofs.UnaryMixer
 import Lax342547Proofs.MixerRowLaw
-import Lax342547Proofs.CorankCounting
-import Lax342547Proofs.SymmetricFactorization
 import Lax342547Proofs.ProfileCounting
 import Mathlib.Tactic.Ring
 import Lean.Elab.Tactic.Omega
+import Lax342547.AtomDirections
+import Lax342547.CorankCounting
+import Lax342547.FiniteLinearLaw
+import Lax342547.SymmetricFactorization
+import Lax342547.UnaryMixer
 
 namespace Lax342547Proofs.UnaryRowLaw
 
@@ -26,7 +29,7 @@ theorem full_codimension {r : E → ℕ} {J : ℕ}
     Module.finrank Binary (FullList r J N) ≤
       Module.finrank Binary (LinearMap.range (fullObservations (J := J) Z D)) +
         2 * J * (∑ e, r e) ^ 2 := by
-  have h := FiniteLinearLaw.family_codimension
+  have h := Lax342547.FiniteLinearLaw.family_codimension
     (fun p : Index E J => Lax342547.MixerRowLaw.observations (Z p.2.2.1) (Z p.2.2.2) D)
     (fun p => r p.2.2.1 * r p.2.2.2)
     (fun p => by simpa using (MixerRowLaw.observations_codimension
@@ -59,7 +62,7 @@ theorem mixerRows_codimension {r : E → ℕ} (inc : Finset E) {J K : ℕ}
     Module.finrank Binary (Matrix (RowIndex r inc J) N Binary) ≤
       Module.finrank Binary (LinearMap.range (mixerRows (J := J) inc Z D)) + 2 * J * K ^ 2 := by
   have hfull := full_codimension (J := J) Z D hZ hD
-  have h := FiniteLinearLaw.codimension_map_le (pack (r := r) (J := J) (N := N) inc)
+  have h := Lax342547.FiniteLinearLaw.codimension_map_le (pack (r := r) (J := J) (N := N) inc)
     (pack_surjective inc) (LinearMap.range (fullObservations Z D))
   rw [← LinearMap.range_comp] at h
   have hdim := (LinearMap.range (mixerRows (J := J) inc Z D)).finrank_le
@@ -135,7 +138,7 @@ theorem joint_row_law [DecidableEq E] [DecidableEq I] [DecidableEq N]
     (PMF.uniformOfFintype (Index E J → Matrix I I Binary)).map (mixerRows inc Z D) y ≤
       2 ^ (2 * J * K ^ 2) * PMF.uniformOfFintype (Matrix (RowIndex r inc J) N Binary) y := by
   classical
-  exact FiniteLinearLaw.uniform_image_bound _ _ (mixerRows_codimension inc Z D hZ hD hr) y
+  exact Lax342547.FiniteLinearLaw.uniform_image_bound _ _ (mixerRows_codimension inc Z D hZ hD hr) y
 
 /--
 ---
@@ -158,9 +161,9 @@ theorem row_corank_bound [DecidableEq E] [DecidableEq I] [DecidableEq N]
   let q := PMF.uniformOfFintype (Matrix (RowIndex r inc J) N Binary)
   let S : Set (Matrix (RowIndex r inc J) N Binary) := {A | A.rank + s ≤ Fintype.card (RowIndex r inc J)}
   have hdom := event_bound_of_pointwise (p.map (mixerRows inc Z D)) q (2 ^ (2 * J * K ^ 2))
-    (joint_row_law inc Z D hZ hD hr) S
+    (Lax342547.UnaryRowLaw.joint_row_law inc Z D hZ hD hr) S
   rw [PMF.toOuterMeasure_map_apply] at hdom
-  have hc := CorankCounting.uniform_corank_bound (I := RowIndex r inc J) (J := N) s
+  have hc := Lax342547.CorankCounting.uniform_corank_bound (I := RowIndex r inc J) (J := N) s
   have hcard : Fintype.card (RowIndex r inc J) ≤ 4 * J * inc.card * K := by
     rw [rowIndex_card]
     exact Nat.mul_le_mul_left _ hr
@@ -195,15 +198,15 @@ theorem unary_failure_probability {k n b degree r₀ J K : ℕ} {hr : 2 * r₀ �
         (2 : ℝ≥0∞) ^ (2 * J * K ^ 2 + (s₀ + 1) * (4 * J * (2 * k) * K)) / 2 ^ ((s₀ + 1) * n) := by
   classical
   have hf (e : Component (Tag k)) :=
-    SymmetricFactorization.symmetric_factorization (x.val e) (ProfileCounting.profile_transpose x e)
+    Lax342547.SymmetricFactorization.symmetric_factorization (x.val e) (ProfileCounting.profile_transpose x e)
   choose Z H hZ hHsym hH hfactor using hf
   have hfree : Function.Injective (free : Fin n → Base k n) := by
     intro i j h
     exact (Prod.mk.inj (Sum.inr.inj h)).2
-  have hDir := AtomDirections.blockDirections_injective (degree := degree) s free hfree
-  have hprob := row_corank_bound (J := J) (incident l) Z
+  have hDir := Lax342547.AtomDirections.blockDirections_injective (degree := degree) s free hfree
+  have hprob := Lax342547.UnaryRowLaw.row_corank_bound (J := J) (incident l) Z
     (Lax342547.AtomDirections.blockDirections s free) hZ hDir hK (s₀ + 1)
-  rw [UnaryMixer.incident_card, Fintype.card_fin] at hprob
+  rw [Lax342547.UnaryMixer.incident_card, Fintype.card_fin] at hprob
   apply le_trans ((PMF.uniformOfFintype
     (Index (Component (Tag k)) J → Moment k n b degree)).toOuterMeasure.mono ?_) hprob
   intro M hM
@@ -212,13 +215,13 @@ theorem unary_failure_probability {k n b degree r₀ J K : ℕ} {hr : 2 * r₀ �
   have hA : Module.finrank Binary (Rows (fun e => (x.val e).rank) (incident l) J) ≤
       Module.finrank Binary (LinearMap.range (zRows Z (leftMixers M) (rightMixers M) l s)) + s₀ := by
     simp only [Set.mem_ofPred_eq] at hn
-    rw [mixerRows_rank, rowIndex_card] at hn
+    rw [Lax342547.UnaryRowLaw.mixerRows_rank, rowIndex_card] at hn
     rw [UnaryMixer.rows_dimension]
     change ¬ (Module.finrank Binary (LinearMap.range
       (zRows Z (leftMixers M) (rightMixers M) l s)) + (s₀ + 1) ≤
         4 * J * (incident l).card * ∑ e, (x.val e).rank) at hn
     omega
-  have hgood := UnaryMixer.unary_rank_lower hk D x hx Z H hfactor (fun e => (hH e).1)
+  have hgood := Lax342547.UnaryMixer.unary_rank_lower hk D x hx Z H hfactor (fun e => (hH e).1)
     (leftMixers M) (rightMixers M) l s z hz s₀ hA
   exact (not_lt_of_ge hgood) hbad
 

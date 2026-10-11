@@ -1,5 +1,4 @@
 import Lax342547.CoverSpace
-import Lax342547Proofs.CoverProjection
 import Mathlib.LinearAlgebra.FreeModule.Finite.Matrix
 
 namespace Lax342547Proofs.CoverSpace
@@ -53,7 +52,7 @@ theorem cover_space_dimension {K V W : Type} [Field K]
       Module.finrank K V*Module.finrank K S+Module.finrank K T*Module.finrank K W := by
   have hle : LinearMap.ker (coverOperator S T) ≤ LinearMap.range (coverAssembly S T) := by
     intro M hM
-    exact covered_decomposition S T M hM
+    exact Lax342547.CoverSpace.covered_decomposition S T M hM
   have hh := (Submodule.finrank_mono hle).trans (coverAssembly S T).finrank_range_le
   have ht : Module.finrank K (V ⧸ T.dualCoannihilator) = Module.finrank K T := by
     have ha := Submodule.finrank_quotient_add_finrank T.dualCoannihilator

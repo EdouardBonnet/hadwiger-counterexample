@@ -1,6 +1,6 @@
 import Lax342547.ResponseSolvability
-import Lax342547Proofs.EffectiveObstructions
-import Lax342547Proofs.RecipeResiduals
+import Lax342547.EffectiveObstructions
+import Lax342547.RecipeResiduals
 
 namespace Lax342547Proofs.ResponseSolvability
 
@@ -220,8 +220,8 @@ noncomputable def parameterMap (W : Lists k n b degree r hr)
     (F : CrossForms (Component (Tag k)) (Coordinate k n b degree) H) (z : Fin 2) :
     Parameters W P Q U V z →ₗ[Binary] Module.Dual Binary (Fin 2 → Profile k n b degree) where
   toFun p := fullResponse W P Q U V F z p.1 p.2.1 p.2.2
-  map_add' p q := full_add W P Q U V F z p.1 q.1 p.2.1 q.2.1 p.2.2 q.2.2
-  map_smul' a p := full_smul W P Q U V F z a p.1 p.2.1 p.2.2
+  map_add' p q := Lax342547.ResponseSolvability.full_add W P Q U V F z p.1 q.1 p.2.1 q.2.1 p.2.2 q.2.2
+  map_smul' a p := Lax342547.ResponseSolvability.full_smul W P Q U V F z a p.1 p.2.1 p.2.2
 
 /--
 ---
@@ -260,7 +260,7 @@ theorem solvable_of_annihilator_zero (W : Lists k n b degree r hr)
     apply h x
     intro β δ ε
     exact hx (β, δ, ε)
-  obtain ⟨p, hp⟩ := dual_range (A := Parameters W P Q U V z)
+  obtain ⟨p, hp⟩ := Lax342547.ResponseSolvability.dual_range (A := Parameters W P Q U V z)
     (X := Fin 2 → Profile k n b degree) (parameterMap W P Q U V F z) t hzero
   exact ⟨p.1, p.2.1, p.2.2, hp⟩
 
@@ -310,12 +310,12 @@ theorem obstruction_correct {K : ℕ} (hk : 0 < k) (W : Lists k n b degree r hr)
     (x : Fin 2 → Profile k n b degree) (h : Annihilates W P Q U V F z x)
     (hdegree : 6 * (2 * K + 28) + 4 ≤ degree) :
     ∀ i, x i ∈ correctSpace W P i := by
-  obtain ⟨c, hc⟩ := Lax342547Proofs.EffectiveObstructions.obstruction_decomposition hk W P Q hK
+  obtain ⟨c, hc⟩ := Lax342547.EffectiveObstructions.obstruction_decomposition hk W P Q hK
     A hA hfresh U V hU hV T hT F hF z x h hdegree
   intro i
   have heff : (x - selectedPart W c) i ∈ correctSpace W P i :=
     (show effective (Profile k n b degree) P i ≤ correctSpace W P i from le_sup_left) (hc i)
-  have hsum := (correctSpace W P i).add_mem heff (selected_part_correct W P c i)
+  have hsum := (correctSpace W P i).add_mem heff (Lax342547.ResponseSolvability.selected_part_correct W P c i)
   simpa only [Pi.sub_apply, sub_add_cancel] using hsum
 
 /--
@@ -337,9 +337,9 @@ theorem unrestricted_solution {K : ℕ} (hk : 0 < k) (W : Lists k n b degree r h
     (t : Fin 2 → Module.Dual Binary (Profile k n b degree))
     (ht : ∀ i, correctSpace W P i ≤ LinearMap.ker (t i)) :
     ∃ β δ ε, fullResponse W P Q U V F z β δ ε = ∑ i, (t i).comp (LinearMap.proj i) := by
-  apply solvable_of_annihilator_zero
+  apply Lax342547.ResponseSolvability.solvable_of_annihilator_zero
   intro x hx
-  have hc := obstruction_correct hk W P Q hK A hA hfresh U V hU hV T hT F hF z x hx hdegree
+  have hc := Lax342547.ResponseSolvability.obstruction_correct hk W P Q hK A hA hfresh U V hU hV T hT F hF z x hx hdegree
   simp only [LinearMap.sum_apply, LinearMap.comp_apply, LinearMap.proj_apply]
   apply Finset.sum_eq_zero
   intro i _
@@ -370,9 +370,9 @@ theorem recipe_solution [Fintype N] {K : ℕ} {E : Moment k n b degree}
     (hdegree : 6 * (2 * K + 28) + 4 ≤ degree) (z : Fin 2) :
     ∃ β δ ε, fullResponse W P Q U V F z β δ ε =
       ∑ i, (residual W D L R F i z).comp (LinearMap.proj i) := by
-  apply unrestricted_solution hk W P Q hK A hA hfresh U V hU hV T hT F hF z hdegree
+  apply Lax342547.ResponseSolvability.unrestricted_solution hk W P Q hK A hA hfresh U V hU hV T hT F hF z hdegree
   intro i
-  exact Lax342547Proofs.RecipeResiduals.residual_correct W D L R oA oB T A B F
+  exact Lax342547.RecipeResiduals.residual_correct W D L R oA oB T A B F
     hrecipe hF hfrozen hkeys hgradients i z
 
 end Lax342547Proofs.ResponseSolvability

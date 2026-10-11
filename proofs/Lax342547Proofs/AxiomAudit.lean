@@ -1,4 +1,11 @@
 import Lax342547Proofs.Construction
+
+/-
+Modular proofs intentionally use concept statements. Their printed axiom sets
+are the edges of the Lax proof network, whose recursive closure is checked by
+scripts/check_completion.py. The upstream construction and its local adapter
+remain closed using only the standard background axioms.
+-/
 import Lax342547Proofs.SyntheticGramSlices
 import Lax342547Proofs.OrbitSliceLaw
 import Lax342547Proofs.TesterProductRouting
@@ -319,7 +326,7 @@ import Lax342547Proofs.TableContractions
 import Lax342547Proofs.RawContractions
 import Lax342547Proofs.PairedWitnesses
 
--- Completed preliminary results: background axioms only.
+-- Audit both leaf proofs and modular concept dependencies.
 import Lax342547Proofs.JoinedGramOrbits
 
 import Lax342547Proofs.JointGramInjection
@@ -343,6 +350,44 @@ import Lax342547Proofs.CommonTestTransfer
 import Lax342547Proofs.SmallSliceRank
 
 import Lax342547Proofs.FlavorAffineSlices
+import Lax342547Proofs.AtomDirections
+import Lax342547Proofs.BilinearWalsh
+import Lax342547Proofs.BinaryMixer
+import Lax342547Proofs.BinaryMixers
+import Lax342547Proofs.BoundedPeeling
+import Lax342547Proofs.ConcreteCut
+import Lax342547Proofs.ConcreteGeometry
+import Lax342547Proofs.Conditioning
+import Lax342547Proofs.CutProfiles
+import Lax342547Proofs.CutSparsity
+import Lax342547Proofs.ExactPins
+import Lax342547Proofs.FiniteLinearLaw
+import Lax342547Proofs.FractionalColoring
+import Lax342547Proofs.GramColumns
+import Lax342547Proofs.HadwigerMatching.ChromaticBound
+import Lax342547Proofs.HadwigerMatching.MinorBound
+import Lax342547Proofs.KernelWitness
+import Lax342547Proofs.LeafExtraction
+import Lax342547Proofs.LeafPartition
+import Lax342547Proofs.LeafTrimming
+import Lax342547Proofs.MetadataPins
+import Lax342547Proofs.MixerCompatibility
+import Lax342547Proofs.MixtureRecovery
+import Lax342547Proofs.MomentSpace
+import Lax342547Proofs.PairedFrames
+import Lax342547Proofs.PeelingBudget
+import Lax342547Proofs.ProductImages
+import Lax342547Proofs.ProductMinusImages
+import Lax342547Proofs.RawIntersections
+import Lax342547Proofs.ReferenceImages
+import Lax342547Proofs.ReferencePins
+import Lax342547Proofs.SecondPeeling
+import Lax342547Proofs.SparseRepresentatives
+import Lax342547Proofs.SplitTrimming
+import Lax342547Proofs.SymmetricFactorization
+import Lax342547Proofs.TensorIntersections
+import Lax342547Proofs.Upstream.OAI.Combinatorics.HadwigerCounterexample.Main
+import Lax342547Proofs.Walsh
 
 #print axioms Lax342547Proofs.HadwigerMatching.hadwiger_matching_bound
 #print axioms Lax342547Proofs.HadwigerMatching.card_le_twice_chromaticNumber_of_indepNum

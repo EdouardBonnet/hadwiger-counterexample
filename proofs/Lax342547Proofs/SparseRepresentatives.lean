@@ -2,8 +2,12 @@ import Lax342547.SparseRepresentatives
 import Lax342547Proofs.CutSparsity
 import Lax342547Proofs.TagGeometry
 import Lax342547Proofs.SlotWalsh
-import Lax342547Proofs.TensorIntersections
-import Lax342547Proofs.ConcreteGeometry
+import Lax342547.ConcreteGeometry
+import Lax342547.CutSparsity
+import Lax342547.TagGeometry
+import Lax342547.TensorIntersections
+import Lax342547Proofs.CutProfiles
+import Lax342547Proofs.MomentSpace
 
 namespace Lax342547Proofs.SparseRepresentatives
 
@@ -44,7 +48,7 @@ theorem tag_majority_intersection {k n b degree : ℕ} (S : Finset (Tag k))
     omega
   change (⨅ t : {t // t ∈ S}, momentSpace selectorEval (allowedBase k n t.val)) ≤
     ⨅ t : Tag k, momentSpace selectorEval (allowedBase k n t)
-  rw [TagGeometry.majority_intersection k n selectorEval S hS',
+  rw [Lax342547.TagGeometry.majority_intersection k n selectorEval S hS',
     TagGeometry.all_tag_intersection k n selectorEval]
 
 /--
@@ -65,12 +69,12 @@ theorem normalized_representation {k n b degree : ℕ} (R : ℕ)
     simpa only [representatives, Submodule.mem_pi, Set.mem_univ, forall_const] using w.property
   have hcut : cutMap w.val = x.val := hwx
   have hcount : cutSize w.val ≤ R := by
-    have hc := cutSize_le_rank w.val
+    have hc := Lax342547.SparseRepresentatives.cutSize_le_rank w.val
     rw [hcut] at hc
     exact hc.trans hrank
   have hs : 4 * cutSize w.val < Fintype.card (Tag k) * Fintype.card (Tag k) := by
     simpa only [Tag, ZMod.card] using lt_of_le_of_lt (Nat.mul_le_mul_left 4 hcount) hsmall
-  obtain ⟨v, hv, _⟩ := CutSparsity.exists_unique_normalized (tagSpace k n b degree)
+  obtain ⟨v, hv, _⟩ := Lax342547.CutSparsity.exists_unique_normalized (tagSpace k n b degree)
     tag_majority_intersection w.val hw hs
   let v' : Representation k n b degree := ⟨v, by
     simpa only [representatives, Submodule.mem_pi, Set.mem_univ, forall_const] using hv.1⟩
@@ -80,7 +84,7 @@ theorem normalized_representation {k n b degree : ℕ} (R : ℕ)
     simpa only [Tag, ZMod.card] using hb
   · intro u hu
     apply Subtype.ext
-    apply CutSparsity.majority_unique u.val v
+    apply Lax342547.CutSparsity.majority_unique u.val v
     · exact hu.1.1.trans (hv.2.1.trans hcut).symm
     · simpa only [Tag, ZMod.card] using hu.1.2
     · exact hv.2.2.1
@@ -120,9 +124,9 @@ theorem shared_chiStar {k n b degree r h N : ℕ}
     have ht := congrArg Matrix.trace (congrFun heq e)
     change Matrix.trace (sandwich (F e).P (F e).Q (representationCut k n b degree w e)) =
       Matrix.trace (sandwich (G e).P (G e).Q (representationCut k n b degree v e)) at ht
-    rw [TensorIntersections.trace_sandwich, TensorIntersections.trace_sandwich,
-      ConcreteGeometry.selfGram_moments hr hd M _ (cut_full_moment w e),
-      ConcreteGeometry.selfGram_moments hr hd M _ (cut_full_moment v e)] at ht
+    rw [Lax342547.TensorIntersections.trace_sandwich, Lax342547.TensorIntersections.trace_sandwich,
+      Lax342547.ConcreteGeometry.selfGram_moments hr hd M _ (cut_full_moment w e),
+      Lax342547.ConcreteGeometry.selfGram_moments hr hd M _ (cut_full_moment v e)] at ht
     exact ht
   have hc : cutMap (fun t => eta hr (w.val t)) = cutMap (fun t => eta hr (v.val t)) := by
     funext e
@@ -152,11 +156,11 @@ theorem shared_sparse_profiles {k n b degree r h N : ℕ}
     ∃ w v : Representation k n b degree, Normalized x w ∧ Normalized y v ∧
       (2 * k + 1) * supportSize w.val ≤ 2 * R ∧
       (2 * k + 1) * supportSize v.val ≤ 2 * R ∧ chiStar hr w = chiStar hr v := by
-  have hrank := TensorIntersections.shared_total_rank F G x.val y.val heq
-  obtain ⟨w, hw, _⟩ := normalized_representation R hsmall x (hrank.2.trans hinter)
-  obtain ⟨v, hv, _⟩ := normalized_representation R hsmall y
+  have hrank := Lax342547.TensorIntersections.shared_total_rank F G x.val y.val heq
+  obtain ⟨w, hw, _⟩ := Lax342547.SparseRepresentatives.normalized_representation R hsmall x (hrank.2.trans hinter)
+  obtain ⟨v, hv, _⟩ := Lax342547.SparseRepresentatives.normalized_representation R hsmall y
     (by rw [← hrank.1]; exact hrank.2.trans hinter)
-  refine ⟨w, v, hw.1, hv.1, hw.2, hv.2, shared_chiStar hr hd M F G w v hw.1.2 hv.1.2 ?_⟩
+  refine ⟨w, v, hw.1, hv.1, hw.2, hv.2, Lax342547.SparseRepresentatives.shared_chiStar hr hd M F G w v hw.1.2 hv.1.2 ?_⟩
   rw [hw.1.1, hv.1.1]
   exact heq
 

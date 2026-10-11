@@ -1,6 +1,6 @@
 import Lax342547.ConditionalChannels
 import Lax342547Proofs.FiniteUniform
-import Lax342547Proofs.GramColumns
+import Lax342547.GramColumns
 
 namespace Lax342547Proofs.ConditionalChannels
 
@@ -38,7 +38,7 @@ theorem conditional_point {E : Matrix B B Binary} {P Q : Matrix N B Binary}
     (PMF.uniformOfFintype (Fiber (H := H) E P Q)).map channels (X, Y) =
       PMF.uniformOfFintype (PlusCompletion (H := H) P Q) X *
         PMF.uniformOfFintype (MinusCompletion (H := H) P Q) Y := by
-  rw [conditional_uniform hgram]
+  rw [Lax342547.ConditionalChannels.conditional_uniform hgram]
   simp [PMF.uniformOfFintype_apply, ENNReal.mul_inv]
 
 /--
@@ -64,7 +64,7 @@ theorem raw_conditioning {E : Matrix B B Binary} {P Q : Matrix N B Binary}
     obtain ⟨F, hF, _⟩ := h
     exact ⟨⟨F, hF⟩⟩
   rw [FiniteUniform.filter_uniform (α := Frame B H N E) {F | F.P = P ∧ F.Q = Q} h]
-  rw [← conditional_uniform hgram, PMF.map_comp, PMF.map_comp]
+  rw [← Lax342547.ConditionalChannels.conditional_uniform hgram, PMF.map_comp, PMF.map_comp]
   rfl
 
 /--
@@ -88,7 +88,7 @@ theorem channel_rank_failures [DecidableEq B] [DecidableEq H] [DecidableEq N]
           Q.mulVec z.1 + Y.val.mulVec z.2)} ≤
         (2 : ℝ≥0∞) ^ (2 * Fintype.card B + Fintype.card H) / 2 ^ Fintype.card N := by
   constructor
-  · simpa only [two_mul] using GramColumns.extension_failure P hP Q hQ (0 : Matrix B H Binary)
-  · simpa only [two_mul] using GramColumns.extension_failure Q hQ P hP (0 : Matrix B H Binary)
+  · simpa only [two_mul] using Lax342547.GramColumns.extension_failure P hP Q hQ (0 : Matrix B H Binary)
+  · simpa only [two_mul] using Lax342547.GramColumns.extension_failure Q hQ P hP (0 : Matrix B H Binary)
 
 end Lax342547Proofs.ConditionalChannels

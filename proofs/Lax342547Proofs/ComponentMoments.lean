@@ -1,6 +1,9 @@
 import Lax342547.ComponentMoments
-import Lax342547Proofs.TensorCharacters
-import Lax342547Proofs.MomentTails
+import Lax342547.ChannelCharacters
+import Lax342547.FiniteMoments
+import Lax342547.FiniteSampling
+import Lax342547.MomentTails
+import Lax342547.TensorCharacters
 
 namespace Lax342547Proofs.ComponentMoments
 open Lax342547.ComponentMoments
@@ -27,9 +30,9 @@ theorem component_even_moment_bound {e I J Ω : Type} [Fintype e] [Fintype I] [F
   have havg (sample : Fin (2*t) → Ω) :
       (∑ c, productLaw (fun _ : e × Fin h => channelLaw) c*∏ i, tensorCharacter h (A (sample i)) c) =
         1/(2 : ℝ)^(h*∑ a : e, (∑ i, A (sample i) a).rank) := by
-    simp_rw [Lax342547Proofs.TensorCharacters.product_tensor_characters (fun i => A (sample i)) h]
-    exact Lax342547Proofs.TensorCharacters.tensor_character_average _ _
-  have hh := Lax342547Proofs.FiniteMoments.weighted_character_moment_bound μ
+    simp_rw [Lax342547.TensorCharacters.product_tensor_characters (fun i => A (sample i)) h]
+    exact Lax342547.TensorCharacters.tensor_character_average _ _
+  have hh := Lax342547.FiniteMoments.weighted_character_moment_bound μ
     (productLaw (fun _ : e × Fin h => channelLaw)) ψ (fun x c => tensorCharacter h (A x) c) t hμ hψ
     (fun sample => by rw [havg]; positivity)
   calc
@@ -54,9 +57,9 @@ theorem component_phase_tail {e I J Ω : Type} [Fintype e] [Fintype I] [Fintype 
       (∑ sample : Fin (2*t) → Ω, productLaw (fun _ : Fin (2*t) => μ) sample/
         (2 : ℝ)^(h*∑ a : e, (∑ i, A (sample i) a).rank))/θ^(2*t) := by
   classical
-  have hprob := Lax342547Proofs.FiniteSampling.product_probability
-    (fun _ : e × Fin h => (channelLaw (I := I) (J := J))) (fun _ => Lax342547Proofs.ChannelCharacters.channel_probability)
-  exact (Lax342547Proofs.MomentTails.finite_moment_markov _ _ θ (2*t) hprob.1 hθ).trans
-    (div_le_div_of_nonneg_right (component_even_moment_bound μ A ψ h t hμ hψ) (by positivity))
+  have hprob := Lax342547.FiniteSampling.product_probability
+    (fun _ : e × Fin h => (channelLaw (I := I) (J := J))) (fun _ => Lax342547.ChannelCharacters.channel_probability)
+  exact (Lax342547.MomentTails.finite_moment_markov _ _ θ (2*t) hprob.1 hθ).trans
+    (div_le_div_of_nonneg_right (Lax342547.ComponentMoments.component_even_moment_bound μ A ψ h t hμ hψ) (by positivity))
 
 end Lax342547Proofs.ComponentMoments

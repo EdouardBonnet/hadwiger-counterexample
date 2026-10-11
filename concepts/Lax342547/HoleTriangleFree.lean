@@ -3,7 +3,7 @@ import Lax342547.HoleRelation
 /-!
 ---
 title: Holes are symmetric, loopless, and triangle-free
-type: theorem
+type: lemma
 ---
 The hole relation of Definition 2.1 is symmetric, has no loops, and has
 no triangle. This is Lemma 2.2: the six functional identities around a

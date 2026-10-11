@@ -47,7 +47,7 @@ theorem killed_matrix_rank {K I J P Q : Type} [Field K]
   have hc : A.mulVecLin.comp (M.mulVecLin.comp B.transpose.mulVecLin) = 0 := by
     rw [← Matrix.mulVecLin_mul, ← Matrix.mulVecLin_mul, ← Matrix.mul_assoc, h]
     simp
-  have hr := killed_composition_rank A.mulVecLin M.mulVecLin B.transpose.mulVecLin hc
+  have hr := Lax342547.QuotientRank.killed_composition_rank A.mulVecLin M.mulVecLin B.transpose.mulVecLin hc
   have hn := B.mulVecLin.finrank_range_add_finrank_ker
   have ht : Module.finrank K (LinearMap.range B.transpose.mulVecLin) =
       Module.finrank K (LinearMap.range B.mulVecLin) := Matrix.rank_transpose B
@@ -69,7 +69,7 @@ theorem killed_quotients_rank {K V W : Type} [Field K]
     (M : Module.Dual K V →ₗ[K] W) (S : Submodule K W) (T : Submodule K V)
     (h : S.mkQ.comp (M.comp T.mkQ.dualMap) = 0) :
     Module.finrank K (LinearMap.range M) ≤ Module.finrank K S + Module.finrank K T := by
-  have hr := killed_composition_rank S.mkQ M T.mkQ.dualMap h
+  have hr := Lax342547.QuotientRank.killed_composition_rank S.mkQ M T.mkQ.dualMap h
   rw [Submodule.ker_mkQ, T.range_dualMap_mkQ_eq, Subspace.dual_finrank_eq] at hr
   have ht := Subspace.finrank_add_finrank_dualAnnihilator_eq T
   omega
