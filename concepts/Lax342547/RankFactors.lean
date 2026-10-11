@@ -3,7 +3,7 @@ import Lax342547.ProductImages
 /-!
 ---
 title: Full rank coefficient factorizations
-type: definition and theorem
+type: lemma
 ---
 Every binary coefficient matrix factors into two independently injective tuples of exactly its rank. These tuples supply the independent image directions in the nonzero quotient character test.
 -/

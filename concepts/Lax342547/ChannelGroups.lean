@@ -5,7 +5,7 @@ import Lax342547.Walsh
 /-!
 ---
 title: Actual endpoint character products
-type: definition and theorem
+type: lemma
 ---
 Reindexing the actual channels identifies endpoint group products and their binary channel value.
 -/

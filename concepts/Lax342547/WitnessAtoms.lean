@@ -4,7 +4,7 @@ import Lax342547.BinaryPrescriptions
 /-!
 ---
 title: Witness atoms and their numerical tester records
-type: definition and theorem
+type: lemma
 ---
 A witness atom includes an actual allowed base vector and selector label.
 Its numerical record keeps only the tag and tester summary. These records

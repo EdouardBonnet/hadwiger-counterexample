@@ -4,7 +4,7 @@ import Lax342547.MomentSpace
 /-!
 ---
 title: The symmetric binary gradient form
-type: definition and theorem
+type: lemma
 ---
 The form in (2.8)–(2.10): $a\otimes a$, the symmetric tester terms,
 and the symmetrization of the mixer form. Its diagonal is $a$.

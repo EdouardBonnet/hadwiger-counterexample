@@ -4,7 +4,7 @@ import Mathlib.LinearAlgebra.Basis.VectorSpace
 /-!
 ---
 title: Counting all bounded-dimensional protected spaces
-type: definition and theorem
+type: lemma
 ---
 Padding an actual basis gives a generator encoding of every subspace of dimension at most r and the uniform count 2 to the ambient-dimension times r.
 -/

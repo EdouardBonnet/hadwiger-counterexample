@@ -5,7 +5,7 @@ import Lax342547.FingerprintCounts
 /-!
 ---
 title: Entropy bounded container families
-type: definition and theorem
+type: lemma
 ---
 Compact convex feasible laws with an entropy budget and uniform conflict supersaturation admit a finite family of infeasible containers covering every independent set. Ordered fingerprints obey the same exponential counting budget as the paper.
 -/

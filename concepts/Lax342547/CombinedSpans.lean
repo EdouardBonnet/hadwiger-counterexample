@@ -4,7 +4,7 @@ import Mathlib.LinearAlgebra.Prod
 /-!
 ---
 title: Combined column and row mode exposure
-type: definition and theorem
+type: lemma
 ---
 Products of the two mode spaces have additive dimensions, gains, and deficits, allowing one greedy exposed set to control both modes.
 -/

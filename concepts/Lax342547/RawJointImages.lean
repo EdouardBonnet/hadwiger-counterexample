@@ -4,7 +4,7 @@ import Lax342547.JointKeyCap
 /-!
 ---
 title: Actual joint key and fresh image caps
-type: definition and theorem
+type: lemma
 ---
 The actual selected query tuples and arbitrary fresh directions have one leaf cap, with all component and sign ranks summed. Their dependence within a sampled unit is retained.
 -/

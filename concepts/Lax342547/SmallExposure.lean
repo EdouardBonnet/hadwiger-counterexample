@@ -3,7 +3,7 @@ import Lax342547.CombinedSpans
 /-!
 ---
 title: One exposure controls both modes
-type: definition and theorem
+type: lemma
 ---
 Finite greedy ordering of the product of column and row spaces supplies one dyadic exposed set with combined actual deficit less than one quarter of its remaining size.
 -/

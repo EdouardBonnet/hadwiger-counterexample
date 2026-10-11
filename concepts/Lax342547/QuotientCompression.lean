@@ -4,7 +4,7 @@ import Lax342547.ResidualRealization
 /-!
 ---
 title: Compression on the actual barred nominal quotients
-type: definition and theorem
+type: lemma
 ---
 Base compression fixes frozen pins, selected keys, and private channels. It descends through the actual barred spaces with the paper quotient-rank bound, and precomposition bounds a pure bilinear form while retaining its response on compressed component matrices.
 -/

@@ -4,7 +4,7 @@ import Lax342547.PairedRecipes
 /-!
 ---
 title: Right endpoint query-key caps via paired-list reindexing
-type: definition and theorem
+type: lemma
 ---
 The flipped paired lists reindex the same incident positions and slots. Their actual left-key cap therefore gives the right-key cap with exactly the original exponent.
 -/

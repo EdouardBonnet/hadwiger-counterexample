@@ -3,7 +3,7 @@ import Lax342547.MomentSpace
 /-!
 ---
 title: The exact space of binary base moments
-type: definition and theorem
+type: lemma
 ---
 The first assertion of Lemma 5.1: the span of $(1,z)(1,z)^T$ consists
 exactly of the symmetric matrices satisfying $Z_{ii}=Z_{0i}$.

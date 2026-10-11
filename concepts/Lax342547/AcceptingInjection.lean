@@ -6,7 +6,7 @@ import Lax342547.GreedySpaces
 /-!
 ---
 title: Actual finite accepting-pair injection
-type: definition and theorem
+type: lemma
 ---
 Greedy pin probes and whole-unit protected spaces give a finite accepting-pair loss bound for the entire accepting family, with raw primal avoidance and retained masses.
 -/

@@ -4,7 +4,7 @@ import Lax342547.RelativeEntropy
 /-!
 ---
 title: Exact finite conditioning of separated Fourier tests
-type: definition and theorem
+type: lemma
 ---
 Fourier inversion controls signed test integrals and their normalization
 separately. Division by the actual conditioning mass gives a quantitative

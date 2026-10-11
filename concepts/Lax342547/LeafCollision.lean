@@ -6,7 +6,7 @@ import Lax342547.CellAveraging
 /-!
 ---
 title: Actual independent leaf averaging and original-law collision cost
-type: definition and theorem
+type: lemma
 ---
 Finite PMF mixtures preserve the actual leaf masses. Affine collision bounds average over independent leaves without renormalization, skipped pairs remain valid, and squared restriction recovery gives the explicit original-law exponential lower bound.
 -/

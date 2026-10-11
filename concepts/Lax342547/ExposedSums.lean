@@ -5,7 +5,7 @@ import Lax342547.ListDeficits
 /-!
 ---
 title: Projection removes the exposed terms
-type: definition and theorem
+type: lemma
 ---
 The projection of the actual remaining sum equals the projection of the full sum because the exposed column span kills each exposed term.
 -/

@@ -5,7 +5,7 @@ import Lax342547.CoordinateCounts
 /-!
 ---
 title: The finite simultaneous unary mixer estimate
-type: definition and theorem
+type: lemma
 ---
 The union runs only over nonzero bounded-rank profiles, tags, and labels.
 All non-Z fixings are already covered by each individual bad event.

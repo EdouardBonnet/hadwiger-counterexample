@@ -5,7 +5,7 @@ import Lax342547.PairedFrames
 /-!
 ---
 title: Joint matrix-image caps for retained leaf laws
-type: definition and theorem
+type: lemma
 ---
 Joint fresh linear images flatten to the rank-factor matrix tuples used by Walsh characters. Exact leaf caps give all-rank component image bounds on original retained cells, including the rank-zero normalization case.
 -/

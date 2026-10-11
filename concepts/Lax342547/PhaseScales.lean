@@ -3,7 +3,7 @@ import Lax342547.MomentBudgets
 /-!
 ---
 title: The numerical no-cover phase margin
-type: definition and theorem
+type: lemma
 ---
 Explicit density, rank-count and channel constants are absorbed at a proved ambient threshold, yielding the paper phase tolerance below one over two hundred.
 -/

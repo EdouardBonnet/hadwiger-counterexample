@@ -3,7 +3,7 @@ import Lax342547.ConstrainedCompression
 /-!
 ---
 title: A bounded-rank pure correction for the actual scalar recipe
-type: definition and theorem
+type: lemma
 ---
 The actual unrestricted pure remainder is precomposed with chosen block compression maps on both barred quotients. Its response on the full cut-profile pair space is unchanged and its component rank is at most the paper quotient bound. The genuine recipe wrapper retains the bounded derivative families and the exact recipe residual response.
 -/

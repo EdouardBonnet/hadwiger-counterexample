@@ -4,7 +4,7 @@ import Mathlib.Algebra.BigOperators.Field
 /-!
 ---
 title: Actual dyadic deficit recurrence
-type: definition and theorem
+type: lemma
 ---
 For nonnegative decreasing span increments, tail deficits are nonnegative and satisfy the dyadic averaging recurrence.
 -/

@@ -5,7 +5,7 @@ import Mathlib.Algebra.BigOperators.Field
 /-!
 ---
 title: Independent binary channel characters
-type: definition and theorem
+type: lemma
 ---
 Actual independent uniform channel pairs have the exact rank character mean; multiplication over channels and sampled tensors gives the mean of their actual matrix sum.
 -/

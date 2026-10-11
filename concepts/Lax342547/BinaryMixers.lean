@@ -3,7 +3,7 @@ import Lax342547.BinaryMixer
 /-!
 ---
 title: Simultaneous binary mixer estimates for all labels and flavors
-type: definition and theorem
+type: lemma
 ---
 The good events quantify over every pair of distinct selector labels and
 every nonzero ordered parity. Finite unions give a failure bound tending

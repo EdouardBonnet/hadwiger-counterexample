@@ -4,7 +4,7 @@ import Lax342547.ContainerAsymptotics
 /-!
 ---
 title: Eventual sampling margins for the paper parameters
-type: definition and theorem
+type: lemma
 ---
 The raw alphabet bound and explicit fingerprint length give a strict total sampling budget for all sufficiently large ambient dimensions, uniformly over raw spaces satisfying the same quadratic logarithmic size bound.
 -/

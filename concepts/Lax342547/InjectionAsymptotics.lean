@@ -4,7 +4,7 @@ import Mathlib.Analysis.SpecificLimits.Normed
 /-!
 ---
 title: Relative injection loss for polynomial accepting mass
-type: definition and theorem
+type: lemma
 ---
 Dyadic exceptions with the actual floor exponent vanish against every fixed polynomial, and finite test unions retain arbitrary relative error.
 -/

@@ -5,7 +5,7 @@ import Lax342547.SharpMixerLaw
 /-!
 ---
 title: Bilinear parts of ordered evaluations on every atom flavor
-type: definition and theorem
+type: lemma
 ---
 The mixed coefficient matrix is defined directly by evaluating the two
 point inputs. Its free and sharp submatrices are the corresponding

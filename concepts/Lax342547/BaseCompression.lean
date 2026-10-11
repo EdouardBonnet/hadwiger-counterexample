@@ -5,7 +5,7 @@ import Mathlib.LinearAlgebra.Matrix.Trace
 /-!
 ---
 title: Compression preserving allowed point moments and the actual cut domain
-type: definition and theorem
+type: lemma
 ---
 A projection can fix a prescribed vector space and preserve observations,
 with rank bounded by the fixed-space dimension plus the observation rank.

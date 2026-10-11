@@ -4,7 +4,7 @@ import Lax342547.RawQueryImages
 /-!
 ---
 title: Actual query frozen spaces and linear record exponents
-type: definition and theorem
+type: lemma
 ---
 The actual key-map range is precisely the selected incident key span. Joined pin/key dimensions and the concrete nominal column budget give a record exponent linear in n, with no ambient-image charge.
 -/

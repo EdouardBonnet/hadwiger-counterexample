@@ -6,7 +6,7 @@ import Mathlib.Algebra.Order.BigOperators.Group.List
 /-!
 ---
 title: Small actual greedy exposure tails
-type: definition and theorem
+type: lemma
 ---
 Greedy exposure bounds the actual sum of projected mode dimensions minus their span increase by a dyadic tail deficit, yielding a small tail at an explicit scale.
 -/

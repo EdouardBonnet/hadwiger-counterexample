@@ -4,7 +4,7 @@ import Lax342547.RawContractions
 /-!
 ---
 title: Actual gradient agreement and matched keys produce all four cross holes
-type: definition and theorem
+type: lemma
 ---
 The paired witnesses supply tensor sharing and role parity. Whole-space gradient agreement of actual cross contractions then gives both hole equations for each of the four cross pairs, with the original left and right witness lists.
 -/

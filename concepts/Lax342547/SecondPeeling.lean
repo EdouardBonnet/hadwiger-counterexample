@@ -5,7 +5,7 @@ import Mathlib.Algebra.Order.Floor.Ring
 /-!
 ---
 title: Fresh peeling after restrictions and deliberate extra pins
-type: definition and theorem
+type: lemma
 ---
 Every retained metadata fiber carries its old pins and all new prescribed
 images. Its absolute density pays both preceding normalizations. A fresh

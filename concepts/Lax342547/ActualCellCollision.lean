@@ -8,7 +8,7 @@ import Lax342547.ConditionalPairs
 /-!
 ---
 title: Actual gradient-realized cells in the collision averaging law
-type: definition and theorem
+type: lemma
 ---
 The checked retained-cell theorem is expressed in the ambient conditional laws used by finite record averaging. All targets are constructed from actual recipes, and both cell caps come from the original PMF leaf min-entropy.
 -/

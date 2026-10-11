@@ -5,7 +5,7 @@ import Lax342547.TensorIntersections
 /-!
 ---
 title: Sparse normalized representatives of shared concrete tensors
-type: definition and theorem
+type: lemma
 ---
 Low total component rank yields a unique representative vanishing at a
 strict majority of tags, with the quantitative support bound. Shared

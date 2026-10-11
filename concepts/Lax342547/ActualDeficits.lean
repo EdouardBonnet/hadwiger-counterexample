@@ -4,7 +4,7 @@ import Lax342547.GreedyTails
 /-!
 ---
 title: Actual projected span deficit
-type: definition and theorem
+type: lemma
 ---
 The projected-space dimension deficit equals the greedy tail statistic, so the small-tail conclusion concerns actual quotient spaces.
 -/

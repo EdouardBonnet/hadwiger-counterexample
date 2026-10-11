@@ -3,7 +3,7 @@ import Lax342547.ComponentSpaces
 /-!
 ---
 title: Rows of diagonal tensor maps
-type: definition and theorem
+type: lemma
 ---
 Dualizing a componentwise tensor map preserves its componentwise row spaces through the finite product dual equivalence; these row cover spaces are closed under joins.
 -/

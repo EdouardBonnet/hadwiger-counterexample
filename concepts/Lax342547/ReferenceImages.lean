@@ -3,7 +3,7 @@ import Lax342547.ProductMinusImages
 /-!
 ---
 title: Joint reference image caps across both signs and all draws
-type: definition and theorem
+type: lemma
 ---
 Expose the plus frames, then integrate the uniform conditional minus
 estimate over the plus prescription. Nominal ranks are taken in the

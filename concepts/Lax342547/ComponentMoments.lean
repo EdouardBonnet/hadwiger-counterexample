@@ -4,7 +4,7 @@ import Lax342547.MomentTails
 /-!
 ---
 title: Moment estimates for actual component tensor phases
-type: definition and theorem
+type: lemma
 ---
 The finite high moment and Markov tail are bounded by the actual summed component rank under independent uniform component channels, with arbitrary bounded unit-side signs.
 -/

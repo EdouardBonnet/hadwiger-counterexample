@@ -7,7 +7,7 @@ import Lax342547.InjectionThresholds
 /-!
 ---
 title: Prepared-unit injection on actual accepting pairs
-type: definition and theorem
+type: lemma
 ---
 Adaptive nominal pins and the actual admissible small tables retain
 accepting mass under all sixteen component tests. Exponential errors are

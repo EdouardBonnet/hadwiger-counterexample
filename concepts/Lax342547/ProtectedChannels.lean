@@ -5,7 +5,7 @@ import Lax342547.FiniteLinearLaw
 /-!
 ---
 title: Exact probabilities for independent protected channel images
-type: definition and theorem
+type: lemma
 ---
 An actual independent witness tuple has uniform transpose images, giving the exact probability that every image lies in a prescribed protected coefficient space.
 -/

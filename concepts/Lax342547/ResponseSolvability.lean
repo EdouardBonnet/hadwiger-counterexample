@@ -4,7 +4,7 @@ import Lax342547.RecipeResiduals
 /-!
 ---
 title: Unrestricted linearized solutions for actual scalar recipes
-type: definition and theorem
+type: lemma
 ---
 The actual pure and allowed derivative response families are linear in their
 parameters. The proved full obstruction decomposition and finite-dimensional

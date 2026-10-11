@@ -3,7 +3,7 @@ import Lax342547.CoverCounts
 /-!
 ---
 title: Count tested index occurrences
-type: definition and theorem
+type: lemma
 ---
 Filtering subtype indices and filtering their underlying finite set have identical cardinalities.
 -/

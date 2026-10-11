@@ -4,7 +4,7 @@ import Lax342547.ComponentDuals
 /-!
 ---
 title: Componentwise no-cover rank growth
-type: definition and theorem
+type: lemma
 ---
 At the paper rank and dyadic size budgets, the full no-cover rank bound applies to actual diagonal component tensors, with the sum of their component ranks and componentwise exposed mode spaces.
 -/

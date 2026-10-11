@@ -5,7 +5,7 @@ import Lean.Elab.Tactic.Omega
 /-!
 ---
 title: Concrete coordinates, quadratic testers, and the self-Gram form
-type: definition and theorem
+type: lemma
 ---
 The coordinate realization of §2.3. The three common blocks are indexed
 by 0 (S), 1 (#), and 2 (Z). Tester pairs use coordinates 2ρ and 2ρ+1

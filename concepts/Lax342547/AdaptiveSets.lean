@@ -3,7 +3,7 @@ import Lax342547.AdaptiveSampling
 /-!
 ---
 title: Adaptive sampling on disjoint coordinate sets
-type: definition and theorem
+type: lemma
 ---
 Arbitrary disjoint exposed and tested index sets inherit the conditional product-law power bound through an explicit sum embedding.
 -/

@@ -3,7 +3,7 @@ import Lax342547.GramOrbitDensity
 /-!
 ---
 title: Joint-injectivity loss for two actual reference batches
-type: definition and theorem
+type: lemma
 ---
 Concatenating both column lists turns the ambient reference experiment into
 a uniform matrix pair. The separate Gram-orbit caps transfer column failure

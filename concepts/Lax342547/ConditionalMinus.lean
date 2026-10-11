@@ -4,7 +4,7 @@ import Lax342547.GramColumns
 /-!
 ---
 title: The affine minus-column law at a fixed plus frame
-type: definition and theorem
+type: lemma
 ---
 With P,X fixed, the Q columns have prescribed evaluations against [P,X]
 and the Y columns have zero evaluations against P. These two independent

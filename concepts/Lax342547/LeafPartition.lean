@@ -4,7 +4,7 @@ import Mathlib.Data.Finset.Union
 /-!
 ---
 title: Finite peeling into disjoint exact-pin leaves
-type: definition and theorem
+type: lemma
 ---
 Repeated leaf extraction partitions the retained support, leaving mass at
 most delta. Every leaf retains its original mass lower bound, exact pins,

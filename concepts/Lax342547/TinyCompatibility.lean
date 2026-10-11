@@ -4,7 +4,7 @@ import Lax342547.PairPositions
 /-!
 ---
 title: Inverse-polynomial tiny-cover compatibility
-type: definition and theorem
+type: lemma
 ---
 The actual binary pairing kernel of rank at most d*N has compatible pair mass at least 1/(4*(1+d*N)^4) under any finite probability law with zero diagonal.
 -/

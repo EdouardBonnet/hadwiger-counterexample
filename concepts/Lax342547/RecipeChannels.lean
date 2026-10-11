@@ -3,7 +3,7 @@ import Lax342547.NonlinearChannels
 /-!
 ---
 title: Nonlinear channel realization of the actual whole-space recipe residual
-type: definition and theorem
+type: lemma
 ---
 Explicit low-rank targets and the compressed actual recipe solution fit through the protected channel complements under the paper margin. The final allowed derivative families realize the full residual using their actual dot product, retaining the exact combined-primal baseline ranks and both pin-rank bounds.
 -/

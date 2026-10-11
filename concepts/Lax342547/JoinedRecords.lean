@@ -4,7 +4,7 @@ import Lax342547.RawQueryImages
 /-!
 ---
 title: Frozen pin and key records with nominal column budgets
-type: definition and theorem
+type: lemma
 ---
 Joined pin/key spaces have total dimension bounded by the original pin rank plus the key rank. Unary pairings with their known images cost only nominal columns times that rank, and determine all frozen cross entries. The concrete coordinate count is linear in n.
 -/

@@ -5,7 +5,7 @@ import Lax342547.CorankCounting
 /-!
 ---
 title: Joint distribution of the unary mixer row matrix
-type: definition and theorem
+type: lemma
 ---
 All indexed L and R matrices are sampled from one finite product.
 The full forward/reverse observation list has additive compatibility

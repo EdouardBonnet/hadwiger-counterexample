@@ -3,7 +3,7 @@ import Lax342547.CrossBatchMixing
 /-!
 ---
 title: Independent characters of actual mutual Gram entries
-type: definition and theorem
+type: lemma
 ---
 The two reciprocal cross Gram blocks occupy disjoint coefficient entries.
 Their characters have no duplicate descriptions: every nonzero pattern

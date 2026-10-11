@@ -3,7 +3,7 @@ import Mathlib.Combinatorics.SimpleGraph.Clique
 /-!
 ---
 title: Graphs sampled from a hole relation
-type: definition and theorem
+type: lemma
 ---
 Given a symmetric relation of holes and a list of raw vertices, join two
 distinct positions exactly when their entries have no hole. Repeated raw

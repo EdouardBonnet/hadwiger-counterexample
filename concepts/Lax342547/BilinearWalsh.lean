@@ -3,7 +3,7 @@ import Lax342547.Walsh
 /-!
 ---
 title: Walsh operator bounds with explicit bilinear rank
-type: definition and theorem
+type: lemma
 ---
 A rectangular bilinear phase factors through its column-image map.
 Grouping the second weight by the fibers of that map costs at most the

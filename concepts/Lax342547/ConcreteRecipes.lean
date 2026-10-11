@@ -4,7 +4,7 @@ import Lax342547.RecipeRows
 /-!
 ---
 title: Numerical recipes prescribe the concrete gradients on witness atoms
-type: definition and theorem
+type: lemma
 ---
 The bit prescriptions are chosen using only tags, tester summaries, and
 opposite role/p bits. They work for every later choice of actual atoms and

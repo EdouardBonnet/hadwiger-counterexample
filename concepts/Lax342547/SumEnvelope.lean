@@ -5,7 +5,7 @@ import Mathlib.Data.Real.Basic
 /-!
 ---
 title: Nonzero tensor count from span deficits
-type: definition and theorem
+type: lemma
 ---
 For the actual sum of maps, column and row envelopes bound the number of nonzero terms by the sum rank plus their two actual dimension deficits.
 -/

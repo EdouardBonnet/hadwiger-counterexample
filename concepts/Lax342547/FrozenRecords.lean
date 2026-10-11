@@ -4,7 +4,7 @@ import Lax342547.RawFrames
 /-!
 ---
 title: Unary records determine every frozen cross entry
-type: definition and theorem
+type: lemma
 ---
 Pairings of nominal columns with already fixed frozen image vectors require only nominal dimension times frozen-vector count bits. Separate unary records determine all cross entries with a frozen factor.
 -/

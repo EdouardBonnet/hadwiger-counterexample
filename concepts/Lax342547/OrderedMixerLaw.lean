@@ -5,7 +5,7 @@ import Lax342547.LowRankCounting
 /-!
 ---
 title: Independent ordered mixer blocks at distinct labels
-type: definition and theorem
+type: lemma
 ---
 Two direction spaces with independent combined columns can receive any
 prescribed forward and reverse bilinear blocks. A uniform ambient matrix

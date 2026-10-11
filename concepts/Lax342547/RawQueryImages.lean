@@ -5,7 +5,7 @@ import Lax342547.LeafImages
 /-!
 ---
 title: Actual query-key image caps on raw leaves
-type: definition and theorem
+type: lemma
 ---
 The raw paired-frame observation maps realize the selected query tuples. Their independence modulo old pins transfers exact leaf caps to actual key events.
 -/

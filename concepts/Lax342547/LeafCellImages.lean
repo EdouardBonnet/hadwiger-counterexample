@@ -4,7 +4,7 @@ import Lax342547.RealCellLaws
 /-!
 ---
 title: Joint fresh-image entropy on original retained leaf cells
-type: definition and theorem
+type: lemma
 ---
 Exact all-rank leaf caps combine known key directions with fresh directions. Conditioning on the original retained cell gives the paper .95 rank exponent, for tuples of arbitrary rank.
 -/

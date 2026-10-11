@@ -4,7 +4,7 @@ import Lax342547.RankLoss
 /-!
 ---
 title: Actual exposure cover projection
-type: definition and theorem
+type: lemma
 ---
 Quotienting the exposed columns and restricting to the annihilator of exposed rows gives the actual covered-tensor projection, its mode envelopes, rank monotonicity, and sum identity.
 -/

@@ -4,7 +4,7 @@ import Mathlib.Tactic
 /-!
 ---
 title: Subexponential container counts at the paper sample scale
-type: definition and theorem
+type: lemma
 ---
 The logarithmic fingerprint count is bounded by a degree-three polynomial times 2^(100gN). Its ratio to 2^(1000gN) tends to zero, with an actual eventual strict exponent margin.
 -/

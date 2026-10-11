@@ -6,7 +6,7 @@ import Lax342547.FormalQuadratic
 /-!
 ---
 title: Quadratic character bias on affine subspaces
-type: definition and theorem
+type: lemma
 ---
 Translation and character orthogonality give the actual quadratic sign bias from polar rank and its affine-subspace restriction.
 -/

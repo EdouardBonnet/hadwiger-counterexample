@@ -3,7 +3,7 @@ import Lax342547.FiniteSampling
 /-!
 ---
 title: Finite amplified-test averaging
-type: definition and theorem
+type: lemma
 ---
 Finite Fubini transfers a pointwise amplified-test upper bound to an exception bound for arbitrary whole-unit predicates.
 -/

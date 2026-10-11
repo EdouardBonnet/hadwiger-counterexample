@@ -4,7 +4,7 @@ import Lax342547.JointGramInjection
 /-!
 ---
 title: Bounded tests under the actual two-batch Gram law
-type: definition and theorem
+type: lemma
 ---
 The union orbit is exactly the product of its separate orbit laws conditioned
 on reciprocal Gram entries and joint column injectivity. Removing only the

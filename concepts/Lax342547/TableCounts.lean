@@ -5,7 +5,7 @@ import Mathlib.SetTheory.Cardinal.Finite
 /-!
 ---
 title: Bounded table data and linear-size nominal coefficient records
-type: definition and theorem
+type: lemma
 ---
 For fixed pin and channel budgets, the number of small tables is bounded
 independently of the primal dimension. Nominal pin bases can be padded to

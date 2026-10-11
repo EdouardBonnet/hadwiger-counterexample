@@ -5,7 +5,7 @@ import Lax342547.RealCellLaws
 /-!
 ---
 title: Actual raw frame channel phase tails
-type: definition and theorem
+type: lemma
 ---
 Reindexing the actual frame channels transfers independent channel character tails to the raw frame law with the explicit joint density factor.
 -/

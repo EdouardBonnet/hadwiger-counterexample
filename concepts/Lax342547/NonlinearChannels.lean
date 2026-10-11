@@ -3,7 +3,7 @@ import Lax342547.TargetMatrices
 /-!
 ---
 title: Pure corrections realized by actual nonlinear channel products
-type: definition and theorem
+type: lemma
 ---
 Low-rank baseline values use the combined primal space. Orthogonal private factors add the desired pure form to the channel product while retaining the entire derivative response. The paper margin provides sufficient channel capacity. These changes retain their barred domains and permitted perpendicular outputs.
 -/

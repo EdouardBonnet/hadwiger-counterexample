@@ -4,7 +4,7 @@ import Lax342547.ProbabilityScales
 /-!
 ---
 title: Paper parameter graph probability
-type: definition and theorem
+type: lemma
 ---
 The failure probability of the connected matching bound is eventually at most two to minus half the sample size, assuming actual raw supersaturation.
 -/

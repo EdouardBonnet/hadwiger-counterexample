@@ -4,7 +4,7 @@ import Lax342547.RankFactors
 /-!
 ---
 title: Rank factors independent modulo the actual frozen spaces
-type: definition and theorem
+type: lemma
 ---
 Projecting the coefficient tensor to complements of the frozen spaces gives rank factors whose quotient images are injective. This is the exact independence needed for conditional image entropy.
 -/

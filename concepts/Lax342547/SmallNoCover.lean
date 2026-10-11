@@ -4,7 +4,7 @@ import Lax342547.PhaseScales
 /-!
 ---
 title: The finite no-cover phase tolerance
-type: definition and theorem
+type: lemma
 ---
 The fixed-parameter phase bound is less than one over two hundred after a uniform explicit ambient threshold absorbing the actual marginal and channel density costs.
 -/

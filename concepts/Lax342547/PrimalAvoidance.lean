@@ -6,7 +6,7 @@ import Lax342547.PhaseAverages
 /-!
 ---
 title: Uniform primal-span avoidance
-type: definition and theorem
+type: lemma
 ---
 Exact random matrix vector laws and finite subspace counts bound intersections of the complete primal image with a fixed space.
 -/

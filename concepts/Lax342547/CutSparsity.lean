@@ -4,7 +4,7 @@ import Mathlib.Data.Fintype.Card
 /-!
 ---
 title: Majority normalization of sparse cut profiles
-type: definition and theorem
+type: lemma
 ---
 Counting unequal unordered tag pairs forces a strict majority whenever
 four times the cut support is smaller than the square of the tag count.

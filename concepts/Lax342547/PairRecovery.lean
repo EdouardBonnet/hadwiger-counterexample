@@ -4,7 +4,7 @@ import Lax342547.Conditioning
 /-!
 ---
 title: Squared restriction cost for independent unit events
-type: definition and theorem
+type: lemma
 ---
 A normalized restriction is dominated pointwise by its original PMF after multiplication by the retained mass. Independent pair events therefore lose precisely the square of that mass.
 -/

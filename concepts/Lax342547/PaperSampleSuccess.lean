@@ -4,7 +4,7 @@ import Lax342547.SampledGraph
 /-!
 ---
 title: High probability sampled graph construction
-type: definition and theorem
+type: lemma
 ---
 Under actual raw supersaturation, the full sampled graph event combining independence number at most two and the connected matching bound has eventual probability at least one minus two to minus half the sample size.
 -/

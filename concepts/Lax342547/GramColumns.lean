@@ -3,7 +3,7 @@ import Lax342547.AffineImages
 /-!
 ---
 title: Gram-conditioned columns and their rank-failure probability
-type: definition and theorem
+type: lemma
 ---
 At an injective plus frame, a prescribed Gram matrix has probability
 exactly 2^(-pq). Its completions are independent affine columns parallel

@@ -4,7 +4,7 @@ import Lax342547.DyadicMoments
 /-!
 ---
 title: Uniform no-cover phase cancellation with fixed parameters
-type: definition and theorem
+type: lemma
 ---
 Fixed parameters, chosen before the actual unit laws, control every bounded-rank opposite tensor target under the actual raw frame marginal density; a proved ambient threshold supplies the dyadic moment order.
 -/

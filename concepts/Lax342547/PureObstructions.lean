@@ -4,7 +4,7 @@ import Lax342547.LabelDecomposition
 /-!
 ---
 title: Pure obstructions on the actual pair of cut profiles
-type: definition and theorem
+type: lemma
 ---
 The independent component responses on barred nominal quotients define
 functionals on the pair of actual cut profiles. Annihilation gives the

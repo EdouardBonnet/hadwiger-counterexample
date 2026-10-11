@@ -6,7 +6,7 @@ import Lax342547.InjectiveFrames
 /-!
 ---
 title: Channel bounds with adaptive protected coefficient spaces
-type: definition and theorem
+type: lemma
 ---
 Uniform counting of every bounded-dimensional protected space controls the actual channel event even when that space depends on the random matrix.
 -/

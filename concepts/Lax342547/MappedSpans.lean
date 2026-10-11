@@ -3,7 +3,7 @@ import Lax342547.ActualDeficits
 /-!
 ---
 title: Dimension deficits after an arbitrary mode map
-type: definition and theorem
+type: lemma
 ---
 Actual mapped mode dimensions equal their increments modulo the map kernel; mapped span deficits therefore equal the corresponding exposure deficits.
 -/

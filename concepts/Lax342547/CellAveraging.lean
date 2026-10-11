@@ -5,7 +5,7 @@ import Lax342547.CollisionPruning
 /-!
 ---
 title: Actual-mass averaging over retained record-cell pairs
-type: definition and theorem
+type: lemma
 ---
 The product of conditional cell laws recovers each original rectangle after multiplication by both cell masses. Disjoint record partitions sum these rectangle estimates without counting an orientation pair more than once.
 -/

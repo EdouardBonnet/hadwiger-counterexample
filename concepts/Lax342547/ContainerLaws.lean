@@ -3,7 +3,7 @@ import Lax342547.UnitLaws
 /-!
 ---
 title: Entropy progress for residual pair laws
-type: definition and theorem
+type: lemma
 ---
 Residual feasible families retain compactness and convexity. Supersaturation selects a heavy neighborhood, and deleting it increases the minimum entropy by the exact negative log support cost.
 -/

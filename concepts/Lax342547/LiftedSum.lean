@@ -3,7 +3,7 @@ import Lax342547.BlockDeficits
 /-!
 ---
 title: Identification of the lifted tensor sum
-type: definition and theorem
+type: lemma
 ---
 The abstract block addition map is exactly the sum of the individually included tensors with their actual dual restrictions.
 -/

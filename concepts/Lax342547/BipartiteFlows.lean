@@ -4,7 +4,7 @@ import Mathlib.Algebra.BigOperators.Field
 /-!
 ---
 title: Bipartite capacity networks
-type: definition and theorem
+type: lemma
 ---
 Real flows encode probability laws with two marginal caps and a pointwise pair cap; infeasibility yields a cut of capacity less than one.
 -/

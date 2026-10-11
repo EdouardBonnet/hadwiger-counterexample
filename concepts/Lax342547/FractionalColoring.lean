@@ -5,7 +5,7 @@ import Mathlib.Algebra.Order.Archimedean.Real.Hom
 /-!
 ---
 title: Ordinary fractional coloring
-type: definition and theorem
+type: lemma
 ---
 A fractional coloring assigns nonnegative real weights to independent sets
 so that the weights covering each vertex sum to at least one. The fractional

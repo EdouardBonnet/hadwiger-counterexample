@@ -4,7 +4,7 @@ import Lax342547.GramColumns
 /-!
 ---
 title: Conditional independence of the two channel frames
-type: definition and theorem
+type: lemma
 ---
 At fixed primal matrices P,Q, the valid X and Y completions form a
 Cartesian product: their annihilator and injectivity conditions are

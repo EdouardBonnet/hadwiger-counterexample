@@ -5,7 +5,7 @@ import Mathlib.LinearAlgebra.Matrix.Hadamard
 /-!
 ---
 title: Entrywise product rank and incompatible tuples
-type: definition and theorem
+type: lemma
 ---
 Rank-factor expansions prove the entrywise product rank bound and the actual binary incompatibility obstruction.
 -/

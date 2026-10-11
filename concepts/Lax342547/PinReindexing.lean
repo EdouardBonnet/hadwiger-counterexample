@@ -3,7 +3,7 @@ import Lax342547.LeafBlockCaps
 /-!
 ---
 title: Exact-pin leaf entropy is invariant under nominal axis reindexing
-type: definition and theorem
+type: lemma
 ---
 Pull back exact pins along a finite axis equivalence. Relative ranks and specified image events agree exactly, so the original all-rank leaf cap applies to the opposite cross orientation.
 -/

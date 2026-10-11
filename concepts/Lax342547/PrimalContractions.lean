@@ -4,7 +4,7 @@ import Lax342547.TensorBlocks
 /-!
 ---
 title: Sparse residual contractions belong to the actual primal pins
-type: definition and theorem
+type: lemma
 ---
 Pure nominal quotient responses put a tested individual contraction in
 the barred space. Unselected sparse labels eliminate its key and private

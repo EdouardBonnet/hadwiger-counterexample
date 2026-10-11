@@ -4,7 +4,7 @@ import Lax342547.NominalPrimal
 /-!
 ---
 title: Fresh point-ray spans are disjoint from the nominal table spaces
-type: definition and theorem
+type: lemma
 ---
 The finite-set sparse exclusions give independence for arbitrary indexed
 families of at most fourteen rays per endpoint. In particular the span

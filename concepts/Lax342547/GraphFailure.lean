@@ -3,7 +3,7 @@ import Lax342547.RawToGraph
 /-!
 ---
 title: Sampled graph failure bound
-type: definition and theorem
+type: lemma
 ---
 The actual container exception tails bound the probability of a large connected matching under raw supersaturation.
 -/

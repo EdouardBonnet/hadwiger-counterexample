@@ -3,7 +3,7 @@ import Lax342547.SampleScales
 /-!
 ---
 title: Exponential sampling failure margin
-type: definition and theorem
+type: lemma
 ---
 At the paper parameters the complete container union budget is eventually at most two to minus half the sample size.
 -/

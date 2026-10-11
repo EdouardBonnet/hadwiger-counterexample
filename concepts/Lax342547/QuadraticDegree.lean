@@ -4,7 +4,7 @@ import Mathlib.Data.Matrix.Basis
 /-!
 ---
 title: Linear point-tensor evaluations are Boolean quadratics
-type: definition and theorem
+type: lemma
 ---
 Actual outer-product tensors evaluated by an arbitrary linear functional have Boolean degree at most two; the checked nonvanishing bound exactifies error below one quarter.
 -/

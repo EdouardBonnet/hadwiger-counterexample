@@ -3,7 +3,7 @@ import Lax342547.ContainerLaws
 /-!
 ---
 title: Deterministic entropy and neighborhood selections
-type: definition and theorem
+type: lemma
 ---
 Compact feasible residual laws have fixed entropy minimizers. Raw supersaturation supplies a deterministic residual unit with positive neighborhood mass, guaranteeing progress of fingerprint deletion.
 -/

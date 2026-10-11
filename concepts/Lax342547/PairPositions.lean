@@ -3,7 +3,7 @@ import Lax342547.DisjointSampling
 /-!
 ---
 title: Weighted compatibility from inevitable sample pairs
-type: definition and theorem
+type: lemma
 ---
 The product law at two distinct positions and a finite union bound turn an unavoidable compatible pair into a weighted probability lower bound.
 -/

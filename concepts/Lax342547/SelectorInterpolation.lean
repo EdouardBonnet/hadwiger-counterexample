@@ -4,7 +4,7 @@ import Mathlib.LinearAlgebra.LinearIndependent.Defs
 /-!
 ---
 title: Interpolation of finitely many binary selector labels
-type: definition and theorem
+type: lemma
 ---
 The second assertion of Lemma 5.1: any u distinct selector evaluation
 vectors are linearly independent when the degree bound is at least u−1.

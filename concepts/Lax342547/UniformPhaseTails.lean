@@ -4,7 +4,7 @@ import Lax342547.TotalRankCount
 /-!
 ---
 title: Uniform raw channel phase tails over bounded-rank targets
-type: definition and theorem
+type: lemma
 ---
 The actual raw frame phase-tail estimate holds simultaneously over every tensor target of bounded total rank, retaining the sharp rank-allocation count and the channel density cost.
 -/

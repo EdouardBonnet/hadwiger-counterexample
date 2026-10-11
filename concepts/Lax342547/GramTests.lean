@@ -4,7 +4,7 @@ import Lax342547.FourierTests
 /-!
 ---
 title: Scalar agreement after quotient character estimates
-type: definition and theorem
+type: lemma
 ---
 The .95 image exponent gives the .45 Walsh exponent. Exact zero quotient characters and bounded nonzero characters give simultaneous scalar agreement with the full binary Fourier cost.
 -/

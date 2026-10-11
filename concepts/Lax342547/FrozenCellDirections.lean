@@ -6,7 +6,7 @@ import Lax342547.RawBaselines
 /-!
 ---
 title: Original record cells determine the common frozen gradient target
-type: definition and theorem
+type: lemma
 ---
 Exact pin events and equal query keys fix every joined frozen direction image. The two separate actual unary records transfer frozen target agreement from chosen representatives to every pair in their original cells, for both cross orientations.
 -/

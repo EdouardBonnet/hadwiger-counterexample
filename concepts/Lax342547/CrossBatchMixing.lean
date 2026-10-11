@@ -5,7 +5,7 @@ import Lax342547.RelativeEntropy
 /-!
 ---
 title: Quantitative comparison after cross-batch Gram conditioning
-type: definition and theorem
+type: lemma
 ---
 The actual cross-slot coefficient matrices give bit rank at least N for
 every nontrivial character. Separate bounded-density batch laws and bounded

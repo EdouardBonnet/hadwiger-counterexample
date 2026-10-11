@@ -5,7 +5,7 @@ import Lax342547.CrossGramBasis
 /-!
 ---
 title: Actual reference-batch laws for mutual Gram tests
-type: definition and theorem
+type: lemma
 ---
 Flatten both signs of a paired Gram orbit into one batch. Its independent-bit
 density denominator is explicit; arbitrary tests retain the reciprocal

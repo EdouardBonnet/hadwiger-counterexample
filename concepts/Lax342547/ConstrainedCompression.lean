@@ -3,7 +3,7 @@ import Lax342547.QuotientCompression
 /-!
 ---
 title: Compression that fixes pin/key vectors and preserves target matrices
-type: definition and theorem
+type: lemma
 ---
 Block maps are chosen from the actual projected pin/key spaces and the row/column observations of each residual matrix. They fix all required vectors, preserve every target functional, and have the paper block-rank bound independent of the base dimension.
 -/

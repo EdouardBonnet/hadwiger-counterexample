@@ -4,7 +4,7 @@ import Lax342547.TinyCompatibility
 /-!
 ---
 title: Tiny-cover four-bit parity bounds
-type: definition and theorem
+type: lemma
 ---
 Four even-support characters exactly recover the compatible-pair probability; twelve remaining characters contribute an explicit error, preserving inverse-polynomial mass.
 -/

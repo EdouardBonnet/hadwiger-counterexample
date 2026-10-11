@@ -3,7 +3,7 @@ import Lax342547.SmallExposure
 /-!
 ---
 title: Finite exposure partitions
-type: definition and theorem
+type: lemma
 ---
 A distinct ordering splits into disjoint exposed and remaining index sets, with their exact union and tail cardinality.
 -/

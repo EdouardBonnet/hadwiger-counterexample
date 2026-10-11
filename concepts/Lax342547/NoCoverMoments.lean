@@ -4,7 +4,7 @@ import Lax342547.IndexedRankGrowth
 /-!
 ---
 title: No-cover phase moments
-type: definition and theorem
+type: lemma
 ---
 Actual componentwise binary channel moments and phase-tail bounds from finite rank growth, under the explicit small-cover exclusion.
 -/

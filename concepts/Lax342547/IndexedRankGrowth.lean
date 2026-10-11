@@ -4,7 +4,7 @@ import Lax342547.ComponentDuals
 /-!
 ---
 title: No-cover rank growth on arbitrary finite indices
-type: definition and theorem
+type: lemma
 ---
 The componentwise no-cover bound depends on the finite sample cardinality and applies to any index type of the prescribed dyadic size, including even moment samples.
 -/

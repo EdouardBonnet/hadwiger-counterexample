@@ -3,7 +3,7 @@ import Lax342547.BilinearWalsh
 /-!
 ---
 title: Exact uniform bilinear character mean
-type: definition and theorem
+type: lemma
 ---
 The mean binary bilinear character under independent uniform coordinates is exactly two to minus the actual matrix rank, by orthogonality and the kernel cardinality.
 -/

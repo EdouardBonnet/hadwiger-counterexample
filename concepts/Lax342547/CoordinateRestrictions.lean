@@ -4,7 +4,7 @@ import Mathlib.Logic.Equiv.Set
 /-!
 ---
 title: Independence of distinct sample positions
-type: definition and theorem
+type: lemma
 ---
 An embedding of selected positions extends to a partition of the whole position space. Summing the unused independent coordinates proves the exact product law on the selected positions.
 -/

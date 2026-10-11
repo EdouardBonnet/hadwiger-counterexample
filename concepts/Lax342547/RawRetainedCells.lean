@@ -5,7 +5,7 @@ import Lax342547.GradientRealization
 /-!
 ---
 title: Four actual holes inside an original retained cell pair
-type: definition and theorem
+type: lemma
 ---
 The original PMF leaf laws supply both block image caps. Separate unary records freeze the target directions, and the checked gradient realization constructs a target whose primal agreement implies all four actual holes.
 -/

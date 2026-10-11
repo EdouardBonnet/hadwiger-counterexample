@@ -4,7 +4,7 @@ import Lax342547.FiniteLinearLaw
 /-!
 ---
 title: The distribution of mixer rows on free directions
-type: definition and theorem
+type: lemma
 ---
 For a uniform matrix L, the joint observations ZᵀLD and DᵀLW have
 density at most 2^(rank(Z) rank(W)) relative to the completely uniform

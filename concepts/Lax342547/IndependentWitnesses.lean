@@ -4,7 +4,7 @@ import Mathlib.LinearAlgebra.DFinsupp
 /-!
 ---
 title: Amplified channel failures on independent pinned spaces
-type: definition and theorem
+type: lemma
 ---
 Nonzero choices from actual independent pinned spaces form independent witnesses; counting all choices and adaptive protected spaces gives the amplified failure exponent.
 -/

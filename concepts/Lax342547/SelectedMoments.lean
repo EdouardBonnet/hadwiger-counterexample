@@ -4,7 +4,7 @@ import Mathlib.LinearAlgebra.Matrix.ToLin
 /-!
 ---
 title: A selected affine ray determines its moment block
-type: definition and theorem
+type: lemma
 ---
 An explicit projection onto the quotient by an affine point ray. The
 Boolean moment diagonal identity removes the mixed first-row terms in

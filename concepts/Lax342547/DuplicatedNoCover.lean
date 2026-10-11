@@ -3,7 +3,7 @@ import Lax342547.NoCoverMoments
 /-!
 ---
 title: Original-rank no-cover tails for endpoint groups
-type: definition and theorem
+type: lemma
 ---
 Independent endpoint channels amplify the moment decay while retaining the original tensor rank and original cover hypothesis.
 -/

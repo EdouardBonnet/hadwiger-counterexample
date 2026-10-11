@@ -4,7 +4,7 @@ import Lax342547.NominalBaselines
 /-!
 ---
 title: Bounded baselines for both actual cross orientations
-type: definition and theorem
+type: lemma
 ---
 For admissible tables and fresh paired lists, construct the two full
 nominal cross forms simultaneously. Each retains the actual pin/key

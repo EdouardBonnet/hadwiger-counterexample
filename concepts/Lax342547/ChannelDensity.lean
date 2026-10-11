@@ -4,7 +4,7 @@ import Lax342547.GramNormalization
 /-!
 ---
 title: Joint channel law and its independent-column density
-type: definition and theorem
+type: lemma
 ---
 The raw joint channel law is constant on each individually injective
 Gram orbit. Gram normalization bounds its density relative to completely

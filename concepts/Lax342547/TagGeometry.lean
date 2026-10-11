@@ -4,7 +4,7 @@ import Mathlib.Data.ZMod.Basic
 /-!
 ---
 title: Majority intersections in the cyclic tag geometry
-type: definition and theorem
+type: lemma
 ---
 For $g=2k+1$, the tag $l$ allows the block $O_{d,t}$ exactly when
 $l\in\{d+1,\ldots,d+k\}$. The other three blocks are unrestricted.

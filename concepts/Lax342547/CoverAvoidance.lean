@@ -3,7 +3,7 @@ import Lax342547.CoverProjection
 /-!
 ---
 title: Rank preservation under mode-cover avoidance
-type: definition and theorem
+type: lemma
 ---
 Actual quotient and annihilator restriction preserve rank when the original column and row spaces avoid the cover.
 -/

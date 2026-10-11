@@ -5,7 +5,7 @@ import Lax342547.SpanDeficits
 /-!
 ---
 title: Rank of a lifted tensor sum
-type: definition and theorem
+type: lemma
 ---
 A lifted block sum has rank at least its number of nonzero blocks minus the actual column and row span deficits.
 -/

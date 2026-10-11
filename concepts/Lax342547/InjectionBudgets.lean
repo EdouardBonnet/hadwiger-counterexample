@@ -3,7 +3,7 @@ import Lax342547.MomentBudgets
 /-!
 ---
 title: Early channel choice and injection exponent budgets
-type: definition and theorem
+type: lemma
 ---
 The channel dimension chosen before unit laws pays the accepting-family union, while actual conditioned primal avoidance retains an exponential margin.
 -/

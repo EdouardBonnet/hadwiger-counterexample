@@ -3,7 +3,7 @@ import Lax342547.ListDeficits
 /-!
 ---
 title: Exposed mode dimension budget
-type: definition and theorem
+type: lemma
 ---
 The span of any subset of rank-bounded mode spaces has dimension at most the single-space budget times the full sample size.
 -/

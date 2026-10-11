@@ -4,7 +4,7 @@ import Lax342547.ReferencePins
 /-!
 ---
 title: Numerical cross tables, injection flags, and unary admissibility
-type: definition and theorem
+type: lemma
 ---
 A table records both cross orientations on the actual projected table
 spaces. Its injection quotients use the protected channel of the same

@@ -7,7 +7,7 @@ import Mathlib.LinearAlgebra.Matrix.Rank
 /-!
 ---
 title: Polar rank of the formal mixer quadratic
-type: definition and theorem
+type: lemma
 ---
 The formal row variables for each indexed mixer product are disjoint.
 The quadratic is a sum of products H_i(u_i,v_i), with each middle form

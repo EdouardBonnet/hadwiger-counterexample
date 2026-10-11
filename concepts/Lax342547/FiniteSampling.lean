@@ -4,7 +4,7 @@ import Mathlib.Algebra.BigOperators.Ring.Finset
 /-!
 ---
 title: Finite independent sampling and vertex exception tails
-type: definition and theorem
+type: lemma
 ---
 Finite product weights form a probability law. Cylinder events factor over sample positions, and a subset union bound gives the binomial estimate for too many positions in a raw vertex exception.
 -/

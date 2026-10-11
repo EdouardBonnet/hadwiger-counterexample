@@ -4,7 +4,7 @@ import Lax342547.PairedRecipes
 /-!
 ---
 title: Whole-space gradient realization preserving the actual frozen entries
-type: definition and theorem
+type: lemma
 ---
 Under the genuine scalar recipe, injecting table, matched keys, sparse covers and the explicit degree and channel margins, the bounded baseline and both reciprocal recipe solutions assemble into cross forms that preserve every frozen entry and satisfy all four gradients. The original small table may change away from its frozen rows and columns, as permitted by Theorem 6.3.
 -/

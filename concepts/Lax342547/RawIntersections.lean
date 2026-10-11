@@ -5,7 +5,7 @@ import Lax342547.KernelWitness
 /-!
 ---
 title: Exponential bound for the raw intersection exception
-type: definition and theorem
+type: lemma
 ---
 A fixed-size kernel certificate describes any large collection of common
 primal images. The reference image cap and a joint density bound give an

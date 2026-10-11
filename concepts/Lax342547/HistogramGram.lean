@@ -3,7 +3,7 @@ import Lax342547.GramNormalization
 /-!
 ---
 title: Uniform relative Gram normalization errors
-type: definition and theorem
+type: lemma
 ---
 The actual injective Gram event differs from its independent-bit factor
 by at most twice the column-rank exception. Independent groups multiply

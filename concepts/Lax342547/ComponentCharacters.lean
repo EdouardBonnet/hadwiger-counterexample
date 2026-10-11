@@ -3,7 +3,7 @@ import Lax342547.RetainedCharacters
 /-!
 ---
 title: Joint retained-cell characters across all components
-type: definition and theorem
+type: lemma
 ---
 Componentwise quotient projections and rank factors combine into one joint Walsh image. No independence between components or nominal orientations is imposed; rank sums control the complete character.
 -/

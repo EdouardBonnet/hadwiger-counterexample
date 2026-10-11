@@ -3,7 +3,7 @@ import Lax342547.ResponseMatrices
 /-!
 ---
 title: Rank-controlled pure forms on the actual barred quotients
-type: definition and theorem
+type: lemma
 ---
 Projection away from the actual pin/key spaces yields pure quotient forms whose bilinear rank is at most the sum of the two individual target-matrix ranks. The projection loss remains at most 2K+28 per individual. This supplies the initial pure-form rank needed when restoring the compressed residual correction.
 -/

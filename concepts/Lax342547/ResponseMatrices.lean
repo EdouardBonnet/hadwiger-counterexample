@@ -4,7 +4,7 @@ import Mathlib.LinearAlgebra.Matrix.Rank
 /-!
 ---
 title: Matrix representations and the bounded residual rank ingredients
-type: definition and theorem
+type: lemma
 ---
 Actual cut-profile functionals have component matrix representations.
 Projected forms descend through the actual barred nominal quotients, with

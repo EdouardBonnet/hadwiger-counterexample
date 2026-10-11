@@ -3,7 +3,7 @@ import Lax342547.CellAveraging
 /-!
 ---
 title: Independent parameter averaging with opposite-dependent original cells
-type: definition and theorem
+type: lemma
 ---
 Record partitions may depend on opposite parameters. Average each unchanged retained cell pair under the independent parameter laws, and recover a lower bound for the original orientation-pair event.
 -/

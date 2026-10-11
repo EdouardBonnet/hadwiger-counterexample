@@ -4,7 +4,7 @@ import Lax342547.ConcreteRecipes
 /-!
 ---
 title: Binary prescriptions at all endpoints of a paired scalar recipe
-type: definition and theorem
+type: lemma
 ---
 Swapping the units preserves the full scalar recipe. At each endpoint,
 its two role equations and the opposite unit's coupled equation give

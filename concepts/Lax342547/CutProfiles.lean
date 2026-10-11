@@ -4,7 +4,7 @@ import Mathlib.LinearAlgebra.Pi
 /-!
 ---
 title: Cut profiles and the constant kernel
-type: definition and theorem
+type: lemma
 ---
 A cut profile has one coordinate for each unordered pair of tags, equal
 to the sum of its two representative values. In characteristic two,

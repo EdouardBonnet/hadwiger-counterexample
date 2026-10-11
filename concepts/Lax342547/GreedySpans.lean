@@ -5,7 +5,7 @@ import Mathlib.Data.Real.Basic
 /-!
 ---
 title: Greedy mode space exposure
-type: definition and theorem
+type: lemma
 ---
 Finite greedy ordering of actual subspaces has nonnegative decreasing span increments; tails retain the greedy property and their increment sum equals the dimension increase.
 -/

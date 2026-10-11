@@ -3,7 +3,7 @@ import Lax342547.DisjointSampling
 /-!
 ---
 title: A good sample from the explicit container budget
-type: definition and theorem
+type: lemma
 ---
 The vertex and disjoint pair exception tails sum over the finite container family. If their explicit total budget is less than one, a sample avoiding every terminal exception event exists.
 -/

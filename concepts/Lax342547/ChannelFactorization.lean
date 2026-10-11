@@ -6,7 +6,7 @@ import Mathlib.Algebra.Module.Projective
 /-!
 ---
 title: Rank-controlled factorization through allowed orthogonal channels
-type: definition and theorem
+type: lemma
 ---
 A pure quotient form factors through the actual dot pairing whenever its rank fits. Orthogonality to protected channels, baseline values and bounded derivative values costs at most K+2R on each side. The resulting allowed maps realize the pure form exactly and have all required vanishing cross pairings; simultaneous gradient assembly and target routing remain separate.
 -/

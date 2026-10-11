@@ -5,7 +5,7 @@ import Lax342547.MatchingCoverage
 /-!
 ---
 title: Finite supersaturation implies an actual sampled graph
-type: definition and theorem
+type: lemma
 ---
 The exact admissible raw-unit supersaturation property, together with the explicit entropy, counting and sampling margins, produces a graph on sampled positions with independence number at most two and 100 times its actual connected matching number less than its order.
 -/

@@ -4,7 +4,7 @@ import Lax342547.SparsePins
 /-!
 ---
 title: Quotient extractors isolate individual tensor label blocks
-type: definition and theorem
+type: lemma
 ---
 A label block is the tensor lift of a base matrix. Bilinear contraction
 commutes with this lift. Extractors that read one label and kill the

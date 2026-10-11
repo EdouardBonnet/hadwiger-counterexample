@@ -5,7 +5,7 @@ import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
 /-!
 ---
 title: Stabilized ranks and the radical quotient
-type: definition and theorem
+type: lemma
 ---
 The flat-level and quotient steps of Lemma 5.2. These statements apply to
 arbitrary finite-dimensional symmetric bilinear forms; no positivity is used.

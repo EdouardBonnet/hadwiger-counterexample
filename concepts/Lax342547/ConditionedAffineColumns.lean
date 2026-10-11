@@ -4,7 +4,7 @@ import Lax342547.RealCellLaws
 /-!
 ---
 title: Actual conditioned affine coefficient dependence bounds
-type: definition and theorem
+type: lemma
 ---
 The free parts of two independent full affine coefficient maps remain a
 uniform matrix pair. This pays nominal dependence before conditioning;

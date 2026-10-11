@@ -3,7 +3,7 @@ import Lax342547.InjectionAsymptotics
 /-!
 ---
 title: Injection parameter quantifiers
-type: definition and theorem
+type: lemma
 ---
 The channel dimension is chosen before density constants and laws; subsequent ambient thresholds pay every fixed conditioning and probe cost.
 -/

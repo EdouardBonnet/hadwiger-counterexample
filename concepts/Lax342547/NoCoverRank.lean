@@ -5,7 +5,7 @@ import Lax342547.AdaptiveUnion
 /-!
 ---
 title: Rank growth without an adaptive mode cover
-type: definition and theorem
+type: lemma
 ---
 Actual low rank sums force a cover based on exposed indices; conditioning on those indices and taking the finite union yields a checked no-cover probability bound for any join-stable cover classes.
 -/

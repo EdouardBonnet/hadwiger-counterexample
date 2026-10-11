@@ -6,7 +6,7 @@ import Mathlib.Tactic
 /-!
 ---
 title: Finite deterministic container recursion
-type: definition and theorem
+type: lemma
 ---
 The fingerprint procedure preserves every independent residual set, terminates by strict cardinality decrease, and reconstructs its terminal set from its ordered fingerprint. A stepwise entropy increase bounds the fingerprint length.
 -/

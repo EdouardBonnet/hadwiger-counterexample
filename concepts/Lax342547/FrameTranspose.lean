@@ -4,7 +4,7 @@ import Lax342547.FiniteLinearLaw
 /-!
 ---
 title: Reciprocal raw-frame orientation and dual pin avoidance
-type: definition and theorem
+type: lemma
 ---
 Swapping primal and dual frame data is an exact transpose equivalence, preserves uniform density caps, and supplies the reciprocal conditioned primal-span avoidance bound.
 -/

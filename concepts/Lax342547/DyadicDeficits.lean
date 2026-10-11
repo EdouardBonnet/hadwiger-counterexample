@@ -4,7 +4,7 @@ import Mathlib.Algebra.BigOperators.Ring.Finset
 /-!
 ---
 title: Dyadic span deficit estimates
-type: definition and theorem
+type: lemma
 ---
 The finite telescoping deficit recurrence yields a common scale with small combined row and column deficit.
 -/

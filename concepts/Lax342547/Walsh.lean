@@ -5,7 +5,7 @@ import Mathlib.LinearAlgebra.Matrix.Rank
 /-!
 ---
 title: Orthogonality and finite Walsh correlation bounds
-type: definition and theorem
+type: lemma
 ---
 The real binary character is 1 on zero and -1 on one. Its dot-product
 matrix has orthogonal rows. The resulting exact squared operator bound

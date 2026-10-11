@@ -4,7 +4,7 @@ import Lax342547.MappedSpans
 /-!
 ---
 title: Actual deficits indexed by a distinct list
-type: definition and theorem
+type: lemma
 ---
 For distinct remaining indices, the finite family dimension deficit is exactly the mapped list deficit used by greedy exposure.
 -/

@@ -4,7 +4,7 @@ import Lax342547.TableSpaces
 /-!
 ---
 title: Endpoint projections of paired pure-response annihilators
-type: definition and theorem
+type: lemma
 ---
 A shared bilinear response on the two nominal quotient spaces still
 tests each endpoint separately: project onto its primal block before

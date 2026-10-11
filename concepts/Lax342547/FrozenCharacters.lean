@@ -5,7 +5,7 @@ import Mathlib.LinearAlgebra.Quotient.Defs
 /-!
 ---
 title: Exact agreement of zero quotient characters
-type: definition and theorem
+type: lemma
 ---
 A bilinear difference killing both frozen factors descends to the two quotients. Coefficient tensors annihilating every quotient form therefore have identical actual and target pairings.
 -/

@@ -4,7 +4,7 @@ import Lax342547.LeafExtraction
 /-!
 ---
 title: All-rank tuple image caps from exact-pin leaf entropy
-type: definition and theorem
+type: lemma
 ---
 A tuple independent modulo the actual old pin defines an exact image pin of its full relative rank. The checked leaf cap therefore bounds any specified joint tuple image, uniformly over every tuple rank.
 -/

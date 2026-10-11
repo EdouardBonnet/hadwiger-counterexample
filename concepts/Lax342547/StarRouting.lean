@@ -3,7 +3,7 @@ import Lax342547.ChannelFactorization
 /-!
 ---
 title: Low-rank tester routing along tag stars
-type: definition and theorem
+type: lemma
 ---
 Ordered tester matrices have rank at most r. Summing cut moments along a tag star removes its even center multiplicity. Forbidden ordinary centers vanish, and each component receives at most two routed testers.
 -/

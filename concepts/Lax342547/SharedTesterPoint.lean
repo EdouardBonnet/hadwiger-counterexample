@@ -4,7 +4,7 @@ import Lax342547.ConcreteGeometry
 /-!
 ---
 title: An actual common point with diagonal tester one
-type: definition and theorem
+type: lemma
 ---
 A shared-only point is allowed at every tag and has tester value one whenever the tester has a pair; it removes the common diagonal predictor coefficient.
 -/

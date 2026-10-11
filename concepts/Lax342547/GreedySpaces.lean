@@ -5,7 +5,7 @@ import Mathlib.Data.Fin.Tuple.Basic
 /-!
 ---
 title: Greedy independence of subspaces
-type: definition and theorem
+type: lemma
 ---
 Disjointness from accumulated pin spans constructs independent subspaces with an explicit cumulative dimension budget.
 -/

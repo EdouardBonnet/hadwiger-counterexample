@@ -4,7 +4,7 @@ import Lax342547.ConditionalMinus
 /-!
 ---
 title: Joint minus images after exposing several plus frames
-type: definition and theorem
+type: lemma
 ---
 After exposing all plus frames, their common annihilator loses at most
 one full-frame dimension per draw. Every affine minus column contains

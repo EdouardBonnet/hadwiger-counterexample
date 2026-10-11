@@ -6,7 +6,7 @@ import Lax342547.RetainedImages
 /-!
 ---
 title: Finite relative entropy and support costs
-type: definition and theorem
+type: lemma
 ---
 Finite probability weights have nonnegative relative entropy on their common support. Continuous entropy has compact minimizers, pointwise density caps give an upper budget, and support restriction costs the negative logarithm of its mass.
 -/

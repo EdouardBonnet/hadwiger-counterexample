@@ -3,7 +3,7 @@ import Lax342547.MomentBudgets
 /-!
 ---
 title: Phase density budgets for selected channel groups
-type: definition and theorem
+type: lemma
 ---
 Original target counting and selected endpoint-channel density costs are paid separately in the explicit phase margin.
 -/

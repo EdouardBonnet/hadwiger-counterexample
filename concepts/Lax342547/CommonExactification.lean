@@ -5,7 +5,7 @@ import Lax342547.FiniteSampling
 /-!
 ---
 title: Exact common predictions on retained mass
-type: definition and theorem
+type: lemma
 ---
 An actual average-error bound retains a large set of units; Boolean polynomial nonvanishing turns their approximate predictions into one exact common function.
 -/

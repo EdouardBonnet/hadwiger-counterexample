@@ -4,7 +4,7 @@ import Mathlib.Data.List.Basic
 /-!
 ---
 title: Finite ordered fingerprint budgets
-type: definition and theorem
+type: lemma
 ---
 Padding a fingerprint with absent entries injects all fingerprints of length at most L into words of length L over the raw alphabet with one extra symbol. Thus their number is at most (card U + 1)^L.
 -/

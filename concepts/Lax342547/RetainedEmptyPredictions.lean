@@ -4,7 +4,7 @@ import Lax342547.MomentTails
 /-!
 ---
 title: Actual vanishing predictions on a retained population
-type: definition and theorem
+type: lemma
 ---
 The aggregate generic parameter error gives an explicit discarded-mass bound, while the actual whole cut-space residual and common diagonal coefficient vanish exactly on retained units.
 -/

@@ -4,7 +4,7 @@ import Lax342547.RawBaselines
 /-!
 ---
 title: Deterministic whole-space gradient realization from the genuine recipe hypotheses
-type: definition and theorem
+type: lemma
 ---
 Construct the bounded frozen baseline from the admissible injecting small table and sparse pin exclusions. Choose actual private channel complements, solve both reciprocal recipes, and assemble one pair of cross forms satisfying all four whole-space gradients while retaining every actual pin and key entry.
 -/

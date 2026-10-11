@@ -3,7 +3,7 @@ import Lax342547.PhaseAverages
 /-!
 ---
 title: Actual no-cover phase cancellation under marginal density
-type: definition and theorem
+type: lemma
 ---
 Averaging over the actual opposite orientation and its bounded-rank tensor target combines the uniform raw tail and density cap to give the full finite no-cover correlation bound.
 -/

@@ -5,7 +5,7 @@ import Lax342547.DyadicMoments
 /-!
 ---
 title: Fixed-parameter endpoint-group phase bounds
-type: definition and theorem
+type: lemma
 ---
 Original no-cover rank growth and fixed parameters yield an exponential phase estimate for selected endpoint images with whole-unit marks.
 -/

@@ -5,7 +5,7 @@ import Lax342547.SampledGraph
 /-!
 ---
 title: The concrete finite frame model and its sampled graphs
-type: definition and theorem
+type: lemma
 ---
 Assemble the actual moment coordinates, cut-profile space, descended
 testers, ordered mixer form, self-Gram matrix, frame tensors, and uniform

@@ -3,7 +3,7 @@ import Lax342547.FlavorAffineSlices
 /-!
 ---
 title: Uniform positive Gram mass from bounded tester prescriptions
-type: definition and theorem
+type: lemma
 ---
 At a fixed selector the sharp mixer contribution vanishes. Prescribing only
 retained tester pairs has mass independent of the growing free dimension.

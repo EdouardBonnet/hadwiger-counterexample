@@ -3,7 +3,7 @@ import Lax342547.GradientAssembly
 /-!
 ---
 title: The simultaneous gradient corrections retain every frozen pin and key entry
-type: definition and theorem
+type: lemma
 ---
 Barred domains kill frozen pins and keys on the changed side. Opposite pin projections are annihilated by the permitted outputs, and opposite keys have zero channel coordinates. The assembled cross forms therefore retain all frozen entries simultaneously.
 -/

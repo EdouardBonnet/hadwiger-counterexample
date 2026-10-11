@@ -4,7 +4,7 @@ import Lax342547.PhaseAverages
 /-!
 ---
 title: Universal protected pin witnesses
-type: definition and theorem
+type: lemma
 ---
 Independent pin witnesses have an amplified probability bound even when the small protected space depends on the whole unit.
 -/

@@ -5,7 +5,7 @@ import Mathlib.Data.List.Sort
 /-!
 ---
 title: Finite list tail statistics
-type: definition and theorem
+type: lemma
 ---
 Nonnegative decreasing finite lists extend by zero to decreasing sequences; their finite sums and dyadic tail sums agree with the actual list tails.
 -/

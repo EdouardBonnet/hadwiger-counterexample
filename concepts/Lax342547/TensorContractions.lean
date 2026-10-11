@@ -5,7 +5,7 @@ import Mathlib.LinearAlgebra.Basis.VectorSpace
 /-!
 ---
 title: Well-defined channel contractions on projected tensor spaces
-type: definition and theorem
+type: lemma
 ---
 Two channel evaluation maps on the tensor factors determine a unique
 linear contraction on their matrix tensor space. Its value is independent

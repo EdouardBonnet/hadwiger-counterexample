@@ -4,7 +4,7 @@ import Lax342547.TerminalCuts
 /-!
 ---
 title: Terminal containers for actual admissible unit laws
-type: definition and theorem
+type: lemma
 ---
 The entropy container family applies to the actual marginal and pair capacity constraints. Every terminal container has the vertex and pair exceptions of Lemma 3.3, with the explicit fingerprint count and no injectivity restriction on later sampled raw types.
 -/

@@ -5,7 +5,7 @@ import Lax342547.BooleanWeight
 /-!
 ---
 title: Exactification of actual vanishing point predictions
-type: definition and theorem
+type: lemma
 ---
 Degree-two generic parameter error removes base discrepancies; excluded-selector recovery and an actual common tester-one point force the diagonal coefficient and the whole cut-space residual to vanish.
 -/

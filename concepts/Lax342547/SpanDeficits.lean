@@ -4,7 +4,7 @@ import Mathlib.LinearAlgebra.Pi
 /-!
 ---
 title: Mode space span deficits
-type: definition and theorem
+type: lemma
 ---
 The kernel dimension of the addition map is the difference between the sum of component dimensions and the dimension of their span.
 -/

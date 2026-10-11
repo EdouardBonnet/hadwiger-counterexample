@@ -6,7 +6,7 @@ import Mathlib.LinearAlgebra.BilinearMap
 /-!
 ---
 title: Baseline bilinear extensions retaining all frozen rows and columns
-type: definition and theorem
+type: lemma
 ---
 Split each table space into its stored pin part and a complement, retaining
 the independent key space. An explicit bilinear formula extends both the

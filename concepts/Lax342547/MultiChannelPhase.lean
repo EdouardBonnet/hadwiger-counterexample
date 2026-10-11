@@ -4,7 +4,7 @@ import Lax342547.TotalRankCount
 /-!
 ---
 title: Raw phase estimates for dependent marked units
-type: definition and theorem
+type: lemma
 ---
 Original-rank moment tails transfer through the selected endpoint image, with a sharp target count and whole-unit marks.
 -/

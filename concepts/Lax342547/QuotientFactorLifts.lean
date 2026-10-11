@@ -4,7 +4,7 @@ import Mathlib.LinearAlgebra.Basis.VectorSpace
 /-!
 ---
 title: Actual factor lifts and covered offsets
-type: definition and theorem
+type: lemma
 ---
 Common minimal quotient factors lift to actual endpoint factors, with covered differences, independent companion spaces, and the precise offset dimension budget.
 -/

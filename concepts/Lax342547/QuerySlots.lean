@@ -4,7 +4,7 @@ import Lax342547.PairedWitnesses
 /-!
 ---
 title: The actual paired-list key slot budget
-type: definition and theorem
+type: lemma
 ---
 Counting both signs and every incident component in all four bounded witness lists gives at most 56(g-1) ambient vector slots.
 -/

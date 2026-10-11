@@ -6,7 +6,7 @@ import Mathlib.LinearAlgebra.Dimension.LinearMap
 /-!
 ---
 title: Rank control for the frozen baseline on primal inputs
-type: definition and theorem
+type: lemma
 ---
 Retract the primal inputs before constructing the baseline. Its channel
 evaluation factors through the bounded primal retraction and the dual of

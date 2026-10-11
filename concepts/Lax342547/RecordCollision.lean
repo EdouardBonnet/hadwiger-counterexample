@@ -5,7 +5,7 @@ import Lax342547.CollisionPruning
 /-!
 ---
 title: Key-indexed original record cells
-type: definition and theorem
+type: lemma
 ---
 Refining a key by a unary record preserves accepted key mass. Matching retained record cells sum to the retained collision mass, with nonnegative subprobability weights.
 -/

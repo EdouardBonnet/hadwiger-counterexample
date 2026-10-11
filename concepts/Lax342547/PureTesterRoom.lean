@@ -3,7 +3,7 @@ import Lax342547.FixedSelectorGram
 /-!
 ---
 title: Exact pure-flavor tester room and a law-uniform Gram mass floor
-type: definition and theorem
+type: lemma
 ---
 The paper's pure flavor retains exactly k*(2k+1-|T0|)*r tester pairs.
 Prescribing their affine coefficients gives a positive Gram mass floor

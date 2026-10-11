@@ -3,7 +3,7 @@ import Lax342547.AdaptiveSets
 /-!
 ---
 title: Union over adaptive component covers
-type: definition and theorem
+type: lemma
 ---
 All disjoint exposed and tested index sets have the finite union bound four to the number of coordinates times the cover mass to the number of tests.
 -/

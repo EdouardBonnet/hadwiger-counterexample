@@ -7,7 +7,7 @@ import Mathlib.Data.Fin.Tuple.Basic
 /-!
 ---
 title: Greedy independent failure samples
-type: definition and theorem
+type: lemma
 ---
 Actual sequential failure tests produce independent pin spaces and retain a uniform amplified lower probability.
 -/

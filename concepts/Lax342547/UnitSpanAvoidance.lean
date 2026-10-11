@@ -7,7 +7,7 @@ import Lax342547.ChannelColumns
 /-!
 ---
 title: Whole-unit conditioned pin avoidance
-type: definition and theorem
+type: lemma
 ---
 Pins inside actual primal images inherit raw span avoidance, including the exact conditioning cost for any retained accepted set.
 -/

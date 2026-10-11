@@ -4,7 +4,7 @@ import Mathlib.Analysis.SpecialFunctions.Pow.Real
 /-!
 ---
 title: Image caps inside original retained cells
-type: definition and theorem
+type: lemma
 ---
 Conditioning an original unary record cell costs only its own mass. The joint key and fresh-image cap gives the .95tN exponent, without intersecting cells over opposite parameters.
 -/

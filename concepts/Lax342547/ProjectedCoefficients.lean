@@ -4,7 +4,7 @@ import Lax342547.TargetMatrices
 /-!
 ---
 title: Split quotient projections preserve coefficient characters
-type: definition and theorem
+type: lemma
 ---
 Choose projections with the actual frozen space as kernel. Removing the projected coefficient matrix leaves a tensor annihilating every form on the two frozen quotients.
 -/

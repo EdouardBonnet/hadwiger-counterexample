@@ -3,7 +3,7 @@ import Lax342547.FourHoles
 /-!
 ---
 title: Finite primal-channel records with the paper bit count and four-hole implication
-type: definition and theorem
+type: lemma
 ---
 Recording both modes and reciprocal roles takes exactly 16|E|h dimB bits. Equality of these records fixes every actual primal-to-channel evaluation and hence every contraction. Matched keys, witness parity and the constructed gradients then force all four actual cross pairs to be holes.
 -/

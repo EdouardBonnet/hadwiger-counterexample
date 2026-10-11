@@ -4,7 +4,7 @@ import Lax342547.PairRecovery
 /-!
 ---
 title: Admissible pair laws
-type: definition and theorem
+type: lemma
 ---
 Compactness, convexity and entropy minimization for the actual marginal and pair capacity constraints.
 -/

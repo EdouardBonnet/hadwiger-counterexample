@@ -3,7 +3,7 @@ import Lax342547.QuotientFactorLifts
 /-!
 ---
 title: Offsets constructed from the actual common projection
-type: definition and theorem
+type: lemma
 ---
 The actual shared projected endpoint tensor supplies its own minimal factorization; its covered offsets have total dimension at most twice the projected rank.
 -/

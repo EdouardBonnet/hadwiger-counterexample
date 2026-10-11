@@ -5,7 +5,7 @@ import Lax342547.CellAveraging
 /-!
 ---
 title: Terminal exceptions from real capacity cuts
-type: definition and theorem
+type: lemma
 ---
 A residual pair set admitting no probability law with the marginal and pair caps is covered by a small raw vertex exception and a small product-law pair exception. This proves the finite content of Lemma 3.3.
 -/

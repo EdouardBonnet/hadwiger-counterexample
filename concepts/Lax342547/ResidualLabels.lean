@@ -3,7 +3,7 @@ import Lax342547.SelectedRemoval
 /-!
 ---
 title: Removing selected atoms leaves only unselected component labels
-type: definition and theorem
+type: lemma
 ---
 Freshness identifies the finite sum of selected atoms with exactly the
 selected label blocks. Subtracting that sum deletes those blocks. The

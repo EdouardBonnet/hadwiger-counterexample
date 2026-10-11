@@ -4,7 +4,7 @@ import Mathlib.Data.Matrix.Mul
 /-!
 ---
 title: Primal projections and preservation of effective spaces
-type: definition and theorem
+type: lemma
 ---
 Pins can mix endpoints and channels. Their endpoint primal spaces are
 therefore projections. Enlarging pins preserves these spaces and the

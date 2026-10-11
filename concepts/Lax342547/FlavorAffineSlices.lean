@@ -4,7 +4,7 @@ import Lax342547.Atoms
 /-!
 ---
 title: Affine-slice comparison for every actual atom flavor
-type: definition and theorem
+type: lemma
 ---
 Lemma 9.4 uses independent uniform affine coefficients on exactly the actual
 retained coordinates of the chosen flavor. The free projection is exactly

@@ -7,7 +7,7 @@ import Lax342547.PhaseAverages
 /-!
 ---
 title: Actual raw primal-span avoidance
-type: definition and theorem
+type: lemma
 ---
 Uniform raw frames inherit a complete primal-span intersection bound from their combined injective plus matrix.
 -/

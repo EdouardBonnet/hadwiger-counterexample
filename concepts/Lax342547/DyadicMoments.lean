@@ -4,7 +4,7 @@ import Mathlib.Data.Nat.Log
 /-!
 ---
 title: Fixed dyadic moment orders at the ambient scale
-type: definition and theorem
+type: lemma
 ---
 An explicit natural logarithm choice supplies even dyadic moments below N/c and above N/(2*c), with a fixed parameter budget independent of the actual law.
 -/

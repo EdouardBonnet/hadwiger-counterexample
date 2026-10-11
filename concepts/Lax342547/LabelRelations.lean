@@ -5,7 +5,7 @@ import Lax342547.ConcreteCut
 /-!
 ---
 title: Triangle relations separate into individual label blocks
-type: definition and theorem
+type: lemma
 ---
 Selector interpolation makes bounded-support block expansions unique.
 The union of three component supports has size at most 3R, so a triangle

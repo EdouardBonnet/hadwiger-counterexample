@@ -4,7 +4,7 @@ import Lax342547.QuotientRank
 /-!
 ---
 title: Rank loss under two restrictions
-type: definition and theorem
+type: lemma
 ---
 A composition loses at most the output kernel dimension and the input range codimension, including the two quotient modes of a tensor.
 -/

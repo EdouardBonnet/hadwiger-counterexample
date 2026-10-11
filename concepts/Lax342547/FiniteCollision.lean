@@ -5,7 +5,7 @@ import Lax342547.CollisionExponents
 /-!
 ---
 title: Finite accepted overlap to original hole mass
-type: definition and theorem
+type: lemma
 ---
 Independent parameter laws, original key-indexed record partitions and a proved local cell bound give an actual-mass collision inequality. The quantitative discarded-cell term retains the key-space and record counts.
 -/

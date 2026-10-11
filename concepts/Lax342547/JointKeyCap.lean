@@ -3,7 +3,7 @@ import Lax342547.JointDirections
 /-!
 ---
 title: Exact leaf entropy bounds joint key and additional images
-type: definition and theorem
+type: lemma
 ---
 The full key plus additional tuple has the sum of the two ranks. Applying the actual old-pin leaf cap before any cell conditioning bounds every specified joint image event.
 -/

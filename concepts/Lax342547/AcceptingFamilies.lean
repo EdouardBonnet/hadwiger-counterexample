@@ -4,7 +4,7 @@ import Lax342547.RetainedImages
 /-!
 ---
 title: Finite accepting-family losses
-type: definition and theorem
+type: lemma
 ---
 Conditional event identities and finite family unions charge small accepted sets once and retain the actual accepting-pair mass.
 -/

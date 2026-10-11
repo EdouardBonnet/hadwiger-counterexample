@@ -4,7 +4,7 @@ import Lax342547.CommonTestTransfer
 /-!
 ---
 title: Quantitative common-test error obstruction for synthetic parity
-type: definition and theorem
+type: lemma
 ---
 On one common reference law, parity and all small coordinate-slice tests
 are incompatible once the synthetic identity exceeds the sum of local ranks.

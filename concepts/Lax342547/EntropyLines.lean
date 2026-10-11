@@ -4,7 +4,7 @@ import Mathlib.Analysis.Calculus.Deriv.Slope
 /-!
 ---
 title: Entropy along feasible mixture lines, including new support
-type: definition and theorem
+type: lemma
 ---
 Old occupied coordinates have a finite directional derivative. Newly occupied coordinates give an exact t log t term whose positive coefficient forces the entropy difference quotient to negative infinity.
 -/

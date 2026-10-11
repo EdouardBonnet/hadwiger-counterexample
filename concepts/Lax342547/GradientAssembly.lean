@@ -3,7 +3,7 @@ import Lax342547.ChannelAssembly
 /-!
 ---
 title: All four whole-space gradient equations from assembled channel changes
-type: definition and theorem
+type: lemma
 ---
 Expanding the actual nonlinear contractions identifies their changes with the pure-plus-derivative response. The actual recipe residual cancels the baseline contraction. Opposite-endpoint and reciprocal-role assembly then gives all four gradient equations on the entire profile space.
 -/

@@ -3,7 +3,7 @@ import Lax342547.AffineSliceVariance
 /-!
 ---
 title: Uniform quantitative thresholds for affine-slice variance
-type: definition and theorem
+type: lemma
 ---
 The variance budget is bounded by a fixed constant times 2^(-floor(n/2))
 whenever the ambient dimension is at least n. One threshold supplies every

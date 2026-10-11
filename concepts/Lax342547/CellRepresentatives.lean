@@ -3,7 +3,7 @@ import Lax342547.RealCellLaws
 /-!
 ---
 title: Positive representatives of original retained cells
-type: definition and theorem
+type: lemma
 ---
 Every retained cell of positive actual mass has a positive-weight orientation representative. A pair of unchanged retained cells therefore supplies representatives for selecting the actual gradient target.
 -/

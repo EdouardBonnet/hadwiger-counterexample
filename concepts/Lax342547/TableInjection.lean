@@ -4,7 +4,7 @@ import Lax342547.FiniteInjection
 /-!
 ---
 title: Actual table injection and ambient pin failures
-type: definition and theorem
+type: lemma
 ---
 Restrict the actual cross Gram forms to the numerical table spaces. Each
 of the sixteen component tests is precisely an ambient primal-image

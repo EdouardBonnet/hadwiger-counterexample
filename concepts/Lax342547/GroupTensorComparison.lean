@@ -3,7 +3,7 @@ import Lax342547.RawFrameComparison
 /-!
 ---
 title: Two-batch comparison across independent component groups
-type: definition and theorem
+type: lemma
 ---
 Replacing one independent group at a time adds its bounded separate-test
 error. The global tests may depend arbitrarily on all groups, and the two

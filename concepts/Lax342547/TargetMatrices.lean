@@ -3,7 +3,7 @@ import Lax342547.TargetTesters
 /-!
 ---
 title: Explicit low-rank matrices for the whole-space gradient target
-type: definition and theorem
+type: lemma
 ---
 The adjoints of the concrete mixer sandwiches have ranks bounded by the witness component ranks. Combining both orientations with the routed tester matrices constructs the actual target matrices, proves the rank 15r+14J|E|, and represents the whole profile-pair target exactly.
 -/

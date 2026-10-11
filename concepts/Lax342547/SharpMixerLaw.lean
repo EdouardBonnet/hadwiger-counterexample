@@ -5,7 +5,7 @@ import Lax342547.LowRankCounting
 /-!
 ---
 title: Random sharp-block forms and their alternating parity
-type: definition and theorem
+type: lemma
 ---
 The sharp part of the self-Gram form at distinct labels is a nonzero
 linear combination of independently uniform matrices. It is uniform.

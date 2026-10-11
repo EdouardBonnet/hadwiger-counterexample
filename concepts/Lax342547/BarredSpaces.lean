@@ -4,7 +4,7 @@ import Lax342547.PairedKeys
 /-!
 ---
 title: Barred response spaces and the actual obstruction rank budget
-type: definition and theorem
+type: lemma
 ---
 Quotient the nominal spaces by frozen pins, selected incident keys, and
 private channel directions. Individual primal projections have kernel

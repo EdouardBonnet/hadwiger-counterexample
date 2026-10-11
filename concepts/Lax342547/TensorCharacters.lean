@@ -3,7 +3,7 @@ import Lax342547.ChannelMoments
 /-!
 ---
 title: Characters of all independent tensor channels
-type: definition and theorem
+type: lemma
 ---
 Multiplication over actual component channel pairs yields the exact exponent given by the sum of component ranks, including the actual sampled componentwise tensor sum.
 -/

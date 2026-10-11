@@ -5,7 +5,7 @@ import Mathlib.Tactic.DeriveFintype
 /-!
 ---
 title: Point atoms and finite flavor distributions
-type: definition and theorem
+type: lemma
 ---
 Definition 5.4 on the concrete cut space. Each atom has a single nonzero
 moment representative. Generic, shared-only, and pure flavors retain

@@ -3,7 +3,7 @@ import Lax342547.PhaseAverages
 /-!
 ---
 title: No-cover phases with whole-unit marks
-type: definition and theorem
+type: lemma
 ---
 Uniform raw channel tails transfer through an arbitrary finite unit-to-orientation marginal map, permitting tensor marks to depend on both unit endpoints while retaining the true marginal density cap.
 -/

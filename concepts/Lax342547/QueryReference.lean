@@ -5,7 +5,7 @@ import Lax342547.PairedWitnesses
 /-!
 ---
 title: Reference keys and matched keys for actual paired lists
-type: definition and theorem
+type: lemma
 ---
 Global key tuples contain both nominal signs of every actual incident witness direction. Their equality gives matched keys; the constrained reference space has the exact slot cardinality bound and a dimension-independent positive density.
 -/

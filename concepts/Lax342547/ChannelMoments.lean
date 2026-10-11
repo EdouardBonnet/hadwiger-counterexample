@@ -4,7 +4,7 @@ import Lax342547.MomentTails
 /-!
 ---
 title: Actual channel moments and phase tails
-type: definition and theorem
+type: lemma
 ---
 The checked moment expansion and exact channel character mean bound arbitrary bounded unit-side signs by the rank of the actual sampled matrix sum, and yield the explicit Markov phase tail.
 -/

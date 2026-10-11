@@ -4,7 +4,7 @@ import Lax342547.ChannelColumns
 /-!
 ---
 title: Uniform injective-matrix density
-type: definition and theorem
+type: lemma
 ---
 Exact raw endpoint channel marginals have density at most two over uniform full matrices.
 -/

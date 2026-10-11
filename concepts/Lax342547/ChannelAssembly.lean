@@ -3,7 +3,7 @@ import Lax342547.RecipeChannels
 /-!
 ---
 title: Simultaneous assembly of opposite endpoints and reciprocal unit roles
-type: definition and theorem
+type: lemma
 ---
 The two cross forms assemble all four families of barred channel changes. Each updated primal-to-channel map receives precisely its own correction; opposite endpoint channels and reciprocal-role changes contribute zero. The exact formulas cover both cross orientations and their flips.
 -/

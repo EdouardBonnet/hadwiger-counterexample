@@ -4,7 +4,7 @@ import Mathlib.Data.Fintype.Card
 /-!
 ---
 title: Counting component tensors with bounded total rank
-type: definition and theorem
+type: lemma
 ---
 Actual rank budgets and matrix factors give the uniform candidate count with ambient exponent (dim I+dim J)*r, rather than paying r for each component separately.
 -/

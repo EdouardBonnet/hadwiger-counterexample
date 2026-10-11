@@ -5,7 +5,7 @@ import Lax342547.EmpiricalVariance
 /-!
 ---
 title: Conditioned affine-slice variance under the actual raw law
-type: definition and theorem
+type: lemma
 ---
 The actual one-batch orbit law and grouped two-batch comparison discharge the
 finite empirical-variance hypotheses. The coefficient law may have arbitrary

@@ -3,7 +3,7 @@ import Lax342547.NoCoverMoments
 /-!
 ---
 title: Explicit no-cover moment parameter margins
-type: definition and theorem
+type: lemma
 ---
 Natural-number power identities prove the finite exponential moment budget and fixed dyadic parameter choices, retaining the ambient sample-size margin.
 -/

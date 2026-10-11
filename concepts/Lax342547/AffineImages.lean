@@ -3,7 +3,7 @@ import Lax342547.FiniteLinearLaw
 /-!
 ---
 title: Exact-image bounds for independent affine columns
-type: definition and theorem
+type: lemma
 ---
 Every column may have its own affine translation space, provided they
 all contain one common subspace S. An injective nominal coefficient

@@ -3,7 +3,7 @@ import Lax342547.WitnessAtoms
 /-!
 ---
 title: Ordered atom products in the actual gradient form
-type: definition and theorem
+type: lemma
 ---
 Atom-pair mixing is exactly the product sum indexed by the two incident
 stars. Thus matching prescribed distinct-atom bits gives the prescribed

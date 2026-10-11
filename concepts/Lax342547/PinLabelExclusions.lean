@@ -4,7 +4,7 @@ import Lax342547.SparsePins
 /-!
 ---
 title: Sparse pin exclusions with arbitrary base coefficients
-type: definition and theorem
+type: lemma
 ---
 The annihilator argument needs more than independence of fresh point
 rays: an expansion may mix selected fresh labels with other labels in

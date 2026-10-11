@@ -5,7 +5,7 @@ import Mathlib.Analysis.SpecificLimits.Normed
 /-!
 ---
 title: The paper fingerprint and exception scales
-type: definition and theorem
+type: lemma
 ---
 The paper entropy length is bounded by an explicit natural fingerprint length. Coarse binomial counting already gives an exponentially small vertex tail with M = 2^1000, and disjoint pair exceptions obey the corresponding power bound at the paper sample size.
 -/

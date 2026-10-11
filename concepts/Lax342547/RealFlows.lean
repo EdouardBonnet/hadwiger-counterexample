@@ -6,7 +6,7 @@ import Mathlib.Analysis.Convex.Function
 /-!
 ---
 title: Compact real-capacity flows and a maximizing flow
-type: definition and theorem
+type: lemma
 ---
 Skew real flows satisfy directed capacity bounds and interior conservation. Their feasible set is closed and bounded in a finite product, so a maximum source divergence exists for every nonnegative finite capacity network.
 -/

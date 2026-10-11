@@ -3,7 +3,7 @@ import Lax342547.QuadraticDegree
 /-!
 ---
 title: Polynomial degree of actual tensor evaluations
-type: definition and theorem
+type: lemma
 ---
 Linear tensor evaluations retain the sum of coordinate degrees, including the exact twice-selector-degree bound for point tensors.
 -/

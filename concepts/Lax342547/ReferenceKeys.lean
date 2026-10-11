@@ -3,7 +3,7 @@ import Lax342547.GramNormalization
 /-!
 ---
 title: Constrained key reference spaces have positive density
-type: definition and theorem
+type: lemma
 ---
 Independent component Gram constraints have an explicit product lower bound independent of ambient dimension once the slot count fits. The constrained key space has at most two to the number of ambient key bits elements.
 -/

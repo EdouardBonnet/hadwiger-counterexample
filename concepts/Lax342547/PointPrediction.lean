@@ -5,7 +5,7 @@ import Lax342547.BooleanWeight
 /-!
 ---
 title: Common predictions from actual point tensors
-type: definition and theorem
+type: lemma
 ---
 Degree-two actual point-tensor evaluations yield an exact common marked prediction after an explicitly bounded mass loss.
 -/

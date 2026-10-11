@@ -4,7 +4,7 @@ import Lax342547.DirectRanks
 /-!
 ---
 title: Componentwise mode spaces and diagonal tensors
-type: definition and theorem
+type: lemma
 ---
 Coordinatewise mode subspaces form a join-stable cover class, and the range of a diagonal tensor map is the product of its component ranges.
 -/

@@ -3,7 +3,7 @@ import Lax342547.SelectedScalars
 /-!
 ---
 title: Subtracting selected atoms preserves pure annihilation
-type: definition and theorem
+type: lemma
 ---
 Both factors of an incident selected atom are frozen keys. Every pure
 quotient response therefore kills that atom. Linear combinations of

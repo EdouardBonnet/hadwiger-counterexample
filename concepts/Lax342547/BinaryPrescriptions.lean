@@ -4,7 +4,7 @@ import Mathlib.Algebra.Module.ZMod
 /-!
 ---
 title: Formal ordered product bits realize symmetric corrections
-type: definition and theorem
+type: lemma
 ---
 For every ordered pair there is at least one allowed product index. One
 such term realizes any off-diagonal correction to a symmetric matrix,

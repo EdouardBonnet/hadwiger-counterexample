@@ -5,7 +5,7 @@ import Lax342547.ConcreteGeometry
 /-!
 ---
 title: Pure bilinear responses detect quotient tensors
-type: definition and theorem
+type: lemma
 ---
 Vanishing against every bilinear form on two quotient spaces implies the
 component-rank bound used in §6. The selected affine-ray case gives

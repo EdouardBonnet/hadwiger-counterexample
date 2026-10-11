@@ -5,7 +5,7 @@ import Mathlib.LinearAlgebra.Isomorphisms
 /-!
 ---
 title: Exact image pins in nominal coefficient spaces
-type: definition and theorem
+type: lemma
 ---
 A pin stores a subspace at each component/sign and the prescribed linear
 image on that subspace. New rank is the sum of dimensions of the tested

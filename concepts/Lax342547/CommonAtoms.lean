@@ -3,7 +3,7 @@ import Lax342547.Atoms
 /-!
 ---
 title: Common star atoms eliminate the diagonal predictor coefficient
-type: definition and theorem
+type: lemma
 ---
 Actual equal shared atoms sum to zero across the odd tag star; a linear cut functional constant on those atoms must have constant zero.
 -/

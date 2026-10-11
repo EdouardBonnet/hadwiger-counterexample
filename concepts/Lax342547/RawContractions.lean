@@ -3,7 +3,7 @@ import Lax342547.TableContractions
 /-!
 ---
 title: Actual frame observations realize the nominal channel contractions
-type: definition and theorem
+type: lemma
 ---
 The full cross forms of two raw units are their actual plus/minus Gram
 pairings. Their primal/channel contractions agree with the original trace

@@ -3,7 +3,7 @@ import Lax342547.GreedySpans
 /-!
 ---
 title: Dimensions of projected mode spaces
-type: definition and theorem
+type: lemma
 ---
 The dimension of an actual mode space in an exposed quotient equals its span dimension increase.
 -/

@@ -5,7 +5,7 @@ import Lax342547.InjectiveDensity
 /-!
 ---
 title: Raw accepting-family injection with exponential loss
-type: definition and theorem
+type: lemma
 ---
 Actual raw primal frames and channel images discharge the finite sampling hypotheses; an early channel margin gives an exponential absolute accepting-pair loss.
 -/

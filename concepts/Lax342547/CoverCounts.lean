@@ -3,7 +3,7 @@ import Lax342547.SmallExposure
 /-!
 ---
 title: Count tensors killed by exposure
-type: definition and theorem
+type: lemma
 ---
 A low sum rank and a small combined mode deficit force at least the prescribed number of covered tensors among the remaining indices.
 -/

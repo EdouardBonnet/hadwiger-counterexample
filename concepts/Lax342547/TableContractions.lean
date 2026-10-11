@@ -4,7 +4,7 @@ import Lax342547.TensorContractions
 /-!
 ---
 title: Table contractions on effective profiles and their full extensions
-type: definition and theorem
+type: lemma
 ---
 The starred contraction is a linear functional on the actual effective
 cut profiles. It uses both cross orientations of the table. Every full

@@ -4,7 +4,7 @@ import Mathlib.LinearAlgebra.Matrix.Trace
 /-!
 ---
 title: Raw matrix frames and their tensor realization
-type: definition and theorem
+type: lemma
 ---
 The four matrices $P,Q,X,Y$ satisfy the full-frame injectivity and
 Gram constraints (2.13). The tensor embedding is $Z\mapsto PZQ^T$.

@@ -4,7 +4,7 @@ import Mathlib.LinearAlgebra.FreeModule.Finite.Matrix
 /-!
 ---
 title: Actual tensor cover decomposition and dimension
-type: definition and theorem
+type: lemma
 ---
 A checked quotient decomposition of every covered map gives the dimension bound for the whole actual cover space.
 -/

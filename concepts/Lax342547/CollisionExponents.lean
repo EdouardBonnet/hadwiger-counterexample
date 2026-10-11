@@ -3,7 +3,7 @@ import Lax342547.RetainedImages
 /-!
 ---
 title: Explicit pruning and scalar agreement exponent margins
-type: definition and theorem
+type: lemma
 ---
 The numerical bounds in the collision argument have explicit scale conditions. Original-cell pruning is exponentially smaller than overlap, and the actual scalar tests cost at most .02N when their bit count is at most .01N.
 -/

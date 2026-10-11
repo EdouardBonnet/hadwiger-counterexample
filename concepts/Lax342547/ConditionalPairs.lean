@@ -5,7 +5,7 @@ import Lax342547.CellAveraging
 /-!
 ---
 title: Conditional pair laws on original cells
-type: definition and theorem
+type: lemma
 ---
 The normalized subtype product event equals the product event of the ambient conditional laws, so actual retained-cell hole bounds feed the record-cell averaging theorem.
 -/

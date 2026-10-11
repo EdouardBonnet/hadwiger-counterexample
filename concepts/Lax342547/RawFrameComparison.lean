@@ -3,7 +3,7 @@ import Lax342547.RawBatchComparison
 /-!
 ---
 title: Actual raw frame observations with uniform two-batch decay
-type: definition and theorem
+type: lemma
 ---
 Independent combined coefficient columns give a comparison for arbitrary
 separate bounded tests under the actual raw frame law, or under the full

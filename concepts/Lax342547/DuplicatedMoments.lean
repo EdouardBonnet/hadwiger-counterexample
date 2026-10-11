@@ -3,7 +3,7 @@ import Lax342547.NoCoverMoments
 /-!
 ---
 title: Moments across endpoint channel groups
-type: definition and theorem
+type: lemma
 ---
 Copying the same original tensor across endpoint channels multiplies the character rank exponent without changing its original cover space.
 -/

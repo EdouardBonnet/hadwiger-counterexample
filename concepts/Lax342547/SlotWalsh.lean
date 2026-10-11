@@ -3,7 +3,7 @@ import Lax342547.BilinearWalsh
 /-!
 ---
 title: Bit rank and Walsh bounds for global vector-slot pairings
-type: definition and theorem
+type: lemma
 ---
 Each of N bit coordinates carries the same cross-slot coefficient
 matrix. The resulting bilinear bit matrix has rank N times its rank,

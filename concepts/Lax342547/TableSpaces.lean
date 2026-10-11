@@ -5,7 +5,7 @@ import Mathlib.LinearAlgebra.Dimension.Constructions
 /-!
 ---
 title: Table coordinates and private channel complements
-type: definition and theorem
+type: lemma
 ---
 The table space contains the full channel blocks and the endpoint
 projections of the stored primal pins. Protected channels are projections

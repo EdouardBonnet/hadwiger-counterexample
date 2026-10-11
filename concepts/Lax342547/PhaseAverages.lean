@@ -3,7 +3,7 @@ import Lax342547.UniformPhaseTails
 /-!
 ---
 title: Actual phase averages from small exceptional tails
-type: definition and theorem
+type: lemma
 ---
 Absolute values of the actual tensor characters and finite density transfer recover averaged phase cancellation from checked tails without normalizing away exceptional mass.
 -/

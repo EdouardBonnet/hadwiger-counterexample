@@ -6,7 +6,7 @@ import Lax342547.PhaseScales
 /-!
 ---
 title: Small phases on selected endpoint channel groups
-type: definition and theorem
+type: lemma
 ---
 The explicit numerical phase margin holds for arbitrary selected endpoint images and whole-unit marks while preserving the original no-cover rank parameter.
 -/

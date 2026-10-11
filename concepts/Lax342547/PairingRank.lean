@@ -5,7 +5,7 @@ import Mathlib.LinearAlgebra.Finsupp.LSum
 /-!
 ---
 title: Tiny-cover pairing matrix rank
-type: definition and theorem
+type: lemma
 ---
 The actual pairing matrix factors through the covered tensor space; its rank is bounded by the two mode dimensions times their ambient dimensions.
 -/

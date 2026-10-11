@@ -4,7 +4,7 @@ import Lax342547.GramTests
 /-!
 ---
 title: Coefficient phases as dot products of rank-factor images
-type: definition and theorem
+type: lemma
 ---
 A binary coefficient tensor contracted with a cross Gram matrix is the dot product of its two rank-factor image tuples, flattened over rank positions and ambient coordinates.
 -/

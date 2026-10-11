@@ -4,7 +4,7 @@ import Lax342547.BaselineRank
 /-!
 ---
 title: Primal blocks of the nominal spaces and their bounded table part
-type: definition and theorem
+type: lemma
 ---
 The combined primal space has zero channel coordinates. Its intersection
 with a table space has dimension at most twice the total pin rank, while

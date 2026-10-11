@@ -4,7 +4,7 @@ import Mathlib.Probability.ProbabilityMassFunction.Constructions
 /-!
 ---
 title: Extracting a leaf with all remaining exact-image caps
-type: definition and theorem
+type: lemma
 ---
 Among pin extensions that retain enough of the original mass, choose one
 of maximal rank. A remaining unusually likely positive-rank constraint

@@ -3,7 +3,7 @@ import Lax342547.CollisionCosts
 /-!
 ---
 title: Uniform collision scales and bounded numerical options
-type: definition and theorem
+type: lemma
 ---
 A fixed ambient multiplier pays linear record and scalar bit costs. An explicit overlap threshold controls pruning, and a finite option sum has a witnessed option with its precise exponent cost.
 -/

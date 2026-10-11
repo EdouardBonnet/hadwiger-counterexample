@@ -4,7 +4,7 @@ import Mathlib.Logic.Relation
 /-!
 ---
 title: Residual walk augmentation for real-capacity flows
-type: definition and theorem
+type: lemma
 ---
 Every residual walk supplies a skew direction with the correct source and sink divergences. A sufficiently small positive real perturbation respects every capacity, so a maximum flow has no residual source-to-sink walk.
 -/

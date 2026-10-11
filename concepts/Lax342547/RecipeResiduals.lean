@@ -3,7 +3,7 @@ import Lax342547.FrozenValues
 /-!
 ---
 title: Gradient residuals vanish on effective profiles and selected atoms
-type: definition and theorem
+type: lemma
 ---
 The scalar recipe and binary prescriptions make the target difference
 zero on the effective space and the span of every selected atom at an

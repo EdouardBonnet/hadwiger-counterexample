@@ -7,6 +7,7 @@ authors:
   - name: Édouard Bonnet
     github: EdouardBonnet
   - name: OpenAI
+  - name: Codex 6.1
 bibEntries:
   - |
     @misc{OpenAIHadwiger2026,

@@ -3,7 +3,7 @@ import Lax342547.SpanDeficits
 /-!
 ---
 title: Monotonicity of span deficits
-type: definition and theorem
+type: lemma
 ---
 Enlarging each mode space can only increase its addition-map kernel dimension and its span deficit.
 -/

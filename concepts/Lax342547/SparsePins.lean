@@ -5,7 +5,7 @@ import Mathlib.LinearAlgebra.Dimension.Finite
 /-!
 ---
 title: A uniform label budget for all sparse pin vectors
-type: definition and theorem
+type: lemma
 ---
 Lemma 5.3. Each projected pin space has dimension at most K. A single
 set of at most 2 |E| K (R + 14) labels contains the nonzero support of

@@ -5,7 +5,7 @@ import Mathlib.LinearAlgebra.Dimension.Constructions
 /-!
 ---
 title: Compatibility and codimension of forward/reverse matrix restrictions
-type: definition and theorem
+type: lemma
 ---
 The overlap calculation in Lemma 5.5: prescribing ZᵀL and LW imposes
 exactly the common ZᵀLW block of compatibility conditions when Z and W

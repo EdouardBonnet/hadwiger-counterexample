@@ -4,7 +4,7 @@ import Mathlib.Data.Matrix.ColumnRowPartitioned
 /-!
 ---
 title: Ambient symmetries and frame marginals
-type: definition and theorem
+type: lemma
 ---
 The simultaneous primal and inverse-transpose action preserves all three
 raw Gram constraints. Its bijections of completion sets determine the

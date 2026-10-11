@@ -4,7 +4,7 @@ import Mathlib.Probability.Distributions.Uniform
 /-!
 ---
 title: The finite uniform raw-vertex law
-type: definition and theorem
+type: lemma
 ---
 A raw vertex chooses one valid frame in every component. The reference
 law is uniform on this finite product. Counting all matrix quadruples

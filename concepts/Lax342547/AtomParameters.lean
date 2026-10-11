@@ -4,7 +4,7 @@ import Lax342547.PolynomialTensors
 /-!
 ---
 title: Actual finite atom parameterization and degrees
-type: definition and theorem
+type: lemma
 ---
 Every flavor is parameterized by its retained binary coordinates; generic parameters cover all allowed base points, and actual atom/base/selector degrees are checked.
 -/

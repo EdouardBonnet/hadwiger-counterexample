@@ -5,7 +5,7 @@ import Mathlib.LinearAlgebra.BilinearForm.Orthogonal
 /-!
 ---
 title: Allowed channel changes and the actual table injection tests
-type: definition and theorem
+type: lemma
 ---
 Channel changes factor through a frozen nominal quotient and take values
 orthogonal to the opposite protected channel. They preserve the frozen

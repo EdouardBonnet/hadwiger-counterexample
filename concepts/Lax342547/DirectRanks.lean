@@ -4,7 +4,7 @@ import Mathlib.LinearAlgebra.Pi
 /-!
 ---
 title: Rank of a diagonal family
-type: definition and theorem
+type: lemma
 ---
 The range of a coordinatewise linear map is the product of its coordinate ranges, so its rank is the sum of their ranks.
 -/

@@ -3,7 +3,7 @@ import Lax342547.PrimalRecords
 /-!
 ---
 title: Accepted key subprobabilities and uniform overlap
-type: definition and theorem
+type: lemma
 ---
 Accepted queries retain their original mass. Uniform reference overlap is exactly the number of keys times independent accepted collision probability.
 -/

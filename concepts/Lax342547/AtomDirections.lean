@@ -4,7 +4,7 @@ import Mathlib.Data.Matrix.ColumnRowPartitioned
 /-!
 ---
 title: Independent free-direction spaces at distinct selector labels
-type: definition and theorem
+type: lemma
 ---
 The linear variation of a point input when a single base block varies.
 For distinct labels the two direction spaces are independent, because

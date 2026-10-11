@@ -3,7 +3,7 @@ import Lax342547.GramColumns
 /-!
 ---
 title: Two-sided Gram normalization for individually injective frames
-type: definition and theorem
+type: lemma
 ---
 Lemma 4.2, stated with exact finite probabilities and ratios of powers of
 two. Subtraction in the extended nonnegative reals is truncated at zero;

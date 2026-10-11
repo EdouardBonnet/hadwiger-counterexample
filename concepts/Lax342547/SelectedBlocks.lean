@@ -5,7 +5,7 @@ import Lax342547.PureObstructions
 /-!
 ---
 title: Selected tensor blocks of actual pure obstructions
-type: definition and theorem
+type: lemma
 ---
 Freshness of the actual lists leaves one possible individual key ray at
 a selected label. Extracting its block through the pin-plus-key quotients

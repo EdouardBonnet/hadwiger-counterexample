@@ -4,7 +4,7 @@ import Lax342547.TesterProductRouting
 /-!
 ---
 title: Positive pure-flavor mass for the actual synthetic parity slice Grams
-type: definition and theorem
+type: lemma
 ---
 The ordered Gram for synthetic parity on q selected coordinates in each
 half is a sum of q active products. Routing these products into retained

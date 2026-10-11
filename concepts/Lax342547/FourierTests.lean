@@ -3,7 +3,7 @@ import Lax342547.Walsh
 /-!
 ---
 title: Finite scalar agreement from binary character bounds
-type: definition and theorem
+type: lemma
 ---
 Exact Fourier inversion yields simultaneous agreement of all scalar bits without any independence assumption on those bits.
 -/

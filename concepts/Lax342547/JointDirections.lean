@@ -3,7 +3,7 @@ import Lax342547.LeafImages
 /-!
 ---
 title: Append fresh directions to the independent key tuple
-type: definition and theorem
+type: lemma
 ---
 Key directions independent modulo old pins and additional directions independent modulo pins plus keys form a joint tuple independent modulo old pins. Its full rank is available to the leaf image cap.
 -/

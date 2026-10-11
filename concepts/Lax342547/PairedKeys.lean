@@ -4,7 +4,7 @@ import Lax342547.KeySpans
 /-!
 ---
 title: Actual paired-witness key spaces satisfy the baseline hypotheses
-type: definition and theorem
+type: lemma
 ---
 At a component keep precisely the nominal primal rays belonging to
 incident selected atoms. Their span has dimension at most twenty-eight,

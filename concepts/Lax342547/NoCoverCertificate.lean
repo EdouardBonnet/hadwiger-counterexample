@@ -6,7 +6,7 @@ import Lax342547.CoverCounts
 /-!
 ---
 title: A low rank sum supplies an actual adaptive cover
-type: definition and theorem
+type: lemma
 ---
 The complete deterministic greedy exposure proof turns a low rank sum into disjoint exposed and covered index sets, with the cover determined by the exposed column and row spans.
 -/

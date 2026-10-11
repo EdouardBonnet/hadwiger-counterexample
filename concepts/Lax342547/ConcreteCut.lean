@@ -4,7 +4,7 @@ import Lax342547.RawFrames
 /-!
 ---
 title: Concrete cut-space testers and the ordered mixer form
-type: definition and theorem
+type: lemma
 ---
 The profile space is the image of the restricted cut map. The tester
 functionals descend from actual allowed moment representatives. The

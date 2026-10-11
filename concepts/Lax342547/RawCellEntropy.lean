@@ -6,7 +6,7 @@ import Lax342547.PinReindexing
 /-!
 ---
 title: Both actual cross orientations have retained-cell image entropy
-type: definition and theorem
+type: lemma
 ---
 Actual query-key independence and the exact leaf caps give all-rank matrix-image bounds on the original retained cells. Reindexing the second nominal orientation preserves ranks and uses the same key-slot exponent.
 -/

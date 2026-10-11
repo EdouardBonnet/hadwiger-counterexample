@@ -5,7 +5,7 @@ import Lax342547.FiniteSampling
 /-!
 ---
 title: Boolean polynomial nonvanishing and exactification
-type: definition and theorem
+type: lemma
 ---
 Finite differences of the actual bounded-degree selector span prove its uniform nonzero mass, exactification below that threshold, and recovery across excluded labels.
 -/

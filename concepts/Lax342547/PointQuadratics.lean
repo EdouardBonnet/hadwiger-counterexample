@@ -4,7 +4,7 @@ import Lax342547.BaseMoments
 /-!
 ---
 title: Boolean degree of actual point-tensor evaluations
-type: definition and theorem
+type: lemma
 ---
 The actual base evaluations and pointMoment tensor map have Boolean degree at most two after composition with any linear functional.
 -/

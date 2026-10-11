@@ -5,7 +5,7 @@ import Lax342547.BlockDeficits
 /-!
 ---
 title: Rank of an actual linear map sum
-type: definition and theorem
+type: lemma
 ---
 Stacking maps identifies the joint row span, and addition loses at most the actual mode-space deficit. This gives the rank-deficit inequality for the actual sum.
 -/

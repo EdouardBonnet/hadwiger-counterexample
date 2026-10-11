@@ -4,7 +4,7 @@ import Mathlib.Algebra.Order.BigOperators.Group.Finset
 /-!
 ---
 title: Finite even moment expansion
-type: definition and theorem
+type: lemma
 ---
 An actual finite even moment expands over independent samples. Bounded unit-side signs may be removed whenever the channel character expectation is nonnegative.
 -/

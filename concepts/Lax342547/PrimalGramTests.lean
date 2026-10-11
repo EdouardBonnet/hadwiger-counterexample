@@ -6,7 +6,7 @@ import Lax342547.PairRecovery
 /-!
 ---
 title: Actual primal-channel scalar tests and retained-cell four-hole probability
-type: definition and theorem
+type: lemma
 ---
 The two nominal orientations of every raw component realize the actual cross forms. The paper primal-channel entry records are linear Gram tests, and their joint Fourier agreement implies all four actual holes under the constructed target gradients.
 -/

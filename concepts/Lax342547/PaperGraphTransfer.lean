@@ -3,7 +3,7 @@ import Lax342547.SampleScales
 /-!
 ---
 title: Supersaturation to sampled graphs at the paper parameters
-type: definition and theorem
+type: lemma
 ---
 For any finite raw family with a uniform quadratic logarithmic alphabet bound and the actual raw-unit supersaturation property, the paper parameter choices give good sampled graphs for every sufficiently large ambient dimension. This conditional transfer permits repeated raw samples and bounds the actual connected matching number.
 -/

@@ -5,7 +5,7 @@ import Mathlib.LinearAlgebra.Matrix.Rank
 /-!
 ---
 title: Rank and trace of shared frame tensors
-type: definition and theorem
+type: lemma
 ---
 Injective primal frame maps preserve coefficient-matrix rank. A tensor
 shared by two endpoints has its column space in their primal-span

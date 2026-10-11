@@ -4,7 +4,7 @@ import Lax342547.PairRecovery
 /-!
 ---
 title: Quantitative collision and squared restriction exponents
-type: definition and theorem
+type: lemma
 ---
 Explicit scale conditions put pruning below half the accepted overlap. The surviving key collision and scalar agreement yield a proved exponential lower bound, and squared restriction recovery preserves the original-law cost.
 -/

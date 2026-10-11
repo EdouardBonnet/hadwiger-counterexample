@@ -5,7 +5,7 @@ import Lax342547.FrozenRecords
 /-!
 ---
 title: Actual cross Gram characters on frozen unary cells
-type: definition and theorem
+type: lemma
 ---
 Frozen agreement removes every frozen-factor coefficient term. Quotient rank factors and conditional image caps give the exact zero-character versus .45N bias alternative for actual cross Gram characters.
 -/

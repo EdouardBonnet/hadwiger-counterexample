@@ -4,7 +4,7 @@ import Lax342547.FiniteSampling
 /-!
 ---
 title: Accepting-pair test unions and relative loss
-type: definition and theorem
+type: lemma
 ---
 Actual product-pair event masses and finite injection tests retain accepting probability; the exponential tail gives arbitrary relative error under inverse-polynomial accepting mass.
 -/

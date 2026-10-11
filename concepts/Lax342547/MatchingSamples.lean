@@ -5,7 +5,7 @@ import Mathlib.Data.Fintype.EquivFin
 /-!
 ---
 title: Matching occurrences and raw unit types
-type: definition and theorem
+type: lemma
 ---
 Every touching matching has an injective orientation on sample positions. Its raw unit types form an independent conflict set even when different matching edges have identical raw types.
 -/

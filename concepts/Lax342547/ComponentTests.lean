@@ -4,7 +4,7 @@ import Lax342547.ScalarGramAgreement
 /-!
 ---
 title: Simultaneous scalar Gram agreement across components
-type: definition and theorem
+type: lemma
 ---
 A complete scalar test family expands to componentwise coefficient characters. Joint retained-cell image caps and frozen agreement imply simultaneous equality at cost two to the number of tests plus one.
 -/

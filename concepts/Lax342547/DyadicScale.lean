@@ -3,7 +3,7 @@ import Lax342547.DyadicTails
 /-!
 ---
 title: A small dyadic tail scale
-type: definition and theorem
+type: lemma
 ---
 The actual dyadic recurrence and the total rank budget give a scale with tail deficit ratio less than one quarter.
 -/

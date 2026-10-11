@@ -1,3 +1,5 @@
-We formalize OpenAI's construction of graphs of arbitrarily large order $m$ with independence number at most two and pairwise touching-matching number less than $m/100$. The complete binary-frame construction is adapted from a pinned upstream Lean development and connected to the archive's definitions by definitional equality.
+We formalize OpenAI's construction of graphs of arbitrarily large order $m$ with independence number at most two and pairwise touching-matching number less than $m/100$.
+
+We reuse OpenAI's partial Lean formalization released with the original paper: Proposition 3.5, the matching-minor bound and its ordinary chromatic consequence. We also adapt OpenAI's later complete binary-frame construction from a separately pinned upstream revision. This submission ports that development to the archive's Lean and mathlib versions, connects it to the archive's definitions by definitional equality, and organizes the definitions, statements, and proofs for Lax. The original and later upstream revisions, adaptations, and source hashes are recorded in the repository's provenance files.
 
 The proved matching-minor inequality $3h(G)\le m+4\operatorname{cm}(G)+2$, together with ordinary and fractional coloring bounds, yields $h(G)<26m/75+2/3<m/2\le\chi_f(G)\le\chi(G)$ for $m\ge5$. Both counterexample consequences use the actual construction proof.

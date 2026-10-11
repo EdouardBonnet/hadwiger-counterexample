@@ -5,7 +5,7 @@ import Mathlib.LinearAlgebra.Dual.Lemmas
 /-!
 ---
 title: Actual point atoms determine cut-space functionals
-type: definition and theorem
+type: lemma
 ---
 Ambient extension realizes every atom evaluation as a local tensor functional, with actual base degree two and point-atom extensionality on the whole concrete cut space.
 -/

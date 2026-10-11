@@ -3,7 +3,7 @@ import Lax342547.RetainedCharacters
 /-!
 ---
 title: Simultaneous agreement of linear cross Gram tests on retained cells
-type: definition and theorem
+type: lemma
 ---
 Expand the actual family of scalar Gram tests into coefficient characters. Frozen agreement and all-rank conditional image caps imply agreement of the entire family at cost two to the number of tests plus one.
 -/

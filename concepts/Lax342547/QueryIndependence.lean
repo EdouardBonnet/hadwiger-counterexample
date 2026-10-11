@@ -6,7 +6,7 @@ import Lax342547.TableSpaces
 /-!
 ---
 title: Actual query keys independent modulo old pins
-type: definition and theorem
+type: lemma
 ---
 The incident selected rays in the actual four witness lists are independent modulo the combined nominal pins. The proof uses the existing indexed fresh-label exclusion, with fourteen distinct rays per endpoint.
 -/

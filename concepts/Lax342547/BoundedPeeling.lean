@@ -5,7 +5,7 @@ import Lax342547.Conditioning
 /-!
 ---
 title: Peeling with bounded new rank and normalized leaf laws
-type: definition and theorem
+type: lemma
 ---
 The finite partition construction is quantitative under an absolute
 reference image cap. It preserves initial pins, bounds only the added

@@ -3,7 +3,7 @@ import Lax342547.FrameTuples
 /-!
 ---
 title: Exact reference Gram-orbit marginals under injective affine restrictions
-type: definition and theorem
+type: lemma
 ---
 An injective coefficient restriction of a uniform full paired Gram orbit
 has exactly the uniform prescribed slice law. The simultaneous ambient

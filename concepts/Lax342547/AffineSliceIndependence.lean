@@ -4,7 +4,7 @@ import Lax342547.ConcreteGeometry
 /-!
 ---
 title: Independent nominal affine slices from the free block
-type: definition and theorem
+type: lemma
 ---
 Two affine maps have the same constant-coordinate value on their translation
 columns. Subtracting those columns leaves an independent uniform free matrix

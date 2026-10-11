@@ -9,7 +9,7 @@ import Mathlib.LinearAlgebra.DFinsupp
 /-!
 ---
 title: Finite pin-injection exception
-type: definition and theorem
+type: lemma
 ---
 Greedy independent failure probes, adaptive protected witnesses, and actual finite Fubini give an exception bound for whole-unit channel injection.
 -/

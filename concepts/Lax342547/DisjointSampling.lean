@@ -5,7 +5,7 @@ import Mathlib.Logic.Equiv.Prod
 /-!
 ---
 title: Disjoint pair exception tails
-type: definition and theorem
+type: lemma
 ---
 Distinct selected sample positions retain their product law, and grouping them into ordered pairs proves the exact power of the raw pair-exception mass. Union over all position embeddings gives the m^(2k) counting bound.
 -/

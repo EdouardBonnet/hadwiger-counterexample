@@ -3,7 +3,7 @@ import Lax342547.EntropyLines
 /-!
 ---
 title: Full feasible support and finite information projection
-type: definition and theorem
+type: lemma
 ---
 A compact convex feasible family has an entropy minimizer positive on the union of all feasible supports. The exact one-sided variational inequality gives the information-projection bound and the negative log support cost, closing the finite content of Lemma 3.2.
 -/

@@ -4,7 +4,7 @@ import Lax342547.CoverProjection
 /-!
 ---
 title: Projected nonzero terms in the actual remaining sum
-type: definition and theorem
+type: lemma
 ---
 The rank-deficit inequality applied to actual column quotients and row restrictions bounds nonzero remaining terms by the projected sum rank and both original-space exposure deficits.
 -/

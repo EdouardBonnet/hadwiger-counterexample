@@ -5,7 +5,7 @@ import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
 /-!
 ---
 title: Original retained-cell laws from finite PMFs
-type: definition and theorem
+type: lemma
 ---
 Finite PMF events convert to real weights and normalized laws supported on the original retained cell. Joint image caps yield the paper conditional exponent without intersecting or changing that cell.
 -/

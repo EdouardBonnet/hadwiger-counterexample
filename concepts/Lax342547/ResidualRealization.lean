@@ -3,7 +3,7 @@ import Lax342547.RankedProjection
 /-!
 ---
 title: The bounded pure remainder of an actual scalar recipe
-type: definition and theorem
+type: lemma
 ---
 Projected target forms and the bounded derivative product are removed from
 the actual recipe solution on the entire cut-profile pair space. The

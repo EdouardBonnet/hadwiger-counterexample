@@ -3,7 +3,7 @@ import Lax342547.StarRouting
 /-!
 ---
 title: The fifteen-rank witness tester target
-type: definition and theorem
+type: lemma
 ---
 Odd witness lists turn the ordinary target coefficients into the shared moment at each witness tag. Their at most seven atoms route at most fourteen ordered ordinary testers to any component. All shared stars consolidate into one ordered shared tester. The resulting rank at most 15r represents the exact tester target on the entire profile space.
 -/

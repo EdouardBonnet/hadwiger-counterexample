@@ -5,7 +5,7 @@ import Lax342547.ResidualLabels
 /-!
 ---
 title: The full linearized response on pairs of actual cut profiles
-type: definition and theorem
+type: lemma
 ---
 The two allowed derivative families factor through the actual barred
 nominal quotients and take values perpendicular to the opposite pin's

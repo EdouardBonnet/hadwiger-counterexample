@@ -3,7 +3,7 @@ import Lax342547.ResidualFlows
 /-!
 ---
 title: Real max-flow min-cut from residual reachability
-type: definition and theorem
+type: lemma
 ---
 Internal skew flow cancels, conservation identifies cut divergence with source value, and the reachable residual cut is saturated. Its real capacity equals the maximum flow value, and every cut bounds every feasible flow.
 -/

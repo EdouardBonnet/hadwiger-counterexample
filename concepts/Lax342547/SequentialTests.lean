@@ -4,7 +4,7 @@ import Mathlib.Data.Fin.Tuple.Basic
 /-!
 ---
 title: Finite sequential tests
-type: definition and theorem
+type: lemma
 ---
 Independent finite draws satisfy sequential lower bounds under prefix-dependent tests, including a bounded sampling horizon.
 -/

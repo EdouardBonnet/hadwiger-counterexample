@@ -4,7 +4,7 @@ import Lax342547.Walsh
 /-!
 ---
 title: Pruning small unary record cells
-type: definition and theorem
+type: lemma
 ---
 The collision loss is bounded by the two cell counts times the threshold. Independent parameter averaging permits dependence of each record partition on opposite parameters.
 -/

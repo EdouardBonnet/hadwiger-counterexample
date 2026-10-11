@@ -5,7 +5,7 @@ import Mathlib.SetTheory.Cardinal.Finite
 /-!
 ---
 title: Finite metadata and exact-image records for additional pins
-type: definition and theorem
+type: lemma
 ---
 A coefficient choice determines finitely many nominal subspaces. A split
 record contains that choice and all prescribed images on those spaces.

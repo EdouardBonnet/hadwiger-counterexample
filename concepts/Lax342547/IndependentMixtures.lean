@@ -4,7 +4,7 @@ import Lax342547.MixtureRecovery
 /-!
 ---
 title: Independent leaf mixtures preserve actual pair-event masses
-type: definition and theorem
+type: lemma
 ---
 The product of two actual finite leaf mixtures is exactly the mixture of their independent leaf-pair laws, weighted by the original mass product. The same identity holds for every pair event.
 -/

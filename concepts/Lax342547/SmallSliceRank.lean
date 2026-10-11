@@ -4,7 +4,7 @@ import Mathlib.LinearAlgebra.Dimension.StrongRankCondition
 /-!
 ---
 title: Small affine slices force global cross-coefficient rank
-type: definition and theorem
+type: lemma
 ---
 Every matrix rank has a witness on actual coordinate rows and columns. A sum
 of s affine products has a cross-coefficient matrix of rank at most 2s.

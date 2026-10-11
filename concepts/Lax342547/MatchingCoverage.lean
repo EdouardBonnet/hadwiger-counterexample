@@ -4,7 +4,7 @@ import Lax342547.DisjointSampling
 /-!
 ---
 title: Count matching occurrences covered by terminal exceptions
-type: definition and theorem
+type: lemma
 ---
 Disjoint matching endpoints inject edges meeting the vertex exception into exceptional positions. Every remaining edge gives an ordered pair exception; the absence of k disjoint pair exceptions bounds the actual connected matching number.
 -/

@@ -3,7 +3,7 @@ import Lax342547.Walsh
 /-!
 ---
 title: Walsh bounds for independent image laws and separated phases
-type: definition and theorem
+type: lemma
 ---
 Image pushforwards and conditional bounded weights translate the finite Walsh bound to arbitrary orientation laws, preserving separate phases from frozen vectors.
 -/

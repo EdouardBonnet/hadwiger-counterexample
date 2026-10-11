@@ -3,7 +3,7 @@ import Lax342547.FrameSymmetry
 /-!
 ---
 title: Uniform tuple images on prescribed Gram orbits
-type: definition and theorem
+type: lemma
 ---
 Independent primal coefficient tuples have the uniform law on their
 individually injective realizations with prescribed Gram. Tuples using

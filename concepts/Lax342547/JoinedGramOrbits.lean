@@ -3,7 +3,7 @@ import Lax342547.FrameTuples
 /-!
 ---
 title: Exact joining of two prescribed Gram orbits
-type: definition and theorem
+type: lemma
 ---
 A combined Gram orbit is precisely two separate orbits conditioned on their
 reciprocal Gram entries and injectivity of both concatenated column lists.

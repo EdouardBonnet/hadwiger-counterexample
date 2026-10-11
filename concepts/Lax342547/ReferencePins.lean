@@ -4,7 +4,7 @@ import Lax342547.ImageScale
 /-!
 ---
 title: The full reference cap for exact pin events
-type: definition and theorem
+type: lemma
 ---
 Component/sign pins use the direct sum of both endpoints' primal and
 channel coefficients. Their stored basis images form precisely the

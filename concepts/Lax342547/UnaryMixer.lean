@@ -6,7 +6,7 @@ import Lax342547.Atoms
 /-!
 ---
 title: Formal forward and reverse rows of a unary mixer test
-type: definition and theorem
+type: lemma
 ---
 For a fixed rank profile, each forward and reverse product receives
 its own pair of formal row vectors. The substitution map records the

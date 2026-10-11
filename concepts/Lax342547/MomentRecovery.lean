@@ -4,7 +4,7 @@ import Mathlib.LinearAlgebra.Matrix.Rank
 /-!
 ---
 title: Recovery of low-rank Boolean moments from low degrees
-type: definition and theorem
+type: lemma
 ---
 The rank obstruction in the second half of Lemma 5.2. A first nonzero
 selector moment of degree d produces an identity submatrix of size

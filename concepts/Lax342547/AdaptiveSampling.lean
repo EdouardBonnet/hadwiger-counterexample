@@ -3,7 +3,7 @@ import Lax342547.CoordinateRestrictions
 /-!
 ---
 title: Sampling after exposed coordinates
-type: definition and theorem
+type: lemma
 ---
 For independent product samples, a cylinder event defined by exposed coordinates has the exact averaged power probability and the uniform power bound.
 -/

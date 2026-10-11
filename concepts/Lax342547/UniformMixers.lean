@@ -4,7 +4,7 @@ import Lax342547.BinaryMixers
 /-!
 ---
 title: Uniform mixing forms chosen simultaneously before any unit law
-type: definition and theorem
+type: lemma
 ---
 Lemma 5.5: one choice of all indexed L,R matrices and all sharp M matrices
 has the unary polar-rank and bounded-row-space properties and every binary

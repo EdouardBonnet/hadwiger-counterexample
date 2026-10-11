@@ -5,7 +5,7 @@ import Mathlib.Data.Fintype.Sigma
 /-!
 ---
 title: Full paired witness lists and scalar recipe equations
-type: definition and theorem
+type: lemma
 ---
 Four cross pairs carry matched lists of one to seven actual point atoms.
 Freshness holds across both lists at each endpoint. The scalar recipe

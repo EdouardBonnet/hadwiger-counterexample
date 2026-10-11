@@ -5,7 +5,7 @@ import Mathlib.LinearAlgebra.Matrix.Rank
 /-!
 ---
 title: Exact images mixing independent injective frames
-type: definition and theorem
+type: lemma
 ---
 Nominal directions are measured in the direct sum of all source frames.
 Before conditioning, every independent tuple has an exactly uniform

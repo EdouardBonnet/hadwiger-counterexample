@@ -3,7 +3,7 @@ import Lax342547.FixedSelectorGram
 /-!
 ---
 title: Prescribed Gram products routed into distinct retained tester pairs
-type: definition and theorem
+type: lemma
 ---
 Each prescribed Gram product is routed to a distinct retained tester
 pair. The exact uniform tester restriction law then supplies a positive

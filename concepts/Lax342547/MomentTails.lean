@@ -3,7 +3,7 @@ import Lax342547.FiniteMoments
 /-!
 ---
 title: Finite moment probability and rank split
-type: definition and theorem
+type: lemma
 ---
 Finite Markov bounds and the low-rank/high-rank decomposition preserve the actual sample masses and explicit channel rank exponent.
 -/

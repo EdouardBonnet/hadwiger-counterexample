@@ -3,7 +3,7 @@ import Lax342547.ModeBudgets
 /-!
 ---
 title: Join-stable classes of mode covers
-type: definition and theorem
+type: lemma
 ---
 Finite exposed spans remain in any class of mode spaces containing zero and closed under joins, including componentwise classes.
 -/
