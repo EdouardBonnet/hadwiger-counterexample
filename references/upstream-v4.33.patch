@@ -1,0 +1,538 @@
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/AdditionalProbeBounds.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/AdditionalProbeBounds.lean
+@@ -65,2 +65,2 @@
+-  · rw [ite_eq_left h]; exact moreMatrix (A i) v
+-  rw [ite_eq_right h]; exact A i
++  · rw [if_pos h]; exact moreMatrix (A i) v
++  rw [if_neg h]; exact A i
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/AmbientBatchSlots.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/AmbientBatchSlots.lean
+@@ -132 +132 @@
+-    refine le_trans ?_ (Finset.prod_le_prod₀ (fun i _ => div_nonneg (bp_pos _).le
++    refine le_trans ?_ (Finset.prod_le_prod (fun i _ => div_nonneg (bp_pos _).le
+@@ -143 +143 @@
+-    apply Finset.prod_le_prod₀ (fun i _ => pr_nonneg unif_law.nz)
++    apply Finset.prod_le_prod (fun i _ => pr_nonneg unif_law.nz)
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/AtomFlavors.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/AtomFlavors.lean
+@@ -51 +51 @@
+-  fun _ _ h _ => ite_eq_right (fun g => h (Flavor.keep_o g))
++  fun _ _ h _ => if_neg (fun g => h (Flavor.keep_o g))
+@@ -85 +85 @@
+-    (scan p l f x).feasible l f := fun _ h => ite_eq_right h
++    (scan p l f x).feasible l f := fun _ h => if_neg h
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/AttackCutDecomposition.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/AttackCutDecomposition.lean
+@@ -54 +54 @@
+-  · simp only [ite_eq_left h]
++  · simp only [if_pos h]
+@@ -88 +88 @@
+-    rw [ite_eq_left h,mpair_outer,evmat]
++    rw [if_pos h,mpair_outer,evmat]
+@@ -93 +93 @@
+-  rw [ite_eq_right h,map_zero]
++  rw [if_neg h,map_zero]
+@@ -154 +154 @@
+-  refine ⟨L,g,?_,hL,(fun s hs => ite_eq_right hs), fun s hs => ?_⟩
++  refine ⟨L,g,?_,hL,(fun s hs => if_neg hs), fun s hs => ?_⟩
+@@ -157 +157 @@
+-  simp only [g,ite_eq_left hs]
++  simp only [g,if_pos hs]
+@@ -208 +208 @@
+-    rw [h1 (edge k u2 hj), ite_eq_right hn,add_zero] at heq
++    rw [h1 (edge k u2 hj), if_neg hn,add_zero] at heq
+@@ -215 +215 @@
+-    · rw [ite_eq_left hf,ite_eq_left hf,map_smul]
++    · rw [if_pos hf,if_pos hf,map_smul]
+@@ -219 +219 @@
+-    rw [ite_eq_right hf,ite_eq_right hf,map_zero,smul_zero]
++    rw [if_neg hf,if_neg hf,map_zero,smul_zero]
+@@ -226 +226 @@
+-    rw [atomAt,atom_def,ite_eq_right h,smul_zero,smul_zero]
++    rw [atomAt,atom_def,if_neg h,smul_zero,smul_zero]
+@@ -229 +229 @@
+-  rw [atomAt,atom_def,ite_eq_right (show ¬inc e u from fun he => hh ⟨e,he⟩),
++  rw [atomAt,atom_def,if_neg (show ¬inc e u from fun he => hh ⟨e,he⟩),
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/BatchCharacters.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/BatchCharacters.lean
+@@ -102 +102 @@
+-    ((Finset.prod_le_prod₀ (fun _ _ => ind_nonneg _) (fun _ _ => ind_le_one _)).trans_eq (by simp))
++    ((Finset.prod_le_prod (fun _ _ => ind_nonneg _) (fun _ _ => ind_le_one _)).trans_eq (by simp))
+@@ -140 +140 @@
+-    refine le_trans ?_ (Finset.prod_le_prod₀ (fun i _ => (bp_pos _).le) fun i _ => hp i)
++    refine le_trans ?_ (Finset.prod_le_prod (fun i _ => (bp_pos _).le) fun i _ => hp i)
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/BinaryPrescriptions.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/BinaryPrescriptions.lean
+@@ -59 +59 @@
+-    · rw [ite_eq_left ⟨he,hf⟩,ha x y hg hh,ha x y hg hh]
++    · rw [if_pos ⟨he,hf⟩,ha x y hg hh,ha x y hg hh]
+@@ -62 +62 @@
+-    rw [ite_eq_right (show ¬ (_ ∧ _) from fun h => hf h.2)]
++    rw [if_neg (show ¬ (_ ∧ _) from fun h => hf h.2)]
+@@ -64 +64 @@
+-  rw [ite_eq_right (show ¬ (_ ∧ _) from fun h => he h.1)]
++  rw [if_neg (show ¬ (_ ∧ _) from fun h => he h.1)]
+@@ -133,5 +133,5 @@
+-    · rw [ite_eq_left g]
+-      exact Finset.sum_eq_zero fun l hl => (hy hl).trans (ite_eq_left g)
+-    rw [ite_eq_right g]
+-    exact Finset.sum_congr rfl fun l hl => (hy hl).trans (ite_eq_right g)
+-  have ha (j : Bool) : B j j=0 := by rw [hg,ite_eq_left rfl]
++    · rw [if_pos g]
++      exact Finset.sum_eq_zero fun l hl => (hy hl).trans (if_pos g)
++    rw [if_neg g]
++    exact Finset.sum_congr rfl fun l hl => (hy hl).trans (if_neg g)
++  have ha (j : Bool) : B j j=0 := by rw [hg,if_pos rfl]
+@@ -248 +248 @@
+-    · simp only [g, ite_eq_left e,ite_eq_right (not_lt.mpr e.le),add_zero]
++    · simp only [g, if_pos e,if_neg (not_lt.mpr e.le),add_zero]
+@@ -250 +250 @@
+-    simp only [g,ite_eq_left e,ite_eq_right (not_lt.mpr e.le),zero_add]
++    simp only [g,if_pos e,if_neg (not_lt.mpr e.le),zero_add]
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ChannelFrameLaws.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ChannelFrameLaws.lean
+@@ -176 +176 @@
+-  refine le_trans (Finset.prod_le_prod₀ ?_ fun i _ => hh i) ?_
++  refine le_trans (Finset.prod_le_prod ?_ fun i _ => hh i) ?_
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CommonPartitionRefinement.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CommonPartitionRefinement.lean
+@@ -64 +64 @@
+-  unfold H; rw [dite_eq_left rfl]; simp
++  unfold H; rw [dif_pos rfl]; simp
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CommonPredictions.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CommonPredictions.lean
+@@ -69 +69 @@
+-  refine ⟨lit f l x,0,fun i d t h k => ite_eq_right (by simp [f,Flavor.keeps]),?_⟩
++  refine ⟨lit f l x,0,fun i d t h k => if_neg (by simp [f,Flavor.keeps]),?_⟩
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ConditionalFourCorners.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ConditionalFourCorners.lean
+@@ -37 +37 @@
+-  exact (Finset.prod_le_prod₀ (fun i _=>abs_nonneg _) (fun i _ => hU _)).trans_eq (by simp)
++  exact (Finset.prod_le_prod (fun i _=>abs_nonneg _) (fun i _ => hU _)).trans_eq (by simp)
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ConditionedBatchLaws.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ConditionedBatchLaws.lean
+@@ -163 +163 @@
+-    refine (Finset.prod_le_prod₀ (fun i _ => abs_nonneg _)
++    refine (Finset.prod_le_prod (fun i _ => abs_nonneg _)
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CoordinateBlocks.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CoordinateBlocks.lean
+@@ -90 +90 @@
+-  rw [pick,dite_eq_left i.isLt,Matrix.mulVec_single_one]
++  rw [pick,dif_pos i.isLt,Matrix.mulVec_single_one]
+@@ -118 +118 @@
+-  · simp only [map_sum,map_smul,map_add, dite_eq_left he,liftM_outer,h]
++  · simp only [map_sum,map_smul,map_add, dif_pos he,liftM_outer,h]
+@@ -120 +120 @@
+-  · simp only [dite_eq_right he]; simp
++  · simp only [dif_neg he]; simp
+@@ -131 +131 @@
+-  simp only [map_sum,map_add,map_smul, dite_eq_left hj,liftM_outer,project_same]
++  simp only [map_sum,map_add,map_smul, dif_pos hj,liftM_outer,project_same]
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CutIntegralBounds.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CutIntegralBounds.lean
+@@ -60 +60 @@
+-    unfold prodW; rw [abs_prod]; exact (prod_le_prod₀ (fun i _=>abs_nonneg _) (fun i _=>hf _ _)).trans_eq
++    unfold prodW; rw [abs_prod]; exact (prod_le_prod (fun i _=>abs_nonneg _) (fun i _=>hf _ _)).trans_eq
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/EmpiricalInformation.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/EmpiricalInformation.lean
+@@ -96 +96 @@
+-  refine le_trans ?_ (Finset.prod_le_prod₀ (fun i (_: i∈(univ:Finset (Fin l))) =>
++  refine le_trans ?_ (Finset.prod_le_prod (fun i (_: i∈(univ:Finset (Fin l))) =>
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/EndpointEvaluations.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/EndpointEvaluations.lean
+@@ -103 +103 @@
+-  have he (j : Crossing p (v.t i.val.1) (v.t i.val.2)) : w j.val=y j := dite_eq_left j.property
++  have he (j : Crossing p (v.t i.val.1) (v.t i.val.2)) : w j.val=y j := dif_pos j.property
+@@ -115 +115 @@
+-    unfold f w; rw [dite_eq_right hh,zero_smul]
++    unfold f w; rw [dif_neg hh,zero_smul]
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FiniteLaws.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FiniteLaws.lean
+@@ -1 +1 @@
+-import Mathlib.Basic.Real.Basic
++import Mathlib.Data.Real.Basic
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FinitePredictions.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FinitePredictions.lean
+@@ -89 +89 @@
+-      unfold scan; rw [ite_eq_right hj]
++      unfold scan; rw [if_neg hj]
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FiniteTableEnumeration.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FiniteTableEnumeration.lean
+@@ -74 +74 @@
+-  unfold g; rw [dite_eq_left (show z.val<t from i.isLt)]
++  unfold g; rw [dif_pos (show z.val<t from i.isLt)]
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FourCornerTrials.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FourCornerTrials.lean
+@@ -25 +25 @@
+-  exact (Finset.prod_le_prod₀ (fun i _ => abs_nonneg _) (fun i _=>hU _)).trans_eq (by simp)
++  exact (Finset.prod_le_prod (fun i _ => abs_nonneg _) (fun i _=>hU _)).trans_eq (by simp)
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FrameIntersectionCosts.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FrameIntersectionCosts.lean
+@@ -24 +24 @@
+-    intro h; simpa only [q,ite_eq_left rfl] using h i
++    intro h; simpa only [q,if_pos rfl] using h i
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FrozenProjections.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FrozenProjections.lean
+@@ -61,2 +61,2 @@
+-  · rw [ite_eq_left hj,hj,IP_self,one_mulVec]
+-  rw [ite_eq_right hj,IP_cross (Ne.symm hj),zero_mulVec,smul_zero]
++  · rw [if_pos hj,hj,IP_self,one_mulVec]
++  rw [if_neg hj,IP_cross (Ne.symm hj),zero_mulVec,smul_zero]
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/GramCharacterExpansion.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/GramCharacterExpansion.lean
+@@ -56 +56 @@
+-    withinRail (ledgerM E v) E := fun _ _ h => dite_eq_right h
++    withinRail (ledgerM E v) E := fun _ _ h => dif_neg h
+@@ -78 +78 @@
+-         simp only [ledgerM,Matrix.of_apply,dite_eq_right hi,zero_mul])
++         simp only [ledgerM,Matrix.of_apply,dif_neg hi,zero_mul])
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/GramConditionedLaws.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/GramConditionedLaws.lean
+@@ -119 +119 @@
+-    refine (Finset.prod_le_prod₀ (fun i _ => abs_nonneg _)
++    refine (Finset.prod_le_prod (fun i _ => abs_nonneg _)
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/GroupedQueryIndependence.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/GroupedQueryIndependence.lean
+@@ -157 +157 @@
+-  rw [point_base_eval]; exact ite_eq_left (Flavor.keepZ _ _)
++  rw [point_base_eval]; exact if_pos (Flavor.keepZ _ _)
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/HeadPartitionComparison.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/HeadPartitionComparison.lean
+@@ -71 +71 @@
+-    exact (prod_le_prod₀ (fun _ _=>abs_nonneg _) (fun i _=>hf _ _)).trans_eq (by simp)
++    exact (prod_le_prod (fun _ _=>abs_nonneg _) (fun i _=>hf _ _)).trans_eq (by simp)
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/IndependentWeightCorrelation.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/IndependentWeightCorrelation.lean
+@@ -26 +26 @@
+-  rw [Finset.abs_prod]; exact (Finset.prod_le_prod₀ (fun i _ => abs_nonneg _)
++  rw [Finset.abs_prod]; exact (Finset.prod_le_prod (fun i _ => abs_nonneg _)
+@@ -103 +103 @@
+-      simp only [M,ledgerM,Matrix.of_apply,dite_eq_left hY]
++      simp only [M,ledgerM,Matrix.of_apply,dif_pos hY]
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/KeyDirections.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/KeyDirections.lean
+@@ -95 +95 @@
+-    · intro j hj he; exact ite_eq_right (fun h => he (hs hj hi h))
++    · intro j hj he; exact if_neg (fun h => he (hs hj hi h))
+@@ -130,2 +130,2 @@
+-      · rw [ite_eq_left hj,show v.obj j.val=i from hj,IP_self, Matrix.one_mulVec]
+-      rw [ite_eq_right hj,IP_cross (show i≠_ from Ne.symm hj), Matrix.zero_mulVec,smul_zero]
++      · rw [if_pos hj,show v.obj j.val=i from hj,IP_self, Matrix.one_mulVec]
++      rw [if_neg hj,IP_cross (show i≠_ from Ne.symm hj), Matrix.zero_mulVec,smul_zero]
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/LargeSetHits.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/LargeSetHits.lean
+@@ -57 +57 @@
+-    exact Finset.prod_le_prod₀ (fun i _=> (half_pos (basebeta_pos _ _)).le) fun i _=>hg' i
++    exact Finset.prod_le_prod (fun i _=> (half_pos (basebeta_pos _ _)).le) fun i _=>hg' i
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/LeafMixtures.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/LeafMixtures.lean
+@@ -30 +30 @@
+-  unfold poller; rw [dite_eq_left hc,h _ _ hc.choose_spec.1 _ hi hc.choose_spec.2 hx]
++  unfold poller; rw [dif_pos hc,h _ _ hc.choose_spec.1 _ hi hc.choose_spec.2 hx]
+@@ -45 +45 @@
+-  · rw [rooting,poller,dite_eq_left hs]
++  · rw [rooting,poller,dif_pos hs]
+@@ -47 +47 @@
+-  unfold rooting poller; rw [dite_eq_right hs]
++  unfold rooting poller; rw [dif_neg hs]
+@@ -124 +124 @@
+-    unfold f; rw [dite_eq_left hi]; exact (hg i hi).choose_spec
++    unfold f; rw [dif_pos hi]; exact (hg i hi).choose_spec
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/LowRankKernelAlternative.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/LowRankKernelAlternative.lean
+@@ -31 +31 @@
+-      ext; simp
++      ext; simp [eq_comm]
+@@ -53 +53 @@
+-    Finset.sum_singleton, ite_eq_right (show (1:F) ≠ 0 from one_ne_zero)] using h
++    Finset.sum_singleton, if_neg (show (1:F) ≠ 0 from one_ne_zero)] using h
+@@ -59 +59 @@
+-  refine (Finset.prod_le_prod₀ (g:=fun _ => 1) (fun _ _ => tot_nonneg h.nz) (fun _ _ => h.total)).trans_eq
++  refine (Finset.prod_le_prod (g:=fun _ => 1) (fun _ _ => tot_nonneg h.nz) (fun _ _ => h.total)).trans_eq
+@@ -94 +94 @@
+-    refine Finset.prod_le_prod₀ (fun i _ => (bp_pos _).le) fun i _ => ?_
++    refine Finset.prod_le_prod (fun i _ => (bp_pos _).le) fun i _ => ?_
+@@ -98 +98 @@
+-    simp only [d,tilt,ite_eq_right he,ind_zero he,mul_zero,add_zero,le_refl]
++    simp only [d,tilt,if_neg he,ind_zero he,mul_zero,add_zero,le_refl]
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/MatrixRankCounting.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/MatrixRankCounting.lean
+@@ -149 +149 @@
+-      refine (Finset.prod_le_prod₀ (fun i _ => nbr_nonneg (c i)) (fun i _ => hx i)).trans ?_
++      refine (Finset.prod_le_prod (fun i _ => nbr_nonneg (c i)) (fun i _ => hx i)).trans ?_
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/MomentCoordinates.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/MomentCoordinates.lean
+@@ -129 +129 @@
+-    getPair p n l d x = x (edge l d h) := by rw [getPair,dite_eq_left h]; rfl
++    getPair p n l d x = x (edge l d h) := by rw [getPair,dif_pos h]; rfl
+@@ -134 +134 @@
+-  · subst l; rw [getPair,dite_eq_right, LinearMap.zero_apply,char_two]; simp
++  · subst l; rw [getPair,dif_neg, LinearMap.zero_apply,char_two]; simp
+@@ -161 +161 @@
+-    rw [Pi.single_eq_of_ne h',ite_eq_left (show inc e l from Or.inl h)]
++    rw [Pi.single_eq_of_ne h',if_pos (show inc e l from Or.inl h)]
+@@ -164,2 +164,2 @@
+-  · rw [Pi.single_eq_of_ne h,ite_eq_left (show inc e l from Or.inr h'),h',Pi.single_eq_same,zero_add]
+-  rw [Pi.single_eq_of_ne h,Pi.single_eq_of_ne h',add_zero,ite_eq_right (by simp [inc,h,h'])]
++  · rw [Pi.single_eq_of_ne h,if_pos (show inc e l from Or.inr h'),h',Pi.single_eq_same,zero_add]
++  rw [Pi.single_eq_of_ne h,Pi.single_eq_of_ne h',add_zero,if_neg (by simp [inc,h,h'])]
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/NominalPointArrays.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/NominalPointArrays.lean
+@@ -58,2 +58,2 @@
+-    · simp only [Finset.sum_apply,ite_eq_left h,Pi.smul_apply,smul_eq_mul]
+-    simp only [ite_eq_right h,mul_zero,Finset.sum_const_zero]
++    · simp only [Finset.sum_apply,if_pos h,Pi.smul_apply,smul_eq_mul]
++    simp only [if_neg h,mul_zero,Finset.sum_const_zero]
+@@ -93 +93 @@
+-    apply le_trans (Finset.prod_le_prod₀ (fun i (_: i∈(univ:Finset I)) => (ticketLaw n _ h).nz
++    apply le_trans (Finset.prod_le_prod (fun i (_: i∈(univ:Finset I)) => (ticketLaw n _ h).nz
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/NumericalGramPrescriptions.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/NumericalGramPrescriptions.lean
+@@ -37 +37 @@
+-          unfold x y; rw [dite_eq_left t.property,dite_eq_left t.property]
++          unfold x y; rw [dif_pos t.property,dif_pos t.property]
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PairedOptions.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PairedOptions.lean
+@@ -140 +140 @@
+-  unfold axes; rw [dite_eq_left rfl]; exact hF i
++  unfold axes; rw [dif_pos rfl]; exact hF i
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PhaseMomentBounds.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PhaseMomentBounds.lean
+@@ -37 +37 @@
+-      exact Finset.prod_le_prod₀ (fun i _ => abs_nonneg _) (fun i _ => hg _)
++      exact Finset.prod_le_prod (fun i _ => abs_nonneg _) (fun i _ => hg _)
+@@ -114 +114 @@
+-  refine (Finset.prod_le_prod₀ (g:=fun _ => t) (fun _ _ => nbr_nonneg P) (fun _ _ =>
++  refine (Finset.prod_le_prod (g:=fun _ => t) (fun _ _ => nbr_nonneg P) (fun _ _ =>
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PointAtomVanishing.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PointAtomVanishing.lean
+@@ -55 +55 @@
+-      simp_rw [point_eval, baseV,Option.elim',lit,ite_eq_left ha]
++      simp_rw [point_eval, baseV,Option.elim',lit,if_pos ha]
+@@ -58 +58 @@
+-    simp_rw [point_eval,baseV,Option.elim',lit,ite_eq_right ha]
++    simp_rw [point_eval,baseV,Option.elim',lit,if_neg ha]
+@@ -64 +64 @@
+-    · exact ite_eq_left hh
++    · exact if_pos hh
+@@ -66 +66 @@
+-    · exact (ite_eq_right hh).trans (hz d t hh j).symm
++    · exact (if_neg hh).trans (hz d t hh j).symm
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PositiveTestMass.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PositiveTestMass.lean
+@@ -84 +84 @@
+-  exact le_trans (le_of_eq (show η^Fintype.card J=∏ _:J,η by simp)) (Finset.prod_le_prod₀
++  exact le_trans (le_of_eq (show η^Fintype.card J=∏ _:J,η by simp)) (Finset.prod_le_prod
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PredictionClasses.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PredictionClasses.lean
+@@ -157 +157 @@
+-  simp only [census, ite_eq_right (hh _), ite_eq_left ht]; simp [hh]
++  simp only [census, if_neg (hh _), if_pos ht]; simp [hh]
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PrimalSpaceCompression.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PrimalSpaceCompression.lean
+@@ -91 +91 @@
+-  · intro a _ ha; simp only [ite_eq_right (Ne.symm ha),Finset.sum_const_zero]
++  · intro a _ ha; simp only [if_neg (Ne.symm ha),Finset.sum_const_zero]
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ProductCharacterTests.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ProductCharacterTests.lean
+@@ -81 +81 @@
+-        ite_eq_right (mem_erase.mp h).1
++        if_neg (mem_erase.mp h).1
+@@ -104 +104 @@
+-        apply h1 (Sum.inl l) (fun a b => by simp only [g,ite_eq_right hh]; exact hu _ _ _)
++        apply h1 (Sum.inl l) (fun a b => by simp only [g,if_neg hh]; exact hu _ _ _)
+@@ -114 +114 @@
+-        simp only [g,ite_eq_right hh]; rcases hh1 with ⟨h,h'⟩|⟨h,h'⟩
++        simp only [g,if_neg hh]; rcases hh1 with ⟨h,h'⟩|⟨h,h'⟩
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ProjectionError.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ProjectionError.lean
+@@ -95 +95 @@
+-    unfold W; rw [dite_eq_left j.isLt]; exact (mcut_cost r u i _ hu.nz).trans hj⟩
++    unfold W; rw [dif_pos j.isLt]; exact (mcut_cost r u i _ hu.nz).trans hj⟩
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/QuadraticTesters.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/QuadraticTesters.lean
+@@ -55,2 +55,2 @@
+-  · rw [pick,dite_eq_left hi,single_one_dotProduct,readBit,dite_eq_left hi]; rfl
+-  · rw [pick,dite_eq_right hi,zero_dotProduct, readBit,dite_eq_right hi,mul_zero]
++  · rw [pick,dif_pos hi,single_one_dotProduct,readBit,dif_pos hi]; rfl
++  · rw [pick,dif_neg hi,zero_dotProduct, readBit,dif_neg hi,mul_zero]
+@@ -99,2 +99,2 @@
+-  · rw [ite_eq_left h,etab_disabled p (not_allowed d) t (hw d),add_zero]
+-  · rw [ite_eq_right h,etab_disabled p h t (hw l)]
++  · rw [if_pos h,etab_disabled p (not_allowed d) t (hw d),add_zero]
++  · rw [if_neg h,etab_disabled p h t (hw l)]
+@@ -136 +136 @@
+-    sharpPick,dite_eq_left hj,pick_point,readBit,dite_eq_left (Fin.isLt _)]
++    sharpPick,dif_pos hj,pick_point,readBit,dif_pos (Fin.isLt _)]
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RankSubrectangles.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RankSubrectangles.lean
+@@ -32 +32 @@
+-        ext; simp
++        ext; simp [eq_comm]
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RawFrameLaws.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RawFrameLaws.lean
+@@ -160 +160 @@
+-    apply Finset.prod_le_prod₀ _ fun i _ => hb i
++    apply Finset.prod_le_prod _ fun i _ => hb i
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RefinedPinImages.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RefinedPinImages.lean
+@@ -100 +100 @@
+-    unfold cutDown; rw [dite_eq_left ⟨(by norm_num),(h z (hC z hz).1).2.1⟩]
++    unfold cutDown; rw [dif_pos ⟨(by norm_num),(h z (hC z hz).1).2.1⟩]
+@@ -103 +103 @@
+-    rw [dite_eq_left ((h z (hC z hz).1).2.2 i)]
++    rw [dif_pos ((h z (hC z hz).1).2.2 i)]
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RepeatedBatchLaws.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RepeatedBatchLaws.lean
+@@ -121 +121 @@
+-  refine Finset.prod_le_prod₀ (fun i _ => pr_nonneg unif_law.nz) (fun i _ => ?_)
++  refine Finset.prod_le_prod (fun i _ => pr_nonneg unif_law.nz) (fun i _ => ?_)
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ResidualCutPairs.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ResidualCutPairs.lean
+@@ -67 +67 @@
+-  simp only [Pi.sub_apply,ite_eq_right hj'',ite_eq_left hj',hy j hj,zero_sub,neg_eq_zero] at hy'
++  simp only [Pi.sub_apply,if_neg hj'',if_pos hj',hy j hj,zero_sub,neg_eq_zero] at hy'
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ResponseAnnihilators.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ResponseAnnihilators.lean
+@@ -79 +79 @@
+-  simpa only [ite_eq_right hh,Pi.zero_apply,single_dotProduct,one_mul] using h2
++  simpa only [if_neg hh,Pi.zero_apply,single_dotProduct,one_mul] using h2
+@@ -116 +116 @@
+-      rw [ite_eq_left h,dotProduct_comm,he']
++      rw [if_pos h,dotProduct_comm,he']
+@@ -118 +118 @@
+-    rw [ite_eq_right h,dotProduct_zero]
++    rw [if_neg h,dotProduct_zero]
+@@ -184,2 +184,2 @@
+-      · rwa [mpair_outer,ev_mput,hX _ hs,hY _ hs,ite_eq_left rfl,ite_eq_left rfl] at h
+-      · intro i hi he; rw [mpair_outer,ev_mput,hX _ hi,hY _ hi,ite_eq_right he,ite_eq_right he]
++      · rwa [mpair_outer,ev_mput,hX _ hs,hY _ hs,if_pos rfl,if_pos rfl] at h
++      · intro i hi he; rw [mpair_outer,ev_mput,hX _ hi,hY _ hi,if_neg he,if_neg he]
+@@ -189 +189 @@
+-    · rw [ite_eq_left h]
++    · rw [if_pos h]
+@@ -192 +192 @@
+-    rw [ite_eq_right h]
++    rw [if_neg h]
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ResponseSolvability.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ResponseSolvability.lean
+@@ -159 +159 @@
+-    · rw [ite_eq_left h,h,ufun_self (hL _)]
++    · rw [if_pos h,h,ufun_self (hL _)]
+@@ -161 +161 @@
+-    rw [ite_eq_right h, innerP, hh]; rfl
++    rw [if_neg h, innerP, hh]; rfl
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SinglePositionExpansion.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SinglePositionExpansion.lean
+@@ -41,2 +41,2 @@
+-    rw [arm,ite_eq_left rfl]; exact congrArg Prod.fst he
+-  rw [arm,ite_eq_right h]
++    rw [arm,if_pos rfl]; exact congrArg Prod.fst he
++  rw [arm,if_neg h]
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SmallCoverBounds.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SmallCoverBounds.lean
+@@ -44 +44 @@
+-  rw [dite_eq_left ⟨hx,h x hx⟩]; rfl
++  rw [dif_pos ⟨hx,h x hx⟩]; rfl
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SumRankBounds.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SumRankBounds.lean
+@@ -113 +113 @@
+-          rwa [refresh,ite_eq_left hi] at hh
++          rwa [refresh,if_pos hi] at hh
+@@ -115 +115 @@
+-        rw [refresh,ite_eq_left hi]; exact hh i hi
++        rw [refresh,if_pos hi]; exact hh i hi
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SurrogateProductBounds.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SurrogateProductBounds.lean
+@@ -23 +23 @@
+-    refine (Finset.prod_le_prod₀ (g:=fun _=>1) (fun i _=>abs_nonneg _) (fun i _=>hq i)).trans_eq (by simp)
++    refine (Finset.prod_le_prod (g:=fun _=>1) (fun i _=>abs_nonneg _) (fun i _=>hq i)).trans_eq (by simp)
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SurrogateQueryScores.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SurrogateQueryScores.lean
+@@ -63 +63 @@
+-  have h1 : prodW f x≤1 := (Finset.prod_le_prod₀ (s:=Finset.univ)
++  have h1 : prodW f x≤1 := (Finset.prod_le_prod (s:=Finset.univ)
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SurrogateStatusLaws.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SurrogateStatusLaws.lean
+@@ -70 +70 @@
+-  unfold stained; rw [ite_eq_left hx]
++  unfold stained; rw [if_pos hx]
+@@ -121 +121 @@
+-  · unfold stained; rw [ite_eq_left h]; rfl
++  · unfold stained; rw [if_pos h]; rfl
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SyntheticSliceComparison.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SyntheticSliceComparison.lean
+@@ -61 +61 @@
+-    exact ite_eq_left (Flavor.keepZ ..)
++    exact if_pos (Flavor.keepZ ..)
+@@ -83 +83 @@
+-  rw [point_base_eval]; exact ite_eq_left (Flavor.keepZ ..)
++  rw [point_base_eval]; exact if_pos (Flavor.keepZ ..)
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SyntheticSliceExperiments.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SyntheticSliceExperiments.lean
+@@ -55 +55 @@
+-    simp only [punchField,zget,dite_eq_left (he _)]
++    simp only [punchField,zget,dif_pos (he _)]
+@@ -102,4 +102,4 @@
+-    · rw [he,he,ite_eq_left ht,ite_eq_left ht]
+-      exact Eq.symm (ite_eq_left (show usesPunch p l f (i,j) from ht))
+-    rw [he,he,ite_eq_right ht,ite_eq_right ht,zero_mul]
+-    exact Eq.symm (ite_eq_right (show ¬usesPunch p l f (i,j) from ht))
++    · rw [he,he,if_pos ht,if_pos ht]
++      exact Eq.symm (if_pos (show usesPunch p l f (i,j) from ht))
++    rw [he,he,if_neg ht,if_neg ht,zero_mul]
++    exact Eq.symm (if_neg (show ¬usesPunch p l f (i,j) from ht))
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/TesterSummaryMass.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/TesterSummaryMass.lean
+@@ -47 +47 @@
+-          simp only [zget,dite_eq_left hj,refresh,show (⟨j,hj⟩ : Fin n) ∉ Z from hr,ite_false]
++          simp only [zget,dif_pos hj,refresh,show (⟨j,hj⟩ : Fin n) ∉ Z from hr,ite_false]
+@@ -59 +59 @@
+-      simp only [h,i0,zget,Nat.mul_zero,Nat.zero_add,dite_eq_left h0,dite_eq_left h1,refresh]
++      simp only [h,i0,zget,Nat.mul_zero,Nat.zero_add,dif_pos h0,dif_pos h1,refresh]
+@@ -89 +89 @@
+-  refine le_trans ?_ (Finset.prod_le_prod₀ (fun i _ => ?_) fun i _ => h i)
++  refine le_trans ?_ (Finset.prod_le_prod (fun i _ => ?_) fun i _ => h i)
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/UltrafilterRates.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/UltrafilterRates.lean
+@@ -86 +86 @@
+-  unfold f; rw [dite_eq_left hn]; exact hn.choose_spec
++  unfold f; rw [dif_pos hn]; exact hn.choose_spec
+@@ -96 +96 @@
+-    unfold k; rw [dite_eq_left ⟨r,hx⟩]
++    unfold k; rw [dif_pos ⟨r,hx⟩]
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/UnaryCellComparisons.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/UnaryCellComparisons.lean
+@@ -79 +79 @@
+-    unfold g Paint.cost; simp only [dite_eq_right hp,zero_mul]
++    unfold g Paint.cost; simp only [dif_neg hp,zero_mul]
+@@ -99 +99 @@
+-    dite_eq_right i.property
++    dif_neg i.property
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/UnseenCrossingFactorization.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/UnseenCrossingFactorization.lean
+@@ -48 +48 @@
+-    unfold M ledgerM; simp only [Matrix.of_apply,dite_eq_left hab]
++    unfold M ledgerM; simp only [Matrix.of_apply,dif_pos hab]
+@@ -54 +54 @@
+-    (prod_le_prod₀ (fun i _=>abs_nonneg _) (fun i _=>hU _)).trans_eq (by simp)
++    (prod_le_prod (fun i _=>abs_nonneg _) (fun i _=>hU _)).trans_eq (by simp)
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ZeroDiscrepancyPrediction.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ZeroDiscrepancyPrediction.lean
+@@ -52 +52 @@
+-    unfold scan; exact ite_eq_right hv
++    unfold scan; exact if_neg hv
+--- proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/ListHadwiger/Basic.lean
++++ proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/ListHadwiger/Basic.lean
+@@ -173 +173 @@
+-    simp only [L', dite_eq_left x.property, Finset.mem_map] at hh
++    simp only [L', dif_pos x.property, Finset.mem_map] at hh
+@@ -218 +218 @@
+-    simp only [c, dite_eq_right (show v ∉ S \ A from fun h => (Finset.mem_sdiff.mp h).2 hv)]
++    simp only [c, dif_neg (show v ∉ S \ A from fun h => (Finset.mem_sdiff.mp h).2 hv)]
+@@ -222 +222 @@
+-    simp only [c, dite_eq_left hv]
++    simp only [c, dif_pos hv]
+@@ -246 +246 @@
+-      simpa only [c, dite_eq_left hvs, dite_eq_left hws] using
++      simpa only [c, dif_pos hvs, dif_pos hws] using

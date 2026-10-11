@@ -1,13 +1,3 @@
-The target is the existence of graphs of arbitrarily large order $m$ with
-independence number at most two and connected-matching number less than
-$m/100$, as asserted in OpenAI's *A counterexample to Hadwiger's conjecture*.
-The bound $3h(G)\le m+4\operatorname{cm}(G)+2$ would then imply
-$h(G)<26m/75+2/3<m/2\le\chi_f(G)\le\chi(G)$ for $m\ge5$.
+We formalize OpenAI's construction of graphs of arbitrarily large order $m$ with independence number at most two and pairwise touching-matching number less than $m/100$. The complete binary-frame construction is adapted from a pinned upstream Lean development and connected to the archive's definitions by definitional equality.
 
-The present proofs establish the matching-minor bound, the ordinary and
-fractional chromatic bounds, and the triangle-free binary hole relation.
-They also establish the moment-space cut kernel, generic cut-functional
-descent identities, frame existence, the tensor embedding and annihilation
-identities, and the finite raw-space cardinality bound.
-The graph-existence assertion remains unproved. Both counterexample
-consequences explicitly depend on that assertion.
+The proved matching-minor inequality $3h(G)\le m+4\operatorname{cm}(G)+2$, together with ordinary and fractional coloring bounds, yields $h(G)<26m/75+2/3<m/2\le\chi_f(G)\le\chi(G)$ for $m\ge5$. Both counterexample consequences use the actual construction proof.

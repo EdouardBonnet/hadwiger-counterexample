@@ -1,0 +1,1750 @@
+{
+  "repository": "https://github.com/openai/math",
+  "commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
+  "entry_module": "OAI.Combinatorics.HadwigerCounterexample.Main",
+  "entry_theorem": "OAI.HadwigerCounterexample.exists_graphs",
+  "upstream_lean": "v4.34.1",
+  "upstream_mathlib": "d13f23b723b8a846827a245b89c10fc7d3f11612",
+  "local_lean": "v4.33.0",
+  "license": "Apache-2.0",
+  "retrieved": "2026-10-11",
+  "changes": [
+    "Replace the OAI prefix by Lax342547Proofs.Upstream.OAI in imports and namespaces.",
+    "Add per-file Apache-2.0 attribution and provenance headers.",
+    "Use Mathlib.Data.Real.Basic, dif_pos/dif_neg, if_pos/if_neg, and Finset.prod_le_prod in the v4.33.0 environment.",
+    "Add eq_comm to two set-image simplification proofs."
+  ],
+  "files": [
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.AdaptiveProjectionBounds",
+      "source_sha256": "aa3510273f0a8b0f259c71b757cc14ff8422c77dc2c392cb4f8bf3b8f114557c",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/AdaptiveProjectionBounds.lean",
+      "local_sha256": "5749168f3319b681af847ea6dfb9ad89403126431f073a05f15eb6ccc604d03a"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.AdaptiveRecordBounds",
+      "source_sha256": "89b9be23ab9423b7e2abb6c1696e13a0ae6f0f43874b1b1f6804a6dd5ea7223f",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/AdaptiveRecordBounds.lean",
+      "local_sha256": "9f23aca287e8f1b65cd271c290376a4ed63130511b912437e62af9ec9c1159fc"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.AdditionalProbeBounds",
+      "source_sha256": "8642b657406779281f4b26e39c8b8696e0dff934251537cf25f7d090eba1ea07",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/AdditionalProbeBounds.lean",
+      "local_sha256": "cd3ff3c2b9bcd0293dc72b10da388a145184e2d9d587be38856d93daa82b9333"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.AffineFrames",
+      "source_sha256": "a0b1e9b9f04ffb9c67de916ef783fff8879e8f51c6da036b00d45346d729b9c0",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/AffineFrames.lean",
+      "local_sha256": "6aeff4a315e2f34d0aedf5c0de41e1c53c07aa872fc57ab8e5aacded1276c58c"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.AggregateCostBounds",
+      "source_sha256": "36c34ee779abd6603f80ba3ce10a5dc0903fd6de622db05b7c14987bdf3b9bce",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/AggregateCostBounds.lean",
+      "local_sha256": "8613ca0755bdad910e04c55f5f2df8a8d617bc41666bb6c0b9c6dc5064e3ec1b"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.AmbientBatchSlots",
+      "source_sha256": "c6c6a4573bbbee4cb1e2a6f96bdfb93798c474f0cb509e233593a681795f20cf",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/AmbientBatchSlots.lean",
+      "local_sha256": "1fabef6b112d9dbc20090e92089863f9b49a205f76cd97326096d7f159aa02f6"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.AnalyticParameters",
+      "source_sha256": "fa1a511528f4a292440b337d9b860419076d4daae1ae79f2767064e390b05e24",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/AnalyticParameters.lean",
+      "local_sha256": "e255780e54c012442901b972d2de9c39712bc6d5079a9e8ef87b21cdca6201db"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.AtomFlavors",
+      "source_sha256": "6c49578723c16e628866226dad7514aac25dd29184a420388cc8234eb3edbe39",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/AtomFlavors.lean",
+      "local_sha256": "77cb4eeb4a1d604418a88c35619dfa38ab381800cac28e6b14907a55c47979b0"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.AttackCutDecomposition",
+      "source_sha256": "4e6de21b13db978aff7f31a77235f0973776c91651f6c85ffa4cada84420147c",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/AttackCutDecomposition.lean",
+      "local_sha256": "4f0edc88747c7f4d225573cd294c2446bc816462a9f4d33a6edabbd0a6d5db7c"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.BaselineExtension",
+      "source_sha256": "c007234c8257326739a6f5720135a2a4c08a3caa274a85b1b839019a6b4faa5c",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/BaselineExtension.lean",
+      "local_sha256": "65a833e1be504f5aab6aca24a050240ce204f686fef0edef8803e33a57af8fdf"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.BaselineForms",
+      "source_sha256": "cd6edf390cc0642fd10b0f6c99d61f8f01a9b7f443ea2572196891417e3504ee",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/BaselineForms.lean",
+      "local_sha256": "2104be16ae6322b46d301ab862fbb06c66be36d6c914e9bdd827041b761e4052"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.BasisConditioning",
+      "source_sha256": "8e82b2d03266531e99a08c119d8de698b5c18c069c33c769140fd2e540a9d2c6",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/BasisConditioning.lean",
+      "local_sha256": "a771528b69b1b31e30783708fd7f45b421e000337f1a51dc99f6e6aa7db00267"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.BatchCharacters",
+      "source_sha256": "b47a7437582c9b23d8ea9d57a6ab9597134607d58aacf29b608b634268e16e53",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/BatchCharacters.lean",
+      "local_sha256": "361966fc49e17b2c325f8c8c70287848524e87719d564af20fe593c793e1216d"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.BiasedRotationBounds",
+      "source_sha256": "e0312a917c52add0bec2ba0aef408ae0f1610e0ddb1e6b78957b7497bfd5fe36",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/BiasedRotationBounds.lean",
+      "local_sha256": "1061203addd9df6778bc7a59f716c27b59edd68c1396f051483e408d17475094"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.BilinearBlockCorrelation",
+      "source_sha256": "3acd320916b89c29fa0e2d74054c8fb2f04f14968ce734c7144268bb3229559b",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/BilinearBlockCorrelation.lean",
+      "local_sha256": "b4ebe76abc0060cf4bff881715b5d21b4e9c238c2ba89698f7054048c79e0dcf"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.BilinearCompression",
+      "source_sha256": "29e7fe91695247f3135f06aac4248764af30cc4564693a8448f8e6d2ae71bfc8",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/BilinearCompression.lean",
+      "local_sha256": "e685038d4420bc2b2f0fff1f36f7ad23cb85fb14bf678cba5f5c34a25dc9bf17"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.BinaryEvaluationForms",
+      "source_sha256": "c51b4be7941d3f5a99517ade439ae5883fe1d037c596909c3dd934b7b08f7f04",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/BinaryEvaluationForms.lean",
+      "local_sha256": "e75e1f1df6915b038f6164a5b2cde3e0d0e35d726973f4120eb818182cab6152"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.BinaryMatrices",
+      "source_sha256": "76e4213cd6e1390889bc0574157a88ef7bde3eed99604eb69ee3f72f0e0d1245",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/BinaryMatrices.lean",
+      "local_sha256": "5789d9c635cc11fd57fa6c98efee54f0cb474ea81566ebebd437c7ca87116a14"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.BinaryMixingBounds",
+      "source_sha256": "e3b09b536eece0bda0356ec71cdfc005ddf925764fde664051a6452862dba5fb",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/BinaryMixingBounds.lean",
+      "local_sha256": "dcd0ef077faa5fd8c0d9797702de58eb30b36c0fc1ec0ebf9ca76c9090f72fa8"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.BinaryPrescriptions",
+      "source_sha256": "47f04613e19ceed70f99caf2a3c005f8b4c74c9479b73e11b3574a0581aa7cec",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/BinaryPrescriptions.lean",
+      "local_sha256": "d946b82a9ec5893b7cc92df47d25000e2b6e8dbd279834ddc28d8d9a22da1f40"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.BinaryStatusComparison",
+      "source_sha256": "68e5265a2f93f0e27663b2ea0aa327fa42370205edaacb805ab877588aac5520",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/BinaryStatusComparison.lean",
+      "local_sha256": "5b7763fe7c350d3d457dee00d0b98ecb86f09f18f89f759f02a01fb75c44f7e8"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.BooleanLabels",
+      "source_sha256": "866ce74d84bf81f7d4da3c7a8371d69df42cade7726e9a06f2ffd16ad33d2a5d",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/BooleanLabels.lean",
+      "local_sha256": "df3e1c990e5b98739e47e96b6775f982be7f729a4e0a1977f314c3f53117191c"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.BoundedQueryTemplates",
+      "source_sha256": "2f75e27a33ab7ecef66a1d7d312eb34cce984e9a3f05b5056d4416facf5a296e",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/BoundedQueryTemplates.lean",
+      "local_sha256": "6791baf60a9ff230ab6a6ce21e4497bd1f8141c4ecb45ee758a10b9d3ff06ca5"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.CellPositivityScales",
+      "source_sha256": "f09043df0a14d3bb7cbf3a1e18d3f0dae7d364c40569ea83071e4dfa02f44939",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CellPositivityScales.lean",
+      "local_sha256": "9b1b223b626a080e311a50ccaf22284c285eebc3b6f9fa1ac7d1ab0bb6301bd2"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.CellPruning",
+      "source_sha256": "e4a3f5e304c9438b91f4ea1cc39c738a027389767fecaa5feee04ce44eb6fca0",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CellPruning.lean",
+      "local_sha256": "10197ff0fb2b059b63e6916acdab58689e1f0d63b889c122ef847c6805fb29c5"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ChannelFactorization",
+      "source_sha256": "e738d316b1ed15a36806fb23ca4a6b1285d2142b736e72207cca93e082ba67df",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ChannelFactorization.lean",
+      "local_sha256": "db095dbb81d67571aef676beaa047613ce4db26d37ea71effa19a7a46bb159b8"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ChannelFrameLaws",
+      "source_sha256": "fe7c310df3b2590dd59887c66a53c6c20e0352c17e0e8e00e55f77a2a902f4c4",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ChannelFrameLaws.lean",
+      "local_sha256": "e8f3f83ae6fd1cb129cc333b230944917cc774329f909e9e98866e24bad227b0"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.CollisionInequality",
+      "source_sha256": "dbfe4ce5c23ce24a0bfb80fdc43cdde033aef9747d76549153ceef9b36714fbd",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CollisionInequality.lean",
+      "local_sha256": "71148c20e8856f7e6613dc86c075ffbad09449be6e4ad14c56220c6bd855fdfb"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.CommonPartitionRefinement",
+      "source_sha256": "9d5252a1e7507c228bbf1eff86935536bb475d80f40d127e19c0cf92afccd087",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CommonPartitionRefinement.lean",
+      "local_sha256": "d7b8cd6a3df98b14d6a4d0cb83f8e56cfb54a45e23c05cec2cd3c39153ce58e5"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.CommonPartitions",
+      "source_sha256": "676fbc9c328dd573d192b9f3fc9f111b8c1c8335a7b970e1a6f2db5e7a3da826",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CommonPartitions.lean",
+      "local_sha256": "c8c33e96ea09a74cfeb96b60e067e52708421cb9caffe77086abd7318cfcbf93"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.CommonPredictions",
+      "source_sha256": "d0460da35b58cc663dd34a32234ae8c0982cb34e6d7a80babc531289108e7cf0",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CommonPredictions.lean",
+      "local_sha256": "25f1714cab63ea9be1add854ccff16447a3dff12014db202a8d73c0d42c6459b"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.CompatibleOptionRealization",
+      "source_sha256": "ec8b1aaa4b6550688c20ef53addf9a7fe33831564eb7aba52f860b2b0a7d155a",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CompatibleOptionRealization.lean",
+      "local_sha256": "ed03f6efb323fc548ca78f4d174b2ba5102d01c8fb50a180676a2f6db7e2717f"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.CompatiblePairTests",
+      "source_sha256": "62e6ee9b69676135951bffcac7d591f6a3f6ecbabb378ff46b97c9ed10563d58",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CompatiblePairTests.lean",
+      "local_sha256": "c94085ad7e7551b40745f2807c75eec045aa0915e9e5828788ade4ceb644bd2b"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.CompatibleTableEvents",
+      "source_sha256": "69effc4a9d951103ced09138d558f997c66c6dba83bf6caba5b8bf0ad9dc0820",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CompatibleTableEvents.lean",
+      "local_sha256": "46876920c18fea89262139a2efa30c0cc3e52acd2ed257fb6a5922dbf6f9925b"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ComponentIndices",
+      "source_sha256": "f309ff4ea817e10ba10ada799c4c8eacd00f2006050c665933b5dc1c15d36789",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ComponentIndices.lean",
+      "local_sha256": "0a7c1f858e3cb8892bb2ea26a77aae6b6cea7afcefbf52212182f9cfac73dde4"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ConcentrationScales",
+      "source_sha256": "df0a3074f2619996bf1eec4ab836f6902b146ce5e90deeb9b8628bb3651276ca",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ConcentrationScales.lean",
+      "local_sha256": "86f910791abd41b66ee3a494be750d4383627bb050c11df769092a75b6e33286"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ConditionalCellEntropy",
+      "source_sha256": "9bba276bb7fa33a7173fe5bdce92253d6000e15e626ae569ecfb8482f4a69e96",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ConditionalCellEntropy.lean",
+      "local_sha256": "d20f19f9c9584afbae55aaf44a916df67270e8634dbb88b4b40aeaa66f43e6b2"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ConditionalFlags",
+      "source_sha256": "7db779a2d3eb202d488507eac7a39af174bea769730c745a14e8502ab7756728",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ConditionalFlags.lean",
+      "local_sha256": "a4a548b819b0633325d2ccad6caab4f736aebb084b9dee159752a65d9abf7a14"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ConditionalFourCorners",
+      "source_sha256": "9e46d559970c93af1895a143d20f9e41cb75499de3491b118588d31dedeb02e9",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ConditionalFourCorners.lean",
+      "local_sha256": "7d76ec83b6168ab1aa2d8bcca9acb9b7d4207bd1c005bba9c59438fddc5f2c74"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ConditionalLargeSetHits",
+      "source_sha256": "1adbfb7b6f192d5eab7c9eaeb925607ffacdeca840ca388f0e4180ca49d2839b",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ConditionalLargeSetHits.lean",
+      "local_sha256": "5b9dbf8093ca9d79ac1700dc6f9afad2960ad848b29fef2530b23d29ac48a998"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ConditionalProductLaws",
+      "source_sha256": "648704a4a3e1b74fc896147392036f8463b3084bf81b88919d05fafec7343957",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ConditionalProductLaws.lean",
+      "local_sha256": "3c0c7a92dac5a3678aa9b227f4e0f973ca9682dcb911a304eb14291847808622"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ConditionalProjection",
+      "source_sha256": "998bf0c0a7fb01ec4fd0a17655cd26e7de16baee6c593d5d9f8d3af2f5adda61",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ConditionalProjection.lean",
+      "local_sha256": "2c4defbd41f17493c014e9deb1f51d686138bd86b32885d295625e6836fd5924"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ConditionalSignaturePositivity",
+      "source_sha256": "7c836ba02d1c179338e154a01945d496de46fc04c23c356866249274f01b26ef",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ConditionalSignaturePositivity.lean",
+      "local_sha256": "383194578b7313c6b294bbd52457563c8358268fdd65c3e5ab6b0b5b87a641ff"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ConditionedBatchLaws",
+      "source_sha256": "8a47f5c157c043ba64b529e81109bd19b41375361afb1b08563a8db0f94d74e8",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ConditionedBatchLaws.lean",
+      "local_sha256": "be8e49f88272ec4e832ab37d22e21e5551fde84789f7e8e7ba7b9e7b379cdc36"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ConditionedCorrelations",
+      "source_sha256": "7a72e7bc32d6c21a86925cfd1b37b16be21d31ad44c4b7eed994e1b55ddb6621",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ConditionedCorrelations.lean",
+      "local_sha256": "ec1a100814d7aa9ce19f85ec31cb14f7488915dda23a6d6ff57e1955c882cbe1"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ConstructionScales",
+      "source_sha256": "e864c516497e17f384c857e2ef31e872abb540589b9e629772428ab9fb35c963",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ConstructionScales.lean",
+      "local_sha256": "8f67ceb47cd9710f5382b4a3344cc146e1c4a7702ef9cfa2250bbab1309007f4"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.CoordinateBlocks",
+      "source_sha256": "16fa122c99af9adab16eb07461c01d9de0940feb8200f6947bad58efb1de9d3c",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CoordinateBlocks.lean",
+      "local_sha256": "17a1f0098a02c3e7f896072702f1abd867c17a78629157342857c7c2d35b82af"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.CoordinateDuality",
+      "source_sha256": "6de3c9a34ae2215a408bceb81290c8eaf2d698de1aca0878d92cb7028449cf25",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CoordinateDuality.lean",
+      "local_sha256": "767277a1bf308d63420e39a06fe739717a99a01a37c5c0e674e40af36c3a1de7"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.CoordinateEmbeddings",
+      "source_sha256": "b366ee9402e2714200cec1eca02984af542fa2b98df08b081dad3e95f3b37afa",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CoordinateEmbeddings.lean",
+      "local_sha256": "1039e94bff21910ed2cb3b85378d7a03ab7ec6c7d35ae605cf3248a1f47c17c7"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.CoverAlternatives",
+      "source_sha256": "0d398e1988a02f8f6d142d3e48c816e36dddcc7b4bb54126d331dee11688ed4d",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CoverAlternatives.lean",
+      "local_sha256": "a9ee742e3a87e4bec3b17876c2c80d4c7c8a984e8fc18376a7ee0187147b1aea"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.CoverSpaces",
+      "source_sha256": "b4ff937bdbeba76a50e6a95ba16a9f5b81e5fe98cb90e987e4f9f9a09242d7f6",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CoverSpaces.lean",
+      "local_sha256": "8fab739b8bb476bfd2ebe5f4e34ec56a58eee22b901bf57ee2b609dc64132f36"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.CrossForms",
+      "source_sha256": "4fe88a35f77d56e1c4675669e3631b9c59b826db270e2d37e18fb97e1deae961",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CrossForms.lean",
+      "local_sha256": "b9030df068d8c5165f9fc480638420ff16fe3e5650844a61de4c699e2810624c"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.CrossPatternCorrelation",
+      "source_sha256": "4cecbd1efac1bc5ff1f7d84422f874f1e49dcadfbafcdd897f0c49ec7e0b1547",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CrossPatternCorrelation.lean",
+      "local_sha256": "f0c82a9c25ff18aa3320b4fd5b172622ca7f27b40c554917eaaf4d6fe009882d"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.CrossPatternCounting",
+      "source_sha256": "ef796e4aacdb4a71b3169aa595021d1dfa33c25ea891a01260a40df020d17696",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CrossPatternCounting.lean",
+      "local_sha256": "db119348985b1ed8640f76a270f5efa4f3cb0eea0065fe2bc960c63150cc3872"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.CutIntegralBounds",
+      "source_sha256": "22ffef92d57ef8ed9485f1675e7ddfd0cff0662a435842813cb9c13b338848cc",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/CutIntegralBounds.lean",
+      "local_sha256": "5043a0652bf483c9d7631e6592e4530cb0c77fd2dac681ea5898eaf81d0ff934"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.DependentPairConcentration",
+      "source_sha256": "95237102e3304757f4f5c25c557c09f38761c8514dd9f251f1030862d3f7e899",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/DependentPairConcentration.lean",
+      "local_sha256": "eb6c642b57a5a0d8dfcb7d6af85523a515dd25e4922f9b5e8c836af0c0f4cdb4"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.DerivativeCompression",
+      "source_sha256": "344857918e675f85ef90ee6e2b7d2f977d4a3b37980105f02e32c0bc758a288d",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/DerivativeCompression.lean",
+      "local_sha256": "9f1e5b7c8b0f7efcfe296480a85902c6f5a945edc360984f0b5bbfcecebf5d71"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.EmpiricalInformation",
+      "source_sha256": "b65ed6ab7e24b6ad6c6bb19a2ef51d2fe49a036458ff29b2b0044ac497cc52a6",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/EmpiricalInformation.lean",
+      "local_sha256": "2d1d2bbf5c1bd466c96e9521e152bbdd3d863843222907bb4633dec1ac908fa9"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.EndpointEvaluations",
+      "source_sha256": "e8d18b67693e69967283cb10668c908f37fbee3629966873fb8265fb86b53f7a",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/EndpointEvaluations.lean",
+      "local_sha256": "50f2b2c4fca2cec615425b476c222c99af2d3b0e29331484c1e28c8f05525ca0"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.EndpointGramRanks",
+      "source_sha256": "86b2f2bf01f8263b049c990973d46aba62bbfbd1c78ba159ed3afeafba0f7d29",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/EndpointGramRanks.lean",
+      "local_sha256": "8aea4e911615981524220722664067e40a7b1a8c3d8c3f7af2fe8d55cf97b885"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.EndpointTemplateConcentration",
+      "source_sha256": "2b75296439e3eab204168e381d4d72f7452887553355748cc3953cd3d12912dc",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/EndpointTemplateConcentration.lean",
+      "local_sha256": "8bbe60b4233c4057b9e0cde207b37820dd15c0382a359ac87dd424110498a12c"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.EntropyContainers",
+      "source_sha256": "35da7ad8de4d2d9c0b986e2021aa1bde5d47fd80231344845a8089283786adc5",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/EntropyContainers.lean",
+      "local_sha256": "5026c8639845780c5faf114011ad9e73970a54fe253eecadba6c3427feec1520"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ExplicitStatusEquations",
+      "source_sha256": "5d3999727294e62a3019942a84a98d9f7a4236310e44a9cd301b75e01128e95a",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ExplicitStatusEquations.lean",
+      "local_sha256": "1e5c905e5d7388254331ce1be729794aa95380f3e91597665a2c1c35c3d972a8"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ExponentialGraphTransfer",
+      "source_sha256": "0d6de09b15de3551702824cce0968731c097af2f4666fe6ef77a0455a661fb32",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ExponentialGraphTransfer.lean",
+      "local_sha256": "2880a20457aef1256a8df23a5afa22d660872cade1db19dca761e94b2b22edff"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ExponentialRates",
+      "source_sha256": "508d93ddbde1da8cc95955bb40ce9c3ccb311dae392249ea2831b59bc649df2a",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ExponentialRates.lean",
+      "local_sha256": "317618d456176146d667b18129735b24c77d645a396a290bcbc9f55058d5fc0e"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FinalContradiction",
+      "source_sha256": "0625903d334e5006ad47348ff5e14112b5008fa948c9132cca421b28e493eeee",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FinalContradiction.lean",
+      "local_sha256": "7a93a7326aad343a9082ad1e3451f7ce9b839e9246e32ca1ba2ae3b8f7d5d2ce"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FiniteAffineLaws",
+      "source_sha256": "8aca3429c840078570235e48b6d51099910e7f9d17192f20bce8445e9b42bc12",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FiniteAffineLaws.lean",
+      "local_sha256": "be3b37dd592d7e48bcd95cdb0ef7abf9a8b183e4ecf3f8dcb95469bfe76d3cc3"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FiniteComparisonBounds",
+      "source_sha256": "2acc2340a30029e1ec1362061d7f47d00be85be445170da434ba2401713d541e",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FiniteComparisonBounds.lean",
+      "local_sha256": "4eb548fe97c40c456fa2709e822a7e9bd24604efa8eb0f36cb611dc6ac9b1621"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FiniteConditioning",
+      "source_sha256": "b4dd87e0d188e908d0771b074bb98b56f06263ba72f8203c60a6fc4fa2e8418f",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FiniteConditioning.lean",
+      "local_sha256": "b4a1b3c66378e39c64c5ae6689f3b5a0e6c04f9fd9a5ace13a01ecf7f6412ceb"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FiniteDualSystems",
+      "source_sha256": "7464892e1c7fe37f9c816ee262b382f06d9ad258f50a817b520b4e4f2f3033d1",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FiniteDualSystems.lean",
+      "local_sha256": "f6c1dd8813731aa2d762defc01e5e1a9be1cf53e64e98154e4b378776b876b4c"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FiniteEntropy",
+      "source_sha256": "7ba62abe0f94c4a1fea9d7512e548f2a67a725d35780a8305598395b6aa3d67c",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FiniteEntropy.lean",
+      "local_sha256": "e8df2ce4634b82c50528a478f8828759e7b24aec0fdba5fafd49399a9b6fbd76"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FiniteGraphTransfer",
+      "source_sha256": "2daad973977a1a8111ecefd7af0461d04def9ab8f8d551d6143008164ed2e62a",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FiniteGraphTransfer.lean",
+      "local_sha256": "a6c279353793ad0290c44c0484c3d29754d77af8bf441d58d144eb1f4fbabcbd"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FiniteLaws",
+      "source_sha256": "5f7756816f5a4a55bc94b6d03ebe013cd65baf296b35ff559c490c2b440c0630",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FiniteLaws.lean",
+      "local_sha256": "cda545b6bd76fe36eb0880969dcb599570bd4f046a35a6e6bf7bfc0459acb17b"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FiniteOptionLabels",
+      "source_sha256": "e22dc7f1893556c3346ef98068386e8679d5250a04a2a7280c052c9aa63d0c8e",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FiniteOptionLabels.lean",
+      "local_sha256": "33a6ca7e9424056b448724078ebdc0fefd19c69c4fcb1f6716ece85dae1b4bfe"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FinitePhaseAlternative",
+      "source_sha256": "b2ce0b1262e2a509c251793fc93f6f940ddbd0a52e6b95085cc0bb126600e5e6",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FinitePhaseAlternative.lean",
+      "local_sha256": "ccaffd3d82bc5342dcb79c94b3334bfd30674242fd74b0d40ef466f7d229223c"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FinitePredictions",
+      "source_sha256": "5ce3fafb4cd38ad0083cb18f3fb2a49ed3e7a9b287751897796a05489c0b986b",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FinitePredictions.lean",
+      "local_sha256": "c61067b6fadd9717138a058e8a7497e4a7d6259549e699a3c9fc004e0573080c"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FiniteProjectionCenters",
+      "source_sha256": "971482de8c85c88f6db8b3ca1b2664b7fabe4f756669f161706ea39eb32e4574",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FiniteProjectionCenters.lean",
+      "local_sha256": "eeb5f2f0da4ce1f2c2aa9404d875b6a6b12eb46c0cf829ea441689dae2ae6b40"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FiniteTableEnumeration",
+      "source_sha256": "b117399d2186bfa0e90b32c70c6be6c0b8d39ada2e37b6cbe7f9a50a914e08c2",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FiniteTableEnumeration.lean",
+      "local_sha256": "d823eb5ffa50fd3146c6e743bcd15b78b8475d65cd491a6bcd142c214a6e3e76"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FixedPositionTests",
+      "source_sha256": "896ff70510a6ecfc54de058d8e16d618e304bec832fbca1af410b81003b57039",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FixedPositionTests.lean",
+      "local_sha256": "f50c610353a52d6bc278e47aecb5cea9cfee109de8f3f89e2e80a2692b80df78"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FlatLevelShifts",
+      "source_sha256": "dae716bda977d8c10acc769e2bb666b466c32cd4b6d348e9bbc847ebd3bd4677",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FlatLevelShifts.lean",
+      "local_sha256": "60e254df8993a5b43cfd59bca4bbf95ea13516e070d37b934d1acfc4d817194c"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FlatRankLevels",
+      "source_sha256": "d4c37e92112d35ef1499a9adb726cce174ead25bfac1a2d7c64edf62f65d12fa",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FlatRankLevels.lean",
+      "local_sha256": "ba35220b1201b641a75521b3298400f1661d6deee2cb766f7b805d20ee8d3146"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ForbiddenPredictions",
+      "source_sha256": "b066c304957e61d48d08e06696ad29b381578868b3ef35944feac8128001d180",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ForbiddenPredictions.lean",
+      "local_sha256": "ee382dcb353a7cab73afcb99f954e96ac2344ed67fdd75b562cd70cd3017ce1c"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FourCornerMasks",
+      "source_sha256": "74579ff19cd506e861407ea124f79da0f19ebb459cf059d31479edafc9b52338",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FourCornerMasks.lean",
+      "local_sha256": "d5f90f13e87e816614a2f38fffda89b273d55ea35b4c3dc810b85d3e058ee2dc"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FourCornerTrials",
+      "source_sha256": "6e8496cffe1756ad7b8639555c9e447bdd64a8fe8c016ecd96d13820177f137c",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FourCornerTrials.lean",
+      "local_sha256": "64153e534a115447c6d83c98a4551b2cc47411bc2e76704e673985e43f600903"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FourCornerViews",
+      "source_sha256": "383b95727bd9bc45745412406b5881f4b8ebf37f494008113f492e49dc551c5a",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FourCornerViews.lean",
+      "local_sha256": "1477b31fc14634ffdc109c23de8516448b422a886df84e5c0cb16414017d9c7e"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FourEdgeFamilies",
+      "source_sha256": "0cb455cfead3f88e6596730c8dc8409c7433dd1b31af8000db4dbc7de19b49d9",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FourEdgeFamilies.lean",
+      "local_sha256": "a6bf3fea83499a05c645d34b5af6a0ed89a4547832c6b846cea8129fd298736a"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FourPhaseBits",
+      "source_sha256": "dae4d2d04245328c3f3466a8740638d9536a38991e79ae0ce23b9abd9e2c8cbb",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FourPhaseBits.lean",
+      "local_sha256": "173caccd8abb5c0d52fd6ceb9aec68986ce33feb343aff714b9f2862d4cb4f03"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FrameIntersectionBounds",
+      "source_sha256": "e098109134fb65acdbd237c03be37d974335b582a3484cec72367babe5a4b594",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FrameIntersectionBounds.lean",
+      "local_sha256": "5eeeca36655c4c04f259d9d9fb5e58244735d93acb953b276387d9d89e290f2a"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FrameIntersectionCosts",
+      "source_sha256": "5d03dbeda5f420deb9c98de01e0bd4b575bd7e80e5e5896d465250319fc501c1",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FrameIntersectionCosts.lean",
+      "local_sha256": "c343f09753c3e7749c30bcda2b65bca96b81bcdd6089e50bc0b1658249c013b9"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FrameOrbitLaws",
+      "source_sha256": "a099e7187368e12f1e7b97b3aa62cf47c94f6bfa86de24bef9f5a7c4b8ab7148",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FrameOrbitLaws.lean",
+      "local_sha256": "19e5b1bc6838db2adb906e9fc4ae653ae356ea18fd4af001189c3397ec89725e"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FrameRotations",
+      "source_sha256": "c9c043bcc2fe41c36a7c5aeb6612b003386ca9e76f3dd4ac49fc54850de72a19",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FrameRotations.lean",
+      "local_sha256": "33e35ea2f0fabe28a6765aa109f623a55a1b39a22f79475c4e27b335af6f26b8"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FreeBlockFourier",
+      "source_sha256": "1eb063d1278b85b15436d166771e271f1cdbc4b3e28df0c794f7b8a9775af455",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FreeBlockFourier.lean",
+      "local_sha256": "1a1ca133596bedb27156e1670793b469854007587f53fa2a25378749157343ef"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FreeBlockLinearAction",
+      "source_sha256": "4048e220eb3833f3892720dd11c8cc75173cfa17e4ea01a0a05789f915bbe12c",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FreeBlockLinearAction.lean",
+      "local_sha256": "3db19a046619dd7a918605c4c94ae9a2ebdcf6a77929e5b54da7114b06defeac"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FreshGeneratorCorrection",
+      "source_sha256": "ebe283d1d3f0dd575d6b525f72456af0e5b6a395588a5d726016150d971a6087",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FreshGeneratorCorrection.lean",
+      "local_sha256": "a28b1c637b5120b7134407dbdee77db3efac00849f85ee4dafd5871d8f520af7"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FrozenProjections",
+      "source_sha256": "fb095cb44e6b2e81497a0c27684c4408da121b3626ec643dd699d1074baacbd2",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FrozenProjections.lean",
+      "local_sha256": "6e2778fdd9657ea9b47b6d644d509f80c045e314e3957782b52927401954501e"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.FullTemplateComparison",
+      "source_sha256": "badc22f548ef7300ec31c61c2350b952e27a70e29860b66f3d19b5c23842bf25",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/FullTemplateComparison.lean",
+      "local_sha256": "56f7469597ad1252139601aa7d24ec342d5f99cd69a84fdf3e32de43d4df49bc"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.GradientRankBounds",
+      "source_sha256": "da1b1d7f410c69b71d69700f50c129a069c9138d0c2e6b3dfb12fb6f77ae08bb",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/GradientRankBounds.lean",
+      "local_sha256": "05dc1bad83a9cd36280b0f3329f83d3fda41a9066445df5b501e155a13e74167"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.GradientRealization",
+      "source_sha256": "6bd01d7acc25d2a0989f30b010d5a60dd698b02787f7abfc97b5e0c8139074e3",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/GradientRealization.lean",
+      "local_sha256": "74b875cbd767d8755725a57ca2063c667403fa6f4973f08197c09a15e3b7b479"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.GramArrayConcentration",
+      "source_sha256": "8cf0715d7803ea0dd3869b5c0500b9537fdfc9893fbeabaa86b00535fd5e57e9",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/GramArrayConcentration.lean",
+      "local_sha256": "b3656f6fd107db7b720ab1e9520acf8b38ff3a9597175989230aa577883b6d18"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.GramCharacterExpansion",
+      "source_sha256": "0514a5c9dbae15eb63e950333d68d07d9ce84459bd21663fed5c7b019a0e75d0",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/GramCharacterExpansion.lean",
+      "local_sha256": "305501db08260867566cdcd441afb6973c2aaabeedee1460dcc762b4f8a3df37"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.GramCharacterQuotients",
+      "source_sha256": "247dc0c67bb2a4ad213b1d4f50d4d41829f905261b71e373529e18e196d342e6",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/GramCharacterQuotients.lean",
+      "local_sha256": "2a95a3547f9457d0d9e1b00c4d6a501f8bfb77b5b55ab4d559f915a20314b3bf"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.GramConditionedLaws",
+      "source_sha256": "fd76538dfe0d9492529d51497a20d3b17a5a69348660e8ce9bd1d55e6d991bc2",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/GramConditionedLaws.lean",
+      "local_sha256": "c33d8d161ef2ab82f95170e3dcbaeb76b509067dfb596ce40f6d72569b8ffe3c"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.GramProbabilities",
+      "source_sha256": "107a307b8dfe5edc21df512a9722eb1492683c8325f1c7bc0350b51eeb92ea8b",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/GramProbabilities.lean",
+      "local_sha256": "3249570f2c56117beded2a204a7c2dfc6ff48f2f290da1221a3356d15e2c41b5"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.GreedyExposures",
+      "source_sha256": "7c362aa40a29b56fa4d67d3a470e552e9f173683560efee8b4f4e8dffa120aa0",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/GreedyExposures.lean",
+      "local_sha256": "a7e248da987f8573cf1e1a4b732a5a7c7d90e70f8755e8a0d602df8be121fd72"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.GroupedQueryIndependence",
+      "source_sha256": "a5b59f9acf3b75663be99fbabd17508f64d5066546dd27367b14ebdbd26b352b",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/GroupedQueryIndependence.lean",
+      "local_sha256": "7d52d65b1f988e5411ce207025ee665966cc86de56c2a1e76732504c1c07df4e"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.HeadPartitionComparison",
+      "source_sha256": "cee10f4da8f3ef8da2624480488d3b7f5e145ad9a69084ce2d7983bc684b31bb",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/HeadPartitionComparison.lean",
+      "local_sha256": "533e006facebe8031290265ae7677d1d8ff9d7fbbda180fbee0b7f567a51657c"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.HistogramBounds",
+      "source_sha256": "97a89fb4701f19291906e9ec16f35f42c9a6594f308ef25d9ce482df483e7379",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/HistogramBounds.lean",
+      "local_sha256": "abe7c904da572c0640b0685494c58cdd246e98142ad87d41593a8f96954f777d"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.HistogramEnergyScales",
+      "source_sha256": "27b9414f11aa21e8571a2d448891237326c2e7b1dd1f55f01b376b5567725e41",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/HistogramEnergyScales.lean",
+      "local_sha256": "6a24902d1dea8abf3fd6f4aac94fec3f58bb49ad8c36ea03b9296deae7b0dde0"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ImageCharacterBounds",
+      "source_sha256": "52265e6281e48851e7e4d8759fcc04ac7ea6b1080c77cfb12da1e8a053580d30",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ImageCharacterBounds.lean",
+      "local_sha256": "d103f028d7e5c587a3253cab502d3b1126b2bd881ee8580503d8ac1eb485046b"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ImagePartitions",
+      "source_sha256": "ba6b6a361ec3f1f90ad9f71717a51bf2c1c90e7b4475037eb11037b6856ad18b",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ImagePartitions.lean",
+      "local_sha256": "69f105fa187a992065fee3c70721fced38f3201f5a4a184f88bf344c1c8a4720"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.IncompatibleMassBounds",
+      "source_sha256": "ddc6b04cd6f1955bda2f3deda60ada371916d4f19ac424d0d6e6bc9e59bae479",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/IncompatibleMassBounds.lean",
+      "local_sha256": "8fee7319072d7072ac0e995ad1a8d249b4b9ff70c107193a703346707ec03dd7"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.IndependentColumnBatches",
+      "source_sha256": "5c6a6ded0fa6025cb9f6f769bab17fae8c85558b434d67d027b86c27620f0b66",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/IndependentColumnBatches.lean",
+      "local_sha256": "548fb6a6eeb78043dfc20f4422c102711c43c833bbc9b243145b22d836d29dd8"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.IndependentPhaseBounds",
+      "source_sha256": "3c6a3ecfbc4d1b68836f4bfbb03e8de07651c383d10a83d22bf7e5ea42f710d3",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/IndependentPhaseBounds.lean",
+      "local_sha256": "399c91f028b13772b044e9437822627b6649c3d116db851c730c0239626f85d6"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.IndependentTestWitnesses",
+      "source_sha256": "ff15cbfd61a99705578ce323159e87cd15e1962ac1ce193c3fc9502f8eafa24b",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/IndependentTestWitnesses.lean",
+      "local_sha256": "dca2f47d0aa4bd18afb36115f32d6f218a0fd31298e5974ac6e19382251ab2fe"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.IndependentWeightCorrelation",
+      "source_sha256": "3b2b425a45f48a59ff512dbf46b7dc33f8ed5dfdd4808a99cb3877ca587ebfbe",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/IndependentWeightCorrelation.lean",
+      "local_sha256": "121f2eb74e0a2967ee0eae40618f681681d96b7be9048fa19b2f7160889036ce"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.InformationSmallSetBounds",
+      "source_sha256": "4d48e23eb1ccd831e24e8eba7117b7d639581480a62db2050db081b364429e37",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/InformationSmallSetBounds.lean",
+      "local_sha256": "cdde390283f94c4af7b3bb1e891630e77b30efcdd1ee0f312795455029876be2"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.InitialPartitionExistence",
+      "source_sha256": "30081f861a13528fd5f7082bd22650724e650557519ab477356ebd2506ea43c3",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/InitialPartitionExistence.lean",
+      "local_sha256": "f62db921bfdf42aefa432ca536638eb7f57e6291cddab3ace01437b9173c23d3"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.InjectionWitnesses",
+      "source_sha256": "841893b12ea7b0f28d8e822cc1ae0b9a6f45fcf7b813c6123471eda535dae2c5",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/InjectionWitnesses.lean",
+      "local_sha256": "8b270de17468786f7de8d9a47a4d41c1620d408c22d7bf6eccbc35dc378eb631"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.KeyDirections",
+      "source_sha256": "90b99d00f0326a7ed9348f323fe154210859a53da454b04769c303f9767d5719",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/KeyDirections.lean",
+      "local_sha256": "c930f23781633352cb5bae1ac887587a2a938f48b933a63dd0690d47f6f76c02"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.KeyProjectionBounds",
+      "source_sha256": "0e2a691f6712849507d653f5f710ca113a5c29ab76a5354f1839398743ddda23",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/KeyProjectionBounds.lean",
+      "local_sha256": "318b3e3b28d22871a9d23e95ad6f121bc0d097471913291ed926ae66f0dff9ae"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.KeyReferenceLaws",
+      "source_sha256": "deeb9489396e966ffc2ae38af4aa2cd3d922b0d49052224f9fbf1d922baa327c",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/KeyReferenceLaws.lean",
+      "local_sha256": "6621a3e36920557f494922b39d60fbf1d50a00446394eee73e33823455f29211"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.KeyTestCorrespondence",
+      "source_sha256": "e44d46240437e0d558a3301a68e6e06f58fa288be6e8de498fc9a30734c95a89",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/KeyTestCorrespondence.lean",
+      "local_sha256": "fa3c6caea195c450ddf074f33df041a1077fd9c821cf4d722383aa8dab87542a"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.LabeledGenerators",
+      "source_sha256": "52e86d099af2d93b8b3a4ed9a493049fcd5cc61a035b00bb2c69828b94e26c77",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/LabeledGenerators.lean",
+      "local_sha256": "7a9be7713a3ccfe1ae08f8d712da1bc9e10449dba81dc8440485ab9a47d4468b"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.LargeSetHits",
+      "source_sha256": "f8776b5e8c6caf4afba47025818ca35e9125324ee31afa45f14f32adabb6ea8a",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/LargeSetHits.lean",
+      "local_sha256": "603cf278576213ef102a9dc7829c76d19dfe4cdab0e9c232408eb8263f5fb744"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.LeafMixtures",
+      "source_sha256": "67c115688bfbc0fde0ee07f1d93812a429c242ede2420a56d0486fedb9147309",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/LeafMixtures.lean",
+      "local_sha256": "ad5a3bebc19a2107f8141e61ee337893dc3c4e4ab70bae81ef7eadfd1a5e5144"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.LeafSurrogateExperiments",
+      "source_sha256": "40da28eeacbeaa568130cbe7f87e3b32d3cb902d3ecd25834d3c2bb463a2eb37",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/LeafSurrogateExperiments.lean",
+      "local_sha256": "0c0d8a7b924031e23b2da445ea09e2930268bf5162406456c4b6a3b8412e14b9"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.LinearExtension",
+      "source_sha256": "aa83441b6d507e8e3b4231fae5aa971aad0a869864de80613c21cd0e3ca190ec",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/LinearExtension.lean",
+      "local_sha256": "a9171e2256bd45b9a3f8b1bd5952ec737c9128b00fefe0125676eada08d37a9e"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.LinearResponse",
+      "source_sha256": "71d74bcc93a14723022b46693b190f6267f0dd8923d81e0eb407dd358f10215e",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/LinearResponse.lean",
+      "local_sha256": "0a035677462870f720784b4d7bfeb722e5445dbaa136564f35ba715c1312dcc1"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.LowRankKernelAlternative",
+      "source_sha256": "fd75e85f09688822118bc85794505183e4a49572b0781ee46925a4076855cb8b",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/LowRankKernelAlternative.lean",
+      "local_sha256": "bad0d989f2ca44de5ef88ff14ac8db8a398b4f01baa192100ea9772c95f99518"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.Main",
+      "source_sha256": "d698079b6903b1ed5192109e21dfc985b489b724826f4567ad6f6ac234866bae",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/Main.lean",
+      "local_sha256": "8428c8eeeb6416ad2ad161100d2263615049e868b5388d49c206d0848f7e2e09"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.MatrixFactorization",
+      "source_sha256": "701d02e13cd842f4238fae6657b8e5ab1be05e1a568773e9ee1ccad135a89818",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/MatrixFactorization.lean",
+      "local_sha256": "47e39711ad577567690319667612dec5e688498c2e14c8d4a95596ecff6da44a"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.MatrixQuotients",
+      "source_sha256": "b8f0038c88b01859dbf8854f7e49d2a904a5f7552ce4b0eb9a29624ecf3faa8b",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/MatrixQuotients.lean",
+      "local_sha256": "917201a49b95959d34ce8cf287646fa19d243c23ca65bc2795665a2143e8ace9"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.MatrixRankCounting",
+      "source_sha256": "95e153785533d1d9e56af92c69622f15670c235264540d9196066741ceed89e4",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/MatrixRankCounting.lean",
+      "local_sha256": "77d23bfae3e1dcc6944ce17e417c7b124343399a2b96acf0bbe3972deece62f5"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.MatrixRanks",
+      "source_sha256": "20b8eadc60d7868ee430c27e2a2a7da92d590fda970f534e3edf60d45ae37528",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/MatrixRanks.lean",
+      "local_sha256": "8881de617c5cb656b7db2c659ff8165ba47892dddee9e5639b45cf9ebcacb871"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.MixedImageBounds",
+      "source_sha256": "5e4419832be467c9fd530565651691372ca4b12f28f130226a7988531fbd3ede",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/MixedImageBounds.lean",
+      "local_sha256": "0093c06a34f1c66e5ba488a31ae2ef42a8b70a548179e699e206195ed8d43893"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.MixerConditions",
+      "source_sha256": "668b0a7440040192144cef6b2026544aeb75b5203b2dc79fa34ca5bb74f85b8d",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/MixerConditions.lean",
+      "local_sha256": "4f3596e705e52013149be0202a729aee140293e15a3baec1d111dc3fa3848d59"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.MixerExistence",
+      "source_sha256": "18766efe418e8658a6060ec65d4ba97f04f6777e18ba012291ed419e300bc700",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/MixerExistence.lean",
+      "local_sha256": "b54828de95fd2760abf4e5990686e27c23034cc6a4dd4b868d8d12a8823461db"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.MixerProductVariables",
+      "source_sha256": "2c0fd505aaee6882a47d465b51486185653bfe78ff94f846425524562c583337",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/MixerProductVariables.lean",
+      "local_sha256": "48b0455e6d3374cf2eaee0d6fc7fe2948d760d29db905fb3607727d76aeb7472"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.MomentCoordinates",
+      "source_sha256": "f48b79ad6c4708ddaa66afcb1e2951e83117f0bddacf2b7ab2889152f8c3a829",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/MomentCoordinates.lean",
+      "local_sha256": "ac447193a32a5fbe58a3c30289ca1f2371765308e8e66a9214dbe9ca3fae377c"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.MomentLabelSupport",
+      "source_sha256": "315189b7f50a7d185217de23867758803b78bf3721ab3ff86e9de542882449b6",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/MomentLabelSupport.lean",
+      "local_sha256": "0248a1df1211958b64db43507813ca424d8e520556e26a42aa86a3674a493cee"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.MutualInformation",
+      "source_sha256": "9e32be67d0caa3295a07f9f4c7cccce4612f873b083225eee8b69fd8aaddaef5",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/MutualInformation.lean",
+      "local_sha256": "6ffa6ba39636e1c870d8b66957dfb29f061805d0a26a03701ebe28e9e3c9c4a8"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.NominalPointArrays",
+      "source_sha256": "2fae14adb729110067bafe924fe5e68ade150e5d6ab0e7936e032510d19cc85e",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/NominalPointArrays.lean",
+      "local_sha256": "354617ac35745bf1d4f341c16cd4406651e193cc870e536cc2879537ea2123d6"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.NominalSpaces",
+      "source_sha256": "cfd022fd412e47ed3c02d81bfab0311a924de355a63d2c7e5b779d72a312bb36",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/NominalSpaces.lean",
+      "local_sha256": "0bdac7e75bb02671f0cbc00414c74678f0d449faaaa1fbd34e73503dc93e95ce"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.NumericalGradientTests",
+      "source_sha256": "fbac125b4851fe9eb02ffcf4127f2c028a66a3d5cdc8d40c4d4459aa5a259712",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/NumericalGradientTests.lean",
+      "local_sha256": "11c8439262e011780c64e03db6678203ac746272bb2a9999df8eaa3e1e9eef73"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.NumericalGramPrescriptions",
+      "source_sha256": "6427063215fb86e76f9a896a5739badc392a5fd1fdbc549ec56ec94e869ac518",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/NumericalGramPrescriptions.lean",
+      "local_sha256": "9dfeceb27c3708451735ef848c06b1c016cf934244fc9d362a62cc27fcf455c9"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.OffsetEnergy",
+      "source_sha256": "964db1d4e1e28ef7dd8e5327a9f1fcbc0884ce22aa517f4ef0fc74c657bbbe8d",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/OffsetEnergy.lean",
+      "local_sha256": "15fa72800be4f2ce5b324069d3fe4fd6a0bad2dc5d49f3c6d16752343f5e14c8"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.OffsetFourierBounds",
+      "source_sha256": "19137079a67c3665dfee2b238dfa0d563b93002fd377e0e15256054aeb76192f",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/OffsetFourierBounds.lean",
+      "local_sha256": "72c1689712d9d644dfb1aae7ffce62676e42043607cb6c9f361db75f983645a7"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.OffsetLifting",
+      "source_sha256": "b1db4e5396188ac3d06e6cdef5f539dbf9bbfc41e9d680facd32be3c6267e14c",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/OffsetLifting.lean",
+      "local_sha256": "06a33a1814690bc9abc2ac8487dc0d7dac23bbb9b41c84e65a5dcf3df69207b2"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.OffsetRecords",
+      "source_sha256": "4f35c9db506f11b577f741a156925103e98457b2c8549f18eccba8e264bff8a9",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/OffsetRecords.lean",
+      "local_sha256": "b0c87893f7fdeaea6f1199d0df8cd336f8c46b0749020fe7842a7a562dc3bf93"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.OppositeEndpointForms",
+      "source_sha256": "5622c611be3e9929932c811536385f813eb4511406a507cac67c25c215d970f4",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/OppositeEndpointForms.lean",
+      "local_sha256": "4e73406c63d08532dc257aaaa28f267a633408b3eb59a0ae56e038f9996efed8"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.OppositePredictions",
+      "source_sha256": "08a46b6d179fefbfde0fc872904660f42fa716ebf2cff769bf2408a7487a96a8",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/OppositePredictions.lean",
+      "local_sha256": "1979bab597e709da307069910dda7f2c12c6aef1c731cbfdda56dc74cd8e16b5"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.OrientationRankBounds",
+      "source_sha256": "55e06bec7ad4916116d8f2a5573ecce92819290ba463d669b68b81e51b4ccc23",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/OrientationRankBounds.lean",
+      "local_sha256": "4b4bc243c0200f3f94de71fe2ebf88fc94e45390f35f3f1b0b5c8577145d29bf"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.OrthogonalSpectrumBounds",
+      "source_sha256": "57dc4f0b76e826bfc4565ffd0ee8f36faa0115bb9c4abf7109ade35ce5b9e052",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/OrthogonalSpectrumBounds.lean",
+      "local_sha256": "0b1019b4353d1331c4c93436d0fbf016493aac4a2c374df04784faa2806d2bbd"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PairIndexedTests",
+      "source_sha256": "9518183ae527c1332f8e9c54946f9a2b4e1091febc711124ef22a8ecb87c12d1",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PairIndexedTests.lean",
+      "local_sha256": "4ef177dba27af6face23b6e709561a86b36fe669083e28850bef74512899766f"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PairedCollisionBounds",
+      "source_sha256": "c6c4015016565389e8f7aa205fef8b53cb9361c963ded31ee9a6ec0f44ae5388",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PairedCollisionBounds.lean",
+      "local_sha256": "7bc74f1f872b704715faa240e57e403af8785d33213e711cd1b88e525bf53553"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PairedEventBounds",
+      "source_sha256": "4f469928498a75cd3928e5f82d168412e063ffe0177f692bb39c37aed971423d",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PairedEventBounds.lean",
+      "local_sha256": "6320d69d12619c49ff1765bc54d2d549efebd14d3ed858050b4aa5f2444d6a60"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PairedMassIdentities",
+      "source_sha256": "9f2af99824b77ec9a4768cf186d15a3631b0ce81c30d585274ce8337aa12015d",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PairedMassIdentities.lean",
+      "local_sha256": "044b7fe61d56b4d010b3e7596cb867d41097559338ba74a5411955a71fa6613d"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PairedOptions",
+      "source_sha256": "ebccb13d815890e5f15c9c0564e434b102c2ff6d9be1775db2b17ea5eac6497e",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PairedOptions.lean",
+      "local_sha256": "97d8c5c89f3190dba7523a03debe816ffb48dc4c7f074a48774946ef32dec926"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PairedRankBounds",
+      "source_sha256": "1dfec00d041edfc39f9bb566f092095563859553596e7a2ee1f17e7c2fad393b",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PairedRankBounds.lean",
+      "local_sha256": "8796615915c98ba8660b15453629f44c96aedc8c6fbc726721d8686862a5c553"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PairedTemplateConcentration",
+      "source_sha256": "b20c8323bf7263b55943660eacc00dcb973c5b1fd5719926c9203b2ae701a4a5",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PairedTemplateConcentration.lean",
+      "local_sha256": "6257a7a0c2157d3e3a7d617957a2a59bb38457828a7d91d0b8908e243a514923"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ParameterExistence",
+      "source_sha256": "19b03ba9891232c497f783831b8f03cef95b0febc1f23fe4011fd95e00223655",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ParameterExistence.lean",
+      "local_sha256": "2be8522d45707b9d1dbc8302808f957599bf1f1bfe98671def4f6afd7c20bcb3"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PartitionDeletionBounds",
+      "source_sha256": "58b83ca51a088a3fdaa672c89abdb0f26980da9a1ef6bbf9a8e0677e08f5906d",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PartitionDeletionBounds.lean",
+      "local_sha256": "bcfa47580d2e4bebf164d4230bf1b52954bd7267494de5f941bda09634d3c78b"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PartitionSelection",
+      "source_sha256": "312977c85fd1426fafdc996dbe676da0c55823e580c0f58f064755d09db53a3f",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PartitionSelection.lean",
+      "local_sha256": "5edef28d94efcb854a1ca59521932d08de575af7d946e3d423f1f25485679066"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PhaseAlternativeSupport",
+      "source_sha256": "b31e8af7af1a302a6efa14916d14c4590fa70c00a65122eae7296a6ab8f1899f",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PhaseAlternativeSupport.lean",
+      "local_sha256": "e917e26cccd52f85163b6bfa8e24789e4ff59645b1319b854b6c9e0de0ad63b6"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PhaseClassCompatibility",
+      "source_sha256": "d12270b1194efb39d2c4be220fa1c4f702eee734b78a7f6bfe06ba73d658fdc5",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PhaseClassCompatibility.lean",
+      "local_sha256": "2e3bec929c28a2eb0efe1e569bc15910902942b0f9865fbc25ca66ea02d9c478"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PhaseMomentBounds",
+      "source_sha256": "2199ababc953337bcd96ef2f7cdeb50fe1a248d8305ce7f81264c5b4bba82d82",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PhaseMomentBounds.lean",
+      "local_sha256": "55f34c20a751564eb80776e16e028aa7af5d3b267dc0023cab32b1e49195d284"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PhaseParameters",
+      "source_sha256": "8b4a0342a662da4a961d3dcb288c6aab3f76eda1865cc5794303f428b313c0d6",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PhaseParameters.lean",
+      "local_sha256": "9fce4c7262a2fe5ace813551fdd405ad439048faa951ccfb1b9a7f2c53525efe"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PhasePreparedOutcomes",
+      "source_sha256": "c605429a021e4e90e7f1d119333241c0068eb26496e735e606241a398ddabb5a",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PhasePreparedOutcomes.lean",
+      "local_sha256": "49aa977af8d40daa7c87460ba143e421752a2aca7c6e8a42168394d2056e62c6"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PinInjectionTests",
+      "source_sha256": "00f50e071075b631533b6c96e112a35e2f3631a1546951bb432f963226d7a2e3",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PinInjectionTests.lean",
+      "local_sha256": "e98f5b1df2cf789a2400a2b36835c665cb56a7b4787cb7177bbff0b0611e6426"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PointAtomVanishing",
+      "source_sha256": "f1ad9dcffdca0b375cdb95162ebb982854c9af4ae1b7d84ee95c029a4ae135a8",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PointAtomVanishing.lean",
+      "local_sha256": "01bfbd920e8eeff73028d778004d5ba44f332f385d179dabfe6671d4e795be54"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PolarRankBounds",
+      "source_sha256": "c00c88992fb1262cc92e5dc6669c92f7fac976f5ecceef6f5c7900948ced42d9",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PolarRankBounds.lean",
+      "local_sha256": "8cf6110bcc5962d7d17acea619b5e1aade1e30249abcf9ae5ccd75c83741fa6f"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PolynomialCompatibility",
+      "source_sha256": "484c6ea5a579aba8c4230759037ff3c495b2842797aea49054ccf3d840ec2028",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PolynomialCompatibility.lean",
+      "local_sha256": "92d2975513ef4761f1e4c4226f51826b7338d58c19acc70d339c6b6d19cff8e6"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PolynomialRankBounds",
+      "source_sha256": "63609bd28a5d951220bf7a627afa8e65bd36a74125439e8ef80d42d2df8d6679",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PolynomialRankBounds.lean",
+      "local_sha256": "dae1e57dc8e4a23c35b43a3127d56aeb543cbee7e5586fba8e822a11e0f43afa"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PolynomialZeroTests",
+      "source_sha256": "76fe9ef949fd23787194f9e785e67f630ae06752d84872f2db06d9380b0526ec",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PolynomialZeroTests.lean",
+      "local_sha256": "7233833e4a40c8c9bba6d3305927b506fde0730879db7795314f12565d726469"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PositiveTestMass",
+      "source_sha256": "e5d31c3d0ec91292a638016624406b9b1ba1b51e48130b7c3235a0d119830dd1",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PositiveTestMass.lean",
+      "local_sha256": "68672838df4263c85be2ab184974b0859d5ca5008c44a5e487b9d1c0273fc436"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PredictedDualCoefficients",
+      "source_sha256": "e8d9b24c089cddd241cff424df89dcd6cbf041450213f4edab80dabdfc0b68e1",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PredictedDualCoefficients.lean",
+      "local_sha256": "d3fc7127c816f78803b8e49b4dd30cf09cb890a4e679c301c93fcc3bd29bad51"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PredictedDualEvaluation",
+      "source_sha256": "523acac3d2b175745628da39956054b42b229df12aad67dd663fd6d1d88e8c48",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PredictedDualEvaluation.lean",
+      "local_sha256": "75488ebc23c91914d728a09a74cc164420c96b1d053b7037904a22a1cd8cdff2"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PredictionClassBounds",
+      "source_sha256": "72a28c0a14022f2ed6c92d9769cbd6e4599db124747abdb8e375839da1c4d868",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PredictionClassBounds.lean",
+      "local_sha256": "dc5175112d7ee6cffdc6c60f5dbbe245b7cdb25b835a187ffe5b5bb1f6900285"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PredictionClasses",
+      "source_sha256": "27667553d1fc474ef338df7235a91d2687d1fbb048341eee1649a0212c1999fb",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PredictionClasses.lean",
+      "local_sha256": "b41564cd185b991e47e04956d54ff559f6714a970e4321500013df23bf8b905e"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PredictionDichotomy",
+      "source_sha256": "5bf5da5da12783441fb96ef9c55d2835293a2db6e3199eff3923227ec0c900ea",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PredictionDichotomy.lean",
+      "local_sha256": "7e50edf05d917596f5c05d0ac45734e855d3ba36a96588b318643bbf44de3b4e"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PredictionExactification",
+      "source_sha256": "164edc02c75a3465a08a9d352ec2bbfc197546cfe72a7c53c4c7ccf43aa84801",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PredictionExactification.lean",
+      "local_sha256": "da9baabc24858f5625ec7427297e322cfded9fe19abaa0e0b6316b890f20fe41"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PredictionExtraction",
+      "source_sha256": "a9770d3052d8a6df6e338158855ef912fdfdc08c01cc54f1d48ab354495bf77a",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PredictionExtraction.lean",
+      "local_sha256": "a56a8e9af66988c22e95ea17b1fece9b20233d9b6f2fdc7059412d5cbd89953b"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PreliminaryRestrictions",
+      "source_sha256": "8d29b4e3e585118096c30d5940a6070a1a6c708a7e26978dd76c196b52d3e43c",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PreliminaryRestrictions.lean",
+      "local_sha256": "f22570a22df36407b318a8a8f99317c18461dcfabfeccdf19768901611486004"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PreparationConditions",
+      "source_sha256": "af637074e0ccca15da28842d50e2d372ff7a83643a90e981cc57f30af654a52a",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PreparationConditions.lean",
+      "local_sha256": "051d925b386f75bc55e8878526331a5714924dc910d2779317800a6ccf55564d"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PreparedOutcomes",
+      "source_sha256": "f03bf7d4803384a3758a5fec39fb6defb2180f0a2c5e5c6e613e59b417045d48",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PreparedOutcomes.lean",
+      "local_sha256": "e8f8848061e802b2c23745b791f1aefe639bafc9d350841cba7203ad016834ff"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PreparedPopulationTrimming",
+      "source_sha256": "97fcfaef414d73bccfe4997ebd178fa4a10c8f03dc5a37598fbfc1b44879b595",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PreparedPopulationTrimming.lean",
+      "local_sha256": "7eef7572fd8392307f71d67853f0007e24fb660f6396997a58215b7504b0d01c"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PrimalChannelDecomposition",
+      "source_sha256": "2bbe42c1f25b15f8454d3d4a5ec216e37da71ff322c1bba1b761f0b9fb9c8b08",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PrimalChannelDecomposition.lean",
+      "local_sha256": "ba9e900af0c1aa3ac893881900559ba2b9998364921b1e1b482fbca34b4877a9"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PrimalChannelTests",
+      "source_sha256": "ae7e4046f94ee310ef14e7ada4f26d15253d81894edab99d5c3edbd68be363ab",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PrimalChannelTests.lean",
+      "local_sha256": "c24993bf4a1e1e056a512c68dfc1da31bf1a23e648f5a7ef034d588dbb557615"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.PrimalSpaceCompression",
+      "source_sha256": "85b0f236cf0b63691f627549b1f3ee9972e4daf037476adfe51b89e2a27744c8",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/PrimalSpaceCompression.lean",
+      "local_sha256": "736e4e38d7f6ca26915ba26cd608b75bf9a3c233d5baffb6f79504a67efa8a92"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ProbePointMasses",
+      "source_sha256": "0152b41efd083ef5266c6fc4ea16cb1e889e5add6331d2ab8b02961f47746097",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ProbePointMasses.lean",
+      "local_sha256": "7dd600447870cd5e95c65c1be6b04dca643b1faba6d7a917dbc261b4b585dc35"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ProductCharacterTests",
+      "source_sha256": "57110aae693d4f581a917f75bfbb7c98f3107b275aa634c09f29adaf3bc131a1",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ProductCharacterTests.lean",
+      "local_sha256": "4fa91076a91bc38fe75f681b336cd925f9d8a338783f4a5453ff6398f7d459d5"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ProductComparisonScales",
+      "source_sha256": "13b48c5a126346752d105e9a260c27950c1938bb82e5d0255b46cd5180fcb365",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ProductComparisonScales.lean",
+      "local_sha256": "a7dc3649f30763dec6fa479f69806cf7f4b2c6b5080fc24a8885e7763c5bec3d"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ProductCoordinateReplacement",
+      "source_sha256": "bba4544efe204498f48a9f4be71d5a6a49b6c520410e0c76db4bb6f7d0fe8522",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ProductCoordinateReplacement.lean",
+      "local_sha256": "dfdd3bc60384dff619406db55b41426e58c388d31407ae2835fd30b36f8ba453"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ProductLaws",
+      "source_sha256": "d6b14a32f643975fd8225b290e6a8a18b67179922a51f42ce315d29446d3af55",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ProductLaws.lean",
+      "local_sha256": "a37ddbc08c1721469a8623ddb675d214c6ea8d05b6f2b1f774159000153761d1"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ProjectedSurrogates",
+      "source_sha256": "7b34f6bc2762b08f7dc939e6faeacb8d3f384533e71d41703b9dda56dce58cb5",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ProjectedSurrogates.lean",
+      "local_sha256": "229977af0ca750e5ae665fbb2c2766168ec7c2ad9722af98e438333b45f5d38e"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ProjectionEnergy",
+      "source_sha256": "771f4b3c7894b987390e7aa355ead01042dd654ec73b8652e6f9648f2895ad07",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ProjectionEnergy.lean",
+      "local_sha256": "3698aa55354f3f368b0d786c84bec591270a744c4f9bd3be5e4d6acd4cc74889"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ProjectionError",
+      "source_sha256": "0d152ae79f57df2f9e64e2882a4f4cac5a18f5062f1950c39bec9d6d3c3d00f9",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ProjectionError.lean",
+      "local_sha256": "f5a950604b924ecf252daffc64afc92be67904ddb45d60439e495a701d2740dd"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ProjectionNets",
+      "source_sha256": "15d567d9b2ff2f07a9e113ee1d6c05aefb462b358be25d6eedba69c76ac828ad",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ProjectionNets.lean",
+      "local_sha256": "8b30d2084f4f3b043431640af152e199d856864f1474cf9871b72ca869d9e1a7"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.QuadraticFourier",
+      "source_sha256": "59179756d217755247e337de3c1c6518f10ecfeab629142aee377a9f099f1db5",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/QuadraticFourier.lean",
+      "local_sha256": "a19f05cbbbcbb1cfa5230e50392dd2caa0334609da319a3dcc96c0f6da4e2d80"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.QuadraticTesters",
+      "source_sha256": "c5c02f29737d9f726b8e7c5149bf5f95f79a2fc242ae046723ad30b56b0dc7eb",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/QuadraticTesters.lean",
+      "local_sha256": "7de57c1dafa8e3d91bd335c5a4b92f58b15adedfc6d53ecf8169f603961bc30b"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.QueryConcentration",
+      "source_sha256": "87844411a849884f6d3cc622de0f547fcdc6990759cc8217cfcb2c8e817a24e0",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/QueryConcentration.lean",
+      "local_sha256": "dce3c504a9b511d66be0503539963e661ba91d3f45a3dbf39de52851367f9c69"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.RandomBinaryMixing",
+      "source_sha256": "57220b4856d1caa84c3539ce6f05d67eb5e52563b38483bee64bb789245e9bfc",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RandomBinaryMixing.lean",
+      "local_sha256": "ac465b55797d0589b46be6aad7abf9f8a826da22b8e5fb310ae9fcbd6eb46d32"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.RandomLinearTransforms",
+      "source_sha256": "d59ff0e08bec0a7413345ab9d5f36054538efb9b4dc79b8e3111a474d5fd4a8d",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RandomLinearTransforms.lean",
+      "local_sha256": "c33cd948c0752cad17f97fd2b8895e0844e48f56040f029a4f92f7e4c48c4e33"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.RankEfficientDecomposition",
+      "source_sha256": "44d3c276b10cc51aad6a014e2da263bacf7b58a6f1b559c977fbcfc573d7bff0",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RankEfficientDecomposition.lean",
+      "local_sha256": "50f68793819aa9335687e97e9ee6b71f4e94cf58ee3352430f0e3769de298816"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.RankSubrectangles",
+      "source_sha256": "a167594411cb77eeeef35020bb5eb4025af336aba75aa4bc2ae12c19b03d84c8",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RankSubrectangles.lean",
+      "local_sha256": "5cf2f80878cd0bfd51695a2c9f6462971ae671070b074c51ea25ffac08e26866"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.RareLeafEvents",
+      "source_sha256": "4d26a071a87ca619bd1b79fcf9c7238fc4dbf6ac42901d0f5c372f7a8b2c2712",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RareLeafEvents.lean",
+      "local_sha256": "a64f101d28af0b73af5dd8ee34817f11f91be24f60ba21acdd13034890d837c5"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.RareTestEvents",
+      "source_sha256": "a32b08f63a614916eea67640479deda185d97543420d41f763b10b829dbe8df2",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RareTestEvents.lean",
+      "local_sha256": "15889ee8494da411aeac15dc9b6ede8ac12dfa8d2b0e76ea90910dc2fccc6ee2"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.RawFrameLaws",
+      "source_sha256": "33bdb27b5397beae6f0e5874e8d1b3b2dc6ce69354e6c532a581f79434fbcce3",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RawFrameLaws.lean",
+      "local_sha256": "b82f90354699027984873a70bb8487735007b06ddb6cf10a512189b9509c9abc"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.RealizationConditions",
+      "source_sha256": "7791c02fc1c5811d65c0772e58b12003964447242fd26156c45a6a48aff4f5b3",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RealizationConditions.lean",
+      "local_sha256": "40e16f9c46fe218a4e19a50434ca0bb21581cc6a8337219a2f2b2bdb979a6751"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.RectangleComparisons",
+      "source_sha256": "8dc4658f6643d47a2f46cddbd43e8a1eb13a40db66b03451a44a970682019ec9",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RectangleComparisons.lean",
+      "local_sha256": "4906586c7360ff3c12c5f7563c21123f180d9414334530bb62eeee73ffc02786"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.RectangleRegularity",
+      "source_sha256": "f8dd6fca19b0e7af14f593316bbfb0ca43dc36c12546ab316a7880d47ecc391e",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RectangleRegularity.lean",
+      "local_sha256": "ae146289aa5c97aa1f4a24bef41e905e23afc472c37e3b4bed5de2701204fbcb"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.RecursiveComparisonErrors",
+      "source_sha256": "bccdedfa0fdca6aa8473ed55815f54c43a2371664f4bf821688ec637ec7b9c19",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RecursiveComparisonErrors.lean",
+      "local_sha256": "81c7abfea72b4f2bd9596e676be95fcbd0030cf60d6ebfb76e0b1f66f011a6c8"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ReferenceProductTests",
+      "source_sha256": "6db504380185e2c04762970fbb77ab444398ba83195974ed3bcc9b8974dd804b",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ReferenceProductTests.lean",
+      "local_sha256": "44004b1207b09a836bd44196a2aeb57dfc7d6b9e4d353292fefe54e9aed3b40a"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.RefinedPinImages",
+      "source_sha256": "9f004aa0cb015592a44395019e081100642083ead14eabcf5ddebce75feb2130",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RefinedPinImages.lean",
+      "local_sha256": "edda1d7e3785755ec7ce0ef2e0d26b7cd389c18f77bba0bf4496c2f7eaa22871"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.RefinementEnergy",
+      "source_sha256": "c636ea18d8cadc59694641d57269faf83725c484aafb73def694ad17debf2dff",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RefinementEnergy.lean",
+      "local_sha256": "b64ff3e86ee3905a3cb8d558168b401075f4daab4ae46a838464c1a659f01fce"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ReindexedFourierSupport",
+      "source_sha256": "fb14723ecaae32180c7feb0cbb29c5a218f68a57df31f33adc4626f44a3b8ba2",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ReindexedFourierSupport.lean",
+      "local_sha256": "cfe7b34fe67758f9b8a21884ce1d3db0154adf56f6c9a1207c34fcc7ddf8755d"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.RelationMismatchBounds",
+      "source_sha256": "a3b21fce7f5bc9906ae2f5de696fc91eb7c8adbac4862bad9fbde3b77a52787b",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RelationMismatchBounds.lean",
+      "local_sha256": "799e0e972d762ad50a02758f68c7c35008c9f8471ae175badad49336593671f6"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.RelativeEntropy",
+      "source_sha256": "16d4183ced9382a24e69add9749f269805dad67007b94c6eea67d84b9e5d12ff",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RelativeEntropy.lean",
+      "local_sha256": "b70d2dba87552aeef400061c1d11f52f44507a85cd030bb5e8cc7734f4df45a6"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.RelativeInjectionBounds",
+      "source_sha256": "ccde3f0d859d3bb756243b573994052658cecf75b522cee109364ebbc068d4e8",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RelativeInjectionBounds.lean",
+      "local_sha256": "f35c63e11384b9d03f863354db73379a9d1d745b11c62e414ea77c0244fa3dd7"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.RepeatedBatchLaws",
+      "source_sha256": "c5377b987f05d79479f9e0f88553742b499fdc5ab66d39a819e5844b9bc801f5",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RepeatedBatchLaws.lean",
+      "local_sha256": "0a2d61f1cfdb7825b482c3871ca5505af7203ca4001d8d83a5c544bdec023aaf"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.RepeatedQueryBounds",
+      "source_sha256": "9ea82402efaf4168a492fea180c95e7489c8b0a7ce663b49321a7c128ca7c2e2",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RepeatedQueryBounds.lean",
+      "local_sha256": "3021443fd2191b4ac971ae6cae400abee290498f255034442c42400e9fca13d2"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.RepeatedQueryEnergy",
+      "source_sha256": "3af5128e90f471f509ecb754caf8aea1e2f22ca3d609ae3c384bb12797369248",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RepeatedQueryEnergy.lean",
+      "local_sha256": "50e61a44b5c47ccdcc9754a33c862a9ac79ee2caa63f9393cc6acca8f380685e"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ReservedLabels",
+      "source_sha256": "a4224e588616c01de20f4796f3cb1e98ad41e255ffb1b2892bad59e02df00514",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ReservedLabels.lean",
+      "local_sha256": "8e35ae1ed6718176185946964ab8e89d0b24dcc6a5fc109d85b8ed79c621e872"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ResidualCutPairs",
+      "source_sha256": "7d9758b11044e8ccdc84bcd006134042b10e57975f0933ad6ecfcd6a2647649e",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ResidualCutPairs.lean",
+      "local_sha256": "e849bf8cfdba033ab49f3c3508f666a51a46dc5b2bd2d751d05730f353346be1"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ResidualRegularity",
+      "source_sha256": "62f3ff517d888bb8f417f0bc885623c6a9025b85526fb5430147f8bf13e5bf09",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ResidualRegularity.lean",
+      "local_sha256": "78795a2e761601c78793fdf407e19f65ccf788aaf67153f421fbc243f849568a"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ResponseAnnihilators",
+      "source_sha256": "c8def5ad26a6880735cfc1a434d73c4cb9f861d6b2fdba408c2325b38d55e702",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ResponseAnnihilators.lean",
+      "local_sha256": "3576e5121cabbfd0112a39af9927a67c1e2ea24431e290bee310551af522cb94"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ResponseSolvability",
+      "source_sha256": "d6ad0e004b04f74180c6cb76b5df51da7d7758b940134085f0e462af045dd39a",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ResponseSolvability.lean",
+      "local_sha256": "26d1ae8c66f285f17cf93448bb91e4b18d324f463efc3f729191fedce9e6f8c1"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.RestrictedComparisonLaws",
+      "source_sha256": "4f834faefaf8d3951147c73c669a3c88a9f7620bf9cc2bd914442c95991167b9",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RestrictedComparisonLaws.lean",
+      "local_sha256": "78b724c2e76dd6ef0a3de381a84074acc79ed996a7c75f745fe1ac1049435c43"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.RoundedRefinements",
+      "source_sha256": "467a61e429830901290f63dad9fc3611c4532941aa16f1b2a3132bf205b87755",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/RoundedRefinements.lean",
+      "local_sha256": "0afed5fb053cd207ed3d45d6765eb742ce7b9231229b22bd98b9b86ae1cdebde"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.SampledGraphs",
+      "source_sha256": "721cab11661559336c3a0b889118ed7b7528f92764373848fb56aee33b21fe1f",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SampledGraphs.lean",
+      "local_sha256": "a22166fb860e5603600d6221f2c3793ac88d486805bc6245577f7850e56e6422"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ScalarStatusAlgebra",
+      "source_sha256": "24acf2319cd8a8d6bbe4d5104f631be0348b7beaea6f5e39297897e827e56156",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ScalarStatusAlgebra.lean",
+      "local_sha256": "5fb027ce92ebd5dc80c9c3fc9fdcb2dadf28530dfc42f8a5cecc84dd0c1a4a01"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ScriptGramCorrespondence",
+      "source_sha256": "a554571764f0a85ca64f2e0b22c439c55c69dffbadf6b138afded533b578e394",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ScriptGramCorrespondence.lean",
+      "local_sha256": "fca9396278c57790c2fcf04d44a7408a227d6df7a8fdcd36b9c75d83e023ccfb"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.SimultaneousProjection",
+      "source_sha256": "bb713501daf4c687a3f1bc9117d2a2ee14e565a4177c244b7f344566a6be411d",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SimultaneousProjection.lean",
+      "local_sha256": "1168902f72499a3d81c9592a3359798fb7ad83f143d8c188515a54e367a0e7bc"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.SinglePositionExpansion",
+      "source_sha256": "ea65eb3d06c01c3f1d535931465d4b272d4005927b7adfc1e1ba8dd4b2b60a30",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SinglePositionExpansion.lean",
+      "local_sha256": "8a7cc8e339b9a2ed2a33c39ecf935d5cb0108543a987c9acd74a3e07da530f35"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.SingletonPhaseTests",
+      "source_sha256": "3c1e9896d23eb552078b3aaa59f1c708ea13d77bb55afbf2b6cf51fa2ad1720a",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SingletonPhaseTests.lean",
+      "local_sha256": "8420937d29a4d1e9c591b93723cf4fda306babb730a2d400ce3a3b26621e1ef0"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.SmallCoverBounds",
+      "source_sha256": "78efc67e774f6358d1f6bdd4c78fc3661cfe0d28f5570c13c3cb6304c1d44db1",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SmallCoverBounds.lean",
+      "local_sha256": "c5e7104875674c375dc292f03518ce7e34194aabd992d954750c27778f4e93f1"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.SpanDeficits",
+      "source_sha256": "c4def501707b5ed46465533cdd3331424ef3bca1a9ef9fc522a45535e2f462c2",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SpanDeficits.lean",
+      "local_sha256": "8268b60e6319901a8fd11e5d4c4656cfe7a979bc19e329712c090e84f84499f3"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.SparseCutProfiles",
+      "source_sha256": "cdd42d7db36fff04f835e33a2ef675d3112bd60ee8631c55c53b850bbdf0e034",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SparseCutProfiles.lean",
+      "local_sha256": "d5ec2f7873b41d642d27d72e5e01ad743fefbb617dbc62d9784df9129c662fe7"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.SparseLabelBounds",
+      "source_sha256": "8a1a693bef7b6c58841c67735c15bec341084732e09459c1a2959c6c9523f567",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SparseLabelBounds.lean",
+      "local_sha256": "5086035d4907462759acf39ad0db8430e3660ed953520b53b2342c817c9020e4"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.StatusCharts",
+      "source_sha256": "31ebd014612910919df51dbb94ea7eba8f9cf2aa36c32de331eb51b4b8f4d645",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/StatusCharts.lean",
+      "local_sha256": "def0e9fd8bc8a8fccd9ef21e08460bdf4a2edaf0ba857f08b9aec9f4b9c8c165"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.StatusRecipes",
+      "source_sha256": "a950455850acfbbc6985ce02beb6e35c9524ae45514406ff65e4dc1e4751807e",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/StatusRecipes.lean",
+      "local_sha256": "af06f5c0e10dd9f06c8e9de4f0885a2e5f2caee7bc123c2adf612758559e7975"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.SumRankBounds",
+      "source_sha256": "24a44e9ebd3d6b65377191bc08daa9d74f37ad8da96c2267e83aa1567298620f",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SumRankBounds.lean",
+      "local_sha256": "0fb5362163282213ab4abe4487b9e2ac86527267d579030a1b2ae373b55e3668"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.SuperlevelBounds",
+      "source_sha256": "bc944299402299f0b999d6af7f5bb7b5d3100101b782d2ef3fa22f7a0df0b83d",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SuperlevelBounds.lean",
+      "local_sha256": "bb53a26470debf2900b3984bf5bc03e81fa3f1a6d3659a7c2907deb67e4c8ab2"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.SupportedPhaseLaws",
+      "source_sha256": "5e2fb2b3ae9c2505123d69e5a41ffd184e9638c6e5c645cb916d610c8163ca74",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SupportedPhaseLaws.lean",
+      "local_sha256": "96c8c1f323835c044d4307f0f6a3959ca7bc0d074f9d3fec0fdbf852f5e29646"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.SurrogateAggregation",
+      "source_sha256": "3af24097e2ea4f1fc9e604aadd45a6ba83128aeca62eb9f046f5a4b2e82b4b17",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SurrogateAggregation.lean",
+      "local_sha256": "45571905872cc0c826f290094f6dd14f8fc8eadb1a6265a24048e143113545e9"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.SurrogateProductBounds",
+      "source_sha256": "92c387e20c61ad2165cfe06d3ec2490d29719881f65d860991c84e40a18b1607",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SurrogateProductBounds.lean",
+      "local_sha256": "cca6869f317ac022e3c99830e710a61937d1e69873056387d7aca7d1761812d7"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.SurrogateQueryScores",
+      "source_sha256": "e65c585ed351bdf07da84246eb4cc113f9e29a2019706f55cabf6a801466b220",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SurrogateQueryScores.lean",
+      "local_sha256": "f85db6c2b2606ddf300a191f571ba30c5ce64179875b1a0dc250caeee24a7614"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.SurrogateStatusLaws",
+      "source_sha256": "51e77660968cbe3d988efecc8624e67da2ff098df56c3a42b7a19d93e0ba0e2a",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SurrogateStatusLaws.lean",
+      "local_sha256": "c210f729f50d9268a307c4cede06801197f1a570a5bac507d3d8b45899f0cea2"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.SyntheticArraySlices",
+      "source_sha256": "ea52ef285a49ee5f9b3a19ef51cc0783de013f53bdef1495abf907291256710d",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SyntheticArraySlices.lean",
+      "local_sha256": "1bbddfc9853c8f8419b9196060ddd0f38d86e773b7a5c625aee86b5a984e6f8d"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.SyntheticFailureBounds",
+      "source_sha256": "119be954df494cc90385ca2a38f555e9992e4272117d9fc815ce15c03a04c764",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SyntheticFailureBounds.lean",
+      "local_sha256": "37c6c361ee78829a2a4f656a3cb5db56af6c9403d80d4f007ca863af81abb360"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.SyntheticParity",
+      "source_sha256": "1c1e4e10dbe88407ade620f4d316084f212ee7a3f5fef93a58b1c2cff2f0c65f",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SyntheticParity.lean",
+      "local_sha256": "9c11c3b7a62ce9ddbd790bf723d3bc4734c1e77cf53d00ed9d3c2eadde0a0011"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.SyntheticSliceComparison",
+      "source_sha256": "f45bc4088147caa187936c611869b672ac3a44a1afa3c2e3b406bbf021b0ce41",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SyntheticSliceComparison.lean",
+      "local_sha256": "81319eedd0666007fda731c486f0f2299dc1716ade801553184e87e899c31c51"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.SyntheticSliceExperiments",
+      "source_sha256": "109c09dda8da6b0ac89f2f2878d9a40f1a5fb16a23eba0cdb5a383f480f59050",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SyntheticSliceExperiments.lean",
+      "local_sha256": "087971f78cfec743a4ed2e725a31705fa19f73ade827c355d4b6cace474f2752"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.SyntheticTolerances",
+      "source_sha256": "bfc6e094d219a4c308b99317d448e1d16f56f2f8f684b98f75553a6135e7e5c8",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/SyntheticTolerances.lean",
+      "local_sha256": "3c7e26521c025adf03df9e34ccffe37fd8e01721437676de2f7b7da6dfabd2bc"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.TableInjectionTransfer",
+      "source_sha256": "e9ada1952f74098ee02a35f1e52a5d8b081177f91e6cd4d43febe179dd50e73e",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/TableInjectionTransfer.lean",
+      "local_sha256": "d5866c0d34b8c9114a4bf2d6271fcc6c7c64a0672e53f7f0da9d816ebb557ca3"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.TemplateTypicality",
+      "source_sha256": "e0f101fcdeebc1d2e79ccda67afab2b4846c82a051872bcade7dff864ee72760",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/TemplateTypicality.lean",
+      "local_sha256": "fb0a11d845ce59e84e3a903a732bae486ef90339bbd84e85b32aebbfe1271552"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.TensorIntersections",
+      "source_sha256": "087d0f7ebe0fef164d07e693e576f1649c3e756dd55e014fdc682bf1e8b3f036",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/TensorIntersections.lean",
+      "local_sha256": "8c02ef604387279e6b38534955f56179f4933dedc61e0f77c15da86c20b5425c"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.TerminalCut",
+      "source_sha256": "3743e513b86b5777a70c8eda15f86e7c4d2752205914afdfffb9112b80998956",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/TerminalCut.lean",
+      "local_sha256": "631b1ba6564c68490ffc0952e45a762f336989fef9a2574f5de1085f32e2b083"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.TesterFourierSupport",
+      "source_sha256": "d2db78432458e23935b9e70f0657e01635ad931df9751aa63825db94922d6036",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/TesterFourierSupport.lean",
+      "local_sha256": "f9f46b1e838fbda7af46af421a8b206f30adade55cf05f90599be425906aa87f"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.TesterSummaryMass",
+      "source_sha256": "8fa17a74506f0d307a950c4b94f4577196f9bb0cb18ebb96f802900b548a0c51",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/TesterSummaryMass.lean",
+      "local_sha256": "24eb04229337335c2ef5a62a7ef016b74b96a4938c569b558700ecaf762c7115"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.UltrafilterRates",
+      "source_sha256": "40f7620235f6cb431a67f6c160e751b82b972803d9cc85f3348ba10388aa46ed",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/UltrafilterRates.lean",
+      "local_sha256": "123e5d4253d558a74abf7a0a69474635264c5a9d5644b431e9db0ac194678aa0"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.UnaryCellComparisons",
+      "source_sha256": "30c99c7af80de058acf3d2e6fac211093fa76b12c3cbdf3ec77384bdf6d0687c",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/UnaryCellComparisons.lean",
+      "local_sha256": "4a6dbeeb4855e7959b685ff0b80dd0c69613a175b5ab9facdb8a4c1438eb476b"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.UnaryPositivityBounds",
+      "source_sha256": "bad231b54406dbd1f9a88b8c93c33593b7471a562734e20b6f7d405dd89599d0",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/UnaryPositivityBounds.lean",
+      "local_sha256": "6edfbd20d7b518ed37dcddd16c568e510ff3fd4d95ecd2d2b4dd3e4550a34adc"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.UnaryQueryComparison",
+      "source_sha256": "299c56fcd5ec9a3cfccb5ac7e72d656ac54b546f467765078e83ebbd264b6140",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/UnaryQueryComparison.lean",
+      "local_sha256": "dcbadebdf93758eaf5aa382527280d7a441eaf8b9d2ec7d98a04bb9c0bc7a5e7"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.UnaryQueryFrequencies",
+      "source_sha256": "eb316cd0d476c5d68cbe7a49d410bd0659c2861997e3ce572aaa7624872f6b47",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/UnaryQueryFrequencies.lean",
+      "local_sha256": "09db43ab7826c0afd634eced031d15367b35018161005cdcbd0c9bed7fe66423"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.UnaryRecords",
+      "source_sha256": "ffff11ceb67ca7c94e9ed9402212579f1a0a94dc94b0dc3adede7a5e3e860118",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/UnaryRecords.lean",
+      "local_sha256": "af3c7ea2a532abd0d509ffdedde73aae9970ade754f12f4725ba8b96e804c1dd"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.UnfilteredHistogramEnergy",
+      "source_sha256": "28dcc987f5e953c505330a4079acfceeaf0b4a67c37dea086dbe22705644de25",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/UnfilteredHistogramEnergy.lean",
+      "local_sha256": "a5ceb4353ece1edfc9b95231766d104598b818a782bb5ffa121aca4e7df3b810"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.UniformLeafComparisons",
+      "source_sha256": "428be6b2d9c759d0b90cbb219c56212e1840a6d3a80a4d6749cbd44da70c3b9a",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/UniformLeafComparisons.lean",
+      "local_sha256": "8014943200ba27358dd1a5ca95bb8f5767929c2f06d81014d85b0a0813167d84"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.UniformSideComparisons",
+      "source_sha256": "1c2884c57d6abe2eca54bc31af4647e5508effba990476472b2ee22ee89f41a9",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/UniformSideComparisons.lean",
+      "local_sha256": "a6a3fe82a83f9406b81ca2437ade549f7c41f688e9b1982658822863f4b6c0ce"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.UniqueStatusCoefficients",
+      "source_sha256": "d7b9390de0e5a6fd58c6150c57313a8df7b37f5b2b62bc4e350a0f9a7c43471f",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/UniqueStatusCoefficients.lean",
+      "local_sha256": "88479948a888800cf6e1f203d59b5c9fa3eb4308d5875dac183af7e1e59710c1"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.UnseenCrossingFactorization",
+      "source_sha256": "22b512df88d33e1f07053a17808d7f5e53ece30afb56d4d291e358bd2f50d0d6",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/UnseenCrossingFactorization.lean",
+      "local_sha256": "bfaa9b50980b1c65b2641f80b0154b67e26d2c2a7d57d097119d269daf6a6235"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.WalshBounds",
+      "source_sha256": "b7844ba524d724fe158a418788473646c6cd88eddfa30247a97b62ad90c5decf",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/WalshBounds.lean",
+      "local_sha256": "99b2a36350c6946c6ea06706085ae0355e6183d985895eb52610f1eff842a401"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.WeakProductComparison",
+      "source_sha256": "93646eeddba30451dd5915b4e68dd94e8982b772f3cee142bf36b7daad5c4ff8",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/WeakProductComparison.lean",
+      "local_sha256": "d113609b1c8f5dbe7aa5cf5a13817ee00786bea2ac186c874f7eaf85bb1f648f"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.WeightedPartitions",
+      "source_sha256": "51e930b0b1d3d3e0e82078ac88fbb0b39f9548448f9a54ffecaa620db257181b",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/WeightedPartitions.lean",
+      "local_sha256": "1944339a82175a3a55220f87852a1820b70100e2512c36d4fbdac235e5d6d5e5"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ZeroDiscrepancyLemma",
+      "source_sha256": "1f9f894236617a7395e538b88ba2ed11333ce16ead82f6007c2f2a19925f10d6",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ZeroDiscrepancyLemma.lean",
+      "local_sha256": "36b18227b9570af5062e86b792c2cacc038ba829ed40d965f4382cee4a0fd6af"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerCounterexample.ZeroDiscrepancyPrediction",
+      "source_sha256": "649c2de516ca3ab46382802a0c9c018eb9266f0068d1f211ef04e7445a5e0c9a",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerCounterexample/ZeroDiscrepancyPrediction.lean",
+      "local_sha256": "e8fb13a9a8b427b8fb047613767ecec1887e1ec99341aed4c77ad12d08659308"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerMatching.BasicMatching",
+      "source_sha256": "94f8c66cb131e09f0350da2121d92d907a58c14d0108563a57506e143c869b7c",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerMatching/BasicMatching.lean",
+      "local_sha256": "4ad784351860b3dfd542b37e07301133814cd8d0b72cac0f0b1850c2e55a95cf"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerMatching.BranchCounting",
+      "source_sha256": "262922d79717ee0196d304671798b275451d2db42eb03d730b9d15c17b484ecc",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerMatching/BranchCounting.lean",
+      "local_sha256": "5b1afccf2c93876d34c5dc74b9c24d536dd15d5e17a4fd82ea7729fba7f5415a"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerMatching.BranchGeometry",
+      "source_sha256": "27e5c096069490058ce38e5883fcf08d393b07b2df33e1c3b5f25394352ca89c",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerMatching/BranchGeometry.lean",
+      "local_sha256": "6eb6a4e386dac5a4151e526051897f911ab7023b2c913496d783180b9b0f79a0"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerMatching.ChromaticBound",
+      "source_sha256": "233a3300611081d38538c56c1e4eee56c67c54305b9adb2b66c42b7b2ed73f97",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerMatching/ChromaticBound.lean",
+      "local_sha256": "df8ba22df56622251236e6470b827062380b27927c85e1ede876512164dcd18e"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerMatching.Definitions",
+      "source_sha256": "fa09e3e88260b1a9901f25a9e5b73372194ffb19d78e23b8a6be4091714987b2",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerMatching/Definitions.lean",
+      "local_sha256": "1d5fb905c1c4733f1546ca2f4b42c719da0b549834d702f6d6b32d4ac7e7fccd"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerMatching.FinitePairing",
+      "source_sha256": "b45172bf7072e12a44931f6cac7c1ca7b9132c24fdebe344faf19e12e8bb845b",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerMatching/FinitePairing.lean",
+      "local_sha256": "9f91c7f5b3005cb77aaf78a14a8a5fb848b81cd264bbe061efec768f8c2b2d87"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerMatching.Main",
+      "source_sha256": "0310ce6bf35195954bc27d24f33ce061ae26606fdc80afce7274f07053067ec4",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerMatching/Main.lean",
+      "local_sha256": "7e63605674cf75d3437fd7fb1d4214477e567044d8ca20802042e0586e56996c"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerMatching.MinorBound",
+      "source_sha256": "54eb94130b14f336307b5328aac740526a3b8159cacc9e67e6649401a14f414a",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerMatching/MinorBound.lean",
+      "local_sha256": "0ed783eef0849e155d2f7cf485599f38de3ba419a44b719bd04e0e641401f897"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerMatching.PairingExtension",
+      "source_sha256": "f66c24aa8c5abd92a49e7c026993bb4ea9c85ce0fe3694f3bda31a9e2118aca2",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerMatching/PairingExtension.lean",
+      "local_sha256": "bf930b15297145c4696c5766d2571f18667207dc7d096be2f3af12653da2c1e1"
+    },
+    {
+      "module": "OAI.Combinatorics.HadwigerMatching.SmallBranches",
+      "source_sha256": "b561a3de18a211d932f06523e54851097e78f3c4b1a23e3724c3c6cb359a0503",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/HadwigerMatching/SmallBranches.lean",
+      "local_sha256": "fcdf389fa421ffc248341a29355c1a369ccc1a809f8888e62eacd2ac40627625"
+    },
+    {
+      "module": "OAI.Combinatorics.ListHadwiger.Basic",
+      "source_sha256": "a93baedbe1fb015d164f313b998110230a06d58fd47af644ec4a5f1cbca392e8",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/ListHadwiger/Basic.lean",
+      "local_sha256": "bd8ab6263c2cc4a5f174d760a4976cefeed4aab17943783889a6a8617b4ba5e6"
+    },
+    {
+      "module": "OAI.Combinatorics.ListHadwiger.Model",
+      "source_sha256": "b13f47b50c7b8bc4f0e8f33fec0d000b044e63480b8a8d692451a6e728b25ae0",
+      "local_path": "proofs/Lax342547Proofs/Upstream/OAI/Combinatorics/ListHadwiger/Model.lean",
+      "local_sha256": "380b78b6983916ceb5dfed9e46f7cef9aa0af5750e79e5f1dd9ad901107dba71"
+    }
+  ],
+  "compatibility_patch": "upstream-v4.33.patch",
+  "compatibility_patch_sha256": "fab53ed20f09d665f52194fd83290365bfa96783fa98466673f782ab1aec32e2",
+  "compatibility_patch_format": "Zero-context unified diff of namespace-adapted source without attribution headers; apply with git apply --unidiff-zero."
+}

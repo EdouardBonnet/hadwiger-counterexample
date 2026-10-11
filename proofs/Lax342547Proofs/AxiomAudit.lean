@@ -1,3 +1,10 @@
+import Lax342547Proofs.Construction
+import Lax342547Proofs.SyntheticGramSlices
+import Lax342547Proofs.OrbitSliceLaw
+import Lax342547Proofs.TesterProductRouting
+import Lax342547Proofs.PureTesterRoom
+import Lax342547Proofs.SyntheticRankTransfer
+import Lax342547Proofs.FixedSelectorGram
 import Lax342547Proofs.UniformTableInjection
 import Lax342547Proofs.EmpiricalVariance
 import Lax342547Proofs.GramOrbitDensity
@@ -316,6 +323,26 @@ import Lax342547Proofs.PairedWitnesses
 import Lax342547Proofs.JoinedGramOrbits
 
 import Lax342547Proofs.JointGramInjection
+
+import Lax342547Proofs.RawBatchComparison
+
+import Lax342547Proofs.RawFrameComparison
+
+import Lax342547Proofs.GroupTensorComparison
+
+import Lax342547Proofs.RawGroupedComparison
+
+import Lax342547Proofs.ConditionedAffineColumns
+
+import Lax342547Proofs.AffineSliceVariance
+
+import Lax342547Proofs.AffineSliceScales
+
+import Lax342547Proofs.CommonTestTransfer
+
+import Lax342547Proofs.SmallSliceRank
+
+import Lax342547Proofs.FlavorAffineSlices
 
 #print axioms Lax342547Proofs.HadwigerMatching.hadwiger_matching_bound
 #print axioms Lax342547Proofs.HadwigerMatching.card_le_twice_chromaticNumber_of_indepNum
@@ -1729,3 +1756,86 @@ import Lax342547Proofs.JointGramInjection
 #print axioms Lax342547Proofs.JointGramInjection.ambient_failure
 #print axioms Lax342547Proofs.JointGramInjection.reference_failure
 #print axioms Lax342547Proofs.JointGramInjection.conditioned_reference_failure
+
+#print axioms Lax342547Proofs.RawBatchComparison.union_conditional_integral
+#print axioms Lax342547Proofs.RawBatchComparison.union_test_comparison
+
+#print axioms Lax342547Proofs.RawFrameComparison.errorBound_half_decay
+#print axioms Lax342547Proofs.RawFrameComparison.eventually_valid
+#print axioms Lax342547Proofs.RawFrameComparison.primal_test_comparison
+#print axioms Lax342547Proofs.RawFrameComparison.full_test_comparison
+
+#print axioms Lax342547Proofs.GroupTensorComparison.product_comparison
+#print axioms Lax342547Proofs.GroupTensorComparison.reference_product_comparison
+
+#print axioms Lax342547Proofs.GroupTensorComparison.uniform_group_comparison
+
+#print axioms Lax342547Proofs.RawGroupedComparison.primal_groups
+#print axioms Lax342547Proofs.RawGroupedComparison.full_groups
+
+#print axioms Lax342547Proofs.ConditionedAffineColumns.freePair_uniform
+#print axioms Lax342547Proofs.ConditionedAffineColumns.nominal_pair_failure
+#print axioms Lax342547Proofs.ConditionedAffineColumns.conditioning_pair_bound
+#print axioms Lax342547Proofs.ConditionedAffineColumns.conditioned_nominal_pair_failure
+#print axioms Lax342547Proofs.AffineSliceVariance.reference_mean
+#print axioms Lax342547Proofs.AffineSliceVariance.coefficient_variance
+#print axioms Lax342547Proofs.AffineSliceVariance.affine_slice_variance
+#print axioms Lax342547Proofs.AffineSliceVariance.independent_free_pair_bound
+#print axioms Lax342547Proofs.AffineSliceVariance.flavored_slice_variance
+#print axioms Lax342547Proofs.AffineSliceScales.budget_decay
+#print axioms Lax342547Proofs.AffineSliceScales.uniform_threshold
+#print axioms Lax342547Proofs.CommonTestTransfer.mean_comparison
+#print axioms Lax342547Proofs.CommonTestTransfer.success_transfer
+
+#print axioms Lax342547Proofs.SmallSliceRank.independent_column_selection
+#print axioms Lax342547Proofs.SmallSliceRank.rank_witness
+#print axioms Lax342547Proofs.SmallSliceRank.rank_le_of_small_slices
+#print axioms Lax342547Proofs.SmallSliceRank.cross_affine_product
+#print axioms Lax342547Proofs.SmallSliceRank.cross_products_rank
+#print axioms Lax342547Proofs.SmallSliceRank.cross_rank_of_products
+#print axioms Lax342547Proofs.SmallSliceRank.rank_from_local_products
+#print axioms Lax342547Proofs.SmallSliceRank.parity_rank_contradiction
+
+#print axioms Lax342547Proofs.FlavorAffineSlices.free_pair_uniform
+#print axioms Lax342547Proofs.FlavorAffineSlices.nominal_pair_failure
+#print axioms Lax342547Proofs.FlavorAffineSlices.conditioned_pair_failure
+#print axioms Lax342547Proofs.FlavorAffineSlices.flavor_slice_variance
+
+#print axioms Lax342547Proofs.FixedSelectorGram.gram_cell_mass
+#print axioms Lax342547Proofs.FixedSelectorGram.gram_mass_bound
+#print axioms Lax342547Proofs.FixedSelectorGram.gram_restriction
+#print axioms Lax342547Proofs.FixedSelectorGram.massFloor_pos
+#print axioms Lax342547Proofs.FixedSelectorGram.positive_gram_mass
+#print axioms Lax342547Proofs.FixedSelectorGram.prescription_mass
+#print axioms Lax342547Proofs.FixedSelectorGram.restriction_uniform
+#print axioms Lax342547Proofs.FixedSelectorGram.routed_gram
+#print axioms Lax342547Proofs.FixedSelectorGram.same_selector_gram
+
+#print axioms Lax342547Proofs.SyntheticRankTransfer.incompatible_events
+#print axioms Lax342547Proofs.SyntheticRankTransfer.transferred_incompatible_events
+#print axioms Lax342547Proofs.SyntheticRankTransfer.rank_tests_incompatible
+#print axioms Lax342547Proofs.SyntheticRankTransfer.prediction_error_budget
+#print axioms Lax342547Proofs.SyntheticRankTransfer.uniform_prediction_error
+#print axioms Lax342547Proofs.SyntheticRankTransfer.exists_error_margin
+
+#print axioms Lax342547Proofs.PureTesterRoom.allowed_drivers_card
+#print axioms Lax342547Proofs.PureTesterRoom.pure_pairs_card
+#print axioms Lax342547Proofs.PureTesterRoom.pure_gram_cell_mass
+#print axioms Lax342547Proofs.PureTesterRoom.slots_card
+#print axioms Lax342547Proofs.PureTesterRoom.uniformFloor_pos
+#print axioms Lax342547Proofs.PureTesterRoom.uniform_floor_bound
+#print axioms Lax342547Proofs.PureTesterRoom.uniform_pure_gram_mass
+
+#print axioms Lax342547Proofs.TesterProductRouting.sum_extended_product
+#print axioms Lax342547Proofs.TesterProductRouting.routed_product_gram
+#print axioms Lax342547Proofs.TesterProductRouting.product_gram_cell_mass
+
+#print axioms Lax342547Proofs.OrbitSliceLaw.slice_uniform
+
+#print axioms Lax342547Proofs.SyntheticGramSlices.slice_gram_products
+#print axioms Lax342547Proofs.SyntheticGramSlices.pure_slice_gram_mass
+
+#print axioms Lax342547Proofs.SyntheticGramSlices.pure_slice_variance
+
+#print axioms Lax342547Proofs.Upstream.OAI.HadwigerCounterexample.exists_graphs
+#print axioms Lax342547Proofs.Construction.arbitrarily_large_small_connected_matching

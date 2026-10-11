@@ -1,4 +1,5 @@
 import Lax342547.Counterexample
+import Lax342547Proofs.Construction
 import Lax342547Proofs.HadwigerMatching.MinorBound
 import Lax342547Proofs.HadwigerMatching.ChromaticBound
 import Lean.Elab.Tactic.Omega
@@ -20,8 +21,6 @@ theorem hadwiger_lt_chromatic_of_small_connected_matching
 /--
 ---
 conclusion: Lax342547.Counterexample.arbitrarily_large_hadwiger_counterexample
-assumptions:
-  - Lax342547.Counterexample.arbitrarily_large_small_connected_matching
 ---
 Theorem 1.1 supplies the graph. The proved matching-minor bound and
 chromatic lower bound then contradict Hadwiger's inequality.
@@ -30,7 +29,7 @@ theorem arbitrarily_large_hadwiger_counterexample (lowerBound : ℕ) :
     ∃ m : ℕ, lowerBound ≤ m ∧ 5 ≤ m ∧ ∃ G : SimpleGraph (Fin m),
       G.indepNum ≤ 2 ∧ hadwigerNumber G < G.chromaticNumber.toNat := by
   obtain ⟨m, hm, G, hα, hc⟩ :=
-    Lax342547.Counterexample.arbitrarily_large_small_connected_matching (max lowerBound 5)
+    Construction.arbitrarily_large_small_connected_matching (max lowerBound 5)
   refine ⟨m, (le_max_left _ _).trans hm, (le_max_right _ _).trans hm, G, hα, ?_⟩
   apply hadwiger_lt_chromatic_of_small_connected_matching G hα
   · simpa using hc

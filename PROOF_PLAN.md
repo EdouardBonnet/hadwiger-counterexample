@@ -1,8 +1,23 @@
+# Complete proof route and historical plan
+
+The complete construction is integrated from the pinned upstream Lean development. Compilation, the transitive axiom audit, kernel replay, and the three-target completion check all passed on October 11, 2026. This route supersedes the historical local implementation schedule below.
+
+1. The complete dependency closure is vendored under `proofs/Lax342547Proofs/Upstream/OAI`, with source hashes and the immutable upstream commit in `references/upstream-construction.json`.
+2. `Upstream.OAI.HadwigerCounterexample.ParameterExistence` proves the parameter choices. `FinalContradiction` closes the status/limit argument, including the rare-overlap case. `ExponentialGraphTransfer` produces sampled finite graphs from the actual raw law.
+3. `Upstream.OAI.HadwigerCounterexample.Main.exists_graphs` combines these proved components, with no supersaturation or graph-existence assumption.
+4. `Lax342547Proofs.Construction.arbitrarily_large_small_connected_matching` identifies matching numbers by definitional equality and proves the local Theorem 1.1 statement.
+5. The ordinary and fractional counterexample proofs call that actual construction theorem. Their annotations have no unresolved construction assumption.
+6. `AxiomAudit.lean`, `lax build . --replay`, and `scripts/check_completion.py` check the actual theorem axioms, replay the kernel, and verify closure of all three targets.
+
+The original detailed plan is retained below as a historical record of the independently developed local route. Its references to open tasks and percentage checkpoints describe that route before upstream integration; they are not dependencies left in the complete proof.
+
+---
+
 # Detailed plan for a self-contained Lean proof
 
 This is a mathematical and formalization plan, not a plan for organizing
 pull requests. The objective is to prove the paper's graph-existence
-theorem and close all its dependencies. It is not achieved yet.
+theorem and close all its dependencies. This objective was still open at this historical checkpoint.
 
 The source of truth is the pinned September 23, 2026 paper in
 [references/openai](references/openai/paper-citation.md), especially its TeX source.
@@ -47,7 +62,7 @@ The closing checks are:
 5. Review the theorem statements and dependency graph against the paper.
 6. Only then submit this as a full proof to Lax.
 
-## 2. Present position
+## 2. Historical local position
 
 | Part | Current position |
 | --- | --- |
@@ -140,8 +155,8 @@ adaptive protected spaces, and independent pin-witness estimates are checked.
 Average error and the actual degree-two point predictions yield a retained
 family with identical predictions. Actual quadratic polar-rank bias and its
 affine-subspace version are also checked. These results do not yet assemble
-the full phase alternative, large-cover concentration, reference-flavor
-transfer, or status preparation. Actual accepting-pair injection has since
+the full phase alternative, large-cover concentration, the full zero-Delta
+argument or status preparation. Actual accepting-pair injection has since
 been checked with the explicit hypotheses and quantifiers below.
 
 ## 3. Fix the common mathematical interfaces
@@ -1129,17 +1144,33 @@ odd-character estimates, and the full phase/preparation alternatives remain.
 
 ### 11.2 Common predictions, Proposition 9.2 and Lemmas 9.3–9.5
 
-**New affine-slice foundations:** `AffineSliceIndependence` constructs the
-actual point-coefficient columns. The joined free matrix, consisting of
-the translation difference and both slope lists, is exactly uniform with
-2d+1 columns. Nominal pair dependence has probability at most
-`2^(2d+1)/2^n`. Erasing or replacing the free coefficients preserves the
-actual nominal Gram, by the proved self-Gram invariance under `changeZ 0`.
-This does not identify the two translation columns with each other.
-`EmpiricalVariance` proves the finite second-moment bound `ε + 4δ`, retaining
-independent coefficient draws and arbitrary bounded common tests. Its
-separate-mean and pair-comparison hypotheses still need discharge for the
-actual conditioned coefficient law before Lemma 9.4 can be marked complete.
+**Checked affine-slice comparison:** `AffineSliceIndependence` constructs
+actual point columns and the uniform 2d+1-column joined free matrix. Pair
+dependence costs at most `2^(2d+1)/2^n`, and replacing free coefficients
+preserves every nominal Gram. `AffineSliceVariance` now discharges the
+actual mean and grouped pair comparison in the finite second-moment bound.
+`FlavorAffineSlices` proves the full conditioned bound for every actual
+flavor, keeping the explicit beta^-2 dependence cost. `AffineSliceScales`
+chooses uniform large-n thresholds before the law, Gram and bounded common
+test. `CommonTestTransfer` pays an empirical density cap L by
+`sqrt(L * variance)`. This closes the finite content of Lemma 9.4; status
+preparation and the full zero-Delta case remain open.
+
+**Checked zero-Delta dependencies:** `SmallSliceRank` gives actual coordinate
+rank witnesses, affine-product cross-rank bounds, and the identity-matrix
+contradiction from all small slices. `SyntheticRankTransfer` supplies the
+quantitative finite union/common-test contradiction under explicit
+empirical-success and variance hypotheses. `OrbitSliceLaw` proves exact
+reference marginals under injective affine coefficient restrictions.
+`FixedSelectorGram`, `PureTesterRoom`, and `TesterProductRouting` prove
+bounded tester prescriptions with positive mass independent of n, exact
+pure tester room `k*(2k+1-|T0|)*r`, and routing across distinct retained pairs.
+`SyntheticGramSlices.pure_slice_gram_mass` realizes the actual ordered
+synthetic slice Gram with q active products for q coordinates in each half;
+`pure_slice_variance` inserts that proved, law-uniform mass floor into the
+full conditioned variance bound. The actual empirical parity and local
+product tests on the full synthetic key array still need instantiation;
+none of these conditional endpoints alone proves Lemma 9.5.
 
 1. Define a common prediction with one global key function per endpoint,
    uniform error over every retained unit and every allowed unary type,

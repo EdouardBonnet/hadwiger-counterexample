@@ -12,8 +12,8 @@ independence number at most two and connected-matching number less than
 $m/100$. Together with Proposition 3.5, this gives graphs of arbitrarily
 large order with $h(G)<\chi(G)$.
 
-The existence assertion is the construction to be proved; the counting
-inequality alone does not establish it.
+The proof package establishes the existence assertion by the complete
+binary-frame construction, and derives the coloring consequences from it.
 -/
 
 namespace Lax342547.Counterexample

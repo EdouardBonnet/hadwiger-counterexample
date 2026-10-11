@@ -9,5 +9,6 @@
   "formalized_upstream": [
     "Proposition 3.5: the matching-minor bound and its ordinary chromatic consequence"
   ],
-  "unproved_target": "Theorem 1.1 and the graph construction, including raw supersaturation (Theorem 3.1)"
+  "unproved_target_at_original_retrieval": "Theorem 1.1 and the graph construction, including raw supersaturation (Theorem 3.1)",
+  "complete_construction_provenance": "upstream-construction.json"
 }

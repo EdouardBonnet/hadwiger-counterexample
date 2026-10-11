@@ -1,3 +1,9 @@
+import Lax342547.SyntheticGramSlices
+import Lax342547.OrbitSliceLaw
+import Lax342547.TesterProductRouting
+import Lax342547.PureTesterRoom
+import Lax342547.SyntheticRankTransfer
+import Lax342547.FixedSelectorGram
 import Lax342547.FrameTranspose
 import Lax342547.RetainedEmptyPredictions
 import Lax342547.EmptyPredictions
@@ -354,3 +360,13 @@ import Lax342547.EmpiricalVariance
 import Lax342547.UniformTableInjection
 import Lax342547.JoinedGramOrbits
 import Lax342547.JointGramInjection
+import Lax342547.RawBatchComparison
+import Lax342547.RawFrameComparison
+import Lax342547.GroupTensorComparison
+import Lax342547.RawGroupedComparison
+import Lax342547.ConditionedAffineColumns
+import Lax342547.AffineSliceVariance
+import Lax342547.AffineSliceScales
+import Lax342547.CommonTestTransfer
+import Lax342547.SmallSliceRank
+import Lax342547.FlavorAffineSlices
