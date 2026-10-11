@@ -16,6 +16,12 @@ interfaces, dependency order, quantitative obligations, and completion
 criteria for the entire construction. It distinguishes checked results
 from planned arguments and treats the rare-overlap branch separately.
 
+The finite no-cover part of §8 is now checked: actual exposed row/column
+quotients, a deterministic greedy dyadic certificate, componentwise rank
+growth, exact binary channel character averages, and even-moment/Markov
+phase tails. The complete phase alternative and accepting-pair injection
+remain open.
+
 ## Target
 
 For every lower bound, construct a finite graph on `Fin m`, with `m` at least
@@ -44,8 +50,9 @@ by positions and may contain repeated raw vertices.
   ordered fingerprint replay/count, binomial and disjoint-pair sample tails,
   repeated raw-type matching occurrences, and eventual paper parameter
   margins. `PaperGraphTransfer.paper_graph_transfer` produces sampled graphs
-  with the required bounds assuming genuine raw supersaturation; the
-  high-probability endpoint remains separate.
+  with the required bounds assuming genuine raw supersaturation; the high-probability endpoint is
+  checked in `PaperSampleSuccess.paper_sample_success`, under the same genuine
+  supersaturation assumption.
 - Proposition 3.5: the matching-minor bound, adapted from OpenAI's proof.
 - The ordinary chromatic lower bound, adapted from OpenAI's proof.
 - Lemma 2.2: symmetry, looplessness, and triangle-freeness of the hole relation.
@@ -232,11 +239,11 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 At the latest validated checkpoint, `lake build` and `lax build . --replay` pass,
-with 232 concepts and 847 annotated proofs, 845 of which have no open
+with 281 concepts and 966 annotated proofs, 964 of which have no open
 mathematical assumptions. All kernel replays pass. The only proofs with unresolved archive dependencies are the two
 counterexample consequences of the open Theorem 1.1. The finite graph
 transfer has raw supersaturation as an explicit mathematical hypothesis.
-Overall mathematical completion is estimated at about 65%; the requested
+Overall mathematical completion is estimated at about 70%; the requested
 80% milestone has not yet been reached.
 
 The completed preliminary proofs report only Lean's standard background

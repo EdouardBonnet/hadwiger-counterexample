@@ -35,7 +35,7 @@ this file is the shorter status and acceptance checklist.
 | Uniform raw frames, injective tensor realization, and annihilators | §2.4, equations (2.13)–(2.16) | Concrete model assembled; frame existence, embedding, self-contraction, raw-space count, product law, and sampled-graph independence checked |
 | Finite entropy projection, including the full support assertion | Lemma 3.2 | Complete finite proof, including full feasible support and the exact information-projection/support cost |
 | Real-capacity terminal cut with both endpoint and pair exceptions | Lemma 3.3 | Complete finite real-flow proof and both strict exception mass bounds |
-| Entropy-controlled fingerprints and sample probability bounds | Proposition 3.4 | Entropy algorithm, ordered replay/count, both sample tails, repeated-type matching transfer, and eventual paper margins checked; conditional graph existence closed; high-probability endpoint remains |
+| Entropy-controlled fingerprints and sample probability bounds | Proposition 3.4 | Entropy algorithm, ordered replay/count, both sample tails, repeated-type matching transfer, and eventual paper margins checked; conditional graph existence and the high-probability endpoint checked |
 | Frame laws and full reference image cap | §4.1, Lemmas 4.1–4.3 | Complete: paired orbits, normalization, conditional laws, tuple laws, density bounds, and the all-rank two-endpoint reference cap with uniform scale choice |
 | Sparse intersections and representatives | §4.2, Lemma 4.4 | Complete: explicit exponential exception, exact coefficient count, shared-tensor ranks, unique majority-zero representatives, support and chiStar bounds, and a uniform concrete scale |
 | Two peelings with exact pins and subsequent image bounds | §4.3, Lemma 4.5 | Complete in quantitative finite form: both partitions, restriction trimming, metadata/image count, preserved pins and effective spaces, final rank budget, image/density bounds, mixed marginal costs, and actual-mass recovery |
@@ -46,7 +46,7 @@ this file is the shorter status and acceptance checklist.
 | Uniform mixing matrices, chosen before the unit law | §5.3, Lemma 5.5 | Complete: simultaneous unary rank/row spaces and all binary parities on every flavor, explicit large-n threshold, and the paper's mixer parameters |
 | Scalar recipes, table flags, gradient realization | §6, Theorem 6.3 | Effective dimension/rank bounds, table spaces and injection flags, private complements, unary admissibility, fresh-key independence, coefficient/table counts, concrete atom prescriptions, effective contractions, and full paired recipes checked; all four endpoint prescriptions, frozen baselines of rank at most 3K+28, and residual vanishing on effective/selected profiles checked; whole-space realization, frozen assembly, all four holes, and primal record count checked under the genuine recipe and capacity hypotheses |
 | Accepted queries and overlap-to-four-holes implication | §7, Proposition 7.1 | Finite collision core checked: actual primal-entry/target instantiation and all four holes in original PMF cells, both all-rank leaf image caps, key-indexed unary records, independent parameter and actual leaf-mass averaging, skipped pairs, pruning/scalar exponents, squared restriction recovery and bounded-option costs; complete numerical/status metadata encoding, uniform record budget/target selection and the full asymptotic Proposition 7.1 wrapper remain |
-| Phase alternatives and accepting-pair injection | §8 | Not formalized |
+| Phase alternatives and accepting-pair injection | §8 | Finite no-cover rank growth, actual component channel characters, even moments, and explicit Markov tails checked; raw-law density/candidate union, large-cover branch, injection, and full alternative remain |
 | Common prediction, exactification, and status preparation | §9, Proposition 9.2 | Not formalized |
 | Histogram compactness, Gram comparisons, and many-query bounds | Lemmas 10.1–10.5 | Not formalized |
 | Mixed-law tests, binary mixing, and unary positivity | Lemmas 10.7–10.11 | Not formalized |
@@ -61,12 +61,14 @@ this file is the shorter status and acceptance checklist.
 
 ## Next implementation steps
 
-The validated estimate is now about 65%. The conditional finite transfer is
+The validated estimate is now about 70%. The conditional finite transfer is
 checked in `PaperGraphTransfer.paper_graph_transfer`; it assumes the genuine
 uniform raw supersaturation property and does not prove Theorem 1.1. The
-displayed high-probability endpoint remains to be assembled from the checked
-container and sample tails. Phase alternatives and status preparation are
-the next major construction dependencies.
+high-probability graph-success bound is now checked in
+`PaperSampleSuccess`. The finite no-cover rank-growth lemma and actual
+componentwise channel moment/tail bounds are checked. Their raw-law transfer
+and uniform candidate union, the large-cover branch, accepting-pair injection,
+and status preparation remain major dependencies.
 
 The concrete algebraic model, Lemmas 5.1–5.3, and the full uniform
 mixer theorem in Lemma 5.5 are complete. The endpoint

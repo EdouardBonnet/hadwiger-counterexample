@@ -80,7 +80,7 @@ The closing checks are:
 | Table coordinates and atom prescriptions, Lemma 6.2 | Effective dimension/rank bounds, protected/private channels, unary admissibility, fresh-key independence, table and nominal-coefficient counts, effective contractions, paired lists, and the concrete numerical-to-atom-gradient prescription theorem checked; all four endpoint prescriptions and the bounded baseline checked; whole-space realization and frozen assembly checked |
 | Gradient realization, Theorem 6.3 | Actual obstruction decomposition, recipe solvability, bounded derivatives, `14K+140` residual matrices, chosen pin/key-preserving compression with `Dquo` rank, and allowed pure factorization checked; explicit target routing, capacity margin, nonlinear correction, frozen assembly, four-hole implication, and primal record count checked |
 | Entropy projection and real terminal cuts, Lemmas 3.2–3.3 | Complete finite proofs, including full feasible support and real residual augmentation |
-| Entropy containers and finite graph transfer, Proposition 3.4 | Checked conditional graph-existence transfer, exact exception tails, and eventual paper sampling margins; the displayed high-probability wrapper remains separate |
+| Entropy containers and finite graph transfer, Proposition 3.4 | Checked conditional graph-existence transfer, exact exception tails, and eventual paper sampling margins; the high-probability graph-success bound is checked under genuine supersaturation |
 | Raw supersaturation and the later probabilistic construction | Not proved |
 | Theorem 1.1 | Open |
 | Counterexample corollaries | Checked only conditional on Theorem 1.1 |
@@ -106,11 +106,12 @@ normalization and successive-restriction identities are checked separately.
 The conditional graph-existence transfer is now checked. The actual raw
 supersaturation theorem and the later construction remain open.
 
-After completing deterministic gradient realization, the finite collision
-core, and the conditional entropy/container graph transfer, overall completion
-is estimated conservatively at **about 65%**, weighted by remaining mathematical
-difficulty rather than declaration count. The validated archive contains 232
-concepts and 847 annotated proofs, with 845 closed proof networks. The two conditional proofs are the consequences of the
+After deterministic gradient realization, the finite collision core, the
+conditional high-probability graph transfer, and finite no-cover rank growth
+and component channel moment bounds, overall completion
+is estimated conservatively at **about 70%**, weighted by remaining mathematical
+difficulty rather than declaration count. The validated archive contains 281
+concepts and 966 annotated proofs, with 964 closed proof networks. The two conditional proofs are the consequences of the
 open graph-existence theorem.
 
 This milestone includes actual primal tests, target construction and all four
@@ -124,7 +125,7 @@ status/metadata encoding, its uniform record budget and consistent target
 selection for all cells, and the asymptotic wrapper of Proposition 7.1 remain.
 The later probabilistic construction and its full raw supersaturation
 conclusion remain substantial open work. This is a progress estimate, not a proof of
-Theorem 1.1 or a claim that 65% of the numbered paper declarations are proved.
+Theorem 1.1 or a claim that 70% of the numbered paper declarations are proved.
 
 ## 3. Fix the common mathematical interfaces
 
@@ -1065,6 +1066,20 @@ and status arguments remain separate.
 ## 11. Phase alternatives and status preparation — §§8–9
 
 ### 11.1 Phase alternatives, Theorem 8.2 and Lemmas 8.3–8.5
+
+**Checked finite progress:** `NoCoverCertificate` constructs the exposed-cover
+certificate from actual maps and low total rank. Greedy ordering of the
+combined row/column spaces replaces the paper's averaging over permutations;
+the resulting dyadic deficit bound is deterministic. `IndexedRankGrowth`
+proves the finite componentwise no-cover bound, with exponent `q*s` (stronger
+than the paper's `q*s/2`). `TensorCharacters` and `ComponentMoments` evaluate
+actual independent binary channel characters and even moments with total
+component rank. `NoCoverMoments.no_cover_phase_tail` gives the explicit
+finite Markov bound. The raw channel density transfer and uniform candidate
+union have not yet been integrated. The large-cover concentration branch,
+accepting-pair injection, tiny-cover consequences, and full phase alternative
+remain open.
+
 
 1. Define marked units, their tensors `Δ`, and componentwise covers.
 2. Prove the rank-deficit inequality for sums after quotienting exposed

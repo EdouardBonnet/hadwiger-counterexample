@@ -1,3 +1,52 @@
+import Lax342547Proofs.NoCoverMoments
+import Lax342547Proofs.ComponentMoments
+import Lax342547Proofs.TensorCharacters
+import Lax342547Proofs.IndexedRankGrowth
+import Lax342547Proofs.PaperSampleSuccess
+import Lax342547Proofs.ChannelMoments
+import Lax342547Proofs.ChannelCharacters
+import Lax342547Proofs.MomentTails
+import Lax342547Proofs.BilinearMean
+import Lax342547Proofs.ComponentRankGrowth
+import Lax342547Proofs.FiniteMoments
+import Lax342547Proofs.NoCoverRank
+import Lax342547Proofs.ComponentDuals
+import Lax342547Proofs.NoCoverCertificate
+import Lax342547Proofs.ComponentSpaces
+import Lax342547Proofs.CoverClasses
+import Lax342547Proofs.ModeBudgets
+import Lax342547Proofs.ExposedSums
+import Lax342547Proofs.FilterOccurrences
+import Lax342547Proofs.ProjectedCounts
+import Lax342547Proofs.ListDeficits
+import Lax342547Proofs.CoverCounts
+import Lax342547Proofs.PartitionLists
+import Lax342547Proofs.SmallExposure
+import Lax342547Proofs.CoverProjection
+import Lax342547Proofs.SumEnvelope
+import Lax342547Proofs.SumRank
+import Lax342547Proofs.MappedSpans
+import Lax342547Proofs.SpanDeficitMono
+import Lax342547Proofs.CombinedSpans
+import Lax342547Proofs.ActualDeficits
+import Lax342547Proofs.GreedyTails
+import Lax342547Proofs.AdaptiveUnion
+import Lax342547Proofs.ProjectedSpans
+import Lax342547Proofs.ListTails
+import Lax342547Proofs.DyadicScale
+import Lax342547Proofs.AdaptiveSets
+import Lax342547Proofs.DyadicTails
+import Lax342547Proofs.GreedySpans
+import Lax342547Proofs.LiftedSum
+import Lax342547Proofs.BlockDeficits
+import Lax342547Proofs.PaperGraphProbability
+import Lax342547Proofs.AdaptiveSampling
+import Lax342547Proofs.DyadicDeficits
+import Lax342547Proofs.SpanDeficits
+import Lax342547Proofs.DirectRanks
+import Lax342547Proofs.RankLoss
+import Lax342547Proofs.ProbabilityScales
+import Lax342547Proofs.GraphFailure
 import Lax342547Proofs.PaperGraphTransfer
 import Lax342547Proofs.SampleScales
 import Lax342547Proofs.ContainerAsymptotics
@@ -1142,6 +1191,174 @@ import Lax342547Proofs.PairedWitnesses
 #print axioms Lax342547Proofs.SampleScales.eventually_paper_sampling_budget
 
 #print axioms Lax342547Proofs.PaperGraphTransfer.paper_graph_transfer
+
+#print axioms Lax342547Proofs.GraphFailure.graph_from_container_exceptions
+#print axioms Lax342547Proofs.GraphFailure.sample_failure_bound
+
+#print axioms Lax342547Proofs.ProbabilityScales.paper_failure_exponential_budget
+#print axioms Lax342547Proofs.ProbabilityScales.eventually_paper_failure_budget
+
+#print axioms Lax342547Proofs.RankLoss.composition_rank_loss
+#print axioms Lax342547Proofs.RankLoss.matrix_sandwich_rank_loss
+#print axioms Lax342547Proofs.RankLoss.quotient_tensor_rank_loss
+
+#print axioms Lax342547Proofs.DirectRanks.diagonal_rank_sum
+
+#print axioms Lax342547Proofs.SpanDeficits.addition_single
+#print axioms Lax342547Proofs.SpanDeficits.addition_range
+#print axioms Lax342547Proofs.SpanDeficits.addition_kernel_deficit
+
+#print axioms Lax342547Proofs.DyadicDeficits.sum_shift
+#print axioms Lax342547Proofs.DyadicDeficits.sum_differences
+#print axioms Lax342547Proofs.DyadicDeficits.deficit_ratio_sum
+#print axioms Lax342547Proofs.DyadicDeficits.two_mode_scale
+
+#print axioms Lax342547Proofs.AdaptiveSampling.adaptive_cylinder_probability
+#print axioms Lax342547Proofs.AdaptiveSampling.adaptive_cylinder_bound
+
+#print axioms Lax342547Proofs.PaperGraphProbability.paper_graph_failure_probability
+
+#print axioms Lax342547Proofs.BlockDeficits.lifted_sum_rank_deficit
+#print axioms Lax342547Proofs.BlockDeficits.nonzero_map_rank
+#print axioms Lax342547Proofs.BlockDeficits.nonzero_block_count_deficit
+
+#print axioms Lax342547Proofs.LiftedSum.lifted_sum_apply
+
+#print axioms Lax342547Proofs.GreedySpans.gain_nonneg
+#print axioms Lax342547Proofs.GreedySpans.gain_le_rank
+#print axioms Lax342547Proofs.GreedySpans.gain_antitone
+#print axioms Lax342547Proofs.GreedySpans.exists_greedy_order
+#print axioms Lax342547Proofs.GreedySpans.increments_length
+#print axioms Lax342547Proofs.GreedySpans.span_after_eq
+#print axioms Lax342547Proofs.GreedySpans.increments_sum
+#print axioms Lax342547Proofs.GreedySpans.increments_le
+#print axioms Lax342547Proofs.GreedySpans.increments_nonneg
+#print axioms Lax342547Proofs.GreedySpans.greedy_decreasing
+#print axioms Lax342547Proofs.GreedySpans.greedy_drop
+#print axioms Lax342547Proofs.GreedySpans.increments_drop
+
+#print axioms Lax342547Proofs.DyadicTails.tail_deficit_nonneg
+#print axioms Lax342547Proofs.DyadicTails.tail_deficit_le
+#print axioms Lax342547Proofs.DyadicTails.dyadic_recurrence
+
+#print axioms Lax342547Proofs.AdaptiveSets.embedding_adaptive_bound
+#print axioms Lax342547Proofs.AdaptiveSets.disjoint_adaptive_bound
+
+#print axioms Lax342547Proofs.DyadicScale.single_scale
+#print axioms Lax342547Proofs.DyadicScale.dyadic_small_tail
+
+#print axioms Lax342547Proofs.ListTails.value_in_range
+#print axioms Lax342547Proofs.ListTails.value_out_of_range
+#print axioms Lax342547Proofs.ListTails.value_nonneg
+#print axioms Lax342547Proofs.ListTails.value_antitone
+#print axioms Lax342547Proofs.ListTails.value_drop
+#print axioms Lax342547Proofs.ListTails.sum_values
+#print axioms Lax342547Proofs.ListTails.tail_sum_list
+
+#print axioms Lax342547Proofs.ProjectedSpans.projected_dimension_gain
+
+#print axioms Lax342547Proofs.AdaptiveUnion.adaptive_cover_union
+
+#print axioms Lax342547Proofs.GreedyTails.greedy_deficit_bound
+#print axioms Lax342547Proofs.GreedyTails.greedy_tail_bound
+#print axioms Lax342547Proofs.GreedyTails.small_greedy_tail
+
+#print axioms Lax342547Proofs.ActualDeficits.map_finset_sup
+#print axioms Lax342547Proofs.ActualDeficits.projected_deficit_eq
+#print axioms Lax342547Proofs.ActualDeficits.small_projected_tail
+
+#print axioms Lax342547Proofs.CombinedSpans.product_space_dimension
+#print axioms Lax342547Proofs.CombinedSpans.gain_product
+#print axioms Lax342547Proofs.CombinedSpans.span_after_product
+#print axioms Lax342547Proofs.CombinedSpans.sum_gain_product
+#print axioms Lax342547Proofs.CombinedSpans.deficit_product
+
+#print axioms Lax342547Proofs.SpanDeficitMono.deficit_monotone
+
+#print axioms Lax342547Proofs.MappedSpans.mapped_dimension_gain
+#print axioms Lax342547Proofs.MappedSpans.mapped_deficit_eq
+
+#print axioms Lax342547Proofs.SumRank.stacked_rank
+#print axioms Lax342547Proofs.SumRank.sum_rank_deficit
+
+#print axioms Lax342547Proofs.SumEnvelope.span_dimension_sum_bound
+#print axioms Lax342547Proofs.SumEnvelope.natural_deficit_cast
+#print axioms Lax342547Proofs.SumEnvelope.nonzero_sum_envelope
+
+#print axioms Lax342547Proofs.CoverProjection.cover_restriction_kernel
+#print axioms Lax342547Proofs.CoverProjection.projected_column_envelope
+#print axioms Lax342547Proofs.CoverProjection.projected_row_envelope
+#print axioms Lax342547Proofs.CoverProjection.projection_rank_le
+#print axioms Lax342547Proofs.CoverProjection.projection_zero_of_columns
+#print axioms Lax342547Proofs.CoverProjection.projection_sum
+
+#print axioms Lax342547Proofs.SmallExposure.simultaneous_small_exposure
+
+#print axioms Lax342547Proofs.PartitionLists.take_drop_disjoint
+#print axioms Lax342547Proofs.PartitionLists.take_drop_union
+#print axioms Lax342547Proofs.PartitionLists.take_drop_card
+
+#print axioms Lax342547Proofs.CoverCounts.covered_count_lower_bound
+
+#print axioms Lax342547Proofs.ListDeficits.finset_span_eq
+#print axioms Lax342547Proofs.ListDeficits.list_mapped_deficit
+
+#print axioms Lax342547Proofs.ProjectedCounts.projected_nonzero_count
+
+#print axioms Lax342547Proofs.FilterOccurrences.filter_subtype_card
+
+#print axioms Lax342547Proofs.ExposedSums.remaining_projection_sum
+
+#print axioms Lax342547Proofs.ModeBudgets.mode_span_budget
+
+#print axioms Lax342547Proofs.CoverClasses.finite_join_closed
+
+#print axioms Lax342547Proofs.ComponentSpaces.coordinate_space_bot
+#print axioms Lax342547Proofs.ComponentSpaces.coordinate_space_sup
+#print axioms Lax342547Proofs.ComponentSpaces.componentwise_join_closed
+#print axioms Lax342547Proofs.ComponentSpaces.diagonal_range
+
+#print axioms Lax342547Proofs.NoCoverCertificate.low_rank_cover_certificate
+
+#print axioms Lax342547Proofs.ComponentDuals.dual_componentwise_join_closed
+#print axioms Lax342547Proofs.ComponentDuals.diagonal_dual_identity
+#print axioms Lax342547Proofs.ComponentDuals.diagonal_dual_range
+
+#print axioms Lax342547Proofs.NoCoverRank.no_cover_rank_probability
+
+#print axioms Lax342547Proofs.FiniteMoments.finite_even_moment
+#print axioms Lax342547Proofs.FiniteMoments.weighted_character_moment_bound
+
+#print axioms Lax342547Proofs.ComponentRankGrowth.component_no_cover_rank
+
+#print axioms Lax342547Proofs.BilinearMean.bilinear_character_average
+
+#print axioms Lax342547Proofs.MomentTails.finite_moment_markov
+#print axioms Lax342547Proofs.MomentTails.rank_moment_split
+
+#print axioms Lax342547Proofs.ChannelCharacters.channel_probability
+#print axioms Lax342547Proofs.ChannelCharacters.character_average
+#print axioms Lax342547Proofs.ChannelCharacters.character_add
+#print axioms Lax342547Proofs.ChannelCharacters.character_sum
+#print axioms Lax342547Proofs.ChannelCharacters.repeated_character_average
+#print axioms Lax342547Proofs.ChannelCharacters.product_channel_characters
+
+#print axioms Lax342547Proofs.ChannelMoments.channel_even_moment_bound
+#print axioms Lax342547Proofs.ChannelMoments.channel_phase_tail
+
+#print axioms Lax342547Proofs.PaperSampleSuccess.paper_sample_success
+
+#print axioms Lax342547Proofs.IndexedRankGrowth.component_no_cover_rank_indexed
+
+#print axioms Lax342547Proofs.TensorCharacters.tensor_character_average
+#print axioms Lax342547Proofs.TensorCharacters.product_tensor_characters
+
+#print axioms Lax342547Proofs.ComponentMoments.component_even_moment_bound
+#print axioms Lax342547Proofs.ComponentMoments.component_phase_tail
+
+#print axioms Lax342547Proofs.NoCoverMoments.sum_matrix_rank
+#print axioms Lax342547Proofs.NoCoverMoments.no_cover_even_moment
+#print axioms Lax342547Proofs.NoCoverMoments.no_cover_phase_tail
 
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample
 #print axioms Lax342547Proofs.FractionalCounterexample.arbitrarily_large_fractional_counterexample
