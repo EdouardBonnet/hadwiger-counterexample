@@ -2,7 +2,8 @@
 
 Lean formalization of OpenAI's [A counterexample to Hadwiger's conjecture](references/openai/hadwiger-counterexample.pdf), dated September 23, 2026.
 
-**Status: complete and locally kernel-replayed. Not submitted.**
+**Status: complete and locally kernel-replayed.** The Lax submission is tracked in
+[control issue #191](https://github.com/lax-archive/lax/issues/191).
 The Lax identifier is `lax-342547`, using Lean `v4.33.0` and the archive's pinned mathlib revision.
 
 ## The complete proof

@@ -17,3 +17,6 @@ bibEntries:
       howpublished = {OpenAI Math Release preprint},
       url = {https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-counterexample-to-Hadwigers-conjecture-September-23-2026/paper.pdf}
     }
+issue:
+  repositoryId: 1320232165
+  number: 191

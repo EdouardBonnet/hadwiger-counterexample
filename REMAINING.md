@@ -1,6 +1,6 @@
 # Remaining work
 
-No proof obligations remain for Theorem 1.1 or the ordinary and fractional counterexample endpoints. The complete construction compiles and passes Lax kernel replay in the pinned archive environment. All 1,260 annotated proofs are closed, and the freshness-enforcing completion checker reports all three targets CLOSED. The three actual endpoint proofs use only `propext`, `Classical.choice`, and `Quot.sound`. No submission has been made.
+No proof obligations remain for Theorem 1.1 or the ordinary and fractional counterexample endpoints. The complete construction compiles and passes Lax kernel replay in the pinned archive environment. All 1,260 annotated proofs are closed, and the freshness-enforcing completion checker reports all three targets CLOSED. The three actual endpoint proofs use only `propext`, `Classical.choice`, and `Quot.sound`. The Lax submission is tracked in [control issue #191](https://github.com/lax-archive/lax/issues/191).
 
 The proof route is documented in [PROOF_PLAN.md](PROOF_PLAN.md), and its immutable source pin is in [upstream-construction.json](references/upstream-construction.json).
 
@@ -15,4 +15,4 @@ The proof route is documented in [PROOF_PLAN.md](PROOF_PLAN.md), and its immutab
 
 The independently developed local route still has unfinished wrappers and later-section interfaces. Those tasks are preserved in [local-development-checkpoint.md](references/local-development-checkpoint.md) and the historical part of [PROOF_PLAN.md](PROOF_PLAN.md). They may be integrated with the upstream route later, but are not required by the completed endpoint's proof term.
 
-The vendored source contains the complete parameter, supersaturation, graph-transfer, and status/limit arguments. Maintain the immutable pin and provenance when changing it. Publishing to Lax remains a separate action.
+The vendored source contains the complete parameter, supersaturation, graph-transfer, and status/limit arguments. Maintain the immutable pin and provenance when changing it. The public source is [EdouardBonnet/hadwiger-counterexample](https://github.com/EdouardBonnet/hadwiger-counterexample); the control issue records the archive's submission status.
