@@ -217,17 +217,25 @@ by positions and may contain repeated raw vertices.
   explicit rank and column budgets. Completing the numerical/status record
   encoding and the paper's full asymptotic Proposition 7.1 wrapper remains.
 - Finite phase estimates: actual raw-channel density transfer, uniform
-  counting of targets by total component rank, and fixed-parameter
-  single-orientation no-cover phase bounds. Marks may depend on the whole
-  unit. The full two-endpoint alternative and large-cover concentration
-  are still open at this checkpoint.
-- Tiny-cover finite algebra: covered-map dimension bounds and the actual
-  pairing-kernel compatibility probability of order `N^(-4)`. The Fourier
-  singleton estimates and accepting-pair injection remain open.
+  counting of targets by original total component rank, and fixed-parameter
+  bounds for arbitrary endpoint groups. The whole-unit marked average is
+  checked. The full phase alternative and large-cover concentration remain.
+- Actual common-projection quotient factors and covered offsets are
+  constructed, with their dimension budget and nonzero-difference criterion.
+  Tiny-cover algebra includes the exact four even-character identity and
+  inverse-polynomial four-zero mass under explicit odd-character bounds;
+  those character bounds remain an open probabilistic dependency.
+- Protected-channel estimates: small-subspace counts, uniform transpose
+  images, adaptive protected spaces, and amplified independent pin witnesses
+  are checked. The full accepting-pair injection remains open.
 - Boolean exactification: actual selector-span nonvanishing, recovery past
   excluded labels, degree-two point-tensor evaluations, and the odd-tag
-  common-atom identity. The full common-prediction/preparation theorem remains
-  open.
+  common-atom identity. Average prediction error now gives a retained family
+  with exactly one common point function. The full reference-flavor transfer,
+  zero-difference case, and status preparation remain open.
+- Quadratic character bias on actual binary functions and affine subspaces
+  is checked from the polar rank. The later histogram and mixing arguments
+  remain open.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
 
@@ -251,11 +259,11 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 At the latest validated checkpoint, `lake build` and `lax build . --replay` pass,
-with 302 concepts and 1,027 annotated proofs, 1,025 of which have no open
+with 319 concepts and 1,083 annotated proofs, 1,081 of which have no open
 mathematical assumptions. All kernel replays pass. The only proofs with unresolved archive dependencies are the two
 counterexample consequences of the open Theorem 1.1. The finite graph
 transfer has raw supersaturation as an explicit mathematical hypothesis.
-Overall mathematical completion is estimated at about 73%; the requested
+Overall mathematical completion is estimated at about 75%; the requested
 80% milestone has not yet been reached.
 
 The completed preliminary proofs report only Lean's standard background

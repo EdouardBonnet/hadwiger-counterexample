@@ -46,10 +46,10 @@ this file is the shorter status and acceptance checklist.
 | Uniform mixing matrices, chosen before the unit law | §5.3, Lemma 5.5 | Complete: simultaneous unary rank/row spaces and all binary parities on every flavor, explicit large-n threshold, and the paper's mixer parameters |
 | Scalar recipes, table flags, gradient realization | §6, Theorem 6.3 | Effective dimension/rank bounds, table spaces and injection flags, private complements, unary admissibility, fresh-key independence, coefficient/table counts, concrete atom prescriptions, effective contractions, and full paired recipes checked; all four endpoint prescriptions, frozen baselines of rank at most 3K+28, and residual vanishing on effective/selected profiles checked; whole-space realization, frozen assembly, all four holes, and primal record count checked under the genuine recipe and capacity hypotheses |
 | Accepted queries and overlap-to-four-holes implication | §7, Proposition 7.1 | Finite collision core checked: actual primal-entry/target instantiation and all four holes in original PMF cells, both all-rank leaf image caps, key-indexed unary records, independent parameter and actual leaf-mass averaging, skipped pairs, pruning/scalar exponents, squared restriction recovery and bounded-option costs; complete numerical/status metadata encoding, uniform record budget/target selection and the full asymptotic Proposition 7.1 wrapper remain |
-| Phase alternatives and accepting-pair injection | §8 | Finite no-cover rank growth, actual channel moments and tails, raw-law density transfer, sharp total-rank target count, and fixed-parameter single-orientation phase bounds checked; full two-endpoint alternative, large-cover concentration, injection, and preparation remain |
-| Common prediction, exactification, and status preparation | §9, Proposition 9.2 | Boolean nonvanishing, excluded-label recovery, actual point-tensor degree, and odd-tag common-atom algebra checked; full prediction, zero-difference case, and preparation remain |
+| Phase alternatives and accepting-pair injection | §8 | Finite no-cover rank growth, actual channel moments and tails, raw-law density transfer, sharp total-rank target count, and fixed-parameter endpoint-group bounds with whole-unit marks checked; actual quotient factors/covered offsets, four even-character algebra, and independent protected pin-witness estimates checked; full alternative, odd-character bounds, large-cover concentration, injection, and preparation remain |
+| Common prediction, exactification, and status preparation | §9, Proposition 9.2 | Boolean nonvanishing, excluded-label recovery, actual point-tensor degree, odd-tag common-atom algebra, and retained common prediction from average error checked; reference-flavor transfer, zero-difference case, and preparation remain |
 | Histogram compactness, Gram comparisons, and many-query bounds | Lemmas 10.1–10.5 | Not formalized |
-| Mixed-law tests, binary mixing, and unary positivity | Lemmas 10.7–10.11 | Not formalized |
+| Mixed-law tests, binary mixing, and unary positivity | Lemmas 10.7–10.11 | Actual quadratic polar-rank bias and affine-subspace bias checked; full mixed-law estimates remain |
 | Weak product testing and factorized integration | §11 | Not formalized |
 | Common subsequential limit and vanishing-overlap implication | §12 | Not formalized |
 | Dual scalar system, fresh lists, and positive-mass overlap | §13 | Not formalized |
@@ -61,19 +61,22 @@ this file is the shorter status and acceptance checklist.
 
 ## Next implementation steps
 
-The validated estimate is now about 73%. The conditional finite transfer is
+The validated estimate is now about 75%. The conditional finite transfer is
 checked in `PaperGraphTransfer.paper_graph_transfer`; it assumes the genuine
 uniform raw supersaturation property and does not prove Theorem 1.1. The
 high-probability graph-success bound is now checked in
-`PaperSampleSuccess`. The finite no-cover rank-growth lemma, actual channel moments/tails,
-raw-law density transfer, sharp counting of targets by total component rank,
-and fixed-parameter single-orientation phase bounds are checked. These bounds
-permit marks depending on the whole unit. The two-endpoint phase alternative,
-large-cover concentration, accepting-pair injection, and status preparation
-remain major dependencies. Tiny-cover compatible-pair mass of order `N^(-4)`,
-actual covered-map dimension bounds, Boolean exactification, and actual
-point-tensor degree-two evaluations are also checked; their full probabilistic
-and status wrappers remain open.
+`PaperSampleSuccess`. The finite no-cover rank-growth lemma, actual channel
+moments/tails, raw-law density transfer, sharp target count by original total
+component rank, and fixed-parameter endpoint-group phase bounds are checked,
+including whole-unit marked averages. Actual common-projection quotient
+factors and covered offsets are constructed. Tiny-cover four-zero mass is
+checked under explicit bounds on the twelve odd characters; proving those
+bounds remains necessary. Protected-subspace counting and independent pin
+witness estimates are checked, but the full accepting-pair injection remains
+open. Average error now exactifies actual degree-two point predictions on a
+retained family. Full reference-flavor transfer, the zero-difference case,
+status preparation, and large-cover concentration remain major dependencies.
+Actual quadratic polar-rank bias on affine subspaces is also checked.
 
 The concrete algebraic model, Lemmas 5.1–5.3, and the full uniform
 mixer theorem in Lemma 5.5 are complete. The endpoint

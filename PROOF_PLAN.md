@@ -109,9 +109,9 @@ supersaturation theorem and the later construction remain open.
 After deterministic gradient realization, the finite collision core, the
 conditional high-probability graph transfer, and finite no-cover rank growth
 and component channel moment bounds, overall completion
-is estimated conservatively at **about 73%**, weighted by remaining mathematical
-difficulty rather than declaration count. The validated archive contains 302
-concepts and 1,027 annotated proofs, with 1,025 closed proof networks. The two conditional proofs are the consequences of the
+is estimated conservatively at **about 75%**, weighted by remaining mathematical
+difficulty rather than declaration count. The validated archive contains 319
+concepts and 1,083 annotated proofs, with 1,081 closed proof networks. The two conditional proofs are the consequences of the
 open graph-existence theorem.
 
 This milestone includes actual primal tests, target construction and all four
@@ -125,16 +125,20 @@ status/metadata encoding, its uniform record budget and consistent target
 selection for all cells, and the asymptotic wrapper of Proposition 7.1 remain.
 The later probabilistic construction and its full raw supersaturation
 conclusion remain substantial open work. This is a progress estimate, not a proof of
-Theorem 1.1 or a claim that 73% of the numbered paper declarations are proved.
+Theorem 1.1 or a claim that 75% of the numbered paper declarations are proved.
 
-The 73% checkpoint additionally proves actual raw-channel phase transfer,
-uniform target counting by total component rank, and fixed-parameter
-single-orientation phase bounds permitting whole-unit marks. It includes
-covered-map dimension bounds, actual pairing-rank bounds and inverse-polynomial
-compatible-pair mass, as well as Boolean nonvanishing, excluded-label recovery,
-actual point-tensor degree-two evaluations, and the common-atom odd-tag identity.
-These finite results do not yet assemble the full two-endpoint phase alternative,
-large-cover concentration, accepting-pair injection, or status preparation.
+The 75% checkpoint proves actual endpoint-group raw-channel phase transfer,
+with the original tensor ranks, fixed parameters, and whole-unit marks. It
+constructs the actual common-projection quotient factors and covered offsets,
+including their dimension budget. The four even-character identity gives
+inverse-polynomial four-zero mass under explicit bounds on the twelve
+remaining characters. Small-subspace counting, uniform transpose images,
+adaptive protected spaces, and independent pin-witness estimates are checked.
+Average error and the actual degree-two point predictions yield a retained
+family with identical predictions. Actual quadratic polar-rank bias and its
+affine-subspace version are also checked. These results do not yet assemble
+the full phase alternative, large-cover concentration, accepting-pair
+injection, reference-flavor transfer, or status preparation.
 
 ## 3. Fix the common mathematical interfaces
 

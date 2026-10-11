@@ -1,3 +1,20 @@
+import Lax342547Proofs.IndependentWitnesses
+import Lax342547Proofs.AdaptiveProtection
+import Lax342547Proofs.ProtectedChannels
+import Lax342547Proofs.SmallMultiPhase
+import Lax342547Proofs.SmallSubspaceCount
+import Lax342547Proofs.ProjectedOffsets
+import Lax342547Proofs.FixedMultiPhase
+import Lax342547Proofs.MultiChannelPhase
+import Lax342547Proofs.ChannelGroups
+import Lax342547Proofs.GroupPhaseScale
+import Lax342547Proofs.PointPrediction
+import Lax342547Proofs.DuplicatedNoCover
+import Lax342547Proofs.CommonExactification
+import Lax342547Proofs.QuadraticBias
+import Lax342547Proofs.FourPhaseParity
+import Lax342547Proofs.QuotientFactorLifts
+import Lax342547Proofs.DuplicatedMoments
 import Lax342547Proofs.MarkedPhase
 import Lax342547Proofs.PointQuadratics
 import Lax342547Proofs.SmallNoCover
@@ -1462,6 +1479,79 @@ import Lax342547Proofs.PairedWitnesses
 #print axioms Lax342547Proofs.PointQuadratics.point_tensor_evaluation_degree
 
 #print axioms Lax342547Proofs.MarkedPhase.no_cover_marked_unit_phase
+
+#print axioms Lax342547Proofs.DuplicatedMoments.duplicated_total_rank
+#print axioms Lax342547Proofs.DuplicatedMoments.duplicated_even_moment_bound
+
+#print axioms Lax342547Proofs.QuotientFactorLifts.lift_common_factor
+#print axioms Lax342547Proofs.QuotientFactorLifts.restriction_range_of_avoidance
+#print axioms Lax342547Proofs.QuotientFactorLifts.lift_quotient_factor
+#print axioms Lax342547Proofs.QuotientFactorLifts.column_difference_in_cover
+#print axioms Lax342547Proofs.QuotientFactorLifts.row_difference_in_cover
+#print axioms Lax342547Proofs.QuotientFactorLifts.factor_difference_identity
+#print axioms Lax342547Proofs.QuotientFactorLifts.lifted_column_avoids_cover
+#print axioms Lax342547Proofs.QuotientFactorLifts.offset_dimension_budget
+#print axioms Lax342547Proofs.QuotientFactorLifts.lifted_row_avoids_cover
+#print axioms Lax342547Proofs.QuotientFactorLifts.common_quotient_offsets
+
+#print axioms Lax342547Proofs.FourPhaseParity.phase_duplicate
+#print axioms Lax342547Proofs.FourPhaseParity.duplicate_injective
+#print axioms Lax342547Proofs.FourPhaseParity.even_iff_duplicate
+#print axioms Lax342547Proofs.FourPhaseParity.even_character_sum
+#print axioms Lax342547Proofs.FourPhaseParity.odd_character_card
+#print axioms Lax342547Proofs.FourPhaseParity.four_phase_parity_lower
+#print axioms Lax342547Proofs.FourPhaseParity.tiny_four_phase_lower
+#print axioms Lax342547Proofs.FourPhaseParity.tiny_four_phase_positive
+
+#print axioms Lax342547Proofs.QuadraticBias.square_translation
+#print axioms Lax342547Proofs.QuadraticBias.polar_sign_product
+#print axioms Lax342547Proofs.QuadraticBias.quadratic_sign_square
+#print axioms Lax342547Proofs.QuadraticBias.quadratic_bias_square_bound
+#print axioms Lax342547Proofs.QuadraticBias.quadratic_bias_rank_bound
+#print axioms Lax342547Proofs.QuadraticBias.affine_restricted_polar
+#print axioms Lax342547Proofs.QuadraticBias.affine_subspace_bias
+
+#print axioms Lax342547Proofs.CommonExactification.discrepancy_mass_union
+#print axioms Lax342547Proofs.CommonExactification.common_prediction_exact
+#print axioms Lax342547Proofs.CommonExactification.prediction_good_mass
+#print axioms Lax342547Proofs.CommonExactification.retained_common_prediction
+
+#print axioms Lax342547Proofs.DuplicatedNoCover.no_cover_even_moment
+#print axioms Lax342547Proofs.DuplicatedNoCover.no_cover_phase_tail
+
+#print axioms Lax342547Proofs.PointPrediction.marked_point_degree
+#print axioms Lax342547Proofs.PointPrediction.retained_point_prediction
+
+#print axioms Lax342547Proofs.GroupPhaseScale.group_phase_density_budget
+
+#print axioms Lax342547Proofs.ChannelGroups.sign_sum
+#print axioms Lax342547Proofs.ChannelGroups.tensor_character_groups
+#print axioms Lax342547Proofs.ChannelGroups.tensor_character_value
+
+#print axioms Lax342547Proofs.MultiChannelPhase.no_cover_raw_phase_tail
+#print axioms Lax342547Proofs.MultiChannelPhase.no_cover_raw_family_tail
+#print axioms Lax342547Proofs.MultiChannelPhase.no_cover_uniform_target_tail
+#print axioms Lax342547Proofs.MultiChannelPhase.no_cover_marked_unit_phase
+
+#print axioms Lax342547Proofs.FixedMultiPhase.fixed_parameter_marked_unit_phase
+
+#print axioms Lax342547Proofs.ProjectedOffsets.actual_common_projection_offsets
+#print axioms Lax342547Proofs.ProjectedOffsets.nonzero_difference_has_offset
+
+#print axioms Lax342547Proofs.SmallSubspaceCount.padded_generators
+#print axioms Lax342547Proofs.SmallSubspaceCount.small_subspace_card
+
+#print axioms Lax342547Proofs.SmallMultiPhase.no_cover_marked_unit_phase_small
+
+#print axioms Lax342547Proofs.ProtectedChannels.protected_columns_card
+#print axioms Lax342547Proofs.ProtectedChannels.independent_protected_probability
+#print axioms Lax342547Proofs.ProtectedChannels.protected_probability_rank_bound
+
+#print axioms Lax342547Proofs.AdaptiveProtection.adaptive_protected_probability
+
+#print axioms Lax342547Proofs.IndependentWitnesses.independent_witness_matrix
+#print axioms Lax342547Proofs.IndependentWitnesses.nonzero_witness_card
+#print axioms Lax342547Proofs.IndependentWitnesses.adaptive_independent_witness_probability
 
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample
 #print axioms Lax342547Proofs.FractionalCounterexample.arbitrarily_large_fractional_counterexample
