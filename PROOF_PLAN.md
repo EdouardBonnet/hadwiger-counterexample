@@ -79,7 +79,9 @@ The closing checks are:
 | Both exact-pin peelings, Lemma 4.5 | Checked finite partitions, quotient ranks, restriction trimming, metadata/image counts, final pin budget, preserved effective spaces, all-rank leaf caps, and actual-mass recovery; mixed marginal costs tracked separately |
 | Table coordinates and atom prescriptions, Lemma 6.2 | Effective dimension/rank bounds, protected/private channels, unary admissibility, fresh-key independence, table and nominal-coefficient counts, effective contractions, paired lists, and the concrete numerical-to-atom-gradient prescription theorem checked; all four endpoint prescriptions and the bounded baseline checked; whole-space realization and frozen assembly checked |
 | Gradient realization, Theorem 6.3 | Actual obstruction decomposition, recipe solvability, bounded derivatives, `14K+140` residual matrices, chosen pin/key-preserving compression with `Dquo` rank, and allowed pure factorization checked; explicit target routing, capacity margin, nonlinear correction, frozen assembly, four-hole implication, and primal record count checked |
-| Entropy/containers and the probabilistic construction | Not proved |
+| Entropy projection and real terminal cuts, Lemmas 3.2–3.3 | Complete finite proofs, including full feasible support and real residual augmentation |
+| Entropy containers and finite graph transfer, Proposition 3.4 | Checked conditional graph-existence transfer, exact exception tails, and eventual paper sampling margins; the displayed high-probability wrapper remains separate |
+| Raw supersaturation and the later probabilistic construction | Not proved |
 | Theorem 1.1 | Open |
 | Counterexample corollaries | Checked only conditional on Theorem 1.1 |
 
@@ -101,13 +103,14 @@ two finite peelings are checked, including restriction trimming, exact
 metadata/image counts, both absolute density costs, the paper's final
 pin budget, and preservation of old effective spaces. The mixed marginal
 normalization and successive-restriction identities are checked separately.
-The finite graph transfer and the later construction remain open.
+The conditional graph-existence transfer is now checked. The actual raw
+supersaturation theorem and the later construction remain open.
 
-After completing deterministic gradient realization and the finite collision
-core, overall completion is estimated conservatively at **about 60%**, weighted
-by remaining mathematical difficulty rather than declaration count. The
-validated archive contains 206 concepts and 725 annotated proofs, with 723
-closed proof networks. The two conditional proofs are the consequences of the
+After completing deterministic gradient realization, the finite collision
+core, and the conditional entropy/container graph transfer, overall completion
+is estimated conservatively at **about 65%**, weighted by remaining mathematical
+difficulty rather than declaration count. The validated archive contains 232
+concepts and 847 annotated proofs, with 845 closed proof networks. The two conditional proofs are the consequences of the
 open graph-existence theorem.
 
 This milestone includes actual primal tests, target construction and all four
@@ -119,9 +122,9 @@ gives a finite original-law bound from the affine leaf-pair estimates; it does
 not by itself discharge those estimates for every numerical query. The full
 status/metadata encoding, its uniform record budget and consistent target
 selection for all cells, and the asymptotic wrapper of Proposition 7.1 remain.
-The later probabilistic construction, containers and final graph transfer
-are substantial open work. This is a progress estimate, not a proof of
-Theorem 1.1 or a claim that 60% of the numbered paper declarations are proved.
+The later probabilistic construction and its full raw supersaturation
+conclusion remain substantial open work. This is a progress estimate, not a proof of
+Theorem 1.1 or a claim that 65% of the numbered paper declarations are proved.
 
 ## 3. Fix the common mathematical interfaces
 
@@ -237,6 +240,11 @@ model from §2.
 
 ### 5.1 Entropy projection, Lemma 3.2
 
+**Complete finite content.** `RelativeEntropy`, `EntropyLines`, and
+`EntropyProjection` check continuity, compact minimization, the new-support
+negative infinite slope, full feasible support, the variational inequality,
+and the exact support cost. `UnitLaws` applies them to the actual three caps.
+
 1. Define finite relative entropy with the zero-mass convention.
 2. Establish nonnegativity using `log t ≤ t - 1` on positive support.
 3. Prove continuity on the finite simplex when the reference law is
@@ -255,11 +263,19 @@ before support has been established; treating strict positivity as closed.
 
 ### 5.2 Real-capacity terminal cut, Lemma 3.3
 
+**Complete finite content.** `RealFlows`, `ResidualFlows`, `FlowCuts`,
+`BipartiteFlows`, and `TerminalCuts` construct a maximizing real skew flow,
+augment any residual walk by a sufficiently small positive amount, identify
+the reachable cut value, normalize bipartite flows, and extract both strict
+exception mass bounds. Augmentation does not require an integer-capacity
+theorem or an assumed cut certificate.
+
 1. Build the finite source/left/right/sink network with the three caps.
 2. Prove equivalence between a flow of value one and a feasible law.
 3. Obtain a maximum flow by compactness of the finite real flow polytope.
 4. Prove that a residual source-to-sink path would improve the flow.
-   Use a simple finite path and the minimum of its positive residuals.
+   The checked proof sums antisymmetric edge directions along a residual
+   walk and uses finite continuity to choose a positive feasible augmentation.
 5. Let the cut be residual reachability. Sum conservation to identify
    its capacity with the maximum flow value.
 6. Extract both endpoint exceptions and the pair exception. Keep the
@@ -269,6 +285,23 @@ before support has been established; treating strict positivity as closed.
 for the needed real-capacity result.
 
 ### 5.3 Fingerprints and sampling, Proposition 3.4
+
+**Conditional graph-existence transfer complete.** `ContainerLaws`,
+`EntropySelectors`, `ContainerRun`, and `EntropyContainers` check the
+algorithm, entropy increments, final-recording allowance, and replay.
+`FingerprintCounts` counts ordered fingerprints by padding to length L;
+this gives the same `(card U + 1)^L` budget and avoids requiring an
+unordered replay representation. `UnitContainers` attaches the actual cuts.
+`FiniteSampling`, `CoordinateRestrictions`, `DisjointSampling`, and
+`GoodSamples` check the two exception tails and their finite union.
+`MatchingSamples` and `MatchingCoverage` count disjoint position occurrences
+while permitting repeated raw types. `RawToGraph.supersaturation_to_sample`
+produces the actual graph under explicit margins. `FingerprintScales`,
+`ContainerAsymptotics`, `SampleScales`, and
+`PaperGraphTransfer.paper_graph_transfer` discharge these margins eventually
+at the paper parameters, from a uniform quadratic logarithmic raw-size
+bound. The displayed probability `1 - exp(-Ω(m))` still needs a separate
+endpoint combining these same estimates; graph existence is already checked.
 
 1. Define the conflict graph on units: adjacency means four cross holes.
 2. Define the deterministic residual algorithm, including deterministic
@@ -728,18 +761,16 @@ sparse-label bounds, and mixers.
    pins and keys and preserve the residual matrices' row/column forms.
    They preserve allowed point moments and the actual cut-profile domain,
    descend through the barred quotients, and give the paper's `Dquo` bound.
-7. **In progress.** Bound the restored pure correction rank by
-   `30r₀ + 28J|E| + Dquo`. The initial projected form has rank at most the
-   sum of the two target-matrix ranks, and the restored form costs at most
-   that sum plus `Dquo`. The explicit target routing bound
-   `15r₀+14J|E|` is still required; arbitrary matrix representations do not
-   supply it.
-8. **In progress.** Pure forms factor through the remaining allowed channel
+7. **Complete.** `TargetMatrices` supplies the actual routed target rank
+   `15r₀+14J|E|`. The restored pure correction costs at most
+   `30r₀+28J|E|+Dquo`, including both target matrices and the checked
+   quotient compression loss.
+8. **Complete.** Pure forms factor through the remaining allowed channel
    pairing whenever their rank fits. The capacity loss is at most
    `2K+4Blin`, and the factors are orthogonal to baseline and bounded
    derivative values. Apply the actual parameter margin and verify
    simultaneous consistency in the two opposite endpoints and unit roles.
-9. Conclude the gradient identities on **every vector of the cut space**,
+9. **Complete.** Conclude the gradient identities on **every vector of the cut space**,
    not just on a sampled family of atoms. Count the scalar constraints
    needed to test them later.
 
@@ -1021,12 +1052,15 @@ and both cross orientations, preserving dependence within each unit.
 mass product and sums disjoint record partitions. `PairRecovery` restores
 the squared restriction mass for actual independent PMF events.
 
-Proposition 7.1 is still open. The joint scalar tests must be instantiated
-with the actual `PrimalRecords` entries and the gradient target selected
-from the original records. The complete numerical/status record count
-and independent parameter/leaf averaging must be assembled, and bounded
-options and exponent slack paid. Later phase and status arguments remain
-separate.
+Proposition 7.1 is still open. `RawRetainedCells` and
+`ActualCellCollision` instantiate actual primal entries and realized gradient
+targets in original PMF cells. `FiniteCollision` and `LeafCollision` check
+independent parameter/leaf averaging, skipped pairs, and squared restriction
+recovery. `CollisionCosts` and `CollisionScales` pay bounded options and
+explicit exponent margins. The complete numerical/status metadata encoding,
+its uniform record budget and consistent target selection across all cells,
+and the full asymptotic Proposition 7.1 wrapper still remain. Later phase
+and status arguments remain separate.
 
 ## 11. Phase alternatives and status preparation — §§8–9
 

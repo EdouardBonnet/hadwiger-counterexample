@@ -38,6 +38,14 @@ by positions and may contain repeated raw vertices.
 
 ## Existing proofs
 
+- Lemmas 3.2–3.3: finite entropy projection with full feasible support,
+  real max-flow/min-cut, and both strict terminal exception bounds.
+- The conditional entropy/container graph transfer: deterministic deletion,
+  ordered fingerprint replay/count, binomial and disjoint-pair sample tails,
+  repeated raw-type matching occurrences, and eventual paper parameter
+  margins. `PaperGraphTransfer.paper_graph_transfer` produces sampled graphs
+  with the required bounds assuming genuine raw supersaturation; the
+  high-probability endpoint remains separate.
 - Proposition 3.5: the matching-minor bound, adapted from OpenAI's proof.
 - The ordinary chromatic lower bound, adapted from OpenAI's proof.
 - Lemma 2.2: symmetry, looplessness, and triangle-freeness of the hole relation.
@@ -224,9 +232,12 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 At the latest validated checkpoint, `lake build` and `lax build . --replay` pass,
-with 206 concepts and 725 annotated proofs, 723 of which have no open
-mathematical assumptions. All kernel replays pass. The only conditional
-proofs are the two counterexample consequences of the open Theorem 1.1.
+with 232 concepts and 847 annotated proofs, 845 of which have no open
+mathematical assumptions. All kernel replays pass. The only proofs with unresolved archive dependencies are the two
+counterexample consequences of the open Theorem 1.1. The finite graph
+transfer has raw supersaturation as an explicit mathematical hypothesis.
+Overall mathematical completion is estimated at about 65%; the requested
+80% milestone has not yet been reached.
 
 The completed preliminary proofs report only Lean's standard background
 axioms in `AxiomAudit.lean`. The completion checker must still exit with

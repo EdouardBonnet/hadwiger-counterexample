@@ -33,9 +33,9 @@ this file is the shorter status and acceptance checklist.
 | Boolean point moments, cut profiles, and cut kernel | §2.2–2.3, Lemma 2.3 | Projection, majority intersection, and constant-kernel proofs checked |
 | Concrete tester functionals, mixer form, and self-Gram matrix | §2.3 | Complete, including cut descent, the moment identity, and Z-coordinate invariance |
 | Uniform raw frames, injective tensor realization, and annihilators | §2.4, equations (2.13)–(2.16) | Concrete model assembled; frame existence, embedding, self-contraction, raw-space count, product law, and sampled-graph independence checked |
-| Finite entropy projection, including the full support assertion | Lemma 3.2 | Not formalized |
-| Real-capacity terminal cut with both endpoint and pair exceptions | Lemma 3.3 | Not formalized |
-| Entropy-controlled fingerprints and sample probability bounds | Proposition 3.4 | Not formalized |
+| Finite entropy projection, including the full support assertion | Lemma 3.2 | Complete finite proof, including full feasible support and the exact information-projection/support cost |
+| Real-capacity terminal cut with both endpoint and pair exceptions | Lemma 3.3 | Complete finite real-flow proof and both strict exception mass bounds |
+| Entropy-controlled fingerprints and sample probability bounds | Proposition 3.4 | Entropy algorithm, ordered replay/count, both sample tails, repeated-type matching transfer, and eventual paper margins checked; conditional graph existence closed; high-probability endpoint remains |
 | Frame laws and full reference image cap | §4.1, Lemmas 4.1–4.3 | Complete: paired orbits, normalization, conditional laws, tuple laws, density bounds, and the all-rank two-endpoint reference cap with uniform scale choice |
 | Sparse intersections and representatives | §4.2, Lemma 4.4 | Complete: explicit exponential exception, exact coefficient count, shared-tensor ranks, unique majority-zero representatives, support and chiStar bounds, and a uniform concrete scale |
 | Two peelings with exact pins and subsequent image bounds | §4.3, Lemma 4.5 | Complete in quantitative finite form: both partitions, restriction trimming, metadata/image count, preserved pins and effective spaces, final rank budget, image/density bounds, mixed marginal costs, and actual-mass recovery |
@@ -56,10 +56,17 @@ this file is the shorter status and acceptance checklist.
 | Uniform large-set hits and inverse-polynomial overlap | §14.1–14.3 | Not formalized |
 | Raw supersaturation, uniform over all admissible unit laws | Theorem 3.1, completed in §14.4 | Not formalized |
 | Parameter existence and every quantitative margin | Appendix A | Not formalized |
-| Supersaturation → sampled graph → arbitrarily large orders | Proposition 3.4 → Theorem 1.1 | Not formalized |
+| Supersaturation → sampled graph → arbitrarily large orders | Proposition 3.4 → Theorem 1.1 | Conditional sampled-graph existence checked at the paper parameters; actual supersaturation and final arbitrarily large construction remain open |
 | Ordinary and fractional counterexample consequences | Corollary 1.2 | Proved assuming Theorem 1.1 |
 
 ## Next implementation steps
+
+The validated estimate is now about 65%. The conditional finite transfer is
+checked in `PaperGraphTransfer.paper_graph_transfer`; it assumes the genuine
+uniform raw supersaturation property and does not prove Theorem 1.1. The
+displayed high-probability endpoint remains to be assembled from the checked
+container and sample tails. Phase alternatives and status preparation are
+the next major construction dependencies.
 
 The concrete algebraic model, Lemmas 5.1–5.3, and the full uniform
 mixer theorem in Lemma 5.5 are complete. The endpoint
