@@ -108,10 +108,13 @@ supersaturation theorem and the later construction remain open.
 
 After deterministic gradient realization, the finite collision core, the
 conditional high-probability graph transfer, and finite no-cover rank growth
-and component channel moment bounds, overall completion
-is estimated conservatively at **about 75%**, weighted by remaining mathematical
-difficulty rather than declaration count. The validated archive contains 319
-concepts and 1,083 annotated proofs, with 1,081 closed proof networks. The two conditional proofs are the consequences of the
+and component channel moment bounds, the previous completion estimate
+was **about 75%**, weighted by remaining mathematical difficulty rather
+than declaration count. Actual accepting-table injection, quantitative Gram
+normalization, cross-batch conditioning and affine-slice foundations are now
+checked as described below. The requested **90%** checkpoint is not yet
+established. The validated archive contains 356
+concepts and 1,194 annotated proofs, with 1,192 closed proof networks. The two conditional proofs are the consequences of the
 open graph-existence theorem.
 
 This milestone includes actual primal tests, target construction and all four
@@ -137,8 +140,9 @@ adaptive protected spaces, and independent pin-witness estimates are checked.
 Average error and the actual degree-two point predictions yield a retained
 family with identical predictions. Actual quadratic polar-rank bias and its
 affine-subspace version are also checked. These results do not yet assemble
-the full phase alternative, large-cover concentration, accepting-pair
-injection, reference-flavor transfer, or status preparation.
+the full phase alternative, large-cover concentration, reference-flavor
+transfer, or status preparation. Actual accepting-pair injection has since
+been checked with the explicit hypotheses and quantifiers below.
 
 ## 3. Fix the common mathematical interfaces
 
@@ -1081,17 +1085,30 @@ and status arguments remain separate.
 ### 11.1 Phase alternatives, Theorem 8.2 and Lemmas 8.3–8.5
 
 **Checked finite progress:** `NoCoverCertificate` constructs the exposed-cover
-certificate from actual maps and low total rank. Greedy ordering of the
-combined row/column spaces replaces the paper's averaging over permutations;
-the resulting dyadic deficit bound is deterministic. `IndexedRankGrowth`
-proves the finite componentwise no-cover bound, with exponent `q*s` (stronger
-than the paper's `q*s/2`). `TensorCharacters` and `ComponentMoments` evaluate
-actual independent binary channel characters and even moments with total
-component rank. `NoCoverMoments.no_cover_phase_tail` gives the explicit
-finite Markov bound. The raw channel density transfer and uniform candidate
-union have not yet been integrated. The large-cover concentration branch,
-accepting-pair injection, tiny-cover consequences, and full phase alternative
-remain open.
+certificate from actual maps and low total rank. Greedy ordering gives the
+finite dyadic deficit bound, and `IndexedRankGrowth` proves the componentwise
+no-cover estimate. Actual channel moments, raw-law density transfer, total-rank
+target counts, and endpoint-group whole-unit marked estimates are checked.
+Actual common-projection factors and covered offsets are also checked.
+
+`TableInjection` identifies all actual table-injection flags with protected
+primal-image avoidance. `PreparedInjection` sums the sixteen tests per
+component, using both accepting-family descriptions, separate endpoint
+marginal caps, and adaptive nominal pins. Transposing the actual frames
+handles the opposite sign without assuming a symmetric self-Gram.
+`PreparedInjectionScale` fixes the channel dimension before the ambient
+size, density law, and polynomial accepting-mass exponent.
+`UniformTableInjection.exists_uniform_injection` assembles these into one
+quantified actual-table theorem: for fixed K, family-count coefficient,
+component count and positive tolerance, there is a channel size such that
+for every polynomial exponent all sufficiently large ambient sizes and
+all laws satisfying the explicit caps lose at most that tolerance times
+the original accepting mass. The primal dimension bound is N/8 and the
+marginal log-density budget is N/100; the later ambient scale pays these
+bounds. No accepting-mass normalization removes the polynomial cost.
+
+Large-cover singleton counting, the second concentration step, the twelve
+odd-character estimates, and the full phase/preparation alternatives remain.
 
 
 1. Define marked units, their tensors `Δ`, and componentwise covers.
@@ -1111,6 +1128,18 @@ remain open.
    in this alternative.
 
 ### 11.2 Common predictions, Proposition 9.2 and Lemmas 9.3–9.5
+
+**New affine-slice foundations:** `AffineSliceIndependence` constructs the
+actual point-coefficient columns. The joined free matrix, consisting of
+the translation difference and both slope lists, is exactly uniform with
+2d+1 columns. Nominal pair dependence has probability at most
+`2^(2d+1)/2^n`. Erasing or replacing the free coefficients preserves the
+actual nominal Gram, by the proved self-Gram invariance under `changeZ 0`.
+This does not identify the two translation columns with each other.
+`EmpiricalVariance` proves the finite second-moment bound `ε + 4δ`, retaining
+independent coefficient draws and arbitrary bounded common tests. Its
+separate-mean and pair-comparison hypotheses still need discharge for the
+actual conditioned coefficient law before Lemma 9.4 can be marked complete.
 
 1. Define a common prediction with one global key function per endpoint,
    uniform error over every retained unit and every allowed unary type,
@@ -1135,6 +1164,26 @@ No later scalar-solvability conclusion is used to prove preparation.
 
 The order within this section matters: its opening histogram-control
 statement is proved using estimates developed later in the section.
+
+**Checked finite progress:** `HistogramGram.normalized_error` proves a
+uniform relative error at most `2*2^(a+b)/2^N`; heterogeneous independent
+groups add their errors and the half-ambient bound is `2/2^(N/2)`.
+This supplies Lemma 10.2 in quantitative finite form. `ConditionedMixing`
+controls both signed test integrals and actual normalization; its deletion
+bound charges twice the deleted conditional mass. `CrossBatchMixing` uses
+the exact slot coefficient matrices. `CrossGramBasis` verifies the two
+reciprocal mutual-Gram blocks have no zero nontrivial character, and
+`GramOrbitDensity` derives explicit caps for the actual uniform orbit
+laws and their conditional comparison for bounded tests.
+`JoinedGramOrbits.compatible_filter` now identifies the combined uniform orbit
+with the exact filtered law of the two separate orbits, retaining reciprocal
+Gram entries and joint injectivity. `JointGramInjection.reference_failure`
+bounds the actual product-law failure by the orbit density cost times
+`(2^(p+k)+2^(q+l))/2^N`; `conditioned_reference_failure` pays the additional
+`2^(p*l+q*k+1)` reciprocal Gram conditioning cost using a proved lower
+normalization bound. Integrating the deletion and bounded-test estimates,
+repeated/grouped queries and the full Lemma 10.3 still need assembly.
+Lemmas 10.1 and 10.4–10.5 remain open.
 
 1. Prove Gram normalization for key tuples and comparison of two bounded
    batches (Lemmas 10.2–10.3), including repeated-label patterns.

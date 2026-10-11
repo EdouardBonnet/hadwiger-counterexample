@@ -19,8 +19,10 @@ from planned arguments and treats the rare-overlap branch separately.
 The finite no-cover part of §8 is now checked: actual exposed row/column
 quotients, a deterministic greedy dyadic certificate, componentwise rank
 growth, exact binary channel character averages, and even-moment/Markov
-phase tails. The complete phase alternative and accepting-pair injection
-remain open.
+phase tails. Accepting-pair injection is now checked for the actual small
+tables, including all sixteen flags per component and a channel choice
+uniform over later unit laws and inverse-polynomial accepting masses.
+The complete phase alternative remains open.
 
 ## Target
 
@@ -227,7 +229,10 @@ by positions and may contain repeated raw vertices.
   those character bounds remain an open probabilistic dependency.
 - Protected-channel estimates: small-subspace counts, uniform transpose
   images, adaptive protected spaces, and amplified independent pin witnesses
-  are checked. The full accepting-pair injection remains open.
+  are checked. `UniformTableInjection.exists_uniform_injection` now combines
+  the actual admissible-table flags with the raw accepting estimate. Its
+  channel dimension is chosen before the ambient dimension, unit law,
+  adaptive pins, and polynomial accepting-mass exponent.
 - Boolean exactification: actual selector-span nonvanishing, recovery past
   excluded labels, degree-two point-tensor evaluations, and the odd-tag
   common-atom identity. Average prediction error now gives a retained family
@@ -236,6 +241,21 @@ by positions and may contain repeated raw vertices.
 - Quadratic character bias on actual binary functions and affine subspaces
   is checked from the polar rank. The later histogram and mixing arguments
   remain open.
+- Lemma 10.2 in finite quantitative form: uniform relative Gram errors for
+  growing slot ranks, additive errors across heterogeneous independent
+  groups, and the half-ambient exponential bound.
+- Cross-batch Gram conditioning: every nonzero reciprocal Gram character has
+  at least N bits of rank; the normalized comparison uses actual uniform
+  Gram-orbit batch laws and their proved density caps. The combined orbit
+  is identified exactly with the separate orbits conditioned on reciprocal
+  Gram entries and joint injectivity. Joint-injectivity failure is bounded
+  under the actual product law and after reciprocal Gram conditioning.
+  The full two-batch comparison still needs assembly.
+- Affine-slice foundations: actual point-coefficient independence follows
+  from the free block with failure at most `2^(2d+1)/2^n`. Replacing free
+  coefficients preserves the actual nominal Gram. The finite empirical
+  variance bound is checked from separate means and a pair comparison;
+  the full conditioned affine-slice theorem remains open.
 - The ordinary and fractional counterexample consequences, **conditional on
   Theorem 1.1**, with this assumption recorded in their Lax annotations.
 
@@ -259,12 +279,15 @@ list-coloring theorem. It is not evidence that this counterexample is proved.
 ## Build and audit
 
 At the latest validated checkpoint, `lake build` and `lax build . --replay` pass,
-with 319 concepts and 1,083 annotated proofs, 1,081 of which have no open
-mathematical assumptions. All kernel replays pass. The only proofs with unresolved archive dependencies are the two
+with 356 concepts and 1,194 annotated proofs, 1,192 of which have closed
+archive proof networks. All kernel replays pass. The only proofs with
+unresolved archive dependencies are the two
 counterexample consequences of the open Theorem 1.1. The finite graph
 transfer has raw supersaturation as an explicit mathematical hypothesis.
-Overall mathematical completion is estimated at about 75%; the requested
-80% milestone has not yet been reached.
+The earlier mathematical estimate was about 75%. The new accepting-table
+injection and Gram/affine-slice results advance that checkpoint, but the
+requested 90% milestone has not been established. Declaration counts are
+not used to certify a percentage.
 
 The completed preliminary proofs report only Lean's standard background
 axioms in `AxiomAudit.lean`. The completion checker must still exit with

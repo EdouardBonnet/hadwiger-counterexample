@@ -1,3 +1,38 @@
+import Lax342547Proofs.UniformTableInjection
+import Lax342547Proofs.EmpiricalVariance
+import Lax342547Proofs.GramOrbitDensity
+import Lax342547Proofs.AffineSliceIndependence
+import Lax342547Proofs.CrossGramBasis
+import Lax342547Proofs.CrossBatchMixing
+import Lax342547Proofs.HistogramGram
+import Lax342547Proofs.ConditionedMixing
+import Lax342547Proofs.PreparedInjectionScale
+import Lax342547Proofs.PreparedInjection
+import Lax342547Proofs.TableInjection
+import Lax342547Proofs.FrameTranspose
+import Lax342547Proofs.RetainedEmptyPredictions
+import Lax342547Proofs.EmptyPredictions
+import Lax342547Proofs.InjectionUnion
+import Lax342547Proofs.SharedTesterPoint
+import Lax342547Proofs.AtomParameters
+import Lax342547Proofs.InjectionThresholds
+import Lax342547Proofs.PolynomialTensors
+import Lax342547Proofs.AtomFunctionals
+import Lax342547Proofs.InjectionAsymptotics
+import Lax342547Proofs.RawAcceptingInjection
+import Lax342547Proofs.AcceptingInjection
+import Lax342547Proofs.InjectionBudgets
+import Lax342547Proofs.FiniteInjection
+import Lax342547Proofs.UnitSpanAvoidance
+import Lax342547Proofs.AcceptingFamilies
+import Lax342547Proofs.IndependentSampling
+import Lax342547Proofs.RawPrimalAvoidance
+import Lax342547Proofs.PrimalAvoidance
+import Lax342547Proofs.UniversalWitnesses
+import Lax342547Proofs.GreedySpaces
+import Lax342547Proofs.AmplifiedTests
+import Lax342547Proofs.SequentialTests
+import Lax342547Proofs.InjectiveDensity
 import Lax342547Proofs.IndependentWitnesses
 import Lax342547Proofs.AdaptiveProtection
 import Lax342547Proofs.ProtectedChannels
@@ -278,6 +313,10 @@ import Lax342547Proofs.RawContractions
 import Lax342547Proofs.PairedWitnesses
 
 -- Completed preliminary results: background axioms only.
+import Lax342547Proofs.JoinedGramOrbits
+
+import Lax342547Proofs.JointGramInjection
+
 #print axioms Lax342547Proofs.HadwigerMatching.hadwiger_matching_bound
 #print axioms Lax342547Proofs.HadwigerMatching.card_le_twice_chromaticNumber_of_indepNum
 #print axioms Lax342547Proofs.HoleTriangleFree.hole_properties
@@ -1553,5 +1592,140 @@ import Lax342547Proofs.PairedWitnesses
 #print axioms Lax342547Proofs.IndependentWitnesses.nonzero_witness_card
 #print axioms Lax342547Proofs.IndependentWitnesses.adaptive_independent_witness_probability
 
+#print axioms Lax342547Proofs.InjectiveDensity.injective_matrix_point_cap
+#print axioms Lax342547Proofs.InjectiveDensity.raw_minus_channel_point_cap
+#print axioms Lax342547Proofs.InjectiveDensity.raw_plus_channel_point_cap
+
+#print axioms Lax342547Proofs.SequentialTests.step_probability
+#print axioms Lax342547Proofs.SequentialTests.sequential_lower_probability
+#print axioms Lax342547Proofs.SequentialTests.bounded_sequential_lower_probability
+#print axioms Lax342547Proofs.SequentialTests.safe_failure_mass
+#print axioms Lax342547Proofs.SequentialTests.sequential_failure_lower
+#print axioms Lax342547Proofs.SequentialTests.bounded_sequential_failure_lower
+#print axioms Lax342547Proofs.SequentialTests.accepts_pointwise
+
+#print axioms Lax342547Proofs.AmplifiedTests.test_fubini
+#print axioms Lax342547Proofs.AmplifiedTests.amplified_bad_mass
+
+#print axioms Lax342547Proofs.GreedySpaces.independent_snoc
+#print axioms Lax342547Proofs.GreedySpaces.finite_span_dimension
+#print axioms Lax342547Proofs.GreedySpaces.accumulated_dimension
+
+#print axioms Lax342547Proofs.UniversalWitnesses.some_protected_witness_probability
+#print axioms Lax342547Proofs.UniversalWitnesses.marked_unit_witness_probability
+
+#print axioms Lax342547Proofs.PrimalAvoidance.evalMatrix_surjective
+#print axioms Lax342547Proofs.PrimalAvoidance.matrix_vector_uniform
+#print axioms Lax342547Proofs.PrimalAvoidance.uniform_subspace_mass
+#print axioms Lax342547Proofs.PrimalAvoidance.fixed_vector_subspace_mass
+#print axioms Lax342547Proofs.PrimalAvoidance.matrix_span_hit_mass
+#print axioms Lax342547Proofs.PrimalAvoidance.capped_matrix_span_hit
+
+#print axioms Lax342547Proofs.RawPrimalAvoidance.plus_matrix_point_cap
+#print axioms Lax342547Proofs.RawPrimalAvoidance.raw_primal_span_hit_mass
+
+#print axioms Lax342547Proofs.IndependentSampling.accepted_spaces_independent
+#print axioms Lax342547Proofs.IndependentSampling.greedy_failure_lower_probability
+
+#print axioms Lax342547Proofs.AcceptingFamilies.conditional_event_mass
+#print axioms Lax342547Proofs.AcceptingFamilies.conditional_probability
+#print axioms Lax342547Proofs.AcceptingFamilies.accepting_family_loss
+
+#print axioms Lax342547Proofs.UnitSpanAvoidance.pin_intersection_is_primal_hit
+#print axioms Lax342547Proofs.UnitSpanAvoidance.capped_unit_span_avoidance
+#print axioms Lax342547Proofs.UnitSpanAvoidance.conditioned_unit_span_avoidance
+
+#print axioms Lax342547Proofs.FiniteInjection.finite_injection_exception
+
+#print axioms Lax342547Proofs.InjectionBudgets.amplified_ratio_budget
+#print axioms Lax342547Proofs.InjectionBudgets.quotient_probe_length
+#print axioms Lax342547Proofs.InjectionBudgets.early_channel_margin
+#print axioms Lax342547Proofs.InjectionBudgets.accepting_family_exponential_budget
+#print axioms Lax342547Proofs.InjectionBudgets.primal_avoidance_exponent
+#print axioms Lax342547Proofs.InjectionBudgets.conditioned_avoidance_budget
+
+#print axioms Lax342547Proofs.AcceptingInjection.accepting_family_injection
+#print axioms Lax342547Proofs.AcceptingInjection.primal_accepting_family_injection
+
+#print axioms Lax342547Proofs.RawAcceptingInjection.capped_frame_channel
+#print axioms Lax342547Proofs.RawAcceptingInjection.raw_minus_accepting_injection
+#print axioms Lax342547Proofs.RawAcceptingInjection.exponential_accepting_injection
+
+#print axioms Lax342547Proofs.InjectionAsymptotics.polynomial_dyadic_floor_tends_zero
+#print axioms Lax342547Proofs.InjectionAsymptotics.eventually_relative_exception
+#print axioms Lax342547Proofs.InjectionAsymptotics.relative_union_budget
+
+#print axioms Lax342547Proofs.AtomFunctionals.atom_local_functional
+#print axioms Lax342547Proofs.AtomFunctionals.cut_star_sum
+#print axioms Lax342547Proofs.AtomFunctionals.atom_functional_ext
+#print axioms Lax342547Proofs.AtomFunctionals.atom_base_degree
+
+#print axioms Lax342547Proofs.PolynomialTensors.linear_outer_product_degree_bound
+#print axioms Lax342547Proofs.PolynomialTensors.selector_tensor_degree
+
+#print axioms Lax342547Proofs.InjectionThresholds.exists_dyadic_gap
+#print axioms Lax342547Proofs.InjectionThresholds.exists_early_parameters
+
+#print axioms Lax342547Proofs.AtomParameters.parameter_coordinate_degree
+#print axioms Lax342547Proofs.AtomParameters.generic_parameters_cover
+#print axioms Lax342547Proofs.AtomParameters.parameter_atom_degree
+#print axioms Lax342547Proofs.AtomParameters.atom_selector_degree
+#print axioms Lax342547Proofs.AtomParameters.parameter_tensor_degree
+
+#print axioms Lax342547Proofs.SharedTesterPoint.shared_point_allowed
+#print axioms Lax342547Proofs.SharedTesterPoint.shared_point_eta_one
+
+#print axioms Lax342547Proofs.InjectionUnion.pair_event_mass
+#print axioms Lax342547Proofs.InjectionUnion.finite_injection_union
+#print axioms Lax342547Proofs.InjectionUnion.inverse_polynomial_relative_union
+
+#print axioms Lax342547Proofs.EmptyPredictions.nonexceptional_prediction_exact
+#print axioms Lax342547Proofs.EmptyPredictions.vanishing_prediction_exact
+
+#print axioms Lax342547Proofs.RetainedEmptyPredictions.prediction_error_nonneg
+#print axioms Lax342547Proofs.RetainedEmptyPredictions.prediction_error_le_total
+#print axioms Lax342547Proofs.RetainedEmptyPredictions.retained_vanishing_predictions
+
+#print axioms Lax342547Proofs.FrameTranspose.uniform_equiv_push
+#print axioms Lax342547Proofs.FrameTranspose.capped_transpose_frame
+#print axioms Lax342547Proofs.FrameTranspose.conditioned_dual_span_avoidance
+
 #print axioms Lax342547Proofs.Counterexample.arbitrarily_large_hadwiger_counterexample
 #print axioms Lax342547Proofs.FractionalCounterexample.arbitrarily_large_fractional_counterexample
+#print axioms Lax342547Proofs.TableInjection.actual_table_injecting_iff
+#print axioms Lax342547Proofs.TableInjection.admissible_injection_iff
+#print axioms Lax342547Proofs.PreparedInjection.actual_accepting_table_loss
+#print axioms Lax342547Proofs.PreparedInjection.actual_relative_table_injection
+#print axioms Lax342547Proofs.PreparedInjectionScale.exists_prepared_parameters
+#print axioms Lax342547Proofs.ConditionedMixing.signed_pattern_error
+#print axioms Lax342547Proofs.ConditionedMixing.conditional_test_comparison
+#print axioms Lax342547Proofs.HistogramGram.normalized_bounds
+#print axioms Lax342547Proofs.HistogramGram.normalized_error
+#print axioms Lax342547Proofs.HistogramGram.product_error
+#print axioms Lax342547Proofs.CrossBatchMixing.weighted_character_bound
+#print axioms Lax342547Proofs.CrossBatchMixing.cross_batch_comparison
+#print axioms Lax342547Proofs.CrossGramBasis.coefficient_blocks
+#print axioms Lax342547Proofs.CrossGramBasis.nonzero_coefficient
+#print axioms Lax342547Proofs.CrossGramBasis.mutual_gram_bits
+#print axioms Lax342547Proofs.AffineSliceIndependence.pairMap_injective_of_joined
+#print axioms Lax342547Proofs.AffineSliceIndependence.joinedFree_uniform
+#print axioms Lax342547Proofs.AffineSliceIndependence.affine_pair_failure
+#print axioms Lax342547Proofs.ConditionedMixing.bounded_integral_deletion
+#print axioms Lax342547Proofs.HistogramGram.independent_groups_error
+#print axioms Lax342547Proofs.HistogramGram.half_ambient_error
+#print axioms Lax342547Proofs.GramOrbitDensity.batch_probability
+#print axioms Lax342547Proofs.GramOrbitDensity.batch_point_cap
+#print axioms Lax342547Proofs.GramOrbitDensity.mutual_gram_comparison
+#print axioms Lax342547Proofs.AffineSliceIndependence.point_pair_independent
+#print axioms Lax342547Proofs.AffineSliceIndependence.pointColumns_eraseFree
+#print axioms Lax342547Proofs.AffineSliceIndependence.point_gram_ignores_free
+#print axioms Lax342547Proofs.AffineSliceIndependence.point_gram_setFree
+#print axioms Lax342547Proofs.AffineSliceIndependence.point_pair_failure
+#print axioms Lax342547Proofs.EmpiricalVariance.empirical_variance
+#print axioms Lax342547Proofs.UniformTableInjection.exists_uniform_injection
+#print axioms Lax342547Proofs.JoinedGramOrbits.joined_gram
+#print axioms Lax342547Proofs.JoinedGramOrbits.union_uniform
+#print axioms Lax342547Proofs.JoinedGramOrbits.compatible_filter
+#print axioms Lax342547Proofs.JointGramInjection.ambient_failure
+#print axioms Lax342547Proofs.JointGramInjection.reference_failure
+#print axioms Lax342547Proofs.JointGramInjection.conditioned_reference_failure

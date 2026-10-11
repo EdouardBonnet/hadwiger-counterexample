@@ -46,9 +46,9 @@ this file is the shorter status and acceptance checklist.
 | Uniform mixing matrices, chosen before the unit law | §5.3, Lemma 5.5 | Complete: simultaneous unary rank/row spaces and all binary parities on every flavor, explicit large-n threshold, and the paper's mixer parameters |
 | Scalar recipes, table flags, gradient realization | §6, Theorem 6.3 | Effective dimension/rank bounds, table spaces and injection flags, private complements, unary admissibility, fresh-key independence, coefficient/table counts, concrete atom prescriptions, effective contractions, and full paired recipes checked; all four endpoint prescriptions, frozen baselines of rank at most 3K+28, and residual vanishing on effective/selected profiles checked; whole-space realization, frozen assembly, all four holes, and primal record count checked under the genuine recipe and capacity hypotheses |
 | Accepted queries and overlap-to-four-holes implication | §7, Proposition 7.1 | Finite collision core checked: actual primal-entry/target instantiation and all four holes in original PMF cells, both all-rank leaf image caps, key-indexed unary records, independent parameter and actual leaf-mass averaging, skipped pairs, pruning/scalar exponents, squared restriction recovery and bounded-option costs; complete numerical/status metadata encoding, uniform record budget/target selection and the full asymptotic Proposition 7.1 wrapper remain |
-| Phase alternatives and accepting-pair injection | §8 | Finite no-cover rank growth, actual channel moments and tails, raw-law density transfer, sharp total-rank target count, and fixed-parameter endpoint-group bounds with whole-unit marks checked; actual quotient factors/covered offsets, four even-character algebra, and independent protected pin-witness estimates checked; full alternative, odd-character bounds, large-cover concentration, injection, and preparation remain |
+| Phase alternatives and accepting-pair injection | §8 | Finite no-cover rank growth, actual channel moments and tails, raw-law density transfer, sharp total-rank target count, and fixed-parameter endpoint-group bounds with whole-unit marks checked; actual quotient factors/covered offsets, four even-character algebra, and independent protected pin-witness estimates checked; actual accepting-table injection and its uniform early channel choice checked; full alternative, odd-character bounds, large-cover concentration, and preparation remain |
 | Common prediction, exactification, and status preparation | §9, Proposition 9.2 | Boolean nonvanishing, excluded-label recovery, actual point-tensor degree, odd-tag common-atom algebra, and retained common prediction from average error checked; reference-flavor transfer, zero-difference case, and preparation remain |
-| Histogram compactness, Gram comparisons, and many-query bounds | Lemmas 10.1–10.5 | Not formalized |
+| Histogram compactness, Gram comparisons, and many-query bounds | Lemmas 10.1–10.5 | Quantitative Gram normalization (10.2) checked; actual reference-batch density and conditioned Fourier comparison checked; full raw batch comparison, many-query estimate and histogram nets remain |
 | Mixed-law tests, binary mixing, and unary positivity | Lemmas 10.7–10.11 | Actual quadratic polar-rank bias and affine-subspace bias checked; full mixed-law estimates remain |
 | Weak product testing and factorized integration | §11 | Not formalized |
 | Common subsequential limit and vanishing-overlap implication | §12 | Not formalized |
@@ -61,7 +61,11 @@ this file is the shorter status and acceptance checklist.
 
 ## Next implementation steps
 
-The validated estimate is now about 75%. The conditional finite transfer is
+The previous mathematical checkpoint was estimated at about 75%. The
+requested 90% checkpoint is not yet established. The October 11 work adds 37
+closed annotated endpoints, recorded below by their mathematical content
+rather than used to infer a completion percentage. The conditional finite
+transfer is
 checked in `PaperGraphTransfer.paper_graph_transfer`; it assumes the genuine
 uniform raw supersaturation property and does not prove Theorem 1.1. The
 high-probability graph-success bound is now checked in
@@ -72,11 +76,49 @@ including whole-unit marked averages. Actual common-projection quotient
 factors and covered offsets are constructed. Tiny-cover four-zero mass is
 checked under explicit bounds on the twelve odd characters; proving those
 bounds remains necessary. Protected-subspace counting and independent pin
-witness estimates are checked, but the full accepting-pair injection remains
-open. Average error now exactifies actual degree-two point predictions on a
+witness estimates are checked. Actual accepting-table injection now
+controls all sixteen flags per component, with the channel size fixed
+before the ambient dimension, polynomial mass exponent and unit law. Its
+finite hypotheses include the accepting-family count, separate marginal
+caps, adaptive pin rank, and actual table admissibility. Average error now
+exactifies actual degree-two point predictions on a
 retained family. Full reference-flavor transfer, the zero-difference case,
 status preparation, and large-cover concentration remain major dependencies.
 Actual quadratic polar-rank bias on affine subspaces is also checked.
+
+`HistogramGram` proves uniform relative Gram normalization errors, including
+heterogeneous products and ranks up to half the ambient dimension.
+`CrossGramBasis` proves that the two reciprocal Gram blocks have no zero
+nontrivial character; `GramOrbitDensity` supplies actual reference-law caps
+and their conditioned bounded-test comparison. `JoinedGramOrbits`
+identifies the combined orbit and its exact filtered law.
+`JointGramInjection` bounds joint-injectivity failure under those actual
+reference laws, including after reciprocal Gram conditioning. The full raw
+two-batch comparison still needs integration of these estimates.
+`AffineSliceIndependence` proves the actual point-column dependence bound
+and that the nominal Gram ignores every free coefficient. `EmpiricalVariance`
+proves the finite second-moment assembly under explicit mean and pair
+comparison hypotheses. These are foundations for Lemma 9.4, whose actual
+conditioned coefficient law and complete variance estimate remain open.
+
+The next concrete integration steps are:
+
+1. Use the checked `JoinedGramOrbits.compatible_filter` identity to connect
+   the combined Gram orbit to the two separate batch laws. Account for the
+   deletion with `JointGramInjection.conditioned_reference_failure` and
+   the checked bounded-integral deletion lemma. Assemble the complete raw
+   bounded-test comparison.
+2. Extend that comparison across the independent endpoint/component groups.
+   Preserve arbitrary dependence between endpoints of a unit; it is the
+   raw component law used for the reference calculation that factors.
+3. Construct the actual conditioned affine-coefficient law. Use
+   `point_gram_setFree` to prove that the Gram event depends on no free
+   coefficient, transfer `point_pair_failure` to that conditional law, and
+   discharge both mean and pair hypotheses of `empirical_variance`.
+4. Complete the zero-difference tester-rank contradiction and the missing
+   phase alternatives before assembling full status preparation. Continue
+   to the many-query estimate and histogram nets after the raw batch
+   comparison, without marking the common-limit arguments complete early.
 
 The concrete algebraic model, Lemmas 5.1–5.3, and the full uniform
 mixer theorem in Lemma 5.5 are complete. The endpoint
