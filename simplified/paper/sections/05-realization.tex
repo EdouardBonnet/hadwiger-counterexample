@@ -1,0 +1,310 @@
+\section{Realizing the scalar conditions}\label{sec:realization}
+
+Write \(r(v)=a+T(v,\cdot)\). A hole requires the opposite vertex's
+channel functional to equal \(r(v)\) on the whole profile space.
+We now reduce that requirement to finitely many scalar conditions.
+The main step solves linear equations and factors a matrix of bounded rank.
+
+\subsection{Lists and their records}
+
+Let \(A=(A_1,A_2)\) and \(B=(B_1,B_2)\) be two units. For each pair
+\(i,j\in\{1,2\}\), choose a nonempty list of at most 7 atoms at
+\(A_i\), and a matching list at \(B_j\). Matched atoms have the same
+tag and diagonal bit. Let \(v^A_{ij},v^B_{ji}\) be their sums.
+There are at most 28 atoms on either unit, and at most 14 at one endpoint.
+Their selector and base directions satisfy the independence conditions
+of \Cref{lem:protected-atoms}.
+
+The key of \(A(l,s,z)\) at an orientation \(o\) is
+\[
+ \bigl(P_{e_{l-1}}v(s,z),P_{e_l}v(s,z)\bigr).
+\]
+Equality of matched keys implies
+\(U_{A_i}v^A_{ij}=U_{B_j}v^B_{ji}\).
+Define the old internal functional at endpoint \(i\) of a unit by
+\[
+ p_i=u_{A_{3-i}}U_{A_i}.
+\]
+Its value on an atom is one of the unary status bits.
+
+The pins of the two leaves determine a bounded \emph{table} of cross
+pairings. It records primal pin pairings with the opposite channels, and
+the entries needed to keep all stored images fixed. The flags on a unit
+say that its entries agree with that table. Because primal projections
+are stored pins, these entries determine the functional
+\(u_{B_j}U_{A_i}\) on the effective space \(C_i^A\).
+Call that functional \(t^A_{ij}\). Define \(t^B_{ji}\) reciprocally.
+
+The numerical conditions on the lists are
+\begin{align}
+ \sum_{a\text{ in list }ij}q_a&=1,
+ &a(v^A_{ij})+a(v^B_{ji})&=1,\label{eq:recipe-scalars}\\
+ T(v^A_{ij},\cdot)|_{C_i^A}&=(t^A_{ij}+a)|_{C_i^A},
+ &T(v^B_{ji},\cdot)|_{C_j^B}&=(t^B_{ji}+a)|_{C_j^B}.
+ \label{eq:recipe-gradients}
+\end{align}
+At each opposite endpoint, the two lists must also have equal sums of
+\(p+a\). For example, on unit \(A\),
+\begin{equation}\label{eq:recipe-balance}
+ (p_1+a)(v^A_{1j})=(p_2+a)(v^A_{2j})\quad(j=1,2).
+\end{equation}
+There is the reciprocal condition on \(B\).
+
+% lax begin Lax793645.ScalarPrescriptions
+\begin{lemma}\label{lem:small-tables}
+If \eqref{eq:recipe-scalars}--\eqref{eq:recipe-balance} hold, the binary
+values between selected atoms can be prescribed so that
+\(r(v^A_{ij})\) has the correct value on every selected atom at \(A_i\),
+and likewise at the other endpoints. These prescriptions use only the
+reduced mixer family.
+\end{lemma}
+% lax end
+% lax begin Lax793645Proofs.Manuscript.ScalarPrescriptions.choose_reduced_script
+\begin{proof}
+Consider the matrix of pairings between all selected atoms at one endpoint.
+Its symmetric off-diagonal entries are free; its diagonal is the role bit,
+since \(T(x,x)=a(x)\). Prescribing the sums along the two outgoing lists
+amounts to prescribing the products of this matrix with the two list
+indicator vectors. The diagonal identity imposes the self-pairing
+conditions in \eqref{eq:recipe-scalars}. Symmetry imposes equality of the
+two cross sums, which is \eqref{eq:recipe-balance} on the opposite unit.
+These are sufficient: extend the two disjoint list indicators to a basis,
+fill the prescribed rows and columns symmetrically, and fill all remaining
+entries arbitrarily.
+
+It remains to realize each chosen scalar pairing using \(T^1\).
+For tags \(l,l'\), one of the two cycle edges incident with \(l\) has
+index \(c\ne l'\). Equation \eqref{eq:matching-atom} shows that its
+indexed term couples these atoms. Use that term for the prescribed value
+and set the other products to zero. Distinct ordered atom pairs have
+separate binary prescriptions. The explicit binary mixing estimate applies
+to the independent indexed tests used in this prescription.
+\end{proof}
+% lax end
+
+\subsection{Completing the channel coordinates}
+
+Let \(H=\F^h\oplus\F^h\), with \(q_H(x,y)=x\cdot y\).
+Suppose \(F\le B'\) is a frozen subspace, \(g_0:F\to H\) is fixed,
+\(C\le H\), and \(\ell:B'\to C^*\) is linear.
+We seek a map \(g:B'\to H\) with prescribed quadratic value \(Q\),
+agreeing with \(g_0\), and satisfying
+\(\beta_H(gb,c)=\ell(b)(c)\).
+
+% lax begin Lax793645.CoordinateCompletion
+\begin{lemma}[Coordinate completion]\label{lem:relative-extension}
+Such a map exists if
+\begin{align*}
+ Q(f)&=q_H(g_0f), &
+ \ell(f)(c)&=\beta_H(g_0f,c),\\
+ \beta_Q(f,b)&=\ell(b)(g_0f)
+ &&\text{whenever }f\in F,\ g_0f\in C,
+\end{align*}
+and \(Q(b)=b\trans Mb\), with
+\[
+ h\ge\rank M+5\dim C+6\dim F+2.
+\]
+The map \(g_0\) may have a kernel.
+\end{lemma}
+% lax end
+% lax begin Lax793645Proofs.Manuscript.CoordinateCompletion.coordinate_quadratic_extension
+\begin{proof}
+Write \(f=\dim F\), \(c=\dim C\), and \(\rho=\rank M\).
+First prescribe the pairing of \(g_1b\) with \(C+g_0F\) by
+\[
+ \beta_H(g_1b,c_0+g_0f_0)=\ell(b)(c_0)+\beta_Q(b,f_0).
+\]
+The last compatibility condition makes this prescription well-defined.
+A section of the map \(H\to(C+g_0F)^*\) solves these equations.
+Extend the remaining correction from \(F\) by zero on a complement.
+The result agrees with \(g_0\) and has rank at most \(c+2f\).
+
+The residual \(R=Q+q_H\circ g_1\) vanishes on \(F\), as do its polar
+rows there. Choose a projection killing \(F\). Pulling a matrix for
+\(R\) through this projection gives rank at most \(\rho+c+2f\).
+Rank factorization therefore writes
+\[
+ R(b)=\sum_{j=1}^k a_j(b)b_j(b),\qquad k\le\rho+c+2f,
+\]
+where all the linear forms vanish on \(F\).
+
+Put \(W=C+g_1B'\), of dimension \(d\le2c+2f\).
+In the coordinate half \(\F^h\oplus0\), choose \(k\) vectors \(x_j\)
+in \(W^\perp\), independent modulo \(W\). This is possible when
+\(h\ge k+2d\). Solve the linear equations
+\(y_j\in W^\perp\), \(\beta_H(x_i,y_j)=\delta_{ij}\).
+Adding \(q_H(y_j)x_j\) makes \(q_H(y_j)=0\). Adding suitable preceding
+\(x_i\)'s then makes all pairings between the \(y_j\)'s zero, without
+changing those quadratic values or the prescribed pairings.
+Thus
+\[
+ g(b)=g_1(b)+\sum_j\bigl(a_j(b)x_j+b_j(b)y_j\bigr)
+\]
+has quadratic value \(Q(b)\). The correction vanishes on \(F\) and is
+orthogonal to \(C+g_1B'\). It preserves every linear constraint.
+Finally \(k+2d\le\rho+5c+6f\), which proves the bound.
+\end{proof}
+% lax end
+
+The last compatibility equation is essential. If \(g_0f=0\), it requires
+\(f\) to lie in the polar radical of \(Q\). We cannot assume selected
+keys have independent channel images: a capped law can make those images
+zero.
+
+\subsection{The obstruction calculation}
+
+We describe the calculation jointly for the two endpoints of one unit.
+At a component the domain is \(B'=B\oplus B\). Let
+\(F_i=P_i+A_i\), where \(P_i\) is the primal pin space and \(A_i\)
+is the selected-key span. Put \(F=F_1\oplus F_2\).
+For one opposite endpoint, let \(g_0:F\to H\) be its already fixed
+channel evaluation and put
+\[
+ K_0=\{f\in F:g_0f\in C\}.
+\]
+The table is called \emph{safe} if
+\begin{equation}\label{eq:endpoint-injection}
+ K_0\cap(P_1\oplus0)=0
+ \quad\text{and}\quad K_0\cap(0\oplus P_2)=0
+\end{equation}
+That is, its
+channel map is injective on each endpoint's primal pins modulo the stored
+channel space. No injectivity is required on their sum.
+
+The homogeneous quadratic constraints in \Cref{lem:relative-extension}
+have annihilator
+\begin{equation}\label{eq:quadratic-annihilator}
+ F^{(2)}+K_0\odot B',\qquad
+ K_0\odot B'=\Span\{kb\trans+bk\trans:k\in K_0,b\in B'\}.
+\end{equation}
+Indeed evaluation on \(ff\trans\) reads the frozen quadratic value,
+and evaluation on \(kb\trans+bk\trans\) reads a polar row.
+Every matrix in this annihilator lies in
+\(F\otimes B'+B'\otimes F\), so its rank is at most \(2\dim F\).
+
+% lax begin Lax793645.FrozenConstraints
+\begin{lemma}\label{lem:joint-obstruction}
+An annihilating profile for the frozen quadratic constraints is a sum of
+selected atoms and effective profiles on the primal pins.
+\end{lemma}
+% lax end
+% lax begin Lax793645Proofs.Manuscript.FrozenConstraints.one_selected_obstructions
+\begin{proof}
+Apply selector confinement to each endpoint block of an annihilating
+component matrix. If a vector in its column space is \(p+a\), with
+\(p\in P_i\) and \(a\in A_i\), then the reshaped rank of \(p\) is at
+most \(R^2+t_*\). Thus \(p\in D_0\). The tensor quotient identity
+\[
+ \ker(B\otimes B\to(B/F_i)\otimes(B/F_i))
+   =F_i\otimes B+B\otimes F_i
+\]
+now puts this block in the hypothesis of selected-atom isolation.
+Subtract its selected diagonal matrices. Its remaining columns lie in
+\(L_i\).
+
+The coefficients of a selected atom agree on its two incident components.
+To check this, project the cut relation \(\sum_ex_e=0\) modulo the protected
+spaces. The selected selector and base vectors are independent in these
+quotients. A particular selected label appears on just its two incident
+components; its coefficient in the displayed sum must be zero. We have
+therefore subtracted genuine atoms, and the residual is still a profile.
+
+It remains to prove that the residual is supported on pins. This requires
+care with dependencies between endpoints. Write its component as
+\[
+ W=\operatorname{diag}(W_1,W_2)=M+T+T\trans,
+ \qquad M\in F^{(2)},\quad\operatorname{col}T\subseteq K_0.
+\]
+If \(u\) annihilates \(F_i\), insert \(u\) in endpoint \(i\) and zero
+in the other endpoint. The terms \(M\) and \(T\trans\) kill this vector.
+Hence its image under \(W\) lies in \(K_0\). Block diagonality places
+that image at endpoint \(i\); the column containment puts it in \(L_i\).
+Since \(K_0\le F\), its nonzero block lies in
+\(F_i\cap L_i=P_i\). Safety \eqref{eq:endpoint-injection} forces it to
+be zero. Symmetry now puts all columns of \(W_i\) in \(F_i\), and thus
+in \(P_i\). A symmetric tensor supported there belongs to \(P_i^{(2)}\).
+This is precisely an effective profile.
+\end{proof}
+% lax end
+
+This argument allows a mixed kernel vector caused by the same pinned
+ambient image at the two endpoints. It never asserts \(K_0\cap(P_1\oplus
+P_2)=0\).
+
+The target functional has the correct values on the obstructions just
+identified. Its values on effective profiles are
+\eqref{eq:recipe-gradients}; its values on selected atoms are the binary
+prescriptions of \Cref{lem:small-tables}. Finite-dimensional duality
+therefore gives a quadratic target satisfying all frozen restrictions
+and all required profile evaluations.
+
+\subsection{Keeping the target rank bounded}
+
+A quadratic target exists, but arbitrary solutions could have rank growing
+with \(n\). We need a solution of bounded matrix rank for coordinate completion.
+The explicit functional \(r(v)\), for a list of at most 7 atoms whose
+diagonal sum is one, has a bounded-rank matrix representative.
+For the tester part, the ordinary coefficient at index \(t\) is the shared
+tester value of the given atom-sum representation. At most seven indices
+contribute. Equation \eqref{eq:cycle-functionals} puts the shared terms
+on the matchings \(M_t\). After collecting them, each component carries
+one multiple of the shared tester. Its rank is at most \(8r_0\).
+We retain the looser verified joint bound
+\begin{equation}\label{eq:gradient-rank}
+ r_{\rm grad}=2(15r_0+14Jg).
+\end{equation}
+The factor two permits both endpoints. No sharp mixer rank estimate is
+needed here.
+
+Let \(f=\dim F\), \(c=\dim C\). A baseline channel map extending
+\(g_0\) and realizing \(\ell\) can have rank at most \(f+c\): first
+lift \(\ell\) through \(H\to C^*\), then extend the remaining correction
+from \(F\). Its quadratic form satisfies every frozen constraint.
+Project the explicit gradient away from \(F\). The difference from its
+original matrix has rank at most \(2f\). Subtract the baseline and this
+projected gradient. The residual has zero frozen values and zero polar
+rows on \(K_0\), and its required profile functional has a representative
+of rank bounded in terms of \(f,c\).
+
+Compress only this residual. Here is the elementary compression used.
+In each base block choose a subspace containing the factors of all frozen
+vectors and of the rows and columns in the bounded-rank target. Choose a
+linear retraction that fixes the former and whose transpose fixes the
+latter. Such a retraction is obtained by extending bases; its rank is
+bounded by the total dimensions of these finite lists. Keep the constant
+coordinate fixed and apply the same base map at every tag and endpoint.
+This map preserves the allowed coordinate blocks, hence the moment spans
+and the cut relations. Pulling the residual quadratic form back along it
+preserves its profile values. Since it fixes \(F\), it preserves the zero
+frozen values and the zero polar rows on \(K_0\).
+
+The compressed residual has rank at most a fixed number \(d\), independent
+of \(n,r_0,h\). Restoring the baseline and explicit part gives matrix rank
+at most \(r_{\rm grad}+f+c+d\). It is enough to have
+\begin{equation}\label{eq:channel-room}
+ h\ge r_{\rm grad}+7f+6c+d+2.
+\end{equation}
+The coefficient of \(r_0\) on the right is 30. All other terms are fixed
+before \(r_0\). Thus \(h=1000r_0\) suffices for large \(r_0\).
+
+% lax begin Lax793645.FrameRealization
+\begin{theorem}[Realization]\label{thm:gradient-realization}
+For protected lists satisfying the scalar conditions, a consistent safe
+table and matching keys admit a completion of the cross pairings that
+realizes all four hole functionals. The completion preserves every frozen
+row and column. It prescribes at most \(16gh\dim B\) further scalar entries.
+\end{theorem}
+% lax end
+% lax begin Lax793645Proofs.Manuscript.FrameRealization.one_reciprocal_realization
+\begin{proof}
+Use the joint obstruction calculation and compression for each opposite
+channel map, then apply \Cref{lem:relative-extension}. The reciprocal
+problems occupy different blocks: primal columns on one side against
+channels on the other, and channels against primal columns. Their shared
+frozen entries already agree with the table. They can therefore be completed
+independently. The count follows by counting these primal--channel entries
+in both directions and both endpoints. Once their actual values equal the
+completion, \eqref{eq:recipe-scalars} and the matching keys give the hole
+relations for all four pairs.
+\end{proof}
+% lax end

@@ -1,0 +1,154 @@
+\section{Counting frames and fixing images}\label{sec:frame-laws}
+
+The cost of prescribing frame images depends on the number of independent
+directions observed. We count their possible images first.
+
+\subsection{Quadratic Gram data}
+
+For vectors \(v_1,\ldots,v_a\), their quadratic Gram data consist of
+\(q_0(v_i)\) and \(\beta_0(v_i,v_j)\), for \(i<j\).
+There are \(a(a+1)/2\) entries. Each diagonal entry records a quadratic value.
+
+% lax begin Lax793645.QuadraticFrameCounts
+\begin{lemma}\label{lem:quadratic-frame-count}
+Suppose \(v_1,\ldots,v_a\) are independent in a hyperbolic space of
+full dimension \(N\). For any prescribed \(b_1,\ldots,b_a,q\), the
+number of vectors \(v\) satisfying
+\[
+ \beta_0(v_i,v)=b_i,\qquad q_0(v)=q
+\]
+is \(2^{N-a-1}(1+O(2^{a-N/2}))\). The number of such vectors outside
+the previous span depends only on the quadratic Gram data and the
+prescribed entries. Consequently every partial isometric embedding has
+the same number of completions.
+\end{lemma}
+% lax end
+% lax begin Lax793645Proofs.Manuscript.QuadraticFrameCounts.quadratic_column_mass
+\begin{proof}
+Nondegeneracy makes the polar equations independent. Their solution set
+has size \(2^{N-a}\). The quadratic Gauss sum on that set is
+\[
+ 2^{N/2-a}\sum_{t\in\F^a}
+ (-1)^{q_0(\sum_i t_iv_i)+t\cdot b}.
+\]
+To obtain this identity, expand each polar equation as
+\(\frac12\sum_{t_i\in\F}(-1)^{t_i(\beta_0(v_i,v)+b_i)}\),
+then translate \(v\) by \(\sum_i t_iv_i\) in the hyperbolic Gauss sum.
+Its absolute value is at most \(2^{N/2}\). Adding or subtracting this sum
+from the size of the affine solution set gives the asserted count.
+
+A vector in the old span is \(\sum_i t_iv_i\). Whether it satisfies the
+new equations is determined by the old Gram data. Thus the number excluded
+by independence is determined by those data as well. In particular,
+two lists with the same Gram data admit equally many choices for their
+next independent vector. Complete the first list to a basis. At each step
+there is a matching choice for the second list, since the first has at
+least one choice. The linear map between the resulting bases preserves
+the quadratic form. This uses the exact count at every dimension.
+\end{proof}
+% lax end
+
+For \(a\le N/4\), it follows that a uniform list of ambient vectors has
+prescribed independent quadratic Gram data with probability
+\begin{equation}\label{eq:quadratic-gram-count}
+ 2^{-a(a+1)/2}\bigl(1+O(a2^{a-N/2})\bigr).
+\end{equation}
+The same count gives the frames in \eqref{eq:one-frame}. If
+\(N\ge 2a+4\), at least \((2^{N-a}-2^{N/2})/2\) vectors realize
+any prescribed next entries. This exceeds \(2^a\), the size of the
+previous span. Appending independent columns therefore gives an embedding
+with the required Gram data.
+
+The frame law prescribes only part of the full Gram data. Sum the completion
+counts over the unspecified entries. This shows that an independent list
+of primal directions has exactly the uniform image law with its prescribed
+quadratic Gram data. It also gives the following estimates, used repeatedly.
+For every fixed \(\xi>0\), by choosing \(M_0\) large enough, any consistent
+prescription of \(t\) new image directions has raw probability at most
+\begin{equation}\label{eq:image-cost}
+ 2^{-(1-\xi)tN}.
+\end{equation}
+The bound is uniform over the already stored bounded set of directions.
+For free entries of a bounded cross table, every consistent assignment
+has probability \(2^{-c+o(N)}\), where \(c\) is the number of independent
+scalar equations. A prescribed kernel must be counted separately from
+these Gram equations. We do that explicitly in \Cref{sec:histograms}.
+
+\subsection{Leaves with stored images}
+
+A \emph{pin} specifies the exact images of a coefficient subspace under
+the unit's frame maps. A \emph{leaf} is a conditional law together with
+its pins. The probability of the leaf is retained in a separate mixing
+law. We require the pin space to be closed under projection onto the
+primal and the two channel blocks at each of the two endpoints.
+There are six projections.
+
+For a leaf, a further exact-image event has \emph{new rank} \(t\) if it
+prescribes \(t\) coefficient directions independent modulo the stored
+ones. Call the leaf \(\zeta\)-spreading if every such event has probability
+at most \(2^{-(1-\zeta)tN}\). Only the bounded ranks used in the subsequent
+queries are needed.
+
+% lax begin Lax793645.ClosedPins
+\begin{lemma}[Closed pins]\label{lem:closed-peeling}
+A unit law with a fixed exponential density cap admits a decomposition
+into leaves with bounded pin dimension and a spreading estimate. The pins
+may be required to be closed under the six block projections. Further
+restriction to a set of mass \(2^{-o(N)}\) allows another such decomposition,
+with a larger fixed pin budget and twice the original spreading error.
+\end{lemma}
+% lax end
+% lax begin Lax793645Proofs.Manuscript.ClosedPins.one_first_leaves
+\begin{proof}
+If a leaf violates spreading, condition on a violating exact-image event
+of new rank \(t\). Close its coefficient space under the block projections.
+If the closure adds \(u\) directions, then \(u\le6t\). Specify the other
+\(u-t\) images. At least one specification has conditional mass
+\(2^{-(u-t)N}\). The whole step thus has mass at least
+\[
+ 2^{-(1-\zeta)tN}2^{-(u-t)N}
+ \ge2^{-(1-\zeta/6)uN}.
+\]
+The raw image bound \eqref{eq:image-cost}, with \(\xi<\zeta/6\), charges
+strictly more for the same stored directions. After total new dimension
+\(k\), the likelihood ratio has gained at least
+\(2^{(\zeta/6-\xi)kN}\). The initial density cap bounds this ratio.
+Choose the pin budget larger than the cap exponent divided by
+\(\zeta/6-\xi\). No branch of this procedure can exceed that budget.
+
+To form a mixture, keep a residual subset of the original finite law.
+While it has mass at least \(1/2\), normalize it and run the preceding
+procedure until a spreading leaf is obtained. Remove that leaf from the
+residual set and record its original probability. The residual law has
+at most twice the initial density cap, so one pin budget works at every
+iteration. Each removal has positive mass. Finiteness makes the process
+terminate, and the recorded leaves together retain at least \(1/2\) of
+the law. Their weights are the actual removed masses.
+
+For the second assertion, start with the old pins and allow a fixed reserve
+of new directions. Restricting by mass \(2^{-o(N)}\) adds only \(o(N)\)
+to the logarithm of the density cap. That cost fits in the reserve for
+large \(n\). The same construction, with twice the spreading error,
+gives the new leaves.
+\end{proof}
+% lax end
+
+Let \(K\) bound the total pin dimension. Write \(P_{i,e}\le B\) for the
+primal pins at endpoint \(i\), component \(e\). Their images really are
+stored: closure is the reason projected directions are also pins.
+For a subspace \(D\), write
+\[
+ D^{(2)}=\Span\{vv\trans:v\in D\}.
+\]
+The effective profiles at endpoint \(i\) form
+\begin{equation}\label{eq:effective-space}
+ C_i=\{x\in\cX:x_e\in P_{i,e}^{(2)}\text{ for every }e\}.
+\end{equation}
+They have dimension at most \(K^2\), and every such profile has total
+component rank at most \(K\). Choose a basis on each leaf. Evaluations
+on that basis will be part of the finite status of a query.
+
+Later restrictions preserve the old pins and effective profiles. The
+retained mass \(\theta_n\) is bounded below by a positive constant in
+\Cref{prop:status-preparation}. We use this bound in the final probability
+comparison.

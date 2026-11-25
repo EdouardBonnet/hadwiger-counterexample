@@ -1,0 +1,223 @@
+\section{Partitions defined by linear equations}\label{sec:product-tests}
+
+A linear partition records a map \(L:K\to\F^r\) on the ambient key
+vector space. Its cells are the fibers of \(L\), intersected with the
+Gram reference set. Conditional averages are taken with respect to the
+reference probability \(\nu\); we write them as \(\Pi_L\).
+
+\subsection{The characters seen by a leaf}
+
+Write \(u\) for uniform probability on the ambient key space,
+\(a=u(\cK)\), and \(\chi_\xi(x)=(-1)^{\xi\cdot x}\). The Gram count
+gives \(a\ge a_0>0\) for all large \(n\). The reference law
+\(\nu=u(\,\cdot\mid\cK)\) has vanishingly small bias on each nonzero
+character, uniformly in its frequency.
+
+Fix a capped leaf. Let \(j=(o,v)\) record the orientation and the query
+flags, with law \(\mu\). Write \(d_j\) for the conditional key density
+relative to \(\nu\), restricted to \(\cK\). Flags of mass zero can be
+omitted. A filter assigns weights \(0\le t_j\le\mu_j\) and gives density
+\(d_t=\sum_j t_jd_j\). It may be chosen using the opposite leaf.
+
+For any fixed bound on the number of rows, the cell estimate
+\eqref{eq:linear-cell-cap} gives constants \(V,B_0\) such that
+\begin{equation}\label{eq:linear-density-energy}
+  \sum_j\mu_j\|\Pi_Ld_j\|_2^2\le V,\qquad 0\le\Pi_Ld_t\le B_0.
+\end{equation}
+The constants precede the row bound. Indeed, outside exponentially small
+orientation mass, the unfiltered probability of every cell \(C\) is at
+most \(B\nu(C)\). If \(a_{v,C}\) is its joint probability with flag
+\(v\) and \(r_v\) is the flag probability, then
+\(\sum_{v,C}a_{v,C}^2/(r_v\nu(C))\le B|\{v\}|\).
+On the exceptional orientations the sum is at most the reciprocal of
+the smallest positive cell mass. With a fixed row bound this contributes
+\(o(1)\). The same cell estimate bounds the projected density.
+
+% lax begin Lax793645.LargeFrequencies
+\begin{lemma}\label{lem:linear-test}
+Fix \(\tau>0\). A bounded set of frequencies contains every \(\xi\) for
+which some filter has \(\big|\int d_t\chi_\xi\,d\nu\big|>\tau\).
+\end{lemma}
+% lax end
+% lax begin Lax793645Proofs.Manuscript.LargeFrequencies.filtered_large_spectrum
+\begin{proof}
+For a finite set \(S\) of frequencies let \(L\) record its characters.
+Put \(g_j=\Pi_Ld_j\). Its correlations with those characters are the
+same as those of \(d_j\). Parseval applied to \(1_{\cK}g_j\) gives
+\[
+ a\sum_{\xi\in S}\left|\int d_j\chi_\xi\,d\nu\right|^2
+ \le \|g_j\|_2^2 .
+\]
+If a filter witnesses a correlation greater than \(\tau\), then
+Cauchy--Schwarz gives
+\(\sum_j\mu_j|\int d_j\chi_\xi\,d\nu|^2>\tau^2\).
+Choose an integer \(R>V/(a_0\tau^2)\) and apply
+\eqref{eq:linear-density-energy} at that row count. Summing over any
+\(R\) distinct such frequencies would exceed \(V\).
+\end{proof}
+% lax end
+
+% lax begin Lax793645.FilteredQueryPartition
+\begin{proposition}\label{prop:all-filter-partition}
+For each \(\epsilon>0\), one linear partition of bounded dimension
+satisfies \(\|d_t-\Pi_Ld_t\|_1\le\epsilon\) and
+\(0\le\Pi_Ld_t\le B_0\) for every filter on the leaf.
+\end{proposition}
+% lax end
+% lax begin Lax793645Proofs.Manuscript.FilteredQueryPartition.one_query_all_filters_linear_partition
+\begin{proof}
+Put \(\eta=a_0\epsilon/8\). Expand the flags as in
+\Cref{thm:leaf-fourier} and divide the error among their fixed number
+of terms. Let \(\delta>0\) be the resulting cutoff for an error of
+\(\eta\) against any filtered density.
+Put \(k=\lceil\delta^{-2}\rceil\) and
+\(\tau=a_0\epsilon/(4\cdot2^k)\). Let \(L\) record the set in
+\Cref{lem:linear-test}.
+
+Consider any \(|W|\le1\) orthogonal in \(L^2(\nu)\) to the recorded
+characters. Extend \(W\) by zero to \(w=1_{\cK}W\).
+By Parseval at most \(k\) coefficients of \(w\) exceed \(\delta\) in
+absolute value. Let \(T\) be the conditional average of \(w\) under
+\(u\) on the partition they define. Its Fourier coefficients agree with
+those of \(w\) on their span and vanish elsewhere. In particular
+\(|T|\le1\), its Fourier norm is at most \(2^k\), and its coefficients
+vanish at the characters recorded by \(L\). Hence
+\(\big|\int T d_t\,d\nu\big|\le2^k\tau\).
+
+Apply \Cref{thm:leaf-fourier} to \(D=1_{\cK}(aW-T)/2\).
+This function has modulus at most 1. Its coefficient at \(\xi\) is
+\[
+  \widehat D(\xi)=\tfrac a2
+     \left(\widehat w(\xi)-\int T\chi_\xi\,d\nu\right).
+\]
+The first term differs from \(\widehat T(\xi)\) by at most \(\delta\).
+The second differs from it by at most \(2^k\) times the reference bias,
+which is at most \(\delta/2^k\) for large \(n\). Thus every coefficient
+of \(D\) has modulus at most \(\delta\). The comparison gives
+\[
+ a\left|\int W d_t\,d\nu\right|\le 2\eta+2^k\tau.
+\]
+Finally take \(U=\operatorname{sgn}(d_t-\Pi_Ld_t)\) and
+\(W=(U-\Pi_LU)/2\). This test is orthogonal to the recorded characters.
+Its integral against \(d_t\) is \(\|d_t-\Pi_Ld_t\|_1/2\), by
+self-adjointness of conditional averaging. The chosen constants give the
+claim. The pointwise bound follows from \eqref{eq:linear-density-energy}.
+\end{proof}
+% lax end
+
+\subsection{Clipping follows from approximation}\label{sec:partition-clipping}
+
+Apply \Cref{prop:all-filter-partition} with all statuses retained. This
+gives a bounded approximation \(0\le g\le B_0\) to the unfiltered query
+density \(d\). Every flagged query density \(d_f\) satisfies
+\(0\le d_f\le d\), even when its flag is not among the recorded statuses.
+If \(\|d-g\|_1\le\epsilon\), then
+\[
+ \int_S d_f\,d\nu\le B_0\nu(S)+\epsilon,
+ \qquad
+ \int_{\{d_f\ge2B_0\}}d_f\,d\nu\le2\epsilon.
+\]
+The first inequality follows from \(d\le B_0+|d-g|\). On the set
+in the second inequality, \(d_f\le2(d-g)\le2|d-g|\).
+Thus the clipping height \(2B_0\) is fixed before the desired tail error.
+No separate estimate for repeated hits is needed.
+
+\subsection{A common set of linear coordinates}
+
+Work first with one tuple format. For each leaf \(\lambda\), collect the
+frequencies of its partitions for the options of that format. Their span
+\(H_\lambda\) has dimension at most a fixed \(r\). Repeat the argument
+for the finitely many formats, dividing the error budget among them.
+
+% lax begin Lax793645.SharedFrequencies
+\begin{lemma}\label{lem:common-frequencies}
+For every \(\eta>0\), there is a space \(H\) of dimension at most
+\(r2^r/\eta\), rounded up, such that two independent leaves satisfy
+\begin{equation}\label{eq:frequency-intersection}
+ H_\lambda\cap H_{\lambda'}\subseteq H
+\end{equation}
+except with probability at most \(\eta\).
+\end{lemma}
+% lax end
+% lax begin Lax793645Proofs.Manuscript.SharedFrequencies.shared_leaf_frequencies
+\begin{proof}
+Call a frequency frequent if it belongs to \(H_\lambda\) with
+probability greater than \(\eta/2^r\). Let \(H\) be their span and
+choose a basis from the frequent frequencies. A leaf contains at most
+\(r\) of these basis vectors, by independence. The expected number it
+contains is at least \((\dim H)\eta/2^r\), giving the dimension bound.
+Fix the first leaf. Each of its at most \(2^r\) frequencies outside
+\(H\) belongs to the independent second leaf with probability at most
+\(\eta/2^r\). Sum these probabilities.
+\end{proof}
+% lax end
+
+Keep the two bounded approximants \(g_\lambda,g_{\lambda'}\) on their
+original leaf partitions. Their Fourier coefficients are supported on
+\(H_\lambda,H_{\lambda'}\), respectively. Under uniform ambient
+probability only common frequencies contribute to their inner product.
+On pairs satisfying \eqref{eq:frequency-intersection}, this gives
+\begin{equation}\label{eq:common-projection-product}
+ \int g_\lambda g_{\lambda'}=
+ \int(\Pi_Hg_\lambda)(\Pi_Hg_{\lambda'}).
+\end{equation}
+For the Gram reference law the error is \(o(1)\), uniformly for bounded
+functions on the two leaf partitions. Expand them in their bounded
+number of frequencies and use the exponentially small bias of each
+nonzero character. The common cell weights obey the same estimate.
+The cell bound at the common row count bounds the actual projected
+densities. Conditional averaging contracts their \(L^1\) errors.
+Thus, with errors chosen small enough, every permitted pair of filters has
+bounded approximants \(g_A,g_B\). Put \(\widetilde d_A=\min(d_A,g_A)\)
+and similarly on the other side. Then
+\begin{equation}\label{eq:bounded-overlap-transfer}
+ \int d_Ad_B\ge\int\widetilde d_A\widetilde d_B
+ \ge\int g_Ag_B-B_0(\|d_A-g_A\|_1+\|d_B-g_B\|_1).
+\end{equation}
+Together with \eqref{eq:common-projection-product}, this bounds the average
+overlap of the common projections by the actual average overlap plus an
+arbitrarily small error. Exceptional leaf pairs cost at most \(B_0^2\eta\).
+All partitions were chosen before the filters, so filters depending on
+both leaves are allowed. Independence is used only for the two original
+leaf draws in \Cref{lem:common-frequencies}.
+
+\subsection{Whole-tuple tests factor exactly}
+
+Let \(L\) record the common coordinates on a tuple \(k=(k_i)_i\).
+Record \(L(\iota_i k_i)\) in the unary partition at position \(i\), where
+\(\iota_i\) inserts one position and puts zero elsewhere. Then
+\begin{equation}\label{eq:exact-product}
+ \varphi(Lk)=\sum_{(a_i)}\varphi\Bigl(\sum_i a_i\Bigr)
+                 \prod_i1_{\{L(\iota_i k_i)=a_i\}}.
+\end{equation}
+This is an identity: exactly one term survives. It has boundedly many
+terms, and each unary factor has modulus at most 1. These unary partitions
+can be combined across all templates and labels.
+
+For a product of unary tests, expand the finite binary prescriptions.
+The constant character contributes their fixed binary probability
+\(\kappa>0\) times the product of the unary accepted measures.
+Every nonconstant character has a nominal bilinear block of rank at least
+\(n/5-O(1)\), by the explicit mixers. The unary statuses have bounded
+rank and affect only the \(O(1)\) term. Cross pairings between different
+endpoint frames satisfy the analogous rank bound outside exponentially
+small mixed mass; their raw failure costs \(\Omega(n^2)\) equations,
+which beats the exponential unit cap. Apply the Walsh bound and sum the
+bounded number of characters. This gives product comparison on all the
+tests in \eqref{eq:exact-product}.
+
+Unary concentration under the prepared mixed law supplies the individual
+cell probabilities. It follows by the same two-query Gram calculation:
+expand the variance of a fixed test, split nominal dependencies, and use
+the nonconstant Gram character rank bound. The free \(Z\) change of
+variables makes the bounded space of basis-test forms independent of the
+chosen key tests outside an exponentially small exception. Unary mixing
+then gives the prescribed basis values with a fixed positive fraction.
+For every fixed partition size and accuracy, these failures have
+probability \(2^{-c n}\) for some fixed \(c>0\).
+
+All uses of this last statement concern a fixed finite collection of tests
+chosen before the sampled orientation. The cap \(2^{n/32}\) on the mixed
+marginal is sufficient. A separately normalized leaf need not satisfy that
+cap; its uniform approximation is instead supplied by
+\Cref{thm:leaf-fourier} and \Cref{prop:all-filter-partition}.

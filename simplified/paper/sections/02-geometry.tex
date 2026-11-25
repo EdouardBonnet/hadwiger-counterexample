@@ -1,0 +1,275 @@
+\section{The hole relation and its tensor realization}\label{sec:geometry}
+
+Three pairwise missing edges would give an independent set of size
+three. We choose a relation that excludes such a triangle by parity.
+Later we choose its linear maps so that four missing edges occur often
+enough between two units.
+
+\subsection{A triangle-free relation}
+
+Let \(\cX\) and \(\cV\) be finite-dimensional vector spaces over
+\(\F\). Fix a linear functional \(a\in\cX^*\) and a symmetric
+bilinear form \(T\) on \(\cX\), and write
+\[
+ r(x)=a+T(x,\cdot)\in\cX^*.
+\]
+Let \(\Omega\) be a finite set. For each \(i\in\Omega\), suppose
+we have an injective linear map \(U_i:\cX\to\cV\) and a linear
+functional \(u_i\in\cV^*\).
+
+% lax begin Lax793645.Holes
+\begin{definition}\label{def:hole}
+Two elements \(i,j\in\Omega\) have a \emph{hole} between them if
+there exist \(\lambda_i,\lambda_j\in\cX\) such that
+\begin{equation}\label{eq:hole-equations}
+ \begin{gathered}
+ U_i\lambda_i=U_j\lambda_j,\qquad
+ u_jU_i=r(\lambda_i),\qquad u_iU_j=r(\lambda_j),\\
+ a(\lambda_i)+a(\lambda_j)=1.
+ \end{gathered}
+\end{equation}
+The middle two identities are identities of linear functionals on
+the whole space \(\cX\).
+\end{definition}
+% lax end
+
+Thus a hole has a shared vector in \(\cV\), one witness for it in
+each copy of \(\cX\), and opposite values of \(a\) on the witnesses.
+The functional identities make these requirements incompatible around
+a triangle.
+
+% lax begin Lax793645.TriangleFreeHoles
+\begin{lemma}\label{lem:hole-triangle-free}
+The hole relation is symmetric, has no loops, and is triangle-free.
+\end{lemma}
+% lax end
+% lax begin Lax793645Proofs.Manuscript.TriangleFreeHoles.triangle_free
+\begin{proof}
+Symmetry follows by interchanging the endpoints.
+A loop would have \(U_i\lambda_i=U_i\lambda_j\), hence
+\(\lambda_i=\lambda_j\) by injectivity, contradicting the last
+equation of \Cref{eq:hole-equations}.
+
+Suppose that three distinct elements have holes on all three pairs.
+For a directed incidence \(ij\), let \(x_{ij}\) be its witness at
+\(i\). For distinct \(i,j,k\), evaluating the functional identity for
+\(ij\) on \(x_{ik}\) gives
+\[
+ u_j(U_ix_{ik})=a(x_{ik})+T(x_{ij},x_{ik}).
+\]
+Sum over the six ordered choices of \((i,j,k)\).
+For fixed \(j\), the two arguments on the left are equal by the
+sharing equation for the remaining edge \(ik\), so they cancel.
+For fixed \(i\), the two bilinear terms cancel by symmetry of \(T\).
+The remaining sum is
+\[
+ \sum_{\{i,j\}}\bigl(a(x_{ij})+a(x_{ji})\bigr)=1+1+1=1,
+\]
+a contradiction.
+\end{proof}
+% lax end
+
+Given any list \(o_1,\ldots,o_m\in\Omega\), form a graph \(G\)
+on its \emph{positions}: two distinct positions are adjacent when
+their elements have no hole. This gives a finite simple graph even
+when elements repeat. Equal elements are adjacent because holes have
+no loops. An independent triple of positions would therefore give
+three distinct elements forming a hole triangle. Hence
+\begin{equation}\label{eq:sample-independence}
+ \alpha(G)\le2,\qquad \chi(G)\ge\lceil m/2\rceil.
+\end{equation}
+
+It remains to choose the finite set and its linear data so that a
+random list also has no large connected matching. Two disjoint edges
+fail to touch precisely when all four cross pairs are holes. The
+distribution theorem in \Cref{sec:distributions} will force these
+four-hole conflicts for the model constructed below.
+
+
+\subsection{Points and the odd cycle}
+
+Fix a large odd integer \(g\). Tags are the elements of \(\mathbb Z/g\mathbb Z\).
+There is one component
+\[
+ e_l=\{l,l+1\}
+\]
+for each tag \(l\). We choose \(g\) after the initial pin budget, as
+specified in \Cref{sec:parameters}. It does not grow with the graph.
+
+The base coordinates have one constant coordinate and blocks
+\[
+ O_{l,t}\quad(l,t\in\mathbb Z/g\mathbb Z),\qquad S,\quad \#,\quad Z.
+\]
+Each block has \(n\) coordinates. At tag \(l\), only the ordinary blocks
+\(O_{l,t}\) are allowed. The blocks \(S,\#,Z\) are shared by all tags.
+We write \(F\) for the base vector space, including its constant coordinate.
+A base point is \(\bar z=(1,z)\in F\). A point allowed at tag \(l\)
+has zero coordinates in every \(O_{l',t}\) with \(l'\ne l\).
+
+Labels are vectors \(s\in\F^b\). Set
+\[
+ \mathsf S=\F^{b+1},\qquad p_s=(1,s),\qquad
+ B=\mathsf S\otimes F,\qquad v(s,z)=p_s\otimes\bar z.
+\]
+Later, \(S_0\) will denote a protected subspace of \(\mathsf S\).
+The point matrix is \(v(s,z)v(s,z)\trans\).
+Let \(W_l\) be the span of point matrices allowed at tag \(l\).
+Let \(W_*\) be the corresponding span when all ordinary coordinates are
+zero. Then \(W_l\cap W_{l'}=W_*\) for distinct tags. To see this, use
+the ordinary affine point-matrix basis: its entries involve only coordinates
+allowed at that tag. The entries common to two tags are exactly the shared
+ones.
+
+Define the space of profiles by
+\[
+ \cX=\left\{x:\ x_{e_l}=w_l+w_{l+1},\quad w_l\in W_l\right\}.
+\]
+Thus a point at tag \(l\) gives a profile, called an \emph{atom}, with its
+point matrix on the two incident components and zero elsewhere.
+We denote it by \(A(l,s,z)\). The kernel of \((w_l)_l\mapsto x\)
+consists of constant tuples with value in \(W_*\): equality of consecutive
+terms propagates around the cycle.
+
+\subsection{Testers and the scalar form}
+
+In each ordinary block and in \(S\), reserve \(2r_0\) coordinates.
+Pair them and sum their products. These quadratic expressions define linear
+functionals on point matrices, denoted by \(\eta_{l,t}\) and \(\eta_S\).
+Write
+\[
+ \eta_O=\sum_{l,t}\eta_{l,t},\qquad \eta=\eta_O+\eta_S.
+\]
+All tester functionals ignore \(\#\) and \(Z\). Their matrices use the
+constant selector coordinate. The polar rank of a sum of \(a\) disjoint
+testers is \(2ar_0\).
+
+Delete tag \(t\) from the cycle. The remaining path has the perfect matching
+\[
+ M_t=\{e_{t+1},e_{t+3},\ldots,e_{t+g-2}\}.
+\]
+Define linear functionals directly on the component matrices:
+\begin{equation}\label{eq:cycle-functionals}
+ a_t(x)=\sum_l\eta_{l,t}(x_{e_l}),\qquad
+ a(x)=\sum_ta_t(x),\qquad
+ b_t(x)=\sum_{e\in M_t}\eta_S(x_e).
+\end{equation}
+If \(x_{e_l}=w_l+w_{l+1}\), the private ordinary blocks and the matching
+identity give
+\[
+ a_t(x)=\sum_l\eta_{l,t}(w_l),\qquad
+ b_t(x)=\sum_{l\ne t}\eta_S(w_l).
+\]
+These formulas explain the definitions; no choice of representation is
+needed to define the functionals.
+
+The first part of the scalar form is
+\[
+ T^0(x,y)=a(x)a(y)+\sum_t\bigl(a_t(x)b_t(y)+b_t(x)a_t(y)\bigr).
+\]
+In particular \(T^0(x,x)=a(x)\).
+For later use, put \(z_c(x)=\sum_{e\in M_c}x_e\).
+Choose matrices \(L_j^c,R_j^c\), with \(1\le j\le J\), and define
+\begin{equation}\label{eq:reduced-mixer}
+ B^1(x,y)=\sum_{c,j}\pair{x_{e_c}}{L_j^c z_c(y)(R_j^c)\trans},
+ \qquad T^1(x,y)=B^1(x,y)+B^1(y,x).
+\end{equation}
+Here \(\pair{A}{B}=\sum_{i,j}A_{ij}B_{ij}\). Set \(T=T^0+T^1\).
+This form is symmetric and satisfies \(T(x,x)=a(x)\).
+The matrices will be chosen in \Cref{sec:moments}. There are \(Jg\)
+pairs of them.
+
+The matching has a useful effect on atoms:
+\begin{equation}\label{eq:matching-atom}
+ z_c(A(l,s,z))=
+ \begin{cases}v(s,z)v(s,z)\trans,&c\ne l,\\0,&c=l.\end{cases}
+\end{equation}
+Every tag other than \(c\) occurs exactly once in \(M_c\).
+This is why a small mixer family suffices.
+
+\subsection{Counting ordinary tester bits}
+
+Put \(o_l(x)=\sum_t\eta_{l,t}(x_{e_l})\). Privacy of the ordinary
+blocks gives
+\[
+ o_l(x)+o_{l+1}(x)=\eta_O(x_{e_l}),\qquad
+ \sum_l o_l(x)=a(x).
+\]
+We need only the following support bound.
+% lax begin Lax793645.OrdinaryTesterSupport
+\begin{lemma}\label{lem:ordinary-support}
+For every profile \(x\), \(|\supp o(x)|\le\sum_e\rank x_e\).
+\end{lemma}
+% lax end
+% lax begin Lax793645Proofs.Manuscript.OrdinaryTesterSupport.ordinaryBit_support
+\begin{proof}
+If \(o_l(x)=1\), an ordinary entry owned by \(l\) is nonzero.
+Both incident components contain that entry. Each such tag contributes
+two incidences with nonzero components, and each component receives at
+most two. Thus the support size is at most the number of nonzero
+components, which is at most their total rank.
+\end{proof}
+% lax end
+
+\subsection{One quadratic frame per component}
+
+Choose a matrix \(E\) on \(B\) whose value on each point is \(\eta\).
+It consists of the tester matrices and a correction \(E^\#\) supported
+on \(\#\). The latter has zero value on a single point; its off-point
+values will ensure binary mixing. Define \(q_E(v)=v\trans Ev\) for
+\emph{every} \(v\in B\).
+
+Let \(V=\F^{N/2}\oplus\F^{N/2}\), with
+\[
+ q_0(x,y)=x\cdot y,
+ \qquad \beta_0(v,w)=q_0(v+w)+q_0(v)+q_0(w).
+\]
+At each component choose an injective linear map on
+\(B\oplus\F^h\oplus\F^h\). Its restrictions are denoted by \(P,X,Y\).
+They satisfy
+\begin{equation}\label{eq:one-frame}
+ q_0(Pv)=q_E(v),\qquad \beta_0(X_j,Pv)=0
+ \quad(v\in B,\ 1\le j\le h).
+\end{equation}
+There are no other prescribed quadratic values or pairings on the channel
+columns. The full list of primal and channel columns is independent.
+The uniform law on these frames exists once \(N\) is sufficiently large;
+\Cref{sec:frame-laws} proves this and the counting facts we need.
+
+A raw vertex \(o\) is an independent choice of such a frame at every
+component. Its law is \(\mu\), on a finite set \(\Omega_n\).
+Let \(\cV\) be the product of the ambient symmetric-matrix spaces. Define
+\[
+ (U_ox)_e=P_ex_eP_e\trans.
+\]
+The quadratic form
+\[
+ v\longmapsto\sum_{j=1}^h\beta_0(X_{e,j},v)\beta_0(Y_{e,j},v)
+\]
+defines a linear functional on symmetric matrices. Sum it over the
+components to obtain \(u_o\in\cV^*\).
+A left inverse to each \(P_e\) proves that \(U_o\) is injective.
+Equation \eqref{eq:one-frame} gives \(u_oU_o=0\).
+We use these maps in \Cref{def:hole}.
+
+The ambient functional defined by \(q_0\) satisfies
+\[
+ q_0[P_ex_eP_e\trans]=\eta(x_e)\quad(x_e\in W_l+W_{l+1}).
+\]
+Square brackets denote evaluation on a symmetric matrix. Therefore
+\(U_ox=U_{o'}y\) implies equality of the component tester values:
+\begin{equation}\label{eq:common-image-tester}
+ U_ox=U_{o'}y\quad\Longrightarrow\quad\eta(x_e)=\eta(y_e)\quad\text{for every }e.
+\end{equation}
+
+All coefficient dimensions are \(O(n)\), with fixed implied constants.
+Counting the entries of the component frames gives
+\begin{equation}\label{eq:raw-space-size}
+ \log_2|\Omega_n|=O(N^2).
+\end{equation}
+For the graph transfer we use
+\[
+ D=8000,\qquad M=2^{1000},\qquad m=2^{2000N},\qquad
+ \varepsilon_N=2^{-200N}.
+\]
+The remaining choices, including \(h=1000r_0\) and \(M_0\), are made
+in the order recorded in \Cref{sec:parameters}.

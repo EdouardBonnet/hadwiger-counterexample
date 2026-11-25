@@ -1,0 +1,17 @@
+This project includes material from OpenAI's openai/math repository,
+https://github.com/openai/math, commit
+adc7f1241b42e322a6451854ab7e4b4c146bf78a, licensed under Apache-2.0.
+
+The paper and unchanged Lean reference files are retained in references/openai.
+The HadwigerMatching proofs and the clique-minor preliminaries were adapted
+to the Lax concept/proof package structure. Modified files identify the source
+commit and the nature of those changes in their headers.
+
+The complete construction is adapted from openai/math commit
+fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb through the Lean v4.33 port in
+EdouardBonnet/hadwiger-counterexample at commit
+7681499cc08e2ba78b6470d47d2983fdf3fbaed8. The new namespace, extracted
+finite statements, proof-network connections, and finite-partition paper
+adaptation are described in references/finite-partition-port.json.
+The original OpenAI paper is preserved separately under references/openai;
+the paper/ directory contains the modified exposition.

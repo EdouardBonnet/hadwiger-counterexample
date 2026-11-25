@@ -1,0 +1,279 @@
+\section{Separating witnesses and choosing the mixers}\label{sec:moments}
+
+We need new point directions that can be distinguished from the pins.
+Affine selectors suffice. The reason is that a matrix of small rank cannot
+use many independent selector directions. Write \(\mathsf S=\F^{b+1}\)
+and \(\mathsf F=F\), so \(B=\mathsf S\otimes\mathsf F\).
+Let \(W\) be the span of all point matrices on \(B\), without tag
+restrictions. The constant-coordinate functionals are \(\epsilon_{\mathsf S}\) and
+\(\epsilon_{\mathsf F}\).
+
+\subsection{Two elementary tensor facts}
+
+% lax begin Lax793645.AffinePointMatrices
+\begin{lemma}\label{lem:base-moments}
+The span of $(1,z)(1,z)\trans$ consists precisely of symmetric matrices
+$Z$ satisfying $\operatorname{diag}Z=Z\epsilon_{\mathsf F}$.
+Consequently $W$ is the tensor product of the corresponding affine
+point-matrix spaces on $\mathsf S$ and $\mathsf F$. Its tensors are
+separately symmetric in the selector and base indices and satisfy the
+Boolean diagonal identity in each factor.
+\end{lemma}
+% lax end
+% lax begin Lax793645Proofs.Manuscript.AffinePointMatrices.mem_span_pointSquare_iff
+\begin{proof}
+Write \(P(z)=(1,z)(1,z)\trans\). Every \(P(z)\) is symmetric and has
+\(P(z)_{ii}=P(z)_{i0}\). Conversely, let \(Z\) have these properties.
+Choose an ordinary coordinate \(i\). Set \(u_i=1\) and
+\(u_j=Z_{ji}\) for the other ordinary coordinates. The matrix
+\[
+ Z-P(u)-(Z_{ii}-1)P(e_i)
+\]
+has zero row and column at \(i\). It still satisfies the same identities,
+and previously cleared rows and columns remain zero. Repeat at the remaining
+coordinates. The matrix left at the constant coordinate is a multiple of
+\(P(0)\). This proves the span assertion.
+% lax begin Lax793645Proofs.Manuscript.AffinePointMatrices.affineTensor_identities
+The tensor-product assertion follows because the selector
+and base points vary independently. The identities in another basis
+use the coordinates of $\epsilon_{\mathsf S},\epsilon_{\mathsf F}$.
+% lax end
+\end{proof}
+% lax end
+
+% lax begin Lax793645.SelectorConfinement
+\begin{lemma}[Selector confinement]\label{lem:selector-confinement}
+If $w$ is a symmetric matrix on $\mathsf S\otimes\mathsf F$, separately
+symmetric in its two pairs of indices, and $\rank w\le r$, then
+\[
+ \operatorname{col}(w)\subseteq U\otimes\mathsf F
+ \quad\text{for some }U\subseteq\mathsf S,\quad \dim U\le r^2.
+\]
+Every vector in this column space, reshaped as a selector-by-base
+matrix, has rank at most $r^2$.
+\end{lemma}
+% lax end
+% lax begin Lax793645Proofs.Manuscript.SelectorConfinement.selector_confinement
+\begin{proof}
+Factor $w_{ai,bj}=\beta(z_{ai},z_{bj})$ through a nondegenerate symmetric
+form on a space of dimension $r'\le r$. Choose a spanning subfamily
+$z_{a_ti_t}$ of at most $r'$ such vectors. If coefficients $c_a$ satisfy
+$\sum_a c_a z_{ai_t}=0$ for every $t$, separate symmetry gives
+\[
+ \beta\left(\sum_a c_a z_{ai},z_{a_ti_t}\right)
+ =\beta\left(\sum_a c_a z_{ai_t},z_{a_ti}\right)=0
+ \quad\text{for all }i,t.
+\]
+Nondegeneracy makes every $\sum_a c_a z_{ai}$ zero. Thus the dependence
+on the selector index is determined by at most $(r')^2$ coordinates.
+Taking the annihilator of these relations gives $U$. The last assertion
+follows from the stated tensor containment. The zero-rank case is immediate.
+\end{proof}
+% lax end
+
+
+\subsection{Protected subspaces}
+
+Fix the pin budget \(K\) and an upper bound \(t_* =28\) for the number of
+selected atoms. Choose
+\[
+ R\ge4(K+t_*),\qquad q_*=R^2+t_*.
+\]
+The extra room in \(R\) covers the joint obstruction at both endpoints.
+For each primal pin space, take a basis from its vectors of reshaped rank
+at most \(q_*\) for the span of all such vectors. Let \(S_0\) contain
+the selector factors of these basis vectors. Let \(F_0\) contain all base
+factors of all pin vectors. Use the same protected spaces at every component
+of a fixed endpoint. If \(P_0\) bounds the sum of the pin dimensions, then
+\begin{equation}\label{eq:label-budget}
+ \dim S_0\le q_*P_0,\qquad \dim F_0\le(b+1)P_0.
+\end{equation}
+Set
+\[
+ D_0=S_0\otimes F_0,\qquad
+ L=S_0\otimes\mathsf F+\mathsf S\otimes F_0.
+\]
+Every pin vector lies in \(L\). Every pin vector with reshaped rank at
+most \(q_*\) lies in \(D_0\). The first bound in
+\eqref{eq:label-budget} is independent of \(b\); the second is independent
+of \(n\).
+
+% lax begin Lax793645.SelectedAtoms
+\begin{lemma}[Selected-atom isolation]\label{lem:protected-atoms}
+Let $k_i=p_i\otimes v_i$, $1\le i\le t$, where
+$\epsilon_{\mathsf S}(p_i)=\epsilon_{\mathsf F}(v_i)=1$.
+Suppose the $p_i$ are independent modulo $S_0$ and the $v_i$ are
+independent modulo $F_0$. Put $A=\operatorname{span}\{k_i\}$.
+Then $A\cap L=0$. If $w\in W$ and
+\[
+ w\in(D_0+A)\otimes B+B\otimes(D_0+A),
+\]
+then
+\[
+ w=\sum_i c_i k_i k_i\trans+w_0,\qquad w_0\in L\otimes L.
+\]
+\end{lemma}
+% lax end
+% lax begin Lax793645Proofs.Manuscript.SelectedAtoms.tensor_atom_isolation
+\begin{proof}
+Extend bases of $S_0,F_0$ by the selected vectors and then to full bases.
+The selected simple tensors occupy distinct diagonal positions outside
+the rows and columns belonging to $L$, proving $A\cap L=0$.
+An entry of $w$ must have an index in $D_0$ or at a selected position.
+Separate symmetry moves the entry between $p_i\otimes v_i$ and
+$p_a\otimes v_b$ to that between $p_i\otimes v_b$ and $p_a\otimes v_i$.
+It is zero unless $a=i$ or $b=i$. If $a=i,b\ne i$, the diagonal entry
+at $p_i\otimes v_b$ is zero. Its base diagonal identity has just one
+potentially nonzero term, with coefficient
+$\epsilon_{\mathsf F}(v_i)=1$, so that term is zero too.
+The selector identity treats the other case. Each selected row and
+column therefore has only its diagonal entry. Subtract these point
+matrices. Every remaining entry has a $D_0$ index. If its other index
+were outside $L$, separate symmetry would put both indices outside
+$D_0+A$, forcing zero. Thus the residual tensor lies in $L\otimes L$.
+\end{proof}
+% lax end
+
+
+A span of dimension \(d\) contains at most \(2^d\) affine selector vectors.
+Thus the exclusions needed to choose the selectors independently modulo
+\(S_0\) have a bound fixed before \(b\). Include the other finite label
+exclusions used below in a budget \(B_{\rm exc}\), and choose
+\begin{equation}\label{eq:selector-size}
+ B_{\rm exc}<2^{b-2},\qquad 3B_{\rm exc}<2^b.
+\end{equation}
+When several lists are chosen, the exclusion budget includes all previously
+chosen selectors. It is deliberately larger than needed for one list.
+
+Base independence uses the free block \(Z\). Conditional on earlier point
+parameters, a subspace of dimension at most \(\dim F_0+t_*\) contains at
+most \(2^{\dim F_0+t_*}\) of the possible \(Z\)-vectors. Hence, at every
+orientation, failure of independence modulo \(F_0\) has probability at most
+\begin{equation}\label{eq:base-rejection}
+ \delta_n=t_*2^{\dim F_0+t_*-n}=2^{-n+O(1)}.
+\end{equation}
+This is an estimate before accepting the orientation. There is no factor
+from a normalized leaf density. Rejection is imposed without renormalizing.
+
+\subsection{The input laws}
+
+Every sampled query uses generic inputs: it samples all coordinates
+allowed at its tag. Shared points set the ordinary coordinates to zero.
+They are used only in algebraic identities, obtained by restricting
+identities on generic inputs.
+At times we restrict the finitely many coordinates used by selected
+testers. The probability of such a restriction is a fixed positive
+constant. There is no separate family of inputs obtained by deleting
+whole ordinary blocks.
+
+The diagonal bit of an atom is \(q=\eta(vv\trans)\); its role bit is
+\(a(A)\). Together with these bits, a query can record the individual
+tester values and the evaluations \(T(A,c)\) on a basis of an effective
+space. Each of these unary bits is a quadratic function of the point
+parameters of bounded rank. The same is true of \(u_{o'}U_oA\), since
+there are only \(h\) channel products per component. Expanding indicators
+of finitely many such bits gives a bounded Fourier \(\ell^1\)-norm,
+uniformly in \(n\) and in the orientation.
+
+\subsection{Unary mixing}
+
+% lax begin Lax793645.MixingMatrices
+\begin{lemma}\label{lem:generic-mixers}
+Choose a sufficiently large fixed \(J\). For all large \(n\), the reduced
+family in \eqref{eq:reduced-mixer} can be chosen so that the following holds.
+For every nonzero profile \(x\) of total rank at most \(K\), every tag and
+label, the polar rank in the \(Z\) variables of \(T(x,A(l,s,z))\)
+is at least \(2(J-s_0)\). Here \(s_0\) is fixed before \(J\).
+The expression uses a bounded-dimensional space of linear forms on \(Z\).
+The conclusion survives every fixing of the other coordinates.
+\end{lemma}
+% lax end
+% lax begin Lax793645Proofs.Manuscript.MixingMatrices.goodReducedMixers
+\begin{proof}
+A symmetric rank-\(r\) matrix has a factorization \(ZHZ\trans\), with
+\(Z\) of column rank \(r\) and \(H\) nonsingular and symmetric.
+Indeed, choose a column basis \(Z\), a left inverse \(L\), and take
+\(H=LxL\trans\). Thus profiles of total rank at most \(K\) number
+at most \(2^{A_0n}\), for a fixed \(A_0\).
+
+Choose the entries involving \(Z\) in all \(L_j^c,R_j^c\) at random.
+For a tag \(l\), the forward profile coefficients are \(x_{e_c}\) for
+\(c\ne l\); the reverse coefficients are \(z_c(x)\) for edges
+\(e_c\) incident with \(l\). These coefficient families determine a
+nonzero cut profile. In fact a nonzero cut has at least 2 nonzero cycle
+components, since their sum is zero. Some nonzero \(x_{e_c}\) has \(c\ne l\).
+Factor the nonzero coefficients as above. Treat the resulting linear
+forms in each \(L\) and \(R\) as formal variables. For each \(j\) a
+nonzero bilinear product remains, so their formal quadratic form has polar
+rank at least \(2J\).
+
+The list of formal variables has bounded length \(m_0\). Forward and
+reverse restrictions of the same random matrix are not independent: their
+common rectangular block must agree. There are only boundedly many such
+compatibility bits. Consequently their distribution is bounded by
+\(2^{C_0}\) times the uniform law on all \(m_0\)-by-\(n\) matrices.
+The constants \(m_0,C_0\) depend on the fixed parameters, not on \(n\).
+A uniform matrix has corank at least \(s_0+1\) with probability at most
+\[
+ 2^{m_0(s_0+1)-(s_0+1)n}.
+\]
+Choose \(s_0>A_0\) and sum this bound over all profiles, tags, and labels.
+The probability tends to zero. Restricting a bilinear form to a subspace
+of codimension \(s_0\) loses at most \(2s_0\) rank. This proves the
+claim. Other input coordinates change only affine terms, and \(T^0\)
+has no \(Z\) variables.
+\end{proof}
+% lax end
+
+A quadratic form of polar rank \(r\) has Walsh bias at most \(2^{-r/2}\).
+Fourier inversion on the bounded list of effective-basis bits therefore
+gives a fixed positive probability for each consistent basis assignment,
+after the role and tester data are fixed. We choose \(J\) large enough
+for this lower bound to be uniform over all effective spaces of dimension
+at most \(K^2\). This is the unary positivity estimate used later.
+
+\subsection{Explicit binary mixing}
+
+Enumerate the \(L\) and \(R\) matrices by \(F_0,\ldots,F_{r-1}\), where
+\(r=2Jg\). Split \(\#\) into two parts of size \(d=\lfloor n/2\rfloor\),
+and let \(S\) be the nilpotent shift on \(\F^d\). In the constant-selector
+\(\#\)-block of \(F_i\), put
+\[
+ \begin{pmatrix}0&S^i\\0&0\end{pmatrix}.
+\]
+Set its other selector \(\#\)-blocks to zero. For \(0\le\rho<b\), use
+the same matrix with exponent \(r+\rho\) as \(M_\rho\), and define
+\[
+ v(s,z)\trans E^\#v(t,z')
+   =\sum_\rho(s_\rho+t_\rho)z_\#\trans M_\rho z'_\#.
+\]
+This vanishes at a single point and leaves the tester identity intact.
+No entry involving \(Z\) was changed, so unary mixing is preserved.
+
+For distinct labels, any nonzero required parity of the ordered binary
+evaluations has a \(\#\)-restriction of the form
+\[
+ \begin{pmatrix}0&P(S)\\Q(S)\trans&0\end{pmatrix},
+\]
+with at least one of \(P,Q\) nonzero. The exponent ranges for the indexed
+mixers and for \(E^\#\) are disjoint. The latter coefficients involve
+\(s_\rho+t_\rho\), not all zero. A nonzero polynomial of degree at most
+\(r+b-1\) satisfies
+\[
+ \rank P(S)\ge d-(r+b-1).
+\]
+Factor out the least occurring power of \(S\); the remaining matrix has
+an upper triangular minor with diagonal one. For large \(n\) the displayed
+rank is at least \(n/5\). This proves binary mixing with exponentially
+small error.
+
+Only the \(Jg\) independent indexed pairs are prescribed. If the reduced
+family is stored in a larger array with repeated entries, those repetitions
+are not additional independent tests.
+
+A useful symmetry will also be used. A common invertible change of the
+\(Z\) coordinates at a vertex preserves its raw frame law, because \(E\)
+has no \(Z\) entries. It preserves keys after the corresponding input
+change and preserves all tester bits. This lets us compare the bounded
+space of unary mixing forms with any fixed bounded family of linear key
+tests.

@@ -1,0 +1,211 @@
+\section{Choosing the parameters}\label{sec:parameters}
+
+All constants in this appendix are chosen before \(n\), and before the
+unit law. The dimension \(N=M_0n\) is the full ambient dimension; \(M_0\)
+is even. In the Lean source the ambient parameter is \(N/2\).
+This difference of convention is relevant to the Fourier exponents.
+
+\subsection{Pins and exclusions}
+
+Begin with
+\[
+ D=8000,\qquad M=2^{1000},\qquad
+ \zeta=\frac1{1000\cdot112}.
+\]
+The constant 112 is a conservative slot allowance. The actual maximum
+number of ambient key vectors in the one-frame construction is 56.
+
+The closed-pin peeling has exponent loss \(\zeta/6\). Choose an initial
+pin budget \(e\), a probe count \(k\), and then a second pin budget \(s\)
+so that
+\begin{align*}
+ D+\zeta&\le\frac{\zeta}{8}e,& D+2&\le .49k,\\
+ d&=4(2e+2)k,& u&=10(e+d+1),\\
+ D+e+2+u+\zeta&\le\frac{\zeta}{8}s.&
+\end{align*}
+Here \(d\) bounds the preliminary cover size, and \(u\) allows the
+additional pins for the marks and cover actions. The final pin budget is
+\(K=e+s\). Rounding each lower bound upward gives integers.
+All these choices depend only on the first displayed constants.
+Now choose the odd cycle length
+\[
+ g=4e+20001.
+\]
+The cycle has degree two regardless of its length. Thus increasing \(g\)
+does not change the slot allowance or the early pin budgets.
+
+Put
+\[
+ R=4(K+28),\qquad q_*=R^2+28,\qquad
+ d_S=2gKq_*,\qquad H_*=2^{d_S+34}.
+\]
+There are two endpoint primal pin spaces at each of the \(g\) components.
+Thus \(d_S\) bounds the protected selector dimension in
+\eqref{eq:label-budget}. The allowance \(H_*\) covers any selector span
+formed while choosing the short lists. Polynomial continuation preserves
+the spans throughout these choices. We retain the conservative exclusion
+budget
+\[
+ B_{\rm exc}=10(10H_*+10000g+1).
+\]
+This includes the prediction exclusions and all scalar selection losses.
+Now choose \(b\) so that
+\[
+ 2^{b-2}>100g(B_{\rm exc}+1).
+\]
+In particular \eqref{eq:selector-size} holds. The selector degree is one
+and its dimension is \(p_*=b+1\). The protected base dimension is at most
+\(2gKp_*\); it affects the eventual lower bound on \(n\), not the
+selector budget.
+
+\subsection{Mixers and channels}
+
+The count of profiles of total rank at most \(K\) can use
+\[
+ A=10(K+1)p_*(g^2+5),\qquad s_0=4A+1.
+\]
+Choose
+\[
+ J=100(s_0+K^2+1)+1.
+\]
+These bounds give the unary mixing union bound of
+\Cref{lem:generic-mixers}. The explicit binary construction has \(2Jg\)
+indexed matrices. Its shift degrees are bounded before \(n\), so their
+required ranks hold for all sufficiently large \(n\).
+
+Choose \(r_0\) next, always setting \(h=1000r_0\). We check that increasing
+\(r_0\) meets the two rank demands that also involve \(h\).
+
+For realization, the conservative joint gradient rank is
+\[
+ r_{\rm grad}=2(15r_0+14Jg).
+\]
+For \(t\le28\), put \(f=2(K+t)\). The residual quadratic compression
+in \Cref{sec:realization} has a bound \(d_{\rm cmp}(f,3f+K)\) that depends
+only on \(g,p_*,f,K\). One may take
+\[
+ \begin{split}
+ d_{\rm bits}(T,R')&=2g p_*(T+R'),\\
+ d_{\rm row}(T,R')&=p_*+p_*(g^2+3)d_{\rm bits}(T,R'),\\
+ d_{\rm cmp}(f,r)&=2d_{\rm row}(2f,2r).
+ \end{split}
+\]
+The extension requires
+\begin{equation}\label{eq:ledger-realization}
+ r_{\rm grad}+f+K+d_{\rm cmp}(f,3f+K)+5K+6f+2\le h.
+\end{equation}
+The left side is \(30r_0+C\), where \(C\) is independent of \(r_0,h,n\).
+It suffices to take \(970r_0\ge C\), using the largest value at \(t=28\).
+The large tester contribution was projected away before residual
+compression; otherwise its coefficient could have grown with the pin
+budget.
+
+For predictor consistency the current screen bound is
+\[
+ r_{\rm scr}=2(2h+2Je).
+\]
+The exact support argument requires
+\begin{equation}\label{eq:ledger-tester}
+ 4r_{\rm scr}+2er_0<gr_0.
+\end{equation}
+After substituting \(h=1000r_0\), this is
+\[
+ (16000+2e)r_0+16Je<gr_0.
+\]
+Our choice of \(g\) makes this hold whenever \(r_0\ge Je+1\).
+The scalar extraction also uses marks in the later pin space, of bound
+\(K=e+s\). It only needs
+\[
+ 4\cdot2(2h+2JK)<gr_0.
+\]
+Since \(g>20000\), this follows after also requiring \(r_0\ge JK+1\).
+This strengthens a lower bound chosen after \(J,K\); it creates no
+circular parameter dependence. No rank bound on all true intersections
+is needed.
+
+The phase and safety estimates also impose lower bounds on \(h\).
+Their cover sizes, probe counts, and error tolerances were fixed using
+\(D,e,s,u,k\). For example, the moment calculation compares
+\(4^a p_0^{qa/2}\) and \(2^{-hqa/4}\) with a fixed exponential density
+cost, where \(q=2^{-100r-10}\) and \(a\) is a small fixed multiple of \(N\).
+Choose \(p_0\) small using the early constants, then choose \(h\) large.
+The fresh-probe estimate has exponent \((D+.01-.48k)N+O(n)\), which is
+negative by the choice of \(k\). The remaining failures have factors
+such as \(2^{L-h}\), with \(L\) already fixed. They too become as small
+as required. No common key partition or later accuracy enters these
+choices.
+
+\subsection{The ambient dimension}
+
+The nominal dimension is
+\[
+ d_n=p_*\bigl(1+(g^2+3)n\bigr).
+\]
+Choose an even \(M_0\) sufficiently large and put \(N=M_0n\).
+Then \(d_n/N\) and every other fixed multiple of \(n/N\) are as small
+as required. In particular, there is room for the injective quadratic
+frames and their unused channels. The exact-image estimates can use an
+error smaller than \(\zeta/24\).
+
+The records in the collision proof have \(2^{O(n)}\) possible values.
+Choose \(M_0\) so that their logarithm is at most \(.005N\). The same
+choice makes the number of tested Gram bits at most \(.01N\); a sufficient
+bound for that number is \(16ghd_n\). All coefficients in these expressions
+were fixed before \(M_0\).
+
+The resulting order is
+\[
+ (D,M,\zeta)\ \longrightarrow\ (e,k,d,u,s,K)
+ \ \longrightarrow\ (g,B_{\rm exc})
+ \ \longrightarrow\ (b,s_0,J)
+ \ \longrightarrow\ (r_0,h)
+ \ \longrightarrow\ M_0\ \longrightarrow\ n.
+\]
+The notation \(B_{\rm exc}\) in this line includes the intermediate
+quantities \(R,q_*,d_S,H_*\), all determined by \(g,K\).
+
+\subsection{Later analytic choices}
+
+The accuracy of the Fourier comparison is chosen after the construction.
+For a fixed exponential leaf cap and desired error, first choose the small
+repetition rate in \Cref{sec:histograms}. Next choose the nominal-deficiency
+cutoff and the cross-batch rank cutoff.
+Only then choose the Fourier threshold \(\delta\). Taking \(n\) large
+makes the moment bound beat the leaf cap. None of these choices changes
+\(h,J\), or \(M_0\).
+
+The clipping height for query densities is fixed before the number of
+linear partition cells. Energy increment then bounds that number for each
+required accuracy. For the finite-score argument choose the overlap
+threshold \(\eta\) below the conditional support gap and the positivity
+bounds. In the predicted branch every attained predictor cell has mass
+at least \(2^{-2R_*}/2\). All partition sizes and finite option counts are fixed at that
+stage. Predictions are exact from extraction onward. Their coordinate
+bound is fixed by the construction.
+The overall asymptotic contradiction still takes \(n\) to infinity.
+
+\subsection{Final probability margins}
+
+A unit query has at most 28 atom positions. Each atom uses two cycle
+components and contributes one ambient key vector on each. Thus there
+are at most 56 vectors. The spreading loss satisfies
+\[
+ 2\zeta\cdot112\le .004.
+\]
+The pruning and table counts in \Cref{sec:collision} give the more generous
+final exponent \(56+.03\). The retained mass has a fixed positive lower
+bound. An overlap of order \(N^{-4}\) costs only \(O(\log N)\) in the
+exponent. Hence
+\[
+ 2^{-(56+.03)N-o(N)}>2^{-200N}
+\]
+for large \(n\).
+
+Finally take \(m=2^{2000N}\), \(\varepsilon=2^{-200N}\), and density
+cap \(\kappa=2^{8000N}\) in the matching exposure argument. Its number
+of scales is at most \(8200N+6\), and its history length is
+\(2^{400N}\). Since \(\log|\Omega|=O(N^2)\), the logarithm of the
+number of histories is \(O(N^2 2^{400N})=o(m)\).
+The two sampling errors are exponentially small in \(m\).
+This completes the parameter choices for both the supersaturation theorem
+and its finite-graph transfer.

@@ -1,0 +1,2399 @@
+{
+  "baseline": "ff9383d",
+  "comparison_forbidden_absent": [
+    "Lax793645Proofs.Upstream.OAI.HadwigerCounterexample.Template.weakly",
+    "Lax793645Proofs.Upstream.OAI.HadwigerCounterexample.Template.plays_calendar",
+    "Lax793645Proofs.Upstream.OAI.HadwigerCounterexample.Template.shattered",
+    "Lax793645Proofs.Upstream.OAI.HadwigerCounterexample.Template.controls",
+    "Lax793645Proofs.Upstream.OAI.HadwigerCounterexample.Template.legacy_controls",
+    "Lax793645Proofs.Upstream.OAI.HadwigerCounterexample.erosive",
+    "Lax793645Proofs.Upstream.OAI.HadwigerCounterexample.erosive_implementation"
+  ],
+  "comparison_required_present": [
+    "Lax793645Proofs.Simplifications.query_high_moment",
+    "Lax793645Proofs.Simplifications.query_moment_decay",
+    "Lax793645Proofs.Simplifications.capped_leaf_comparison",
+    "Lax793645Proofs.Simplifications.law_peek_dependent",
+    "Lax793645Proofs.Simplifications.simultaneous_relative_sieve_error",
+    "Lax793645Proofs.Simplifications.full_pattern_sum_bound",
+    "Lax793645Proofs.Simplifications.patterned_block_rank_completion",
+    "Lax793645Proofs.Simplifications.uniform_corner_nominal_tail",
+    "Lax793645Proofs.Simplifications.linear_supported_refinement",
+    "Lax793645Proofs.Simplifications.linear_test_refinement",
+    "Lax793645Proofs.Simplifications.query_p_weights_norm",
+    "Lax793645Proofs.Simplifications.capped_input_status_comparison",
+    "Lax793645Proofs.Simplifications.query_all_filters_linear_partition",
+    "Lax793645Proofs.Simplifications.successful_query_linear_partition",
+    "Lax793645Proofs.Simplifications.linear_adaptive_overlap",
+    "Lax793645Proofs.Simplifications.linear_adaptive_rebate",
+    "Lax793645Proofs.Simplifications.linear_reference_common_overlap"
+  ],
+  "comparison_target": "Lax793645Proofs.Simplifications.clipped_successful_product_projection",
+  "scope": "Retained-batch high moment, actual query statuses, all-filter leaf partitions, clipped common projection with pair-dependent filters, and concrete linear predictor consistency under the prepared marginal cap; final adoption is audited separately.",
+  "source_sha256": {
+    "proofs/Lax793645Proofs/Simplifications/AffineQueryCorners.lean": "1476e7a19f77d2f219f4110b86ef53de68e423bbae9aaffddfe5513e5a03b9fe",
+    "proofs/Lax793645Proofs/Simplifications/AsymmetricCommonProjection.lean": "1a4d1bd1adff850fdfe2c43c739a37692cfad06a729c2159790807d3aaf66666",
+    "proofs/Lax793645Proofs/Simplifications/BlockRankCompletion.lean": "cebf8c27edda2c151ed8fbfc2110012b172473fee56c5ad2fd10d25733bee92f",
+    "proofs/Lax793645Proofs/Simplifications/BoundedOverlapTransfer.lean": "47119d1f402fb110da1226d1325c809136f6a6097d824950a2392db5f1bdcdc6",
+    "proofs/Lax793645Proofs/Simplifications/CappedInputStatusComparison.lean": "966d7e50cc50003059c241123107825efc825579975219856292b6accb10e021",
+    "proofs/Lax793645Proofs/Simplifications/CappedLeafComparison.lean": "5b30111652542d66824c0111c4b035e6f15cdc143ad6f3f29693c383e1c8f795",
+    "proofs/Lax793645Proofs/Simplifications/CappedLeafFourier.lean": "e3b69f8ee92af117141321970a53d0bf9019a0eec3670cdd21b42054a3fef786",
+    "proofs/Lax793645Proofs/Simplifications/CappedLinearRank.lean": "32b850920a274bcd81c97e25e4f953c343852710f6300054421a57d672fa8021",
+    "proofs/Lax793645Proofs/Simplifications/ClippedFiniteProjection.lean": "fa4666cbf226791ebf554e867c00f55fda284089eecf98c165ff7ee1929ba130",
+    "proofs/Lax793645Proofs/Simplifications/ClippedProductProjection.lean": "3194413a5b70f4f614a0c0a726b91fccfa3b4c10fa9347ab9884e0d58af65371",
+    "proofs/Lax793645Proofs/Simplifications/ClippedSuccessfulProjection.lean": "1dfb3475c4b0149dd1572521a3ee2e9ac5fa75911de2267607d9b85834f98e38",
+    "proofs/Lax793645Proofs/Simplifications/ClippingContraction.lean": "adf9db1415f28058b5e87e98a3b45dec45cfe805e010528428fe8842ae45150c",
+    "proofs/Lax793645Proofs/Simplifications/CoherentQueryArrays.lean": "59179164f663e1496f49c2a91373b5b9dfd4f93681e5c530464b56b6055d2782",
+    "proofs/Lax793645Proofs/Simplifications/ColoredCutEnergy.lean": "486e2fb84ffc1fc4f4ef4bdc60e22d492cbfec176ca741e5f61390ca86aba301",
+    "proofs/Lax793645Proofs/Simplifications/CommonLinearFrequencies.lean": "f2adaa95b15a4aea5d7f378e19ceb1f5090dc538815b6429a5ab820ab108ec37",
+    "proofs/Lax793645Proofs/Simplifications/ConditionalCellHits.lean": "403d237921d3e5ec738d6fcd2b54986db1dd0fea9f0b2c7ec37882f68c665689",
+    "proofs/Lax793645Proofs/Simplifications/CornerPatternSum.lean": "f7c11bc3bbcbc56ede573d0e1b66fad3d35165a1e33ea3502eaeef4ca844c560",
+    "proofs/Lax793645Proofs/Simplifications/CrossPatternSums.lean": "4922c60894159f6740ef790a64f4ec9915b96c148daa57a5f08753303db1a2b6",
+    "proofs/Lax793645Proofs/Simplifications/DependentFrameImages.lean": "9405b4d84ea5097128f9522ce216f566f171e96686fbbab33e07f1d15c07f5ac",
+    "proofs/Lax793645Proofs/Simplifications/EquivariantProjection.lean": "5c9d0b7100b0b9c3d15f4c3d2a0e94439fe5efa500aa271baa1d30c77ebdda4f",
+    "proofs/Lax793645Proofs/Simplifications/EquivariantRebate.lean": "b73b4ae8a18fc10f7c7d2850e85ea037b3eca00b00115dea9bc88cd1ce45a70f",
+    "proofs/Lax793645Proofs/Simplifications/ExactBaseQueryComparison.lean": "92d0bbb9f58d3944004244286956884e82f88a6d7de41d65b1543c442d2dcf08",
+    "proofs/Lax793645Proofs/Simplifications/ExactBaseQueryHits.lean": "b32555e0a62dfd8a2204132b1a362b74ecce46f7bb50e6b79d4571a8799dad39",
+    "proofs/Lax793645Proofs/Simplifications/ExactPaintComparisons.lean": "1987ebf8cc5f6d8a4ce783f3e58bf2de558ded56f1280263f8baadd5f3776b75",
+    "proofs/Lax793645Proofs/Simplifications/FilteredColoredDensities.lean": "e1f9e8397de6495fa80847d07a6eb21e98c4a6664963171a0db11f99f1efd2ab",
+    "proofs/Lax793645Proofs/Simplifications/FilteredDensityEnergy.lean": "75d76db67bded7333bac00caeaa862f55dfea8126e10434503f17c15a5c8bda5",
+    "proofs/Lax793645Proofs/Simplifications/FilteredProjectionBounds.lean": "ec97e82d0f7906a1774f1bcce87a3c19327fb96a14ab28cc899da96ee2f9b1f0",
+    "proofs/Lax793645Proofs/Simplifications/FourCornerRank.lean": "f71162565060c589700b015ae4ba30587fdde5cc37e095a77d6d1cbb3e5ae8b9",
+    "proofs/Lax793645Proofs/Simplifications/FourierNorm.lean": "0e12d62016e9f3862c6256207d17cb33abb57336e37b054daf028ddf589ceb63",
+    "proofs/Lax793645Proofs/Simplifications/GramFourCorners.lean": "56610d0c3e00ebd000eecafc2d4c8d4c3a73e78c16b5e5b3b230aabaf1ec224f",
+    "proofs/Lax793645Proofs/Simplifications/GramKernelBounds.lean": "2f688b32c7afe088b6779dc41068ea68bd6dc0b32b9d2c88e460b8929de63f4a",
+    "proofs/Lax793645Proofs/Simplifications/GramPatternSum.lean": "939c4705844cbee27fa26ab8cb27a4524eb2ac6f248e876567edb5ac635db7cf",
+    "proofs/Lax793645Proofs/Simplifications/GramReferenceBias.lean": "e86d661071d39a393cd93db64363c554f713b69461ef36a9a39534d2e514b5e9",
+    "proofs/Lax793645Proofs/Simplifications/GramReferenceFourier.lean": "544b8ebb4f519265b6c274e3e8c1e2866a4b47f3fd1d2d1d4e6df80244c59876",
+    "proofs/Lax793645Proofs/Simplifications/HighRankBatchWeights.lean": "2651c3afc3b3ab435f1e70f8d392ea192de9a24babe74215f8a2bd816e110e75",
+    "proofs/Lax793645Proofs/Simplifications/InjectivityPolynomial.lean": "a4a9703136eb00ec3f379851db693f664e59b329558462794afcb8b09c4b454b",
+    "proofs/Lax793645Proofs/Simplifications/JointKeyFiberLaws.lean": "619ab9f740ccf05d6be4ee6ff2545cf43d3517a4dded3c29c4c30833393495c3",
+    "proofs/Lax793645Proofs/Simplifications/JointPredictorCoordinates.lean": "624839e09899b2a85a2db211ae819c297ea17ab20ee5d0d80d5162f7af911e94",
+    "proofs/Lax793645Proofs/Simplifications/LightQueryBounds.lean": "aa61cbb25fef3659b527b32ae68c9b801cd5149ae351f9412792a3aacc4d3fe5",
+    "proofs/Lax793645Proofs/Simplifications/LinearAdaptiveOverlap.lean": "93da0996b4bea96f9711a0f4ade6ccf6fb1a90ec11e739ca760f79d672e9874d",
+    "proofs/Lax793645Proofs/Simplifications/LinearAdaptiveRebate.lean": "7b1d1a79e2ca6215cf184d7e3daef5ffa30bc7bcfee25ac913c6062bb513c5df",
+    "proofs/Lax793645Proofs/Simplifications/LinearCellBounds.lean": "69eb47a9e4ecb2e07220813d4e029a7957f4e101c7d74b417f7a11388c75cfde",
+    "proofs/Lax793645Proofs/Simplifications/LinearCellCoordinates.lean": "1427df6bbc10bcc55ab5582b252bee52e26630461a34419ac1eae3e595cce418",
+    "proofs/Lax793645Proofs/Simplifications/LinearCommonOverlap.lean": "052e533e81866f8077a9a30eb81634c6b7f42db380aea5c9f3b7133fab1a4fb0",
+    "proofs/Lax793645Proofs/Simplifications/LinearDensityRefinement.lean": "85c5d4c77f9b548ebf0d649b78a4cf428c4f80682eede341085f381f506bf737",
+    "proofs/Lax793645Proofs/Simplifications/LinearFourier.lean": "9b38a9a9915fdda7804475749aee8a49fd8ce43cff8b8ce950cb6fd185745114",
+    "proofs/Lax793645Proofs/Simplifications/LinearPaintComparisons.lean": "6e2c044497fb47936ded6fa92832c9e9db3b19ed4dc4def181c0bce0013c299b",
+    "proofs/Lax793645Proofs/Simplifications/LinearPalette.lean": "b41ce7d3b7a5e85ad48e74de1622b9656ce88059d0c67e31fdd7ec00241dd661",
+    "proofs/Lax793645Proofs/Simplifications/LinearPartitionAppend.lean": "4078ec62946c61a95fd99951f1d82544c5e09340462409572cd362b503e5a96c",
+    "proofs/Lax793645Proofs/Simplifications/LinearPartitionGeometry.lean": "88fd8554302352761af7bbcd251c318bf64093d0fdf5ee68d10f3f7f31bb75d2",
+    "proofs/Lax793645Proofs/Simplifications/LinearPartitionPaints.lean": "9894151fe1abb0f2ad817aaa8db4abc6533e057a06ccfd97f25786ca8660e35f",
+    "proofs/Lax793645Proofs/Simplifications/LinearPredictionConditions.lean": "f00f058387ac55aec87d18b1bc9fef4ca77ad7533af522b48bd70064f5fcbf65",
+    "proofs/Lax793645Proofs/Simplifications/LinearPredictorCertificates.lean": "90224f14148e7ce41d6944429908c6341f19ea9fedc93827234776b1f078cb6d",
+    "proofs/Lax793645Proofs/Simplifications/LinearPreparedConsistency.lean": "5246d91228e3e826d240fde1bf59d1e148db7eb54d4ba2c4a0b392c29ecc09a7",
+    "proofs/Lax793645Proofs/Simplifications/LinearProjectionFourier.lean": "824b31a84e62e8439ee2d12b21c6f1e65c3094ff771a4033c8b58ea144de4a77",
+    "proofs/Lax793645Proofs/Simplifications/LinearQueryComparison.lean": "a83e26db0f07b708454023a5873eabee2fd0651332078383f934657db02ad848",
+    "proofs/Lax793645Proofs/Simplifications/LinearReferenceProjection.lean": "78c6091e3a2b780d669cceeb195e91f904f12211b064937b4d225ac92b1480e7",
+    "proofs/Lax793645Proofs/Simplifications/LinearRelationFourier.lean": "a4c67b333d39e87c983e18455b0022b0463bea1a3a056da6f821f5ba87f63215",
+    "proofs/Lax793645Proofs/Simplifications/LinearScreenContradiction.lean": "e9d62a27274c7d47818badbb460bc988575df50da665c2255d0254f97015691d",
+    "proofs/Lax793645Proofs/Simplifications/LinearScreenSlopes.lean": "e1b2bacaa1d17e97e82b98ce2487fc5b50132b91839ba3b87f164b71c317a7f5",
+    "proofs/Lax793645Proofs/Simplifications/LinearSuperlevels.lean": "5a4dd99984a93473d7a80f60a566859b09e9f071dd2818de7e609ed7c77ef0cd",
+    "proofs/Lax793645Proofs/Simplifications/LinearSupportedTests.lean": "094c466bff2b0dbc83f8e9e3bb0827356fe8940672587bc058d6e6638d7ed4ba",
+    "proofs/Lax793645Proofs/Simplifications/LinearTestPartitions.lean": "6638f3b6865117b82169a4f8974d71f173b20ad61832f263d9b1781ac7b63260",
+    "proofs/Lax793645Proofs/Simplifications/LinearTestRefinement.lean": "1c3c5f18028596fa9d5ba0c2e0f53e9a3fd0cd42585cbb89e6e012c1fa66542e",
+    "proofs/Lax793645Proofs/Simplifications/LinearZeroDiscrepancy.lean": "4f90482a8325d6c6d5e76bc5b6a4a93633c44f6665e4d46f9bae4c0f5961e88c",
+    "proofs/Lax793645Proofs/Simplifications/LowRankBatchWeights.lean": "bfa794b90b783dbc869b95ffa092e40082826a8332f7425ce66d6654e113381b",
+    "proofs/Lax793645Proofs/Simplifications/LowRankGramFourier.lean": "7c5f56c2f8163cb89b9997809e1295930d773da5d5e40742a901cd8d2ff77bae",
+    "proofs/Lax793645Proofs/Simplifications/MomentBudgetScales.lean": "f9206c50ad1f610b46e31e73aaf0c8a24108157b17e40c2da116aeb152de2811",
+    "proofs/Lax793645Proofs/Simplifications/MomentScaleAlgebra.lean": "0a73113d42451db9df13de2d7899a9d461e9ced1d4b66cf77483fca047017fd9",
+    "proofs/Lax793645Proofs/Simplifications/NetworkKernelNormalization.lean": "78dfbec5707a5de227e374b5e0cda5828137e8dac18e4dbc12559b86341c119e",
+    "proofs/Lax793645Proofs/Simplifications/NetworkSieveLaw.lean": "a2357665bf12981b0360573633f6eb8e8c747989621de890200fba3c706fc87c",
+    "proofs/Lax793645Proofs/Simplifications/NominalBlockDeletion.lean": "ab559633b5ca7b7fde21e50bbaa16187fcac04d5bd9fbf198fcfcb6c55fe99ad",
+    "proofs/Lax793645Proofs/Simplifications/NominalKernelTails.lean": "cbd1a269d31d1e3acd856a10b27d70cc7765f9d51bf360fc17edf8b870bb70b1",
+    "proofs/Lax793645Proofs/Simplifications/NominalNetworkFactors.lean": "9be110c1b85cece900e41edb5f721f929956bf844af58b92ca5e97a31560a134",
+    "proofs/Lax793645Proofs/Simplifications/NormalizedGramBatches.lean": "b052572738e24a806f94d638fdb68db85282e60626885e65b980940d598f946a",
+    "proofs/Lax793645Proofs/Simplifications/PairedFrameRowBounds.lean": "ff1c51c92d26c06cf9bd06a0ae6aa733d46960b92ea4ae17a1c35a38506ca8ef",
+    "proofs/Lax793645Proofs/Simplifications/PreparedLinearRank.lean": "c9dd55e6eb92dd275e263759ca7aa1f53f1a3e76109b6a5c93b72bb60942f606",
+    "proofs/Lax793645Proofs/Simplifications/PrescribedKernelGram.lean": "20406b873f4d06b9ae3e14745f96778f274bf08ce6f8b890b316c85ef10b6aab",
+    "proofs/Lax793645Proofs/Simplifications/PrintedStatusComparison.lean": "9cf11bb017779742c1c925838ffca1d9fb0a43de69cfb6550eb261c02a88cb00",
+    "proofs/Lax793645Proofs/Simplifications/ProductKernelComparison.lean": "ce7693cd043ec817dd25a518ebe8129506314b9a24cfdd3ac27fb68cefa2e016",
+    "proofs/Lax793645Proofs/Simplifications/ProductQueryCells.lean": "2f3fb690c0d2345540680f7457a3523d05ed545229fc2890482978a1f62a78a2",
+    "proofs/Lax793645Proofs/Simplifications/ProjectedDensityMend.lean": "539b3bfca461cb597bfc634d03b65ed304082837bca465338f3400cb7644157f",
+    "proofs/Lax793645Proofs/Simplifications/ProjectionRefinementBounds.lean": "704e42d14a674e641e99c692f5a3018e11390a35899a7c3a549a67abd1f1e1c5",
+    "proofs/Lax793645Proofs/Simplifications/QuadraticStatusFourier.lean": "ad3d8cf07eacb179e29298748a536f1c77f5672c38becd66ee4842ebfec50f23",
+    "proofs/Lax793645Proofs/Simplifications/QueryCappedMoment.lean": "8b1b06a24fc1da3856fbf72bc6905e03d82599f9ef94e05087d7683a6941b4fd",
+    "proofs/Lax793645Proofs/Simplifications/QueryCellRecentring.lean": "d61bcf90ff64e887cafeb410b73bd195a5eb99f90ce849d3929d36187d9d4552",
+    "proofs/Lax793645Proofs/Simplifications/QueryCoordinateLaws.lean": "15b5d420253cdf66b0b506c0cf147682e062e94564da26db36b6882005dd2b9a",
+    "proofs/Lax793645Proofs/Simplifications/QueryDensityRefinement.lean": "4df087e26a8fd2aeb61d0baf63293fde27e9a4d6d23003155aae2a6ea252a50f",
+    "proofs/Lax793645Proofs/Simplifications/QueryFilteredComparison.lean": "ad3e3089d26d48ebf5d5a6eb04ff161c6d07f3ebb5b626031a103be9ddd1b025",
+    "proofs/Lax793645Proofs/Simplifications/QueryHighMoment.lean": "978e479c27519870a27da866f8c040c158cf46acb4831e1da90a7521e0d1c3e0",
+    "proofs/Lax793645Proofs/Simplifications/QueryLinearEnergy.lean": "b4a92eaec48cd4c6e32757e7227174fa9427b43d79ec42975c4e48eed855f030",
+    "proofs/Lax793645Proofs/Simplifications/QueryLinearPartitions.lean": "4616dc978948e94735b5b579a7c4c91ade0ba8c96773698992e74ef7da3c0ac8",
+    "proofs/Lax793645Proofs/Simplifications/QueryMomentDecay.lean": "fc344cf69fae0e5711e1e9bc8634db4afbe7f46dcdbf4bef3b0ab4ce2a7947f7",
+    "proofs/Lax793645Proofs/Simplifications/QueryMomentExpansion.lean": "d3a7dbf64d987561306c791e6e4b54c5737b34991c3df99e957d717ecf02d1dc",
+    "proofs/Lax793645Proofs/Simplifications/QueryReferenceBias.lean": "a401a467f5bf1533628451b113d34dd0813fc28b6560868b9dd585b225e8815e",
+    "proofs/Lax793645Proofs/Simplifications/QueryStatusWeights.lean": "602c3c73b58c6a1e50279b03f6223650d0ee7c921059d03fea7e6862a5f00496",
+    "proofs/Lax793645Proofs/Simplifications/QueryWeightSupremum.lean": "f41d883d60b1bf43bdeb610db565f7bb157bc404340a19547bb3b45d93500f36",
+    "proofs/Lax793645Proofs/Simplifications/RawBudgetExponents.lean": "129780ed5c14d017b8cb1e7d3aa43a5484402124ff7fed508168913fc1b81f2b",
+    "proofs/Lax793645Proofs/Simplifications/RawFrameBatchBound.lean": "edefaa90064976db672266fc0a9c805d5e6b2fca5ea8e0dc96c81f8815b11660",
+    "proofs/Lax793645Proofs/Simplifications/RelativeDensityEnergy.lean": "535c6af38f66ee463a1fdea6663c3536521f3dd7e0f4af9cb2ace2614f52a99d",
+    "proofs/Lax793645Proofs/Simplifications/RetainedFourCornerBatches.lean": "bc690c3dbc9cc4d881d28f193de83e042a468ab6ebd2e7c8b21b5b1b8d7525f7",
+    "proofs/Lax793645Proofs/Simplifications/SimultaneousKernelSieve.lean": "7ed92dc825a0f3f7a67e2f7875e2863df4f7a617af2884e00694d80ecbc872e9",
+    "proofs/Lax793645Proofs/Simplifications/SuccessfulCommonProjection.lean": "68464daab62bcd9a8a4f2e6da39921af794cda9ecefdf154a967c9405e95e2ac",
+    "proofs/Lax793645Proofs/Simplifications/SuccessfulFiniteProjection.lean": "6e3dfa1d503bc4645247ac59e5785a37370752f3706e08d8ca19a21af6d17d66",
+    "proofs/Lax793645Proofs/Simplifications/SuccessfulLinearQueries.lean": "a4e69cfe09ec3b127cf6d27e86be525982610712bfadc9051f66c7c814106a5e",
+    "proofs/Lax793645Proofs/Simplifications/SuccessfulProductPartitions.lean": "a40c828391512e588112a2ed53518e61c9d77ffd1fc1603cc9384cc05aa1d229",
+    "proofs/Lax793645Proofs/Simplifications/UniformCornerBound.lean": "72593f7beaea495170e46f80bf9dfcde904dddde46e3c3fcf42c56be16681233",
+    "proofs/Lax793645Proofs/Simplifications/UniformRawBatchBound.lean": "b80341a93cb0d12eeecc4e8fc5cd44db1a98793c7df23521086335a1e4fa7eb2",
+    "proofs/Lax793645Proofs/Simplifications/WeightedFourCorners.lean": "02603e458c8fbc664d0398cec43ea6c0ac24234ac9779b7e30e30b901611592b"
+  },
+  "still_required": [
+    "natural-language rewrite of the integrated analytic replacement"
+  ],
+  "theorems": {
+    "Lax793645Proofs.Simplifications.affine_light_certificate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.affine_quadratic_status_fourier": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.affine_recenter_combination": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.affine_recenter_uniform": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.affine_uniform": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.all_filters_linear_partition": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.all_keys_design": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.allowed_gram_four_corner": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.append_mul_vec": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.append_refines": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.arches_affine_congr": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.arches_constant_add": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.asymmetric_successful_common_projection": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.avg_condition_formula": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.banner_append": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.banner_equivalence": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.banner_equivalence_input": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.banner_injective_output": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.base_vector_three": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.batch_off_left": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.batch_off_right": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.beam_rank_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.bilinear_flip_rank": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.bilinear_restriction_rank": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.binary_kernel_count": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.binary_kernel_count_bounds": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.block_deletion_tail": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.block_rank_completion": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.bounded_discrepancy_test": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.bounded_overlap_transfer": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.bounded_pair_change": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.bounded_product_mend": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.capped_filtered_comparison": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.capped_fourier_weight_moment": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.capped_frame_rank": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.capped_input_status_comparison": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.capped_leaf_comparison": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.capped_leaf_fourier": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.capped_zero_pullback": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.cashbook_bound_of_banner": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.cashbook_equivalence": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.character_factors_columns": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.clipped_successful_common_projection": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.clipped_successful_finite_projection": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.clipped_successful_product_projection": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.clipping_lcost": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.coherent_compound_uniform": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.coherent_sketch_failure": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.coherent_sketch_point": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.colored_cut_density_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.colored_cut_energy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.colored_cut_support": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.colored_filter_representation": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.colored_sub_energy_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.column_relation_expansion": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.column_relation_fourier_norm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.common_frequency_space": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.common_linear_intersections": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.common_linear_matrices": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.conditional_cell_hits": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.conditional_cell_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.conditioned_sieve_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.conditioned_transverse_row": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.coordinate_hit_calendar": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.coordinate_query_event": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.coordinate_uniform_event": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.corner_gram_decomposition": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.corner_nominal_kernel_dimension": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.corner_nominal_kernel_tail": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.corner_nominal_key": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.corner_nominal_product": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.corner_product_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.corner_product_fourier": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.corner_query_mask": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.corner_rack_character": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.corner_value_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.count_full_patterns": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.cross_gram_add": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.cross_gram_apply": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.cross_gram_flip": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.cross_gram_rank_left": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.cross_gram_rank_nonzero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.cross_gram_rank_right": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.cross_part_inter": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.cross_part_peak": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.density_equivalence": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.dependent_gram_batch_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.deposit_flag_separation": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.design_mul_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.diagonal_gram_product": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.dip_density_mixture": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.dip_equivalence": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.exact_base_paint_side_release": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.exact_base_sober_calendar": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.exact_base_sober_gain": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.exact_kernel_mul_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.exact_network_implies_relation": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.exact_paint_side_release": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.factor_through_quotient": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.filtered_comparison_sum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.filtered_cut_projection_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.filtered_density_gain": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.filtered_density_progress": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.filtered_projection_discrepancy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.finite_status_expansion": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.first_row_zero_injective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.four_corner_gram_sum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.four_corner_max_rank": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.four_corner_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.four_corner_rank": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.four_corner_swap_xy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.four_corner_swap_yz": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_norm_add": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_norm_affine_map": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_norm_affine_pullback": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_norm_avg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_norm_bounded": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_norm_bounded_count": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_norm_character": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_norm_const": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_norm_finset_product": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_norm_kernel": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_norm_kernel_count": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_norm_kernel_eq_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_norm_linear_fiber": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_norm_linear_pullback": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_norm_mul": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_norm_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_norm_pair_sieve": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_norm_point": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_norm_product": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_norm_relation_family": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_norm_sieve": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_norm_smul": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_norm_sub": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_norm_sum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_product_weight": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_pullback_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_weight_fourth": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.fourier_weight_moment": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.frames_nonzero_row": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.frames_pr_slice": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.frames_transverse_row": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.free_nominal_kernel_tail": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.frequency_space_dimension": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.frequency_space_matrix": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.frequency_space_rows": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.full_allowed_gram_four_corner": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.full_pattern_sum_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.gram_conditioned_deficiencies": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.gram_conditioned_injective_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.gram_conditioned_kernel_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.gram_conditioned_kernel_tail": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.gram_corner_batch_fourier": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.gram_fiber_rank_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.gram_fixed_kernels_upper": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.gram_indicator_fourier": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.gram_injective_lower": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.gram_injective_sieve_comparison": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.gram_kernel_joint_upper": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.gram_linear_phase_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.gram_pattern_sum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.gram_primitive_fixed": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.gram_primitive_four_corner": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.gram_rank_alternative": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.gram_rank_sum_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.gram_reference_bias": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.gram_reference_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.gram_sieve_error": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.gram_sieve_error_exponential": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.gram_unrestricted_lower": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.gram_unrestricted_upper": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.high_rank_batch_product": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.high_rank_batch_weight": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.high_rank_exponent_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.image_kernel_exponent_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.independent_after_block_deletion": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.independent_frame_rank": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.independent_frame_row": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.independent_sum_point_cap": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.injection_span_hit": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.injective_frame_zero_row_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.inner_status_fourier": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.input_average": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.input_fourth": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.input_ray_affine": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.intersection_adjoin_gain": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.joint_cell_free_surjective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.joint_key_fiber_law": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.joint_key_independence": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.joint_predictor_coordinates": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.kernel_containment_fourier_norm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.kernel_sieve_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.kernel_sieve_cost_exponential": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.kernel_sieve_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.kernel_sieve_small": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.kernel_sieve_succ": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.l1_from_signed_tests": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.law_peek_dependent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.lcost_symm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.ledger_recovers": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.left_injective_kernel": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.light_query_controls": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_actual_overlap": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_actual_projected_overlap": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_adaptive_overlap": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_adaptive_rebate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_bounded_fourier_norm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_build_palette": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_cell_mass_error": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_cell_reference_comparison": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_cells_bundle": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_cells_constant": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_cells_exact": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_cells_mono": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_cells_postprocess": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_cells_precompose": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_cells_stamina": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_fourier_character": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_fourier_four_corner": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_fourier_modulate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_fourier_mul": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_fourier_pair": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_fourier_parseval": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_fourier_product": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_fourier_pullback": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_from_pulse": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_key_test_design": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_paint_side_release": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_partition_design": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_partition_fourier_support": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_partition_mural": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_partition_paint_coordinates": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_partition_palette": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_predicts_mono": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_predicts_predicts": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_projection_fourier": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_query_comparison": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_reference_common_overlap": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_reference_projection_error": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_relation_expansion": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_relation_fourier_norm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_screen_gap": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_screen_slopes": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_silhouette_bundle": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_silhouette_constant": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_silhouette_duo": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_silicon_calendar": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_supported_refinement": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_supported_test": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_test_partition": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_test_refinement": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.linear_uniform_common_overlap": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.lit_three": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.low_rank_batch_weight": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.low_rank_exponent_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.low_rank_gram_fourier_norm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.map_condition": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.mask_block_rank": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.matrix_kernel_parameterization": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.matrix_sieve_exact": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.mcut_equivalence": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.minus_insert_false": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.minus_insert_true": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.mixed_sub_cell_square_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.mixture_cut_density": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.network_exact_mass_pos": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.network_gram_expansion_cost": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.network_relation_mass_pos": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.network_relations_fourier_norm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.network_sieve_comparison": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.network_sieve_fourier_norm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.nominal_corner_weight_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.nominal_exponent_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.nominal_network_factors": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.nonzero_matrix_rank": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.normalized_sieve_gram_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.ordinary_light_certificate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.original_columns_sieve_error": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.original_exact_kernel_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.original_gram_expansion_cost": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.original_relation_law": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.pair_kernel_sieve_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.pair_kernel_sieve_exact": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.paired_dot_surj": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.paired_dot_symm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.paired_free_key": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.patterned_block_rank_completion": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.peak_expense_linear": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.peak_expense_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.peer_dependent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.phaseAbsent_linear_fixed": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.plus_insert_false": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.plus_insert_true": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.point_three": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.pr_supported_congr": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.prepared_growing_linear_rank_calendar": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.prepared_linear_rank": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.prepared_linear_rank_calendar": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.prescribed_kernel_gram_lower": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.prescribed_kernel_gram_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.primal_key_free": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.printed_separation": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.printed_status_comparison": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.product_average_error": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.product_coordinate_average": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.product_difference_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.product_input_cap": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.projected_density_mend": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.projected_kernel_dimension": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.projected_overlap_equivalence": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.projected_superlevel_pr": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.projection_fourier_norm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.projection_lcost_contract": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.projection_self_adjoint": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.punch_add_free": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.quadratic_status_fourier": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_all_filters_linear_partition": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_allowed_gram_four_corner": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_bounded_linear_partition": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_capped_exception": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_capped_moment": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_cell_add_free": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_cell_affine": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_cell_update": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_coordinate_inverse": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_density_refinement": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_fourth_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_full_allowed_gram_four_corner": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_gram_equivalence": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_gram_trace": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_high_moment": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_input_weight_moment": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_kernel_dimension": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_linear_energy_calendar": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_mask_inclusion": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_mean_from_exception": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_moment_decay": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_moment_expansion": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_nominal_kernel_tail": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_p_weights_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_p_weights_indicator": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_p_weights_norm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_port_injective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_reference_bias_calendar": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_reference_coordinates": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_uniform_weight_moment": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.query_weight_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.quill_design_transfer": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.quotient_exact_gram_law": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.quotient_gram_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.quotient_gram_law": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.quotient_matrix_injective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.quotient_rank": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.rack_character_batches": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.rack_product_fourier": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.rack_product_weight": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.rank_border_completion": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.rare_quotient_intersections": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.raw_batch_budget_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.raw_budget_calendar": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.raw_budget_exponent_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.raw_budget_exponents": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.raw_budget_mono": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.raw_four_corner_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.raw_frame_gram_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.raw_frame_uniform_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.raw_keys_dependent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.raw_network_factored": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.ray_kernel_dimension": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.rebate_complement": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.rebate_equivalence": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.rebate_injective_output": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.recenter_query_cell": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.recenter_query_compound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.recenter_query_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.recenter_query_punches": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.recenter_query_uniform": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.recenter_sketch_weight": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.refined_projection_lcost": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.refinement_test_orthogonal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.relation_condition_exact": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.relation_network_split": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.relation_network_test": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.relation_preserves_product_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.relative_energy_cells": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.relative_sieve_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.relative_sieve_fourier_norm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.relative_sieve_gram_error": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.relative_sieve_quotient": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.repeated_additive_fourth": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.retained_batches_low_rank": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.retained_batches_relations": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.retained_batches_weight": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.rows_refine_left": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.rows_refine_right": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.sales_coordinate_flags": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.scaled_kernel_count": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.selector_free_columns_injective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.shared_dial_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.shared_dial_tested": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.shared_leaf_frequencies": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.sieve_cost_ge_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.simultaneous_conditioned_sieve": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.simultaneous_exact_kernel_mass": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.simultaneous_relative_sieve_error": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.sketch_uniform_cap": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.small_bias_test": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.small_fourier_four_corner": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.small_fourier_weighted_four_corner": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.spring_add_free": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.stained_weight_identity": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.stained_weighted_average": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.star_primal_key": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.sub_cell_square_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.successful_density_catalog": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.successful_finite_projection": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.successful_linear_density_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.successful_product_partition": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.successful_query_common_projection": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.successful_query_linear_partition": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.sum_by_peak": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.sum_ledger": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.supported_density_average": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.supported_density_restore": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.supported_gram_modulation": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.supported_resonance": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.syrup_nonexpansive": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.template_coordinate_three": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.template_key_three": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.three_average": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.transverse_dual": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.transverse_row_shift": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.triple_average": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.triple_character": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.tuple_cell_design": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.unary_product_design": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.unif_nonzero_row": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.unif_vector_phase": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.uniform_corner_nominal_tail": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.uniform_four_corner_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.uniform_free_knobs": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.uniform_network_probability": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.uniform_on_support": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.uniform_pi_event": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.uniform_product_law": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.var_one_density_reconstruction": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.weak_transverse_row": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.weak_transverse_row_pr": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.weighted_pattern_sum_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  }
+}

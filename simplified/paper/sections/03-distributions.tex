@@ -1,0 +1,210 @@
+\section{From supersaturation to a finite graph}\label{sec:distributions}
+
+A \emph{unit} is an ordered pair of raw vertices with no hole between its endpoints.
+The endpoints of a unit may be dependent.
+When two units are sampled independently, their four endpoints need not be independent within either unit.
+The event of interest is that all four cross pairs have holes, as in \Cref{fig:four-holes}.
+
+% lax begin Lax793645.FourHoles
+\begin{theorem}[Raw supersaturation]\label{thm:raw-supersaturation}
+For the construction parameters specified in \Cref{sec:geometry,sec:parameters}, for all sufficiently large \(n\), every probability law \(\sigma\) on units satisfying
+\begin{equation}\label{eq:raw-law-caps}
+ \sigma_1\le M\mu,\qquad \sigma_2\le M\mu,\qquad
+ \sigma\le 2^{DN}\mu^2
+\end{equation}
+gives probability at least \(2^{-200N}\) that two independent units have all four cross holes.
+The inequalities in \Cref{eq:raw-law-caps} are pointwise inequalities of measures on the finite raw spaces.
+\end{theorem}
+% lax end
+
+The proof of \Cref{thm:raw-supersaturation} occupies the subsequent sections and is completed in \Cref{sec:rare-overlap}.
+We prove its implication for graphs here. The frame estimates and the preparation of an admissible unit law begin in \Cref{sec:frame-laws}.
+
+\subsection{A finite exposure potential}
+
+Join two raw units when all four cross pairs are holes. The resulting
+conflict graph has no loops. Write $q=\mu^2$,
+$\kappa=2^{DN}$ and $\varepsilon=2^{-200N}$.
+For $\gamma>0$ and an integer $b>0$ with $\kappa\le2^b\gamma$, put
+\[
+ \Phi(\sigma)=\sum_{i=0}^{b-1}\sum_x
+      \min\{\sigma(x),2^i\gamma q(x)\}.
+\]
+Every summand indexed by $i$ has total at most one, so
+$0\le\Phi(\sigma)\le b$ for every probability law $\sigma$.
+
+% lax begin Lax793645.ClippedExposure
+\begin{lemma}[Clipped exposure]\label{lem:clipped-exposure}
+Let $(Y,X)$ have both marginals $\sigma$ and never consist of
+conflicting units. Write $\tau_y$ for the conditional law of $X$
+given $Y=y$. If $\sigma\le\kappa q$ on a set $A$, then
+\[
+ \Phi(\sigma)-\E_Y\Phi(\tau_Y)
+ \ge \frac{(\sigma\otimes\sigma)(\text{conflict}\cap A^2)-\gamma}{2}.
+\]
+The potential drop is always nonnegative, without any assumption on $A$.
+\end{lemma}
+% lax end
+% lax begin Lax793645Proofs.Manuscript.ClippedExposure.dyadic_exposure_joint
+\begin{proof}
+For each $x$ and each threshold $a=2^i\gamma$, the identity
+$\E_Y\tau_Y(x)=\sigma(x)$ gives
+\[
+ \E_Y\min\{\tau_Y(x),aq(x)\}
+ \le\min\{\sigma(x),aq(x)\}.
+\]
+Indeed the left side is separately bounded by both entries of the
+minimum. Let $p_x$ be the probability that $Y$ conflicts with $x$. On that event,
+$\tau_Y(x)=0$. If $\gamma q(x)\le\sigma(x)\le\kappa q(x)$,
+choose a threshold with $aq(x)\le\sigma(x)\le2aq(x)$. The drop
+at this coordinate and threshold is at least
+$p_xaq(x)\ge p_x\sigma(x)/2$. Coordinates below $\gamma q(x)$
+have total mass at most $\gamma$. Sum over $x\in A$ and discard
+all other nonnegative drops. Restricting the first unit to $A$ can
+only decrease the conflict probability.
+\end{proof}
+% lax end
+
+\subsection{Sampling repeatedly from a matching}
+
+% lax begin Lax793645.MatchingExposure
+\begin{proposition}\label{prop:raw-to-graph}
+Assume \Cref{thm:raw-supersaturation} for a sufficiently large $n$.
+There is a sample of $m=2^{2000N}$ raw vertices whose graph satisfies
+\[
+ \alpha(G)\le2,\qquad \cm(G)<m/100.
+\]
+\end{proposition}
+% lax end
+% lax begin Lax793645Proofs.Manuscript.MatchingExposure.transfer_scales
+\begin{proof}
+Suppose instead that every sample has a touching matching of size
+$k=\lceil m/100\rceil$. Choose one such matching deterministically
+for each sample, and orient its edges arbitrarily. Given the sample,
+draw repeatedly and independently from these $k$ oriented edges.
+Two emissions never conflict, even if they are the same edge.
+The hidden state is the original sample, with law $\mu^m$.
+
+After any history $h$, let $\sigma_h$ be the law of the next emitted
+unit under the posterior law of the hidden sample. Two future
+emissions have both marginals $\sigma_h$ and never conflict.
+The law after observing $y$ is the conditional second marginal
+required by \Cref{lem:clipped-exposure}.
+
+Define
+\[
+ S_h=\{x:(\sigma_h)_1(x)>M\mu(x)/4
+               \text{ or }(\sigma_h)_2(x)>M\mu(x)/4\},
+ \qquad
+ E_h=\{x:\sigma_h(x)>\kappa q(x)/4\}.
+\]
+Summing each density excess gives
+$\mu(S_h)\le8/M$ and $q(E_h)\le4/\kappa$.
+Let $A_h$ consist of units avoiding $S_h$ at both endpoints and
+avoiding $E_h$, and set $\alpha_h=\sigma_h(A_h)$.
+If $\alpha_h\ge1/4$, the normalized restriction to $A_h$ satisfies
+all three caps in \Cref{eq:raw-law-caps}. Raw supersaturation then gives
+\[
+ (\sigma_h\otimes\sigma_h)(\text{conflict}\cap A_h^2)
+ \ge\varepsilon\alpha_h^2\ge\varepsilon/16.
+\]
+Use $\gamma=\varepsilon/32$. The drop $D_h$ in the potential is at
+least $\varepsilon/64$ on these histories and is always nonnegative.
+Since $\alpha_h\le1$, in all cases
+\begin{equation}\label{eq:exposure-retention}
+ D_h\ge\frac{\varepsilon}{48}(\alpha_h-1/4).
+\end{equation}
+
+Take $L=2^{400N}$ exposure steps and $s=\lfloor k/5\rfloor$.
+There are at most $(|\Omega_n|^2+1)^L$ histories of length at most
+$L$: this follows by induction from the recursion that either stops
+or appends one unit. Each $S_h,E_h$ is a deterministic set in the raw
+space. The iid sampling bounds therefore apply before any exposure.
+A union bound shows that the probability of a raw sample having,
+for some such history, $s$ positions in $S_h$ or $s$ disjoint
+position pairs in $E_h$ is at most
+\begin{equation}\label{eq:exposure-exceptions}
+ \Delta=(|\Omega_n|^2+1)^L
+ \left[2^m(8/M)^s+m^{2s}(4/\kappa)^s\right].
+\end{equation}
+Call this fixed event of raw samples bad. On a sample outside it,
+at most $2(s-1)$ edges of the chosen matching fail the restrictions
+for any history. Since $4s\le k$, its emission law gives $A_h$
+probability at least $1/2$.
+
+Let $B_h$ be the posterior probability of the fixed bad event.
+Averaging the preceding bound under the original posterior gives
+$\alpha_h\ge1/2-B_h$. The posterior probability $B_h$ is a
+martingale: averaging its values after the next observation returns
+its current value. Thus \eqref{eq:exposure-retention} and a finite
+tree telescope imply
+\[
+ b\ge L\left(\frac{\varepsilon}{192}
+                  -\frac{\varepsilon}{48}\Pr(\text{bad})\right).
+\]
+No posterior law has been conditioned on the complement of the bad event.
+
+Here $D=8000$, $M=2^{1000}$ and $m=2^{2000N}$.
+We may take $b=8200N+6$, so $\kappa\le2^b\gamma$.
+By \Cref{eq:raw-space-size}, for all sufficiently large $N$,
+\[
+ (|\Omega_n|^2+1)^L\le2^{m/2},\qquad m\le550s.
+\]
+The two summands in \eqref{eq:exposure-exceptions}, including this
+history factor, are each at most $2^{-m/4}$. For the first, compare
+$m/2+m-997s$ with $-m/4$; for the second, compare
+$m/2+(2-4000N)s$ with $-m/4$. Consequently $\Delta<1/8$.
+But $L\varepsilon=2^{200N}>384b$ for large $N$, contradicting
+the telescope. The required sample exists. Finally,
+$\alpha(G)\le2$ holds for every sample by \Cref{lem:hole-triangle-free}.
+\end{proof}
+% lax end
+
+\subsection{The clique-minor bound}
+
+\Cref{prop:raw-to-graph} supplies the required bound on connected
+matchings once raw supersaturation is proved. The next counting
+argument converts that bound into the clique-minor estimate used in
+the introduction.
+
+The following elementary estimate counts small branch sets, in the
+same connected-matching approach used by Cambie~\citep{cambie2021}.
+Its deliberately coarse bound holds for every finite graph.
+
+% lax begin Lax793645.MatchingMinorBound
+\begin{proposition}\label{prop:matching-minor}
+For every finite nonempty graph \(G\) of order \(m\),
+\[
+ \had(G)\le\frac{m+4\cm(G)+2}{3}.
+\]
+In particular, if \(\alpha(G)\le2\) and \(\cm(G)<m/100\), then
+\[
+ \had(G)<\frac{26m}{75}+\frac23<\frac m2\le\chi(G)
+ \qquad(m\ge5).
+\]
+\end{proposition}
+% lax end
+% lax begin Lax793645Proofs.HadwigerMatching.hadwiger_matching_bound
+\begin{proof}
+Consider a complete-minor model with \(b\) branch sets.
+Let \(s\) of them be singletons and \(e\) have two vertices.
+Each two-vertex branch is an edge.
+The singleton vertices form a clique, so pairing them gives \(\lfloor s/2\rfloor\) more edges.
+All these edges together form one touching matching: their vertex sets are disjoint, and adjacency of the original branches guarantees every required contact.
+Writing \(c=\cm(G)\), we obtain
+\[
+ c\ge e+\lfloor s/2\rfloor,\qquad s\le2(c-e)+1.
+\]
+Every remaining branch has at least 3 vertices, whence
+\[
+ m\ge s+2e+3(b-s-e)=3b-2s-e.
+\]
+Combining the inequalities gives
+\[
+ 3b\le m+2s+e\le m+4c-3e+2\le m+4c+2.
+\]
+Maximize over all complete-minor models.
+For the final assertion, every color class has at most 2 vertices when \(\alpha(G)\le2\), so \(\chi(G)\ge m/2\).
+Combine this with \(c<m/100\) and \(26m/75+2/3<m/2\) when \(m\ge5\).
+\end{proof}
+% lax end

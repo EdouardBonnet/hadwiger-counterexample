@@ -1,0 +1,152 @@
+\section{From overlap to four holes}\label{sec:collision}
+
+A numerical option specifies the lists, their labels and input types, all
+unary statuses, and the binary prescriptions from the preceding section.
+For a pair of leaves it also specifies a table and one orientation filter
+on each side. The filters may be chosen using both leaves. Once chosen,
+they are tested separately on the two independently drawn orientations.
+
+\subsection{The key reference law}
+
+A query samples the point parameters independently at its positions.
+One may condition a position on a prescribed possible diagonal bit. This
+has fixed positive probability and leaves \(Z\) uniform. All remaining
+conditions are acceptance tests; their probability is retained.
+They include the statuses, the binary prescriptions, the table flags, and
+independence modulo the protected base space.
+
+There is one ambient vector for each incident component of an atom.
+Thus the number \(k\) of vector slots on either side satisfies
+\begin{equation}\label{eq:key-rank-budget}
+ k\le28\cdot2=56.
+\end{equation}
+Let \(\cK_n\) consist of the tuples with the prescribed quadratic value
+at each slot and zero polar pairing between distinct slots in the same
+component. Write \(\nu_n\) for its uniform law. These are quadratic Gram
+conditions on the actual ambient vectors. No ordered product of the two
+hyperbolic halves is separately fixed.
+
+By \Cref{lem:quadratic-frame-count}, \(\cK_n\) has a fixed positive density
+in the space of all key tuples, for sufficiently large \(n\). In particular,
+\begin{equation}\label{eq:key-space-size}
+ |\cK_n|\le2^{kN}.
+\end{equation}
+Queries outside \(\cK_n\) are rejected. For a pair of leaves, let
+\(d_A,d_B\) be the densities of their accepted key measures relative to
+\(\nu_n\). Their integrals are at most 1.
+
+There is a useful exact formula at a fixed valid orientation \(o\).
+Let \(m_o(k)\) be the probability of the complete key \(k\) before
+acceptance. One incident component at each position suffices to
+recover the nominal point because its primal map is injective. Thus every
+input giving the same complete key passes the same tests. This includes
+the binary prescriptions and independence modulo the protected space.
+The accepted mass is \(m_o(k)\) if the orientation passes its filter
+and the key is feasible, and zero otherwise. Expanding the overlap
+of the two mixtures gives the average of these fixed-orientation
+overlaps. This argument also applies to filters chosen using both leaves.
+
+There is a direct way to detect small overlap. Put
+\(C=\{k:d_A(k)\le d_B(k)\}\), and write \(a,b\) for the accepted
+measures. Then \(a(C)+b(C^c)=\int\min(d_A,d_B)\,d\nu_n\).
+Its square is at most \(\int d_A d_B\,d\nu_n\) by Cauchy--Schwarz.
+Thus a pair with small overlap admits a cut of the complete keys
+across which little accepted mass passes.
+
+% lax begin Lax793645.QueryCollision
+\begin{proposition}[Collision bound]\label{prop:collision}
+Suppose the leaves have closed pins of total dimension at most \(K\),
+and satisfy the spreading bound
+\begin{equation}\label{eq:final-leaf-minentropy}
+ \PP(\text{a specified further image event of rank }t)
+ \le2^{-(1-2\zeta)tN},
+ \qquad \zeta=1/(1000\cdot112).
+\end{equation}
+For a valid option and the chosen two leaves,
+\begin{equation}\label{eq:overlap-collision}
+ \int d_Ad_B\,d\nu_n
+ \le2^{(56+.02)N}\PP(\text{four holes})+2\cdot2^{-.005N}.
+\end{equation}
+The inequality can be averaged over independent leaves. If a retained
+unit law has mass \(2^{-o(N)}\) in the original law, an expected overlap
+of \(2^{-o(N)}\) forces original conflict probability at least
+\begin{equation}\label{eq:collision-conclusion}
+ 2^{-(56+.03)N-o(N)}>2^{-200N}
+\end{equation}
+for all large \(n\). A bounded sum of option overlaps suffices.
+\end{proposition}
+% lax end
+% lax begin Lax793645Proofs.Manuscript.QueryCollision.one_collision_calendar
+\begin{proof}
+Fix both parameter lists and a common key. Freeze the images of the pins
+and key directions. At each unit record the pairings of all nominal columns
+with the opposite frozen images. These records determine every frozen
+cross entry and a deterministic choice of the completion in
+\Cref{thm:gradient-realization}. There are \(2^{Cn}\) records, where \(C\)
+is fixed before \(M_0\). There are \(O(n)\) nominal columns and only
+boundedly many frozen directions. The ambient images are already fixed;
+they are not charged a second time as records.
+
+Discard record cells of mass less than
+\(\tau_n=2^{-(k+.01)N}\), using the normalized leaf law.
+For the fixed parameter pair, the collision mass lost from the first
+side is at most \(2^{Cn}\tau_n\): sum first over its records, then over
+keys, using that the second accepted measure has total at most 1.
+The reciprocal loss has the same bound. Overlap is collision probability
+times \(|\cK_n|\), so the total overlap loss is at most
+\[
+ 2|\cK_n|2^{Cn}\tau_n\le2^{1+Cn-.01N}\le2\cdot2^{-.005N}.
+\]
+The cells may depend on the opposite parameters. We perform this pruning
+for each parameter pair and average afterwards. We do not intersect all
+of its retained cells over different opposite parameters.
+
+On a retained cell, any tuple of new images of rank \(t\) modulo pins
+and keys has point mass at most
+\[
+ 2^{-(1-2\zeta)(k+t)N}/\tau_n
+ =2^{[-(1-2\zeta)t+.01+2\zeta k]N}
+ \le2^{-.95tN}\quad(t\ge1).
+\]
+Protected independence is what gives exactly \(k\) new directions for
+the keys.
+
+There remain at most \(s_n=16gh\dim B<.01N\) scalar cross entries to
+test. Expand their agreement indicator into binary characters. A character
+whose coefficient tensor vanishes after quotienting by pins and keys is
+already fixed; it equals one, since the completion preserves the frozen
+entries. Every other character has positive quotient rank \(t\).
+A rank factorization expresses its phase, apart from separate factors
+on each unit, as a nondegenerate pairing of two tuples of rank \(t\).
+There is a single cross matrix between the two units' full coefficient
+spaces. Its rank already includes all endpoint and channel blocks.
+
+For independent probability laws of maximum point masses \(p,q\) on
+\(\F^d\), and bounded weights, the Walsh matrix has norm \(2^{d/2}\).
+Consequently
+\begin{equation}\label{eq:walsh-bound}
+ \left|\E f(X)g(Y)(-1)^{X\cdot Y}\right|
+ \le2^{d/2}\sqrt{pq}.
+\end{equation}
+Apply this with \(d=tN\). Each nonconstant character has mean at most
+\(2^{-.45tN}\). Fourier inversion therefore gives agreement probability
+at least
+\[
+ 2^{-s_n}\bigl(1-2^{s_n}2^{-.45N}\bigr)\ge2^{-.02N}.
+\]
+Every such agreement produces four holes by realization. Averaging over
+the retained records, parameters, and keys proves
+\eqref{eq:overlap-collision}, first with \(k\) in place of 56.
+
+Finally average over leaves. Restoring a restriction of mass
+\(\theta_n=2^{-o(N)}\) costs \(\theta_n^2\). A bounded number of
+options changes the bound only by a constant. The exponentially small
+pruning error is negligible compared with \(2^{-o(N)}\). This gives
+\eqref{eq:collision-conclusion}.
+\end{proof}
+% lax end
+
+Thus a hypothetical sequence violating raw supersaturation makes every
+expected accepted overlap tend to zero. In fact it makes these overlaps
+exponentially small. Our remaining task is to produce overlap, either on
+a fixed positive mass of leaf pairs or on an inverse-polynomial mass.

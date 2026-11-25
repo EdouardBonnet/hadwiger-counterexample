@@ -1,0 +1,140 @@
+\section{Status supports and overlap scores}\label{sec:finite-partitions}
+
+Use generic unary queries and common partitions whose cells are the full
+fibers of linear coordinates. At orientation \(o\), let \(h_{o,v}(C)\) be the conditional
+probability of status \(v\) in cell \(C\), and put
+\(S_{o,v}=\{C:h_{o,v}(C)>0\}\).
+For an empty empirical cell use the unconditioned status law as a fallback.
+We will use only these supports and a fixed lower bound on their probabilities.
+
+The full status depends on at most \(m\) affine linear forms of the input,
+where \(m\) is a construction constant. On any nonempty affine cell,
+these forms are uniform on an affine space of dimension at most \(m\).
+A possible status therefore has probability at least \(\theta=2^{-m}\).
+The same holds for the fallback law. Conditioning on a diagonal bit
+already recorded in the status can only increase its probability.
+Thus
+\[
+ h_{o,v}(C)\ge\theta\,1_{S_{o,v}}(C).
+\]
+This bound needs no full-rank assumption on the coordinate map.
+
+Write \(\mu(C)\) for the unary reference cell weight. Define
+\begin{equation}\label{eq:table-overlap}
+ O(v_A,v_B)=\sum_C\mu(C)1_{S_{o_A,v_A}}(C)1_{S_{o_B,v_B}}(C).
+\end{equation}
+For a complete numerical option \(\omega\), set
+\begin{equation}\label{eq:finite-score}
+ s_\omega(o_A,o_B)=1_{\{\text{flags pass}\}}
+       \kappa_{A,\omega}\kappa_{B,\omega}
+       \prod_i O_i(v_{A,i},v_{B,i}).
+\end{equation}
+The constants \(\kappa\) are the probabilities of the prescribed binary
+patterns. There are finitely many options, and their positive \(\kappa\)'s
+have a positive minimum. Options record numerical data, not partition cells.
+
+\subsection{From supports to accepted measures}
+
+For an option with \(s\) positions, use the bounded surrogate
+\[
+ f_o(k)=\kappa_\omega\theta^s
+             \prod_i1_{S_{o,v_i}}(C_i(k_i)).
+\]
+Average it with the acceptance filter over a leaf to obtain \(f\).
+Let \(d\) be the actual accepted key density before protected-base rejection.
+The exact product expansion \eqref{eq:exact-product}, unary concentration,
+and binary mixing give
+\begin{equation}\label{eq:projected-error}
+ \|(\Pi_Hf-\Pi_Hd)_+\|_1\le\epsilon
+\end{equation}
+in average over leaves. To see the direction of this inequality, test
+against a nonnegative function on the common partition. Its product
+expansion uses nonnegative unary cell tests. The support lower bound
+applies to each factor; binary mixing compares their product with the
+accepted tuple query. Testing the set where the projected excess is
+positive gives \eqref{eq:projected-error}.
+The error can be made arbitrarily small, uniformly over the permitted
+filters chosen using both leaves.
+
+The Gram reference law has approximate product integrals:
+\[
+ \int\prod_iF_i(k_i)\,d\nu
+   =\prod_i\int F_i\,d\mu_i+O(2^{-cN}),\qquad |F_i|\le1.
+\]
+Expand the fixed cross-position Gram conditions and apply the Walsh bound.
+It follows that \(\theta^{2s}\) times the expected score
+\eqref{eq:finite-score} differs from \(\langle f,g\rangle_\nu\)
+by an exponentially small error. The factor \(\theta^{2s}>0\) is fixed
+before choosing the partition or the comparison accuracy.
+
+% lax begin Lax793645.ProjectedOverlap
+\begin{lemma}[Direct projection comparison]\label{lem:projected-mend}
+On a finite probability space, let \(0\le f,g\le1\), \(d,e\ge0\),
+and let \(\Pi\) be averaging on a partition. Then
+\begin{equation}\label{eq:projected-mend}
+ \langle f,g\rangle^2
+ \le\langle\Pi d,\Pi e\rangle
+       +\|(\Pi f-\Pi d)_+\|_1+\|(\Pi g-\Pi e)_+\|_1.
+\end{equation}
+\end{lemma}
+% lax end
+% lax begin Lax793645Proofs.Manuscript.ProjectedOverlap.one_sided_projected_mend
+\begin{proof}
+Put \(u=\Pi(fg)\). Since \(0\le u\le\Pi f,\Pi g\),
+Cauchy--Schwarz gives
+\(\langle f,g\rangle^2\le\E u^2\le\langle\Pi f,\Pi g\rangle\).
+For \(a,b\in[0,1]\) and \(c,d\ge0\),
+\(ab\le cd+(a-c)_++(b-d)_+\). Apply this pointwise and integrate.
+\end{proof}
+% lax end
+
+The common-projection estimate from \Cref{sec:product-tests} bounds the
+first term by actual overlap plus a small error, averaged over independent
+leaves. Equation \eqref{eq:projected-error} bounds the remaining terms.
+The acceptance filters are applied after drawing the two leaves.
+Their dependence on the pair does not alter this averaging argument.
+
+Protected-base rejection also fits this comparison. If \(d^G\le d\)
+and \(\|d-d^G\|_1\le\delta_n\), then
+\[
+ \|(\Pi f-\Pi d^G)_+\|_1
+ \le\|(\Pi f-\Pi d)_+\|_1+\delta_n.
+\]
+The common-projection estimate already allows these dominated rejections.
+Use its bounded approximants to compare with the actual rejected overlap.
+Equation \eqref{eq:base-rejection} makes the added error exponentially small.
+
+% lax begin Lax793645.SupportScores
+\begin{proposition}\label{prop:finite-score-bound}
+Suppose all expected actual successful-query overlaps tend to zero along
+a prepared sequence. For every fixed \(a>0\) and every \(\epsilon>0\),
+common finite unary partitions can be chosen so that the probability of
+a usable generic option with score at least \(a\) is at most \(\epsilon\),
+eventually. Their sizes are bounded independently of \(n\).
+They precede all permitted filters depending on the two leaves.
+\end{proposition}
+% lax end
+% lax begin Lax793645Proofs.Manuscript.SupportScores.one_generic_lightmap
+\begin{proof}
+Choose the projection and comparison errors small in terms of
+\(\theta^{2s}\). Equations \eqref{eq:projected-error} and
+\eqref{eq:projected-mend} bound the mean square surrogate overlap.
+Cauchy--Schwarz bounds its mean. Reference product comparison then bounds
+the expected score. Sum over the finite option family and use
+\eqref{eq:score-markov} below.
+\end{proof}
+% lax end
+
+% lax begin Lax793645.FiniteScores
+For nonnegative scores \(s_\omega\) on any finite probability space,
+\begin{equation}\label{eq:score-markov}
+ a\,\PP\{\exists\omega:s_\omega\ge a\}
+ \le\sum_\omega\E s_\omega\qquad(a>0).
+\end{equation}
+Indeed the indicator on the left is at most
+\(a^{-1}\sum_\omega s_\omega\) pointwise.
+% lax end
+
+The collision bound gives the hypothesis for a hypothetical countersequence.
+The scalar argument will force a score bounded away from zero unless
+common predictors exist.
