@@ -20,57 +20,42 @@ The inequalities in \Cref{eq:raw-law-caps} are pointwise inequalities of measure
 The proof of \Cref{thm:raw-supersaturation} occupies the subsequent sections and is completed in \Cref{sec:rare-overlap}.
 We prove its implication for graphs here. The frame estimates and the preparation of an admissible unit law begin in \Cref{sec:frame-laws}.
 
-\subsection{A finite exposure potential}
+\subsection{A list of matching edges}
 
-Join two raw units when all four cross pairs are holes. The resulting
-conflict graph has no loops. Write $q=\mu^2$,
-$\kappa=2^{DN}$ and $\varepsilon=2^{-200N}$.
-For $\gamma>0$ and an integer $b>0$ with $\kappa\le2^b\gamma$, put
-\[
- \Phi(\sigma)=\sum_{i=0}^{b-1}\sum_x
-      \min\{\sigma(x),2^i\gamma q(x)\}.
-\]
-Every summand indexed by $i$ has total at most one, so
-$0\le\Phi(\sigma)\le b$ for every probability law $\sigma$.
+Two units conflict if all four cross pairs have holes. Write \(N(x)\) for
+the set of units that conflict with \(x\). Edges of a touching matching
+give units that never conflict with one another. A short list of its
+edges tells us which units can still belong to the same matching.
 
-% lax begin Lax793645.ClippedExposure
-\begin{lemma}[Clipped exposure]\label{lem:clipped-exposure}
-Let $(Y,X)$ have both marginals $\sigma$ and never consist of
-conflicting units. Write $\tau_y$ for the conditional law of $X$
-given $Y=y$. If $\sigma\le\kappa q$ on a set $A$, then
+% lax begin Lax793645.MatchingNeighborhoods
+\begin{lemma}[Hitting conflict neighborhoods]\label{lem:matching-neighborhoods}
+Let \(P\) be the law of an edge drawn uniformly from a nonempty list of
+units in a finite set \(U\). Fix a reference law \(q\) on \(U\) and
+\(\delta>0\). One can choose \(L\) entries, with repetition, so that
 \[
- \Phi(\sigma)-\E_Y\Phi(\tau_Y)
- \ge \frac{(\sigma\otimes\sigma)(\text{conflict}\cap A^2)-\gamma}{2}.
+ q\{x:N(x)\text{ misses the chosen list and }P(N(x))>\delta\}
+ \le e^{-L\delta}.
 \]
-The potential drop is always nonnegative, without any assumption on $A$.
+If \(|U|e^{-L\delta}<1\), one can meet every neighborhood of
+\(P\)-mass greater than \(\delta\).
 \end{lemma}
 % lax end
-% lax begin Lax793645Proofs.Manuscript.ClippedExposure.dyadic_exposure_joint
+% lax begin Lax793645Proofs.Manuscript.MatchingNeighborhoods.hitting_list
 \begin{proof}
-For each $x$ and each threshold $a=2^i\gamma$, the identity
-$\E_Y\tau_Y(x)=\sigma(x)$ gives
-\[
- \E_Y\min\{\tau_Y(x),aq(x)\}
- \le\min\{\sigma(x),aq(x)\}.
-\]
-Indeed the left side is separately bounded by both entries of the
-minimum. Let $p_x$ be the probability that $Y$ conflicts with $x$. On that event,
-$\tau_Y(x)=0$. If $\gamma q(x)\le\sigma(x)\le\kappa q(x)$,
-choose a threshold with $aq(x)\le\sigma(x)\le2aq(x)$. The drop
-at this coordinate and threshold is at least
-$p_xaq(x)\ge p_x\sigma(x)/2$. Coordinates below $\gamma q(x)$
-have total mass at most $\gamma$. Sum over $x\in A$ and discard
-all other nonnegative drops. Restricting the first unit to $A$ can
-only decrease the conflict probability.
+Draw \(L\) entries independently. Each neighborhood of mass \(p>\delta\)
+is missed with probability \((1-p)^L\le e^{-L\delta}\).
+Average over \(x\) with law \(q\). Some list misses at most the asserted mass.
+% lax begin Lax793645Proofs.Manuscript.MatchingNeighborhoods.hitting_all_neighborhoods
+For the last assertion take \(q\) uniform. A single missed heavy
+neighborhood would contribute at least \(1/|U|\).
+% lax end
 \end{proof}
 % lax end
 
-\subsection{Sampling repeatedly from a matching}
-
 % lax begin Lax793645.MatchingExposure
 \begin{proposition}\label{prop:raw-to-graph}
-Assume \Cref{thm:raw-supersaturation} for a sufficiently large $n$.
-There is a sample of $m=2^{2000N}$ raw vertices whose graph satisfies
+Assume \Cref{thm:raw-supersaturation} for a sufficiently large \(n\).
+There is a sample of \(m=2^{2000N}\) raw vertices whose graph satisfies
 \[
  \alpha(G)\le2,\qquad \cm(G)<m/100.
 \]
@@ -78,85 +63,57 @@ There is a sample of $m=2^{2000N}$ raw vertices whose graph satisfies
 % lax end
 % lax begin Lax793645Proofs.Manuscript.MatchingExposure.transfer_scales
 \begin{proof}
-Suppose instead that every sample has a touching matching of size
-$k=\lceil m/100\rceil$. Choose one such matching deterministically
-for each sample, and orient its edges arbitrarily. Given the sample,
-draw repeatedly and independently from these $k$ oriented edges.
-Two emissions never conflict, even if they are the same edge.
-The hidden state is the original sample, with law $\mu^m$.
+Suppose every sample \(s\) has a touching matching of size
+\(k=\lceil m/100\rceil\). Choose one in each sample, orient its edges
+and write \(P_s\) for the uniform law on those \(k\) units.
+Set \(U=\Omega_n^2\), \(q=\mu^2\), \(\varepsilon=2^{-200N}\),
+\(\delta=\varepsilon/32\) and \(L=2^{400N}\).
+Apply \Cref{lem:matching-neighborhoods} to \(P_s\) and assign each
+sample a witnessing list. Some list \(h\) is assigned to a class \(F\)
+of samples with \(\Pr(F)\ge |U|^{-L}\).
 
-After any history $h$, let $\sigma_h$ be the law of the next emitted
-unit under the posterior law of the hidden sample. Two future
-emissions have both marginals $\sigma_h$ and never conflict.
-The law after observing $y$ is the conditional second marginal
-required by \Cref{lem:clipped-exposure}.
-
-Define
+Let \(R\) be the units conflicting with no entry of \(h\).
+For every \(s\in F\), all its matching edges lie in \(R\), and
 \[
- S_h=\{x:(\sigma_h)_1(x)>M\mu(x)/4
-               \text{ or }(\sigma_h)_2(x)>M\mu(x)/4\},
- \qquad
- E_h=\{x:\sigma_h(x)>\kappa q(x)/4\}.
+ q\{x\in R:P_s(N(x))>\delta\}\le e^{-L\delta}.
 \]
-Summing each density excess gives
-$\mu(S_h)\le8/M$ and $q(E_h)\le4/\kappa$.
-Let $A_h$ consist of units avoiding $S_h$ at both endpoints and
-avoiding $E_h$, and set $\alpha_h=\sigma_h(A_h)$.
-If $\alpha_h\ge1/4$, the normalized restriction to $A_h$ satisfies
-all three caps in \Cref{eq:raw-law-caps}. Raw supersaturation then gives
-\[
- (\sigma_h\otimes\sigma_h)(\text{conflict}\cap A_h^2)
- \ge\varepsilon\alpha_h^2\ge\varepsilon/16.
-\]
-Use $\gamma=\varepsilon/32$. The drop $D_h$ in the potential is at
-least $\varepsilon/64$ on these histories and is always nonnegative.
-Since $\alpha_h\le1$, in all cases
-\begin{equation}\label{eq:exposure-retention}
- D_h\ge\frac{\varepsilon}{48}(\alpha_h-1/4).
-\end{equation}
+Write \(\sigma=\E[P_s\mid F]\). Before applying supersaturation we must
+control how often vertices or ordered pairs occur under \(\sigma\).
 
-Take $L=2^{400N}$ exposure steps and $s=\lfloor k/5\rfloor$.
-There are at most $(|\Omega_n|^2+1)^L$ histories of length at most
-$L$: this follows by induction from the recursion that either stops
-or appends one unit. Each $S_h,E_h$ is a deterministic set in the raw
-space. The iid sampling bounds therefore apply before any exposure.
-A union bound shows that the probability of a raw sample having,
-for some such history, $s$ positions in $S_h$ or $s$ disjoint
-position pairs in $E_h$ is at most
-\begin{equation}\label{eq:exposure-exceptions}
- \Delta=(|\Omega_n|^2+1)^L
- \left[2^m(8/M)^s+m^{2s}(4/\kappa)^s\right].
-\end{equation}
-Call this fixed event of raw samples bad. On a sample outside it,
-at most $2(s-1)$ edges of the chosen matching fail the restrictions
-for any history. Since $4s\le k$, its emission law gives $A_h$
-probability at least $1/2$.
-
-Let $B_h$ be the posterior probability of the fixed bad event.
-Averaging the preceding bound under the original posterior gives
-$\alpha_h\ge1/2-B_h$. The posterior probability $B_h$ is a
-martingale: averaging its values after the next observation returns
-its current value. Thus \eqref{eq:exposure-retention} and a finite
-tree telescope imply
+Put \(M=2^{1000}\) and \(\kappa=2^{8000N}\). Let \(S\) contain the
+vertices at which either marginal of \(\sigma\) exceeds \(M\mu/4\).
+Let \(E\) contain the ordered pairs at which \(\sigma>\kappa q/4\).
+Then \(\mu(S)\le8/M\) and \(q(E)\le4/\kappa\). With
+\(j=\lfloor k/5\rfloor\), the probability in the original independent
+sample of finding \(j\) positions in \(S\) or \(j\) disjoint ordered
+pairs of positions in \(E\) is at most
 \[
- b\ge L\left(\frac{\varepsilon}{192}
-                  -\frac{\varepsilon}{48}\Pr(\text{bad})\right).
+   2^m(8/M)^j+m^{2j}(4/\kappa)^j.
 \]
-No posterior law has been conditioned on the complement of the bad event.
+Indeed there are at most \(2^m\) choices of positions and at most
+\(m^{2j}\) choices of ordered pairs. Independence gives the bound for
+each choice. The sets \(S,E\) are fixed once \(F\) is chosen.
+For large \(N\), \(m\le550j\) and \(L\log |U|=o(m)\) by
+\Cref{eq:raw-space-size}. Thus the displayed probability is less than
+\(|U|^{-L}/8\), and its conditional probability given \(F\) is less than \(1/8\).
 
-Here $D=8000$, $M=2^{1000}$ and $m=2^{2000N}$.
-We may take $b=8200N+6$, so $\kappa\le2^b\gamma$.
-By \Cref{eq:raw-space-size}, for all sufficiently large $N$,
-\[
- (|\Omega_n|^2+1)^L\le2^{m/2},\qquad m\le550s.
-\]
-The two summands in \eqref{eq:exposure-exceptions}, including this
-history factor, are each at most $2^{-m/4}$. For the first, compare
-$m/2+m-997s$ with $-m/4$; for the second, compare
-$m/2+(2-4000N)s$ with $-m/4$. Consequently $\Delta<1/8$.
-But $L\varepsilon=2^{200N}>384b$ for large $N$, contradicting
-the telescope. The required sample exists. Finally,
-$\alpha(G)\le2$ holds for every sample by \Cref{lem:hole-triangle-free}.
+Let \(A\) consist of units with both endpoints outside \(S\) and the pair outside
+\(E\). In every sample outside the exceptional event at most \(2(j-1)\)
+matching edges fail these tests. At least half survive, so
+\(\sigma(A)\ge7/16\). Its normalized restriction \(w=\sigma(\cdot\mid A)\)
+therefore satisfies all three caps in \Cref{eq:raw-law-caps}. In
+particular \(w\le\kappa q\) and \(w\le4\sigma\).
+
+For each \(s\in F\), average \(P_s(N(x))\) over \(x\sim w\).
+The average is at most \(\delta+\kappa e^{-L\delta}\), since \(w\)
+is supported on \(R\) and its mass on the exceptional set is at most
+\(\kappa e^{-L\delta}\). Average over \(s\) in \(F\), then use
+\(w\le4\sigma\) for the second unit. Two independent units of law \(w\)
+conflict with probability at most \(4(\delta+\kappa e^{-L\delta})\).
+This is less than \(\varepsilon\) for large \(N\), contrary to
+\Cref{thm:raw-supersaturation}. Some sample has the required small
+matching number. Its independence number is at most \(2\) by
+\Cref{lem:hole-triangle-free}.
 \end{proof}
 % lax end
 

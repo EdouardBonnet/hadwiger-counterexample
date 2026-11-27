@@ -73,7 +73,8 @@ def main():
     paper_proof, = (p for p in by_conclusion[TARGET] if p["id"] == paper_proof_id)
     paper_dependencies = statement_dependencies(by_conclusion, paper_proof["assumptions"])
     required_cards = {NS + "." + name for name in (
-        "MatchingExposure.transfer_scales", "FourHoles.eventual_conflict_lower_bound",
+        "MatchingNeighborhoods.hitting_list", "MatchingExposure.transfer_scales",
+        "OrderedSlotCompletion.ordered_slot_completion", "FourHoles.eventual_conflict_lower_bound",
         "SelectedAtoms.tensor_atom_isolation", "FrameRealization.one_reciprocal_realization",
         "FourierComparison.one_direct_capped_leaf_fourier", "FreshWitnessLists.seven_list",
         "PreparedUnits.one_finite_preparation", "PredictedScalarSystem.one_attained_scalar_soluble",
@@ -135,7 +136,7 @@ def main():
         assert set(axioms) <= {"propext", "Classical.choice", "Quot.sound"}, name
     integration = json.loads((ROOT / "references/further-integration-audit.json").read_text())
     assert integration["target"] == NS + "Proofs.Construction.arbitrarily_large_small_connected_matching"
-    assert set(integration["integrated"]) == {"explicit_binary_matrices", "matching_exposure", "linear_query_partitions",
+    assert set(integration["integrated"]) == {"explicit_binary_matrices", "matching_neighborhoods", "ordered_slot_completion", "linear_query_partitions",
                                            "unified_predicted_overlap", "affine_selectors",
                                            "tester_coordinate_restrictions", "odd_cycle_geometry",
                                            "linear_common_projection", "linear_rare_overlap", "direct_query_tail_bounds", "linear_prediction_extraction", "linear_preparation", "linear_predictor_consistency", "quadratic_one_frame_construction", "reduced_mixer_family",
@@ -174,6 +175,15 @@ def main():
         "all_filters_linear_partition", "one_query_density_refinement", "linear_test_refinement",
         "common_linear_intersections", "common_frequency_space", "rare_quotient_intersections",
     )} <= set(integration["forbidden_absent"]), "Old iterative selection still present"
+    assert {NS + "Proofs.Simplifications." + name for name in (
+        "MatchingNeighborhoods.hitting_list", "MatchingNeighborhoods.mixture_conflict",
+        "MatchingNeighborhoods.matching_certificate_transfer", "ordered_slot_completion",
+        "symmetric_low_rank_batch_weight",
+    )} <= set(integration["required_present"]), "Missing matching-list or Gram completion proof"
+    assert {NS + "Proofs.Simplifications." + name for name in (
+        "matching_exposure_transfer", "dyadic_exposure_joint", "tree_budget",
+        "symmetric_patterned_block_completion", "patterned_block_rank_completion",
+    )} <= set(integration["forbidden_absent"]), "Superseded graph or Gram proof still present"
     pending = integration["not_yet_integrated"]
     if not args.checkpoint:
         assert pending == [], "Unfinished replacements: " + ", ".join(pending)

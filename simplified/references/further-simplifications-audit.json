@@ -225,6 +225,7 @@
     "Lax793645Proofs.Simplifications.LowRankBatchWeights",
     "Lax793645Proofs.Simplifications.LowRankGramFourier",
     "Lax793645Proofs.Simplifications.MatchingFilters",
+    "Lax793645Proofs.Simplifications.MatchingNeighborhoods",
     "Lax793645Proofs.Simplifications.MatchingSampling",
     "Lax793645Proofs.Simplifications.MatchingTransfer",
     "Lax793645Proofs.Simplifications.MomentBudgetScales",
@@ -536,6 +537,7 @@
     "Lax793645Proofs.Simplifications.OneUnitGeometry",
     "Lax793645Proofs.Simplifications.OneUnitScreen",
     "Lax793645Proofs.Simplifications.OneZeroDiscrepancyPrediction",
+    "Lax793645Proofs.Simplifications.OrderedSlotCompletion",
     "Lax793645Proofs.Simplifications.PairedFrameRowBounds",
     "Lax793645Proofs.Simplifications.PolynomialFixedAccuracy",
     "Lax793645Proofs.Simplifications.PolynomialSubstitution",
@@ -1261,6 +1263,26 @@
       "propext"
     ],
     "Lax793645Proofs.Simplifications.IndependentClub.zone_closure_fresh": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.MatchingNeighborhoods.hitting_all_neighborhoods": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.MatchingNeighborhoods.hitting_list": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.MatchingNeighborhoods.matching_certificate_transfer": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.MatchingNeighborhoods.mixture_conflict": [
       "Classical.choice",
       "Quot.sound",
       "propext"
@@ -9944,6 +9966,11 @@
       "propext"
     ],
     "Lax793645Proofs.Simplifications.ordered_gram_quarter": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.ordered_slot_completion": [
       "Classical.choice",
       "Quot.sound",
       "propext"
@@ -13624,6 +13651,7 @@
     "proofs/Lax793645Proofs/Simplifications/LowRankBatchWeights.lean": "bfa794b90b783dbc869b95ffa092e40082826a8332f7425ce66d6654e113381b",
     "proofs/Lax793645Proofs/Simplifications/LowRankGramFourier.lean": "7c5f56c2f8163cb89b9997809e1295930d773da5d5e40742a901cd8d2ff77bae",
     "proofs/Lax793645Proofs/Simplifications/MatchingFilters.lean": "8a78d937de0cb4f67136ecde3c31a6499319415d0da26778020c71ba249b065e",
+    "proofs/Lax793645Proofs/Simplifications/MatchingNeighborhoods.lean": "fa6acfd5de61243448c47fca894e06594df86eabc9b5bdd29a677f70001d01cc",
     "proofs/Lax793645Proofs/Simplifications/MatchingSampling.lean": "863d72a11ebcd4ad0569f50bb0b765257fb134886ee400a5e1da660706bb8f58",
     "proofs/Lax793645Proofs/Simplifications/MatchingTransfer.lean": "d0e0efad33496fe763237884c515d79105825246b0ef6e35e613e10d33611018",
     "proofs/Lax793645Proofs/Simplifications/MomentBudgetScales.lean": "f9206c50ad1f610b46e31e73aaf0c8a24108157b17e40c2da116aeb152de2811",
@@ -13935,6 +13963,7 @@
     "proofs/Lax793645Proofs/Simplifications/OneUnitGeometry.lean": "2bff274b41d69715fd183f4a50eb359facec7452bc38ee67805f21d6d0b8fa95",
     "proofs/Lax793645Proofs/Simplifications/OneUnitScreen.lean": "edbe19021d70971a2308a2d75f47c98bc327a7c903e468a58fb7ebaa381fa6ad",
     "proofs/Lax793645Proofs/Simplifications/OneZeroDiscrepancyPrediction.lean": "4525aa59928d537d31749930ee915743a74587acf9aac44a59f95bab3a1abe23",
+    "proofs/Lax793645Proofs/Simplifications/OrderedSlotCompletion.lean": "3013fb0a3af8a560deb0a93f5aa1758720c1b313dc7cda1aafc7f2bc4a42387b",
     "proofs/Lax793645Proofs/Simplifications/PairedFrameRowBounds.lean": "ff1c51c92d26c06cf9bd06a0ae6aa733d46960b92ea4ae17a1c35a38506ca8ef",
     "proofs/Lax793645Proofs/Simplifications/PolynomialFixedAccuracy.lean": "e983f410eaa4fbe285c1ecbdb06554feca1bf00fb6a555d88a5df3d407cd0c56",
     "proofs/Lax793645Proofs/Simplifications/PolynomialSubstitution.lean": "95e5de867d534a1afb6ab97d7b60b0af37e13fc11c8fa89ed534d913aa9b838a",
@@ -14089,7 +14118,7 @@
     "proofs/Lax793645Proofs/Simplifications/SuccessfulProductPartitions.lean": "a40c828391512e588112a2ed53518e61c9d77ffd1fc1603cc9384cc05aa1d229",
     "proofs/Lax793645Proofs/Simplifications/SupportLowerBounds.lean": "be00ab1ad2f5f11dc559c84a27ac21826ad0856feaa38c6dcc9b818416b1c297",
     "proofs/Lax793645Proofs/Simplifications/SymmetricBlockCompletion.lean": "bb7e42af06f8109a07bebc83278b84750d0ac56d00e3661037e9d2b8e7b229e8",
-    "proofs/Lax793645Proofs/Simplifications/SymmetricLowRankBatches.lean": "72e61fea2b578f1fa23d11da09156dced5a9e9962157e174f48e30cc5efea9a6",
+    "proofs/Lax793645Proofs/Simplifications/SymmetricLowRankBatches.lean": "6207eac5987d2618c7404a8e89b7f135988e9c809612bfdc40480bff7f744b20",
     "proofs/Lax793645Proofs/Simplifications/SymmetricOffsetRecords.lean": "108dbc4f7ef92c9a9d1c1124df7ac53ed00086d9d4e79c76cc091d8e10d4c50f",
     "proofs/Lax793645Proofs/Simplifications/SymmetricOffsets.lean": "22bb6abbc9c8f504a7fb8902f29dd1829ec05965c1b0ef4cd19090498ec7371d",
     "proofs/Lax793645Proofs/Simplifications/SymmetricPhaseEnergy.lean": "626304cf8e06128b8b8c3f4f0c62a005fe6530150031cf79582f81d550d415be",
@@ -14621,6 +14650,26 @@
       "propext"
     ],
     "Lax793645Proofs.Simplifications.IndependentClub.zone_closure_fresh": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.MatchingNeighborhoods.hitting_all_neighborhoods": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.MatchingNeighborhoods.hitting_list": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.MatchingNeighborhoods.matching_certificate_transfer": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.MatchingNeighborhoods.mixture_conflict": [
       "Classical.choice",
       "Quot.sound",
       "propext"
@@ -23293,6 +23342,11 @@
       "propext"
     ],
     "Lax793645Proofs.Simplifications.ordered_gram_quarter": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Lax793645Proofs.Simplifications.ordered_slot_completion": [
       "Classical.choice",
       "Quot.sound",
       "propext"

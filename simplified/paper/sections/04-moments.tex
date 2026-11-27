@@ -55,19 +55,12 @@ matrix, has rank at most $r^2$.
 % lax end
 % lax begin Lax793645Proofs.Manuscript.SelectorConfinement.selector_confinement
 \begin{proof}
-Factor $w_{ai,bj}=\beta(z_{ai},z_{bj})$ through a nondegenerate symmetric
-form on a space of dimension $r'\le r$. Choose a spanning subfamily
-$z_{a_ti_t}$ of at most $r'$ such vectors. If coefficients $c_a$ satisfy
-$\sum_a c_a z_{ai_t}=0$ for every $t$, separate symmetry gives
-\[
- \beta\left(\sum_a c_a z_{ai},z_{a_ti_t}\right)
- =\beta\left(\sum_a c_a z_{ai_t},z_{a_ti}\right)=0
- \quad\text{for all }i,t.
-\]
-Nondegeneracy makes every $\sum_a c_a z_{ai}$ zero. Thus the dependence
-on the selector index is determined by at most $(r')^2$ coordinates.
-Taking the annihilator of these relations gives $U$. The last assertion
-follows from the stated tensor containment. The zero-rank case is immediate.
+For a column of the tensor matrix indexed by $(b,j)$, reshape it as the
+matrix $C_{ai}=w_{(a,i),(b,j)}$. Separate symmetry gives
+$C_{ai}=w_{(a,j),(b,i)}$, so $C$ is a submatrix of $w$ and has rank
+at most $r$. Choose at most $r$ columns spanning the original column space.
+The sum of their reshaped column spaces has dimension at most $r^2$
+and contains every selector slice.
 \end{proof}
 % lax end
 

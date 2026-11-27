@@ -164,16 +164,47 @@ To see this, choose a maximal independent rectangle, its incident rows
 and columns, and the entries within each batch. The remaining cross
 entries are determined by their relations to the chosen rectangle.
 
-For \(r\ge t\), the Walsh bound across such a rectangle contributes
-\(2^{-crN}\). Linear characters from the nominal relations do not change
-this bound. For \(r<t\), split the pattern into a permitted block diagonal
-matrix and a correction of rank at most \(Cr\). Choose an invertible
-rectangle of maximal size and use its bordering relations outside the
-incident batches. Restoring those batches costs \(O(r)\) rank, because
-the batch size is fixed. The construction preserves symmetry and the
-allowed component pattern, including the absent auxiliary--auxiliary
-blocks.
+The following lemma handles the patterns of small cross rank. A slot is
+the position of a column in its batch. The allowed pairs of slots form
+a symmetric relation. All other entries must remain zero.
 
+% lax begin Lax793645.OrderedSlotCompletion
+\begin{lemma}[Completing a Gram pattern]\label{lem:ordered-slot-completion}
+Let \(M\) be a symmetric binary matrix indexed by batches of \(k\)
+slots, supported on the allowed pairs of slots. If its cross rank is
+\(r\), there is a decomposition \(M=D+R\) with \(D,R\) symmetric and supported on the
+same allowed pairs, \(D\) block diagonal by batch, and
+\(\rank R\le2k(1+4k)r\).
+\end{lemma}
+% lax end
+% lax begin Lax793645Proofs.Manuscript.OrderedSlotCompletion.ordered_slot_completion
+\begin{proof}
+First find \(U\) of rank at most \((1+4k)r\) agreeing with \(M\)
+between distinct batches. If \(r=0\), take \(U=0\). Otherwise choose an
+invertible \(r\times r\) submatrix \(B=M_{I,J}\) whose row batches
+and column batches are disjoint. Start with \(M_{*,J}B^{-1}M_{I,*}\).
+For a row and column in distinct batches outside those meeting \(B\),
+bordering \(B\) by this row and column gives a singular matrix by
+maximality. Its last entry therefore agrees with the proposed completion.
+Restore the rows and columns in the at most \(2r\) batches meeting
+\(B\). This adds at most \(4kr\) to the rank.
+
+Order the slots. Let \(V\) keep the entries of \(U\) on allowed slot
+pairs \(u\le v\), and let \(W\) keep those on allowed pairs \(u<v\).
+Set \(R=V+W^{\mathsf T}\). At distinct slots we copy the same entry
+into both positions. At equal slots in different batches, \(U\)
+already agrees with the symmetric matrix \(M\). Thus \(R\) is symmetric
+and agrees with \(M\) between batches. Each of \(V,W\) is a sum of
+\(k\) matrices formed by restricting \(U\) to one row slot and the
+corresponding allowed column slots. Both ranks are at most \(k\rank U\).
+This gives the asserted bound for \(R\). Take \(D=M-R\).
+\end{proof}
+% lax end
+
+For \(r\ge t\), the Walsh bound across a rectangle of rank \(r\)
+contributes \(2^{-crN}\), even with an additional linear character.
+For \(r<t\), apply \Cref{lem:ordered-slot-completion}. Since \(k\) is
+fixed, the correction \(R\) has rank \(O(r)\).
 The correction character has Fourier norm at most \(2^{CrN}\).
 Expand it and apply \eqref{eq:auxiliary-local} to every batch. All
 \(\ell\) small Fourier factors survive. Together with

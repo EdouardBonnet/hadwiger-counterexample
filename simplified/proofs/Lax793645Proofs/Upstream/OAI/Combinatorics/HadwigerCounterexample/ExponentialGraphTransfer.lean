@@ -3,7 +3,7 @@ Adapted from OpenAI, openai/math, commit fd4aeeb2ee4fc729c18d98444fed42fd0529eee
 Original module: OAI.Combinatorics.HadwigerCounterexample.ExponentialGraphTransfer.
 Changes: archive package namespace and imports; see references/upstream-construction.json.
 -/
-import Lax793645Proofs.Simplifications.MatchingTransfer
+import Lax793645Proofs.Simplifications.MatchingNeighborhoods
 import Lax793645Proofs.Upstream.OAI.Combinatorics.HadwigerCounterexample.ExponentialRates
 
 namespace Lax793645Proofs.Upstream.OAI
@@ -82,7 +82,7 @@ theorem transfer_scales {g : ℕ} (hg : 0 < g) {B : ℝ} (hB : 0 ≤ B) :
     have hgg := mul_le_mul_of_nonneg_left hNN (show 0≤(g:ℝ) by positivity)
     dsimp [y]
     nlinarith [mul_nonneg hB (sq_nonneg (N:ℝ))]
-  apply Lax793645Proofs.Simplifications.matching_exposure_transfer H hμ
+  apply Lax793645Proofs.Simplifications.MatchingNeighborhoods.matching_certificate_transfer H hμ
     (bp_pos _) (bp_pos _) (bp_pos _) hs (L:=L) (b:=b) (k:=k) (s:=s)
     (by dsimp [b]; omega) (by dsimp [k,m] at *; omega)
     (by dsimp [k]; omega) (by dsimp [s]; omega) ?_ hbudget ?_

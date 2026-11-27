@@ -6667,21 +6667,6 @@ end Lax793645.ConstructionData.Frames
 end
 
 section
-namespace Lax793645.ConstructionData.Frames
-open Lax793645.ConstructionData.Binary.HadwigerCounterexample
-open scoped BigOperators
-noncomputable section
-variable {X I : Type*} [Fintype X] [Fintype I]
-def clippedPotential (q : Wgt X) (a : I → ℝ) (σ : Wgt X) : ℝ :=
-  ∑ i, ∑ x, min (σ x) (a i * q x)
-
-def posterior (P : X → X → ℝ) (σ : Wgt X) (y x : X) : ℝ := P y x / σ y
-
-end
-end Lax793645.ConstructionData.Frames
-end
-
-section
 namespace Lax793645.ConstructionData.Binary
 noncomputable section
 namespace HadwigerCounterexample

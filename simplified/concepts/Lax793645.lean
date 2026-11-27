@@ -2,7 +2,6 @@ import Lax793645.AdaptivePartitions
 import Lax793645.AffinePointMatrices
 import Lax793645.BaseQueryHits
 import Lax793645.ChromaticBound
-import Lax793645.ClippedExposure
 import Lax793645.CliqueMinor
 import Lax793645.ClosedPins
 import Lax793645.ConnectedMatching
@@ -24,9 +23,11 @@ import Lax793645.Holes
 import Lax793645.LabelDeletion
 import Lax793645.LargeFrequencies
 import Lax793645.MatchingExposure
+import Lax793645.MatchingNeighborhoods
 import Lax793645.MatchingMinorBound
 import Lax793645.MidpointEntropy
 import Lax793645.MixingMatrices
+import Lax793645.OrderedSlotCompletion
 import Lax793645.OrdinaryTesterSupport
 import Lax793645.OverlapTransfer
 import Lax793645.PhaseAlternative

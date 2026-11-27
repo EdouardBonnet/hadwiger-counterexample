@@ -8,8 +8,14 @@ the fractional coloring version of Hadwiger's conjecture.
 
 The [manuscript](paper/main.tex) has 55 pages. Select a numbered statement
 in the Lax paper view to open its Lean formulation. Select the proof to see
-the results it uses. The last mark opens the graph proof. Each of the 38
+the results it uses. The last mark opens the graph proof. Each of the 39
 numbered results and 2 definitions has its own [concept file](concepts/Lax793645).
+
+Section 3 chooses a short list of matching edges and bounds the conflict
+neighborhoods it misses. Section 5 bounds selector dimension by looking at
+submatrices. Section 10 orders the slots of a Gram matrix to obtain a
+symmetric completion. Both new lemmas have proof links in the printed
+and reflowed paper.
 
 To reproduce the archive checks and open the local paper view, run these
 commands in this directory.

@@ -2,7 +2,8 @@ import Lax793645
 import Lax793645Proofs.Manuscript.Publication
 import Lax793645Proofs.Construction
 import Lax793645Proofs.Simplifications.AffineTensorMoments
-import Lax793645Proofs.Simplifications.ClippedExposure
+import Lax793645Proofs.Simplifications.MatchingNeighborhoods
+import Lax793645Proofs.Simplifications.OrderedSlotCompletion
 import Lax793645Proofs.Simplifications.CommonLinearFrequencies
 import Lax793645Proofs.Simplifications.CoordinateQuadraticExtension
 import Lax793645Proofs.Simplifications.CycleMarkedProfiles
@@ -67,9 +68,12 @@ run_cmd do
     (`Lax793645Proofs.Simplifications.OneConstruction.eventual_conflict_lower_bound,
      `Lax793645.FourHoles.eventual_conflict_lower_bound,
      `Lax793645Proofs.Manuscript.Checked.FourHoles.eventual_conflict_lower_bound),
-    (`Lax793645Proofs.Simplifications.dyadic_exposure_joint,
-     `Lax793645.ClippedExposure.dyadic_exposure_joint,
-     `Lax793645Proofs.Manuscript.Checked.ClippedExposure.dyadic_exposure_joint),
+    (`Lax793645Proofs.Simplifications.MatchingNeighborhoods.hitting_list,
+     `Lax793645.MatchingNeighborhoods.hitting_list,
+     `Lax793645Proofs.Manuscript.Checked.MatchingNeighborhoods.hitting_list),
+    (`Lax793645Proofs.Simplifications.MatchingNeighborhoods.hitting_all_neighborhoods,
+     `Lax793645.MatchingNeighborhoods.hitting_all_neighborhoods,
+     `Lax793645Proofs.Manuscript.Checked.MatchingNeighborhoods.hitting_all_neighborhoods),
     (`Lax793645Proofs.Upstream.OAI.HadwigerCounterexample.transfer_scales,
      `Lax793645.MatchingExposure.transfer_scales,
      `Lax793645Proofs.Manuscript.Checked.MatchingExposure.transfer_scales),
@@ -133,6 +137,9 @@ run_cmd do
     (`Lax793645Proofs.Simplifications.one_finite_preparation,
      `Lax793645.PreparedUnits.one_finite_preparation,
      `Lax793645Proofs.Manuscript.Checked.PreparedUnits.one_finite_preparation),
+    (`Lax793645Proofs.Simplifications.ordered_slot_completion,
+     `Lax793645.OrderedSlotCompletion.ordered_slot_completion,
+     `Lax793645Proofs.Manuscript.Checked.OrderedSlotCompletion.ordered_slot_completion),
     (`Lax793645Proofs.Simplifications.one_direct_capped_leaf_fourier,
      `Lax793645.FourierComparison.one_direct_capped_leaf_fourier,
      `Lax793645Proofs.Manuscript.Checked.FourierComparison.one_direct_capped_leaf_fourier),
@@ -243,19 +250,29 @@ theorem Lax793645Proofs.Manuscript.FourHoles.eventual_conflict_lower_bound :
 
 /--
 ---
-conclusion: Lax793645.ClippedExposure.dyadic_exposure_joint
+conclusion: Lax793645.MatchingNeighborhoods.hitting_list
 ---
-The implementation is `dyadic_exposure_joint` in `ClippedExposure.lean`.
+Average the probability of missing a heavy neighborhood over the reference law.
 -/
-theorem Lax793645Proofs.Manuscript.ClippedExposure.dyadic_exposure_joint :
-    (type_of% @Lax793645.ClippedExposure.dyadic_exposure_joint) :=
-  @Lax793645Proofs.Manuscript.Checked.ClippedExposure.dyadic_exposure_joint
+theorem Lax793645Proofs.Manuscript.MatchingNeighborhoods.hitting_list :
+    (type_of% @Lax793645.MatchingNeighborhoods.hitting_list) :=
+  @Lax793645Proofs.Manuscript.Checked.MatchingNeighborhoods.hitting_list
+
+/--
+---
+conclusion: Lax793645.MatchingNeighborhoods.hitting_all_neighborhoods
+---
+A nonempty exceptional set has uniform mass at least the reciprocal of the number of types.
+-/
+theorem Lax793645Proofs.Manuscript.MatchingNeighborhoods.hitting_all_neighborhoods :
+    (type_of% @Lax793645.MatchingNeighborhoods.hitting_all_neighborhoods) :=
+  @Lax793645Proofs.Manuscript.Checked.MatchingNeighborhoods.hitting_all_neighborhoods
 
 /--
 ---
 conclusion: Lax793645.MatchingExposure.transfer_scales
 ---
-The implementation is `transfer_scales` in `ExponentialGraphTransfer.lean`.
+Condition on the most probable list. Trim the averaged matching law and apply supersaturation.
 -/
 theorem Lax793645Proofs.Manuscript.MatchingExposure.transfer_scales :
     (type_of% @Lax793645.MatchingExposure.transfer_scales) :=
@@ -460,6 +477,17 @@ The implementation is `one_finite_preparation` in `OneFinitePreparation.lean`.
 theorem Lax793645Proofs.Manuscript.PreparedUnits.one_finite_preparation :
     (type_of% @Lax793645.PreparedUnits.one_finite_preparation) :=
   @Lax793645Proofs.Manuscript.Checked.PreparedUnits.one_finite_preparation
+
+/--
+---
+conclusion: Lax793645.OrderedSlotCompletion.ordered_slot_completion
+---
+Copy the permitted upper slot pairs and transpose the strict upper part. Each piece has
+rank at most the number of slots times the rank of the ordinary completion.
+-/
+theorem Lax793645Proofs.Manuscript.OrderedSlotCompletion.ordered_slot_completion :
+    (type_of% @Lax793645.OrderedSlotCompletion.ordered_slot_completion) :=
+  @Lax793645Proofs.Manuscript.Checked.OrderedSlotCompletion.ordered_slot_completion
 
 /--
 ---

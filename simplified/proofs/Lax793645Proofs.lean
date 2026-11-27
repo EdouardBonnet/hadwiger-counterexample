@@ -245,6 +245,7 @@ import Lax793645Proofs.Simplifications.LinearZeroDiscrepancy
 import Lax793645Proofs.Simplifications.LowRankBatchWeights
 import Lax793645Proofs.Simplifications.LowRankGramFourier
 import Lax793645Proofs.Simplifications.MatchingFilters
+import Lax793645Proofs.Simplifications.MatchingNeighborhoods
 import Lax793645Proofs.Simplifications.MatchingSampling
 import Lax793645Proofs.Simplifications.MatchingTransfer
 import Lax793645Proofs.Simplifications.MomentBudgetScales
@@ -556,6 +557,7 @@ import Lax793645Proofs.Simplifications.OneUnitCollisions
 import Lax793645Proofs.Simplifications.OneUnitGeometry
 import Lax793645Proofs.Simplifications.OneUnitScreen
 import Lax793645Proofs.Simplifications.OneZeroDiscrepancyPrediction
+import Lax793645Proofs.Simplifications.OrderedSlotCompletion
 import Lax793645Proofs.Simplifications.PairedFrameRowBounds
 import Lax793645Proofs.Simplifications.PolynomialFixedAccuracy
 import Lax793645Proofs.Simplifications.PolynomialSubstitution

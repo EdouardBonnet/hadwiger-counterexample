@@ -1,4 +1,4 @@
-import Lax793645Proofs.Simplifications.SymmetricBlockCompletion
+import Lax793645Proofs.Simplifications.OrderedSlotCompletion
 import Lax793645Proofs.Simplifications.LowRankBatchWeights
 
 namespace Lax793645Proofs.Simplifications
@@ -9,7 +9,7 @@ set_option backward.isDefEq.respectTransparency false
 variable {I J : Type} [Fintype I] [Fintype J] [DecidableEq I] [DecidableEq J] {N : ℕ}
 
 def symmetricCompletionCost (J : Type) [Fintype J] :=
-  (1+2*Fintype.card J)*blockCompletionCost J
+  2*Fintype.card J*(1+4*Fintype.card J)
 
 /-- The low-rank batch estimate for symmetric Gram characters. The
 within-batch hypotheses require only symmetric quadratic phases. -/
@@ -23,7 +23,7 @@ theorem symmetric_low_rank_batch_weight (P : J → J → Prop) [DecidableRel P]
     |avg unif (fun x=>phasedBy M x*(∏ i,f i (led i x))*
       w ((rackCoordinates (I×J) N).symm x))| ≤
       ε^Fintype.card I*bp ((N:ℝ)*symmetricCompletionCost J*peak M)*fourierNorm w := by
-  obtain ⟨D,R,hDR,hDs,_hRs,hD,hmask,hR⟩:=symmetric_patterned_block_completion P hP M hM hs
+  obtain ⟨D,R,hDR,hDs,_hRs,hD,hmask,hR⟩:=ordered_slot_completion P hP M hM hs
   let g i z:=phasedBy (diagonalBlock D i) z*f i z
   let v (x : KeyCoordinates (I×J) N):=wsign (gramPrimitive R x)*w x
   have hg i ξ : |linearFourier (fun z=>g i (rackCoordinates J N z)) ξ| ≤ ε := by

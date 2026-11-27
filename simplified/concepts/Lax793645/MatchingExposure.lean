@@ -6,9 +6,10 @@ title: From a conflict probability to a sampled graph
 type: lemma
 ---
 Assume the conflict lower bound for every admissible edge law of a finite
-triangle-free hole relation. Sampling enough vertices gives a graph with independence
-number at most 2 and connected matching number less than $m/100$ for a graph of order
-$m$. The construction uses scale 2 in the general sampling estimate.
+triangle-free hole relation. Group samples by a list of matching edges meeting
+their conflict neighborhoods. The density bounds on the resulting average law
+give a graph of order $m$ with independence number at most 2 and connected
+matching number less than $m/100$.
 -/
 
 namespace Lax793645.MatchingExposure
