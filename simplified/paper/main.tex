@@ -1,32 +1,35 @@
 \documentclass[11pt]{article}
 \input{preamble}
-\title{A counterexample to Hadwiger's conjecture\\A proof using quadratic frames and linear partitions}
-\author{OpenAI construction\\Adaptation by \'{E}douard Bonnet and Codex}
-\date{November 26, 2026}
+\title{A counterexample to Hadwiger's conjecture\\[.2em]
+\large A proof using quadratic frames and linear partitions}
+\author{Construction by OpenAI, September 2026\\
+Adaptation by \'{E}douard Bonnet and Codex}
+\date{November 27, 2026}
 \begin{document}
 \maketitle
-\noindent\small Adapted from OpenAI's construction of September 23, 2026.
-The accompanying Lean proof uses the same graph statement.\normalsize
-
 \begin{abstract}
-For arbitrarily large \(m\), we construct a graph on \(m\) vertices with
-independence number at most 2 in which every connected matching has
-fewer than \(m/100\) edges. A count of the branch sets in a complete
-minor then puts its Hadwiger number below its fractional chromatic number.
-This disproves Hadwiger's conjecture and its fractional coloring weakening.
+For arbitrarily large \(m\), we construct a graph on \(m\) vertices
+with independence number at most 2 in which every connected matching has
+fewer than \(m/100\) edges. Counting the branch sets of a complete minor
+then shows that the Hadwiger number is smaller than the fractional
+chromatic number. In particular, Hadwiger's conjecture is false.
 
-The missing edges satisfy a parity identity that excludes triangles.
-Two matching edges fail to touch when all four pairs of vertices between
-them are missing. We prove a lower bound on the probability of this event
-even when the two endpoints of each edge are dependent. Its witnesses
-are short lists of points in binary quadratic spaces. Finite Fourier
-analysis on their images and a system of linear equations give lists
-with the required overlap. A short list of matching edges then turns the probability estimate
-into the required graph.
+The vertices are sampled from a finite probability space. A parity
+identity ensures that among any three vertices some two are adjacent.
+To rule out a large connected matching, we look for
+two of its edges with no edge joining their endpoints. We bound the
+probability of this event for two independent draws from a law on
+edges satisfying explicit density bounds. The endpoints within either
+draw may be dependent. Each of the four missing edges needs a pair of
+witnesses with the same ambient image. Linear algebra over \(\F\)
+supplies the witnesses' prescribed scalar values. A Fourier estimate
+controls the probability that their images agree.
+
 \end{abstract}
 \begingroup
 \small
 \setlength{\parskip}{0pt}
+\setcounter{tocdepth}{1}
 \tableofcontents
 \endgroup
 \clearpage
@@ -46,7 +49,6 @@ into the required graph.
 \input{sections/13-rare-overlap}
 \appendix
 \input{sections/14-parameters}
-\clearpage
 \setlength{\bibsep}{3pt plus 1pt minus 1pt}
 \bibliographystyle{plainnat}
 \bibliography{sources/references}

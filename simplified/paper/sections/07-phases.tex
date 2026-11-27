@@ -5,7 +5,7 @@ requires four bits, each obtained by evaluating a functional from one
 unit on a vector from the other. We estimate the probability that the
 bits have the prescribed values.
 
-A marked unit carries profiles \(\lambda_i\in C_i\), of bounded total
+To mark a unit, choose profiles \(\lambda_i\in C_i\), of bounded total
 rank. Put
 \begin{equation}\label{eq:delta-phase}
  \Delta_A=U_{A_1}\lambda_1+U_{A_2}\lambda_2,
@@ -19,7 +19,9 @@ For independent units \(A,B\), the relevant bits are
 For example, if \(p_i=T(\lambda_i,\cdot)+a\), the balance equation
 \eqref{eq:recipe-balance} becomes
 \(u_{B_j}(\Delta_A)=a(\lambda_1)+a(\lambda_2)\).
-The other prediction classes lead to parities of the same four bits.
+All the compatibility requirements in \Cref{subsec:prepared-patterns}
+are conditions on these same four bits. We establish their probability
+bounds here before applying them to predictions.
 
 \subsection{A cover alternative}
 
@@ -28,31 +30,37 @@ profile \(x\) when
 \[
  x_e\in C_e\otimes V+V\otimes C_e\quad\text{for every }e.
 \]
-Its dimension is \(\sum_e\dim C_e\).
+Equivalently, \(x_e\) becomes zero when both tensor factors are taken
+modulo \(C_e\). We call \(\sum_e\dim C_e\) the dimension of the cover.
 
 % lax begin Lax793645.PhaseAlternative
 \begin{proposition}\label{thm:phase-alternative}
-Suppose \(\Delta_A\ne0\) and its total rank is bounded. From a law with
-the prepared marginal and joint density bounds, one can retain a fixed
-positive fraction on which one of the following holds.
+Suppose the marked differences are nonzero and have bounded total rank.
+At this stage of preparation each endpoint marginal is bounded by a fixed
+multiple of \(\mu\), and the unit law has density at most \(2^{(D+1)N}\)
+relative to \(\mu^2\). One can retain a fixed positive fraction on which
+one of the following holds.
 
 Either every nonconstant character of the four displayed bits has mean
 of absolute value less than \(.005\), or all \(\Delta_A\) are covered by
 one cover of bounded dimension and every character using a single
-endpoint on at least one side has mean at most \(2^{-.24N}\).
+endpoint on at least one side has mean of absolute value at most
+\(2^{-.24N}\).
 The bounds needed for the cover and for the retained mass precede the
 choice of the channel dimension.
 \end{proposition}
 % lax end
 
-We give the estimates behind the proposition. They also specify which
-uses of independence are legitimate.
+We first relate the probability of lying in a fixed cover to the
+rank of a sum of independent draws. This rank controls the character
+means in the first alternative.
 
 % lax begin Lax793645.RankOfIndependentSums
 \begin{lemma}\label{lem:no-cover-rank}
 Let independent tensors \(T_1,\ldots,T_s\) have total rank at most \(r\).
-There is \(q_r>0\), depending only on \(r\), such that if every cover
-of dimension at most \(2rs\) has probability less than \(p\), then
+Suppose that, for each \(j\), the probability that \(T_j\) lies in any
+given cover of dimension at most \(2rs\) is less than \(p\). There is a
+\(q_r>0\), depending only on \(r\), such that
 \[
  \PP\left(\rank\sum_jT_j<q_rs/4\right)\le4^sp^{q_rs/2}.
 \]
@@ -70,8 +78,9 @@ of their combined span. The rank of the projected sum is at least
  \#\{j:\overline T_j\ne0\}-\delta_C-\delta_R.
 \]
 Place the projected tensors on separate direct summands first. The maps
-adding the summands have kernels of dimensions \(\delta_C,\delta_R\);
-applying them loses at most those ranks.
+adding the summands have kernels of dimensions \(\delta_C,\delta_R\).
+Passing from the direct sum to the projected sum can therefore lower
+the rank by at most \(\delta_C+\delta_R\).
 
 It remains to choose which indices to expose. Write \(D(E)\) for the
 sum of the dimensions of the row and column spans of the tensors indexed
@@ -95,8 +104,8 @@ This bounds the combined row and column deficit after projection.
 If the original sum has rank less than \(q_rs/4\), at least \(q_rs/2\)
 remaining tensors vanish in this quotient. They lie in the cover generated
 by the exposed tensors. For fixed disjoint exposed and vanishing index
-sets, condition only on the exposed tensors. The rest are still independent,
-so this event has probability at most \(p^{q_rs/2}\). There are at most
+sets, condition only on the exposed tensors. The tensors at the designated vanishing indices are still independent.
+The probability that they all lie in this fixed cover is at most \(p^{q_rs/2}\). There are at most
 \(4^s\) choices of the two index sets. For symmetric tensors, combine the
 row and column cover spaces into the single cover stated above.
 \end{proof}
@@ -105,10 +114,13 @@ row and column cover spaces into the single cover stated above.
 % lax begin Lax793645Proofs.Manuscript.PhaseAlternative.one_phase_alternative
 \begin{proof}[Proof of Proposition~\ref{thm:phase-alternative}]
 First take \(s\) proportional to \(N\), with a sufficiently small fixed
-coefficient. If no cover of dimension \(2rs\) has appreciable mass,
-expand an even \(s\)-th moment of a phase mean. For independent free
-channel columns, a single channel pair has expectation
-\(2^{-\rank W}\) against the matrix \(W\). Hence the moment is at most
+coefficient, rounding to a power of 2 as in Lemma~\ref{lem:no-cover-rank}.
+Fix a constant \(p>0\), to be chosen below. If every cover of dimension
+at most \(2rs\) has mass less than \(p\), expand an even \(s\)-th moment of a phase mean. For independent uniform channel columns \(X,Y\), averaging the sign of
+\(X\trans WY\) over \(Y\) gives the indicator of \(X\trans W=0\).
+Averaging over \(X\) therefore gives \(2^{-\rank W}\). With \(h\)
+independent channel pairs the expectation is \(2^{-h\rank W}\).
+For \(s\) independent draws of the marked difference this gives
 \[
  \E 2^{-h\rank(\Delta_{A_1}+\cdots+\Delta_{A_s})}
  \le4^sp^{q_rs/2}+2^{-hq_rs/4}.
@@ -123,13 +135,17 @@ extra phase from the opposite mark can be fixed before this calculation
 and then included in that finite union. Every nonconstant four-bit
 character is therefore small.
 
-Otherwise restrict to a cover of dimension \(O(s)\) carrying positive
-mass. The individual primal images avoid this fixed cover with
+In the other case fix a cover of dimension at most \(2rs\) that carries
+mass at least \(p\), and restrict to the units whose differences it covers. The individual primal images avoid this fixed cover with
 exponentially small exception. Indeed a uniform image of dimension
 \(\dim B\) meets a fixed space of dimension \(d\) with probability
 at most \(2^{\dim B+d-N+O(1)}\). The marginal cap preserves this estimate.
-Pass to the quotient by the cover and lift a basis of the common image
-of the two marked tensors. Their difference has the symmetric form
+In the quotient by the cover the two marked tensors coincide. Projection
+is injective on each primal image, so a basis of the column space of
+this common tensor has a unique lift in either image. Subtract the two
+lifts. These differences belong to the cover. Expanding the difference
+of the two symmetric matrices in these bases gives, component by
+component,
 \begin{equation}\label{eq:symmetric-offsets}
  \Delta_e=\Omega_eZ_e\trans+Z_e\Omega_e\trans+
                 \Omega_eH_e\Omega_e\trans.
@@ -146,13 +162,16 @@ For an ambient quadratic form \(q_u\), write
 \(\Phi_u(v)=\beta_{q_u}(v,\cdot)\), identifying the dual with the
 ambient coordinate space. Evaluating \eqref{eq:symmetric-offsets} gives
 \(Z\cdot\Phi_u(\Omega)\) plus terms determined by the offset record.
-The values \(q_u(\omega)\) on its basis must also be recorded; polar
-values alone do not determine the diagonal terms.
+For a basis vector \(\omega\), the diagonal matrix
+\(\omega\omega\trans\) contributes \(q_u(\omega)\). Record these values
+as well as the polar pairings.
 
-The companion tuple has point masses at most \(2^{-tN+o(N)}\).
-For a single endpoint, if its \(X\)-evaluations on a fixed offset basis
+Fix the record and let \(t\) be the number of companion vectors.
+The mass of units giving any specified tuple is at most
+\(2^{-tN+.01N}\), allowing for the nominal choices in those vectors.
+For a single endpoint, if its \(X\)-evaluations on a fixed basis of \(t'\) offset directions
 are independent, its companion tuple together with \(\Phi_u\) on that
-basis has point masses at most \(2^{-(t+t')N+o(N)}\).
+basis has point masses at most \(2^{-(t+t')N+.01N}\).
 To verify the latter count, condition on the primal and \(X\) columns.
 The formula
 \[
@@ -178,24 +197,52 @@ endpoints to pass its channel rank test. This gives the second alternative
 with no remaining fixed error in the singleton estimates.
 
 If there is no such space, the full endpoint sum also has cancellation.
-For completeness, fix an offset list and call an action value frequent
-when its joint mass with a companion record exceeds
-\(2^{-(t+.5)N}\). The companion bound puts at most \(2^{.51N}\) values
-on its frequent list. If frequent pairs had appreciable mass, choose a
-fixed number \(L\) of independent probes. At each step the absence of
-a small cover supplies a fresh offset direction with fixed positive
-probability. Fix a successful probe list by averaging. After a small
-rank-test deletion, prescribing all its action values costs at least
-\(.99LN\) bits, whereas the frequent lists allow only \(.51LN\) bits.
-The raw event thus has probability at most
+Fix a list of offset directions. For a given record and companion
+tuple, call a value of the full channel action frequent if its joint mass
+with that record and tuple exceeds \(2^{-(t+.5)N}\). The companion
+point bound allows at most \(2^{.51N}\) frequent values per tuple.
+Suppose that the total mass of frequent pairs exceeds a fixed
+\(\delta>0\). Then a set of second units of mass at least \(\delta/2\)
+has conditional frequent mass at least \(\delta/2\) among first units.
+
+Draw \(L\) first units independently. As long as fewer than \(L\)
+have been drawn, their offsets span a space of bounded dimension.
+If the next offset list lies entirely in that span with probability at
+least \(\delta/4\), we are in the bounded cover case. Otherwise the next
+draw is frequent and supplies a new direction with conditional
+probability at least \(\delta/4\). By averaging, some fixed list of
+draws works for second units of mass at least
+\((\delta/2)(\delta/4)^L\).
+
+For a fixed second-unit record with \(t\) companion vectors there
+are at most \(2^{tN}\) possible tuples of companions. Once the tuple
+is specified, the \(L\) frequent lists admit at most \(2^{.51LN}\)
+tuples of actions. On the channel rank event we can prescribe the
+companions and actions together. The companions specify \(t\) primal
+images, and the actions specify \(L\) independent channel combinations
+modulo the \(X\) columns. These are independent directions in the full
+coefficient space. The raw image estimate for their joint prescription,
+including nominal choices, is at most \(2^{-(t+L)N+.01N}\). Here the
+loss \(.01N\) is for the entire tuple. We may take the error \(\xi\)
+in \eqref{eq:image-cost} small compared with \(1/(t+L)\), since the
+tuple length is fixed before \(M_0\).
+
+Sum over the companion tuples and the at most \(2^{.002N}\) records.
+The prepared law costs at most \(2^{(D+1)N}\), apart from the fixed
+factor for the restriction to the cover. The resulting upper bound,
+up to that factor, is
 \[
- 2^{(D+.01)N+O(n)-.48LN}.
+ 2^{[D+1+.012-.49L]N}.
 \]
-Choose \(L\) before \(h\), large enough to beat the fixed joint cap.
-This contradicts the positive probe mass. Off the frequent event, the
-Walsh estimate makes the full-sum phase small as well. Interchanging the
-two units covers all characters. Every dimension, mass threshold, and
-probe count used here is chosen before \(h\).
+Take \(L=k\) with \(.49k\ge D+2\) as in Appendix~\ref{sec:parameters}.
+The bound tends to zero. On the other hand, for the fixed probe list
+above, rank failure on its directions costs \(O(L\,2^{L-h})\) times
+the marginal density bound at this stage. Choosing \(h\) large leaves
+a fixed positive mass of successful units. This contradiction bounds
+the mass of frequent pairs. On the complement the Walsh estimate
+bounds the character of the full endpoint sum. Interchanging the two
+units covers the reciprocal characters.
+
 \end{proof}
 % lax end
 
@@ -237,8 +284,12 @@ pairs for which both directed entries of \(F\) vanish. Multiplying
 rank-one expansions gives \(\rank(Q\circ Q\trans)\le(r+1)^2\).
 Hence the probability of two zeros is at least \(1/[4(r+1)^2]\).
 
-The singleton characters are exponentially small. Fourier inversion on
-the four bits therefore gives
+In the bounded cover alternative, each character selecting exactly
+one endpoint on either side is exponentially small. In the Fourier
+expansion of the indicator that all 4 bits equal \(c\), the remaining
+characters select both endpoints or neither on each side. Their signs
+are independent of \(c\). These are exactly the 4 characters in the
+indicator that both directed sums vanish, giving
 \[
  \PP\{\text{all four bits equal }c\}
  =\tfrac14\PP\{F(A,B)=F(B,A)=0\}+O(2^{-.24N})
@@ -247,23 +298,22 @@ for either prescribed \(c\). These bounds cover the compatibility
 conditions listed in the next section. In particular the prescribed
 four-bit pattern has mass at least \(1/[16(gN^2+1)^2]-2^{-.24N}\).
 The ambient rank estimate applies to every unit law. The character error
-uses the singleton phase estimate. For a single active endpoint, only
-the character of its reciprocal parity is needed: if its bias has
+uses the singleton phase estimate. At a single active endpoint there is just one reciprocal parity
+to prescribe. If its bias has
 absolute value at most \(0.1\), either prescribed bit has probability
 at least \(0.4\).
 
 There is a direct count for the all-zero target when both endpoints are
 inactive. At either endpoint \(p_i(\lambda_i)=T(\lambda_i,\lambda_i)
-+a(\lambda_i)=0\). Since also \(u_iU_i=0\), each listener vanishes on
-its own unit's offset. Suppose the offsets span a space of dimension
++a(\lambda_i)=0\). Since also \(u_iU_i=0\), we have \(u_{A_i}(\Delta_A)=0\) for both endpoints. Suppose the tensors \(\Delta_A\) span a space of dimension
 \(d\). Each matrix \(L_i(A,B)=u_{B_i}(\Delta_A)\) then has rank at
 most \(d\). Put \(Q=(J+L_1)\circ(J+L_2)\). The matrix
 \(Q\circ Q\trans\) has ones on its diagonal and rank at most
 \((d+1)^4\). Its support is exactly the event that all four readings
-are zero. The row support bound gives this event probability at least
+are zero. The bound \eqref{eq:rank-compatibility} gives this event probability at least
 \(1/[4(d+1)^4]\). For \(d=O(N)\) this is enough for the rare case.
 
-For a prescribed reciprocal one, use \(L_i+L_i\trans\). For four
+For a reciprocal parity of 1, use \(L_i+L_i\trans\). For four
 prescribed ones, use \(L_1\circ L_2\circ L_1\trans\circ L_2\trans\).
 Each matrix has rank at most \(k=(d+1)^4\). Taking \(t=1/(4k)\) above
 shows that either compatibility has mass at least \(1/(16k)\), or a
@@ -271,12 +321,13 @@ set of mass greater than \(1/2\) contains no compatible pair. Thus, on
 a span within the label budget below, it suffices to find a compatible
 pair in every such set. The phase alternative handles the remaining cases.
 
-Suppose all retained offsets lie in a space \(V\) of dimension \(d\).
+Suppose all the retained tensors \(\Delta_A\) lie in a space \(V\)
+of dimension \(d\).
 Label a unit \(A\) by \(\Delta_A\in V\) and the restrictions of
 \(u_{A_1},u_{A_2}\) to \(V\). Each restriction is a linear functional
 on the space of symmetric matrices. The label takes at most \(2^{3d}\)
-values. Two labels determine all four readings, since each reading
-evaluates one stored functional on the opposite offset. Split each leaf
+values. Given the two labels, evaluate each stored functional on
+the opposite offset to obtain all four bits. Split each leaf
 by its label and repeat peeling. All descendants retain their label.
 Compatibility is now constant on each pair of leaves, and there are at
 most \(2^{3d}\) possible sets of accepting opposite units. A small
@@ -286,7 +337,9 @@ geometric cover supplies such a space with \(d\le C_sN\).
 
 % lax begin Lax793645.SafeCompatiblePairs
 \begin{lemma}\label{lem:injection}
-For a pair event \(E\) whose accepting sets have the preceding bound,
+Let \(E\) be a pair event determined by the labels above. As one unit
+varies, the sets of opposite units accepted by \(E\) then take at most
+\(2^{3d}\) values in either direction. With the stated bound on \(d\),
 the preparation can ensure
 \[
  \PP(E\text{ and an unsafe table})
@@ -305,8 +358,11 @@ Under its conditional law, draw \(\ell\) independent primal pin spaces,
 where \(\ell\) is a small fixed multiple of \(N/(K+1)\).
 The whole primal images are independent of the span of earlier witnesses
 except with exponentially small probability, by the marginal frame bound.
-If the conditional failure rate exceeds \(\eta\), all \(\ell\) tests
-therefore succeed with probability at least \((\eta/2)^\ell\).
+If a proportion greater than \(\eta\) has a witness to failure,
+each successive draw supplies a witness independent of the preceding
+ones with probability at least \(\eta/2\) for large \(n\).
+Thus all \(\ell\) draws supply independent witnesses with probability
+at least \((\eta/2)^\ell\).
 
 Conversely, fix independent witnesses. There are at most \(2^{K\ell}\)
 ways to select them from the pins. Their channel evaluations are uniform,

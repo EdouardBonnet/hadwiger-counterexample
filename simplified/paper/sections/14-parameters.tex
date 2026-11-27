@@ -1,9 +1,9 @@
 \section{Choosing the parameters}\label{sec:parameters}
 
-All constants in this appendix are chosen before \(n\), and before the
-unit law. The dimension \(N=M_0n\) is the full ambient dimension; \(M_0\)
-is even. In the Lean source the ambient parameter is \(N/2\).
-This difference of convention is relevant to the Fourier exponents.
+The choice of parameters has two constraints. The number of scalar
+conditions in a query must be small compared with the ambient dimension
+\(N=M_0n\). The number of channels must already suffice for matrix
+completion before \(M_0\) is chosen. We give the choices in order.
 
 \subsection{Pins and exclusions}
 
@@ -12,10 +12,12 @@ Begin with
  D=8000,\qquad M=2^{1000},\qquad
  \zeta=\frac1{1000\cdot112}.
 \]
-The constant 112 is a conservative slot allowance. The actual maximum
-number of ambient key vectors in the one-frame construction is 56.
+The spreading estimate uses the allowance 112. A list in this
+construction has at most 56 ambient key vectors by \eqref{eq:key-rank-budget}.
 
-The closed-pin peeling has exponent loss \(\zeta/6\). Choose an initial
+Closing the pins under projection leaves a gain of \(\zeta/6\) in the
+exponent in Lemma~\ref{lem:closed-peeling}, before the raw image error.
+Choose an initial
 pin budget \(e\), a probe count \(k\), and then a second pin budget \(s\)
 so that
 \begin{align*}
@@ -54,9 +56,8 @@ Now choose \(b\) so that
  2^{b-2}>100g(B_{\rm exc}+1).
 \]
 In particular \eqref{eq:selector-size} holds. The selector degree is one
-and its dimension is \(p_*=b+1\). The protected base dimension is at most
-\(2gKp_*\); it affects the eventual lower bound on \(n\), not the
-selector budget.
+and its dimension is \(p_*=b+1\). The protected base dimension is at most \(2gKp_*\). This bound is
+used when \(n\) is chosen in \eqref{eq:base-rejection}.
 
 \subsection{Mixers and channels}
 
@@ -96,11 +97,11 @@ The extension requires
 \end{equation}
 The left side is \(30r_0+C\), where \(C\) is independent of \(r_0,h,n\).
 It suffices to take \(970r_0\ge C\), using the largest value at \(t=28\).
-The large tester contribution was projected away before residual
-compression; otherwise its coefficient could have grown with the pin
-budget.
+The coefficient 30 is independent of the pin dimension because the
+tester contribution was removed before compressing the residual.
 
-For predictor consistency the current screen bound is
+For the prediction identity the rank bound on the terms outside the
+ordinary and shared testers is
 \[
  r_{\rm scr}=2(2h+2Je).
 \]
@@ -119,9 +120,8 @@ The scalar extraction also uses marks in the later pin space, of bound
  4\cdot2(2h+2JK)<gr_0.
 \]
 Since \(g>20000\), this follows after also requiring \(r_0\ge JK+1\).
-This strengthens a lower bound chosen after \(J,K\); it creates no
-circular parameter dependence. No rank bound on all true intersections
-is needed.
+Thus both requirements can be met by increasing \(r_0\) after
+\(J,K\) are fixed.
 
 The phase and safety estimates also impose lower bounds on \(h\).
 Their cover sizes, probe counts, and error tolerances were fixed using
@@ -129,8 +129,10 @@ Their cover sizes, probe counts, and error tolerances were fixed using
 \(4^a p_0^{qa/2}\) and \(2^{-hqa/4}\) with a fixed exponential density
 cost, where \(q=2^{-100r-10}\) and \(a\) is a small fixed multiple of \(N\).
 Choose \(p_0\) small using the early constants, then choose \(h\) large.
-The fresh-probe estimate has exponent \((D+.01-.48k)N+O(n)\), which is
-negative by the choice of \(k\). The remaining failures have factors
+For \(k\) probe directions, the bound in the proof of
+Proposition~\ref{thm:phase-alternative} has exponent
+\((D+1+.012-.49k)N\). The choice \(.49k\ge D+2\) makes this at
+most \(-.988N\). The remaining failures have factors
 such as \(2^{L-h}\), with \(L\) already fixed. They too become as small
 as required. No common key partition or later accuracy enters these
 choices.
@@ -149,8 +151,8 @@ error smaller than \(\zeta/24\).
 
 The records in the collision proof have \(2^{O(n)}\) possible values.
 Choose \(M_0\) so that their logarithm is at most \(.005N\). The same
-choice makes the number of tested Gram bits at most \(.01N\); a sufficient
-bound for that number is \(16ghd_n\). All coefficients in these expressions
+choice makes \(16ghd_n\le .01N\), as required for the scalar entries
+tested in Proposition~\ref{prop:collision}. All coefficients in these expressions
 were fixed before \(M_0\).
 
 The resulting order is
@@ -166,23 +168,22 @@ quantities \(R,q_*,d_S,H_*\), all determined by \(g,K\).
 
 \subsection{Later analytic choices}
 
-The accuracy of the Fourier comparison is chosen after the construction.
-For a fixed exponential leaf cap and desired error, first choose the small
-repetition rate in \Cref{sec:histograms}. Next choose the nominal-deficiency
-cutoff and the cross-batch rank cutoff.
-Only then choose the Fourier threshold \(\delta\). Taking \(n\) large
-makes the moment bound beat the leaf cap. None of these choices changes
-\(h,J\), or \(M_0\).
+The Fourier comparison in \Cref{sec:histograms} begins with a fixed
+leaf density cap and a desired error. Once the repetition rate is chosen,
+fix the cutoff for nominal rank deficiency. The cutoff for cross rank
+can then absorb the cost of conditioning on the nominal kernel.
+Finally choose \(\delta\) for the low rank contribution in
+\eqref{eq:assembled-moment}. This determines how large \(n\) must be.
 
-The clipping height for query densities is fixed before the number of
-linear partition cells. Energy increment then bounds that number for each
-required accuracy. For the finite-score argument choose the overlap
-threshold \(\eta\) below the conditional support gap and the positivity
-bounds. In the predicted branch every attained predictor cell has mass
-at least \(2^{-2R_*}/2\). All partition sizes and finite option counts are fixed at that
-stage. Predictions are exact from extraction onward. Their coordinate
-bound is fixed by the construction.
-The overall asymptotic contradiction still takes \(n\) to infinity.
+For the linear partitions the bound \(V\) in
+\eqref{eq:linear-density-energy} is independent of their number of rows.
+Lemma~\ref{lem:linear-test} uses Parseval to bound the number of
+frequencies needed at a prescribed accuracy. The height \(2B_0\) used
+for truncation is also independent of that accuracy. In the scalar
+argument the overlap threshold is fixed below the gap in
+\eqref{eq:status-support-gap} before choosing the common partition.
+In the case with predictions, every attained predictor cell already
+has mass at least \(2^{-2R_*}/2\).
 
 \subsection{Final probability margins}
 
@@ -192,8 +193,8 @@ are at most 56 vectors. The spreading loss satisfies
 \[
  2\zeta\cdot112\le .004.
 \]
-The pruning and table counts in \Cref{sec:collision} give the more generous
-final exponent \(56+.03\). The retained mass has a fixed positive lower
+The discarded records and the tests of scalar entries in
+Proposition~\ref{prop:collision} give the final exponent \(56+.03\). The retained mass has a fixed positive lower
 bound. An overlap of order \(N^{-4}\) costs only \(O(\log N)\) in the
 exponent. Hence
 \[
@@ -206,5 +207,3 @@ cap \(\kappa=2^{8000N}\) in the graph transfer. Each sample records a list of
 \(2^{400N}\) matching edges. Since \(\log|\Omega|=O(N^2)\), the logarithm of the
 number of lists is \(O(N^2 2^{400N})=o(m)\).
 The two sampling errors are exponentially small in \(m\).
-This completes the parameter choices for both the supersaturation theorem
-and its finite-graph transfer.

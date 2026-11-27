@@ -1,8 +1,10 @@
 \section{Exact common predictions}\label{sec:preparation}
 
-Initial peeling gives closed pins and spreading leaves. Each marked
-effective profile has total component rank at most the initial pin budget
-\(e\). We will use this bound directly.
+Fix the first decomposition of the unit law from
+Lemma~\ref{lem:closed-peeling}. Its pin dimension is at most \(e\),
+so each marked effective profile has total component rank at most \(e\).
+We ask whether the value of \(p_i\) on an atom can be recovered from
+its key once its prescribed linear evaluations are known.
 
 \subsection{An exact prediction alternative}
 
@@ -21,15 +23,14 @@ exist on unit mass at least \(10^{-6}\). The alternative without a
 prediction is treated in \Cref{sec:status-span}. There, relations on
 possible statuses will produce these identities directly.
 
-An exact identity on generic inputs also holds at shared points: set the
-ordinary coordinates to zero. This preserves the atom, its key and its
-tester value. Thus no separate prediction assumption on shared inputs is
-needed.
+In particular, a generic input may have all ordinary coordinates
+zero. Evaluating an identity there gives its value at a shared point.
 
 \subsection{Free coordinates and exact sections}
 
 Pull all common coordinates at one endpoint back to its array of component
-keys and take their span \(H\). This identifies duplicated coordinates.
+keys and take their span \(H\). A component belonging to two tag stars occurs only
+once in this array, so a repeated linear form contributes just one row.
 The raw frame count bounds the probability that a fixed nonzero row
 vanishes on the free \(Z\)-coordinates by \(8\cdot2^{-n}\).
 After a union over rows and labels, a prepared marginal bounded by
@@ -63,9 +64,11 @@ Restriction to this section gives a quadratic polynomial
 \(Q_{l,1}(c)=\varphi_l(1,c)\). These are exact equalities.
 
 Choose one disjoint tester pair \(y_a,y_b\) in \(q\). Hold \(c,z'\)
-fixed and take the second difference in those two directions. On the
-left this is constant, since \(R_l\) is quadratic. On the right it is
-\(Q_{l,0}(c)+Q_{l,1}(c)\). Thus the difference is a constant
+fixed, along with the other tester coordinates. Sum the identity
+over the 4 choices for \((y_a,y_b)\). On the left this second difference
+is the coefficient of \(y_ay_b\) in \(R_l\), a constant. On the right
+three choices give the same tester value and the fourth gives the
+opposite value. The sum is \(Q_{l,0}(c)+Q_{l,1}(c)\). Thus the difference is a constant
 \(\gamma_l\), and
 \[
  \varphi_l(q,c)=Q_{l,0}(c)+\gamma_l q.
@@ -76,7 +79,10 @@ this equality therefore gives the same identity at every other retained
 unit, at every allowed label. Fix a base point. Its difference is a
 polynomial of degree at most 2 in the selector bits. A nonzero Boolean
 polynomial of degree at most \(d\) is nonzero on at least \(2^{-d}\)
-of its inputs, by induction on the variables. Fewer than a quarter of
+of its inputs. Indeed, taking a difference in a variable that occurs
+gives a nonzero polynomial of degree at most \(d-1\). Wherever this
+difference is 1, exactly one of the two original values is 1.
+Induction starts with a nonzero constant. Fewer than a quarter of
 the labels are excluded, so the identity extends to every label. It
 holds at every base point, including shared points.
 
@@ -99,16 +105,17 @@ Put
  v_i(t)=a(\lambda_i)+b_t(\lambda_i)+\alpha_i.
 \]
 Fix a common cell in \eqref{eq:fitted-prediction}. Solving for \(Z\)
-leaves every tester variable free. The ordinary tester part is
-\(\sum_t(v_i(t)+\gamma_{i,l})\eta_{l,t}\); the remaining part has
-matrix rank at most \(r_{\rm scr}\). Comparing their second differences
-gives the conservative bound used in Lean,
+leaves every tester variable free. The ordinary testers contribute
+\(\sum_t(v_i(t)+\gamma_{i,l})\eta_{l,t}\). On their variables the
+remaining part has a matrix representative of rank at most
+\(r_{\rm scr}\). Compare the polar matrices on these variables to get
 \begin{equation}\label{eq:tester-support}
  r_0|\supp(v_i+\gamma_{i,l}\mathbf1)|\le2r_{\rm scr}.
 \end{equation}
-One can read this comparison on disjoint tester pairs: their second
-differences contain an identity matrix, whereas the polar matrix of the
-remaining expression has rank at most \(2r_{\rm scr}\).
+Indeed, one row and its paired column from each contributing tester
+pair give an identity submatrix of size \(r_0|\supp(v_i+\gamma_{i,l}\mathbf1)|\).
+A matrix of rank \(r_{\rm scr}\), added to its transpose, has rank at
+most \(2r_{\rm scr}\).
 
 If two tags had different slopes, the vectors in
 \eqref{eq:tester-support} would be complements. The inequality
@@ -127,10 +134,9 @@ for every label and every base point at every retained unit.
 
 \subsection{Finite classes and consistency}
 
-The prediction classes are literal equalities. An endpoint is inactive
+An endpoint is inactive
 when \(\alpha_i=1\) and every \(Q_{i,l}=0\). Two active endpoints have
-the same class when their bits and polynomials agree. The other possibilities
-are distinct classes.
+the same class when their \(\alpha\) bits agree and their polynomials agree at every tag.
 
 The two predictor values depend on at most \(2R_*\) linear coordinates.
 Every value pair attained at a key contains a full fiber of these
@@ -147,8 +153,10 @@ because atoms span \(\cX\).
 
 Suppose now that \(\Delta=0\), so \(U_1\lambda_1=U_2\lambda_2\).
 Sum the equality of component tester values
-\eqref{eq:common-image-tester} along \(M_t\). Privacy of the ordinary
-blocks gives
+\eqref{eq:common-image-tester} along \(M_t\). Each tag except \(t\) contributes its ordinary bit
+once, so the ordinary sum on side \(i\) is
+\(a(\lambda_i)+o_t(\lambda_i)\). The shared sum is \(b_t(\lambda_i)\).
+Adding the two sides and substituting the definition of \(v_i(t)\) gives
 \[
  v_1+v_2=(\alpha_1+\alpha_2)\mathbf1+o(\lambda_1)+o(\lambda_2).
 \]
@@ -158,34 +166,37 @@ the all-one vector would be a sum of four vectors whose total support is
 at most \(4r_{\rm scr}/r_0+2e<g\). This is impossible. Thus
 \(\alpha_1=\alpha_2\).
 
-\subsection{The prepared alternatives}
+\subsection{The prepared alternatives}\label{subsec:prepared-patterns}
 
-Fix \(c=a(\lambda_1)+a(\lambda_2)\). Write
-\(v_i=u_{B_i}(\Delta_A)\), \(w_i=u_{A_i}(\Delta_B)\) in the following
-table; these are new scalar symbols, not the tester vectors above.
+Fix \(c=a(\lambda_1)+a(\lambda_2)\). Denote the four cross
+evaluations by \(b_i=u_{B_i}(\Delta_A)\) and \(b'_i=u_{A_i}(\Delta_B)\).
+The compatibility condition depends on which endpoints are active.
+
 \begin{center}
 \begin{tabular}{ll}
 \toprule
 Prediction class & Required relation\\
 \midrule
-Both inactive & \(v_1=v_2=w_1=w_2=c\)\\
-Only endpoint \(i\) active & \(v_i+w_i=1+\alpha_i\)\\
-Equal active pair & \(v_1+v_2+w_1+w_2=0\)\\
-No further relation & No condition\\
+Both inactive & \(b_1=b_2=b'_1=b'_2=c\)\\
+Only endpoint \(i\) active & \(b_i+b'_i=1+\alpha_i\)\\
+Equal active pair & \(b_1+b_2+b'_1+b'_2=0\)\\
+Distinct active endpoints & Every pair is compatible\\
 \bottomrule
 \end{tabular}
 \end{center}
 The dual calculation in \Cref{sec:status-span} proves this table.
 When both endpoints are inactive, \eqref{eq:exact-zero-class} gives
 \((u_{A_1}+u_{A_2})(\Delta_A)=0\). If also \(\Delta_A=0\), then
-\(c=0\); otherwise the two marks would witness an internal hole.
+\(c=0\). Indeed, \(c=1\) would make the two marks
+witness a hole inside the unit.
 
-Distinct active predictions permit every phase. When \(\Delta=0\),
-consistency gives compatibility. For the two reciprocal zero parities,
+When \(\Delta=0\), every cross evaluation vanishes. The equality
+of the two \(\alpha\) bits, together with the conclusion for inactive
+marks, gives compatibility in the cases requiring it. For the two reciprocal zero parities,
 \eqref{eq:rank-compatibility} gives compatible mass of order \(N^{-2}\).
-If ordinary trimming leaves a conditional probability of at least
-\(1/2\) wherever compatibility occurs, and its unsafe share is at most
-\(0.001\), this settles the case. When both predictions are inactive and the target
+This gives the required probability on leaf pairs if each pair on
+which compatibility is possible has conditional compatibility probability
+at least \(1/2\) and at most \(0.001\) of the compatible mass is unsafe. When both predictions are inactive and the target
 is zero, the four-zero count above applies. In each of these rank
 arguments, if the retained offsets span a space within the label budget of
 Lemma~\ref{lem:injection}, refine by the labels just described. Each
@@ -204,17 +215,20 @@ the component is symmetric. The frame count bounds the probability of
 this intersection. Summing over the at most \(2^{N/2}\) offsets of the
 given subspace gives mass at most \(2^{-N/8}\) for all sufficiently
 large \(n\). Such a set cannot have mass greater than \(1/2\).
-For the remaining laws use Proposition~\ref{thm:phase-alternative}. Its mixed case
-gives positive compatible mass. Its small cover gives the required
-label budget and the singleton estimates for prescribed bits.
+For the remaining laws apply Proposition~\ref{thm:phase-alternative}.
+In its first case each prescribed pattern has probability greater than
+\(.05\) by Fourier inversion. In the bounded cover case the cover
+supplies the labels, and the character estimates for single endpoints
+give the bounds for the prescribed bits in \Cref{sec:phases}.
 
-The mass bound is elementary. Suppose a first restriction has mass at
-least \(a>0\), and the next has conditional mass at least \(b>0\).
-If trimming deletes at most \(\delta\le ab/2\) of the original mass,
-the remainder has mass at least \(ab/2\). For any pair event, its
-probability after normalizing decreases by at most \(2\delta/(ab)\).
-Here \(a,b\) are fixed constants and every trimming error is exponentially
-small. This gives the claimed bound through both preparation branches.
+It remains to keep track of the restrictions. Suppose two successive
+restrictions have probabilities at least \(a>0\) and \(b>0\), the
+second conditional on the first. Their intersection has mass at least
+\(ab\). Removing a further mass \(\delta\le ab/2\) leaves at least
+\(ab/2\). On two independent draws from the restricted law the chance
+that either draw falls in the removed set is at most \(2\delta/(ab)\).
+This bounds the loss in any pair probability. Here \(a,b\) are fixed
+and \(\delta\) decreases exponentially with \(n\).
 
 % lax begin Lax793645.PreparedUnits
 \begin{proposition}\label{prop:status-preparation}
@@ -238,9 +252,11 @@ required index \(k\) across the cases. This works for any sequence of input
 laws. To make \(k\) uniform in the law, consider the indices \(j\le n\)
 for which some input fails at \(a_j\). Choose a failing input for the
 largest such \(j\).
-If no input fails there is nothing to prove at that dimension. The
-bound \(a_k\) for these chosen inputs works eventually for every input:
-a failure at index \(k\le n\) would give a chosen failure at an index
-\(j\ge k\), whereas success at \(k\) implies success at \(j\).
+At a dimension with no failing input, choose any admissible law if
+there is one. Apply the sequence bound to the chosen laws. For all
+large \(n\) they satisfy the conclusion at some fixed \(a_k\).
+If any law failed at \(k\le n\), our selection would fail at some
+\(j\ge k\). But \(a_j\le a_k\), so success at \(a_k\) also gives
+success at \(a_j\). This proves uniformity.
 \end{proof}
 % lax end

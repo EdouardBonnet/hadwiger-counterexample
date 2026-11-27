@@ -1,17 +1,20 @@
 \section{From overlap to four holes}\label{sec:collision}
 
-A numerical option specifies the lists, their labels and input types, all
-unary statuses, and the binary prescriptions from the preceding section.
-For a pair of leaves it also specifies a table and one orientation filter
-on each side. The filters may be chosen using both leaves. Once chosen,
-they are tested separately on the two independently drawn orientations.
+An \emph{option} specifies what to test at each position of the lists.
+It fixes the label and input law there, the required unary values, and
+the binary values from Lemma~\ref{lem:small-tables}. For each pair of
+leaves we also choose a table of cross pairings. Each leaf has a filter
+that accepts orientations agreeing with its part of the table. Both
+filters may depend on the pair of leaves. Once the leaves are fixed, an
+orientation on either side passes or fails its own filter independently
+of the draw on the other side.
 
 \subsection{The key reference law}
 
 A query samples the point parameters independently at its positions.
 One may condition a position on a prescribed possible diagonal bit. This
 has fixed positive probability and leaves \(Z\) uniform. All remaining
-conditions are acceptance tests; their probability is retained.
+conditions are tested without renormalizing after acceptance.
 They include the statuses, the binary prescriptions, the table flags, and
 independence modulo the protected base space.
 
@@ -35,23 +38,21 @@ Queries outside \(\cK_n\) are rejected. For a pair of leaves, let
 \(d_A,d_B\) be the densities of their accepted key measures relative to
 \(\nu_n\). Their integrals are at most 1.
 
-There is a useful exact formula at a fixed valid orientation \(o\).
-Let \(m_o(k)\) be the probability of the complete key \(k\) before
-acceptance. One incident component at each position suffices to
-recover the nominal point because its primal map is injective. Thus every
-input giving the same complete key passes the same tests. This includes
-the binary prescriptions and independence modulo the protected space.
-The accepted mass is \(m_o(k)\) if the orientation passes its filter
-and the key is feasible, and zero otherwise. Expanding the overlap
-of the two mixtures gives the average of these fixed-orientation
-overlaps. This argument also applies to filters chosen using both leaves.
-
-There is a direct way to detect small overlap. Put
-\(C=\{k:d_A(k)\le d_B(k)\}\), and write \(a,b\) for the accepted
-measures. Then \(a(C)+b(C^c)=\int\min(d_A,d_B)\,d\nu_n\).
-Its square is at most \(\int d_A d_B\,d\nu_n\) by Cauchy--Schwarz.
-Thus a pair with small overlap admits a cut of the complete keys
-across which little accepted mass passes.
+For fixed orientations, equality of the keys can be checked before
+averaging over the leaves. Indeed, one incident image at each position
+determines the nominal point by injectivity of the primal map. It
+therefore determines whether all the input tests pass. More generally,
+if \(a(k)\) and \(b(k)\) are the accepted masses of key \(k\) on the two
+sides, the probability of an accepted collision is \(\sum_k a(k)b(k)\).
+Since \(\nu_n\) is uniform, this gives the identity
+\[
+  \int d_A d_B\,d\nu_n
+       =|\cK_n|\sum_{k\in\cK_n}a(k)b(k).
+\]
+Conditional on the two leaves, their draws are independent. Expanding
+the product thus expresses the integral as the average of the overlaps
+at fixed orientations. We next bound the probability that an accepted
+collision extends to four holes.
 
 % lax begin Lax793645.QueryCollision
 \begin{proposition}[Collision bound]\label{prop:collision}
@@ -82,16 +83,17 @@ Fix both parameter lists and a common key. Freeze the images of the pins
 and key directions. At each unit record the pairings of all nominal columns
 with the opposite frozen images. These records determine every frozen
 cross entry and a deterministic choice of the completion in
-\Cref{thm:gradient-realization}. There are \(2^{Cn}\) records, where \(C\)
-is fixed before \(M_0\). There are \(O(n)\) nominal columns and only
-boundedly many frozen directions. The ambient images are already fixed;
-they are not charged a second time as records.
+\Cref{thm:gradient-realization}. With the frozen images specified, there are at most \(2^{Cn}\) records
+for a constant \(C\) fixed before \(M_0\). Indeed, each record gives one
+bit for each of \(O(n)\) nominal columns paired with each of a bounded
+number of frozen directions.
 
 Discard record cells of mass less than
 \(\tau_n=2^{-(k+.01)N}\), using the normalized leaf law.
 For the fixed parameter pair, the collision mass lost from the first
-side is at most \(2^{Cn}\tau_n\): sum first over its records, then over
-keys, using that the second accepted measure has total at most 1.
+side is at most \(2^{Cn}\tau_n\). For each key sum first over the
+discarded first-side records, then multiply by the second-side mass of
+that key. These latter masses sum to at most 1.
 The reciprocal loss has the same bound. Overlap is collision probability
 times \(|\cK_n|\), so the total overlap loss is at most
 \[
@@ -113,8 +115,7 @@ the keys.
 
 There remain at most \(s_n=16gh\dim B<.01N\) scalar cross entries to
 test. Expand their agreement indicator into binary characters. A character
-whose coefficient tensor vanishes after quotienting by pins and keys is
-already fixed; it equals one, since the completion preserves the frozen
+whose coefficient tensor vanishes after quotienting by pins and keys has value 1 because the completion agrees with all the frozen
 entries. Every other character has positive quotient rank \(t\).
 A rank factorization expresses its phase, apart from separate factors
 on each unit, as a nondegenerate pairing of two tuples of rank \(t\).
@@ -146,7 +147,7 @@ pruning error is negligible compared with \(2^{-o(N)}\). This gives
 \end{proof}
 % lax end
 
-Thus a hypothetical sequence violating raw supersaturation makes every
-expected accepted overlap tend to zero. In fact it makes these overlaps
-exponentially small. Our remaining task is to produce overlap, either on
-a fixed positive mass of leaf pairs or on an inverse-polynomial mass.
+Consequently, if supersaturation failed along a sequence of dimensions,
+the expected overlap of every option would be exponentially small.
+Even a lower bound of order \(N^{-4}\) for the overlap would give the
+required contradiction.

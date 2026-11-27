@@ -4,14 +4,15 @@ Use generic unary queries and common partitions whose cells are the full
 fibers of linear coordinates. At orientation \(o\), let \(h_{o,v}(C)\) be the conditional
 probability of status \(v\) in cell \(C\), and put
 \(S_{o,v}=\{C:h_{o,v}(C)>0\}\).
-For an empty empirical cell use the unconditioned status law as a fallback.
-We will use only these supports and a fixed lower bound on their probabilities.
+If the query gives a cell zero mass, assign that cell the unconditioned
+status law. This defines \(h_{o,v}\) everywhere. On the orientations
+where we later extract predictions, every reference cell is attained.
 
 The full status depends on at most \(m\) affine linear forms of the input,
 where \(m\) is a construction constant. On any nonempty affine cell,
 these forms are uniform on an affine space of dimension at most \(m\).
 A possible status therefore has probability at least \(\theta=2^{-m}\).
-The same holds for the fallback law. Conditioning on a diagonal bit
+The same argument applies to the unconditioned law on an empty cell. Conditioning on a diagonal bit
 already recorded in the status can only increase its probability.
 Thus
 \[
@@ -31,17 +32,21 @@ For a complete numerical option \(\omega\), set
 \end{equation}
 The constants \(\kappa\) are the probabilities of the prescribed binary
 patterns. There are finitely many options, and their positive \(\kappa\)'s
-have a positive minimum. Options record numerical data, not partition cells.
+have a positive minimum. The numerical data defining an option can be enumerated before any
+partition is chosen.
 
 \subsection{From supports to accepted measures}
 
-For an option with \(s\) positions, use the bounded surrogate
+For an option with \(s\) positions put
 \[
  f_o(k)=\kappa_\omega\theta^s
              \prod_i1_{S_{o,v_i}}(C_i(k_i)).
 \]
-Average it with the acceptance filter over a leaf to obtain \(f\).
-Let \(d\) be the actual accepted key density before protected-base rejection.
+At each position the corresponding indicator records whether the
+required status is possible. The factor \(\theta^s\) accounts for its
+minimum probability at all \(s\) positions. Multiply by the orientation
+filter and average over a leaf to obtain \(f\).
+Let \(d\) be the density of accepted keys before testing independence modulo \(F_0\).
 The exact product expansion \eqref{eq:exact-product}, unary concentration,
 and binary mixing give
 \begin{equation}\label{eq:projected-error}
@@ -50,13 +55,13 @@ and binary mixing give
 in average over leaves. To see the direction of this inequality, test
 against a nonnegative function on the common partition. Its product
 expansion uses nonnegative unary cell tests. The support lower bound
-applies to each factor; binary mixing compares their product with the
-accepted tuple query. Testing the set where the projected excess is
+applies to each factor. Binary mixing compares the resulting product
+with the probability of accepting the tuple. Testing the set where the projected excess is
 positive gives \eqref{eq:projected-error}.
 The error can be made arbitrarily small, uniformly over the permitted
 filters chosen using both leaves.
 
-The Gram reference law has approximate product integrals:
+For functions of separate positions the Gram reference law satisfies
 \[
  \int\prod_iF_i(k_i)\,d\nu
    =\prod_i\int F_i\,d\mu_i+O(2^{-cN}),\qquad |F_i|\le1.
@@ -94,15 +99,18 @@ leaves. Equation \eqref{eq:projected-error} bounds the remaining terms.
 The acceptance filters are applied after drawing the two leaves.
 Their dependence on the pair does not alter this averaging argument.
 
-Protected-base rejection also fits this comparison. If \(d^G\le d\)
+It remains to discard inputs whose base vectors are dependent modulo
+the pins' protected base space \(F_0\). If \(d^G\le d\)
 and \(\|d-d^G\|_1\le\delta_n\), then
 \[
  \|(\Pi f-\Pi d^G)_+\|_1
  \le\|(\Pi f-\Pi d)_+\|_1+\delta_n.
 \]
-The common-projection estimate already allows these dominated rejections.
-Use its bounded approximants to compare with the actual rejected overlap.
-Equation \eqref{eq:base-rejection} makes the added error exponentially small.
+For the passage back to the product of the actual densities, use
+\eqref{eq:bounded-overlap-transfer}. A bounded approximant for \(d\)
+also approximates \(d^G\), with at most \(\delta_n\) additional
+\(L^1\) error. By \eqref{eq:base-rejection} this error decreases
+exponentially with \(n\).
 
 % lax begin Lax793645.SupportScores
 \begin{proposition}\label{prop:finite-score-bound}
@@ -116,12 +124,17 @@ They precede all permitted filters depending on the two leaves.
 % lax end
 % lax begin Lax793645Proofs.Manuscript.SupportScores.one_generic_lightmap
 \begin{proof}
-Choose the projection and comparison errors small in terms of
-\(\theta^{2s}\). Equations \eqref{eq:projected-error} and
-\eqref{eq:projected-mend} bound the mean square surrogate overlap.
-Cauchy--Schwarz bounds its mean. Reference product comparison then bounds
-the expected score. Sum over the finite option family and use
-\eqref{eq:score-markov} below.
+Let \(J_0\) be the number of options. For fixed leaves let
+\(X_\omega=\langle f,g\rangle_\nu\). Equations \eqref{eq:projected-error}
+and \eqref{eq:projected-mend}, followed by
+\eqref{eq:bounded-overlap-transfer}, bound \(\E X_\omega^2\) by the
+expected actual overlap plus an error that we can make arbitrarily
+small. Since \(\E X_\omega\le(\E X_\omega^2)^{1/2}\), the product
+estimate above makes \(\E s_\omega<a\epsilon/J_0\) for large \(n\).
+Here we can choose the accuracy for all options at once because \(J_0\)
+and the factors \(\theta^{2s}\) are fixed. Summing over the options
+and applying \eqref{eq:score-markov} proves the claim.
+
 \end{proof}
 % lax end
 
@@ -135,6 +148,7 @@ Indeed the indicator on the left is at most
 \(a^{-1}\sum_\omega s_\omega\) pointwise.
 % lax end
 
-The collision bound gives the hypothesis for a hypothetical countersequence.
-The scalar argument will force a score bounded away from zero unless
-common predictors exist.
+If supersaturation fails along a sequence, Proposition~\ref{prop:collision}
+gives the hypothesis of Proposition~\ref{prop:finite-score-bound}.
+We next show that the scalar equations force a positive score on a
+positive fraction of pairs in the absence of common predictions.

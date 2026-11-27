@@ -20,7 +20,7 @@ role bit $a(\mathrm{atom})$. The basis status
 vector at an endpoint is denoted by $\mathbf x$, and its dimension is
 the recorded dimension of that endpoint's effective space $C_i$.
 
-\subsection{A gap for conditional supports}
+\subsection{How small can a positive overlap be?}
 
 Fix a common partition given by at most \(R\) linear rows. Its cells
 must be the full fibers of those rows. Discard the prepared rank exception
@@ -31,8 +31,9 @@ at most \(16\cdot2^{2gR+b-31n/32}\), before either leaf is chosen.
 Every full unary status is a function of at most \(m\) affine linear
 forms of the nominal input. Here \(m\) depends only on the construction
 and the pin bound. Indeed each status bit has a matrix representative
-of bounded rank; factor that matrix and collect the resulting linear
-forms. Include the tester bits, role, effective-basis values, and
+of bounded rank. A rank \(j\) matrix factors through at most \(2j\)
+linear forms in its quadratic expression. Collect these forms over the
+finitely many bits. Include the tester bits, role, effective-basis values, and
 internal bit \(p_i\).
 
 For a good orientation, use the independent coordinates \((c,y,z')\)
@@ -49,8 +50,9 @@ Include the diagonal bit in the full status before conditioning on it.
 Since that bit is independent of \(c\), the same lower bound holds
 for every positive probability after conditioning.
 
-Two nonempty intersecting status supports contain a common fiber of at
-most \(2m\) rows. Its uniform mass is at least \(2^{-2m}\). The
+If two status supports meet at \(c\), take all the rows on which
+either support depends. Every point with the same values as \(c\) on
+those rows lies in both supports. This fiber uses at most \(2m\) rows. Its uniform mass is at least \(2^{-2m}\). The
 reference cell law is within a factor of 2 of the uniform coordinate law,
 by the Gram Fourier estimate. Thus
 \begin{equation}\label{eq:status-support-gap}
@@ -60,8 +62,8 @@ by the Gram Fourier estimate. Thus
 \end{equation}
 Choose \(0<\eta\le2^{-4m-1}\), also satisfying the positivity bounds
 below. This choice precedes the common partition. These statements concern
-inputs before the protected-base rejection; its exponentially small cost
-is still charged in the query comparison.
+inputs before the test for independence modulo \(F_0\). Equation
+\eqref{eq:base-rejection} accounts for the subsequent rejection.
 
 \subsection{Generators and the coupled linear system}
 
@@ -78,16 +80,16 @@ On the cross edge $(i,j)$, an available generator consists of a vector
 \label{eq:status-generator-vector}
 g=(q,h_{A,i},h_{B,j},\mathbf x_{A,i},\mathbf x_{B,j},p_{A,i},p_{B,j})
 \end{equation}
-and a \emph{certificate}: a common tag, a surviving label at each end,
-generic inputs, and full tester summaries possible in a common cell. By
+together with data witnessing it. Specify a common tag and a surviving
+label at each end. The full statuses, including the individual tester
+values, must be attainable by generic inputs in a common cell. We call
+these data a \emph{certificate} for \(g\). By
 \eqref{eq:status-support-gap}, this is equivalent to their conditional
 probability overlap being at least the fixed threshold $\eta>0$.
 Their support overlap \eqref{eq:table-overlap} is at least as large.
-Tester entries not displayed in \eqref{eq:status-generator-vector}
-remain part of the certificate. All witnessing certificates remain available.
-Generators with the same numerical vector and different certificates
-may therefore be used as different occurrences. Sums and spans of
-generators refer to their numerical vectors.
+Different certificates can give the same vector \(g\). We keep the
+labels with each certificate when choosing lists, but take spans in
+the vector space of the numerical entries.
 
 Let $V_{ij}$ be the binary span of these generators. Its \emph{base
 projection} forgets the final two $p$ entries and has target
@@ -98,27 +100,32 @@ B_{ij}=\F\oplus\F\oplus\F\oplus
 \end{definition}
 % lax end
 
-Choose $\eta$ small enough in terms of the construction parameters.
-Let $B_{\rm stat}$ bound the number of pairs of full numerical statuses, uniformly
-in all types and padded coordinate formats. On cells of reference mass above a fixed threshold, the total probability
-of a prescribed generic role and basis assignment is at least a fixed $\beta>0$. The omitted reference cells
-have total mass less than $1/2$. For any two such assignments, the sum
-of their pair overlaps is therefore at least $\beta^2/2$.
-If $B_{\rm stat}\eta<\beta^2/2$, one full-status pair has overlap at least $\eta$.
-This works for every surviving pair of generic labels and either
-feasible diagonal bit. Consequently
+Let \(B_{\rm stat}\) bound the number of pairs of full numerical
+statuses at any two endpoints. Fix feasible values of the diagonal bit
+and a generic label on each side. On reference cells of sufficient mass
+each prescribed role and basis assignment has conditional probability
+at least \(\beta>0\). The cells omitted by the unary estimate have
+total mass less than \(1/2\). Summing the full status overlaps compatible
+with the two assignments therefore gives at least \(\beta^2/2\).
+There are at most \(B_{\rm stat}\) summands. Take
+\(B_{\rm stat}\eta<\beta^2/2\). Some certificate then gives the
+prescribed assignment with overlap at least \(\eta\), for any surviving
+pair of labels.
+
+Consequently
 \begin{equation}\label{eq:status-full-projection}
  V_{ij}\longrightarrow B_{ij}\text{ is surjective},\qquad
  \dim\ker(V_{ij}\longrightarrow B_{ij})\le2.
 \end{equation}
 This remains true after any exclusions leaving generic labels.
 
-Fix a small table. Its local target basis vectors are the evaluations of
+Fix a table of cross pairings. It prescribes the values on each
+effective basis through the two functionals
 \[
 (a+u_{B,j}U_{A,i})|_{C_{A,i}},\qquad
-(a+u_{A,i}U_{B,j})|_{C_{B,j}},
+(a+u_{A,i}U_{B,j})|_{C_{B,j}}.
 \]
-in the recorded bases. Denote these vectors by
+Write their coordinate vectors in the recorded bases as
 $\mathbf t_{A,i;j}$ and $\mathbf t_{B,j;i}$, respectively. We seek one
 sum vector $v_{ij}\in V_{ij}$ for each cross edge, subject to
 \begin{equation}
@@ -137,11 +144,12 @@ q_{ij}&=1,& h_{A,i;ij}+h_{B,j;ij}&=1,\\
 \end{aligned}
 \end{equation}
 These are the conditions \eqref{eq:recipe-scalars}--\eqref{eq:recipe-balance}.
-The edge subscript distinguishes the two occurrences of an endpoint.
-They give the required effective-space values. The binary prescriptions
-of Lemma~\ref{lem:small-tables} supply the values on selected atoms.
-The realization theorem then completes the functionals. Its coordinate
-construction allows images of pins at different endpoints to meet.
+For example, \(p_{A,i;ij}\) denotes the sum of the internal bits
+at endpoint \(A_i\) over the list for edge \(ij\). This lets the two
+lists at \(A_i\) have different sums.
+Once the vectors \(v_{ij}\) are chosen, Lemma~\ref{lem:small-tables}
+prescribes the remaining values on selected atoms. With matching keys,
+Theorem~\ref{thm:gradient-realization} then completes the functionals.
 
 % lax begin Lax793645.ScalarDuality
 \begin{lemma}[Dual relations]
@@ -177,7 +185,7 @@ so their evaluated contribution is the sum stated in the lemma.
 \end{proof}
 % lax end
 
-\subsection{Dual relations and a bounded dictionary of predictions}
+\subsection{Which predictions can a dual relation give?}
 
 Say that a pair has a \emph{dual relation} if some permitted exclusions
 and some nonzero coupled coefficients give \eqref{eq:status-dual-relation}
@@ -192,16 +200,18 @@ conditional supports are nonempty. Every pair in their Cartesian product
 is available. A relation of the form
 \(a(v_A)+b(v_B)=\gamma q\) therefore forces each unary parity to be
 constant on its support. This gives a common function of \(q,c\).
-Every actual input has positive conditional mass, so its identity holds
-at every input. There is no prediction error to transfer.
+Each input point has positive mass in its cell, so the identity holds
+at every input point.
 
 % lax begin Lax793645.SevenPredictions
 \begin{lemma}[Seven common predictor pairs]\label{lem:finite-dictionary}
-Each good second-side unit has a catalogue of at most 7 pairs of
-functions of the common key cells. If a dual relation has some
-\(s_j=1\), one catalogue pair predicts both first-side endpoint bits
-exactly. The coefficients and excluded labels may depend on the first
-unit; the catalogue depends only on the second unit.
+Fix a second unit outside the rank and unary exceptions. There are at
+most 7 pairs of functions of the common key cells such that, for each
+first unit forming a good pair with it, the following holds. If there
+is a dual relation with some \(s_j=1\), one pair of functions predicts
+both of the first unit's endpoint bits exactly. The coefficients and
+label exclusions may depend on the first unit.
+
 \end{lemma}
 % lax end
 % lax begin Lax793645Proofs.Manuscript.SevenPredictions.exact_seven_alternative
@@ -217,14 +227,16 @@ inequality is recorded in Appendix~\ref{sec:parameters}.
 
 At a fixed endpoint there is at most one such expression. To see this,
 subtract two of them on a generic label surviving both exclusions.
-Generic positivity of the role and basis values forces their
-coefficients to agree. Their functions then agree on every positive
-reference cell, because every conditional status law is nonempty.
-This argument needs positivity on the substantial cells used in the
-existing query estimate; it does not assume positivity on every tiny cell.
-Choose the unique endpoint predictor when one exists, and zero otherwise.
+On a cell where every role and basis assignment has positive
+conditional probability, vary one bit while keeping the cell fixed.
+The two expressions then have the same coefficient at that bit.
+Doing this for each bit identifies \(\lambda\) and \(\alpha\). Once
+the coefficients agree, evaluating at any input of a cell identifies
+the value of \(Q\) there. Every reference cell has such an input by
+\eqref{eq:prepared-rank}. Full freedom of the role and basis bits is
+needed only for the first step.
 
-Rearrange the edge relation for \(s_j=1\):
+For \(s_j=1\), rearranging \eqref{eq:status-dual-relation} gives
 \begin{align}
  p_{A,i}+\mathbf c_{ij}\cdot\mathbf x_{A,i}
               +(1+\beta_{ij})h_{A,i}
@@ -236,20 +248,20 @@ If \(r_i=0\), positivity on the second side forces
 \(\mathbf c'_{ij}=0\) and \(\beta_{ij}=0\). The first side then has
 the inactive predictor \(Q=0,\alpha=1\). If \(r_i=1\), both endpoints
 have their unique predictors. They have the same \(\alpha\) and \(Q\).
-The possible multiple of \(q\) is zero: the normalized functions are
-independent of \(q\), and both diagonal reference laws give positive
-mass to the full cell through any key.
+Both diagonal reference laws give positive mass to the same common
+cells. The two normalized functions are independent of \(q\), so
+evaluating at the two values of \(q\) forces its coefficient to be zero.
 
-For a fixed second unit the first predictor pair is consequently one of
+Fix \(j\) with \(s_j=1\). Each first endpoint has predictor 0 or
+\(Q_{B,j}\), according as \(r_i=0\) or \(1\). Allowing either choice
+of \(j\) gives at most 7 possibilities for the first unit, namely
 \[
  (0,0),\quad(0,Q_{B,1}),\quad(Q_{B,1},0),\quad(Q_{B,1},Q_{B,1}),
 \]
 \[
  (0,Q_{B,2}),\quad(Q_{B,2},0),\quad(Q_{B,2},Q_{B,2}).
 \]
-Omit choices whose endpoint predictor does not exist. This proves the
-bound of seven. The functions are exact quadratic functions of bounded
-linear coordinates, by the preceding section.
+Discard any choice requiring a nonexistent endpoint predictor.
 \end{proof}
 % lax end
 
@@ -262,20 +274,18 @@ independent unit pairs having a dual relation is at most \(.002\).
 % lax end
 % lax begin Lax793645Proofs.Manuscript.RareObstructions.witnessed_cost
 \begin{proof}
-Fix the second unit. Each of its seven catalogue pairs predicts on
-first-unit mass less than \(10^{-6}\); otherwise it contradicts the
-preparation alternative. Their union has mass at most \(7\cdot10^{-6}\),
+Fix the second unit. Each pair of functions in
+Lemma~\ref{lem:finite-dictionary} predicts on first units of mass less
+than \(10^{-6}\), by the definition of the alternative without predictions. Their union has mass at most \(7\cdot10^{-6}\),
 and hence at most \(.001\). Average over the independently drawn second
 unit. Interchanging the units gives the same bound for relations with a
 nonzero coefficient on the other side. Every nonzero coupled relation
 belongs to one of these two events.
 
-The prepared rank and unary comparison exceptions are charged separately.
-The Lean proof bounds each unit's combined exceptional mass by \(1/8\).
-Their union on pairs has mass at most \(1/4\). Safe pairs have mass
-above \(.99\), so a fixed positive mass remains after also removing the
-obstruction event. No independence between safety and the obstruction
-was assumed. The two unit draws themselves remain independent throughout.
+This bound concerns pairs outside the rank and unary exceptions.
+Those exceptions have mass at most \(1/8\) for each unit, hence at most
+\(1/4\) for the pair.
+
 \end{proof}
 % lax end
 
@@ -286,9 +296,10 @@ Use every attained pair. Each has reference mass at least
 \(\eta=2^{-2R_*}/2\) on both diagonal slices, by the coordinate count
 in Proposition~\ref{prop:status-preparation}. When both endpoints are inactive
 the only pair is \((0,0)\).
-Let \(e_i\) be a class symbol: it is zero for an inactive endpoint,
-and two active symbols are equal exactly when their bits and polynomials agree.
-Distinct nonzero symbols are treated as independent binary vectors.
+Put \(e_i=0\) for an inactive endpoint,
+and associate a distinct basis vector to each distinct active class.
+Thus \(e_i=e_j\ne0\) precisely when both endpoints are active with
+the same \(\alpha\) bit and the same predictor polynomials.
 
 At any retained cell the role and basis coordinates can be prescribed
 arbitrarily. Define
@@ -309,9 +320,10 @@ The table contractions are
 
 % lax begin Lax793645.PredictedScalarSystem
 \begin{lemma}[Predicted scalar compatibility]\label{lem:status-predicted}
-For every compatible injecting table the predicted generators on retained
-cells have a soluble scalar system. Each edge solution can be represented
-by between one and three such generators, at fresh generic labels.
+For every compatible table satisfying \eqref{eq:endpoint-injection},
+the scalar system has a solution in the spans of the predicted
+generators. On each edge the solution is a sum of 1 to 3 such
+generators with fresh generic labels.
 \end{lemma}
 % lax end
 % lax begin Lax793645Proofs.Manuscript.PredictedScalarSystem.one_attained_scalar_soluble
@@ -325,13 +337,14 @@ force the exact coefficient identities
  \beta_{ij}=s_j(1+\alpha_i)=r_i(1+\alpha_j).
 \end{equation}
 The remaining relation \(s_jf_i+r_if_j=\gamma_{ij}q\) holds on every
-attained cell. Evaluate it at the same key for \(q=0\) and \(q=1\).
-The predictor values agree on the two slices, so \(\gamma_{ij}=0\).
+attained cell. Each pair of predictor values occurs on both diagonal
+slices. Keeping these values fixed and taking \(q=0\) and \(q=1\) gives \(\gamma_{ij}=0\).
 The remaining equality holds at every key. Together with
 \eqref{eq:status-forced-coefficients}, this gives \(s_je_i=r_ie_j\).
 If both endpoints are inactive, their exact identities and table compatibility annul
 all coupled targets. Otherwise a nonzero weight pattern requires the
-nonzero classes to coincide: \(s_i=r_i=\1_{i\in S}\) on their support.
+nonzero classes to coincide. In that case the weights are
+\(s_i=r_i=\1_{i\in S}\) for their common support \(S\).
 The marked role contributions cancel between units. The remaining
 contribution is
 \[
@@ -348,25 +361,31 @@ free role and basis coordinates on one occurrence, and zero on the
 others. Every retained pattern allows those choices at arbitrary generic
 labels. Choose labels greedily outside the pin exclusions, prediction
 exceptions, and already chosen labels. There are at most 12 positions,
-and the existing label budget leaves enough choices. No stabilization
-of spans by repeated label deletion is needed for predicted lists.
+so \eqref{eq:selector-size} leaves a permissible choice at every step.
 \end{proof}
 % lax end
 
 % lax begin Lax793645.SolublePairs
 \begin{lemma}[Scalar solvability on positive mass]\label{lem:status-span}
-For some fixed sufficiently small $\eta>0$, the alternative without common predictions of Proposition~\ref{prop:status-preparation} has a fixed positive mass
-of safe consistent tables for which the thresholded scalar system is
-soluble, robustly under the exclusions needed below.
+In the alternative without common predictions of
+Proposition~\ref{prop:status-preparation}, choose \(\eta>0\) below the
+bounds in \eqref{eq:status-support-gap} and the proof of
+\eqref{eq:status-full-projection}. On a set of pairs of mass bounded
+below by a positive constant, the table is safe and consistent and
+the scalar system is soluble after every permitted label exclusion.
+
 \end{lemma}
 % lax end
 % lax begin Lax793645Proofs.Manuscript.SolublePairs.no_out
 \begin{proof}
-Without prediction, safe consistent tables have mass at least $.99$.
-The event of a dual relation under the unflagged iid law has mass at most
-$.002$ on good pairs. Subtract this and the exceptional masses and the small unary exceptional mass; a fixed
-positive mass remains. This is an intersection bound and assumes no
-independence between the two events.
+By Proposition~\ref{prop:status-preparation} the probability of a
+safe pair is greater than \(.99\). Removing the rank and unary exceptions
+costs at most \(1/4\), and Lemma~\ref{lem:status-global-prediction}
+costs at most \(.002\) on the remaining pairs. A positive fraction
+therefore survives all these restrictions. For any such pair,
+Lemma~\ref{lem:status-duality} gives solvability for its consistent
+table after every permitted choice of exclusions.
+
 \end{proof}
 % lax end
 
@@ -375,10 +394,11 @@ independence between the two events.
 It remains to replace a vector in an edge span by a short list of actual
 generators, using distinct labels across both lists at an endpoint.
 The base space may have large dimension, but every base vector has a
-single-generator lift at fresh generic labels. Only the discrepancy in
-the kernel must be corrected. Its dimension is at most 2 by
-\eqref{eq:status-full-projection}; we will choose a kernel basis whose
-vectors each use at most 3 generators, giving the bound $1+3+3=7$.
+lift consisting of a single generator at fresh generic labels.
+The discrepancy from the desired vector belongs to the kernel, which
+has dimension at most 2 by \eqref{eq:status-full-projection}. We will
+show that it has a basis whose vectors each use at most 3 generators.
+This gives a list of length at most \(1+3+3=7\).
 
 % lax begin Lax793645.LabelDeletion
 \begin{lemma}[Deleting labels preserves the spans]\label{lem:span-continuation}
@@ -415,12 +435,11 @@ have the same annihilator and are equal.
 \begin{lemma}[Fresh lists of at most 7 generators]
 \label{lem:fresh-lists}
 On each pair with a soluble scalar system from Lemma~\ref{lem:status-span},
-every scalar solution on the four edge spans can be realized by between
-one and seven available generic
-generators per edge. The two endpoint labels of each generator are
-retained with its certificate, and all labels used at an endpoint are
-independent modulo its protected selector space, across its two incident lists. Every realized matched
-position has status overlap at least $\eta$.
+each scalar solution can be realized with 1 to 7 available generic
+generators on each edge. Over both lists at an endpoint, the chosen
+selectors are independent modulo its protected selector space. Each
+generator retains its certificate, so the matched status overlap at
+each position is at least \(\eta\).
 \end{lemma}
 % lax end
 
@@ -436,50 +455,47 @@ We prove a statement for one edge after any labels used on earlier
 edges have also been reserved. Write its original span as $V$, its
 base space as $B$, and its projection as $\pi$. Let $G_L$ be the
 generators avoiding the current reserved sets $L$. Their span is still
-$V$. Let $H_L$ be the span of sums of one, two, or three members of
-$G_L$ whose total base projection is zero and whose selector vectors
-are independent modulo the current protected spaces within that word. We claim
+$V$. Let \(H_L\) be spanned by the sums of at most 3 generators of \(G_L\)
+that project to zero. Within each such sum the selector vectors must be
+independent modulo the current protected spaces at both endpoints.
+We claim
+
 \begin{equation}
 \label{eq:status-short-kernel}
 H_L=\ker\pi.
 \end{equation}
 
-To prove the claim, take two generator lifts of the same $b\in B$.
-There is a third generic lift of $b$ whose selector vectors avoid the
-spans of either earlier lift together with the protected spaces and $L$. Comparing each original lift to this third one gives an
-allowed two-generator kernel word. Hence all lifts of $b$ have the
-same class modulo $H_L$. Call that class $\ell(b)$. A generator
-above base zero is itself an allowed one-generator kernel word, so
-$\ell(0)=0$. Choose generic lifts of $b,c,b+c$ successively outside the enlarged
-selector spans, so the three selector vectors are independent on each side. Their sum is an allowed three-generator kernel word,
-and therefore $\ell(b)+\ell(c)=\ell(b+c)$. The generators span $V$,
-so this additive lift identifies $V/H_L$ with $B$: the induced
-projection is inverse to $\ell$. This proves
-\eqref{eq:status-short-kernel}, including the case of zero base
-projection.
+Take two generators lifting the same \(b\in B\). Choose a third
+lift of \(b\) whose selectors are independent of those of either lift
+modulo the protected spaces, avoiding \(L\) as well. Adding it to
+either original lift gives an allowed sum of length 2 in \(H_L\).
+The original lifts thus have the same class modulo \(H_L\). Denote
+that class by \(\ell(b)\). A generator above zero already belongs to
+\(H_L\), so \(\ell(0)=0\).
 
-For the desired vector in $V$, first choose a generic singleton lift
-of its base projection. Enlarge each protected selector space by this
-vector, excluding every label in the enlarged span. The remaining discrepancy
-belongs to $\ker\pi$, whose dimension is at most 2. On the remaining
-labels \eqref{eq:status-short-kernel} still holds by
-Lemma~\ref{lem:span-continuation}. If the kernel is zero no correction is needed. If it is
-one-dimensional, choose a nonzero short kernel word and use it if
-needed. If it is two-dimensional, choose a nonzero independent short word, enlarge the protected spaces
-by its at most 3 selector vectors, and apply
-\eqref{eq:status-short-kernel} again. The new short words still span
-the full kernel, so one lies outside the first word's direction.
-These two words form a basis and the discrepancy is the sum of an
-appropriate subset of them. This uses at most
-$1+3+3=7$ generators. The initial lift is always retained, so the list
-is nonempty. Independence modulo each enlarged protected space implies
-joint independence of all retained selector vectors, even when the
-numerical status vectors coincide.
+Choose lifts of \(b,c,b+c\) in turn, preserving independence of the
+selectors at both endpoints. Their sum projects to zero and has length
+3, so \(\ell(b)+\ell(c)=\ell(b+c)\). This makes \(\ell\) linear.
+It is inverse to the projection \(V/H_L\to B\) on each generator.
+The generators span \(V\), proving \eqref{eq:status-short-kernel}.
+
+Now lift the base projection of the desired vector with one generator
+and reserve its selectors. The discrepancy belongs to \(\ker\pi\).
+As long as the kernel vectors chosen so far span a proper subspace
+of \(\ker\pi\), choose a sum of at most 3 fresh generators lying
+outside that subspace. Such a sum exists by
+\eqref{eq:status-short-kernel}, since Lemma~\ref{lem:span-continuation}
+preserves the edge span after each reservation. Reserve its selectors
+before choosing another sum. In at most 2 steps the resulting sums
+form a basis of \(\ker\pi\). Add those needed for the discrepancy
+to the initial lift. Its list is nonempty and has length at most 7.
+Because each reservation included all previous choices, the selected
+labels are independent modulo the protected spaces at both endpoints.
 
 Carry out this procedure on the four edges in turn, enlarging the
 protected spaces by all earlier choices. A unit uses at most 28 selected
 vectors. The auxiliary short-word comparisons require at most 6 more
-vectors; every excluded span therefore contains at most $2^{d_S+34}=H_*$
+vectors. Every excluded span therefore contains at most $2^{d_S+34}=H_*$
 labels. The deletion lemma applies at every step. The generators retain their
 certificates of overlap at least $\eta$, proving the lemma.
 \end{proof}
@@ -490,10 +506,11 @@ certificates of overlap at least $\eta$, proving the lemma.
 % lax begin Lax793645.UnpredictedOverlap
 \begin{proposition}[Positive-mass overlap]\label{prop:positive-overlap}
 In the alternative without common predictions of Proposition~\ref{prop:status-preparation},
-some fixed numerical option has expected unnormalized actual
-successful-query overlap bounded below by a positive constant along a
-subsequence. This includes the permitted restrictions of reciprocal
-mass $2^{o(N)}$, and implies the overlap condition in Proposition~\ref{prop:collision}.
+there is a fixed option for which the expected overlap of the
+accepted key measures is bounded below by a positive constant along
+a subsequence. Restoring any permitted restriction of mass
+\(2^{-o(N)}\) still gives the overlap required by
+Proposition~\ref{prop:collision}.
 \end{proposition}
 % lax end
 % lax begin Lax793645Proofs.Manuscript.UnpredictedOverlap.one_quiet_end
@@ -513,12 +530,12 @@ of score at least $a$ for each of these pairs. Tester summaries were
 included in the certificates at the outset, so no subsequent subdivision
 reduces this bound.
 
-But Proposition~\ref{prop:finite-score-bound}, with exceptional and score probabilities
-smaller than the retained mass $c$, says that such pairs are arbitrarily
-rare. Equivalently $\sum_\omega\E s_\omega\ge ca$, whereas each expectation
-can be made arbitrarily small. This is the contradiction.
-Finally, restrictions of reciprocal mass $2^{o(N)}$ are charged by
-Proposition~\ref{prop:collision}; a positive constant times those costs is
-$2^{-o(N)}$. The final collision exponent is $56+.03<200$, leaving room for this cost.
+Thus \(\PP\{\exists\omega:s_\omega\ge a\}\ge c\). Apply
+Proposition~\ref{prop:finite-score-bound} with this \(a\) and
+\(\epsilon=c/2\). It gives the opposite bound for large \(n\),
+a contradiction. If a restriction has mass \(2^{-o(N)}\), restoring
+it for two independent draws multiplies the lower bound by
+\(2^{-o(N)}\), as in Proposition~\ref{prop:collision}.
+
 \end{proof}
 % lax end

@@ -34,8 +34,9 @@ has size \(2^{N-a}\). The quadratic Gauss sum on that set is
 To obtain this identity, expand each polar equation as
 \(\frac12\sum_{t_i\in\F}(-1)^{t_i(\beta_0(v_i,v)+b_i)}\),
 then translate \(v\) by \(\sum_i t_iv_i\) in the hyperbolic Gauss sum.
-Its absolute value is at most \(2^{N/2}\). Adding or subtracting this sum
-from the size of the affine solution set gives the asserted count.
+The sum has absolute value at most \(2^{N/2}\). It is the number of
+solutions with quadratic value 0 minus the number with value 1. Their
+sum is \(2^{N-a}\), which gives the asserted count for either value.
 
 A vector in the old span is \(\sum_i t_iv_i\). Whether it satisfies the
 new equations is determined by the old Gram data. Thus the number excluded
@@ -78,8 +79,7 @@ these Gram equations. We do that explicitly in \Cref{sec:histograms}.
 
 A \emph{pin} specifies the exact images of a coefficient subspace under
 the unit's frame maps. A \emph{leaf} is a conditional law together with
-its pins. The probability of the leaf is retained in a separate mixing
-law. We require the pin space to be closed under projection onto the
+its pins. We require the pin space to be closed under projection onto the
 primal and the two channel blocks at each of the two endpoints.
 There are six projections.
 
@@ -91,8 +91,9 @@ queries are needed.
 
 % lax begin Lax793645.ClosedPins
 \begin{lemma}[Closed pins]\label{lem:closed-peeling}
-A unit law with a fixed exponential density cap admits a decomposition
-into leaves with bounded pin dimension and a spreading estimate. The pins
+From a unit law with a fixed exponential density cap one can retain
+at least half its mass as a mixture of spreading leaves. Their total pin
+dimension on each leaf has a bound independent of \(n\). The pins
 may be required to be closed under the six block projections. Further
 restriction to a set of mass \(2^{-o(N)}\) allows another such decomposition,
 with a larger fixed pin budget and twice the original spreading error.
@@ -102,8 +103,10 @@ with a larger fixed pin budget and twice the original spreading error.
 \begin{proof}
 If a leaf violates spreading, condition on a violating exact-image event
 of new rank \(t\). Close its coefficient space under the block projections.
-If the closure adds \(u\) directions, then \(u\le6t\). Specify the other
-\(u-t\) images. At least one specification has conditional mass
+Let \(u\) be the total new dimension after closure, including the
+original \(t\) directions. Each direction has at most 6 projections, so
+\(t\le u\le6t\). There are at most \(2^{(u-t)N}\) ways to specify the
+remaining images. Some choice has conditional probability at least
 \(2^{-(u-t)N}\). The whole step thus has mass at least
 \[
  2^{-(1-\zeta)tN}2^{-(u-t)N}
@@ -134,8 +137,8 @@ gives the new leaves.
 % lax end
 
 Let \(K\) bound the total pin dimension. Write \(P_{i,e}\le B\) for the
-primal pins at endpoint \(i\), component \(e\). Their images really are
-stored: closure is the reason projected directions are also pins.
+primal pins at endpoint \(i\), component \(e\). Closure under the block projections ensures that the images of these
+primal directions are among the stored data.
 For a subspace \(D\), write
 \[
  D^{(2)}=\Span\{vv\trans:v\in D\}.

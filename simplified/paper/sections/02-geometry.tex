@@ -1,4 +1,4 @@
-\section{The hole relation and its tensor realization}\label{sec:geometry}
+\section{The construction}\label{sec:geometry}
 
 Three pairwise missing edges would give an independent set of size
 three. We choose a relation that excludes such a triangle by parity.
@@ -33,10 +33,9 @@ the whole space \(\cX\).
 \end{definition}
 % lax end
 
-Thus a hole has a shared vector in \(\cV\), one witness for it in
-each copy of \(\cX\), and opposite values of \(a\) on the witnesses.
-The functional identities make these requirements incompatible around
-a triangle.
+The first equation identifies the two witnesses in the ambient space.
+The last distinguishes them in \(\cX\). The two functional identities
+prevent these requirements from holding on all three sides of a triangle.
 
 % lax begin Lax793645.TriangleFreeHoles
 \begin{lemma}\label{lem:hole-triangle-free}
@@ -48,7 +47,7 @@ The hole relation is symmetric, has no loops, and is triangle-free.
 Symmetry follows by interchanging the endpoints.
 A loop would have \(U_i\lambda_i=U_i\lambda_j\), hence
 \(\lambda_i=\lambda_j\) by injectivity, contradicting the last
-equation of \Cref{eq:hole-equations}.
+equation in \eqref{eq:hole-equations}.
 
 Suppose that three distinct elements have holes on all three pairs.
 For a directed incidence \(ij\), let \(x_{ij}\) be its witness at
@@ -70,7 +69,7 @@ a contradiction.
 % lax end
 
 Given any list \(o_1,\ldots,o_m\in\Omega\), form a graph \(G\)
-on its \emph{positions}: two distinct positions are adjacent when
+on its \emph{positions}. Join two distinct positions when
 their elements have no hole. This gives a finite simple graph even
 when elements repeat. Equal elements are adjacent because holes have
 no loops. An independent triple of positions would therefore give
@@ -79,12 +78,9 @@ three distinct elements forming a hole triangle. Hence
  \alpha(G)\le2,\qquad \chi(G)\ge\lceil m/2\rceil.
 \end{equation}
 
-It remains to choose the finite set and its linear data so that a
-random list also has no large connected matching. Two disjoint edges
-fail to touch precisely when all four cross pairs are holes. The
-distribution theorem in \Cref{sec:distributions} will force these
-four-hole conflicts for the model constructed below.
-
+To control the connected matchings of this graph, we must choose the
+linear maps so that four holes can occur between two units. We now give
+the space of witnesses on which these maps act.
 
 \subsection{Points and the odd cycle}
 
@@ -100,8 +96,8 @@ The base coordinates have one constant coordinate and blocks
 \[
  O_{l,t}\quad(l,t\in\mathbb Z/g\mathbb Z),\qquad S,\quad \#,\quad Z.
 \]
-Each block has \(n\) coordinates. At tag \(l\), only the ordinary blocks
-\(O_{l,t}\) are allowed. The blocks \(S,\#,Z\) are shared by all tags.
+Apart from the constant coordinate, each block has \(n\) coordinates. The ordinary blocks at tag \(l\) are precisely the \(O_{l,t}\).
+The blocks \(S,\#,Z\) are shared by all tags.
 We write \(F\) for the base vector space, including its constant coordinate.
 A base point is \(\bar z=(1,z)\in F\). A point allowed at tag \(l\)
 has zero coordinates in every \(O_{l',t}\) with \(l'\ne l\).
@@ -111,14 +107,14 @@ Labels are vectors \(s\in\F^b\). Set
  \mathsf S=\F^{b+1},\qquad p_s=(1,s),\qquad
  B=\mathsf S\otimes F,\qquad v(s,z)=p_s\otimes\bar z.
 \]
-Later, \(S_0\) will denote a protected subspace of \(\mathsf S\).
 The point matrix is \(v(s,z)v(s,z)\trans\).
 Let \(W_l\) be the span of point matrices allowed at tag \(l\).
 Let \(W_*\) be the corresponding span when all ordinary coordinates are
 zero. Then \(W_l\cap W_{l'}=W_*\) for distinct tags. To see this, use
-the ordinary affine point-matrix basis: its entries involve only coordinates
-allowed at that tag. The entries common to two tags are exactly the shared
-ones.
+the projection setting all ordinary coordinates to zero. It fixes
+every matrix supported on the coordinates common to both tags. It also
+takes each allowed point matrix to a shared point matrix, so its image on
+\(W_l\) lies in \(W_*\).
 
 Define the space of profiles by
 \[
@@ -127,8 +123,8 @@ Define the space of profiles by
 Thus a point at tag \(l\) gives a profile, called an \emph{atom}, with its
 point matrix on the two incident components and zero elsewhere.
 We denote it by \(A(l,s,z)\). The kernel of \((w_l)_l\mapsto x\)
-consists of constant tuples with value in \(W_*\): equality of consecutive
-terms propagates around the cycle.
+consists of the constant tuples with value in \(W_*\). Indeed, a tuple
+in the kernel has \(w_l=w_{l+1}\) around the entire cycle.
 
 \subsection{Testers and the scalar form}
 
@@ -147,7 +143,7 @@ Delete tag \(t\) from the cycle. The remaining path has the perfect matching
 \[
  M_t=\{e_{t+1},e_{t+3},\ldots,e_{t+g-2}\}.
 \]
-Define linear functionals directly on the component matrices:
+On the component matrices set
 \begin{equation}\label{eq:cycle-functionals}
  a_t(x)=\sum_l\eta_{l,t}(x_{e_l}),\qquad
  a(x)=\sum_ta_t(x),\qquad
@@ -159,8 +155,9 @@ identity give
  a_t(x)=\sum_l\eta_{l,t}(w_l),\qquad
  b_t(x)=\sum_{l\ne t}\eta_S(w_l).
 \]
-These formulas explain the definitions; no choice of representation is
-needed to define the functionals.
+The outgoing edge \(e_l\) sees the whole ordinary block of tag \(l\),
+since the other endpoint contributes zero there. Each tag except \(t\)
+contributes once to the shared sum on \(M_t\).
 
 The first part of the scalar form is
 \[
@@ -173,23 +170,22 @@ Choose matrices \(L_j^c,R_j^c\), with \(1\le j\le J\), and define
  B^1(x,y)=\sum_{c,j}\pair{x_{e_c}}{L_j^c z_c(y)(R_j^c)\trans},
  \qquad T^1(x,y)=B^1(x,y)+B^1(y,x).
 \end{equation}
-Here \(\pair{A}{B}=\sum_{i,j}A_{ij}B_{ij}\). Set \(T=T^0+T^1\).
+Here \(\pair{A}{B}=\sum_{i,j}A_{ij}B_{ij}\) is the Frobenius pairing. Set \(T=T^0+T^1\).
 This form is symmetric and satisfies \(T(x,x)=a(x)\).
 The matrices will be chosen in \Cref{sec:moments}. There are \(Jg\)
 pairs of them.
 
-The matching has a useful effect on atoms:
+For an atom the sum on a matching reduces to
 \begin{equation}\label{eq:matching-atom}
  z_c(A(l,s,z))=
  \begin{cases}v(s,z)v(s,z)\trans,&c\ne l,\\0,&c=l.\end{cases}
 \end{equation}
-Every tag other than \(c\) occurs exactly once in \(M_c\).
-This is why a small mixer family suffices.
+Indeed \(M_c\) contains exactly one edge incident with \(l\) when
+\(l\ne c\), and none when \(l=c\).
 
 \subsection{Counting ordinary tester bits}
 
-Put \(o_l(x)=\sum_t\eta_{l,t}(x_{e_l})\). Privacy of the ordinary
-blocks gives
+Put \(o_l(x)=\sum_t\eta_{l,t}(x_{e_l})\). Since no other tag uses the ordinary blocks of tag \(l\), we have
 \[
  o_l(x)+o_{l+1}(x)=\eta_O(x_{e_l}),\qquad
  \sum_l o_l(x)=a(x).
@@ -214,8 +210,9 @@ components, which is at most their total rank.
 
 Choose a matrix \(E\) on \(B\) whose value on each point is \(\eta\).
 It consists of the tester matrices and a correction \(E^\#\) supported
-on \(\#\). The latter has zero value on a single point; its off-point
-values will ensure binary mixing. Define \(q_E(v)=v\trans Ev\) for
+on \(\#\). This correction contributes zero to \(v\trans Ev\) at each
+point \(v=v(s,z)\). Its values on pairs of distinct labels will control
+the binary tests in \Cref{sec:moments}. Define \(q_E(v)=v\trans Ev\) for
 \emph{every} \(v\in B\).
 
 Let \(V=\F^{N/2}\oplus\F^{N/2}\), with
@@ -232,8 +229,8 @@ They satisfy
 \end{equation}
 There are no other prescribed quadratic values or pairings on the channel
 columns. The full list of primal and channel columns is independent.
-The uniform law on these frames exists once \(N\) is sufficiently large;
-\Cref{sec:frame-laws} proves this and the counting facts we need.
+The counts in \Cref{sec:frame-laws} show that such frames exist once
+\(N\) is large enough. We give them the uniform law.
 
 A raw vertex \(o\) is an independent choice of such a frame at every
 component. Its law is \(\mu\), on a finite set \(\Omega_n\).
@@ -256,7 +253,7 @@ The ambient functional defined by \(q_0\) satisfies
  q_0[P_ex_eP_e\trans]=\eta(x_e)\quad(x_e\in W_l+W_{l+1}).
 \]
 Square brackets denote evaluation on a symmetric matrix. Therefore
-\(U_ox=U_{o'}y\) implies equality of the component tester values:
+\(U_ox=U_{o'}y\) implies
 \begin{equation}\label{eq:common-image-tester}
  U_ox=U_{o'}y\quad\Longrightarrow\quad\eta(x_e)=\eta(y_e)\quad\text{for every }e.
 \end{equation}

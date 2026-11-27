@@ -12,7 +12,7 @@ at most 2.
 
 Two disjoint edges are \emph{touching} if an edge joins their
 endpoint sets. A \emph{connected matching} is a matching whose edges
-are pairwise touching. Write \(\cm(G)\) for its maximum size.
+are pairwise touching. Write \(\cm(G)\) for the maximum size of a connected matching in \(G\).
 
 % lax begin Lax793645.Counterexample
 \begin{theorem}\label{thm:main}
@@ -26,23 +26,21 @@ finite simple graph \(G\) satisfies
 \end{theorem}
 % lax end
 
-A complete minor with many singleton or two-vertex branch sets gives
-a large connected matching. The precise counting inequality, proved in
-Proposition~\ref{prop:matching-minor}, is
+The connection to minors comes from the small branch sets of a
+\(K_t\) minor. Its branch sets of size 2 form a connected matching,
+and pairing its singleton branch sets gives more edges in the same
+matching. Counting the vertices in the remaining branch sets gives
 \[
-                    h(G)\le\frac{|V(G)|+4\cm(G)+2}{3}.
+                    h(G)\le\frac{|V(G)|+4\cm(G)+2}{3}
 \]
-Every color class has size at most \(\alpha(G)\), so
-\(\chi(G)\ge |V(G)|/\alpha(G)\). The same lower bound holds
-for fractional coloring, giving a second consequence of the construction.
-For a finite nonempty simple graph \(G\), let \(\mathcal I(G)\) be
-the family of its independent vertex sets. A fractional coloring
-assigns a nonnegative real weight \(w_I\) to every \(I\in\mathcal I(G)\)
-such that \(\sum_{I\ni v}w_I\ge1\) for every vertex \(v\).
-The fractional chromatic number \(\chi_f(G)\) is the minimum
-of \(\sum_Iw_I\) over these assignments.
-An ordinary coloring gives a fractional coloring with unit weights
-on its color classes, so \(\chi_f(G)\le\chi(G)\).
+(Proposition~\ref{prop:matching-minor}).
+
+It is enough to compare this upper bound with the fractional chromatic
+number. Write \(\mathcal I(G)\) for the independent sets of \(G\).
+A fractional coloring assigns each \(I\in\mathcal I(G)\) a weight
+\(w_I\ge0\) such that \(\sum_{I\ni v}w_I\ge1\) at every vertex \(v\).
+The minimum total weight is \(\chi_f(G)\). Giving weight 1 to each
+color class of an ordinary coloring shows that \(\chi_f(G)\le\chi(G)\).
 
 % lax begin Lax793645.FractionalCounterexample
 \begin{corollary}\label{cor:hadwiger}\label{cor:fractional-hadwiger}
@@ -52,7 +50,7 @@ order \(m\) for which
  h(G)<\frac{26m}{75}+\frac23
  <\frac m2\le\chi_f(G)\le\chi(G).
 \]
-Thus Hadwiger's conjecture and its fractional-coloring weakening
+Thus Hadwiger's conjecture and its weakening to fractional colorings
 \(\chi_f(G)\le h(G)\) are false.
 \end{corollary}
 % lax end
@@ -72,28 +70,27 @@ Since \(\chi_f(G)\le\chi(G)\), the same graphs satisfy \(h(G)<\chi(G)\).
 \end{proof}
 % lax end
 
-\citet[p.~148]{reedseymour1998} discussed the weakening that, for every
-positive integer \(p\), a graph with no \(K_{p+1}\) minor should have
-a fractional \(p\)-coloring,
-and proved the corresponding \(2p\)-bound in their result (1.3).
-Their convention uses nonnegative rational weights, coverage exactly
-one at each vertex, and total weight at most \(p\), so every such
-coloring is admissible above. Taking \(p=h(G)\) in the corollary
-therefore disproves this prediction as well.
+\citet[p.~148]{reedseymour1998} discussed the conjecture that every graph with no
+\(K_{p+1}\) minor has a fractional \(p\)-coloring and proved a
+\(2p\) bound in their result (1.3). They require rational weights
+and coverage exactly 1 at each vertex. Such weights satisfy the
+constraints above, so taking \(p=h(G)\) also disproves their formulation.
 
 \input{sections/01-history}
 
 
 \subsection{How the proof works}
 
-We sample vertices from a finite probability space. Some pairs are declared
-to be missing edges; we call them \emph{holes}. The hole relation has no
-loops or triangles. Its complement on the sampled positions therefore has
-independence number at most 2. Repeated samples cause no difficulty.
+We first define a symmetric relation on a finite set. We call a related
+pair a \emph{hole}. To obtain a graph, sample \(m\) elements of the set
+independently and join two distinct sample positions if there is no hole
+between their elements. The relation has no loops, so two positions
+carrying the same element are adjacent. A parity argument excludes
+triangles of holes and hence independent sets of size 3.
 
-An ordered pair with no internal hole is a \emph{unit}. It represents a
-possible matching edge. Two units \emph{conflict} if all four pairs between
-them are holes. Two edges in a connected matching cannot conflict.
+Call an ordered pair with no internal hole a \emph{unit}. It represents
+an edge of the sample graph. Two units \emph{conflict} if all four pairs
+between them are holes. Edges of a connected matching cannot conflict.
 
 \begin{figure}[htbp]
 \centering
@@ -110,69 +107,63 @@ them are holes. Two edges in a connected matching cannot conflict.
 \label{fig:four-holes}
 \end{figure}
 
-The difficulty is the dependence between the endpoints of an edge.
-Sampling an edge from a matching can give a very different law from
-sampling two vertices independently. \Cref{thm:raw-supersaturation}
-therefore gives a conflict bound for every unit law that satisfies
-explicit density bounds. Only the draws of the two units are independent.
+Choosing an edge from a matching biases the choice of its endpoints.
+A conflict estimate for four independent vertices would therefore be
+insufficient. Theorem~\ref{thm:raw-supersaturation} gives a lower bound
+for two independent units drawn from the same law. It allows dependence
+within each unit and bounds how heavily its law can weight any vertex
+or pair of vertices.
 
-The construction puts a quadratic frame on every component of an odd
-cycle. A point at a vertex of the cycle contributes to both incident
-components. Its \emph{key} consists of its two frame images. Equal keys
-give equal ambient point matrices. A witness for four holes consists of
-four pairs of short lists. The keys in each pair must match, and the lists
-must satisfy certain scalar equations. Once those equations hold, we
-complete a matrix to realize the witnesses while preserving every image
-already specified. We call the directions with specified images \emph{pins}.
+Here is how we witness a hole. Each raw vertex carries a linear
+embedding on each edge of an auxiliary odd cycle. A point at a cycle
+vertex has two images, one in each incident component. We call this
+pair of images its \emph{key}. For each of the four proposed holes we
+seek two short lists of points, one at either endpoint. If corresponding
+keys agree, the sums of their point matrices have the same ambient
+image. Further equations prescribe a linear functional on these sums.
+We show that once the scalar equations hold, the remaining matrix
+entries can be filled in without changing any images already fixed.
 
-At a fixed orientation, a \emph{query} samples the points in a list
-and records their keys and scalar values. A character of the tuple of keys
-is a product of characters of the individual keys. We use this identity
-to approximate the distributions of accepted keys on partitions defined
-by linear equations. This lets us bound the probability that two lists
-with prescribed scalar values also have matching keys.
+The lists at opposite ends of a hole are sampled independently before
+we ask for their keys to agree. Such an equality is rare. To estimate
+its probability we compare the two distributions of accepted keys.
+Finite Fourier analysis lets us replace a distribution by its averages
+on the cells of a partition given by linear equations. A character of
+a tuple of keys factors into characters of its individual keys, so we
+can test a whole list using information about individual points.
 
-If the scalar equations are insoluble, a linear relation predicts a bit
-on every common key cell where the prescribed values can occur. We show
-that such a prediction is a quadratic identity. It supplies short
-solutions on compatible pairs of units. These pairs may have probability
-of order \(N^{-4}\), so the proof bounds exceptional events before
-restricting to compatible pairs.
+If the scalar equations have no solution, a linear relation determines
+one of the recorded bits from the common key coordinates. This relation
+holds for every point with those coordinates, which makes the prediction
+an exact quadratic identity. When many units share a prediction, a
+separate argument finds solutions on compatible pairs of units. Their
+probability can be as small as order \(N^{-4}\). We bound the exceptional
+probabilities under independent sampling before restricting to such pairs.
 
-If every sample had a large connected matching, each could supply a short
-list of matching edges meeting every conflict neighborhood of substantial
-mass. Among samples with the same list, an independent pair of units
-would then conflict too rarely. This contradicts the four-hole bound.
+Finally, suppose every sample had a large connected matching. From each
+matching select a short list of edges. With high probability it meets the set of
+edges conflicting with any given unit whose conflicts occupy a substantial
+fraction of the matching. Samples that supply
+the same list then yield a law on edges under which two independent
+draws conflict too rarely. This contradicts the lower bound.
 
-\subsection{Conventions and order of reading}
+\subsection{Conventions}
 
-All algebra is over \(\F\). Probability measures and norms are real.
-A quadratic form \(q\) has polar form
-\(\beta_q(v,w)=q(v+w)+q(v)+q(w)\). A symmetric matrix is paired with a
-quadratic form by requiring the value on \(vv\trans\) to be \(q(v)\).
-The pairing is determined by these values because the matrices \(vv\trans\) span the symmetric matrices.
+All vector spaces are over \(\F\). Probabilities and norms are real.
+The polar form of \(q\) is \(\beta_q(v,w)=q(v+w)+q(v)+q(w)\).
+We evaluate \(q\) on symmetric matrices by linearity, assigning
+\(vv\trans\) the value \(q(v)\). These matrices span the symmetric
+matrices.
 
-The integer \(n\) tends to infinity. The ambient dimension is
-\(N=M_0n\), where \(M_0\) is a fixed even integer. Throughout this paper,
-\(N\) means the \emph{full} ambient dimension. The Lean parameter for a
-hyperbolic space is half this dimension. All other construction parameters
-are fixed before \(n\). Constants described as bounded may be large, but
-do not depend on \(n\).
+The integer \(n\) tends to infinity. We write \(N=M_0n\) for the full
+ambient dimension, with \(M_0\) a fixed even integer. The corresponding
+dimension parameter in Lean is \(N/2\). All construction parameters are
+fixed before \(n\). A bounded quantity is bounded independently of \(n\).
 
-All distributions live on finite sets. An orientation of a unit is its
-ordered pair of raw vertices. A query samples point parameters at that
-fixed orientation. A leaf is a conditional law on orientations, together
-with some stored image data. The mixing law retains the probability of
-each leaf.
-
-An accepted distribution has total mass equal to its acceptance probability.
-We draw the two leaves independently, then restrict to compatible pairs.
-All subsequent integrals retain the mass of this restriction.
-
-\Cref{sec:geometry,sec:distributions} define the graph and explain the
-probability statement that suffices. The algebraic part ends with the
-collision criterion in \Cref{sec:collision}. Preparation of the unit law
-is described next. The Fourier and partition arguments follow in
-\Cref{sec:histograms,sec:product-tests,sec:finite-partitions}.
-\Cref{sec:status-span,sec:rare-overlap} complete the probability proof.
-The parameter appendix records which constants must be chosen first.
+An \emph{orientation} specifies the two raw vertices of a unit in order.
+At a fixed orientation a \emph{query} draws the parameters of its points.
+We sometimes fix the images of prescribed directions, called \emph{pins}.
+A \emph{leaf} carries the resulting conditional law together with the
+images already fixed. In a mixture of leaves we retain the probability
+of each leaf. Likewise, the measure of accepted keys has total mass equal
+to the probability of acceptance.

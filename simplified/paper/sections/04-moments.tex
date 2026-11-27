@@ -1,14 +1,18 @@
-\section{Separating witnesses and choosing the mixers}\label{sec:moments}
+\section{Witness vectors and mixing matrices}\label{sec:moments}
 
-We need new point directions that can be distinguished from the pins.
-Affine selectors suffice. The reason is that a matrix of small rank cannot
-use many independent selector directions. Write \(\mathsf S=\F^{b+1}\)
-and \(\mathsf F=F\), so \(B=\mathsf S\otimes\mathsf F\).
-Let \(W\) be the span of all point matrices on \(B\), without tag
-restrictions. The constant-coordinate functionals are \(\epsilon_{\mathsf S}\) and
-\(\epsilon_{\mathsf F}\).
+A witness must be distinguishable from the directions whose images we
+have fixed. To see how to choose it, regard a vector of
+\(B=\mathsf S\otimes F\) as a matrix with rows indexed by selector
+coordinates and columns indexed by base coordinates. A single point
+\(p_s\otimes\bar z\) has rank 1 as such a matrix. We will also encounter
+a different rank, that of a symmetric matrix acting on \(B\) itself.
+The next two lemmas relate the two descriptions.
 
-\subsection{Two elementary tensor facts}
+Write \(\mathsf F=F\), and let \(W\) be the span of the point matrices
+on \(B\), allowing every tag. The linear forms \(\epsilon_{\mathsf S}\)
+and \(\epsilon_{\mathsf F}\) read the constant coordinate in each factor.
+
+\subsection{The span of the point matrices}
 
 % lax begin Lax793645.AffinePointMatrices
 \begin{lemma}\label{lem:base-moments}
@@ -42,15 +46,15 @@ use the coordinates of $\epsilon_{\mathsf S},\epsilon_{\mathsf F}$.
 % lax end
 
 % lax begin Lax793645.SelectorConfinement
-\begin{lemma}[Selector confinement]\label{lem:selector-confinement}
+\begin{lemma}\label{lem:selector-confinement}
 If $w$ is a symmetric matrix on $\mathsf S\otimes\mathsf F$, separately
 symmetric in its two pairs of indices, and $\rank w\le r$, then
 \[
  \operatorname{col}(w)\subseteq U\otimes\mathsf F
  \quad\text{for some }U\subseteq\mathsf S,\quad \dim U\le r^2.
 \]
-Every vector in this column space, reshaped as a selector-by-base
-matrix, has rank at most $r^2$.
+Consequently each vector in the column space has rank at most \(r^2\)
+when reshaped as a matrix with one row per selector coordinate.
 \end{lemma}
 % lax end
 % lax begin Lax793645Proofs.Manuscript.SelectorConfinement.selector_confinement
@@ -73,11 +77,14 @@ selected atoms. Choose
  R\ge4(K+t_*),\qquad q_*=R^2+t_*.
 \]
 The extra room in \(R\) covers the joint obstruction at both endpoints.
-For each primal pin space, take a basis from its vectors of reshaped rank
-at most \(q_*\) for the span of all such vectors. Let \(S_0\) contain
-the selector factors of these basis vectors. Let \(F_0\) contain all base
-factors of all pin vectors. Use the same protected spaces at every component
-of a fixed endpoint. If \(P_0\) bounds the sum of the pin dimensions, then
+In each primal pin space consider the span of the vectors whose rank
+after reshaping is at most \(q_*\). Choose a basis of this span from
+among those vectors. Let \(S_0\) be the sum of the column spaces of
+the reshaped basis vectors. For \(F_0\), take the sum of the row spaces
+of a basis of each \emph{whole} pin space. Take these sums over the
+components of one endpoint, so the same \(S_0,F_0\) serve all its
+components. If \(P_0\) bounds the sum of the pin dimensions, then
+
 \begin{equation}\label{eq:label-budget}
  \dim S_0\le q_*P_0,\qquad \dim F_0\le(b+1)P_0.
 \end{equation}
@@ -88,11 +95,11 @@ Set
 \]
 Every pin vector lies in \(L\). Every pin vector with reshaped rank at
 most \(q_*\) lies in \(D_0\). The first bound in
-\eqref{eq:label-budget} is independent of \(b\); the second is independent
+\eqref{eq:label-budget} is independent of \(b\), and the second is independent
 of \(n\).
 
 % lax begin Lax793645.SelectedAtoms
-\begin{lemma}[Selected-atom isolation]\label{lem:protected-atoms}
+\begin{lemma}\label{lem:protected-atoms}
 Let $k_i=p_i\otimes v_i$, $1\le i\le t$, where
 $\epsilon_{\mathsf S}(p_i)=\epsilon_{\mathsf F}(v_i)=1$.
 Suppose the $p_i$ are independent modulo $S_0$ and the $v_i$ are
@@ -145,22 +152,23 @@ orientation, failure of independence modulo \(F_0\) has probability at most
 \begin{equation}\label{eq:base-rejection}
  \delta_n=t_*2^{\dim F_0+t_*-n}=2^{-n+O(1)}.
 \end{equation}
-This is an estimate before accepting the orientation. There is no factor
-from a normalized leaf density. Rejection is imposed without renormalizing.
+This probability is conditional on the orientation, and the bound is
+the same for every orientation. Discarding these inputs therefore costs
+at most \(\delta_n\) under any mixture of orientations.
 
 \subsection{The input laws}
 
-Every sampled query uses generic inputs: it samples all coordinates
-allowed at its tag. Shared points set the ordinary coordinates to zero.
-They are used only in algebraic identities, obtained by restricting
-identities on generic inputs.
-At times we restrict the finitely many coordinates used by selected
-testers. The probability of such a restriction is a fixed positive
-constant. There is no separate family of inputs obtained by deleting
-whole ordinary blocks.
+At tag \(l\), a generic query draws all its allowed coordinates
+uniformly and independently. A shared point is obtained by setting its
+ordinary coordinates to zero. We use shared points when evaluating
+identities that hold for every generic point. Occasionally we prescribe
+the few coordinates on which specified testers depend. Their number is
+fixed, so the event has probability bounded below independently of \(n\).
 
-The diagonal bit of an atom is \(q=\eta(vv\trans)\); its role bit is
-\(a(A)\). Together with these bits, a query can record the individual
+The diagonal bit of an atom is \(q=\eta(vv\trans)\). Its role bit is
+\(a(A)\).
+
+Together with these bits, a query can record the individual
 tester values and the evaluations \(T(A,c)\) on a basis of an effective
 space. Each of these unary bits is a quadratic function of the point
 parameters of bounded rank. The same is true of \(u_{o'}U_oA\), since
@@ -191,7 +199,7 @@ at most \(2^{A_0n}\), for a fixed \(A_0\).
 
 Choose the entries involving \(Z\) in all \(L_j^c,R_j^c\) at random.
 For a tag \(l\), the forward profile coefficients are \(x_{e_c}\) for
-\(c\ne l\); the reverse coefficients are \(z_c(x)\) for edges
+\(c\ne l\). The reverse coefficients are \(z_c(x)\) for edges
 \(e_c\) incident with \(l\). These coefficient families determine a
 nonzero cut profile. In fact a nonzero cut has at least 2 nonzero cycle
 components, since their sum is zero. Some nonzero \(x_{e_c}\) has \(c\ne l\).
@@ -201,12 +209,15 @@ nonzero bilinear product remains, so their formal quadratic form has polar
 rank at least \(2J\).
 
 The list of formal variables has bounded length \(m_0\). Forward and
-reverse restrictions of the same random matrix are not independent: their
-common rectangular block must agree. There are only boundedly many such
+reverse restrictions of the same random matrix agree where their
+rectangular blocks intersect. There are only boundedly many such
 compatibility bits. Consequently their distribution is bounded by
 \(2^{C_0}\) times the uniform law on all \(m_0\)-by-\(n\) matrices.
 The constants \(m_0,C_0\) depend on the fixed parameters, not on \(n\).
-A uniform matrix has corank at least \(s_0+1\) with probability at most
+Failure to obtain the desired rank costs at least \(s_0+1\) linear
+relations among the rows. There are at most \(2^{m_0(s_0+1)}\) choices
+of independent relations. For a uniform matrix each choice has
+probability \(2^{-(s_0+1)n}\), giving the bound
 \[
  2^{m_0(s_0+1)-(s_0+1)n}.
 \]
@@ -255,18 +266,15 @@ mixers and for \(E^\#\) are disjoint. The latter coefficients involve
 \[
  \rank P(S)\ge d-(r+b-1).
 \]
-Factor out the least occurring power of \(S\); the remaining matrix has
-an upper triangular minor with diagonal one. For large \(n\) the displayed
+Indeed, if \(S^a\) is the lowest power that occurs, write
+\(P(S)=S^a(I+ST(S))\). The second factor is invertible because \(S\)
+is nilpotent, and \(S^a\) has rank \(d-a\). For large \(n\) the displayed
 rank is at least \(n/5\). This proves binary mixing with exponentially
 small error.
 
-Only the \(Jg\) independent indexed pairs are prescribed. If the reduced
-family is stored in a larger array with repeated entries, those repetitions
-are not additional independent tests.
-
-A useful symmetry will also be used. A common invertible change of the
-\(Z\) coordinates at a vertex preserves its raw frame law, because \(E\)
-has no \(Z\) entries. It preserves keys after the corresponding input
-change and preserves all tester bits. This lets us compare the bounded
-space of unary mixing forms with any fixed bounded family of linear key
-tests.
+An invertible change of the \(Z\) coordinates at one vertex also
+preserves the raw frame law. Indeed, \(E\) has no \(Z\) entries, so
+precomposing the frame with this change leaves its defining equations
+unchanged. Changing the point parameters correspondingly preserves the
+keys. We will use this symmetry when some linear functions of the keys
+have already been fixed.

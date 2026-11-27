@@ -1,7 +1,6 @@
 \subsection{Context}
 
-Hadwiger's conjecture was proposed in 1943~\citep{hadwiger1943}.
-Its restriction to graphs with independence number at most 2 is equivalent
+Hadwiger's conjecture restricted to graphs of independence number at most 2 is equivalent
 to the assertion that every such graph of order \(m\) has a
 \(K_{\lceil m/2\rceil}\) minor~\citep[Theorem~3.1]{pst2003}.
 The general bound of Duchet and Meyniel~\citep{duchet1982} gives a minor
@@ -11,11 +10,12 @@ less than \(26m/75+2/3\).
 F\"uredi, Gy\'arf\'as, and Simonyi~\citep{fgs2005} conjectured that a graph
 with independence number two and order \(4t-1\) has a connected matching
 of size \(t\). \Cref{thm:main} disproves this statement as well. Delete
-at most 3 vertices to obtain order \(4t-1\); the connected matching
-number does not increase. The result does not assert that the matching
-number is sublinear. It leaves open the possibility of a smaller universal
-positive linear lower bound.
+at most 3 vertices to obtain order \(4t-1\). Every connected matching
+of the induced subgraph is also a connected matching of the original
+graph. For large \(m\), \(m/100<t\), so this subgraph has no connected
+matching of size \(t\). In particular it is not complete, and its
+independence number is exactly 2.
 
-The proof below is an exposition of the construction in the accompanying
-Lean submission. It does not use the separate counterexample based on the
+The construction presented here is adapted from OpenAI~\citep{OpenAIHadwiger2026}.
+A separate construction disproves Hadwiger's conjecture using the
 Colin de Verdi\`ere invariant~\citep{OpenAIColinDeVerdiereCounterexample2026}.

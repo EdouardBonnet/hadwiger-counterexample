@@ -1,9 +1,11 @@
 \section{Overlap when common predictions exist}\label{sec:rare-overlap}
 
-We now treat the predicted alternative of Proposition~\ref{prop:status-preparation}.
-The compatible pairs may have probability only \(\rho_n\ge cN^{-4}\).
-The predictions are exact quadratic identities. The only remaining
-rejection is the exponentially small failure of protected base independence.
+Suppose the units have common predictions. The preparation theorem
+gives compatible pairs of mass \(\rho_n\), possibly as small as a
+constant times \(N^{-4}\). An error that merely tends to zero could
+exhaust that entire mass. We obtain a fixed lower bound on overlap
+on each contributing pair of leaves and bound the exceptional
+probability before imposing compatibility.
 
 \subsection{The predicted bits are forced}
 
@@ -27,8 +29,9 @@ checks restored by \(Q_o^p\). At every admissible orientation,
 Indeed, on \(E\) the predictor values are fixed. The base statuses then
 force each requested \(p_i\) value by
 \eqref{eq:exact-quadratic-prediction}.
-Imposing protected base independence costs at most \(\delta_n\) from
-\eqref{eq:base-rejection}. These measures are not normalized on \(W\).
+The identity uses unnormalized measures. If we also require the base
+vectors to be independent modulo \(F_0\), the loss on any \(W\) is at
+most \(\delta_n\) by \eqref{eq:base-rejection}.
 
 We need hits only on a restricted class of sets. A set belongs to this
 class if its indicator is a sum of a bounded number of products of unary
@@ -38,36 +41,46 @@ of a bounded linear partition, by \eqref{eq:exact-product}.
 
 % lax begin Lax793645.BaseQueryHits
 \begin{lemma}[Base-query hits]\label{lem:base-product-hits}
-There is a constant \(\beta_0>0\) depending only on the query format.
-Fix the number of products and a positive \(\delta\). Every deterministic set \(W\) in this class with
+For each query format there is a constant \(\beta_0>0\) with the
+following property. Fix \(\delta>0\) and a bound on the number of
+products in the expansion of \(1_W\). Every deterministic \(W\) with
 \(\nu(W)\ge\delta\) satisfies
 \[
  \PP_{o\sim\rho}\{Q_o^{\rm base}(W)<\beta_0\nu(W)\}\le2^{-cn}
 \]
 for all sufficiently large \(n\). Here \(\rho\) is the prepared mixed
 unit law. The constant \(\beta_0\) is independent of the number of
-products and of \(\delta\); the threshold for \(n\) may depend on them.
+products and of \(\delta\), although the threshold for \(n\) may depend
+on both.
 The exceptional orientations may depend on \(W\).
 \end{lemma}
 % lax end
 % lax begin Lax793645Proofs.Manuscript.BaseQueryHits.one_base_product_relative_hit
 \begin{proof}
-Put the unary factors defining \(W\) into a finite palette. Unary
-concentration and generic positivity hold for this palette outside mixed
-mass \(2^{-c_1n}\). Apply the query comparison to the base-status
-indicators themselves. Its surrogate uses the probabilities of these
-statuses. Generic positivity bounds those probabilities below on each
-cell of sufficient mass. Binary mixing supplies a fixed positive factor.
+At each position partition the unary keys according to membership
+in the sets used by the product expansion of \(1_W\). The indicator
+of \(W\) is constant on each product of these cells. This lets us
+estimate its integral by summing over the products contained in \(W\),
+even if the original expansion had negative coefficients.
 
-Choose the mass cutoff for unary cells so that their total loss is less
-than a fixed fraction of \(\delta\). On the remaining cells the surrogate
-integral is at least a fixed multiple of \(\nu(W)\). Choose the comparison
-error below a fixed multiple of \(\delta\). Since \(\delta\le\nu(W)\),
-the direct product comparison preserves a fixed fraction of this bound.
-The exceptional frame configurations
-have probability \(2^{-\Omega(n^2)}\); the unit density cap does not affect
-this conclusion. The unary exceptions are charged using the prepared
-marginal cap. Taking the smaller exponent proves the assertion.
+Let \(s\) be the number of positions and \(r\) bound the number of
+cells at any one position. Cells of unary mass below \(\delta/(4sr)\)
+account for at most \(\delta/4\) of the product reference law. The
+Gram product estimate costs at most a further \(\delta/4\) for
+large \(n\). At least half the mass of \(W\) remains. On the retained
+cells, unary concentration and positivity give every prescribed base
+assignment a fixed fraction of its cell mass. Binary mixing contributes
+a further fixed factor. Their product depends only on the format.
+
+Use the comparison of \Cref{sec:product-tests} with error below a fixed
+fraction of this product times \(\delta\). Since \(\nu(W)\ge\delta\),
+a fixed fraction of the lower bound proportional to \(\nu(W)\)
+survives. The unary exceptions have probability \(2^{-c_1n}\) under
+the prepared marginal. The exceptional configurations for binary mixing
+have raw probability \(2^{-\Omega(n^2)}\), so multiplying by the unit
+density cap still gives an exponentially small error. This proves the
+stated bound under \(\rho\).
+
 \end{proof}
 % lax end
 
@@ -78,26 +91,32 @@ on both leaves, but each filter has mass at least \(2a>0\). We show that,
 except on exponentially small leaf-pair mass, an admissible pair of such
 filters has actual overlap bounded below by a positive constant.
 
-First apply the base-hit lemma to \(E\) on the B side. Outside exponentially
-small B-leaf mass, every filter of mass at least \(2a\) retains at least
-\(a\) mass of orientations with a fixed positive hit on \(E\). Its
-accepted density \(d_B\) therefore satisfies \(\int_Ed_B\,d\nu\ge b>0\),
-where \(b\) is fixed.
+Apply Lemma~\ref{lem:base-product-hits} first to \(E\) on side \(B\).
+The expected mass of exceptional orientations in a \(B\) leaf is at
+most \(2^{-cn}\). By Markov's inequality, the probability that a leaf
+contains more than \(a\) exceptional mass is at most \(2^{-cn}/a\).
+On every other leaf each filter of mass at least \(2a\) retains at
+least \(a\) mass of orientations for which the conclusion of the lemma
+holds. Using \eqref{eq:predicted-error} and then allowing for the loss
+\(\delta_n\), we obtain \(\int_Ed_B\,d\nu\ge b\) for a fixed \(b>0\).
 
-Assign the B leaf a linear partition approximating all its permitted
-filtered densities in \(L^1\), as in Proposition~\ref{prop:all-filter-partition}.
-This partition is chosen before the A leaf. The extra base rejection
-changes the approximation error by at most \(\delta_n\).
-For the selected filter, its projection \(g_B\) satisfies
-\(0\le g_B\le B\) and \(\|d_B-g_B\|_1\le\xi\). The bound \(B\)
-is fixed before the accuracy \(\xi\). The protected rejection is included
-in this error by taking \(n\) large.
+For each \(B\) leaf fix the partition from
+Proposition~\ref{prop:all-filter-partition} before drawing the \(A\)
+leaf. It works for every permitted filter. For the filter eventually
+chosen write \(g_B\) for the cell average of its accepted density.
+We have \(0\le g_B\le B\) and \(\|d_B-g_B\|_1\le\xi\), with \(B\)
+independent of the desired accuracy \(\xi\). Removing inputs that fail
+the base independence test alters the density by at most \(\delta_n\)
+in \(L^1\). Its cell average changes by at most the same amount, which
+we allow for in choosing \(\xi\).
 
 Write \(C_1,\ldots,C_r\) for the partition cells. Apply
 Lemma~\ref{lem:base-product-hits} to \(E\cap C_j\) whenever its reference
-mass is at least a fixed \(\delta>0\). Each indicator is an exact finite
-product test. A union over the \(r\) cells and Markov's inequality over
-leaves cost only exponentially small pair mass. Every A filter of mass
+mass is at least a fixed \(\delta>0\). Equation \eqref{eq:exact-product} expresses each indicator as
+a finite sum of products. Conditional on the \(B\) leaf these are
+fixed tests for the independently drawn \(A\) leaf. A union bound over
+its \(r\) tests and the same Markov estimate as above give exponentially
+small exceptional probability, also after averaging over \(B\). Every A filter of mass
 at least \(2a\) then satisfies
 \[
  \int_{E\cap C_j}d_A\,d\nu
@@ -112,29 +131,27 @@ and sum. Since \(\int_E d_B\,d\nu\ge b\), this gives
  \int_E d_Ag_B\,d\nu\ge\kappa(b-\xi)-\kappa Br\delta.
 \]
 
-Choose a clipping height \(T\) so that
-\(\int d_A\mathbf1_{d_A\ge T}\,d\nu\le\eta\) uniformly over filters.
-The approximation argument in \Cref{sec:partition-clipping} permits any fixed
-\(\eta>0\). Pointwise comparison with \(\min(d_A,T)\) gives
+Choose \(T\) so that the mass of \(d_A\) above \(T\) is at most
+\(\tau\) for every filter, using \Cref{sec:partition-clipping}.
+To replace \(g_B\) by \(d_B\) in the last integral, first replace
+\(d_A\) by \(\min(d_A,T)\). Since \(g_B\le B\), this loses at most
+\(B\tau\). We can now change the second factor at cost at most \(T\xi\).
+Nonnegativity lets us extend the integral from \(E\) to the whole space.
+We conclude that
 \begin{equation}\label{eq:predicted-pair-overlap}
  \int d_Ad_B\,d\nu
- \ge\kappa(b-\xi)-\kappa Br\delta-T\xi-B\eta.
+ \ge\kappa(b-\xi)-\kappa Br\delta-T\xi-B\tau.
 \end{equation}
-Indeed clipping costs at most \(B\eta\), and replacing \(g_B\) by
-\(d_B\) after clipping costs at most \(T\xi\).
 
-Choose \(\eta\) first, then \(T\), then \(\xi\), so that these losses
-are small compared with \(\kappa b\). Construct the partition at that
-accuracy and finally take \(\delta\) small compared with \(b/(Br)\).
-The right side of \eqref{eq:predicted-pair-overlap} is then at least
-\(\kappa b/2>0\). This order is valid because \(\kappa\) does not
-depend on the partition size. There is no superlevel set to select and
-no family of unions of cells to enumerate.
+Take \(B\tau\le\kappa b/8\). After fixing \(T\), take
+\((T+\kappa)\xi\le\kappa b/8\). Construct the partition at this
+accuracy. Its number of cells \(r\) is now known, so we may take
+\(Br\delta\le b/4\). This gives overlap at least \(\kappa b/2\).
+The choices work because \(b,\kappa\) were fixed before \(r\).
 
-The two leaf draws are independent when we test the partition from
-\(B\) under the law on \(A\). We then restrict to compatible pairs,
-retaining their original mass. The exceptional pairs therefore cost at
-most their probability under the independent draws.
+Only now restrict to compatible pairs. An exceptional pair costs at
+most its original probability under the independent draws, even when
+the event of compatibility itself is rare.
 
 \subsection{Counting the possible options}
 
@@ -172,15 +189,18 @@ half of the compatible mass is therefore unsafe. Averaging gives
  \rho_n\le2\PP(\text{compatible and unsafe})
        +\sum_{j=1}^{J_0}\PP(\text{option }j\text{ is substantial}).
 \end{equation}
-The safety estimate absorbs the first term. Combining with
-\eqref{eq:predicted-pair-overlap} proves
+Proposition~\ref{prop:status-preparation} bounds the unsafe share
+of compatible pairs by \(0.001\), so the first term is at most
+\(0.002\rho_n\). Apply
+\eqref{eq:predicted-pair-overlap} to the remaining terms to obtain
 \begin{equation}\label{eq:predicted-overlap-bound}
  \sum_\omega I_n(\omega)\ge
       c_1\bigl(\rho_n-c_2\,2^{-c_3n}\bigr)
 \end{equation}
 for fixed positive constants and all sufficiently large \(n\).
-Since \(\rho_n\ge cN^{-4}\), this lower bound is polynomial.
-The exact predictions introduce no error term.
+Because \(N=M_0n\), the exponential term is smaller than
+\(\rho_n/2\) for large \(n\). Thus a fixed fraction of the compatible
+probability contributes to the sum of overlaps.
 
 \subsection{Completion of the graph argument}
 
@@ -192,8 +212,9 @@ choosing a unit law. Suppose the supersaturation assertion fails.
 There is then an increasing sequence of admissible dimensions and unit
 laws whose probability of four cross holes is less than \(2^{-200N}\).
 
-Peel and prepare these laws as above. The retained population has a
-fixed positive mass, and the final leaves satisfy the required spreading bound.
+Apply Proposition~\ref{prop:status-preparation} to each of these laws.
+It retains a fixed positive mass and gives the spreading estimate
+\eqref{eq:final-leaf-minentropy} on the final leaves.
 Without common predictions, Proposition~\ref{prop:positive-overlap} gives a query
 option with overlap bounded below by a positive constant. With common
 predictions, \eqref{eq:predicted-overlap-bound} gives a polynomial lower
@@ -215,8 +236,7 @@ dimension also proves uniformity in the law.
 \begin{proof}[Proof of \Cref{thm:main}]
 By Proposition~\ref{prop:raw-to-graph}, the supersaturation theorem gives graphs on \(m=2^{2000N}\) vertices with independence number at
 most two and connected matching number less than \(m/100\).
-The constants are fixed and \(N=M_0n\) tends to infinity, so these orders
-are arbitrarily large. The chromatic and fractional chromatic consequences
-follow as stated in \Cref{sec:introduction}.
+Since \(N=M_0n\) tends to infinity, these graph orders are arbitrarily
+large. This proves the theorem.
 \end{proof}
 % lax end

@@ -1,9 +1,11 @@
 \section{Fourier comparison under a leaf law}\label{sec:histograms}
 
-The law on one leaf may have density \(2^{cN}\) relative to the raw law.
-An error of order \(2^{-n}\) under the raw law is therefore insufficient.
-We use a moment of order proportional to \(n\), keeping all nominal
-relations and all Gram equations.
+On a leaf with density at most \(2^{cN}\) relative to the raw law,
+an event of raw probability \(p\) can have conditional probability as
+large as \(2^{cN}p\). To compare the two laws we therefore need an
+exponent that can exceed any prescribed \(c\). A single query gives
+no such exponent. We estimate a high even moment by sampling many
+queries at the same orientation.
 
 On a binary vector space we normalize Fourier coefficients by
 \[
@@ -34,7 +36,7 @@ then every leaf law \(\pi\le2^{cN}\mu^2\) satisfies
  \E_{o\sim\pi}\sup_{\|\widehat w\|_1\le b_0}
  \left|\E_zD(K_o(z))\psi(z)w(z)\right|\le\epsilon.
 \]
-Here \(|\psi|\le1\) is fixed before the orientation is drawn. The weight
+Here \(\psi\) is a function of the nominal input with \(|\psi|\le1\), fixed before the orientation is drawn. The weight
 \(w\) may depend on the orientation. All errors are unnormalized, so
 an additional orientation filter of size at most 1 is permitted.
 \end{theorem}
@@ -58,8 +60,9 @@ so that, uniformly in \(\alpha\),
  \E_{\mu^2}|A_\alpha(o)|^\ell\le2^{-HN}
 \end{equation}
 for all sufficiently large \(n\). The construction parameters remain fixed.
-Expanding the moment gives \(\ell\) independent queries. Each query
-contributes one factor \(D\). The nominal phase and the nominal character
+Conditional on \(o\), the \(\ell\) factors in the moment can be
+evaluated at independent nominal inputs. Each contributes one copy of
+\(D\), but the same frame maps all their columns to the ambient space. The nominal phase and the nominal character
 are bounded weights fixed before the orientation is sampled.
 
 \subsection{Keeping dependent columns}
@@ -79,7 +82,10 @@ A relation involving many batches costs no factors of \(D\).
 Large nominal deficiencies are rare. The fresh \(Z\) parts of the
 columns are \(p_s\otimes Z\), whose first selector coordinate is \(Z\).
 A specified relation space of dimension \(d\) imposes \(dn\) independent
-bit equations. Counting the possible spaces gives
+bit equations on the independent \(Z\) vectors for those columns.
+With \(u\) columns there are at most \(2^{du}\) ordered choices for a
+basis of a \(d\)-dimensional relation space. Summing the resulting
+probability bound over the components gives
 \begin{equation}\label{eq:nominal-tail}
  \PP(\text{nominal deficiency at least }d)
  \le C2^{-d(n-C\ell)}.
@@ -89,11 +95,15 @@ the total nominal deficiency is bounded by a fixed constant.
 
 \subsection{Certifying the exact image kernel}
 
-The frame law preserves the exact nominal kernel. Auxiliary dual vectors
-express this requirement by pairing equations.
+If a linear map sends a dependent list to ambient columns, it preserves
+all the relations in that list. Injectivity of the frame also requires
+that no \emph{extra} relation hold. The following identity enforces this
+second condition by introducing independent test vectors.
+
 Consider \(u\) nominal columns with kernel \(r\), where \(\dim r=d\).
 Choose a surjective matrix \(L:\F^u\to\F^{u-d}\) with kernel \(r\),
-and put \(J=L\trans L\). Its column space is \(r^\perp\).
+and put \(J=L\trans L\). Since \(L\) is onto, the columns of \(J\) span the image of
+\(L\trans\), namely \(r^\perp\).
 For an ambient column map \(X\), let \(Y\) consist of \(u\) independent
 uniform ambient vectors. Nondegeneracy of the ambient polar form gives
 \begin{equation}\label{eq:auxiliary-kernel}
@@ -107,16 +117,18 @@ It contains every column of \(J\) precisely when \(\ker X=r\).
 In that case its rank is \(u-d\), and each prescribed pairing column
 has probability \(2^{-(u-d)}\).
 
-We apply \eqref{eq:auxiliary-kernel} at every component. It gives an exact
-identity, with no truncation or error term. The inclusion indicator uses
-\eqref{eq:relations-fourier}. All other restrictions are Gram equations:
-the original quadratic Gram data and the pairings with the auxiliary
-vectors. No pairings between auxiliary vectors are prescribed.
+Apply \eqref{eq:auxiliary-kernel} in each component, using
+\eqref{eq:relations-fourier} for the kernel inclusion. This leaves the
+original quadratic Gram equations and the pairings between \(X\) and
+\(Y\). The auxiliary vectors are independent and have no prescribed
+pairings with one another.
 
-The normalization is favorable. Write \(b(u)=u(u+1)/2\).
-Equal completion counts identify the image law with the uniform law
-conditioned on its exact kernel and quadratic Gram data. The probability
-of this event is at least
+Write \(b(u)=u(u+1)/2\). Equal completion counts identify the image law with the uniform law
+conditioned on its exact kernel and quadratic Gram data. The specified
+\(d\) independent relations cost \(2^{-dN}\). On the quotient the
+remaining \(u-d\) independent columns have prescribed quadratic Gram
+data, to which \eqref{eq:quadratic-gram-count} applies. Thus the
+conditioning event has probability at least
 \[
  \tfrac14\,2^{-dN-b(u-d)}.
 \]
@@ -129,20 +141,22 @@ After normalization the factor is at most
 \[
  4\,2^{dN+b(u-d)-b(u)-ud}\le4\,2^{dN}.
 \]
-Thus the added columns introduce no quadratic cost in \(u\). Over all
-components, the remaining cost is \(2^{O(dN)}\).
+The terms quadratic in \(u\) have cancelled. Multiplying over the
+fixed number of components costs \(2^{O(dN)}\) when each nominal
+deficiency is at most \(d\).
 
 \subsection{One query with its auxiliary vectors}
 
 Assign one auxiliary vector to every original column in its batch.
 This doubles the fixed batch size. A permitted quadratic phase in one
 batch has an original part and a bilinear part joining original and
-auxiliary vectors. There is no auxiliary--auxiliary term.
+auxiliary vectors. No term pairs two auxiliary vectors.
 
-If the bilinear part is nonzero, it couples a whole ambient block.
-Its rank is proportional to \(N\). The Walsh bound, applied to the
-bounded original test and the auxiliary linear character, gives the
-conservative bound \(2^{-N/4}\).
+If the bilinear part is nonzero, one of its blocks is the
+nondegenerate ambient pairing \(\beta_0\). Averaging the character in
+the auxiliary variables forces the corresponding linear combination
+of original vectors to equal a prescribed frequency. Cancellation on
+this block gives the bound \(2^{-N/4}\) used below.
 If the bilinear part is zero, averaging over the auxiliary vectors gives
 zero unless their linear frequency vanishes. The original quadratic
 phase is a combination of the Gram values fixed on \(\cK_n\), so it is
@@ -157,12 +171,17 @@ original and auxiliary columns.
 
 \subsection{Summing the Gram patterns}
 
-Group the Gram coefficient matrix by batches. Its cross rank is the
-largest rank of a rectangle between disjoint sets of batches. The number
-of patterns of cross rank \(r\) is at most \(2^{C\ell(r+1)}\).
-To see this, choose a maximal independent rectangle, its incident rows
-and columns, and the entries within each batch. The remaining cross
-entries are determined by their relations to the chosen rectangle.
+Index the Gram coefficient matrix by batches of queries. For disjoint
+sets of batches take the submatrix with rows in the first set and
+columns in the second. Let \(r\) be the largest rank of any such
+submatrix, which we call the cross rank. There are at most
+\(2^{C\ell(r+1)}\) coefficient patterns of cross rank \(r\). Indeed,
+record the rows and columns meeting an invertible \(r\times r\) minor
+that attains this rank, including the other rows and columns in their
+batches. This costs \(O(\ell r)\) bits because each batch has bounded
+size. Between the remaining distinct batches all entries are determined
+by bordering the minor, as in the proof below. The entries within
+batches cost a further \(O(\ell)\) bits.
 
 The following lemma handles the patterns of small cross rank. A slot is
 the position of a column in its batch. The allowed pairs of slots form
@@ -185,7 +204,9 @@ invertible \(r\times r\) submatrix \(B=M_{I,J}\) whose row batches
 and column batches are disjoint. Start with \(M_{*,J}B^{-1}M_{I,*}\).
 For a row and column in distinct batches outside those meeting \(B\),
 bordering \(B\) by this row and column gives a singular matrix by
-maximality. Its last entry therefore agrees with the proposed completion.
+maximality of \(r\). If its added row is \((u,m)\) and its added
+column above \(m\) is \(v\), subtracting \(uB^{-1}\) times the old
+rows gives \(m-uB^{-1}v=0\). This identifies the entry \(m\).
 Restore the rows and columns in the at most \(2r\) batches meeting
 \(B\). This adds at most \(4kr\) to the rank.
 
@@ -201,12 +222,14 @@ This gives the asserted bound for \(R\). Take \(D=M-R\).
 \end{proof}
 % lax end
 
-For \(r\ge t\), the Walsh bound across a rectangle of rank \(r\)
+Fix a rank cutoff \(t\). For \(r\ge t\), the Walsh bound across a rectangle of rank \(r\)
 contributes \(2^{-crN}\), even with an additional linear character.
 For \(r<t\), apply Lemma~\ref{lem:ordered-slot-completion}. Since \(k\) is
 fixed, the correction \(R\) has rank \(O(r)\).
-The correction character has Fourier norm at most \(2^{CrN}\).
-Expand it and apply \eqref{eq:auxiliary-local} to every batch. All
+The correction phase uses \(O(r)\) ambient vector combinations and
+hence \(O(rN)\) bits. Its character therefore has Fourier norm at most
+\(2^{CrN}\). Each term in that Fourier expansion is linear in the
+ambient columns and factors by batch. Apply \eqref{eq:auxiliary-local} to every batch. All
 \(\ell\) small Fourier factors survive. Together with
 \eqref{eq:nominal-tail} and the normalization above, this gives
 \begin{align}\label{eq:assembled-moment}
@@ -215,11 +238,15 @@ Expand it and apply \eqref{eq:auxiliary-local} to every batch. All
  \left[2^{CtN+Ct\ell}(\delta+2^{-cN})^\ell
                    +2^{-t(cN-C\ell)}\right].\notag
 \end{align}
-Only two cutoffs remain. Choose the repetition rate \(a\) small first.
-Given \(H\), choose \(d\) to control the nominal tail. Then choose \(t\)
-so that the high-rank term beats the fixed normalization cost. Finally
-choose \(\delta\) small enough to control the low-rank term. Taking \(n\)
-large proves \eqref{eq:moment-target}.
+First choose \(a\) so small that \(n-C\ell\ge n/2\) and
+\(cN-C\ell\ge cN/2\). For a prescribed \(H\), increasing \(d\) now
+makes the first term less than \(2^{-HN}/3\) for large \(n\).
+With \(d\) fixed, increasing \(t\) does the same for the term with
+exponent \(-t(cN-C\ell)\), including its prefactor. In the remaining
+term all factors outside the power \(\ell\) grow at most as \(2^{C'N}\)
+for a fixed \(C'\). Since \(\ell/N\) tends to \(2a/M_0>0\), taking
+\(\delta\) sufficiently small makes that term less than \(2^{-HN}/3\)
+as well. This proves \eqref{eq:moment-target}.
 
 % lax begin Lax793645Proofs.Manuscript.FourierComparison.one_direct_capped_leaf_fourier
 \begin{proof}[Proof of \Cref{thm:leaf-fourier}]
@@ -279,7 +306,7 @@ For a leaf cap \(2^{cN}\), choose \(d>cM_0+11\). For every fixed
 Outside this exception, averaging translations by the free inputs shows
 that each cell has query mass at most \(2^{kd}\) times its ambient
 uniform mass. The input laws used here have a fixed density bound
-relative to uniform inputs; include that factor in the constant. The
+relative to uniform inputs. Include this factor in \(B\) below. The
 reference Fourier estimate compares the ambient and Gram cell masses
 within a factor of 2. Consequently there is a constant \(B\), chosen
 before \(r\), such that

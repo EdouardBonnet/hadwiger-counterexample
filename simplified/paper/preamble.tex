@@ -10,9 +10,12 @@
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage[colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
 \usepackage[capitalise,nameinlink,noabbrev]{cleveref}
-\hypersetup{pdftitle={A counterexample to Hadwiger's conjecture},pdfauthor={OpenAI}}
+\hypersetup{pdftitle={A counterexample to Hadwiger's conjecture},pdfauthor={OpenAI (construction), Édouard Bonnet and Codex (adaptation)},bookmarksdepth=2}
 \setlength{\parskip}{0.18em}
 \setlist{itemsep=0.18em,topsep=0.35em}
+\makeatletter
+\renewcommand*{\l@section}{\@dottedtocline{1}{0em}{2.3em}}
+\makeatother
 \numberwithin{equation}{section}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
