@@ -72,7 +72,7 @@ of terms. Let \(\delta>0\) be the resulting cutoff for an error of
 \(\eta\) against any filtered density.
 Put \(k=\lceil\delta^{-2}\rceil\) and
 \(\tau=a_0\epsilon/(4\cdot2^k)\). Let \(L\) record the set in
-\Cref{lem:linear-test}.
+Lemma~\ref{lem:linear-test}.
 
 Consider any \(|W|\le1\) orthogonal in \(L^2(\nu)\) to the recorded
 characters. Extend \(W\) by zero to \(w=1_{\cK}W\).
@@ -107,7 +107,7 @@ claim. The pointwise bound follows from \eqref{eq:linear-density-energy}.
 
 \subsection{Clipping follows from approximation}\label{sec:partition-clipping}
 
-Apply \Cref{prop:all-filter-partition} with all statuses retained. This
+Apply Proposition~\ref{prop:all-filter-partition} with all statuses retained. This
 gives a bounded approximation \(0\le g\le B_0\) to the unfiltered query
 density \(d\). Every flagged query density \(d_f\) satisfies
 \(0\le d_f\le d\), even when its flag is not among the recorded statuses.
@@ -179,7 +179,7 @@ overlap of the common projections by the actual average overlap plus an
 arbitrarily small error. Exceptional leaf pairs cost at most \(B_0^2\eta\).
 All partitions were chosen before the filters, so filters depending on
 both leaves are allowed. Independence is used only for the two original
-leaf draws in \Cref{lem:common-frequencies}.
+leaf draws in Lemma~\ref{lem:common-frequencies}.
 
 \subsection{Whole-tuple tests factor exactly}
 
@@ -220,4 +220,4 @@ All uses of this last statement concern a fixed finite collection of tests
 chosen before the sampled orientation. The cap \(2^{n/32}\) on the mixed
 marginal is sufficient. A separately normalized leaf need not satisfy that
 cap; its uniform approximation is instead supplied by
-\Cref{thm:leaf-fourier} and \Cref{prop:all-filter-partition}.
+\Cref{thm:leaf-fourier} and Proposition~\ref{prop:all-filter-partition}.

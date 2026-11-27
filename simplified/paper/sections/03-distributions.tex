@@ -7,7 +7,7 @@ The event of interest is that all four cross pairs have holes, as in \Cref{fig:f
 
 % lax begin Lax793645.FourHoles
 \begin{theorem}[Raw supersaturation]\label{thm:raw-supersaturation}
-For the construction parameters specified in \Cref{sec:geometry,sec:parameters}, for all sufficiently large \(n\), every probability law \(\sigma\) on units satisfying
+For the construction parameters specified in \Cref{sec:geometry} and Appendix~\ref{sec:parameters}, for all sufficiently large \(n\), every probability law \(\sigma\) on units satisfying
 \begin{equation}\label{eq:raw-law-caps}
  \sigma_1\le M\mu,\qquad \sigma_2\le M\mu,\qquad
  \sigma\le 2^{DN}\mu^2
@@ -68,7 +68,7 @@ Suppose every sample \(s\) has a touching matching of size
 and write \(P_s\) for the uniform law on those \(k\) units.
 Set \(U=\Omega_n^2\), \(q=\mu^2\), \(\varepsilon=2^{-200N}\),
 \(\delta=\varepsilon/32\) and \(L=2^{400N}\).
-Apply \Cref{lem:matching-neighborhoods} to \(P_s\) and assign each
+Apply Lemma~\ref{lem:matching-neighborhoods} to \(P_s\) and assign each
 sample a witnessing list. Some list \(h\) is assigned to a class \(F\)
 of samples with \(\Pr(F)\ge |U|^{-L}\).
 
@@ -113,13 +113,13 @@ conflict with probability at most \(4(\delta+\kappa e^{-L\delta})\).
 This is less than \(\varepsilon\) for large \(N\), contrary to
 \Cref{thm:raw-supersaturation}. Some sample has the required small
 matching number. Its independence number is at most \(2\) by
-\Cref{lem:hole-triangle-free}.
+Lemma~\ref{lem:hole-triangle-free}.
 \end{proof}
 % lax end
 
 \subsection{The clique-minor bound}
 
-\Cref{prop:raw-to-graph} supplies the required bound on connected
+Proposition~\ref{prop:raw-to-graph} supplies the required bound on connected
 matchings once raw supersaturation is proved. The next counting
 argument converts that bound into the clique-minor estimate used in
 the introduction.

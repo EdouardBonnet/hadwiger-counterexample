@@ -153,7 +153,7 @@ blocks gives
  v_1+v_2=(\alpha_1+\alpha_2)\mathbf1+o(\lambda_1)+o(\lambda_2).
 \]
 The marks have total rank at most \(e\), so each ordinary support has
-size at most \(e\) by \Cref{lem:ordinary-support}. If the bits differed,
+size at most \(e\) by Lemma~\ref{lem:ordinary-support}. If the bits differed,
 the all-one vector would be a sum of four vectors whose total support is
 at most \(4r_{\rm scr}/r_0+2e<g\). This is impossible. Thus
 \(\alpha_1=\alpha_2\).
@@ -188,9 +188,9 @@ If ordinary trimming leaves a conditional probability of at least
 \(0.001\), this settles the case. When both predictions are inactive and the target
 is zero, the four-zero count above applies. In each of these rank
 arguments, if the retained offsets span a space within the label budget of
-\Cref{lem:injection}, refine by the labels just described. Each
+Lemma~\ref{lem:injection}, refine by the labels just described. Each
 compatible leaf pair now has conditional probability one, and
-\Cref{lem:injection} controls its unsafe share in the aggregate.
+Lemma~\ref{lem:injection} controls its unsafe share in the aggregate.
 For the two prescribed-one cases, the same refinement works if every
 set of mass greater than \(1/2\) contains a compatible pair. Here is one
 way to check that condition when the offsets are nonzero. Suppose the
@@ -204,7 +204,7 @@ the component is symmetric. The frame count bounds the probability of
 this intersection. Summing over the at most \(2^{N/2}\) offsets of the
 given subspace gives mass at most \(2^{-N/8}\) for all sufficiently
 large \(n\). Such a set cannot have mass greater than \(1/2\).
-For the remaining laws use \Cref{thm:phase-alternative}. Its mixed case
+For the remaining laws use Proposition~\ref{thm:phase-alternative}. Its mixed case
 gives positive compatible mass. Its small cover gives the required
 label budget and the singleton estimates for prescribed bits.
 

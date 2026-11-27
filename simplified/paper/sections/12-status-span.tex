@@ -139,7 +139,7 @@ q_{ij}&=1,& h_{A,i;ij}+h_{B,j;ij}&=1,\\
 These are the conditions \eqref{eq:recipe-scalars}--\eqref{eq:recipe-balance}.
 The edge subscript distinguishes the two occurrences of an endpoint.
 They give the required effective-space values. The binary prescriptions
-of \Cref{lem:small-tables} supply the values on selected atoms.
+of Lemma~\ref{lem:small-tables} supply the values on selected atoms.
 The realization theorem then completes the functionals. Its coordinate
 construction allows images of pins at different endpoints to meet.
 
@@ -213,7 +213,7 @@ in the form
                  +Q_i(c).
 \end{equation}
 Use the later pin bound \(K\) here. The corresponding tester-room
-inequality is recorded in \Cref{sec:parameters}.
+inequality is recorded in Appendix~\ref{sec:parameters}.
 
 At a fixed endpoint there is at most one such expression. To see this,
 subtract two of them on a generic label surviving both exclusions.
@@ -284,7 +284,7 @@ was assumed. The two unit draws themselves remain independent throughout.
 For each tag partition the keys by the pair \((f_1,f_2)\in\F^2\).
 Use every attained pair. Each has reference mass at least
 \(\eta=2^{-2R_*}/2\) on both diagonal slices, by the coordinate count
-in \Cref{prop:status-preparation}. When both endpoints are inactive
+in Proposition~\ref{prop:status-preparation}. When both endpoints are inactive
 the only pair is \((0,0)\).
 Let \(e_i\) be a class symbol: it is zero for an inactive endpoint,
 and two active symbols are equal exactly when their bits and polynomials agree.
@@ -316,7 +316,7 @@ by between one and three such generators, at fresh generic labels.
 % lax end
 % lax begin Lax793645Proofs.Manuscript.PredictedScalarSystem.one_attained_scalar_soluble
 \begin{proof}
-Apply \Cref{lem:status-duality} to the spans of these generators.
+Apply Lemma~\ref{lem:status-duality} to the spans of these generators.
 Substitution and arbitrary choice of the free role and basis coordinates
 force the exact coefficient identities
 \begin{equation}\label{eq:status-forced-coefficients}
@@ -355,7 +355,7 @@ of spans by repeated label deletion is needed for predicted lists.
 
 % lax begin Lax793645.SolublePairs
 \begin{lemma}[Scalar solvability on positive mass]\label{lem:status-span}
-For some fixed sufficiently small $\eta>0$, the alternative without common predictions of \Cref{prop:status-preparation} has a fixed positive mass
+For some fixed sufficiently small $\eta>0$, the alternative without common predictions of Proposition~\ref{prop:status-preparation} has a fixed positive mass
 of safe consistent tables for which the thresholded scalar system is
 soluble, robustly under the exclusions needed below.
 \end{lemma}
@@ -414,7 +414,7 @@ have the same annihilator and are equal.
 % lax begin Lax793645.FreshWitnessLists
 \begin{lemma}[Fresh lists of at most 7 generators]
 \label{lem:fresh-lists}
-On each pair with a soluble scalar system from \Cref{lem:status-span},
+On each pair with a soluble scalar system from Lemma~\ref{lem:status-span},
 every scalar solution on the four edge spans can be realized by between
 one and seven available generic
 generators per edge. The two endpoint labels of each generator are
@@ -429,7 +429,7 @@ position has status overlap at least $\eta$.
 Let $d_S$ bound the dimension of every protected selector space.
 Every selector space formed during the construction below has at most
 $H_*=2^{d_S+34}$ labels. The parameter choice puts this below the
-deletion allowance in \Cref{lem:span-continuation}. Fix a scalar solution
+deletion allowance in Lemma~\ref{lem:span-continuation}. Fix a scalar solution
 on the original edge spans. They remain unchanged as labels are reserved.
 
 We prove a statement for one edge after any labels used on earlier
@@ -463,7 +463,7 @@ of its base projection. Enlarge each protected selector space by this
 vector, excluding every label in the enlarged span. The remaining discrepancy
 belongs to $\ker\pi$, whose dimension is at most 2. On the remaining
 labels \eqref{eq:status-short-kernel} still holds by
-\Cref{lem:span-continuation}. If the kernel is zero no correction is needed. If it is
+Lemma~\ref{lem:span-continuation}. If the kernel is zero no correction is needed. If it is
 one-dimensional, choose a nonzero short kernel word and use it if
 needed. If it is two-dimensional, choose a nonzero independent short word, enlarge the protected spaces
 by its at most 3 selector vectors, and apply
@@ -489,19 +489,19 @@ certificates of overlap at least $\eta$, proving the lemma.
 
 % lax begin Lax793645.UnpredictedOverlap
 \begin{proposition}[Positive-mass overlap]\label{prop:positive-overlap}
-In the alternative without common predictions of \Cref{prop:status-preparation},
+In the alternative without common predictions of Proposition~\ref{prop:status-preparation},
 some fixed numerical option has expected unnormalized actual
 successful-query overlap bounded below by a positive constant along a
 subsequence. This includes the permitted restrictions of reciprocal
-mass $2^{o(N)}$, and implies the overlap condition in \Cref{prop:collision}.
+mass $2^{o(N)}$, and implies the overlap condition in Proposition~\ref{prop:collision}.
 \end{proposition}
 % lax end
 % lax begin Lax793645Proofs.Manuscript.UnpredictedOverlap.one_quiet_end
 \begin{proof}
 If the conclusion failed, all the finitely many $I_n(\omega)$ would tend
-to zero. Choose $\eta$ as in \Cref{lem:status-span}. Let $c>0$ be a
+to zero. Choose $\eta$ as in Lemma~\ref{lem:status-span}. Let $c>0$ be a
 lower bound for the mass of safe pairs with a soluble scalar system after the exceptional
-losses. Apply \Cref{lem:fresh-lists}. Each list has at most 7 entries
+losses. Apply Lemma~\ref{lem:fresh-lists}. Each list has at most 7 entries
 and every full-status certificate has overlap at least $\eta$.
 There are four edges, hence at most 28 factors. Choose $\eta\le1$ and put
 \begin{equation}\label{eq:finite-score-lower}
@@ -513,12 +513,12 @@ of score at least $a$ for each of these pairs. Tester summaries were
 included in the certificates at the outset, so no subsequent subdivision
 reduces this bound.
 
-But \Cref{prop:finite-score-bound}, with exceptional and score probabilities
+But Proposition~\ref{prop:finite-score-bound}, with exceptional and score probabilities
 smaller than the retained mass $c$, says that such pairs are arbitrarily
 rare. Equivalently $\sum_\omega\E s_\omega\ge ca$, whereas each expectation
 can be made arbitrarily small. This is the contradiction.
 Finally, restrictions of reciprocal mass $2^{o(N)}$ are charged by
-\Cref{prop:collision}; a positive constant times those costs is
+Proposition~\ref{prop:collision}; a positive constant times those costs is
 $2^{-o(N)}$. The final collision exponent is $56+.03<200$, leaving room for this cost.
 \end{proof}
 % lax end

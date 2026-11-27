@@ -21,6 +21,7 @@ TOKEN = re.compile(
 
 def read_paper(concepts, proofs):
     statements, proof_marks, marks, files = {}, {}, Counter(), set()
+    named_references = []
 
     def read(path):
         assert path not in files, f"Paper includes {path.name} twice"
@@ -30,7 +31,11 @@ def read_paper(concepts, proofs):
         # TeX comments can contain example markup. Only a complete marker line is active.
         lines = [line if line.strip().startswith("% lax ") else re.split(r"(?<!\\)%", line)[0]
                  for line in path.read_text().splitlines()]
-        for match in TOKEN.finditer("\n".join(lines)):
+        source = "\n".join(lines)
+        named_references.extend(re.findall(
+            r"\b(Lemma|Theorem|Proposition|Corollary|Definition)~\\ref\{([^}]+)\}", source
+        ))
+        for match in TOKEN.finditer(source):
             fields = match.groupdict()
             if fields["mark"]:
                 card = fields["mark"]
@@ -47,7 +52,7 @@ def read_paper(concepts, proofs):
                 assert current is None
                 current = fields["begin"]
                 if current == "proof":
-                    label = re.search(r"\\Cref\{([^}]+)\}", fields["caption"] or "")
+                    label = re.search(r"\\(?:Cref|ref)\{([^}]+)\}", fields["caption"] or "")
                     target = label[1] if label else last
                     assert target and stack and stack[-1] in proofs, f"Unmarked proof in {path.name}"
                     assert target not in proof_marks, f"Two main proof marks for {target}"
@@ -68,6 +73,8 @@ def read_paper(concepts, proofs):
         assert not stack and current is None, f"Unclosed environment or mark in {path.name}"
 
     read(PAPER / "main.tex")
+    for name, label in named_references:
+        assert label in statements and statements[label][1] == name.lower(), (name, label)
     expected = {label for label, (_, kind) in statements.items() if kind != "definition"}
     assert set(proof_marks) == expected, "Numbered results and marked proofs differ"
     assert len({card for card, _ in statements.values()}) == len(statements), "Shared concept destination"
